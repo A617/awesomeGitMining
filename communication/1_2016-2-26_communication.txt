@@ -2,4 +2,4 @@ who:窦妍 范炜 高露 杜天蛟
 when:2016.02.26
 what:选题和讨论迭代一项目需求
 how long:1.5h
-arrived solution:选题为case1：gitmining，确定用例为搜索项目、搜索作者、项目排序、查看项目、查看用户
+arrived solution:选题为case1：gitmining，确定用例为搜索项目、搜索作者、项目排序、查看项目、查看用户.
