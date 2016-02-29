@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="lib/commons-logging-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/ezmorph-1.0.4.jar"/>
 	<classpathentry kind="lib" path="lib/json-lib-2.2.3-jdk13.jar"/>
+	<classpathentry kind="lib" path="lib/jfxrt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
