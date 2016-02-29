@@ -1,5 +1,7 @@
 package main.business.service;
 
-public class UserService {
+import main.vo.UserVO;
 
+public interface UserService {
+	public abstract UserVO searchUser(String id);
 }
