@@ -1,8 +1,5 @@
 package main.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import main.dao.po.RepositoryPO;
 import net.sf.json.JSONObject;
 
@@ -24,17 +21,17 @@ public class JsonUtil {
         po.setLanguage(jb.getString("language"));
    //   po.setCo_workers(co_workers);
    //   po.setVersions(jb.getJSONObject(""));
-        po.setUrl(jb.getString("url"));
-        po.setDescription(jb.getString("description"));
    //   po.setForkNames(forkNames);
-        po.setForks(Integer.parseInt(jb.getString("forks")));
-        po.setStargazers(Integer.parseInt(jb.getString("stargazers_count")));
-        po.setSubscribers(Integer.parseInt(jb.getString("subscribers_count")));
-        po.setLastCreateTime(jb.getString("created_at"));
-        po.setLastUpdateTime(jb.getString("updated_at"));
-        po.setLastPushTime(jb.getString("pushed_at"));
-        po.setOpenIssue(Integer.parseInt(jb.getString("open_issues_count")));
-        po.setSize(Integer.parseInt(jb.getString("size")));
+        po.setClone_url(jb.getString("url"));
+        po.setDescription(jb.getString("description"));
+        po.setForks_count(jb.getInt("forks"));
+        po.setStargazers_count(Integer.parseInt(jb.getString("stargazers_count")));
+        po.setSubscribers_count(Integer.parseInt(jb.getString("subscribers_count")));
+        po.setCreated_at(jb.getString("created_at"));
+        po.setUpdated_at(jb.getString("updated_at"));
+        po.setPushed_at(jb.getString("pushed_at"));
+        po.setOpen_issues(jb.getInt("open_issues_count"));
+        po.setSize(jb.getInt("size"));
 
         return po;
 
