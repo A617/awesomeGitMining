@@ -10,7 +10,7 @@ import javafx.stage.StageStyle;
 public class MainUI extends Application{
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub·	
 		Application.launch(MainUI.class,args);
 	}
 
