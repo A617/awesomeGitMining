@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.web.*?>
 <?import javafx.scene.image.*?>
@@ -40,6 +41,46 @@
                </font>
             </Button>
             <Button layoutX="769.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="31.0" text="Button" />
+            <TabPane layoutX="170.0" layoutY="155.0" prefHeight="356.0" prefWidth="510.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="  General  ">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ScrollBar layoutX="496.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="329.0" prefWidth="14.0" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="  Star  ">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ScrollBar layoutX="496.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="329.0" prefWidth="14.0" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab text="  Fork  ">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ScrollBar layoutX="496.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="329.0" prefWidth="14.0" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="  Contributor  ">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ScrollBar layoutX="496.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="329.0" prefWidth="14.0" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
          </children>
       </Pane>
    </children>
