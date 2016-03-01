@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import main.business.dto.Converter;
 import main.business.service.RepositoryService;
+import main.business.utility.SortHelper;
 import main.dao.impl.IRepoDao;
 import main.dao.po.RepositoryPO;
 import main.dao.po.UserPO;
@@ -58,19 +59,28 @@ public class RepositoryServiceImpl implements RepositoryService {
 
 	@Override
 	public ArrayList<RepositoryVO> showReposByStar() {
-		
-		return null;
+		ArrayList<RepositoryVO> vos = showRepositories();
+		vos = (ArrayList<RepositoryVO>) SortHelper.sortReposByStar(vos);
+		return vos;
 	}
 
 	@Override
 	public ArrayList<RepositoryVO> showReposByFork() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<RepositoryVO> vos = showRepositories();
+		vos = (ArrayList<RepositoryVO>) SortHelper.sortReposByFork(vos);
+		return vos;
 	}
 
 	private RepositoryVO setLists(RepositoryVO vo, RepositoryPO po) {
 		ArrayList<String> conNames = new ArrayList<String>();// contributors' names
 		//TODO
 		return vo;
+	}
+
+	@Override
+	public ArrayList<RepositoryVO> showReposByContribute() {
+		ArrayList<RepositoryVO> vos = showRepositories();
+		vos = (ArrayList<RepositoryVO>) SortHelper.sortReposByContribute(vos);
+		return vos;
 	}
 }
