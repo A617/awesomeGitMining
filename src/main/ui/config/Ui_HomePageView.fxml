@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="182.0" layoutY="92.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="31.0" layoutY="38.0" text="Search what you are interested on Git" textFill="#6f6b6b">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="29.0" layoutY="6.0" text="Welcome to GitMining!">
+               <font>
+                  <Font name="Baskerville Old Face" size="23.0" />
+               </font>
+            </Label>
+            <TextField layoutX="227.0" layoutY="63.0" prefHeight="35.0" prefWidth="216.0">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </TextField>
+            <Line endX="700.0" layoutX="99.0" layoutY="105.0" startX="-100.0" stroke="#9e9b9b">
+               <effect>
+                  <Glow />
+               </effect>
+            </Line>
+            <Button layoutX="443.0" layoutY="63.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="85.0" text="Search">
+               <font>
+                  <Font name="Bell MT Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="769.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="31.0" text="Button" />
+            <TabPane layoutX="170.0" layoutY="155.0" prefHeight="356.0" prefWidth="510.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="  General  ">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ScrollBar layoutX="496.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="329.0" prefWidth="14.0" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="  Star  ">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ScrollBar layoutX="496.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="329.0" prefWidth="14.0" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab text="  Fork  ">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ScrollBar layoutX="496.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="329.0" prefWidth="14.0" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="  Contributor  ">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ScrollBar layoutX="496.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="329.0" prefWidth="14.0" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
