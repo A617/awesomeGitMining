@@ -16,7 +16,7 @@ public class MainUI extends Application{
 
 	public void start(Stage stage) throws Exception {
 		// TODO Auto-generated method stub
-		Parent root = FXMLLoader.load(getClass().getResource("Ui_HomePageView.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("config/Ui_HomePageView.fxml"));
 		Scene scene = new Scene(root, 800, 600);
         stage.initStyle(StageStyle.DECORATED);
         stage.setScene(scene);
