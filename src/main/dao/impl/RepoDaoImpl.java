@@ -31,6 +31,10 @@ public class RepoDaoImpl implements IRepoDao {
 		String s = HttpRequest.sendGet("http://gitmining.net/api/repository/", name);
 		RepositoryPO po = JsonUtil.<RepositoryPO>parseJson2PO(JSONObject.fromObject(s),RepositoryPO.class);
 		
+		po.setContributors(this.getContributors(name));
+		po.setBranches(this.getBranches(name));
+		po.setForks(this.getForks(name));
+		po.setOwner(this.getOwner(name));
 		return po;
 	}
 
@@ -62,4 +66,19 @@ public class RepoDaoImpl implements IRepoDao {
 		ArrayList<UserPO> list =  JsonUtil.parseJson2POlist(JSONArray.fromObject(s), UserPO.class);
         return list;
 	}
+	
+	public ArrayList<RepositoryPO> getForks(String name){
+		String s = HttpRequest.sendGet("http://gitmining.net/api/repository/",name+"/forks");
+		
+		ArrayList<RepositoryPO> list =  JsonUtil.parseJson2POlist(JSONArray.fromObject(s), RepositoryPO.class);
+        return list;
+	}
+	
+	private UserPO getOwner(String name){
+		String s = HttpRequest.sendGet("http://gitmining.net/api/repository/",name);
+		
+		JSONObject owner =  JSONObject.fromObject(s).getJSONObject("owner");
+        return JsonUtil.parseJson2PO(owner, UserPO.class);
+	}
+	
 }

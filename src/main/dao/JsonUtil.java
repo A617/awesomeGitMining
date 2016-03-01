@@ -63,12 +63,12 @@ public class JsonUtil {
 		ArrayList<T> desList = new ArrayList<T>();
 		T des;
 		
-		System.out.println(desList.getClass());
 		
 		for (int i = 0; i < ja.size(); i++) {
 			
 			try {
 				des = cls.newInstance();
+				
 			} catch (InstantiationException | IllegalAccessException e1) {
 				System.out.println("can't get a new instance");
 				e1.printStackTrace();
@@ -90,6 +90,7 @@ public class JsonUtil {
 		try {
 			List<Field> fieldList = new ArrayList<Field>();
 			fieldList.addAll(Arrays.asList(des.getClass().getDeclaredFields()));
+			
 			for (Field field : fieldList) {
 
 				String name = field.getName();
@@ -119,5 +120,15 @@ public class JsonUtil {
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static JSONObject getJSONObject(JSONObject obj,  String id) {
+		
+		
+
+			
+
+		
+		return obj.getJSONObject(id);
 	}
 }

@@ -10,7 +10,7 @@ public class RepositoryPO {
 	private UserPO owner;	//项目主人
 	private String language;	//编程语言
 	private ArrayList<UserPO> contributors;	//该项目所有贡献者
-	private ArrayList<String> branches;	//该项目所有版本名
+	private ArrayList<BranchPO> branches;	//该项目所有版本名
 	private ArrayList<RepositoryPO> forks;	//该项目所有fork项目
 	private String clone_url;	//git地址
 	private String description;
@@ -26,11 +26,9 @@ public class RepositoryPO {
 	public RepositoryPO() {
 		super();
 	}
-	
-	
 
 	public RepositoryPO(String name, UserPO owner, String language, ArrayList<UserPO> contributors,
-			ArrayList<String> branches, ArrayList<RepositoryPO> forks, String clone_url, String description,
+			ArrayList<BranchPO> branches, ArrayList<RepositoryPO> forks, String clone_url, String description,
 			String created_at, String pushed_at, String updated_at, int size, int stargazers_count, int forks_count,
 			int open_issues, int subscribers_count) {
 		super();
@@ -52,7 +50,15 @@ public class RepositoryPO {
 		this.subscribers_count = subscribers_count;
 	}
 
-
+	@Override
+	public String toString() {
+		return "RepositoryPO [name=" + name + ", owner=" + owner + ", language=" + language + ", contributors="
+				+ contributors + ", branches=" + branches + ", forks=" + forks + ", clone_url=" + clone_url
+				+ ", description=" + description + ", created_at=" + created_at + ", pushed_at=" + pushed_at
+				+ ", updated_at=" + updated_at + ", size=" + size + ", stargazers_count=" + stargazers_count
+				+ ", forks_count=" + forks_count + ", open_issues=" + open_issues + ", subscribers_count="
+				+ subscribers_count + "]";
+	}
 
 	public String getName() {
 		return name;
@@ -86,11 +92,11 @@ public class RepositoryPO {
 		this.contributors = contributors;
 	}
 
-	public ArrayList<String> getBranches() {
+	public ArrayList<BranchPO> getBranches() {
 		return branches;
 	}
 
-	public void setBranches(ArrayList<String> branches) {
+	public void setBranches(ArrayList<BranchPO> branches) {
 		this.branches = branches;
 	}
 
@@ -181,18 +187,8 @@ public class RepositoryPO {
 	public void setSubscribers_count(int subscribers_count) {
 		this.subscribers_count = subscribers_count;
 	}
-
-
-
-	@Override
-	public String toString() {
-		return "RepositoryPO [name=" + name + ", owner=" + owner + ", language=" + language + ", contributors="
-				+ contributors + ", branches=" + branches + ", forks=" + forks + ", clone_url=" + clone_url
-				+ ", description=" + description + ", created_at=" + created_at + ", pushed_at=" + pushed_at
-				+ ", updated_at=" + updated_at + ", size=" + size + ", stargazers_count=" + stargazers_count
-				+ ", forks_count=" + forks_count + ", open_issues=" + open_issues + ", subscribers_count="
-				+ subscribers_count + "]";
-	}
+	
+	
 
 	
 	
