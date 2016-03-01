@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 import main.dao.HttpRequest;
 import main.dao.JsonUtil;
+import main.dao.po.BranchPO;
 import main.dao.po.RepositoryPO;
+import main.dao.po.UserPO;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 public class RepoDaoImpl implements IRepoDao {
 
@@ -19,36 +23,43 @@ public class RepoDaoImpl implements IRepoDao {
 	public RepoDaoImpl() {
 		ju = new JsonUtil();
 	}
+	
 
 	@Override
 	public RepositoryPO getRepository(String name) {
 
 		String s = HttpRequest.sendGet("http://gitmining.net/api/repository/", name);
-		RepositoryPO po = ju.json2repo(s);
-
+		RepositoryPO po = JsonUtil.<RepositoryPO>parseJson2PO(JSONObject.fromObject(s),RepositoryPO.class);
+		
 		return po;
 	}
 
+	
 	@Override
 	public ArrayList<RepositoryPO> getAllRepo() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	// 发送 GET 请求
+	
+	public ArrayList<BranchPO> getBranches(String name){
+		String s = HttpRequest.sendGet("https://api.github.com/repos/",name+"/branches");
 
-	/*
-	 * //1.json格式项目详情列表，一页50个，不加?page=则默认显示第一页内容 String
-	 * s=HttpRequest.sendGet("http://www.gitmining.net//api/repository",
-	 * "?page=1"); String[] lines = s.split(","); for(String str: lines)
-	 * System.out.println(str);
-	 */
-
-	/*
-	 * //2.所有项目全称列表 String
-	 * s=HttpRequest.sendGet("http://gitmining.net/api/repository/names", "");
-	 * String[] lines = s.split(","); for(String str: lines)
-	 * System.out.println(str);
-	 */
-
+		ArrayList<BranchPO> list =  JsonUtil.<BranchPO>parseJson2POlist(JSONArray.fromObject(s), BranchPO.class);
+        return list;
+	}
+	
+	public ArrayList<UserPO> getContributors(String name){
+		String s = HttpRequest.sendGet("http://gitmining.net/api/repository/",name+"/contributors");
+		
+		ArrayList<UserPO> list =  JsonUtil.parseJson2POlist(JSONArray.fromObject(s), UserPO.class);
+        return list;
+	}
+	
+	public ArrayList<UserPO> getCollaborators(String name){
+		String s = HttpRequest.sendGet("http://gitmining.net/api/repository/",name+"/collaborators");
+		
+		ArrayList<UserPO> list =  JsonUtil.parseJson2POlist(JSONArray.fromObject(s), UserPO.class);
+        return list;
+	}
 }

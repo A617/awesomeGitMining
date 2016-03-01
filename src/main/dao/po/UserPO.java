@@ -21,6 +21,8 @@ public class UserPO {
 	private int followers;
 	private String created_at;
 	private String updated_at;
+	
+	
 	public UserPO(String login, String name, String html_url, String location, String email, String blog,
 			ArrayList<UserPO> follower, ArrayList<UserPO> following, ArrayList<RepositoryPO> repos, int public_repos,
 			int followers, String created_at, String updated_at) {
