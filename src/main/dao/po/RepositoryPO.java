@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class RepositoryPO {
 	private String name;	//项目名
-	private String owner;	//项目主人
+	private UserPO owner;	//项目主人
 	private String language;	//编程语言
 	private ArrayList<UserPO> contributors;	//该项目所有贡献者
 	private ArrayList<String> branches;	//该项目所有版本名
@@ -29,7 +29,7 @@ public class RepositoryPO {
 	
 	
 
-	public RepositoryPO(String name, String owner, String language, ArrayList<UserPO> contributors,
+	public RepositoryPO(String name, UserPO owner, String language, ArrayList<UserPO> contributors,
 			ArrayList<String> branches, ArrayList<RepositoryPO> forks, String clone_url, String description,
 			String created_at, String pushed_at, String updated_at, int size, int stargazers_count, int forks_count,
 			int open_issues, int subscribers_count) {
@@ -62,11 +62,11 @@ public class RepositoryPO {
 		this.name = name;
 	}
 
-	public String getOwner() {
+	public UserPO getOwner() {
 		return owner;
 	}
 
-	public void setOwner(String owner) {
+	public void setOwner(UserPO owner) {
 		this.owner = owner;
 	}
 
@@ -180,6 +180,18 @@ public class RepositoryPO {
 
 	public void setSubscribers_count(int subscribers_count) {
 		this.subscribers_count = subscribers_count;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "RepositoryPO [name=" + name + ", owner=" + owner + ", language=" + language + ", contributors="
+				+ contributors + ", branches=" + branches + ", forks=" + forks + ", clone_url=" + clone_url
+				+ ", description=" + description + ", created_at=" + created_at + ", pushed_at=" + pushed_at
+				+ ", updated_at=" + updated_at + ", size=" + size + ", stargazers_count=" + stargazers_count
+				+ ", forks_count=" + forks_count + ", open_issues=" + open_issues + ", subscribers_count="
+				+ subscribers_count + "]";
 	}
 
 	

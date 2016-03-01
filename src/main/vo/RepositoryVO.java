@@ -6,45 +6,50 @@ import java.util.ArrayList;
  * @author tj
  * @date 2016年2月29日
  */
-public class RepositoryVO {
-	private String id;
-	private int stars;// 点赞人数
+public class RepositoryVO extends VO {
+	private String name;//项目名
+	private int subscribers_count;// 点赞人数
 	private ArrayList<String> languages;// 项目使用的语言
-	private ArrayList<String> contributers;// 项目贡献者
-	private ArrayList<String> co_workers;// 项目合作者
-	private ArrayList<String> forkNames;// fork的项目
-	private int forks;// 被fork的次数
-	private String url;// 项目主页
+	private ArrayList<String> contributors;// 项目贡献者
+	private ArrayList<String> collaborators;// 项目合作者
+	private ArrayList<String> forks;// fork的项目
+	private int forks_count;// 被fork的次数
+	private String clone_url;// 项目主页
 	private String description;// 项目描述信息
 
-	public RepositoryVO(String id, int stars, ArrayList<String> languages, ArrayList<String> contributers,
-			ArrayList<String> co_workers, ArrayList<String> forkNames, int forks, String url, String description) {
+	public RepositoryVO() {
+
+	}
+
+	public RepositoryVO(String name, int subscribers_count, ArrayList<String> languages, ArrayList<String> contributors,
+			ArrayList<String> collaborators, ArrayList<String> forks, int forks_count, String clone_url,
+			String description) {
 		super();
-		this.id = id;
-		this.stars = stars;
+		this.name = name;
+		this.subscribers_count = subscribers_count;
 		this.languages = languages;
-		this.contributers = contributers;
-		this.co_workers = co_workers;
-		this.forkNames = forkNames;
+		this.contributors = contributors;
+		this.collaborators = collaborators;
 		this.forks = forks;
-		this.url = url;
+		this.forks_count = forks_count;
+		this.clone_url = clone_url;
 		this.description = description;
 	}
 
-	public String getId() {
-		return id;
+	public String getName() {
+		return name;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public int getStars() {
-		return stars;
+	public int getSubscribers_count() {
+		return subscribers_count;
 	}
 
-	public void setStars(int stars) {
-		this.stars = stars;
+	public void setSubscribers_count(int subscribers_count) {
+		this.subscribers_count = subscribers_count;
 	}
 
 	public ArrayList<String> getLanguages() {
@@ -55,44 +60,44 @@ public class RepositoryVO {
 		this.languages = languages;
 	}
 
-	public ArrayList<String> getContributers() {
-		return contributers;
+	public ArrayList<String> getContributors() {
+		return contributors;
 	}
 
-	public void setContributers(ArrayList<String> contributers) {
-		this.contributers = contributers;
+	public void setContributors(ArrayList<String> contributors) {
+		this.contributors = contributors;
 	}
 
-	public ArrayList<String> getCo_workers() {
-		return co_workers;
+	public ArrayList<String> getCollaborators() {
+		return collaborators;
 	}
 
-	public void setCo_workers(ArrayList<String> co_workers) {
-		this.co_workers = co_workers;
+	public void setCollaborators(ArrayList<String> collaborators) {
+		this.collaborators = collaborators;
 	}
 
-	public ArrayList<String> getForkNames() {
-		return forkNames;
-	}
-
-	public void setForkNames(ArrayList<String> forkNames) {
-		this.forkNames = forkNames;
-	}
-
-	public int getForks() {
+	public ArrayList<String> getForks() {
 		return forks;
 	}
 
-	public void setForks(int forks) {
+	public void setForks(ArrayList<String> forks) {
 		this.forks = forks;
 	}
 
-	public String getUrl() {
-		return url;
+	public int getForks_count() {
+		return forks_count;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setForks_count(int forks_count) {
+		this.forks_count = forks_count;
+	}
+
+	public String getClone_url() {
+		return clone_url;
+	}
+
+	public void setClone_url(String clone_url) {
+		this.clone_url = clone_url;
 	}
 
 	public String getDescription() {
