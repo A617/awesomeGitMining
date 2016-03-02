@@ -1,5 +1,23 @@
 package main.ui.controller;
 
-public class SearchController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.fxml.Initializable;
+import main.ui.MainUI;
+
+public class SearchController implements Initializable{
+	
+	private MainUI app;
+	
+	public void setApp(MainUI app){
+		this.app=app;
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

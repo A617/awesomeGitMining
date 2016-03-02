@@ -1,29 +1,38 @@
 package main.dao;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import main.dao.impl.IRepoDao;
 import main.dao.impl.IUserDao;
 import main.dao.impl.RepoDaoImpl;
 import main.dao.impl.UserDaoImpl;
+import main.dao.po.RepositoryPO;
 import main.dao.po.UserPO;
 
 public class Test {
 
 	public static void main(String[] args) {
-		RepoDaoImpl dao = new RepoDaoImpl();
-		System.out.println(dao.getRepository("resque/resque-loner"));
 		
-		IUserDao user = new UserDaoImpl();
-		System.out.println(user.getUser("resque"));
+		 IRepoDao dao = new RepoDaoImpl(); 
+		 RepositoryPO po = dao.getRepository("mojombo/god");
+		 System.out.println(po);
+		 
 		
-		RepoDaoImpl daoi = new RepoDaoImpl();
-	//	List<BranchPO> list = daoi.getBranches("mojombo/god");
-		List<UserPO> list = daoi.getCollaborators("mojombo/god");
-
-        for (int i = 0; i < list.size(); i++) {
-        	System.out.println(list.get(i));
-        }
-
+		
+		 IUserDao user = new UserDaoImpl();
+		 System.out.println(user.getUser("mojombo"));
 		
 	}
+
+	
+
 }

@@ -11,6 +11,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import main.ui.controller.HomeController;
 import main.ui.controller.ProjectController;
+import main.ui.controller.SearchController;
+import main.ui.controller.UserController;
 
 public class MainUI extends Application{
 	
@@ -25,7 +27,7 @@ public class MainUI extends Application{
 		stage.setMinWidth(WIDTH);
 		stage.setMinHeight(HEIGHT);
 		
-		gotoHome();
+		gotoProject();
 		stage.show();
 	}
 	
@@ -50,11 +52,23 @@ public class MainUI extends Application{
 	}
 	
 	public void gotoSearch(){
-		
+		SearchController searchController;
+		try {
+			searchController = (SearchController) changeSceneContent("config/Ui_SearchView.fxml");
+			searchController.setApp(this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void gotoUser(){
-		
+		UserController userController;
+		try {
+			userController = (UserController) changeSceneContent("config/Ui_UserInfoView.fxml");
+			userController.setApp(this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private Initializable changeSceneContent(String fxml) throws Exception{
@@ -79,5 +93,5 @@ public class MainUI extends Application{
 	public static void main(String[] args) {
 		launch(args);
 	}
-
+	
 }

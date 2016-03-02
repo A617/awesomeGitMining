@@ -7,7 +7,6 @@ import main.business.service.RepositoryService;
 import main.business.utility.SortHelper;
 import main.dao.impl.IRepoDao;
 import main.dao.po.RepositoryPO;
-import main.dao.po.UserPO;
 import main.vo.RepositoryVO;
 
 /**
@@ -31,12 +30,11 @@ public class RepositoryServiceImpl implements RepositoryService {
 
 	@Override
 	public RepositoryVO searchRepository(String id) {
-		RepositoryVO vo = null;							
+		RepositoryVO vo = null;
 		if (daoImpl != null) {
 			RepositoryPO po = daoImpl.getRepository(id);
 			if (po != null) {
 				vo = (RepositoryVO) Converter.convert("RepositoryVO", po);
-				vo = setLists(vo, po);
 			}
 		}
 		return vo;
@@ -50,7 +48,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 			if (pos != null) {
 				for (RepositoryPO po : pos) {
 					RepositoryVO vo = (RepositoryVO) Converter.convert("RepositoryVO", po);
-					vo = setLists(vo,po);
+					vos.add(vo);
 				}
 			}
 		}
@@ -71,11 +69,21 @@ public class RepositoryServiceImpl implements RepositoryService {
 		return vos;
 	}
 
-	private RepositoryVO setLists(RepositoryVO vo, RepositoryPO po) {
-		ArrayList<String> conNames = new ArrayList<String>();// contributors' names
-		//TODO
-		return vo;
-	}
+//	private RepositoryVO setLists(RepositoryVO vo, RepositoryPO po) {
+//		ArrayList<String> languages = new ArrayList<String>();// 项目使用的语言
+//		ArrayList<String> contributors = new ArrayList<String>();// 项目贡献者
+//		ArrayList<String> collaborators = new ArrayList<String>();// 项目合作者
+//		ArrayList<String> forks = new ArrayList<String>();// fork的项目
+//		//给languages赋值
+//		Map<String, Integer> polan = po.getLanguages();
+//		if (polan != null) {
+//			for (Map.Entry<String, Integer> entry : polan.entrySet()) {
+//				languages.add(entry.getKey());
+//			}
+//		}
+//		
+//		return vo;
+//	}
 
 	@Override
 	public ArrayList<RepositoryVO> showReposByContribute() {

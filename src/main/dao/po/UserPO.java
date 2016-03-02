@@ -1,6 +1,7 @@
 package main.dao.po;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * UserPO
@@ -14,18 +15,18 @@ public class UserPO {
 	private String location;	//所在地
 	private String email;
 	private String blog;
-	private ArrayList<UserPO> follower;
-	private ArrayList<UserPO> following;
-	private ArrayList<RepositoryPO> repos;
+	private List<String> followers_name;
+	private List<String> following_name;
+	private List<String> repos_fullname;
 	private int public_repos;
 	private int followers;
+	private int following;
 	private String created_at;
 	private String updated_at;
 	
-	
 	public UserPO(String login, String name, String html_url, String location, String email, String blog,
-			ArrayList<UserPO> follower, ArrayList<UserPO> following, ArrayList<RepositoryPO> repos, int public_repos,
-			int followers, String created_at, String updated_at) {
+			ArrayList<String> followers_name, ArrayList<String> following_name, ArrayList<String> repos_fullname,
+			int public_repos, int followers, int following, String created_at, String updated_at) {
 		super();
 		this.login = login;
 		this.name = name;
@@ -33,16 +34,36 @@ public class UserPO {
 		this.location = location;
 		this.email = email;
 		this.blog = blog;
-		this.follower = follower;
-		this.following = following;
-		this.repos = repos;
+		this.followers_name = followers_name;
+		this.following_name = following_name;
+		this.repos_fullname = repos_fullname;
 		this.public_repos = public_repos;
 		this.followers = followers;
+		this.following = following;
 		this.created_at = created_at;
 		this.updated_at = updated_at;
 	}
 	public UserPO() {
 		super();
+	}
+	
+	public int getFollowing() {
+		return following;
+	}
+	public void setFollowing(int following) {
+		this.following = following;
+	}
+	public String getCreated_at() {
+		return created_at;
+	}
+	public void setCreated_at(String created_at) {
+		this.created_at = created_at;
+	}
+	public String getUpdated_at() {
+		return updated_at;
+	}
+	public void setUpdated_at(String updated_at) {
+		this.updated_at = updated_at;
 	}
 	public String getLogin() {
 		return login;
@@ -80,23 +101,23 @@ public class UserPO {
 	public void setBlog(String blog) {
 		this.blog = blog;
 	}
-	public ArrayList<UserPO> getFollower() {
-		return follower;
+	public List<String> getFollowers_name() {
+		return followers_name;
 	}
-	public void setFollower(ArrayList<UserPO> follower) {
-		this.follower = follower;
+	public void setFollowers_name(List<String> followers_name) {
+		this.followers_name = followers_name;
 	}
-	public ArrayList<UserPO> getFollowing() {
-		return following;
+	public List<String> getFollowing_name() {
+		return following_name;
 	}
-	public void setFollowing(ArrayList<UserPO> following) {
-		this.following = following;
+	public void setFollowing_name(List<String> following_name) {
+		this.following_name = following_name;
 	}
-	public ArrayList<RepositoryPO> getRepos() {
-		return repos;
+	public List<String> getRepos_fullname() {
+		return repos_fullname;
 	}
-	public void setRepos(ArrayList<RepositoryPO> repos) {
-		this.repos = repos;
+	public void setRepos_fullname(List<String> repos_fullname) {
+		this.repos_fullname = repos_fullname;
 	}
 	public int getPublic_repos() {
 		return public_repos;
@@ -110,25 +131,17 @@ public class UserPO {
 	public void setFollowers(int followers) {
 		this.followers = followers;
 	}
-	public String getCreated_at() {
-		return created_at;
-	}
-	public void setCreated_at(String created_at) {
-		this.created_at = created_at;
-	}
-	public String getUpdated_at() {
-		return updated_at;
-	}
-	public void setUpdated_at(String updated_at) {
-		this.updated_at = updated_at;
-	}
 	@Override
 	public String toString() {
 		return "UserPO [login=" + login + ", name=" + name + ", html_url=" + html_url + ", location=" + location
-				+ ", email=" + email + ", blog=" + blog + ", follower=" + follower + ", following=" + following
-				+ ", repos=" + repos + ", public_repos=" + public_repos + ", followers=" + followers + ", created_at="
-				+ created_at + ", updated_at=" + updated_at + "]";
+				+ ", email=" + email + ", blog=" + blog + ", followers_name=" + followers_name + ", following_name="
+				+ following_name + ", repos_fullname=" + repos_fullname + ", public_repos=" + public_repos
+				+ ", followers=" + followers + ", following=" + following + ", created_at=" + created_at
+				+ ", updated_at=" + updated_at + "]";
 	}
+	
+	
+	
 	
 	
 	

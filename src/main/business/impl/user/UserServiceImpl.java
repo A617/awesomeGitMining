@@ -31,6 +31,7 @@ public class UserServiceImpl implements UserService {
 		UserVO vo = null;
 		if (daoImpl != null) {
 			UserPO po = daoImpl.getUser(id);
+			//TODO 创建的项目和参与的项目尚未赋值
 			if (po != null) {
 				vo = (UserVO) Converter.convert("UserVO", po);
 			}

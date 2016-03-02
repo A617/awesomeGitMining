@@ -1,18 +1,19 @@
 package main.vo;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author tj
  * @date 2016年2月29日
  */
 public class RepositoryVO extends VO {
-	private String name;//项目名
+	private String name;// 项目名
 	private int subscribers_count;// 点赞人数
-	private ArrayList<String> languages;// 项目使用的语言
-	private ArrayList<String> contributors;// 项目贡献者
-	private ArrayList<String> collaborators;// 项目合作者
-	private ArrayList<String> forks;// fork的项目
+	private Map<String, Integer> languages;// 项目使用的语言
+	private List<String> contributors_login;// 项目贡献者
+	private List<String> collaborators_login;// 项目合作者
+	private List<String> forks_fullname;// fork的项目
 	private int forks_count;// 被fork的次数
 	private String clone_url;// 项目主页
 	private String description;// 项目描述信息
@@ -21,16 +22,16 @@ public class RepositoryVO extends VO {
 
 	}
 
-	public RepositoryVO(String name, int subscribers_count, ArrayList<String> languages, ArrayList<String> contributors,
-			ArrayList<String> collaborators, ArrayList<String> forks, int forks_count, String clone_url,
-			String description) {
+	public RepositoryVO(String name, int subscribers_count, Map<String, Integer> languages,
+			List<String> contributors_login, List<String> collaborators_login, List<String> forks_fullname,
+			int forks_count, String clone_url, String description) {
 		super();
 		this.name = name;
 		this.subscribers_count = subscribers_count;
 		this.languages = languages;
-		this.contributors = contributors;
-		this.collaborators = collaborators;
-		this.forks = forks;
+		this.contributors_login = contributors_login;
+		this.collaborators_login = collaborators_login;
+		this.forks_fullname = forks_fullname;
 		this.forks_count = forks_count;
 		this.clone_url = clone_url;
 		this.description = description;
@@ -52,36 +53,36 @@ public class RepositoryVO extends VO {
 		this.subscribers_count = subscribers_count;
 	}
 
-	public ArrayList<String> getLanguages() {
+	public Map<String, Integer> getLanguages() {
 		return languages;
 	}
 
-	public void setLanguages(ArrayList<String> languages) {
+	public void setLanguages(Map<String, Integer> languages) {
 		this.languages = languages;
 	}
 
-	public ArrayList<String> getContributors() {
-		return contributors;
+	public List<String> getContributors_login() {
+		return contributors_login;
 	}
 
-	public void setContributors(ArrayList<String> contributors) {
-		this.contributors = contributors;
+	public void setContributors_login(List<String> contributors_login) {
+		this.contributors_login = contributors_login;
 	}
 
-	public ArrayList<String> getCollaborators() {
-		return collaborators;
+	public List<String> getCollaborators_login() {
+		return collaborators_login;
 	}
 
-	public void setCollaborators(ArrayList<String> collaborators) {
-		this.collaborators = collaborators;
+	public void setCollaborators_login(List<String> collaborators_login) {
+		this.collaborators_login = collaborators_login;
 	}
 
-	public ArrayList<String> getForks() {
-		return forks;
+	public List<String> getForks_fullname() {
+		return forks_fullname;
 	}
 
-	public void setForks(ArrayList<String> forks) {
-		this.forks = forks;
+	public void setForks_fullname(List<String> forks_fullname) {
+		this.forks_fullname = forks_fullname;
 	}
 
 	public int getForks_count() {

@@ -32,7 +32,7 @@ public class SortHelper {
 	public static List<RepositoryVO> sortReposByContribute(List<RepositoryVO> vos) {
 		Collections.sort(vos, new Comparator<RepositoryVO>() {
 			public int compare(RepositoryVO arg0, RepositoryVO arg1) {
-				return arg0.getContributors().size() - arg1.getContributors().size();
+				return arg0.getContributors_login().size() - arg1.getContributors_login().size();
 			}
 		});
 		return vos;
