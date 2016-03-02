@@ -50,10 +50,12 @@ public class Converter {
 	/**
 	 * 
 	 * @param name
+	 * @return 
 	 * @return the values in po
 	 */
-	private static String getValue(String name, Object object) {
-		String result = null;
+	@SuppressWarnings("unchecked")
+	private static <T> T getValue(String name, Object object) {
+		T result = null;
 		Class<?> classType = object.getClass();
 		// 获取get方法的名字
 		String firstLetter = name.substring(0, 1).toUpperCase(); // 将属性的首字母转换为大写
@@ -61,7 +63,7 @@ public class Converter {
 		Method logMethod;
 		try {
 			logMethod = classType.getMethod(methodName);
-			result = (String) logMethod.invoke(object);
+			result = (T) logMethod.invoke(object);
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException e) {
 			// TODO Auto-generated catch block

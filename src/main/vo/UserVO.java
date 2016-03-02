@@ -12,7 +12,7 @@ public class UserVO extends VO {
 	private String location;
 	private String email;
 	private String blog;
-	private int follower;
+	private int followers;
 	private int following;
 	private String html_url; // github主页
 	private ArrayList<String> pProjects;// 用户参与的项目
@@ -22,7 +22,7 @@ public class UserVO extends VO {
 
 	}
 
-	public UserVO(String login, String name, String location, String email, String blog, int follower,
+	public UserVO(String login, String name, String location, String email, String blog, int followers, int following,
 			String html_url, ArrayList<String> pProjects, ArrayList<String> cProjects) {
 		super();
 		this.login = login;
@@ -30,7 +30,8 @@ public class UserVO extends VO {
 		this.location = location;
 		this.email = email;
 		this.blog = blog;
-		this.follower = follower;
+		this.followers = followers;
+		this.following = following;
 		this.html_url = html_url;
 		this.pProjects = pProjects;
 		this.cProjects = cProjects;
@@ -76,12 +77,20 @@ public class UserVO extends VO {
 		this.blog = blog;
 	}
 
-	public int getFollower() {
-		return follower;
+	public int getFollowers() {
+		return followers;
 	}
 
-	public void setFollower(int follower) {
-		this.follower = follower;
+	public void setFollowers(int followers) {
+		this.followers = followers;
+	}
+
+	public int getFollowing() {
+		return following;
+	}
+
+	public void setFollowing(int following) {
+		this.following = following;
 	}
 
 	public String getHtml_url() {
