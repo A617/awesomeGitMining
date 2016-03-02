@@ -30,4 +30,9 @@ public interface RepositoryService {
 	 * @return @see ArrayList of @see RepositoryVO
 	 */
 	public abstract ArrayList<RepositoryVO> showReposByFork();
+	/**
+	 * ordered by contributors
+	 * @return @see ArrayList of @see RepositoryVO
+	 */
+	public abstract ArrayList<RepositoryVO> showReposByContribute();
 }
