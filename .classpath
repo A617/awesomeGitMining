@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="lib" path="lib/commons-beanutils-1.7.0.jar"/>
+	<classpathentry kind="lib" path="lib/commons-collections-3.2.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/ezmorph-1.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/jfxrt.jar"/>
+	<classpathentry kind="lib" path="lib/json-lib-2.2.3-jdk13.jar"/>
+	<classpathentry kind="lib" path="lib/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="lib" path="D:/Git/awesomeGitMining/lib/commons-beanutils-1.7.0.jar"/>
+	<classpathentry kind="lib" path="D:/Git/awesomeGitMining/lib/commons-collections-3.2.jar"/>
+	<classpathentry kind="lib" path="D:/Git/awesomeGitMining/lib/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="D:/Git/awesomeGitMining/lib/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="D:/Git/awesomeGitMining/lib/controlsfx-8.0.6_20.jar"/>
+	<classpathentry kind="lib" path="D:/Git/awesomeGitMining/lib/ezmorph-1.0.4.jar"/>
+	<classpathentry kind="lib" path="D:/Git/awesomeGitMining/lib/jfxrt.jar"/>
+	<classpathentry kind="lib" path="D:/Git/awesomeGitMining/lib/json-lib-2.2.3-jdk13.jar"/>
+	<classpathentry kind="lib" path="D:/Git/awesomeGitMining/lib/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry including="**/*.java" kind="src" output="target/classes" path="src">
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="lib/json-lib-2.4-jdk15.jar"/>
-	<classpathentry kind="lib" path="lib/commons-beanutils-1.7.0.jar"/>
-	<classpathentry kind="lib" path="lib/commons-collections-3.2.jar"/>
-	<classpathentry kind="lib" path="lib/commons-lang-2.4.jar"/>
-	<classpathentry kind="lib" path="lib/commons-logging-1.1.jar"/>
-	<classpathentry kind="lib" path="lib/ezmorph-1.0.4.jar"/>
-	<classpathentry kind="lib" path="lib/json-lib-2.2.3-jdk13.jar"/>
-	<classpathentry kind="lib" path="lib/jfxrt.jar"/>
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="lib/controlsfx-8.0.6_20.jar"/>
-	<classpathentry kind="output" path="bin"/>
-=======
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="target/classes"/>
->>>>>>> 51bdfc8e5ff9778aaa82c81df32c1f131edd59fb
 </classpath>

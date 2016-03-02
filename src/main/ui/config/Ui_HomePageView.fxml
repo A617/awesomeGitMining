@@ -11,42 +11,42 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.HomeController">
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.HomeController">
    <children>
-      <Pane layoutX="182.0" layoutY="92.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane layoutX="182.0" layoutY="92.0" prefHeight="768.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="31.0" layoutY="38.0" text="Search what you are interested on Git." textFill="#6f6b6b">
+            <Label layoutX="31.0" layoutY="56.0" text="Search what you are interested on Git." textFill="#6f6b6b">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="29.0" layoutY="6.0" text="Welcome to GitMining!">
+            <Label layoutX="29.0" layoutY="8.0" text="Welcome to GitMining!">
                <font>
                   <Font name="Baskerville Old Face" size="23.0" />
                </font>
             </Label>
-            <TextField fx:id="search" layoutX="32.0" layoutY="63.0" prefHeight="35.0" prefWidth="216.0">
+            <TextField fx:id="search" layoutX="32.0" layoutY="97.0" prefHeight="35.0" prefWidth="216.0">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </TextField>
-            <Line endX="700.0" layoutX="99.0" layoutY="105.0" startX="-100.0" stroke="#9e9b9b">
+            <Line endX="924.0" layoutX="99.0" layoutY="150.0" startX="-100.0" stroke="#9e9b9b">
                <effect>
                   <Glow />
                </effect>
             </Line>
-            <Button fx:id="btn_search" layoutX="248.0" layoutY="63.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="85.0" text="Search">
+            <Button fx:id="btn_search" layoutX="248.0" layoutY="97.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="85.0" text="Search">
                <font>
                   <Font name="Bell MT Bold" size="14.0" />
                </font>
             </Button>
-            <TabPane layoutX="169.0" layoutY="128.0" prefHeight="430.0" prefWidth="477.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutX="179.0" layoutY="163.0" prefHeight="506.0" prefWidth="665.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab fx:id="tab_general" text="  General  ">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ScrollBar layoutX="463.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="430.0" prefWidth="14.0" />
+                              <ScrollBar layoutX="651.0" orientation="VERTICAL" prefHeight="506.0" prefWidth="14.0" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -81,17 +81,17 @@
                   </Tab>
               </tabs>
             </TabPane>
-            <TreeTableView layoutY="128.0" prefHeight="430.0" prefWidth="169.0">
+            <TreeTableView layoutY="163.0" prefHeight="506.0" prefWidth="180.0">
               <columns>
-                <TreeTableColumn fx:id="table_class" minWidth="12.0" prefWidth="170.0" text="筛选类别" />
+                <TreeTableColumn fx:id="table_class" minWidth="12.0" prefWidth="179.0" text="筛选类别" />
               </columns>
             </TreeTableView>
-            <TreeTableView layoutX="646.0" layoutY="128.0" prefHeight="430.0" prefWidth="155.0">
+            <TreeTableView layoutX="844.0" layoutY="163.0" prefHeight="506.0" prefWidth="180.0">
               <columns>
-                <TreeTableColumn fx:id="table_contributer" prefWidth="155.0" text="杰出贡献者" />
+                <TreeTableColumn fx:id="table_contributer" prefWidth="179.0" text="杰出贡献者" />
               </columns>
             </TreeTableView>
-            <Line endX="732.0" layoutX="68.0" layoutY="558.0" startX="-68.0" stroke="#949292" />
+            <Line endX="924.0" layoutX="99.0" layoutY="668.0" startX="-100.0" stroke="#949292" />
             <ImageView fitHeight="92.0" fitWidth="456.0" layoutX="338.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
