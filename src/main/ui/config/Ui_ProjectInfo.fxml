@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane layoutX="-76.0" layoutY="-115.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -32,10 +31,61 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
+                        <Label layoutX="67.0" layoutY="174.0" text="star_num">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="157.0" layoutY="174.0" text="fork_num">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="247.0" layoutY="174.0" text="sub_num">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="337.0" layoutY="174.0" text="contri_num">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="83.0" layoutY="225.0" text="stars">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="173.0" layoutY="225.0" text="forks">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="243.0" layoutY="225.0" text="subscribers">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="337.0" layoutY="225.0" text="contributors">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="444.0" layoutY="174.0" text="colla_num">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="443.0" layoutY="225.0" text="collaborator">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
               </content>
             </ScrollPane>
+            <Button layoutX="288.0" layoutY="10.0" mnemonicParsing="false" text="Menu" />
          </children>
       </Pane>
       <Label layoutX="29.0" layoutY="6.0" text="Welcome to GitMining!">
