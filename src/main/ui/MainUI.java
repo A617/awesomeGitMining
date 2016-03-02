@@ -10,13 +10,13 @@ import javafx.stage.StageStyle;
 public class MainUI extends Application{
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub·	
+		// TODO Auto-generated method stub·
 		Application.launch(MainUI.class,args);
 	}
 
 	public void start(Stage stage) throws Exception {
 		// TODO Auto-generated method stub
-		Parent root = FXMLLoader.load(getClass().getResource("config/Ui_HomePageView.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("config/Ui_ProjectInfo.fxml"));
 		Scene scene = new Scene(root, 800, 600);
         stage.initStyle(StageStyle.DECORATED);
         stage.setScene(scene);
