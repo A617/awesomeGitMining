@@ -1,28 +1,83 @@
 package main.ui;
 
+import java.io.InputStream;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.fxml.Initializable;
+import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import main.ui.controller.HomeController;
+import main.ui.controller.ProjectController;
 
 public class MainUI extends Application{
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub·	
-		Application.launch(MainUI.class,args);
+	
+	private Stage stage;
+	private static final double WIDTH = 800;
+	private static final double HEIGHT = 600;
+	
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		this.stage = primaryStage;
+		stage.setTitle("AwesomeGitming");
+		stage.setMinWidth(WIDTH);
+		stage.setMinHeight(HEIGHT);
+		
+		gotoHome();
+		stage.show();
 	}
+	
+	public void gotoHome(){
+		HomeController homeController;
+		try {
+			homeController = (HomeController)changeSceneContent("config/Ui_HomePageView.fxml");
+			homeController.setApp(this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void gotoProject(){
+		ProjectController projectController;
+		try {
+			projectController = (ProjectController)changeSceneContent("config/Ui_ProjectInfo.fxml");
+			projectController.setApp(this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void gotoSearch(){
+		
+	}
+	
+	public void gotoUser(){
+		
+	}
+	
+	private Initializable changeSceneContent(String fxml) throws Exception{
+		FXMLLoader loader = new FXMLLoader();
+		InputStream in = MainUI.class.getResourceAsStream(fxml);
+		loader.setBuilderFactory(new JavaFXBuilderFactory());
+		loader.setLocation(MainUI.class.getResource(fxml));
 
-	public void start(Stage stage) throws Exception {
-		// TODO Auto-generated method stub
-		Parent root = FXMLLoader.load(getClass().getResource("config/Ui_HomePageView.fxml"));
-		Scene scene = new Scene(root, 800, 600);
-        stage.initStyle(StageStyle.DECORATED);
-        stage.setScene(scene);
-        stage.setTitle("JavaFXRange");
-        stage.show();
-
+		AnchorPane pane;
+		try {
+			pane = (AnchorPane) loader.load();
+		} finally {
+			in.close();
+		}
+	
+		Scene scene = new Scene(pane);
+		stage.setScene(scene);
+		stage.sizeToScene();
+		return (Initializable) loader.getController();
+	}
+	
+	public static void main(String[] args) {
+		launch(args);
 	}
 
 }

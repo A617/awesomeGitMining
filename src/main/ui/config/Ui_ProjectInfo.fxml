@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane fx:controller="main.ui.controller.ProjectController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane layoutX="-76.0" layoutY="-115.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -48,7 +47,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="248.0" layoutY="63.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="85.0" text="Search">
+      <Button fx:id="btn_search" layoutX="248.0" layoutY="63.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="85.0" text="Search">
          <font>
             <Font name="Bell MT Bold" size="14.0" />
          </font>
@@ -58,7 +57,7 @@
             <Glow />
          </effect>
       </Line>
-      <TextField layoutX="32.0" layoutY="63.0" prefHeight="35.0" prefWidth="216.0">
+      <TextField fx:id="search" layoutX="32.0" layoutY="63.0" prefHeight="35.0" prefWidth="216.0">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
