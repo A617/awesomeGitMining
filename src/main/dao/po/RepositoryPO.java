@@ -1,17 +1,20 @@
 package main.dao.po;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author tj
  */
 public class RepositoryPO {
 	private String name;	//项目名
-	private UserPO owner;	//项目主人
+	private String owner_name;	//项目主人
 	private String language;	//编程语言
-	private ArrayList<UserPO> contributors;	//该项目所有贡献者
-	private ArrayList<BranchPO> branches;	//该项目所有版本名
-	private ArrayList<RepositoryPO> forks;	//该项目所有fork项目
+	private List<String> contributors_login;	//该项目所有贡献者
+	private List<String> collaborators_login;
+	private List<String> branches_name;	//该项目所有版本名
+	private List<String> forks_fullname;	//该项目所有fork项目
+	private Map<String, Integer> languages;
 	private String clone_url;	//git地址
 	private String description;
 	private String created_at;	//创建时间
@@ -27,39 +30,6 @@ public class RepositoryPO {
 		super();
 	}
 
-	public RepositoryPO(String name, UserPO owner, String language, ArrayList<UserPO> contributors,
-			ArrayList<BranchPO> branches, ArrayList<RepositoryPO> forks, String clone_url, String description,
-			String created_at, String pushed_at, String updated_at, int size, int stargazers_count, int forks_count,
-			int open_issues, int subscribers_count) {
-		super();
-		this.name = name;
-		this.owner = owner;
-		this.language = language;
-		this.contributors = contributors;
-		this.branches = branches;
-		this.forks = forks;
-		this.clone_url = clone_url;
-		this.description = description;
-		this.created_at = created_at;
-		this.pushed_at = pushed_at;
-		this.updated_at = updated_at;
-		this.size = size;
-		this.stargazers_count = stargazers_count;
-		this.forks_count = forks_count;
-		this.open_issues = open_issues;
-		this.subscribers_count = subscribers_count;
-	}
-
-	@Override
-	public String toString() {
-		return "RepositoryPO [name=" + name + ", owner=" + owner + ", language=" + language + ", contributors="
-				+ contributors + ", branches=" + branches + ", forks=" + forks + ", clone_url=" + clone_url
-				+ ", description=" + description + ", created_at=" + created_at + ", pushed_at=" + pushed_at
-				+ ", updated_at=" + updated_at + ", size=" + size + ", stargazers_count=" + stargazers_count
-				+ ", forks_count=" + forks_count + ", open_issues=" + open_issues + ", subscribers_count="
-				+ subscribers_count + "]";
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -68,12 +38,12 @@ public class RepositoryPO {
 		this.name = name;
 	}
 
-	public UserPO getOwner() {
-		return owner;
+	public String getOwner_name() {
+		return owner_name;
 	}
 
-	public void setOwner(UserPO owner) {
-		this.owner = owner;
+	public void setOwner_name(String owner_name) {
+		this.owner_name = owner_name;
 	}
 
 	public String getLanguage() {
@@ -84,28 +54,32 @@ public class RepositoryPO {
 		this.language = language;
 	}
 
-	public ArrayList<UserPO> getContributors() {
-		return contributors;
+	
+	
+
+
+	public List<String> getContributors_login() {
+		return contributors_login;
 	}
 
-	public void setContributors(ArrayList<UserPO> contributors) {
-		this.contributors = contributors;
+	public void setContributors_login(List<String> contributors_login) {
+		this.contributors_login = contributors_login;
 	}
 
-	public ArrayList<BranchPO> getBranches() {
-		return branches;
+	public List<String> getBranches_name() {
+		return branches_name;
 	}
 
-	public void setBranches(ArrayList<BranchPO> branches) {
-		this.branches = branches;
+	public void setBranches_name(List<String> branches_name) {
+		this.branches_name = branches_name;
 	}
 
-	public ArrayList<RepositoryPO> getForks() {
-		return forks;
+	public List<String> getForks_fullname() {
+		return forks_fullname;
 	}
 
-	public void setForks(ArrayList<RepositoryPO> forks) {
-		this.forks = forks;
+	public void setForks_fullname(List<String> forks_fullname) {
+		this.forks_fullname = forks_fullname;
 	}
 
 	public String getClone_url() {
@@ -187,15 +161,40 @@ public class RepositoryPO {
 	public void setSubscribers_count(int subscribers_count) {
 		this.subscribers_count = subscribers_count;
 	}
+
+	
+	public List<String> getCollaborators_login() {
+		return collaborators_login;
+	}
+
+	public void setCollaborators_login(List<String> collaborators_login) {
+		this.collaborators_login = collaborators_login;
+	}
 	
 	
 
-	
+	public Map<String, Integer> getLanguages() {
+		return languages;
+	}
+
+	public void setLanguages(Map<String, Integer> languages) {
+		this.languages = languages;
+	}
+
+	@Override
+	public String toString() {
+		return "RepositoryPO [name=" + name + ", owner_name=" + owner_name + ", language=" + language
+				+ ", contributors_login=" + contributors_login + ", collaborators_login=" + collaborators_login
+				+ ", branches_name=" + branches_name + ", forks_fullname=" + forks_fullname + ", languages=" + languages
+				+ ", clone_url=" + clone_url + ", description=" + description + ", created_at=" + created_at
+				+ ", pushed_at=" + pushed_at + ", updated_at=" + updated_at + ", size=" + size + ", stargazers_count="
+				+ stargazers_count + ", forks_count=" + forks_count + ", open_issues=" + open_issues
+				+ ", subscribers_count=" + subscribers_count + "]";
+	}
+
 	
 
-
 	
-
 	
 }
 

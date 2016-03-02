@@ -3,7 +3,10 @@ package main.dao;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import main.dao.po.BranchPO;
 import net.sf.json.JSONArray;
@@ -45,7 +48,8 @@ public class JsonUtil {
 		 * }
 		 */
 
-	public static<T> T parseJson2PO(JSONObject obj,  Class<T> cls) {
+	public static <T> T parseJson2PO(String jsonStr, Class<T> cls) {
+		JSONObject obj = JSONObject.fromObject(jsonStr);
 		T des = null;
 		try {
 			des = cls.newInstance();
@@ -53,22 +57,63 @@ public class JsonUtil {
 			System.out.println("can't get a new instance");
 			e1.printStackTrace();
 		}
-		
+
 		copyAttributes(des, obj);
-		
+
 		return des;
 	}
 
-	public static<T> ArrayList<T> parseJson2POlist(JSONArray ja, Class<T> cls) {
+	public static<V> Map<String, V> parseJSON2Map(String jsonStr) {
+		Map<String, V> map = new HashMap<String, V>();
+		// 最外层解析
+		JSONObject json = JSONObject.fromObject(jsonStr);
+		for (Object k : json.keySet()) {
+			 Object v = json.get(k); 
+			 
+	            if(v instanceof JSONArray){  
+	                return null;
+	            } else {  
+	                map.put(k.toString(),(V) v);  
+	            }
+			
+		}
+		return map;
+	}
+
+	
+	/*public static Map<String, Object> parseJSON2Map(String jsonStr){  
+        Map<String, Object> map = new HashMap<String, Object>();  
+        //最外层解析  
+        JSONObject json = JSONObject.fromObject(jsonStr);  
+        for(Object k : json.keySet()){  
+            Object v = json.get(k);   
+            //如果内层还是数组的话，继续解析  
+            if(v instanceof JSONArray){  
+                List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();  
+                Iterator<JSONObject> it = ((JSONArray)v).iterator();  
+                while(it.hasNext()){  
+                    JSONObject json2 = it.next();  
+                    list.add(parseJSON2Map(json2.toString()));  
+                }  
+                map.put(k.toString(), list);  
+            } else {  
+                map.put(k.toString(), v);  
+            }  
+        }  
+        return map;  
+    }  */
+	
+	
+	public static <T> ArrayList<T> parseJson2POlist(String jsonStr, Class<T> cls) {
+		JSONArray ja = JSONArray.fromObject(jsonStr);
 		ArrayList<T> desList = new ArrayList<T>();
 		T des;
-		
-		
+
 		for (int i = 0; i < ja.size(); i++) {
-			
+
 			try {
 				des = cls.newInstance();
-				
+
 			} catch (InstantiationException | IllegalAccessException e1) {
 				System.out.println("can't get a new instance");
 				e1.printStackTrace();
@@ -76,13 +121,11 @@ public class JsonUtil {
 			}
 
 			copyAttributes(des, ja.getJSONObject(i));
-			
-			
+
 			desList.add(des);
 
 		}
-		
-		
+
 		return desList;
 	}
 
@@ -90,7 +133,7 @@ public class JsonUtil {
 		try {
 			List<Field> fieldList = new ArrayList<Field>();
 			fieldList.addAll(Arrays.asList(des.getClass().getDeclaredFields()));
-			
+
 			for (Field field : fieldList) {
 
 				String name = field.getName();
@@ -101,8 +144,7 @@ public class JsonUtil {
 					field.setAccessible(true);
 
 					String type = field.getType().toString();
-					
-					
+
 					if (type.indexOf("int") >= 0) {
 						field.set(des, (Integer) value);
 					} else if (type.indexOf("String") >= 0) {
@@ -122,13 +164,42 @@ public class JsonUtil {
 		}
 	}
 	
-	public static JSONObject getJSONObject(JSONObject obj,  String id) {
-		
-		
+	public static <T> T getObjectfromJson(String jsonStr, Class<T> cls,String id){
+		 
+            T des = null;  
+            try {
+				des = cls.newInstance();
+			} catch (InstantiationException|IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("can't get a new instance");
+			}
+            
+            //最外层解析  
+            JSONObject src = JSONObject.fromObject(jsonStr); 
+            
+            // 如果内层还是jsonObject的话，提取成T
+            if(src.get(id) instanceof JSONObject)
+            	copyAttributes(des, src.getJSONObject(id));
+            
+            return des;  
+        }  
+	
+	public static <T> List<T> getListfromJsonArray(String jsonStr, String id){
+		 
+		List<T> list = new ArrayList<T>();
+        
+        JSONArray ja = JSONArray.fromObject(jsonStr); 
+        
+        Iterator<JSONObject> it = ja.iterator();  
+        while(it.hasNext()){  
+            JSONObject json2 = it.next();  
+            list.add((T) json2.get(id));  
+        } 
+        
+        return list;  
+    }
+	
+	
 
-			
-
-		
-		return obj.getJSONObject(id);
-	}
 }

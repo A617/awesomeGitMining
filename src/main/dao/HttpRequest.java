@@ -2,10 +2,14 @@ package main.dao;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import main.dao.impl.IRepoDao;
 import main.dao.impl.RepoDaoImpl;
@@ -14,8 +18,6 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class HttpRequest {
-
-	
 
 	/**
 	 * 向指定URL发送GET方法的请求
@@ -36,8 +38,11 @@ public class HttpRequest {
 			URL realUrl = new URL(urlNameString);
 			System.out.println(realUrl);
 
+			
 			// 打开和URL之间的连接
 			URLConnection connection = realUrl.openConnection();
+			
+		//	System.out.println("getting connecting");
 
 			// 读取URL的响应
 			in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -45,6 +50,8 @@ public class HttpRequest {
 			while ((line = in.readLine()) != null) {
 				result += line;
 			}
+			
+		//	System.out.println("getting connecting");
 
 		} catch (Exception e) {
 			System.out.println("GET failed！" + e);
@@ -58,9 +65,38 @@ public class HttpRequest {
 				e2.printStackTrace();
 			}
 		}
+		
 		return result;
 	}
 
+	public static List<String> sendGetforList(String url, String param) {
+		List<String> result = new ArrayList<>();
+
+		String s = sendGet(url, param);
+		
+
+		String tmps = "";
+		for (char tmpc : s.toCharArray()) {
+			switch (tmpc) {
+			case '[':
+				break;
+			case ']':
+				result.add(tmps);
+				break;
+			case ',':
+				result.add(tmps);
+				tmps = "";
+				break;
+			case '"':
+				break;
+			default:
+				tmps += tmpc;
+			}
+		}
+
+		return result;
+	}
 	
-	
+
+
 }
