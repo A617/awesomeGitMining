@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.ui.controller.HomeController;
 import main.ui.controller.ProjectController;
@@ -19,14 +20,16 @@ public class MainUI extends Application{
 	private Stage stage;
 	private static final double WIDTH = 1024;
 	private static final double HEIGHT = 768;
-
+	private static Pane pane;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.stage = primaryStage;
 		stage.setTitle("AwesomeGitming");
 		stage.setMinWidth(WIDTH);
 		stage.setMinHeight(HEIGHT);
-
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(MainUI.class.getResource("config/Ui_SingleReposView.fxml"));
+		pane = (Pane) loader.load();
 		gotoHome();
 		stage.show();
 	}
@@ -93,5 +96,7 @@ public class MainUI extends Application{
 	public static void main(String[] args) {
 		launch(args);
 	}
-
+	public static Pane getPane(){
+		return pane;
+	}
 }
