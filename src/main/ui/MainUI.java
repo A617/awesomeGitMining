@@ -17,8 +17,8 @@ import main.ui.controller.UserController;
 public class MainUI extends Application{
 
 	private Stage stage;
-	private static final double WIDTH = 800;
-	private static final double HEIGHT = 600;
+	private static final double WIDTH = 1024;
+	private static final double HEIGHT = 768;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -27,7 +27,7 @@ public class MainUI extends Application{
 		stage.setMinWidth(WIDTH);
 		stage.setMinHeight(HEIGHT);
 
-		gotoProject();
+		gotoHome();
 		stage.show();
 	}
 

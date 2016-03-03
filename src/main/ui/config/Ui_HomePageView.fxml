@@ -55,7 +55,7 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ScrollBar layoutX="463.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="430.0" prefWidth="14.0" />
+                              <ScrollBar layoutX="643.0" orientation="VERTICAL" prefHeight="430.0" prefWidth="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -64,7 +64,7 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ScrollBar layoutX="463.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="430.0" prefWidth="14.0" />
+                              <ScrollBar layoutX="463.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="430.0" prefWidth="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                     </content>
@@ -73,8 +73,7 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ScrollBar layoutX="463.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="430.0" prefWidth="14.0" />
-                              <Line endX="381.0" layoutX="96.0" layoutY="401.0" startX="-100.0" stroke="#757272" />
+                              <ScrollBar layoutX="463.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="430.0" prefWidth="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                     </content>
