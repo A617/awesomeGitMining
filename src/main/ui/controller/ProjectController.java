@@ -24,6 +24,13 @@ public class ProjectController implements Initializable{
 	private void handle2Menu(){
 		app.gotoHome();
 	}
+	
+	@FXML
+	private void handleSearch(){
+		setProjectLabel();
+	}
+	
+	@FXML
 	public void setProjectLabel(){
 		projectNameLabel.setText("aaa");
 	}

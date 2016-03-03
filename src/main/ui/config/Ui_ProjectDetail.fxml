@@ -78,7 +78,7 @@
 								</Label>
                         <HBox layoutX="57.0" layoutY="22.0" prefHeight="49.0" prefWidth="287.0">
                            <children>
-                              <Label text="Label" textFill="#5184c2">
+                              <Label fx:id="projectNameLabel" text="Label" textFill="#5184c2">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -112,7 +112,7 @@
 				<Font size="14.0" />
 			</font>
 		</Label>
-		<Button fx:id="btn_search" layoutX="248.0" layoutY="97.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="85.0" text="Search">
+		<Button fx:id="btn_search" layoutX="248.0" layoutY="97.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="85.0" onAction="#handleSearch" text="Search">
 			<font>
 				<Font name="Bell MT Bold" size="14.0" />
 			</font>
