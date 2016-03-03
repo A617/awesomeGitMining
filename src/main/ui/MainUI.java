@@ -15,22 +15,22 @@ import main.ui.controller.SearchController;
 import main.ui.controller.UserController;
 
 public class MainUI extends Application{
-	
+
 	private Stage stage;
 	private static final double WIDTH = 800;
 	private static final double HEIGHT = 600;
-	
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.stage = primaryStage;
 		stage.setTitle("AwesomeGitming");
 		stage.setMinWidth(WIDTH);
 		stage.setMinHeight(HEIGHT);
-		
+
 		gotoProject();
 		stage.show();
 	}
-	
+
 	public void gotoHome(){
 		HomeController homeController;
 		try {
@@ -40,17 +40,17 @@ public class MainUI extends Application{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void gotoProject(){
 		ProjectController projectController;
 		try {
-			projectController = (ProjectController)changeSceneContent("config/Ui_ProjectInfo.fxml");
+			projectController = (ProjectController)changeSceneContent("config/Ui_ProjectDetail.fxml");
 			projectController.setApp(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void gotoSearch(){
 		SearchController searchController;
 		try {
@@ -60,17 +60,17 @@ public class MainUI extends Application{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void gotoUser(){
 		UserController userController;
 		try {
-			userController = (UserController) changeSceneContent("config/Ui_UserInfoView.fxml");
+			userController = (UserController) changeSceneContent("config/Ui_UserDetail.fxml");
 			userController.setApp(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private Initializable changeSceneContent(String fxml) throws Exception{
 		FXMLLoader loader = new FXMLLoader();
 		InputStream in = MainUI.class.getResourceAsStream(fxml);
@@ -83,15 +83,15 @@ public class MainUI extends Application{
 		} finally {
 			in.close();
 		}
-	
+
 		Scene scene = new Scene(pane);
 		stage.setScene(scene);
 		stage.sizeToScene();
 		return (Initializable) loader.getController();
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
+
 }
