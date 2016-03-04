@@ -1,21 +1,10 @@
 package main.dao;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import main.dao.entity.Repository;
-import main.dao.impl.IRepoDao;
-import main.dao.impl.RepoDaoImpl;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 public class HttpRequest {
 
@@ -36,16 +25,14 @@ public class HttpRequest {
 			// 合成url
 			String urlNameString = url + param;
 			URL realUrl = new URL(urlNameString);
-			
-			System.out.println("Connecting: "+realUrl);
+
+			// System.out.println("Connecting: "+realUrl);
 
 			// 打开和URL之间的连接
 			URLConnection connection = realUrl.openConnection();
 
-			System.out.println("Connected: "+realUrl);
+			// System.out.println("Connected: "+realUrl);
 
-			
-			
 			// 读取URL的响应
 			in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			String line;
@@ -53,48 +40,36 @@ public class HttpRequest {
 				result += line;
 			}
 
-			System.out.println("Read: "+realUrl);
+			// System.out.println("Read: "+realUrl);
 
 		} catch (Exception e) {
 			System.out.println("GET failed！" + e);
 			e.printStackTrace();
 		} finally {
-			try {
-				if (in != null) {
+			if (in != null) {
+				try {
 					in.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-			} catch (Exception e2) {
-				e2.printStackTrace();
 			}
+
 		}
 		return result;
 	}
 
-/*	public static List<String> sendGetforList(String url, String param) {
-		List<String> result = new ArrayList<>();
-
-		String s = sendGet(url, param);
-
-		String tmps = "";
-		for (char tmpc : s.toCharArray()) {
-			switch (tmpc) {
-			case '[':
-				break;
-			case ']':
-				result.add(tmps);
-				break;
-			case ',':
-				result.add(tmps);
-				tmps = "";
-				break;
-			case '"':
-				break;
-			default:
-				tmps += tmpc;
-			}
-		}
-
-		return result;
-	}
-*/
+	/*
+	 * public static List<String> sendGetforList(String url, String param) {
+	 * List<String> result = new ArrayList<>();
+	 * 
+	 * String s = sendGet(url, param);
+	 * 
+	 * String tmps = ""; for (char tmpc : s.toCharArray()) { switch (tmpc) {
+	 * case '[': break; case ']': result.add(tmps); break; case ',':
+	 * result.add(tmps); tmps = ""; break; case '"': break; default: tmps +=
+	 * tmpc; } }
+	 * 
+	 * return result; }
+	 */
 }
