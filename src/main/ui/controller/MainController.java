@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import main.ui.MainUI;
+import main.ui.utility.fxmlLoader;
 
 public class MainController implements Initializable{
 	
@@ -17,7 +18,9 @@ public class MainController implements Initializable{
     public static MainController getInstance() {
         return instance;
     }
-
+    private MainController(){
+    	
+    }
     @FXML
     private AnchorPane center_panel,common;
     @FXML
@@ -31,7 +34,8 @@ public class MainController implements Initializable{
     }
     @FXML
     public void handleSearch() {
-    	setPanel(MainUI.searchPanel);
+    	
+    	setPanel(fxmlLoader.loadPanel("Ui_SearchPanel.fxml"));
     	
     	//TODO
     }
