@@ -23,17 +23,21 @@
                         <ScrollPane fx:id="generalPane" prefHeight="200.0" prefWidth="200.0" />
                      </content>
                 </Tab>
-                <Tab fx:id="tab_star" text="  Star  " />
-                  <Tab fx:id="tab_fork" text="  Fork  ">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <ScrollBar layoutX="463.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="430.0" prefWidth="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
+                <Tab fx:id="tab_star" text="  Star  " >
+                	 <content>
+                        <ScrollPane fx:id="starPane" prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                </Tab>
+                <Tab fx:id="tab_fork" text="  Fork  ">
+                   <content>
+                        <ScrollPane fx:id="forkPane" prefHeight="200.0" prefWidth="200.0" />
+                   </content>
+                </Tab>
+                <Tab fx:id="tab_contributer" text="  Contributor  " >
+                	<content>
+                        <ScrollPane fx:id="contriPane" prefHeight="200.0" prefWidth="200.0" />
                     </content>
-                  </Tab>
-                  <Tab fx:id="tab_contributer" text="  Contributor  " />
+                </Tab>
               </tabs>
             </TabPane>
             <TreeTableView layoutY="163.0" prefHeight="506.0" prefWidth="180.0">
