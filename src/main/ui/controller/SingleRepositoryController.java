@@ -37,7 +37,7 @@ public class SingleRepositoryController implements Initializable {
 	 */
 	public void setVO(RepositoryVO vo) {
 		if (vo != null) {
-			repositoryName.setText(vo.getName() + "/" + vo.getOwner_name());
+			//repositoryName.setText(vo.getName() + "/" + vo.getOwner_name());
 			contriNum.setText(vo.getContributors_login().size() + "");
 			forkNum.setText(vo.getForks_count() + "");
 			description.setText(vo.getDescription());

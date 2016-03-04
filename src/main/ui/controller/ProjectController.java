@@ -21,11 +21,6 @@ public class ProjectController implements Initializable{
 	}
 
 	@FXML
-	private void handle2Menu(){
-		app.gotoHome();
-	}
-	
-	@FXML
 	private void handleSearch(){
 		setProjectLabel();
 	}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="604.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.SearchController">
+	<children>
+		<Label layoutX="23.0" layoutY="169.0" text="Users" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="5.0">
+			<font>
+				<Font name="System Bold" size="14.0" />
+			</font>
+		</Label>
+		<Label layoutX="23.0" layoutY="371.0" text="Projects" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="207.0">
+			<font>
+				<Font name="System Bold" size="14.0" />
+			</font>
+		</Label>
+      <ScrollPane layoutX="33.0" layoutY="197.0" prefHeight="160.0" prefWidth="950.0" AnchorPane.topAnchor="33.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="170.0" prefWidth="957.0" />
+        </content>
+      </ScrollPane>
+      <ScrollPane layoutX="33.0" layoutY="406.0" prefHeight="311.0" prefWidth="950.0" AnchorPane.topAnchor="242.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="315.0" prefWidth="949.0" />
+        </content>
+      </ScrollPane>
+	</children>
+</AnchorPane>
