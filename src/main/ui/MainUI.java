@@ -11,7 +11,7 @@ public class MainUI extends Application{
 
 	private Stage stage;
 	private AnchorPane common;
-	public static AnchorPane homePanel,projectPanel,searchPanel,userPanel;
+	public static AnchorPane homePanel;
 	
 	private static MainUI ui;
 	
@@ -24,10 +24,6 @@ public class MainUI extends Application{
 		ui = this;
 		
 		common = fxmlLoader.loadPanel("Ui_CommonPart.fxml");
-		homePanel = fxmlLoader.loadPanel("Ui_HomePagePanel.fxml");
-		projectPanel = fxmlLoader.loadPanel("Ui_ProjectPanel.fxml");
-		searchPanel = fxmlLoader.loadPanel("Ui_SearchPanel.fxml");
-		userPanel = fxmlLoader.loadPanel("Ui_UserPanel.fxml");
 		
 		stage.setTitle("awesomeGitmining");
 		stage.setMinWidth(1024);
