@@ -1,6 +1,8 @@
 package main.dao.impl;
 
-import main.dao.po.UserPO;
+import java.util.List;
+
+import main.dao.entity.User;
 
 /**
  * 
@@ -9,10 +11,11 @@ import main.dao.po.UserPO;
 public interface IUserDao {
 
 	/**
+	 * 获取用户
 	 * @param login 登录名
 	 * @return
 	 */
-	public UserPO getUser(String login);
+	public User getUser(String login);
 	
-	
+	public List<String> searchUser(String input);
 }
