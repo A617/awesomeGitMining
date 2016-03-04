@@ -1,17 +1,19 @@
-package main.dao.po;
+package main.dao.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * UserPO
  * @author Dora
  */
-public class UserPO {
+public class User {
 
-	private String login;	//登录名
+	protected String login;	//登录名
+	protected String html_url;	//github主页
+	protected String type;
+	protected boolean site_admin;
+	
 	private String name;	//昵称
-	private String html_url;	//github主页
 	private String location;	//所在地
 	private String email;
 	private String blog;
@@ -19,31 +21,14 @@ public class UserPO {
 	private List<String> following_name;
 	private List<String> repos_fullname;
 	private int public_repos;
+	private int public_gists;
 	private int followers;
 	private int following;
 	private String created_at;
 	private String updated_at;
+
 	
-	public UserPO(String login, String name, String html_url, String location, String email, String blog,
-			ArrayList<String> followers_name, ArrayList<String> following_name, ArrayList<String> repos_fullname,
-			int public_repos, int followers, int following, String created_at, String updated_at) {
-		super();
-		this.login = login;
-		this.name = name;
-		this.html_url = html_url;
-		this.location = location;
-		this.email = email;
-		this.blog = blog;
-		this.followers_name = followers_name;
-		this.following_name = following_name;
-		this.repos_fullname = repos_fullname;
-		this.public_repos = public_repos;
-		this.followers = followers;
-		this.following = following;
-		this.created_at = created_at;
-		this.updated_at = updated_at;
-	}
-	public UserPO() {
+	public User() {
 		super();
 	}
 	
@@ -131,13 +116,39 @@ public class UserPO {
 	public void setFollowers(int followers) {
 		this.followers = followers;
 	}
+
+	public int getPublic_gists() {
+		return public_gists;
+	}
+
+	public void setPublic_gists(int public_gists) {
+		this.public_gists = public_gists;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public boolean isSite_admin() {
+		return site_admin;
+	}
+
+	public void setSite_admin(boolean site_admin) {
+		this.site_admin = site_admin;
+	}
+
 	@Override
 	public String toString() {
-		return "UserPO [login=" + login + ", name=" + name + ", html_url=" + html_url + ", location=" + location
+		return "User [login=" + login + ", name=" + name + ", html_url=" + html_url + ", location=" + location
 				+ ", email=" + email + ", blog=" + blog + ", followers_name=" + followers_name + ", following_name="
 				+ following_name + ", repos_fullname=" + repos_fullname + ", public_repos=" + public_repos
-				+ ", followers=" + followers + ", following=" + following + ", created_at=" + created_at
-				+ ", updated_at=" + updated_at + "]";
+				+ ", public_gists=" + public_gists + ", followers=" + followers + ", following=" + following
+				+ ", created_at=" + created_at + ", updated_at=" + updated_at + ", type=" + type + ", site_admin="
+				+ site_admin + "]";
 	}
 	
 	

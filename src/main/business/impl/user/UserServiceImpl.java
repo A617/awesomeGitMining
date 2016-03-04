@@ -2,8 +2,8 @@ package main.business.impl.user;
 
 import main.business.dto.Converter;
 import main.business.service.UserService;
+import main.dao.entity.User;
 import main.dao.impl.IUserDao;
-import main.dao.po.UserPO;
 import main.vo.UserVO;
 
 /**
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 	public UserVO searchUser(String id) {
 		UserVO vo = null;
 		if (daoImpl != null) {
-			UserPO po = daoImpl.getUser(id);
+			User po = daoImpl.getUser(id);
 			//TODO 创建的项目和参与的项目尚未赋值
 			if (po != null) {
 				vo = (UserVO) Converter.convert("UserVO", po);

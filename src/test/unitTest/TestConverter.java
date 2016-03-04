@@ -10,7 +10,7 @@ import java.util.Map;
 import org.junit.Test;
 
 import main.business.dto.Converter;
-import main.dao.po.RepositoryPO;
+import main.dao.entity.Repository;
 import main.vo.RepositoryVO;
 
 /**
@@ -29,7 +29,7 @@ public class TestConverter {
 		forks.add("fork1");
 		forks.add("fork2");
 		
-		RepositoryPO po = new RepositoryPO();
+		Repository po = new Repository();
 		po.setName("awesome");
 		po.setClone_url("www");
 		po.setLanguages(languages);

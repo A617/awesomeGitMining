@@ -1,119 +1,118 @@
 package main.dao.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import main.dao.HttpRequest;
 import main.dao.JsonUtil;
-import main.dao.po.BranchPO;
-import main.dao.po.RepositoryPO;
-import main.dao.po.UserPO;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+import main.dao.entity.Branch;
+import main.dao.entity.Collaborator;
+import main.dao.entity.Contributor;
+import main.dao.entity.Fork;
+import main.dao.entity.Owner;
+import main.dao.entity.Repository;
+import main.dao.entity.User;
 
 public class RepoDaoImpl implements IRepoDao {
-
-	JsonUtil ju;
-
-	/**
-	 * @param owner椤圭洰鎵�鏈夎�呯櫥褰曞悕
-	 *            reponame 椤圭洰鍚�
-	 * @return json
-	 */
-
-	public RepoDaoImpl() {
-		ju = new JsonUtil();
-	}
 	
+	String gitmining_repo_url = "http://gitmining.net/api/repository/";
+	
+	public RepoDaoImpl() {
+	}
 
 	@Override
-	public RepositoryPO getRepository(String name) {
+	public Repository getRepository(String name) {
 
-		String s = HttpRequest.sendGet("http://gitmining.net/api/repository/", name);
-		RepositoryPO po = JsonUtil.<RepositoryPO>parseJson2PO(s,RepositoryPO.class);
-		
+		String s = HttpRequest.sendGet(gitmining_repo_url, name);
+//		String s = HttpRequest.sendGet("https://api.github.com/repos/", name);
+		Repository po = JsonUtil.<Repository> parseJson2Bean(s, Repository.class);
+
 		po.setContributors_login(this.getContributors_login(name));
 		po.setCollaborators_login(this.getCollaborators_login(name));
 		po.setOwner_name(this.getOwner_name(name));
 		po.setBranches_name(this.getBranches_name(name));
 		po.setForks_fullname(this.getForks_fullname(name));
 		po.setLanguages(this.getLanguages(name));
+
 		return po;
 	}
 
-	
 	@Override
-	public ArrayList<RepositoryPO> getAllRepo() {
+	public List<Repository> getAllRepo() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	
-	public ArrayList<BranchPO> getBranches(String name){
-		String s = HttpRequest.sendGet("https://api.github.com/repos/",name+"/branches");
+	@Override
+	public List<Branch> getBranches(String name) {
+		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/branches");
 
-		ArrayList<BranchPO> list =  JsonUtil.<BranchPO>parseJson2POlist(s, BranchPO.class);
-        return list;
+		List<Branch> list = JsonUtil.<Branch> parseJson2Beanlist(s, Branch.class);
+		return list;
 	}
-	
-	public ArrayList<UserPO> getContributors(String name){
-		String s = HttpRequest.sendGet("http://gitmining.net/api/repository/",name+"/contributors");
-		
-		ArrayList<UserPO> list =  JsonUtil.parseJson2POlist(s, UserPO.class);
-        return list;
+
+	@Override
+	public List<Contributor> getContributors(String name) {
+		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/contributors");
+
+		List<Contributor> list = JsonUtil.parseJson2Beanlist(s, Contributor.class);
+		return list;
 	}
-	
-	public ArrayList<UserPO> getCollaborators(String name){
-		String s = HttpRequest.sendGet("http://gitmining.net/api/repository/",name+"/collaborators");
-		
-		ArrayList<UserPO> list =  JsonUtil.parseJson2POlist(s, UserPO.class);
-        return list;
+
+	@Override
+	public List<Collaborator> getCollaborators(String name) {
+		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/collaborators");
+
+		List<Collaborator> list = JsonUtil.parseJson2Beanlist(s, Collaborator.class);
+		return list;
 	}
-	
-	public ArrayList<RepositoryPO> getForks(String name){
-		String s = HttpRequest.sendGet("http://gitmining.net/api/repository/",name+"/forks");
-		
-		ArrayList<RepositoryPO> list =  JsonUtil.parseJson2POlist(s, RepositoryPO.class);
-        return list;
+
+	@Override
+	public List<Fork> getForks(String name) {
+		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/forks");
+
+		List<Fork> list = JsonUtil.parseJson2Beanlist(s, Fork.class);
+		return list;
 	}
-	
-	private UserPO getOwner(String name){
-		String s = HttpRequest.sendGet("http://gitmining.net/api/repository/",name);
-		
-        return JsonUtil.getObjectfromJson(s, UserPO.class, "owner");
+
+	@Override
+	public Owner getOwner(String name) {
+		String s = HttpRequest.sendGet(gitmining_repo_url, name);
+
+		return JsonUtil.getObjectfromJson(s, Owner.class, "owner");
 	}
-	
-	private String getOwner_name(String name){
-		String s = HttpRequest.sendGet("http://gitmining.net/api/repository/",name+"/item/owner_name");
-		
-        return s;
+
+	private String getOwner_name(String name) {
+		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/item/owner_name");
+
+		return s;
 	}
-	
-	private List<String> getForks_fullname(String name){
-		return HttpRequest.sendGetforList("http://gitmining.net/api/repository/",name+"/forks/names");
-		
+
+	private List<String> getForks_fullname(String name) {
+		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/forks/names");
+		return JsonUtil.parseJson2List(s);
 	}
-	
-	private List<String> getBranches_name(String name){
-		return HttpRequest.sendGetforList("http://gitmining.net/api/repository/",name+"/branches/names");
-		
+
+	private List<String> getBranches_name(String name) {
+		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/branches/names");
+		return JsonUtil.parseJson2List(s);
 	}
-	
-	private List<String> getContributors_login(String name){
-		return HttpRequest.sendGetforList("http://gitmining.net/api/repository/",name+"/contributors/login");
-		
+
+	private List<String> getContributors_login(String name) {
+	//	return HttpRequest.sendGetforList("http://gitmining.net/api/repository/", name + "/contributors/login");
+		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/contributors/login");
+		return JsonUtil.parseJson2List(s);
 	}
-	
-	private List<String> getCollaborators_login(String name){
-		return HttpRequest.sendGetforList("http://gitmining.net/api/repository/",name+"/collaborators/login");
-		
+
+	private List<String> getCollaborators_login(String name) {
+		String s =  HttpRequest.sendGet(gitmining_repo_url, name + "/collaborators/login");
+		return JsonUtil.parseJson2List(s);
 	}
-	
-	public Map<String,Integer> getLanguages(String name){
-		String s =HttpRequest.sendGet("http://gitmining.net/api/repository/",name+"/languages");
-		return JsonUtil.<Integer>parseJSON2Map(s);
+
+	@Override
+	public Map<String, Integer> getLanguages(String name) {
+		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/languages");
+		return JsonUtil.<Integer> parseJSON2Map(s);
 	}
-	
-	
+
 }

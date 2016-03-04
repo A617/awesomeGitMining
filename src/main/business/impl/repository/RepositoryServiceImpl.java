@@ -1,12 +1,13 @@
 package main.business.impl.repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import main.business.dto.Converter;
 import main.business.service.RepositoryService;
 import main.business.utility.SortHelper;
+import main.dao.entity.Repository;
 import main.dao.impl.IRepoDao;
-import main.dao.po.RepositoryPO;
 import main.vo.RepositoryVO;
 
 /**
@@ -32,7 +33,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 	public RepositoryVO searchRepository(String id) {
 		RepositoryVO vo = null;
 		if (daoImpl != null) {
-			RepositoryPO po = daoImpl.getRepository(id);
+			Repository po = daoImpl.getRepository(id);
 			if (po != null) {
 				vo = (RepositoryVO) Converter.convert("RepositoryVO", po);
 			}
@@ -41,12 +42,12 @@ public class RepositoryServiceImpl implements RepositoryService {
 	}
 
 	@Override
-	public ArrayList<RepositoryVO> showRepositories() {
-		ArrayList<RepositoryVO> vos = new ArrayList<RepositoryVO>();
+	public List<RepositoryVO> showRepositories() {
+		List<RepositoryVO> vos = new ArrayList<RepositoryVO>();
 		if (daoImpl != null) {
-			ArrayList<RepositoryPO> pos = daoImpl.getAllRepo();
+			List<Repository> pos = daoImpl.getAllRepo();
 			if (pos != null) {
-				for (RepositoryPO po : pos) {
+				for (Repository po : pos) {
 					RepositoryVO vo = (RepositoryVO) Converter.convert("RepositoryVO", po);
 					vos.add(vo);
 				}
@@ -56,24 +57,24 @@ public class RepositoryServiceImpl implements RepositoryService {
 	}
 
 	@Override
-	public ArrayList<RepositoryVO> showReposByStar() {
-		ArrayList<RepositoryVO> vos = showRepositories();
-		vos = (ArrayList<RepositoryVO>) SortHelper.sortReposByStar(vos);
+	public List<RepositoryVO> showReposByStar() {
+		List<RepositoryVO> vos = showRepositories();
+		vos = (List<RepositoryVO>) SortHelper.sortReposByStar(vos);
 		return vos;
 	}
 
 	@Override
-	public ArrayList<RepositoryVO> showReposByFork() {
-		ArrayList<RepositoryVO> vos = showRepositories();
-		vos = (ArrayList<RepositoryVO>) SortHelper.sortReposByFork(vos);
+	public List<RepositoryVO> showReposByFork() {
+		List<RepositoryVO> vos = showRepositories();
+		vos = (List<RepositoryVO>) SortHelper.sortReposByFork(vos);
 		return vos;
 	}
 
 //	private RepositoryVO setLists(RepositoryVO vo, RepositoryPO po) {
-//		ArrayList<String> languages = new ArrayList<String>();// 项目使用的语言
-//		ArrayList<String> contributors = new ArrayList<String>();// 项目贡献者
-//		ArrayList<String> collaborators = new ArrayList<String>();// 项目合作者
-//		ArrayList<String> forks = new ArrayList<String>();// fork的项目
+//		List<String> languages = new List<String>();// 项目使用的语言
+//		List<String> contributors = new List<String>();// 项目贡献者
+//		List<String> collaborators = new List<String>();// 项目合作者
+//		List<String> forks = new List<String>();// fork的项目
 //		//给languages赋值
 //		Map<String, Integer> polan = po.getLanguages();
 //		if (polan != null) {
@@ -86,9 +87,9 @@ public class RepositoryServiceImpl implements RepositoryService {
 //	}
 
 	@Override
-	public ArrayList<RepositoryVO> showReposByContribute() {
-		ArrayList<RepositoryVO> vos = showRepositories();
-		vos = (ArrayList<RepositoryVO>) SortHelper.sortReposByContribute(vos);
+	public List<RepositoryVO> showReposByContribute() {
+		List<RepositoryVO> vos = showRepositories();
+		vos = (List<RepositoryVO>) SortHelper.sortReposByContribute(vos);
 		return vos;
 	}
 }
