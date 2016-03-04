@@ -30,9 +30,7 @@ public class HomeController implements Initializable {
 	private VBox starVB = new VBox();
 	private VBox forkVB = new VBox();
 	private VBox contriVB = new VBox();
-	private HomeController(){
-		
-	}
+	
 	public static HomeController getInstance() {
 		return instance;
 	}

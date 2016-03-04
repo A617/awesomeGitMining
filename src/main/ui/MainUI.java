@@ -24,7 +24,7 @@ public class MainUI extends Application{
 		ui = this;
 		
 		common = fxmlLoader.loadPanel("Ui_CommonPart.fxml");
-		
+		homePanel = fxmlLoader.loadPanel("Ui_HomePagePanel.fxml");
 		stage.setTitle("awesomeGitmining");
 		stage.setMinWidth(1024);
 		stage.setMinHeight(768);

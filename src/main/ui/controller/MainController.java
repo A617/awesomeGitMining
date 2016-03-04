@@ -18,9 +18,6 @@ public class MainController implements Initializable{
     public static MainController getInstance() {
         return instance;
     }
-    private MainController(){
-    	
-    }
     @FXML
     private AnchorPane center_panel,common;
     @FXML
