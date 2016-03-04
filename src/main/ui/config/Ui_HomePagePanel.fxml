@@ -23,7 +23,7 @@
                         <ScrollPane fx:id="generalPane" prefHeight="200.0" prefWidth="200.0" />
                      </content>
                 </Tab>
-                <Tab fx:id="tab_star" text="  Star  " >
+                <Tab fx:id="tab_star" text="  Star  ">
                 	 <content>
                         <ScrollPane fx:id="starPane" prefHeight="200.0" prefWidth="200.0" />
                      </content>
@@ -33,9 +33,9 @@
                         <ScrollPane fx:id="forkPane" prefHeight="200.0" prefWidth="200.0" />
                    </content>
                 </Tab>
-                <Tab fx:id="tab_contributer" text="  Contributor  " >
+                <Tab fx:id="tab_contributer" text="  Contributor  ">
                 	<content>
-                        <ScrollPane fx:id="contriPane" prefHeight="200.0" prefWidth="200.0" />
+                        <ScrollPane fx:id="contriPane" opacity="0.64" prefHeight="200.0" prefWidth="200.0" />
                     </content>
                 </Tab>
               </tabs>
