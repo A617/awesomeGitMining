@@ -31,7 +31,6 @@
                </effect>
             </Line>
             <TabPane layoutX="179.0" layoutY="163.0" prefHeight="506.0" prefWidth="665.0" tabClosingPolicy="UNAVAILABLE" />
-            <ImageView fitHeight="92.0" fitWidth="456.0" layoutX="338.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
       <AnchorPane fx:id="center_panel" prefHeight="604.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="164.0" />
@@ -48,6 +47,7 @@
                </font>
             </TextField>
             <Button fx:id="btn_menu" layoutX="309.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleMenu" style="-fx-background-image: url(&quot;back3.jpg&quot;);" text="Menu" />
+            <Label fx:id="logo" layoutX="461.0" layoutY="24.0" prefHeight="100.0" prefWidth="600.0" text="Label" AnchorPane.leftAnchor="490.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="24.0" />
          </children>
       </AnchorPane>
    </children>
