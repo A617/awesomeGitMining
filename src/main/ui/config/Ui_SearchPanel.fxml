@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="604.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.SearchController">
+<AnchorPane fx:id="mainPane" prefHeight="604.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.SearchController">
 	<children>
 		<Label layoutX="23.0" layoutY="169.0" text="Users" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="5.0">
 			<font>
@@ -20,7 +20,7 @@
 				<Font name="System Bold" size="14.0" />
 			</font>
 		</Label>
-      <ScrollPane fx:id="userPanel" layoutX="33.0" layoutY="197.0" prefHeight="160.0" prefWidth="950.0" AnchorPane.topAnchor="33.0" />
-      <ScrollPane fx:id="projectPanel" layoutX="33.0" layoutY="406.0" prefHeight="311.0" prefWidth="950.0" AnchorPane.topAnchor="242.0" />
+      <ScrollPane fx:id="userPanel" layoutX="34.0" layoutY="23.0" prefHeight="160.0" prefWidth="950.0" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="34.0" />
+      <ScrollPane fx:id="projectPanel" prefHeight="311.0" prefWidth="950.0" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="240.0" />
 	</children>
 </AnchorPane>

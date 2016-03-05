@@ -42,7 +42,8 @@ public class MainController implements Initializable{
     public void handleSearch() {
     	if(getSearchId() != null && !getSearchId().isEmpty()) {
     		setPanel(fxmlLoader.loadPanel("Ui_SearchPanel.fxml"));
-    	}else {
+    	}
+    	else {
     		 Dialogs.create()
              .title("No Input")
              .masthead("Nothing input!")

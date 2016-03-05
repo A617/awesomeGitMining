@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -26,6 +27,8 @@ public class SearchController implements Initializable {
 	private RepositoryService repositoryService;
 	private UserService userService;
 
+	@FXML
+	private AnchorPane mainPane;
 	@FXML
 	private ScrollPane userPanel;
 	@FXML
@@ -46,9 +49,8 @@ public class SearchController implements Initializable {
 		box.getChildren().add(userPanel);
 		VBox.setVgrow(userPanel, Priority.ALWAYS);
 
-		userService = UserServiceImpl.getInstance();
 		List<UserVO> list = userService.searchUser(id);
-
+		
 		if (!list.isEmpty()) {
 			for (int i = 0; i < list.size(); i++) {
 				FXMLLoader loader = new FXMLLoader();
@@ -62,18 +64,19 @@ public class SearchController implements Initializable {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-
+				
 				userPanel.setContent(user);
 			}
+			mainPane.getChildren().add(userPanel);
 		}
+
 	}
 
 	private void initProject(String id) {
 		VBox box = new VBox();
 		box.getChildren().add(projectPanel);
 		VBox.setVgrow(projectPanel, Priority.ALWAYS);
-
-		repositoryService = RepositoryServiceImpl.getInstance();
+		
 		List<RepositoryVO> list = repositoryService.searchRepository(id);
 
 		if (!list.isEmpty()) {
@@ -91,12 +94,15 @@ public class SearchController implements Initializable {
 				}
 				projectPanel.setContent(repository);
 			}
+			mainPane.getChildren().add(userPanel);
 		}
 
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		repositoryService = RepositoryServiceImpl.getInstance();
+		userService = UserServiceImpl.getInstance();
 		String id = MainController.getInstance().getSearchId();
 		initUser(id);
 		initProject(id);

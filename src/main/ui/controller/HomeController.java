@@ -44,6 +44,9 @@ public class HomeController implements Initializable {
 	private List<RepositoryVO> contriList;
 	
 	public static HomeController getInstance() {
+		if(instance == null) {
+			instance = new HomeController();
+		}
 		return instance;
 	}
 

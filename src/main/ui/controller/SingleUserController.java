@@ -24,7 +24,11 @@ public class SingleUserController implements Initializable {
 	}
 	
 	public void setVO(UserVO user) {
-		//TODO
+		if(user!=null) {
+			//TODO
+			userName.setText(user.getLogin());
+			company.setText(user.getLocation());
+		}
 	}
 
 }
