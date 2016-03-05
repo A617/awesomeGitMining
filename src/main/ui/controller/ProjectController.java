@@ -7,15 +7,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import main.business.service.RepositoryService;
+import main.business.service.UserService;
 import main.ui.MainUI;
 
 public class ProjectController implements Initializable{
 	private static ProjectController instance;
+	private RepositoryService repositoryService;
+	private UserService userService;
+
 	private MainUI app;
-	
+
 	@FXML
 	private Label projectNameLabel;//用来显示项目的名字
-	
+
 	@FXML
 	private Label profile;//用来显示项目的介绍
 	@FXML
@@ -28,13 +33,21 @@ public class ProjectController implements Initializable{
 	private Label sub_num;
 	@FXML
 	private Label contri_num;
+
+
+
 	public void setApp(MainUI app){
 		this.app=app;
 	}
 	public static ProjectController getInstance() {
+		if (instance == null) {
+			instance = new ProjectController();
+		}
 		return instance;
 	}
-
+	private void initProjectInfo(String id){
+		//RepositoryVO
+	}
 	@FXML
 	private void handleSearch(){
 		setProjectLabel();
