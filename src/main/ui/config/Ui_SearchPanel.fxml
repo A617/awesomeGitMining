@@ -20,15 +20,7 @@
 				<Font name="System Bold" size="14.0" />
 			</font>
 		</Label>
-      <ScrollPane layoutX="33.0" layoutY="197.0" prefHeight="160.0" prefWidth="950.0" AnchorPane.topAnchor="33.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="170.0" prefWidth="957.0" />
-        </content>
-      </ScrollPane>
-      <ScrollPane layoutX="33.0" layoutY="406.0" prefHeight="311.0" prefWidth="950.0" AnchorPane.topAnchor="242.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="315.0" prefWidth="949.0" />
-        </content>
-      </ScrollPane>
+      <ScrollPane fx:id="userPanel" layoutX="33.0" layoutY="197.0" prefHeight="160.0" prefWidth="950.0" AnchorPane.topAnchor="33.0" />
+      <ScrollPane fx:id="projectPanel" layoutX="33.0" layoutY="406.0" prefHeight="311.0" prefWidth="950.0" AnchorPane.topAnchor="242.0" />
 	</children>
 </AnchorPane>

@@ -1,0 +1,24 @@
+.root {  
+     -fx-background-image: url("back3.jpg");  
+} 
+.button {   
+    -fx-background-radius: 0.0;
+    -fx-background-color: #444444;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11.0pt;
+    -fx-text-fill: #d8d8d8;
+    -fx-background-insets: 0.0 0.0 0.0 0.0, 0.0, 1.0, 2.0;
+}  
+.button:hover {
+    -fx-background-color: #3a3a3a;
+}
+.button:pressed, .button:default:hover:pressed {
+  -fx-background-color: white;
+  -fx-text-fill: #1d1d1d;
+}
+#back{
+	-fx-background-image: url("back5.png");
+}
+#repositoryName:hover{
+	-fx-text-fill: #77DDFF;
+}

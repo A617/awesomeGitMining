@@ -30,7 +30,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 	}
 
 	@Override
-	public RepositoryVO searchRepository(String id) {
+	public List<RepositoryVO> searchRepository(String id) {
 		RepositoryVO vo = null;
 		if (daoImpl != null) {
 			Repository po = daoImpl.getRepository(id);

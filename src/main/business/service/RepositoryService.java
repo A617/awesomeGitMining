@@ -15,7 +15,7 @@ public interface RepositoryService {
 	 * @param the Repository's name
 	 * @return @see RepositoryVO
 	 */
-	public abstract RepositoryVO searchRepository(String id);
+	public abstract List<RepositoryVO> searchRepository(String id);
 	/**
 	 * default orders
 	 * @return @see ArrayList of @see RepositoryVO
