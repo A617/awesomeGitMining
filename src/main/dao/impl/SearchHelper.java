@@ -1,4 +1,4 @@
-package main.dao;
+package main.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;

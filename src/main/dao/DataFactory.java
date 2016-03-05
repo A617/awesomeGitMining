@@ -9,6 +9,7 @@ public class DataFactory {
 	
 	private static IUserDao user;
 	private static IRepoDao repo;
+
 	
 	public static IUserDao getUserDataInstance(){
 		if(user==null)

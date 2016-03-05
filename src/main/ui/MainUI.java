@@ -2,6 +2,7 @@ package main.ui;
 
 
 import javafx.application.Application;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -13,8 +14,7 @@ public class MainUI extends Application{
 
 	private Stage stage;
 	private AnchorPane common ;
-	public static AnchorPane homePanel;
-
+	public static Group test;
 	private static MainUI ui;
 
 	@Override
@@ -26,7 +26,6 @@ public class MainUI extends Application{
 		ui = this;
 
 		common = fxmlLoader.loadPanel("Ui_CommonPart.fxml");
-		homePanel = fxmlLoader.loadPanel("Ui_HomePagePanel.fxml");
 		stage.setTitle("awesomeGitmining");
 		stage.setMinWidth(1024);
 		stage.setMinHeight(768);

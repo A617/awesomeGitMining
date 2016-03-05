@@ -43,14 +43,6 @@ public class JsonUtil {
 	public static <T> List<T> parseJson2Beanlist(String jsonStr, Class<T> cls) {
 		JsonConfig config = Config.getConfig(cls);
 		JSONArray ja = JSONArray.fromObject(jsonStr,config);
-	/*	List<T> desList = new ArrayList<T>();
-
-		Iterator<JSONObject> it = ja.iterator();
-		while (it.hasNext()) {
-			JSONObject jo = it.next();
-			desList.add((T) JSONObject.toBean(jo, cls));
-		}*/
-
 		return JSONArray.toList(ja, cls);
 	}
 	
@@ -85,69 +77,10 @@ public class JsonUtil {
 		return list;
 	}
 
-	/*
-	 * public static Map<String, Object> parseJSON2Map(String jsonStr){
-	 * Map<String, Object> map = new HashMap<String, Object>(); //最外层解析
-	 * JSONObject json = JSONObject.fromObject(jsonStr); for(Object k :
-	 * json.keySet()){ Object v = json.get(k); //如果内层还是数组的话，继续解析 if(v instanceof
-	 * JSONArray){ List<Map<String, Object>> list = new
-	 * ArrayList<Map<String,Object>>(); Iterator<JSONObject> it =
-	 * ((JSONArray)v).iterator(); while(it.hasNext()){ JSONObject json2 =
-	 * it.next(); list.add(parseJSON2Map(json2.toString())); }
-	 * map.put(k.toString(), list); } else { map.put(k.toString(), v); } }
-	 * return map; }
-	 */
-
+	
 	
 
-/*	*//**
-	 * 复制json object属性到另一个object
-	 * 
-	 * @param des
-	 *            目标对象
-	 * @param src
-	 *            源对象
-	 *//*
-	private static void copyAttributes(Object des, JSONObject src) {
-		try {
-			List<Field> fieldList = new ArrayList<Field>();
-			fieldList.addAll(Arrays.asList(des.getClass().getDeclaredFields()));
 
-			for (Field field : fieldList) {
-
-				String name = field.getName();
-				Object value = src.get(name);
-
-				if (value != null && !(value instanceof JSONNull)) {
-					// 使其可以对私有属性复制
-					field.setAccessible(true);
-
-					String type = field.getType().toString();
-
-					if (type.indexOf("int") >= 0) {
-						field.set(des, (Integer) value);
-					} else if (type.indexOf("String") >= 0) {
-						field.set(des, (String) value);
-					} else if (type.indexOf("boolean") >= 0) {
-						if (value.equals("true"))
-							field.set(des, Boolean.TRUE);
-						else
-							field.set(des, Boolean.FALSE);
-					} else
-						System.out.println("can't get " + name);
-				} else
-					System.out.println("can't get " + name);
-			}
-
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		}
-	}
-*/
 	
 	/**
 	 * 从json object中提取一个对象

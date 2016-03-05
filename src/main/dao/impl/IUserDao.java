@@ -1,5 +1,6 @@
 package main.dao.impl;
 
+import java.io.IOException;
 import java.util.List;
 
 import main.dao.entity.User;
@@ -15,7 +16,13 @@ public interface IUserDao {
 	 * @param login 登录名
 	 * @return
 	 */
-	public User getUser(String login);
+	public User getUser(String login)throws IOException;
 	
-	public List<String> searchUser(String input);
+	
+	/**
+	 * 在本地用户列表中模糊搜索
+	 * @param name 部分名称
+	 * @return 全称
+	 */
+	public List<String> searchUser(String input) throws IOException;
 }

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import org.controlsfx.dialog.Dialogs;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,6 +19,7 @@ import javafx.scene.layout.VBox;
 import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.service.RepositoryService;
 import main.ui.MainUI;
+import main.ui.utility.fxmlLoader;
 import main.vo.RepositoryVO;
 
 public class HomeController implements Initializable {
@@ -183,4 +186,5 @@ public class HomeController implements Initializable {
 			generalList.add(vo);
 		}
 	}
+
 }
