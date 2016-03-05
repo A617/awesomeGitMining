@@ -17,8 +17,8 @@
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
+            <Label fx:id="userImage" layoutX="23.0" layoutY="16.0" prefHeight="130.0" prefWidth="130.0" text="Image" />
          </children>
       </Group>
-      <ImageView fx:id="userImage" fitHeight="120.0" fitWidth="120.0" layoutX="29.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>

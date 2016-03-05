@@ -3,6 +3,8 @@ package main.ui.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.controlsfx.dialog.Dialogs;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,7 +17,10 @@ public class MainController implements Initializable{
 	
 	private static MainController instance;
 
-    public static MainController getInstance() {
+	public static MainController getInstance() {
+    	if(instance == null) {
+    		instance = new MainController();
+    	}
         return instance;
     }
     @FXML
@@ -25,16 +30,25 @@ public class MainController implements Initializable{
     @FXML
     private Button btn_search,btn_menu;
     
+    public String getSearchId() {
+    	return search.getText();
+    }
+    
     @FXML
     public void handleMenu() {
     	initPanel();
     }
     @FXML
     public void handleSearch() {
-    	
-    	setPanel(fxmlLoader.loadPanel("Ui_SearchPanel.fxml"));
-    	
-    	//TODO
+    	if(getSearchId() != null && !getSearchId().isEmpty()) {
+    		setPanel(fxmlLoader.loadPanel("Ui_SearchPanel.fxml"));
+    	}else {
+    		 Dialogs.create()
+             .title("No Input")
+             .masthead("Nothing input!")
+             .message("Please input the keyword of what you want to search.")
+             .showWarning();
+    	}
     }
     
     /**
@@ -42,9 +56,6 @@ public class MainController implements Initializable{
      */
     public void initPanel() {
     	setPanel(MainUI.homePanel);
-
-    	//TODO
-    	//add project items here(the method write into homeController)
     }
     
     /**
