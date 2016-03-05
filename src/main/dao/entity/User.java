@@ -12,11 +12,12 @@ public class User {
 	protected String html_url;	//github主页
 	protected String type;
 	protected boolean site_admin;
-	
+
 	private String name;	//昵称
 	private String location;	//所在地
 	private String email;
 	private String blog;
+	private List<String> contributions_fullname;
 	private List<String> followers_name;
 	private List<String> following_name;
 	private List<String> repos_fullname;
@@ -32,6 +33,20 @@ public class User {
 		super();
 	}
 	
+	
+	
+	public List<String> getContributions_fullname() {
+		return contributions_fullname;
+	}
+
+
+
+	public void setContributions_fullname(List<String> contributions_fullname) {
+		this.contributions_fullname = contributions_fullname;
+	}
+
+
+
 	public int getFollowing() {
 		return following;
 	}
@@ -141,20 +156,17 @@ public class User {
 		this.site_admin = site_admin;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "User [login=" + login + ", name=" + name + ", html_url=" + html_url + ", location=" + location
-				+ ", email=" + email + ", blog=" + blog + ", followers_name=" + followers_name + ", following_name="
-				+ following_name + ", repos_fullname=" + repos_fullname + ", public_repos=" + public_repos
-				+ ", public_gists=" + public_gists + ", followers=" + followers + ", following=" + following
-				+ ", created_at=" + created_at + ", updated_at=" + updated_at + ", type=" + type + ", site_admin="
-				+ site_admin + "]";
+		return "User [login=" + login + ", html_url=" + html_url + ", type=" + type + ", site_admin=" + site_admin
+				+ ", name=" + name + ", location=" + location + ", email=" + email + ", blog=" + blog
+				+ ", contributions_fullname=" + contributions_fullname + ", followers_name=" + followers_name
+				+ ", following_name=" + following_name + ", repos_fullname=" + repos_fullname + ", public_repos="
+				+ public_repos + ", public_gists=" + public_gists + ", followers=" + followers + ", following="
+				+ following + ", created_at=" + created_at + ", updated_at=" + updated_at + "]";
 	}
-	
-	
-	
-	
-	
-	
+
 	
 }

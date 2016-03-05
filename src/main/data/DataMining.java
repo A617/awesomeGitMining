@@ -1,4 +1,4 @@
-package main.dao.mining;
+package main.data;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -14,6 +14,8 @@ import main.dao.HttpRequest;
 import main.dao.JsonUtil;
 
 public class DataMining {
+	static String repopath = new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\repo_fullname.txt";
+	static String userpath = new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\user_login.txt";
 
 	public static void main(String[] args) {
 
@@ -33,12 +35,11 @@ public class DataMining {
 		 * 
 		 * getData(repo_url, repo_path, "full_name");
 		 */
-	
-		
 
-	//	getData();
-		
-	//	getRepoFromMiningAPI();
+		String param = "/contributors/login";
+		String url = "api.github.com/users/";
+		String path = new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\user-reposCreated.txt";
+		getDataMapFromGithub(userpath,url,path,"/repos", "full_name");
 
 		long endTime = System.nanoTime();
 		System.out.println("Took " + (endTime - startTime) + " ns");
@@ -115,12 +116,12 @@ public class DataMining {
 	 * @param path
 	 * @param key
 	 */
-	public static void getData() {
+	public static void getDataMap(String path, String param) {
 
 		List<String> repositories = new ArrayList<String>();
 
 		try {
-			File file = new File(new File("").getAbsolutePath() + "\\src\\main\\repolistFromMiningApi.txt");
+			File file = new File(repopath);
 			if (file.isFile() && file.exists()) { // 判断文件是否存在
 				InputStreamReader read = new InputStreamReader(new FileInputStream(file));
 				BufferedReader bufferedReader = new BufferedReader(read);
@@ -137,10 +138,7 @@ public class DataMining {
 			e.printStackTrace();
 		}
 
-		String url = "api.github.com/repos/";
-		String path = new File("").getAbsolutePath() + "\\src\\main\\repo-contributorsFromMiningApi.txt";
-
-		String key = "login";
+		String url = "http://www.gitmining.net/api/repository/";
 
 		String page = "";
 
@@ -151,16 +149,92 @@ public class DataMining {
 		BufferedWriter writer = null;
 
 		try {
-			fw = new FileWriter(file, true);
+			fw = new FileWriter(file);
+			writer = new BufferedWriter(fw);
+			
+
+			for (String repoFull_name : repositories) {
+
+				writer.write(repoFull_name + ": ");
+				writer.flush();
+
+				try {
+					page = HttpRequest.sendGet(url, repoFull_name + param);
+				} catch (IOException e) {
+					e.printStackTrace();
+					continue;
+				}
+
+
+				logins = JsonUtil.parseJson2List(page);
+
+				System.out.println(logins.size());
+
+				// 写本页的所有用户名
+				for (String login : logins) {
+					writer.write(login + " ");
+
+				}
+
+				writer.newLine();
+				writer.flush();
+
+			}
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * 用来从github api获取repo-contributorslist
+	 * @param src 所有key的文件
+	 * @param url 
+	 * @param path 存储路径
+	 * @param param 
+	 * @param key 要获得的字段
+	 */
+	public static void getDataMapFromGithub(String src,String url,String path,  String param,String key) {
+
+		List<String> list = new ArrayList<String>();
+
+		try {
+			File file = new File(src);
+			if (file.isFile() && file.exists()) { // 判断文件是否存在
+				InputStreamReader read = new InputStreamReader(new FileInputStream(file));
+				BufferedReader bufferedReader = new BufferedReader(read);
+				String lineTxt = null;
+				while ((lineTxt = bufferedReader.readLine()) != null) {
+					list.add(lineTxt);
+				}
+				read.close();
+			} else {
+				System.out.println("找不到指定的文件");
+			}
+		} catch (Exception e) {
+			System.out.println("读取文件内容出错");
+			e.printStackTrace();
+		}
+
+
+		String page = "";
+
+		List<String> logins;
+
+		File file = new File(path);
+		FileWriter fw = null;
+		BufferedWriter writer = null;
+
+		try {
+			fw = new FileWriter(file);
 			writer = new BufferedWriter(fw);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
 
-		for (String repoFull_name : repositories) {
-			
+		for (String repoFull_name : list) {
 
 			try {
 
@@ -174,7 +248,7 @@ public class DataMining {
 
 					try {
 						page = HttpRequest.sendGetWithAuth(url,
-								repoFull_name + "/contributors" + "?per_page=100&page=" + page_num);
+								repoFull_name + param + "?per_page=100&page=" + page_num);
 					} catch (IOException e) {
 						e.printStackTrace();
 						break;
@@ -208,42 +282,44 @@ public class DataMining {
 
 		}
 	}
-	
-	public static void getRepoFromMiningAPI(){
-		String s = HttpRequest.sendGet("http://www.gitmining.net/api/repository/names", "");
-		List<String> repo = JsonUtil.parseJson2List(s);
-		
-		File file = new File(new File("").getAbsolutePath()+"\\src\\main\\repolist-miningApi.txt");
-		FileWriter fw = null;
-		BufferedWriter writer = null;
-		
-		String page;
 
+	public static void getRepoFromMiningAPI() {
+		String s = null;
 		try {
+			s = HttpRequest.sendGet("http://www.gitmining.net/api/repository/names", "");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		if (s != null) {
+			List<String> repo = JsonUtil.parseJson2List(s);
 
-			fw = new FileWriter(file);
-			writer = new BufferedWriter(fw);
-			
-			for(String full_name: repo){
-				writer.write(full_name);
-				writer.newLine();
-			}
+			File file = new File(new File("").getAbsolutePath() + "\\src\\main\\repolist-miningApi.txt");
+			FileWriter fw = null;
+			BufferedWriter writer = null;
 
-				
-
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
 			try {
-				writer.flush();
-				writer.close();
-				fw.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 
+				fw = new FileWriter(file);
+				writer = new BufferedWriter(fw);
+
+				for (String full_name : repo) {
+					writer.write(full_name);
+					writer.newLine();
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					writer.flush();
+					writer.close();
+					fw.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 }
