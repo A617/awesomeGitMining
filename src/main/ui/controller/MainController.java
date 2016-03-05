@@ -9,8 +9,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
+import main.ui.MainUI;
 import main.ui.utility.fxmlLoader;
 
 public class MainController implements Initializable {
@@ -30,6 +35,8 @@ public class MainController implements Initializable {
 	private TextField search;
 	@FXML
 	private Button btn_search, btn_menu;
+	@FXML
+	private Label logo;
 
 	public String getSearchId() {
 		return search.getText();
@@ -81,6 +88,14 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		instance = this;
+		justTest();
+	}
+	
+	private void justTest(){
+		logo.setText("awesomeGitmining");  
+		logo.setFont(Font.font("Calibri", 27));  
+		Image image = new Image(MainUI.class.getResourceAsStream("style/mark.png"));  
+		logo.setGraphic(new ImageView(image)); 
 	}
 
 }
