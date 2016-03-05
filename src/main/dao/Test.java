@@ -28,9 +28,9 @@ public class Test {
 		
 		
 		
-	//	 IRepoDao dao = DataFactory.getRepoDataInstance(); 
-	//	 Repository po = dao.getRepository("mojombo/god");	
-	//	 System.out.println(po);
+		 IRepoDao dao = DataFactory.getRepoDataInstance(); 
+		 Repository po = dao.getRepository("mojombo/god");	
+		 System.out.println(po);
 		
 		
 		 IUserDao user = DataFactory.getUserDataInstance();
