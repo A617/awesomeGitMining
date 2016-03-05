@@ -16,6 +16,9 @@
   -fx-background-color: white;
   -fx-text-fill: #1d1d1d;
 }
-#singlePane{
-	-fx-background-image: url("back4.jpg");  
+#back{
+	-fx-background-image: url("back5.png");
+}
+#repositoryName:hover{
+	-fx-text-fill: #77DDFF;
 }

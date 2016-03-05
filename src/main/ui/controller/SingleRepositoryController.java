@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import main.vo.RepositoryVO;
 
 /**
@@ -25,7 +26,6 @@ public class SingleRepositoryController implements Initializable {
 	private Label description;
 	@FXML
 	private Label starNum;
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -45,4 +45,9 @@ public class SingleRepositoryController implements Initializable {
 			
 		}
 	}
+	@FXML
+	public void handleClick(){
+		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
+	}
+	
 }
