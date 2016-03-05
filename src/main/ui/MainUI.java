@@ -32,9 +32,9 @@ public class MainUI extends Application{
 		stage.setMinHeight(768);
 		Scene scene = new Scene(common);
 		stage.setScene(scene);
-//		scene.getStylesheets().add(MainUI.class.getResource("style/test.css").toExternalForm());
-//		//添加图标
-//		this.stage.getIcons().add(new Image("file:src/main/ui/style/mark.png"));
+		scene.getStylesheets().add(MainUI.class.getResource("style/test.css").toExternalForm());
+		//添加图标
+		this.stage.getIcons().add(new Image("file:src/main/ui/style/mark.png"));
 		MainController.getInstance().initPanel();
 		stage.show();
 	}
