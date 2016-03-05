@@ -16,9 +16,9 @@ public class UserDaoImpl implements IUserDao {
 		String s = HttpRequest.sendGet(gitmining_user_url, login);
 		User us = JsonUtil.<User> parseJson2Bean(s, User.class);
 
-		us.setRepos_fullname(getRepos_fullname(login));
-		us.setFollowers_name(getFollowers_name(login));
-		us.setFollowing_name(getFollowing_name(login));
+	//	us.setRepos_fullname(getRepos_fullname(login));
+	//	us.setFollowers_name(getFollowers_name(login));
+	//	us.setFollowing_name(getFollowing_name(login));
 
 		return us;
 	}

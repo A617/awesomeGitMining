@@ -11,6 +11,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 
+@SuppressWarnings({ "unchecked", "deprecation" })
 public class JsonUtil {
 
 	/**
@@ -79,6 +80,7 @@ public class JsonUtil {
 	}
 	
 	public static List<String> parseJson2List(String jsonStr){
+		
 		List<String> list = (List<String>)JSONArray.toList((JSONArray.fromObject(jsonStr)));
 		return list;
 	}

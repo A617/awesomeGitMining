@@ -3,10 +3,15 @@ package main.dao;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import org.apache.commons.codec.binary.Base64;
+
 public class HttpRequest {
+
+	private static String token = "b6d4d30ba55a5f2166af787f1cacb762c235aaea";
 
 	/**
 	 * 向指定URL发送GET方法的请求
@@ -23,8 +28,7 @@ public class HttpRequest {
 		try {
 
 			// 合成url
-			String urlNameString = url + param;
-			URL realUrl = new URL(urlNameString);
+			URL realUrl = new URL(url + param);
 
 			// System.out.println("Connecting: "+realUrl);
 
@@ -72,4 +76,52 @@ public class HttpRequest {
 	 * 
 	 * return result; }
 	 */
+
+	/**
+	 * 
+	 * @param url
+	 * @param param
+	 * @return
+	 * @throws IOException
+	 */
+	public static String sendGetWithAuth(String url, String param) throws IOException {
+
+		/*
+		 * String newUrl = "https://" + token + ":x-oauth-basic@" + url + param;
+		 * HttpClient client; HttpGet request = new HttpGet(newUrl); try {
+		 * client = new DefaultHttpClient(); HttpResponse response =
+		 * client.execute(request); String responseString = new
+		 * BasicResponseHandler().handleResponse(response); return
+		 * responseString; } catch (IOException e) { e.printStackTrace(); return
+		 * null; }
+		 */
+
+		String newUrl = "https://" + url + param;
+	//	System.out.println(newUrl);
+
+		String result = "";
+		BufferedReader in = null;
+
+		URL myURL = null;
+		try {
+			myURL = new URL(newUrl);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (myURL != null) {
+			URLConnection connection = myURL.openConnection();
+			String authString = "Basic " + Base64.encodeBase64String((token + ":x-oauth-basic").getBytes());
+			connection.setRequestProperty("Authorization", authString);
+
+			in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			String line;
+			while ((line = in.readLine()) != null) {
+				result += line;
+			}
+		}
+		return result;
+
+	}
+
 }
