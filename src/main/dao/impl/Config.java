@@ -27,7 +27,6 @@ public class Config {
 	
 	private final static String[] userExcludes = {
 			"id",
-			"avatar_url",
 		    "gravatar_id",
 		    "url",
 		    "followers_url",
@@ -90,6 +89,7 @@ public class Config {
     	    "network_count",
     	    "git_url",
     	    "html_url",
+    	    "organization",
     	    
     	    //以下出现在官方api中
     	    "deployments_url",

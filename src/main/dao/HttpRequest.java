@@ -2,6 +2,7 @@ package main.dao;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -29,7 +30,7 @@ public class HttpRequest {
 		// 合成url
 		URL realUrl = new URL(url + param);
 		
-		System.out.println(url + param);
+	//	System.out.println(url + param);
 
 		// 打开和URL之间的连接
 		URLConnection connection = realUrl.openConnection();
@@ -85,4 +86,27 @@ public class HttpRequest {
 
 	}
 
+	
+	public static InputStream sendGetforStream(String url) throws IOException {
+		BufferedReader in = null;
+
+		
+	//	System.out.println(url + param);
+
+		// 打开和URL之间的连接
+		URLConnection connection = new URL(url).openConnection();
+		
+		InputStream inStream = connection.getInputStream();
+		
+     /*   ByteArrayOutputStream outStream = new ByteArrayOutputStream();  
+        
+        byte[] buffer = new byte[1024];  
+        int len = 0;  
+        while( (len=inStream.read(buffer)) != -1 ){  
+            outStream.write(buffer, 0, len);  
+        }  
+        inStream.close();  
+      */  
+        return inStream;
+    }
 }

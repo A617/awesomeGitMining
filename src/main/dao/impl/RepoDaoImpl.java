@@ -2,6 +2,7 @@ package main.dao.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -44,9 +45,9 @@ public class RepoDaoImpl implements IRepoDao {
 	}
 
 	@Override
-	public List<Repository> getAllRepo() throws IOException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> getAllRepo(){
+		
+		return repoList;
 	}
 
 	@Override

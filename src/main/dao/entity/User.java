@@ -2,6 +2,8 @@ package main.dao.entity;
 
 import java.util.List;
 
+import javafx.scene.image.Image;
+
 /**
  * UserPO
  * @author Dora
@@ -13,6 +15,8 @@ public class User {
 	protected String type;
 	protected boolean site_admin;
 
+	private Image avatar;
+	private String avatar_url;
 	private String name;	//昵称
 	private String location;	//所在地
 	private String email;
@@ -156,17 +160,46 @@ public class User {
 		this.site_admin = site_admin;
 	}
 
+	
+
+	public Image getAvatar() {
+		return avatar;
+	}
+
+
+
+	public void setAvatar(Image image) {
+		this.avatar = image;
+	}
+
+
+
+	public String getAvatar_url() {
+		return avatar_url;
+	}
+
+
+
+	public void setAvatar_url(String avatar_url) {
+		this.avatar_url = avatar_url;
+	}
+
 
 
 	@Override
 	public String toString() {
 		return "User [login=" + login + ", html_url=" + html_url + ", type=" + type + ", site_admin=" + site_admin
-				+ ", name=" + name + ", location=" + location + ", email=" + email + ", blog=" + blog
-				+ ", contributions_fullname=" + contributions_fullname + ", followers_name=" + followers_name
-				+ ", following_name=" + following_name + ", repos_fullname=" + repos_fullname + ", public_repos="
-				+ public_repos + ", public_gists=" + public_gists + ", followers=" + followers + ", following="
-				+ following + ", created_at=" + created_at + ", updated_at=" + updated_at + "]";
+				+ ", avatar=" + avatar + ", avatar_url=" + avatar_url + ", name=" + name + ", location=" + location
+				+ ", email=" + email + ", blog=" + blog + ", contributions_fullname=" + contributions_fullname
+				+ ", followers_name=" + followers_name + ", following_name=" + following_name + ", repos_fullname="
+				+ repos_fullname + ", public_repos=" + public_repos + ", public_gists=" + public_gists + ", followers="
+				+ followers + ", following=" + following + ", created_at=" + created_at + ", updated_at=" + updated_at
+				+ "]";
 	}
+
+
+
+	
 
 	
 }

@@ -33,7 +33,7 @@ public interface IRepoDao {
 	 * @return
 	 * @throws IOException 
 	 */
-	public List<Repository> getAllRepo() throws IOException;
+	public List<String> getAllRepo();
 	
 	/**
 	 * 获取项目所有版本
