@@ -8,7 +8,7 @@ public interface UserService {
 	/**
 	 * 
 	 * @param the user's log in name
-	 * @return @see UserVO
+	 * @return ArrayList of  @see UserVO
 	 */
 	public abstract List<UserVO> searchUser(String id);
 }

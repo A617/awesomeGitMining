@@ -42,9 +42,9 @@ public class HomeController implements Initializable {
 	private List<RepositoryVO> starList;
 	private List<RepositoryVO> forkList;
 	private List<RepositoryVO> contriList;
-	
+
 	public static HomeController getInstance() {
-		if(instance == null) {
+		if (instance == null) {
 			instance = new HomeController();
 		}
 		return instance;
@@ -53,29 +53,41 @@ public class HomeController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		impl = RepositoryServiceImpl.getInstance();
-		test();
-		generalList = impl.showRepositories();
-		starList = impl.showReposByStar();
-		forkList = impl.showReposByFork();
-		contriList = impl.showReposByContribute();
-		initTabPane(tab_general,new ScrollPane(),new VBox(), generalList, 0);
-		initTabPane(tab_star,new ScrollPane(), new VBox(), starList, 0);
-		initTabPane(tab_fork,new ScrollPane(), new VBox(), forkList, 0);
-		initTabPane(tab_contributor,new ScrollPane(), new VBox(), contriList, 0);
+		initialShow();
 	}
 
-	private void initTabPane(Tab tab,ScrollPane sp, VBox vb, List<RepositoryVO> list, int startIndex) {
+	// 也许这样初始化的时候会快一些吧 T T
+	private void initialShow() {
+		if (tab_general.isSelected()) {
+			generalList = impl.showRepositories(0);
+			initTabPane(tab_general, new ScrollPane(), new VBox(), generalList);
+		}
+		if (tab_star.isSelected()) {
+			starList = impl.showReposByStar(0);
+			initTabPane(tab_star, new ScrollPane(), new VBox(), starList);
+		}
+		if (tab_fork.isSelected()) {
+			forkList = impl.showReposByFork(0);
+			initTabPane(tab_fork, new ScrollPane(), new VBox(), forkList);
+		}
+		if (tab_contributor.isSelected()) {
+			contriList = impl.showReposByContribute(0);
+			initTabPane(tab_contributor, new ScrollPane(), new VBox(), contriList);
+		}
+	}
+
+	private void initTabPane(Tab tab, ScrollPane sp, VBox vb, List<RepositoryVO> list) {
 		// Pane->VBox->ScrollPane->VBox
 		VBox box = new VBox();
 		box.getChildren().add(sp);
 		VBox.setVgrow(sp, Priority.ALWAYS);
-		for (int i = startIndex; i < 10+startIndex; i++) {
+		for (int i = 0; i < 10; i++) {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainUI.class.getResource("config/Ui_SingleReposView.fxml"));
 			try {
 				Pane single = (Pane) loader.load();
 				SingleRepositoryController controller = loader.getController();
-				if (!list.isEmpty()) {
+				if (i < list.size()) {
 					RepositoryVO vo = list.get(i);
 					controller.setVO(vo);
 					vb.getChildren().add(single);
@@ -109,77 +121,91 @@ public class HomeController implements Initializable {
 	private void generalNext() {
 		if (tab_general.isSelected()) {
 			generalPage++;
-			if (generalPage * 10 < generalList.size()) {
-				initTabPane(tab_general,new ScrollPane(), new VBox(), generalList, generalPage*10);
+			generalList = impl.showRepositories(generalPage);
+			if (generalList.size() > 0) {
+				initTabPane(tab_general, new ScrollPane(), new VBox(), generalList);
 			}
-			System.out.println(generalPage);
 		}
 	}
 
 	private void generalPre() {
 		if (tab_general.isSelected()) {
+			generalPage--;
 			if (generalPage > 0) {
-				initTabPane(tab_general,new ScrollPane(), new VBox(), generalList, (--generalPage)*10);
+				generalList = impl.showRepositories(generalPage);
+				initTabPane(tab_general, new ScrollPane(), new VBox(), generalList);
 			}
 		}
 	}
+
 	// handle the star tab pane
-		private void starNext() {
-			if (tab_star.isSelected()) {
-				starPage++;
-				if (starPage * 10 < starList.size()) {
-					initTabPane(tab_star,new ScrollPane(), new VBox(), starList, starPage*10);
-				}
+	private void starNext() {
+		if (tab_star.isSelected()) {
+			starPage++;
+			starList = impl.showReposByStar(starPage);
+			if (starList.size() > 0) {
+				initTabPane(tab_star, new ScrollPane(), new VBox(), starList);
 			}
 		}
+	}
 
-		private void starPre() {
-			if (tab_star.isSelected()) {
-				if (starPage > 0) {
-					initTabPane(tab_star,new ScrollPane(), new VBox(), starList, (--starPage)*10);
-				}
+	private void starPre() {
+		if (tab_star.isSelected()) {
+			starPage--;
+			if (starPage > 0) {
+				starList = impl.showReposByStar(starPage);
+				initTabPane(tab_star, new ScrollPane(), new VBox(), starList);
 			}
 		}
-		// handle the fork tab pane
-		private void forkNext() {
-			if (tab_fork.isSelected()) {
-				forkPage++;
-				if (forkPage * 10 < forkList.size()) {
-					initTabPane(tab_fork,new ScrollPane(), new VBox(), forkList, forkPage*10);
-				}
-			}
-		}
+	}
 
-		private void forkPre() {
-			if (tab_fork.isSelected()) {
-				if (forkPage > 0) {
-					initTabPane(tab_fork,new ScrollPane(), new VBox(), forkList, (--forkPage)*10);
-				}
+	// handle the fork tab pane
+	private void forkNext() {
+		if (tab_fork.isSelected()) {
+			forkPage++;
+			forkList = impl.showReposByFork(forkPage);
+			if (forkList.size() > 0) {
+				initTabPane(tab_fork, new ScrollPane(), new VBox(), forkList);
 			}
 		}
-		// handle the contributor tab pane
-		private void contriNext() {
-			if (tab_contributor.isSelected()) {
-				contriPage++;
-				if (contriPage * 10 < contriList.size()) {
-					initTabPane(tab_contributor,new ScrollPane(), new VBox(), contriList, contriPage*10);
-				}
-			}
-		}
+	}
 
-		private void contriPre() {
-			if (tab_contributor.isSelected()) {
-				if (contriPage > 0) {
-					initTabPane(tab_contributor,new ScrollPane(), new VBox(), contriList, (--contriPage)*10);
-				}
+	private void forkPre() {
+		if (tab_fork.isSelected()) {
+			forkPage--;
+			if (forkPage > 0) {
+				forkList = impl.showReposByFork(forkPage);
+				initTabPane(tab_fork, new ScrollPane(), new VBox(), forkList);
 			}
 		}
-		
-	private void test(){
+	}
+
+	// handle the contributor tab pane
+	private void contriNext() {
+		if (tab_contributor.isSelected()) {
+			contriPage++;
+			contriList = impl.showReposByContribute(contriPage);
+			if (contriList.size() > 0) {
+				initTabPane(tab_contributor, new ScrollPane(), new VBox(), contriList);
+			}
+		}
+	}
+
+	private void contriPre() {
+		if (tab_contributor.isSelected()) {
+			contriPage--;
+			if (contriPage > 0) {
+				contriList = impl.showReposByContribute(contriPage);
+				initTabPane(tab_contributor, new ScrollPane(), new VBox(), contriList);
+			}
+		}
+	}
+
+	private void test() {
 		generalList = new ArrayList<RepositoryVO>();
-		for(int i = 0;i<200;i++){
+		for (int i = 0; i < 200; i++) {
 			RepositoryVO vo = new RepositoryVO();
-			vo.setName(i+"awesome");
+			vo.setName(i + "awesome");
 			generalList.add(vo);
 		}
 	}

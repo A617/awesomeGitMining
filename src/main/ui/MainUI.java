@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import main.ui.controller.MainController;
 import main.ui.utility.fxmlLoader;
 
@@ -23,6 +24,7 @@ public class MainUI extends Application{
 	 */
 	public void start(Stage primaryStage) throws Exception {
 		this.stage = primaryStage;
+		primaryStage.initStyle(StageStyle.UNDECORATED);
 		ui = this;
 
 		common = fxmlLoader.loadPanel("Ui_CommonPart.fxml");

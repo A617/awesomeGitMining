@@ -25,6 +25,9 @@ public class SingleRepositoryController implements Initializable {
 	private Label description;
 	@FXML
 	private Label starNum;
+	
+	private RepositoryVO vo;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -32,21 +35,25 @@ public class SingleRepositoryController implements Initializable {
 
 	/**
 	 * set text on the labels
+	 * 
 	 * @param vo
 	 */
 	public void setVO(RepositoryVO vo) {
+		this.vo = vo;
 		if (vo != null) {
 			repositoryName.setText(vo.getName() + "/");
-//			contriNum.setText(vo.getContributors_login().size() + "");
-//			forkNum.setText(vo.getForks_count() + "");
-//			description.setText(vo.getDescription());
-//			starNum.setText(vo.getSubscribers_count() + "");
-			
+			contriNum.setText(vo.getContributors_login().size() + "");
+			forkNum.setText(vo.getForks_count() + "");
+			description.setText(vo.getDescription());
+			starNum.setText(vo.getSubscribers_count() + "");
+
 		}
 	}
+
 	@FXML
-	public void handleClick(){
+	public void handleClick() {
 		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
+		ProjectController.getInstance().setVO(vo);
 	}
-	
+
 }
