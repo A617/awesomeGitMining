@@ -11,4 +11,22 @@ public interface UserService {
 	 * @return ArrayList of  @see UserVO
 	 */
 	public abstract List<UserVO> searchUser(String id);
+	/**
+	 * search user by id
+	 * @param id
+	 * @return @see UserVO
+	 */
+	public abstract UserVO getUser(String id);
+	/**
+	 * 
+	 * @param id
+	 * @return the contributed repository 
+	 */
+	public abstract List<String> getContributeRepos(String id);
+	/**
+	 * 
+	 * @param id
+	 * @return the created repository
+	 */
+	public abstract List<String> getCreateRepos(String id);
 }

@@ -36,7 +36,7 @@ public class TestConverter {
 		po.setForks_fullname(forks);
 		
 		RepositoryVO vo = new RepositoryVO();
-		vo.setName("awesome");
+		vo.setFull_name("awesome");
 		vo.setClone_url("www");
 		vo.setLanguages(languages);
 		vo.setForks_fullname(forks);
@@ -44,7 +44,7 @@ public class TestConverter {
 		RepositoryVO result = (RepositoryVO) Converter.convert("RepositoryVO", po);
 		assertEquals(vo.getForks_fullname().get(0),result.getForks_fullname().get(0));
 		assertEquals(vo.getLanguages().get(0),result.getLanguages().get(0));
-		assertEquals(vo.getName(),result.getName());
+		
 	}
 
 }

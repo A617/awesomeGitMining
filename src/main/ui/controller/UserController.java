@@ -55,12 +55,12 @@ public class UserController implements Initializable{
 
 	public void setVO(UserVO vo){
 		if(vo!=null){
-			userNameLabel.setText("");
-			joinTime.setText("");
-			Company.setText("");
-			Eff_num.setText("");
-			qua_num.setText("");
-			Tot_num.setText("");
+			userNameLabel.setText(vo.getName());
+			joinTime.setText(vo.getCreated_at());
+			Company.setText(vo.getLocation()+"/"+vo.getEmail());
+//			Eff_num.setText("");
+//			qua_num.setText("");
+//			Tot_num.setText("");
 		}
 	}
 
