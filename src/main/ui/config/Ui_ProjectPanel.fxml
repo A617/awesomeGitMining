@@ -23,81 +23,31 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <VBox layoutX="38.0" layoutY="238.0">
-               <children>
-                  <Label fx:id="star_num" layoutX="38.0" layoutY="238.0" text="star_num">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="54.0" layoutY="289.0" text="stars" textFill="#00aaaa">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-            <VBox layoutX="414.0" layoutY="238.0">
-               <children>
-                  <Label fx:id="colla_num" layoutX="415.0" layoutY="238.0" text="colla_num">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="414.0" layoutY="289.0" text="collaborator" textFill="#00aaaa">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-            <VBox layoutX="128.0" layoutY="238.0">
-               <children>
-                  <Label fx:id="fork_num" layoutX="128.0" layoutY="238.0" text="fork_num">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="144.0" layoutY="289.0" text="forks" textFill="#00aaaa">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-            <VBox layoutX="214.0" layoutY="238.0">
-               <children>
-                  <Label fx:id="sub_num" layoutX="218.0" layoutY="238.0" text="sub_num">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="214.0" layoutY="289.0" text="subscribers" textFill="#00aaaa">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-            <VBox layoutX="308.0" layoutY="238.0">
-               <children>
-                  <Label fx:id="contri_num" layoutX="308.0" layoutY="238.0" text="contri_num">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="308.0" layoutY="289.0" text="contributors" textFill="#00aaaa">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
             <Label layoutX="41.0" layoutY="165.0" text="Repository Statistics">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
+            <TableView layoutX="26.0" layoutY="227.0" prefHeight="345.0" prefWidth="166.0">
+              <columns>
+                <TableColumn prefWidth="199.0" text="C1" />
+              </columns>
+            </TableView>
+            <TableView layoutX="272.0" layoutY="227.0" prefHeight="345.0" prefWidth="166.0">
+               <columns>
+                  <TableColumn prefWidth="199.0" text="C1" />
+               </columns>
+            </TableView>
+            <TableView layoutX="505.0" layoutY="227.0" prefHeight="345.0" prefWidth="166.0">
+               <columns>
+                  <TableColumn prefWidth="199.0" text="C1" />
+               </columns>
+            </TableView>
+            <TableView layoutX="723.0" layoutY="227.0" prefHeight="345.0" prefWidth="166.0">
+               <columns>
+                  <TableColumn prefWidth="199.0" text="C1" />
+               </columns>
+            </TableView>
          </children></AnchorPane>
    </children>
 </Group>

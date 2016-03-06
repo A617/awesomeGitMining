@@ -24,7 +24,7 @@ public class MainUI extends Application{
 	 */
 	public void start(Stage primaryStage) throws Exception {
 		this.stage = primaryStage;
-		primaryStage.initStyle(StageStyle.UNDECORATED);
+//		primaryStage.initStyle(StageStyle.UNDECORATED);
 		ui = this;
 
 		common = fxmlLoader.loadPanel("Ui_CommonPart.fxml");

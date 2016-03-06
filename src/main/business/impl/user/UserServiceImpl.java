@@ -51,4 +51,51 @@ public class UserServiceImpl implements UserService {
 		}
 		return vos;
 	}
+
+	@Override
+	public UserVO getUser(String id) {
+		User po = null;
+		UserVO vo = null;
+		try {
+			po = daoImpl.getUser(id);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(po!=null){
+			vo = (UserVO) Converter.convert("UserVO", po);
+		}
+		return vo;
+	}
+
+	@Override
+	public List<String> getContributeRepos(String id) {
+		User po = null;
+		List<String> lists = new ArrayList<String>();
+		try {
+			po = daoImpl.getUser(id);
+			if(po!=null){
+				lists = po.getContributions_fullname();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return lists;
+	}
+
+	@Override
+	public List<String> getCreateRepos(String id) {
+		List<String> lists = new ArrayList<String>();
+		User po = null;
+		try {
+			po = daoImpl.getUser(id);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(po!=null){
+			lists = po.getRepos_fullname();
+		}
+		return lists;
+	}
 }
