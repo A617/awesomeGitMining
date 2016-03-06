@@ -32,6 +32,7 @@ public class UserDaoImpl implements IUserDao {
 		this.mapUser2Repos = DataInitHelper
 				.getMap(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\user-repos.txt");
 
+		System.out.println("UserDaoImpl initialized!");
 	}
 
 	@Override

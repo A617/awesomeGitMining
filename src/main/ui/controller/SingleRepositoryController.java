@@ -41,12 +41,12 @@ public class SingleRepositoryController implements Initializable {
 	public void setVO(RepositoryVO vo) {
 		this.vo = vo;
 		if (vo != null) {
-			repositoryName.setText(vo.getName() + "/");
+			repositoryName.setText(vo.getFull_name() + "/");
 			contriNum.setText(vo.getContributors_login().size() + "");
 			forkNum.setText(vo.getForks_count() + "");
 			description.setText(vo.getDescription());
 			starNum.setText(vo.getSubscribers_count() + "");
-
+			lastUpdated.setText(vo.getUpdated_at());
 		}
 	}
 

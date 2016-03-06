@@ -27,7 +27,7 @@ public class RepoDaoImpl implements IRepoDao {
 				.getList(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\repo_fullname.txt");
 		mapR2Clb=DataInitHelper.getMap(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\repo-collaborators.txt");
 		mapR2Ctb=DataInitHelper.getMap(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\repo-contributors.txt");
-		
+		System.out.println("RepoDaoImpl initialized!");
 	}
 
 	@Override
@@ -40,9 +40,9 @@ public class RepoDaoImpl implements IRepoDao {
 		po.setContributors_login(mapR2Ctb.get(name));
 		po.setCollaborators_login(mapR2Clb.get(name));
 		po.setOwner_name(name.split("/")[0]);
-		po.setBranches_name(this.getBranches_name(name));
-		po.setForks_fullname(this.getForks_fullname(name));
-		po.setLanguages(this.getLanguages(name));
+	//	po.setBranches_name(this.getBranches_name(name));
+	//	po.setForks_fullname(this.getForks_fullname(name));
+	//	po.setLanguages(this.getLanguages(name));
 		}
 		return po;
 	}

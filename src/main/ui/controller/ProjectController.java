@@ -47,7 +47,7 @@ public class ProjectController implements Initializable {
 	public void setVO(RepositoryVO vo) {
 		if(vo!=null){
 			profile.setText(vo.getDescription());
-			projectNameLabel.setText(vo.getName()+"/");
+			projectNameLabel.setText(vo.getFull_name()+"/");
 			star_num.setText(vo.getSubscribers_count()+"");
 			fork_num.setText(vo.getForks_count()+"");
 			colla_num.setText(vo.getCollaborators_login().size()+"");

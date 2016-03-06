@@ -8,7 +8,7 @@ import java.util.Map;
  * @date 2016年2月29日
  */
 public class RepositoryVO extends VO {
-	private String name;// 项目名
+	private String full_name;// 项目名
 	private int subscribers_count;// 点赞人数
 	private Map<String, Integer> languages;// 项目使用的语言
 	private List<String> contributors_login;// 项目贡献者
@@ -17,16 +17,19 @@ public class RepositoryVO extends VO {
 	private int forks_count;// 被fork的次数
 	private String clone_url;// 项目主页
 	private String description;// 项目描述信息
+	private String updated_at;
 
 	public RepositoryVO() {
 
 	}
+	
+	
 
-	public RepositoryVO(String name, int subscribers_count, Map<String, Integer> languages,
+	public RepositoryVO(String full_name, int subscribers_count, Map<String, Integer> languages,
 			List<String> contributors_login, List<String> collaborators_login, List<String> forks_fullname,
-			int forks_count, String clone_url, String description) {
+			int forks_count, String clone_url, String description, String updated_at) {
 		super();
-		this.name = name;
+		this.full_name = full_name;
 		this.subscribers_count = subscribers_count;
 		this.languages = languages;
 		this.contributors_login = contributors_login;
@@ -35,14 +38,17 @@ public class RepositoryVO extends VO {
 		this.forks_count = forks_count;
 		this.clone_url = clone_url;
 		this.description = description;
+		this.updated_at = updated_at;
 	}
 
-	public String getName() {
-		return name;
+
+
+	public String getFull_name() {
+		return full_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFull_name(String full_name) {
+		this.full_name = full_name;
 	}
 
 	public int getSubscribers_count() {
@@ -108,5 +114,15 @@ public class RepositoryVO extends VO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public String getUpdated_at() {
+		return updated_at;
+	}
+
+	public void setUpdated_at(String updated_at) {
+		this.updated_at = updated_at;
+	}
+
+	
 
 }

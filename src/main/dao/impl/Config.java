@@ -37,7 +37,10 @@ public class Config {
 		    "organizations_url",
 		    "repos_url",
 		    "events_url",
-		    "received_events_url"
+		    "received_events_url",
+		    "company",
+		    "hireable",
+		    "bio"
 	};
 	
 	private final static String[] repoExcludes = {//只要设置这个数组，指定过滤哪些字段。    

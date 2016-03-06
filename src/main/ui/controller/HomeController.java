@@ -15,7 +15,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import main.business.impl.repository.RepositoryServiceImpl;
+import main.business.impl.user.UserServiceImpl;
 import main.business.service.RepositoryService;
+import main.business.service.UserService;
 import main.ui.MainUI;
 import main.vo.RepositoryVO;
 
@@ -53,6 +55,7 @@ public class HomeController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		impl = RepositoryServiceImpl.getInstance();
+		UserService us = UserServiceImpl.getInstance();
 		initialShow();
 	}
 
@@ -205,7 +208,7 @@ public class HomeController implements Initializable {
 		generalList = new ArrayList<RepositoryVO>();
 		for (int i = 0; i < 200; i++) {
 			RepositoryVO vo = new RepositoryVO();
-			vo.setName(i + "awesome");
+			vo.setFull_name(i + "awesome");
 			generalList.add(vo);
 		}
 	}
