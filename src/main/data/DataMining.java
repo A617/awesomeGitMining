@@ -36,9 +36,9 @@ public class DataMining {
 		 * getData(repo_url, repo_path, "full_name");
 		 */
 
-		String param = "/contributors/login";
+		String param = "/followers";
 		String url = "api.github.com/users/";
-		String path = new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\user-reposCreated.txt";
+		String path = new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\user-followers.txt";
 		getDataMapFromGithub(userpath,url,path,"/repos", "full_name");
 
 		long endTime = System.nanoTime();

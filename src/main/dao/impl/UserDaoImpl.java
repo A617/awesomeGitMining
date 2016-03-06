@@ -1,13 +1,12 @@
 package main.dao.impl;
 
-import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
 import javafx.scene.image.Image;
-import main.dao.DataInitHelper;
 import main.dao.HttpRequest;
 import main.dao.JsonUtil;
 import main.dao.entity.User;
@@ -20,6 +19,7 @@ public class UserDaoImpl implements IUserDao {
 	private List<String> userList;
 	private Map<String, List<String>> mapUser2Contrbutions;
 	private Map<String, List<String>> mapUser2Collaborations;
+	private Map<String, List<String>> mapUser2Repos;
 
 	public UserDaoImpl() {
 
@@ -29,7 +29,10 @@ public class UserDaoImpl implements IUserDao {
 				.getMap(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\collaborator-repos.txt");
 		this.mapUser2Contrbutions = DataInitHelper
 				.getMap(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\contributor-repos.txt");
+		this.mapUser2Repos = DataInitHelper
+				.getMap(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\user-repos.txt");
 
+		System.out.println("UserDaoImpl initialized!");
 	}
 
 	@Override
@@ -37,18 +40,29 @@ public class UserDaoImpl implements IUserDao {
 		String s = HttpRequest.sendGet(gitmining_user_url, login);
 		User us = JsonUtil.<User> parseJson2Bean(s, User.class);
 
-		us.setRepos_fullname(getRepos_fullname(login));
-		us.setFollowers_name(getFollowers_name(login));
-		us.setFollowing_name(getFollowing_name(login));
-		us.setContributions_fullname(mapUser2Contrbutions.get(login));
+		if (us != null) {
+			us.setRepos_fullname(mapUser2Repos.get(login));
+			// us.setFollowers_name(getFollowers_name(login));
+			// us.setFollowing_name(getFollowing_name(login));
+			us.setContributions_fullname(mapUser2Contrbutions.get(login));
+			// us.setAvatar(new
+			// Image(HttpRequest.sendGetforStream(us.getAvatar_url()), 50, 50,
+			// true, false));
+		}
 		
-		us.setAvatar(new Image(HttpRequest.sendGetforStream(us.getAvatar_url()), 50,50,true,false));
-
 		return us;
 	}
 
 	@Override
-	public List<String> searchUser(String input) throws IOException {
+	public Image getAvatar(String url) throws IOException {
+		
+		InputStream is = HttpRequest.sendGetforStream(url);
+		
+		return is==null?null:new Image(is, 50, 50, true, false);
+	}
+
+	@Override
+	public List<String> searchUser(String input) {
 		/*
 		 * String s =
 		 * HttpRequest.sendGet("https://api.github.com/search/users?q=", input);

@@ -1,4 +1,4 @@
-package main.dao;
+package main.dao.impl;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,8 +18,8 @@ import java.util.Map;
  *
  */
 public class DataInitHelper {
-
 	
+
 
 	public static List<String> getList(String path) {
 		File file = new File(path);

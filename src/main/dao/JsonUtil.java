@@ -71,6 +71,12 @@ public class JsonUtil {
 		return map;
 	}
 	
+	
+	/**
+	 * 获取列表
+	 * @param jsonStr
+	 * @return
+	 */
 	public static List<String> parseJson2List(String jsonStr){
 		
 		List<String> list = (List<String>)JSONArray.toList((JSONArray.fromObject(jsonStr)));
@@ -105,6 +111,8 @@ public class JsonUtil {
 
 		return des;
 	}
+	
+	
 
 	/**
 	 * 从json object中提取指定属性的元素
@@ -123,6 +131,8 @@ public class JsonUtil {
 		return value;
 	}
 
+	
+	
 	/**
 	 * 从json array中提取所有指定属性的元素
 	 * 
@@ -145,6 +155,9 @@ public class JsonUtil {
 
 		return list;
 	}
+	
+	
+	
 
 	/**
 	 * 从json array中提取所有指定属性的元素

@@ -2,11 +2,9 @@ package main.dao.impl;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import main.dao.DataInitHelper;
 import main.dao.HttpRequest;
 import main.dao.JsonUtil;
 import main.dao.entity.Branch;
@@ -21,11 +19,15 @@ public class RepoDaoImpl implements IRepoDao {
 	final String gitmining_repo_url = "http://gitmining.net/api/repository/";
 
 	List<String> repoList;
+	Map<String,List<String>> mapR2Ctb;
+	Map<String,List<String>> mapR2Clb;
 
 	public RepoDaoImpl() {
 		repoList = DataInitHelper
 				.getList(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\repo_fullname.txt");
-
+		mapR2Clb=DataInitHelper.getMap(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\repo-collaborators.txt");
+		mapR2Ctb=DataInitHelper.getMap(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\repo-contributors.txt");
+		System.out.println("RepoDaoImpl initialized!");
 	}
 
 	@Override
@@ -34,13 +36,14 @@ public class RepoDaoImpl implements IRepoDao {
 		String s = HttpRequest.sendGet(gitmining_repo_url, name);
 		Repository po = JsonUtil.<Repository> parseJson2Bean(s, Repository.class);
 
-		po.setContributors_login(this.getContributors_login(name));
-		po.setCollaborators_login(this.getCollaborators_login(name));
-		po.setOwner_name(this.getOwner_name(name));
-		po.setBranches_name(this.getBranches_name(name));
-		po.setForks_fullname(this.getForks_fullname(name));
-		po.setLanguages(this.getLanguages(name));
-
+		if(po!=null){
+		po.setContributors_login(mapR2Ctb.get(name));
+		po.setCollaborators_login(mapR2Clb.get(name));
+		po.setOwner_name(name.split("/")[0]);
+	//	po.setBranches_name(this.getBranches_name(name));
+	//	po.setForks_fullname(this.getForks_fullname(name));
+	//	po.setLanguages(this.getLanguages(name));
+		}
 		return po;
 	}
 
