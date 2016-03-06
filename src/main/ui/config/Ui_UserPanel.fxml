@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.control.*?>
@@ -8,85 +9,81 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="604.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.ProjectController">
-	<children>
-		<Pane layoutX="-76.0" layoutY="-115.0" prefHeight="768.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-			<children>
-				<ScrollPane layoutX="66.0" layoutY="50.0" prefHeight="529.0" prefWidth="893.0">
-					<content>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="529.0" prefWidth="893.0">
-							<children>
-								<Label fx:id="label_name" layoutX="61.0" layoutY="42.0" text="ProjectName/UserName" textFill="#3dabcd">
-									<font>
-										<Font size="17.0" />
-									</font>
-								</Label>
-								<Label layoutX="61.0" layoutY="92.0" text="profile" textFill="#615c5c">
-									<font>
-										<Font size="13.0" />
-									</font>
-								</Label>
-								<Label layoutX="61.0" layoutY="133.0" text="Pository Statistics">
-									<font>
-										<Font size="18.0" />
-									</font>
-								</Label>
-								<Label layoutX="67.0" layoutY="198.0" text="star_num">
-									<font>
-										<Font size="16.0" />
-									</font>
-								</Label>
-								<Label layoutX="157.0" layoutY="198.0" text="fork_num">
-									<font>
-										<Font size="16.0" />
-									</font>
-								</Label>
-								<Label layoutX="247.0" layoutY="198.0" text="sub_num">
-									<font>
-										<Font size="16.0" />
-									</font>
-								</Label>
-								<Label layoutX="337.0" layoutY="198.0" text="contri_num">
-									<font>
-										<Font size="16.0" />
-									</font>
-								</Label>
-								<Label layoutX="83.0" layoutY="249.0" text="stars">
-									<font>
-										<Font size="16.0" />
-									</font>
-								</Label>
-								<Label layoutX="173.0" layoutY="249.0" text="forks">
-									<font>
-										<Font size="16.0" />
-									</font>
-								</Label>
-								<Label layoutX="243.0" layoutY="249.0" text="subscribers">
-									<font>
-										<Font size="16.0" />
-									</font>
-								</Label>
-								<Label layoutX="337.0" layoutY="249.0" text="contributors">
-									<font>
-										<Font size="16.0" />
-									</font>
-								</Label>
-								<Label layoutX="444.0" layoutY="198.0" text="colla_num">
-									<font>
-										<Font size="16.0" />
-									</font>
-								</Label>
-								<Label layoutX="443.0" layoutY="249.0" text="collaborator">
-									<font>
-										<Font size="16.0" />
-									</font>
-								</Label>
-							</children>
-						</AnchorPane>
-					</content>
-				</ScrollPane>
-            <Button fx:id="btn_back" layoutX="8.0" layoutY="14.0" mnemonicParsing="false" text="Back" />
-			</children>
-		</Pane>
-	</children>
-</AnchorPane>
+<Group xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.UserController">
+   <children>
+      <AnchorPane id="back" layoutX="-8.0" layoutY="-8.0" prefHeight="604.0" prefWidth="924.0">
+         <children>
+            <Label fx:id="userNameLabel" layoutX="38.0" layoutY="31.0" prefHeight="58.0" prefWidth="487.0" text="Username" textFill="#3dabcd">
+               <font>
+                  <Font name="System Bold Italic" size="45.0" />
+               </font>
+            </Label>
+            <Label fx:id="joinTime" layoutX="38.0" layoutY="84.0" prefHeight="50.0" prefWidth="768.0" text="JoinTime" textFill="#615c5c">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <VBox layoutX="38.0" layoutY="238.0">
+               <children>
+                  <Label fx:id="Eff_num" layoutX="38.0" layoutY="238.0" text="Eff_num">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="54.0" layoutY="289.0" text="Efficiency" textFill="#00aaaa">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox layoutX="414.0" layoutY="238.0" />
+            <VBox layoutX="128.0" layoutY="238.0">
+               <children>
+                  <Label fx:id="qua_num" layoutX="128.0" layoutY="238.0" text="qua_num">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="144.0" layoutY="289.0" text="Quantity" textFill="#00aaaa">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox layoutX="214.0" layoutY="238.0">
+               <children>
+                  <Label fx:id="Tot_num" layoutX="218.0" layoutY="238.0" text="Tot_num">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="214.0" layoutY="289.0" text="Total" textFill="#00aaaa">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox layoutX="308.0" layoutY="238.0" />
+            <Label layoutX="41.0" layoutY="165.0" text="Evaluation">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TreeTableView layoutX="520.0" layoutY="45.0" prefHeight="557.0" prefWidth="369.0">
+              <columns>
+                <TreeTableColumn fx:id="Contri_Pro" prefWidth="180.0" text="Contributed Projects" />
+                <TreeTableColumn fx:id="Crea_Pro" prefWidth="188.0" text="Created Projects" />
+              </columns>
+            </TreeTableView>
+         </children>
+      </AnchorPane>
+      <Label fx:id="Company" layoutX="30.0" layoutY="110.0" prefHeight="50.0" prefWidth="768.0" text="Company" textFill="#615c5c">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+   </children>
+</Group>
