@@ -13,8 +13,6 @@ import main.vo.UserVO;
 public class SingleUserController implements Initializable {
 
 	@FXML
-	private Label userImage;
-	@FXML
 	private Label userName;
 	@FXML
 	private Label company;
@@ -37,7 +35,6 @@ public class SingleUserController implements Initializable {
 
 	public void setVO(UserVO user) {
 		if(user!=null) {
-			//TODO
 			userName.setText(user.getLogin());
 			company.setText(user.getLocation());
 		}

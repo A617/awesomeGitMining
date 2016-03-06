@@ -56,6 +56,7 @@ public class HomeController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		impl = RepositoryServiceImpl.getInstance();
 		UserService us = UserServiceImpl.getInstance();
+		MainController.getInstance().initSearchId();
 		initialShow();
 	}
 

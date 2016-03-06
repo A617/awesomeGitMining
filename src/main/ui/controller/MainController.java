@@ -41,6 +41,10 @@ public class MainController implements Initializable {
 	public String getSearchId() {
 		return search.getText();
 	}
+	
+	public void initSearchId() {
+		search.setText("");
+	}
 
 	@FXML
 	public void handleMenu() {
