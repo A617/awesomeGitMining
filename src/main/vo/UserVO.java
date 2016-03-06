@@ -17,6 +17,14 @@ public class UserVO extends VO {
 	private String html_url; // github主页
 	private ArrayList<String> pProjects;// 用户参与的项目
 	private ArrayList<String> cProjects;// 用户创建的项目
+	private String created_at;
+	public String getCreated_at() {
+		return created_at;
+	}
+
+	public void setCreated_at(String created_at) {
+		this.created_at = created_at;
+	}
 
 	public UserVO() {
 

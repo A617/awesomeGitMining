@@ -1,7 +1,10 @@
 package main.dao;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
+import main.dao.impl.DataInitHelper;
 import main.dao.impl.IRepoDao;
 import main.dao.impl.IUserDao;
 
@@ -19,6 +22,11 @@ public class Test {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		
+		
+	
+		
 
 		
 	/*	 IUserDao user = DataFactory.getUserDataInstance(); 

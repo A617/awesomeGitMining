@@ -1,0 +1,23 @@
+who:窦妍
+when:第2周
+what:完成了迭代一数据层的代码，并抓取和整理了部分数据
+problem:从github api中获取数据的容量和速度限制；如何设计存储一些数据到本地提高项目运行时获取数据的速度
+todo:提高数据访问速率，修正bug
+
+who:杜天蛟
+when:第2周
+what:完成了迭代一逻辑层的代码和部分展示层代码
+problem:css的使用；如何美化面板，尽量将它变成透明；pom文件的配置
+todo:修复bug，美化界面
+
+who:高露
+when:第2周
+what:展示层代码
+problem:界面跳转的设计
+todo:完成迭代一所需界面
+
+who:范炜
+when:第2周
+what:展示层代码
+problem:树形表的使用
+todo:完成迭代一所需界面

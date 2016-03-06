@@ -72,12 +72,16 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TreeTableView layoutX="520.0" layoutY="45.0" prefHeight="557.0" prefWidth="369.0">
-              <columns>
-                <TreeTableColumn fx:id="Contri_Pro" prefWidth="180.0" text="Contributed Projects" />
-                <TreeTableColumn fx:id="Crea_Pro" prefWidth="188.0" text="Created Projects" />
-              </columns>
-            </TreeTableView>
+            <AnchorPane layoutX="486.0" layoutY="54.0" prefHeight="496.0" prefWidth="415.0">
+               <children>
+                  <TableView layoutY="-3.0" prefHeight="503.0" prefWidth="415.0">
+                    <columns>
+                      <TableColumn fx:id="Contri_Pro" prefWidth="209.0" text="Contributed Projects" />
+                      <TableColumn fx:id="Crea_Pro" prefWidth="205.0" text="Created Projects" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
       <Label fx:id="Company" layoutX="30.0" layoutY="110.0" prefHeight="50.0" prefWidth="768.0" text="Company" textFill="#615c5c">
