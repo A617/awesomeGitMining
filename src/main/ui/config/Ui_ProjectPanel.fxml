@@ -11,68 +11,88 @@
 
 <Group layoutX="57.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.ProjectController">
    <children>
-      <AnchorPane id="back" layoutX="-58.0" layoutY="-8.0" prefHeight="604.0" prefWidth="1024.0">
+      <AnchorPane id="back" layoutX="-8.0" layoutY="-8.0" prefHeight="604.0" prefWidth="924.0">
          <children>
             <Label fx:id="projectNameLabel" layoutX="38.0" layoutY="31.0" prefHeight="58.0" prefWidth="487.0" text="Label" textFill="#3dabcd">
                <font>
                   <Font name="System Bold Italic" size="45.0" />
                </font>
             </Label>
-            <Label fx:id="profile" layoutX="38.0" layoutY="108.0" prefHeight="30.0" prefWidth="481.0" text="description" textFill="#615c5c">
+            <Label fx:id="profile" layoutX="38.0" layoutY="88.0" prefHeight="50.0" prefWidth="768.0" text="description" textFill="#615c5c">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="54.0" layoutY="289.0" text="stars" textFill="#00aaaa">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="colla_num" layoutX="415.0" layoutY="238.0" text="colla_num">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="144.0" layoutY="289.0" text="forks" textFill="#00aaaa">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="sub_num" layoutX="218.0" layoutY="238.0" text="sub_num">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="414.0" layoutY="289.0" text="collaborator" textFill="#00aaaa">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="308.0" layoutY="289.0" text="contributors" textFill="#00aaaa">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="214.0" layoutY="289.0" text="subscribers" textFill="#00aaaa">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="star_num" layoutX="38.0" layoutY="238.0" text="star_num">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="fork_num" layoutX="128.0" layoutY="238.0" text="fork_num">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="contri_num" layoutX="308.0" layoutY="238.0" text="contri_num">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
+            <VBox layoutX="38.0" layoutY="238.0">
+               <children>
+                  <Label fx:id="star_num" layoutX="38.0" layoutY="238.0" text="star_num">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="54.0" layoutY="289.0" text="stars" textFill="#00aaaa">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox layoutX="414.0" layoutY="238.0">
+               <children>
+                  <Label fx:id="colla_num" layoutX="415.0" layoutY="238.0" text="colla_num">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="414.0" layoutY="289.0" text="collaborator" textFill="#00aaaa">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox layoutX="128.0" layoutY="238.0">
+               <children>
+                  <Label fx:id="fork_num" layoutX="128.0" layoutY="238.0" text="fork_num">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="144.0" layoutY="289.0" text="forks" textFill="#00aaaa">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox layoutX="214.0" layoutY="238.0">
+               <children>
+                  <Label fx:id="sub_num" layoutX="218.0" layoutY="238.0" text="sub_num">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="214.0" layoutY="289.0" text="subscribers" textFill="#00aaaa">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox layoutX="308.0" layoutY="238.0">
+               <children>
+                  <Label fx:id="contri_num" layoutX="308.0" layoutY="238.0" text="contri_num">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="308.0" layoutY="289.0" text="contributors" textFill="#00aaaa">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
             <Label layoutX="41.0" layoutY="165.0" text="Repository Statistics">
                <font>
                   <Font name="System Bold" size="18.0" />

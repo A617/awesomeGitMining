@@ -20,7 +20,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="29.0" layoutY="8.0" text="Welcome to GitMining!" textFill="#fcfcfc">
+            <Label layoutX="29.0" layoutY="20.0" text="Welcome to GitMining!" textFill="#fcfcfc">
                <font>
                   <Font name="Baskerville Old Face" size="26.0" />
                </font>
