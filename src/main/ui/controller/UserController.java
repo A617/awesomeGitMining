@@ -33,8 +33,8 @@ public class UserController implements Initializable{
 	@FXML
 	private TreeTableColumn Crea_Pro;
 
-	private List<UserVO> contriList;
-	private List<UserVO> creaList;
+	private List<String> contriList;
+	private List<String> creaList;
 
 	public static UserController getInstance() {
 		if (instance == null) {
