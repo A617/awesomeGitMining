@@ -59,13 +59,13 @@ public class RepositoryServiceImpl implements RepositoryService {
 	public List<RepositoryVO> showRepositories(int startIndex) {
 		List<RepositoryVO> vos = new ArrayList<RepositoryVO>();
 		if (daoImpl != null) {
-			List<Repository> pos = null;
+			List<String> pos = null;
 			try {
 				pos = daoImpl.getAllRepo();
 				if (pos != null) {
 					for (int i = startIndex; i < startIndex + 10; i++) {
 						if (i < pos.size()) {
-							Repository po = pos.get(i);
+							Repository po = daoImpl.getRepository(pos.get(i));
 							RepositoryVO vo = (RepositoryVO) Converter.convert("RepositoryVO", po);
 							vos.add(vo);
 						}
