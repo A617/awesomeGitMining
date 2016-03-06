@@ -11,18 +11,25 @@ public class Test {
 
 		long startTime = System.nanoTime();
 
-		IRepoDao dao = DataFactory.getRepoDataInstance();		
+		IRepoDao dao = DataFactory.getRepoDataInstance();	
+		
+		try {
+			dao.getRepository("mojombo/god");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		
-		 IUserDao user = DataFactory.getUserDataInstance(); 
+	/*	 IUserDao user = DataFactory.getUserDataInstance(); 
 		try {
-			System.out.println(user.getUser("resque"));
+			user.getUser("resque");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		 
-
+*/
 		// IRepoDao dao = DataFactory.getRepoDataInstance();
 		// System.out.println(dao.getCollaborators("mojombo/god"));
 		// System.out.println(dao.getBranches("mojombo/god"));

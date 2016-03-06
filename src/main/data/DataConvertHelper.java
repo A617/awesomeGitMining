@@ -7,12 +7,17 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
+
+import main.dao.impl.DataInitHelper;
 
 public class DataConvertHelper {
 
@@ -23,27 +28,73 @@ public class DataConvertHelper {
 	public static void main(String[] args) {
 
 		DataConvertHelper dch = new DataConvertHelper();
+		List<String> repoList = DataInitHelper
+				.getList(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\repo_fullname.txt");
 
-		String src1 = new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\repo-collaborators.txt";
-		Set<String> set1 = dch.load(src1);
-		System.out.println(set1.size());
+		String path = new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\user-repos.txt";
 
-		String src2 = new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\repo-contributors.txt";
-		Set<String> set2 = dch.load(src2);
-		System.out.println(set2.size());
-		
-		set1.addAll(set2);
-		
-		System.out.println(set1.size());
-		
-		String path = new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\user_login.txt";
-		dch.save(path, set1);
+		dch.getUser2RepocreatedMap(repoList, path);
 
-		/*
-		 * String des = new File("").getAbsolutePath() +
-		 * "\\src\\main\\data\\gitmining-api\\collaborator-repos.txt";
-		 * dch.set(des);
-		 */
+	}
+
+	public Map<String, List<String>> getUser2RepocreatedMap(List<String> repos, String path) {
+
+		Map<String, List<String>> map = new HashMap<String, List<String>>();
+
+		for (int i = 0; i < repos.size(); i++) {
+
+			String full_name = repos.get(i);
+
+			if (!full_name.equals("")) {
+
+				String key = full_name.split("/")[0];
+
+				List<String> values = new ArrayList<String>();
+
+				values.add(full_name);
+
+				for (int j = i + 1; j < repos.size(); j++) {
+
+					String full_name2 = repos.get(j);
+
+					if (full_name2.split("/")[0].equals(key)) {
+
+						values.add(full_name2);
+						repos.set(j, "");
+					}
+				}
+				map.put(key, values);
+			}
+
+		}
+
+		// 将map写入文件
+
+		File file = new File(path);
+		FileWriter fw = null;
+		BufferedWriter writer = null;
+
+		try {
+			fw = new FileWriter(file);
+			writer = new BufferedWriter(fw);
+
+			for (String key : map.keySet()) {
+				System.out.println(key + ": " + map.get(key));
+
+				writer.write(key + ": ");
+
+				for (String repo : map.get(key)) {
+					writer.write(repo + " ");
+				}
+				writer.newLine();
+			}
+			writer.flush();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return map;
 
 	}
 
@@ -75,8 +126,6 @@ public class DataConvertHelper {
 					String repo = tmpMap[0];
 					users = tmpMap[1].split(" ");
 
-					
-
 					for (String user : users)
 						set.add(user); // 向集合中加入一个 用户
 
@@ -97,14 +146,12 @@ public class DataConvertHelper {
 		} else {
 			System.out.println("找不到指定的文件");
 		}
-		
+
 		return set;
 
 	}
-	
-	
-	public void get(String path) {
 
+	public void get(String path) {
 
 		File file = new File(path);
 
@@ -130,7 +177,8 @@ public class DataConvertHelper {
 					String repo = tmpMap[0];
 					users = tmpMap[1].split(" ");
 
-					mapR2U.put(repo, Arrays.asList(users)); // 向mapR2U中加入一组 项目-用户
+					mapR2U.put(repo, Arrays.asList(users)); // 向mapR2U中加入一组
+															// 项目-用户
 
 					for (String user : users)
 						userSet.add(user); // 向集合中加入一个 用户
@@ -160,14 +208,13 @@ public class DataConvertHelper {
 		// 获得一个map：用户-项目
 		/*
 		 * List<String> repos; for (String login : userSet) { repos = new
-		 * ArrayList<String>(); for(String repo:mapR2U.keySet()){
-		 * if(mapR2U.get(repo).contains(login)) repos.add(repo);
+		 * ArrayList<String>(); for (String repo : mapR2U.keySet()) { if
+		 * (mapR2U.get(repo).contains(login)) repos.add(repo);
 		 * 
 		 * } mapU2R.put(login, repos);
 		 * 
 		 * }
 		 */
-
 		// 将map写入文件
 		File file = new File(path);
 		FileWriter fw = null;
@@ -197,7 +244,7 @@ public class DataConvertHelper {
 		System.out.println(mapR2U.keySet().size());
 	}
 
-	public void save(String path,Set<String> set) {
+	public void save(String path, Set<String> set) {
 
 		// 获得一个map：用户-项目
 		/*

@@ -30,7 +30,7 @@ public class HttpRequest {
 		// 合成url
 		URL realUrl = new URL(url + param);
 		
-	//	System.out.println(url + param);
+		System.out.println(url + param);
 
 		// 打开和URL之间的连接
 		URLConnection connection = realUrl.openConnection();
