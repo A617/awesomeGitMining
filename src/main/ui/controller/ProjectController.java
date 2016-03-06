@@ -35,7 +35,8 @@ public class ProjectController implements Initializable{
 	private Label contri_num;
 
 
-
+@FXML
+private Label label;
 	public void setApp(MainUI app){
 		this.app=app;
 	}
