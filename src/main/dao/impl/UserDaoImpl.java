@@ -1,10 +1,12 @@
 package main.dao.impl;
 
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import javafx.scene.image.Image;
 import main.dao.DataInitHelper;
 import main.dao.HttpRequest;
 import main.dao.JsonUtil;
@@ -38,8 +40,9 @@ public class UserDaoImpl implements IUserDao {
 		us.setRepos_fullname(getRepos_fullname(login));
 		us.setFollowers_name(getFollowers_name(login));
 		us.setFollowing_name(getFollowing_name(login));
-		
 		us.setContributions_fullname(mapUser2Contrbutions.get(login));
+		
+		us.setAvatar(new Image(HttpRequest.sendGetforStream(us.getAvatar_url()), 50,50,true,false));
 
 		return us;
 	}
