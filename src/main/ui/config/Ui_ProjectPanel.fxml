@@ -28,24 +28,24 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TableView layoutX="26.0" layoutY="227.0" prefHeight="345.0" prefWidth="166.0">
+            <TableView fx:id="languageTable" layoutX="26.0" layoutY="227.0" prefHeight="345.0" prefWidth="166.0">
               <columns>
-                <TableColumn prefWidth="199.0" text="C1" />
+                <TableColumn fx:id="languageColumn" prefWidth="165.0" text="languages" />
               </columns>
             </TableView>
-            <TableView layoutX="272.0" layoutY="227.0" prefHeight="345.0" prefWidth="166.0">
+            <TableView fx:id="contributorTable" layoutX="256.0" layoutY="227.0" prefHeight="345.0" prefWidth="166.0">
                <columns>
-                  <TableColumn prefWidth="199.0" text="C1" />
+                  <TableColumn fx:id="contributorColumn" prefWidth="165.0" text="contributors" />
                </columns>
             </TableView>
-            <TableView layoutX="505.0" layoutY="227.0" prefHeight="345.0" prefWidth="166.0">
+            <TableView fx:id="collaboratorTable" layoutX="490.0" layoutY="227.0" prefHeight="345.0" prefWidth="166.0">
                <columns>
-                  <TableColumn prefWidth="199.0" text="C1" />
+                  <TableColumn fx:id="collaboratorColumn" prefWidth="165.0" text="collaborators" />
                </columns>
             </TableView>
-            <TableView layoutX="723.0" layoutY="227.0" prefHeight="345.0" prefWidth="166.0">
+            <TableView fx:id="forkTable" layoutX="723.0" layoutY="227.0" prefHeight="345.0" prefWidth="166.0">
                <columns>
-                  <TableColumn prefWidth="199.0" text="C1" />
+                  <TableColumn fx:id="forkColumn" prefWidth="165.0" text="forks" />
                </columns>
             </TableView>
          </children></AnchorPane>

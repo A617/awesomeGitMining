@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,7 +28,6 @@ public class SearchController implements Initializable {
 	private static SearchController instance;
 	private RepositoryService repositoryService;
 	private UserService userService;
-
 	@FXML
 	private AnchorPane mainPane;
 	@FXML
@@ -45,6 +46,7 @@ public class SearchController implements Initializable {
 	}
 
 	private void initUser(String id) {
+		
 		VBox box = new VBox();
 		box.getChildren().add(userPanel);
 		VBox.setVgrow(userPanel, Priority.ALWAYS);

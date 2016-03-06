@@ -1,10 +1,14 @@
 package main.ui.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +16,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import main.vo.LanguageVO;
 import main.vo.RepositoryVO;
 
 public class ProjectController implements Initializable {
@@ -22,14 +28,23 @@ public class ProjectController implements Initializable {
 
 	@FXML
 	private Label profile;// 用来显示项目的介绍
+
 	@FXML
-	private Label languageLabel;
+	private TableView<LanguageVO> languageTable;
 	@FXML
-	private Label contributorLabel;
+	private TableView<String> contributorTable;
 	@FXML
-	private Label collaboratorLabel;
+	private TableView<String> collaboratorTable;
 	@FXML
-	private Label forkLabel;
+	private TableView<String> forkTable;
+	@FXML
+	private TableColumn<LanguageVO, String> languageColumn;
+	@FXML
+	private TableColumn<RepositoryVO, List<String>> contributorColumn;
+	@FXML
+	private TableColumn<RepositoryVO, List<String>> collaboratorColumn;
+	@FXML
+	private TableColumn<RepositoryVO, List<String>> forkColumn;
 
 	public static ProjectController getInstance() {
 		if (instance == null) {
@@ -48,27 +63,37 @@ public class ProjectController implements Initializable {
 		if (vo != null) {
 			profile.setText(vo.getDescription());
 			projectNameLabel.setText(vo.getFull_name());
+
 			Map<String, Integer> map = vo.getLanguages();
-			String languageInfo = "";
-//			for (Map.Entry<String, Integer> entry : map.entrySet()) {
-//				languageInfo += entry.getKey() +" "+entry.getValue()+"\n";
-//			}
-			languageLabel.setText(languageInfo);
-			String contributorInfo = "";
-			for(String name : vo.getContributors_login()){
-				contributorInfo+=name+"\n";
+			if (map != null) {
+				ObservableList<LanguageVO> lan = FXCollections.observableArrayList();
+				for (Entry<String, Integer> entry : map.entrySet()) {
+					lan.add(new LanguageVO(entry.getKey() + ":" + entry.getValue()));
+				}
+				languageTable.setItems(lan);
+				languageColumn.setCellValueFactory(cellData -> cellData.getValue().getLanguage());
 			}
-			contributorLabel.setText(contributorInfo);
-			String collaboratorInfo = "";
-			for(String name : vo.getCollaborators_login()){
-				collaboratorInfo+=name+"\n";
+			if (vo.getContributors_login() != null) {
+				ObservableList<String> contributors = FXCollections.observableArrayList();
+				for (String name : vo.getContributors_login()) {
+					contributors.add(name);
+				}
+				contributorTable.setItems(contributors);
 			}
-			collaboratorLabel.setText(collaboratorInfo);
-			String forksInfo = "";
-//			for(String name : vo.getForks_fullname()){
-//				forksInfo+=name+"\n";
-//			}
-			forkLabel.setText(forksInfo);
+			if (vo.getCollaborators_login() != null) {
+				ObservableList<String> collaborators = FXCollections.observableArrayList();
+				for (String name : vo.getCollaborators_login()) {
+					collaborators.add(name);
+				}
+				collaboratorTable.setItems(collaborators);
+			}
+			if (vo.getForks_fullname() != null) {
+				ObservableList<String> forks = FXCollections.observableArrayList();
+				for (String name : vo.getForks_fullname()) {
+					forks.add(name);
+				}
+				forkTable.setItems(forks);
+			}
 		}
 	}
 }
