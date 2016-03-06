@@ -24,9 +24,9 @@ public class RepoDaoImpl implements IRepoDao {
 
 	public RepoDaoImpl() {
 		repoList = DataInitHelper
-				.getList(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\repo_fullname.txt");
-		mapR2Clb=DataInitHelper.getMap(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\repo-collaborators.txt");
-		mapR2Ctb=DataInitHelper.getMap(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\repo-contributors.txt");
+				.getList(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_fullname.txt");
+		mapR2Clb=DataInitHelper.getMap(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-collaborators.txt");
+		mapR2Ctb=DataInitHelper.getMap(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-contributors.txt");
 		System.out.println("RepoDaoImpl initialized!");
 	}
 

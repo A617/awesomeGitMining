@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.*?>
@@ -11,13 +12,12 @@
    <children>
       <Group>
          <children>
-            <Label fx:id="company" layoutX="180.0" layoutY="50.0" prefHeight="86.0" prefWidth="419.0" text="Company" />
-            <Label fx:id="userName" layoutX="180.0" layoutY="26.0" text="UserName" textFill="#5184c2">
+            <Label fx:id="company" layoutX="60.0" layoutY="50.0" prefHeight="86.0" prefWidth="419.0" text="Company" />
+            <Label fx:id="userName" layoutX="60.0" layoutY="26.0" onMouseClicked="#handleClick" text="UserName" textFill="#5184c2">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
-            <Label fx:id="userImage" layoutX="23.0" layoutY="16.0" prefHeight="130.0" prefWidth="130.0" text="Image" />
          </children>
       </Group>
    </children>

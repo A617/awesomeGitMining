@@ -24,13 +24,13 @@ public class UserDaoImpl implements IUserDao {
 	public UserDaoImpl() {
 
 		this.userList = DataInitHelper
-				.getList(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\user_login.txt");
+				.getList(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/user_login.txt");
 		this.mapUser2Collaborations = DataInitHelper
-				.getMap(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\collaborator-repos.txt");
+				.getMap(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/collaborator-repos.txt");
 		this.mapUser2Contrbutions = DataInitHelper
-				.getMap(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\contributor-repos.txt");
+				.getMap(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/contributor-repos.txt");
 		this.mapUser2Repos = DataInitHelper
-				.getMap(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\user-repos.txt");
+				.getMap(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/user-repos.txt");
 
 		System.out.println("UserDaoImpl initialized!");
 	}
