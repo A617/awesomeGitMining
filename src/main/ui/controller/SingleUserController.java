@@ -34,7 +34,7 @@ public class SingleUserController implements Initializable {
 	}
 
 	public void setVO(UserVO user) {
-		this.vo=vo;
+		this.vo=user;
 		if(user!=null) {
 			userName.setText(user.getLogin());
 			company.setText(user.getLocation());
