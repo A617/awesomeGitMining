@@ -16,9 +16,13 @@ public class UserDaoImpl implements IUserDao {
 	final String gitmining_user_url = "http://gitmining.net/api/user/";
 	final String github_user_url = "https://api.github.com/users/";
 
+	/*所有用户列表 */
 	private List<String> userList;
+	/*所有用户与贡献项目列表 */
 	private Map<String, List<String>> mapUser2Contrbutions;
+	/*所有用户与合作项目列表 */
 	private Map<String, List<String>> mapUser2Collaborations;
+	/*所有用户与语言列表 */
 	private Map<String, List<String>> mapUser2Repos;
 
 	public UserDaoImpl() {
@@ -32,6 +36,7 @@ public class UserDaoImpl implements IUserDao {
 		this.mapUser2Repos = DataInitHelper
 				.getMap(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/user-repos.txt");
 
+		
 		System.out.println("UserDaoImpl initialized!");
 	}
 

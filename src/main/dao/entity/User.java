@@ -21,10 +21,10 @@ public class User {
 	private String location;	//所在地
 	private String email;
 	private String blog;
-	private List<String> contributions_fullname;
+	private List<String> contributions_fullname; //贡献过的项目
 	private List<String> followers_name;
 	private List<String> following_name;
-	private List<String> repos_fullname;
+	private List<String> repos_fullname;		//创建的项目
 	private int public_repos;
 	private int public_gists;
 	private int followers;

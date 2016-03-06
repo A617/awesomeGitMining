@@ -18,15 +18,34 @@ public class RepoDaoImpl implements IRepoDao {
 
 	final String gitmining_repo_url = "http://gitmining.net/api/repository/";
 
+	/* 所有项目列表 */
 	List<String> repoList;
-	Map<String,List<String>> mapR2Ctb;
-	Map<String,List<String>> mapR2Clb;
+	
+	/* 项目-贡献者 */
+	Map<String, List<String>> mapR2Ctb;
+	
+	/* 项目-合作者 */
+	Map<String, List<String>> mapR2Clb;
+	
+	/* 项目-语言使用情况 */
+	Map<String, Map<String, Integer>> mapR2L;
 
 	public RepoDaoImpl() {
-		repoList = DataInitHelper
+		
+		
+		this.repoList = DataInitHelper
 				.getList(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_fullname.txt");
-		mapR2Clb=DataInitHelper.getMap(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-collaborators.txt");
-		mapR2Ctb=DataInitHelper.getMap(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-contributors.txt");
+	
+		this.mapR2Clb = DataInitHelper
+				.getMap(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-collaborators.txt");
+	
+		this.mapR2Ctb = DataInitHelper
+				.getMap(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-contributors.txt");
+	
+		this.mapR2L = DataInitHelper.getLanguages(
+				new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-languageNames.txt",
+				new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-languageCounts.txt");
+
 		System.out.println("RepoDaoImpl initialized!");
 	}
 
@@ -36,20 +55,20 @@ public class RepoDaoImpl implements IRepoDao {
 		String s = HttpRequest.sendGet(gitmining_repo_url, name);
 		Repository po = JsonUtil.<Repository> parseJson2Bean(s, Repository.class);
 
-		if(po!=null){
-		po.setContributors_login(mapR2Ctb.get(name));
-		po.setCollaborators_login(mapR2Clb.get(name));
-		po.setOwner_name(name.split("/")[0]);
-	//	po.setBranches_name(this.getBranches_name(name));
-	//	po.setForks_fullname(this.getForks_fullname(name));
-	//	po.setLanguages(this.getLanguages(name));
+		if (po != null) {
+			po.setContributors_login(mapR2Ctb.get(name));
+			po.setCollaborators_login(mapR2Clb.get(name));
+			po.setOwner_name(name.split("/")[0]);
+			// po.setBranches_name(this.getBranches_name(name));
+			// po.setForks_fullname(this.getForks_fullname(name));
+			po.setLanguages(mapR2L.get(name));
 		}
 		return po;
 	}
 
 	@Override
-	public List<String> getAllRepo(){
-		
+	public List<String> getAllRepo() {
+
 		return repoList;
 	}
 
@@ -124,7 +143,9 @@ public class RepoDaoImpl implements IRepoDao {
 	@Override
 	public Map<String, Integer> getLanguages(String name) throws IOException {
 		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/languages");
-		return JsonUtil.<Integer> parseJSON2Map(s);
+		Map<String, Integer> result = JsonUtil.<Integer> parseJSON2Map(s);
+		result.remove("fn");
+		return result;
 	}
 
 	@Override

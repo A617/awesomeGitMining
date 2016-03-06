@@ -9,13 +9,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import main.dao.HttpRequest;
 import main.dao.JsonUtil;
 
 public class DataMining {
-	static String repopath = new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\repo_fullname.txt";
-	static String userpath = new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\user_login.txt";
+	static String repopath = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_fullname.txt";
+	static String userpath = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/user_login.txt";
 
 	public static void main(String[] args) {
 
@@ -24,23 +25,32 @@ public class DataMining {
 		// String user_url =
 		// "https://api.github.com/search/users?q=followers:>=0&per_page=100";
 		// String user_path = new
-		// File("").getAbsolutePath()+"\\src\\main\\user.txt";
+		// File("").getAbsolutePath()+"/src/main/user.txt";
 
 		/*
 		 * String repo_url =
 		 * "api.github.com/search/repositories?q=stars:>=0&per_page=100";
 		 * 
 		 * String repo_path = new File("").getAbsolutePath() +
-		 * "\\src\\main\\repository.txt";
+		 * "/src/main/repository.txt";
 		 * 
 		 * getData(repo_url, repo_path, "full_name");
 		 */
-
+/*
 		String param = "/followers";
 		String url = "api.github.com/users/";
-		String path = new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\user-followers.txt";
+		String path = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/user-followers.txt";
 		getDataMapFromGithub(userpath,url,path,"/repos", "full_name");
-
+		*/
+		
+		String url = "http://www.gitmining.net/api/repository/";
+		String path = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-forks.txt";
+		getDataMap(path, "/forks/names");
+		
+	/*	String path1 = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-languageNames.txt";
+		String path2 = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-languageCounts.txt";
+		getLanguages(path1, path2);
+*/
 		long endTime = System.nanoTime();
 		System.out.println("Took " + (endTime - startTime) + " ns");
 	}
@@ -118,25 +128,7 @@ public class DataMining {
 	 */
 	public static void getDataMap(String path, String param) {
 
-		List<String> repositories = new ArrayList<String>();
-
-		try {
-			File file = new File(repopath);
-			if (file.isFile() && file.exists()) { // 判断文件是否存在
-				InputStreamReader read = new InputStreamReader(new FileInputStream(file));
-				BufferedReader bufferedReader = new BufferedReader(read);
-				String lineTxt = null;
-				while ((lineTxt = bufferedReader.readLine()) != null) {
-					repositories.add(lineTxt);
-				}
-				read.close();
-			} else {
-				System.out.println("找不到指定的文件");
-			}
-		} catch (Exception e) {
-			System.out.println("读取文件内容出错");
-			e.printStackTrace();
-		}
+		List<String> repositories = readFromRepoTxt();
 
 		String url = "http://www.gitmining.net/api/repository/";
 
@@ -156,12 +148,13 @@ public class DataMining {
 			for (String repoFull_name : repositories) {
 
 				writer.write(repoFull_name + ": ");
-				writer.flush();
 
 				try {
 					page = HttpRequest.sendGet(url, repoFull_name + param);
 				} catch (IOException e) {
 					e.printStackTrace();
+					writer.newLine();
+					writer.flush();
 					continue;
 				}
 
@@ -178,14 +171,117 @@ public class DataMining {
 
 				writer.newLine();
 				writer.flush();
-
 			}
+			writer.flush();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
 	}
+	
+	
+	
+	/**
+	 * 用来读取项目列表
+	 * @return
+	 */
+	private static List<String> readFromRepoTxt(){
+		List<String> repositories = new ArrayList<String>();
+
+		try {
+			File file = new File(repopath);
+			if (file.isFile() && file.exists()) { // 判断文件是否存在
+				InputStreamReader read = new InputStreamReader(new FileInputStream(file));
+				BufferedReader bufferedReader = new BufferedReader(read);
+				String lineTxt = null;
+				while ((lineTxt = bufferedReader.readLine()) != null) {
+					repositories.add(lineTxt);
+				}
+				read.close();
+			} else {
+				System.out.println("找不到指定的文件");
+			}
+		} catch (Exception e) {
+			System.out.println("读取文件内容出错");
+			e.printStackTrace();
+		}
+		
+		return repositories;
+	}
+	
+	/**
+	 * 
+	 * @param path1 第一个文件地址，用来储存每个项目用了哪些语言
+	 * @param path2 第二个文件地址，用来储存每个项目用的语言的数目
+	 */
+	public static void getLanguages(String path1,String path2) {
+
+		List<String> repositories = readFromRepoTxt();
+
+		String url = "http://www.gitmining.net/api/repository/";
+
+		String page = "";
+
+		Map<String,Integer> map;
+
+		File file1 = new File(path1);
+		File file2 = new File(path2);
+		FileWriter fw1 = null;
+		BufferedWriter writer1 = null;
+		FileWriter fw2 = null;
+		BufferedWriter writer2 = null;
+
+		try {
+			fw1 = new FileWriter(file1);
+			writer1 = new BufferedWriter(fw1);
+			
+			fw2 = new FileWriter(file2);
+			writer2 = new BufferedWriter(fw2);
+			
+
+			for (String repoFull_name : repositories) {
+
+				writer1.write(repoFull_name + ": ");
+				writer2.write(repoFull_name + ": ");
+
+				try {
+					page = HttpRequest.sendGet(url, repoFull_name + "/languages");
+				} catch (IOException e) {
+					e.printStackTrace();
+					writer1.newLine();
+					writer1.flush();
+					writer2.newLine();
+					writer2.flush();
+					continue;
+				}
+
+
+				map = JsonUtil.parseJSON2Map(page);
+				map.remove("fn");
+
+				// 写本页的所有用户名
+				for (String key : map.keySet()) {
+					int count = map.get(key);
+					writer1.write(key + ",");
+					writer2.write(count+ ",");
+				}
+
+				writer1.newLine();
+				writer1.flush();
+				writer2.newLine();
+				writer2.flush();
+			}
+			writer1.flush();
+			writer2.flush();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+	}
+	
+	
 
 	/**
 	 * 用来从github api获取repo-contributorslist
@@ -239,7 +335,6 @@ public class DataMining {
 			try {
 
 				writer.write(repoFull_name + ": ");
-				writer.flush();
 
 				int page_num = 1;
 
@@ -251,6 +346,8 @@ public class DataMining {
 								repoFull_name + param + "?per_page=100&page=" + page_num);
 					} catch (IOException e) {
 						e.printStackTrace();
+						writer.newLine();
+						writer.flush();
 						break;
 					}
 
@@ -294,7 +391,7 @@ public class DataMining {
 		if (s != null) {
 			List<String> repo = JsonUtil.parseJson2List(s);
 
-			File file = new File(new File("").getAbsolutePath() + "\\src\\main\\repolist-miningApi.txt");
+			File file = new File(new File("").getAbsolutePath() + "/src/main/repolist-miningApi.txt");
 			FileWriter fw = null;
 			BufferedWriter writer = null;
 
