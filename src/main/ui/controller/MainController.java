@@ -49,12 +49,13 @@ public class MainController implements Initializable {
 
 	@FXML
 	public void handleSearch() {
-		if (getSearchId() != null && !getSearchId().isEmpty()) {
+		if (getSearchId() != null && !getSearchId().isEmpty())
 			setPanel("Ui_SearchPanel.fxml");
-		} else {
-			Dialogs.create().title("No Input").masthead("Nothing input!")
-					.message("Please input the keyword of what you want to search.").showWarning();
-		}
+		// } else {
+		// Dialogs.create().title("No Input").masthead("Nothing input!")
+		// .message("Please input the keyword of what you want to
+		// search.").showWarning();
+		// }
 	}
 
 	/**
@@ -90,12 +91,12 @@ public class MainController implements Initializable {
 		instance = this;
 		justTest();
 	}
-	
-	private void justTest(){
-		logo.setText("awesomeGitmining");  
-		logo.setFont(Font.font("Calibri", 27));  
-		Image image = new Image(MainUI.class.getResourceAsStream("style/mark.png"));  
-		logo.setGraphic(new ImageView(image)); 
+
+	private void justTest() {
+		logo.setText("awesomeGitmining");
+		logo.setFont(Font.font("Calibri", 27));
+		Image image = new Image(MainUI.class.getResourceAsStream("style/mark.png"));
+		logo.setGraphic(new ImageView(image));
 	}
 
 }

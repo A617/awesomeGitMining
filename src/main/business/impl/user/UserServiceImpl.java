@@ -1,7 +1,12 @@
 package main.business.impl.user;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import main.business.dto.Converter;
 import main.business.service.UserService;
+import main.dao.DataFactory;
 import main.dao.entity.User;
 import main.dao.impl.IUserDao;
 import main.vo.UserVO;
@@ -16,7 +21,7 @@ public class UserServiceImpl implements UserService {
 	private IUserDao daoImpl;
 
 	private UserServiceImpl() {
-
+		daoImpl = DataFactory.getUserDataInstance();
 	}
 
 	public static UserServiceImpl getInstance() {
@@ -27,15 +32,23 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserVO searchUser(String id) {
-		UserVO vo = null;
+	public List<UserVO> searchUser(String id) {
+		List<UserVO> vos = new ArrayList<UserVO>();
 		if (daoImpl != null) {
-			User po = daoImpl.getUser(id);
-			//TODO 创建的项目和参与的项目尚未赋值
-			if (po != null) {
-				vo = (UserVO) Converter.convert("UserVO", po);
+			List<String> pos = null;
+			try {
+				pos = daoImpl.searchUser(id);
+				if (pos != null) {
+					for (String name : pos) {
+						User po = daoImpl.getUser(name);
+						vos.add((UserVO) Converter.convert("UserVO", po));
+					}
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
-		return vo;
+		return vos;
 	}
 }
