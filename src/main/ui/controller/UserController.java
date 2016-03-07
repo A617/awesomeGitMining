@@ -72,9 +72,9 @@ public class UserController implements Initializable{
 			Company.setText(vo.getLocation()+"/"+vo.getEmail());
 
 			//contributed pros
-			if(vo.getpProjects()!=null){
+			if(vo.getContributions_fullname()!=null){
 				ObservableList<Contri_ProVO> contri_pros = FXCollections.observableArrayList();
-				for (String name : vo.getpProjects()) {
+				for (String name : vo.getContributions_fullname()) {
 					Contri_ProVO cv = new Contri_ProVO(name);
 					contri_pros.add(cv);
 				}
@@ -84,9 +84,9 @@ public class UserController implements Initializable{
 
 
 			//created pros
-			if (vo.getcProjects() != null) {
+			if (vo.getRepos_fullname() != null) {
 				ObservableList<Crea_ProVO> crea_pros = FXCollections.observableArrayList();
-				for (String name : vo.getcProjects()) {
+				for (String name : vo.getRepos_fullname()) {
 					Crea_ProVO cv = new Crea_ProVO(name);
 					crea_pros.add(cv);
 				}
