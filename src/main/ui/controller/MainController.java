@@ -42,6 +42,7 @@ public class MainController implements Initializable {
 	}
 	
 	public void initSearchId() {
+		search.setPromptText("search what you want...");
 		search.setText("");
 	}
 
