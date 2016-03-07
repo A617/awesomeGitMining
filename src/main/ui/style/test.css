@@ -25,5 +25,8 @@
 #repositoryName:hover{
 	-fx-text-fill: #77DDFF;
 }
+#userName:hover{
+	-fx-text-fill: #77DDFF;
+}
 
 

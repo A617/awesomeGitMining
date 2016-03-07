@@ -139,7 +139,7 @@ public class MainController implements Initializable {
 		labelInit(exit, "exitFrameExit.png");
 	}
 	
-	private void labelInit(Label label,String path) {
+	public void labelInit(Label label,String path) {
 		Image image = new Image(MainUI.class.getResourceAsStream("style/"+path));
 		label.setGraphic(new ImageView(image));
 	}

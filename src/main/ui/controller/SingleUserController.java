@@ -29,6 +29,7 @@ public class SingleUserController implements Initializable {
 		this.vo=vo;
 		if(vo!=null) {
 			userName.setText(vo.getLogin());
+			MainController.getInstance().labelInit(company,"place.png");
 			company.setText(vo.getLocation());
 		}
 	}
