@@ -5,8 +5,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,13 +27,10 @@ public class SearchController implements Initializable {
 	private static SearchController instance;
 	private RepositoryService repositoryService;
 	private UserService userService;
-<<<<<<< HEAD
-=======
 	private List<UserVO> userVO;
 	private List<RepositoryVO> repositoryVO;
 	private String id;
 
->>>>>>> 99eb6b0b1f26a89f1f6307c243d3667a72f31220
 	@FXML
 	private AnchorPane mainPane;
 	@FXML
@@ -61,44 +56,92 @@ public class SearchController implements Initializable {
 		return instance;
 	}
 
-<<<<<<< HEAD
-	private void initUser(String id) {
-=======
-<<<<<<< HEAD
-	private void initUser(String id) {
-		
-=======
-	private void initUser(String id,int pageIndex) {
-		// Pane->VBox->ScrollPane->AnchorPane
-		VBox user = new VBox();
->>>>>>> 99eb6b0b1f26a89f1f6307c243d3667a72f31220
+	private void initUser(List<UserVO> list) {
+		// pane->VBox->ScrollPane->Pane
+		VBox baseBox = new VBox();
 		VBox box = new VBox();
-		box.getChildren().add(userPanel);
+		baseBox.getChildren().add(userPanel);
 		VBox.setVgrow(userPanel, Priority.ALWAYS);
-		int temp = userVO.size() - pageIndex*5;
->>>>>>> ed203f8af942fa349715ed11a189b0d2f81c09ae
-		
+		for (int i = 0; i < 5; i++) {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainUI.class.getResource("config/Ui_SingleUserView.fxml"));
+			try {
+				Pane single = (Pane) loader.load();
+				SingleUserController controller = loader.getController();
+				if (i < list.size()) {
+					UserVO vo = list.get(i);
+					controller.setVO(vo);
+					box.getChildren().add(single);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			userPanel.setContent(box);
+		}
+		mainPane.getChildren().add(userPanel);
 	}
 
-	private void initProject(String id) {
-		
+	private void initProject(List<RepositoryVO> list) {
+		// pane->VBox->ScrollPane->Pane
+		VBox baseBox = new VBox();
+		VBox box = new VBox();
+		baseBox.getChildren().add(projectPanel);
+		VBox.setVgrow(projectPanel, Priority.ALWAYS);
+		for (int i = 0; i < 10; i++) {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainUI.class.getResource("config/Ui_SingleReposView.fxml"));
+			try {
+				Pane single = (Pane) loader.load();
+				SingleRepositoryController controller = loader.getController();
+				if (i < list.size()) {
+					RepositoryVO vo = list.get(i);
+					controller.setVO(vo);
+					box.getChildren().add(single);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			projectPanel.setContent(box);
+		}
+		mainPane.getChildren().add(projectPanel);
 	}
-	
+
 	@FXML
 	public void handleUserPre() {
-		
+		userPage--;
+		if (userPage > 0) {
+			userVO = userService.searchUser(id, userPage);
+			initUser(userVO);
+		}
+
 	}
+
 	@FXML
 	public void handleUserNext() {
-		
+		userPage++;
+		userVO = userService.searchUser(id, userPage);
+		if (userVO.size() > 0) {
+			initUser(userVO);
+		}
 	}
+
 	@FXML
 	public void handleProjectPre() {
-		
+		projectPage--;
+		if (projectPage > 0) {
+			repositoryVO = repositoryService.searchRepository(id, projectPage);
+			initProject(repositoryVO);
+		}
+
 	}
+
 	@FXML
 	public void handleProjectNext() {
-		
+		projectPage++;
+		repositoryVO = repositoryService.searchRepository(id, projectPage);
+		if (repositoryVO.size() > 0) {
+			initProject(repositoryVO);
+		}
 	}
 
 	@Override
@@ -107,10 +150,13 @@ public class SearchController implements Initializable {
 		userService = UserServiceImpl.getInstance();
 		userPage = 0;
 		projectPage = 0;
-		
+
 		id = MainController.getInstance().getSearchId();
-		initUser(id);
-		initProject(id);
+		userVO = userService.searchUser(id, userPage);
+		repositoryVO = repositoryService.searchRepository(id, projectPage);
+
+		initUser(userVO);
+		initProject(repositoryVO);
 	}
 
 }
