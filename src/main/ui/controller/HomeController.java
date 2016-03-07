@@ -51,34 +51,44 @@ public class HomeController implements Initializable {
 		}
 		return instance;
 	}
+	public HomeController(){
+		impl = RepositoryServiceImpl.getInstance();
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		impl = RepositoryServiceImpl.getInstance();
-		UserService us = UserServiceImpl.getInstance();
 		MainController.getInstance().initSearchId();
-		initialShow();
+		selectGeneral();
 	}
 
-	// 也许这样初始化的时候会快一些吧 T T
-	private void initialShow() {
+	public void selectGeneral() {
 		if (tab_general.isSelected()) {
 			generalList = impl.showRepositories(0);
 			initTabPane(tab_general, new ScrollPane(), new VBox(), generalList);
 		}
+	}
+
+	public void selectStar() {
 		if (tab_star.isSelected()) {
 			starList = impl.showReposByStar(0);
 			initTabPane(tab_star, new ScrollPane(), new VBox(), starList);
 		}
+	}
+
+	public void selectFork() {
 		if (tab_fork.isSelected()) {
 			forkList = impl.showReposByFork(0);
 			initTabPane(tab_fork, new ScrollPane(), new VBox(), forkList);
 		}
+	}
+
+	public void selectContributor() {
 		if (tab_contributor.isSelected()) {
 			contriList = impl.showReposByContribute(0);
 			initTabPane(tab_contributor, new ScrollPane(), new VBox(), contriList);
 		}
 	}
+
 
 	private void initTabPane(Tab tab, ScrollPane sp, VBox vb, List<RepositoryVO> list) {
 		// Pane->VBox->ScrollPane->VBox

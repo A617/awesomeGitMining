@@ -18,22 +18,22 @@
          <children>
             <TabPane layoutX="179.0" layoutY="163.0" prefHeight="506.0" prefWidth="665.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab fx:id="tab_general" text="  General  ">
+                <Tab fx:id="tab_general" onSelectionChanged="#selectGeneral" text="  General  ">
                      <content>
                         <ScrollPane fx:id="generalPane" prefHeight="200.0" prefWidth="200.0" />
                      </content>
                 </Tab>
-                <Tab fx:id="tab_star" text="  Star  ">
+                <Tab fx:id="tab_star" onSelectionChanged="#selectStar" text="  Star  ">
                 	 <content>
                         <ScrollPane fx:id="starPane" prefHeight="200.0" prefWidth="200.0" />
                      </content>
                 </Tab>
-                <Tab fx:id="tab_fork" text="  Fork  ">
+                <Tab fx:id="tab_fork" onSelectionChanged="#selectFork" text="  Fork  ">
                    <content>
                         <ScrollPane fx:id="forkPane" prefHeight="200.0" prefWidth="200.0" />
                    </content>
                 </Tab>
-                <Tab fx:id="tab_contributor" text="  Contributor  ">
+                <Tab fx:id="tab_contributor" onSelectionChanged="#selectContributor" text="  Contributor  ">
                 	<content>
                         <ScrollPane fx:id="contriPane" opacity="0.64" prefHeight="200.0" prefWidth="200.0" />
                     </content>
