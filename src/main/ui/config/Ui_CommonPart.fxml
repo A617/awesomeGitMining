@@ -36,7 +36,7 @@
       <AnchorPane fx:id="center_panel" prefHeight="604.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="164.0" />
       <AnchorPane fx:id="common" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="620.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="btn_search" layoutX="255.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="35.0" prefWidth="122.0" text="Search">
+            <Button fx:id="btn_search" layoutX="255.0" layoutY="97.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="122.0" text="Search">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -46,7 +46,7 @@
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </TextField>
-            <Button fx:id="btn_menu" layoutX="309.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleMenu" style="-fx-background-image: url(&quot;back3.jpg&quot;);" text="Menu" />
+            <Button fx:id="btn_menu" layoutX="309.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-image: url(&quot;back3.jpg&quot;);" text="Menu" />
             <Label id="close" fx:id="close" layoutX="980.0" layoutY="14.0" prefHeight="31.0" prefWidth="32.0" />
             <Label id="min" fx:id="min" layoutX="943.0" layoutY="14.0" prefHeight="31.0" prefWidth="32.0" />
             <Label fx:id="logo" layoutX="461.0" layoutY="24.0" prefHeight="100.0" prefWidth="600.0" text="Label" AnchorPane.leftAnchor="490.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="24.0" />

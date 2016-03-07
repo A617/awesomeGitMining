@@ -11,17 +11,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TreeTableColumn;
-import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.impl.user.UserServiceImpl;
-import main.business.service.RepositoryService;
 import main.business.service.UserService;
-import main.ui.MainUI;
-import main.vo.RepositoryVO;
 import main.vo.UserVO;
 
 public class UserController implements Initializable{
 	private static UserController instance;
-	private MainUI app;
 
 	@FXML
 	private Label userNameLabel;
@@ -45,7 +40,7 @@ public class UserController implements Initializable{
 	private TableColumn Crea_Pro;//填入此用户创造的项目
 	@FXML
 	private TableView Crea_Pro_View;
-	
+
 	private UserService impl;
 	private List<String> contriList;
 	private List<String> creaList;
@@ -55,10 +50,6 @@ public class UserController implements Initializable{
 			instance = new UserController();
 		}
 		return instance;
-	}
-
-	public void setApp(MainUI app) {
-		this.app = app;
 	}
 
 	@Override
