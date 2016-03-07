@@ -14,7 +14,7 @@ public class SortHelper {
 	public static List<RepositoryVO> sortReposByStar(List<RepositoryVO> vos) {
 		Collections.sort(vos, new Comparator<RepositoryVO>() {
 			public int compare(RepositoryVO arg0, RepositoryVO arg1) {
-				return arg0.getSubscribers_count() - arg1.getSubscribers_count();
+				return arg1.getSubscribers_count() - arg0.getSubscribers_count();
 			}
 		});
 		return vos;
@@ -23,7 +23,7 @@ public class SortHelper {
 	public static List<RepositoryVO> sortReposByFork(List<RepositoryVO> vos) {
 		Collections.sort(vos, new Comparator<RepositoryVO>() {
 			public int compare(RepositoryVO arg0, RepositoryVO arg1) {
-				return arg0.getForks_count() - arg1.getForks_count();
+				return arg1.getForks_count() - arg0.getForks_count();
 			}
 		});
 		return vos;
@@ -32,7 +32,7 @@ public class SortHelper {
 	public static List<RepositoryVO> sortReposByContribute(List<RepositoryVO> vos) {
 		Collections.sort(vos, new Comparator<RepositoryVO>() {
 			public int compare(RepositoryVO arg0, RepositoryVO arg1) {
-				return arg0.getContributors_login().size() - arg1.getContributors_login().size();
+				return arg1.getContributors_login().size() - arg0.getContributors_login().size();
 			}
 		});
 		return vos;

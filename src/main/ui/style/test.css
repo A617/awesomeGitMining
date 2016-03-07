@@ -1,5 +1,8 @@
 .root {
-     -fx-background-image: url("back3.jpg");
+     -fx-background-image: url("back4.jpg");
+     -fx-background-fill: radial-gradient(focus-angle 45deg, focus-distance 20%, center 25% 25%, radius 50%, reflect, #eeeeee88, #55555588 75%, dimgray);
+  	 -fx-background-arc-width:25;
+  	 -fx-background-arc-height:25;
 }
 .button {
     -fx-background-radius: 0.0;
@@ -22,3 +25,5 @@
 #repositoryName:hover{
 	-fx-text-fill: #77DDFF;
 }
+
+

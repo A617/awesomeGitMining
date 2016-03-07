@@ -6,8 +6,6 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import main.ui.utility.fxmlLoader;
 import main.vo.UserVO;
 
 public class SingleUserController implements Initializable {
@@ -27,11 +25,11 @@ public class SingleUserController implements Initializable {
 		});
 	}
 
-	public void setVO(UserVO user) {
-		this.vo=user;
-		if(user!=null) {
-			userName.setText(user.getLogin());
-			company.setText(user.getLocation());
+	public void setVO(UserVO vo) {
+		this.vo=vo;
+		if(vo!=null) {
+			userName.setText(vo.getLogin());
+			company.setText(vo.getLocation());
 		}
 	}
 

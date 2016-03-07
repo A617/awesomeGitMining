@@ -1,15 +1,10 @@
 package main.ui.controller;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.ResourceBundle;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import main.vo.CollaboratorVO;
 import main.vo.ContributorVO;
 import main.vo.ForkVO;
@@ -72,7 +66,9 @@ public class ProjectController implements Initializable {
 //		}
 //		languageTable.setItems(lang);
 //		languageColumn.setCellValueFactory(cellData -> cellData.getValue().getLanguage());
-
+		project_back.setOnAction((e) -> {
+			MainController.getInstance().setPanel("Ui_SearchPanel.fxml");
+		});
 	}
 
 	public void setVO(RepositoryVO vo) {
@@ -84,7 +80,7 @@ public class ProjectController implements Initializable {
 			if (map != null) {
 				ObservableList<LanguageVO> lan = FXCollections.observableArrayList();
 				for (Entry<String, Integer> entry : map.entrySet()) {
-					lan.add(new LanguageVO(entry.getKey() + ":" + entry.getValue()));
+					lan.add(new LanguageVO(entry.getKey() + " : " + entry.getValue()+" lines"));
 				}
 				languageTable.setItems(lan);
 				languageColumn.setCellValueFactory(cellData -> cellData.getValue().getProperty());
