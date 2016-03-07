@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,10 +29,13 @@ public class SearchController implements Initializable {
 	private static SearchController instance;
 	private RepositoryService repositoryService;
 	private UserService userService;
+<<<<<<< HEAD
+=======
 	private List<UserVO> userVO;
 	private List<RepositoryVO> repositoryVO;
 	private String id;
 
+>>>>>>> 99eb6b0b1f26a89f1f6307c243d3667a72f31220
 	@FXML
 	private AnchorPane mainPane;
 	@FXML
@@ -56,7 +61,22 @@ public class SearchController implements Initializable {
 		return instance;
 	}
 
+<<<<<<< HEAD
 	private void initUser(String id) {
+=======
+<<<<<<< HEAD
+	private void initUser(String id) {
+		
+=======
+	private void initUser(String id,int pageIndex) {
+		// Pane->VBox->ScrollPane->AnchorPane
+		VBox user = new VBox();
+>>>>>>> 99eb6b0b1f26a89f1f6307c243d3667a72f31220
+		VBox box = new VBox();
+		box.getChildren().add(userPanel);
+		VBox.setVgrow(userPanel, Priority.ALWAYS);
+		int temp = userVO.size() - pageIndex*5;
+>>>>>>> ed203f8af942fa349715ed11a189b0d2f81c09ae
 		
 	}
 
