@@ -17,25 +17,19 @@ public class SingleUserController implements Initializable {
 
 	private UserVO vo;
 
-	@FXML
-	public void handleClick() {
-		MainController.getInstance().setGroup("Ui_UserPanel.fxml");
-		UserController.getInstance().setVO(vo);
-	}
-
-
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-
+		userName.setOnMouseClicked((e) -> {
+			MainController.getInstance().setGroup("Ui_UserPanel.fxml");
+			UserController.getInstance().setVO(vo);
+		});
 	}
 
-	public void setVO(UserVO user) {
-		this.vo=user;
-		if(user!=null) {
-			userName.setText(user.getLogin());
-			company.setText(user.getLocation());
+	public void setVO(UserVO vo) {
+		this.vo=vo;
+		if(vo!=null) {
+			userName.setText(vo.getLogin());
+			company.setText(vo.getLocation());
 		}
 	}
 

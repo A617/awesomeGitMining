@@ -9,6 +9,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -35,29 +36,18 @@ public class MainController implements Initializable {
 	private Button btn_search, btn_menu;
 	@FXML
 	private Label logo;
+	@FXML
+	private Label minimize;
+	@FXML
+	private Label exit;
 
 	public String getSearchId() {
 		return search.getText();
 	}
 	
 	public void initSearchId() {
+		search.setPromptText("search what you want...");
 		search.setText("");
-	}
-
-	@FXML
-	public void handleMenu() {
-		initPanel();
-	}
-
-	@FXML
-	public void handleSearch() {
-		if (getSearchId() != null && !getSearchId().isEmpty())
-			setPanel("Ui_SearchPanel.fxml");
-		// } else {
-		// Dialogs.create().title("No Input").masthead("Nothing input!")
-		// .message("Please input the keyword of what you want to
-		// search.").showWarning();
-		// }
 	}
 
 	/**
@@ -91,14 +81,67 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		instance = this;
-		justTest();
+		
+		Tooltip toolTip = new Tooltip();
+		toolTip.setText("enter the keyword of what you want to search");
+		search.setTooltip(toolTip);
+		
+		buttonInit();
+		logoInit();
+	}
+	
+	private void buttonInit() {
+		/*
+		 * use lambda expression to refactor code
+		 */
+		btn_search.setOnAction((e) -> {
+			if (getSearchId() != null && !getSearchId().isEmpty())
+				setPanel("Ui_SearchPanel.fxml");
+		});
+		
+		btn_menu.setOnAction((e) -> {
+			initPanel();
+		});
+		
+		minimize.setOnMouseEntered((e) -> {
+			labelInit(minimize,"min_hover.png");
+		});
+		minimize.setOnMouseExited((e) -> {
+			labelInit(minimize,"min_normal.png");
+		});
+		minimize.setOnMousePressed((e) -> {
+			labelInit(minimize,"min_active.png");
+		});
+		minimize.setOnMouseReleased((e) -> {
+			MainUI.getUI().getStage().setIconified(true);
+		});
+		
+		exit.setOnMouseEntered((e) -> {
+			labelInit(exit,"exitFrameExit.png");
+		});
+		exit.setOnMouseExited((e) -> {
+			labelInit(exit,"exitFrameMove.png");
+		});
+		exit.setOnMousePressed((e) -> {
+			labelInit(exit,"exitFrameClick.png");
+		});
+		exit.setOnMouseReleased((e) -> {
+			System.exit(0);
+		});
+		
 	}
 
-	private void justTest() {
+	private void logoInit() {
 		logo.setText("awesomeGitmining");
 		logo.setFont(Font.font("Calibri", 27));
-		Image image = new Image(MainUI.class.getResourceAsStream("style/mark.png"));
-		logo.setGraphic(new ImageView(image));
+		labelInit(logo,"mark.png");
+		labelInit(minimize, "min_normal.png");
+		labelInit(exit, "exitFrameExit.png");
+	}
+	
+	private void labelInit(Label label,String path) {
+		Image image = new Image(MainUI.class.getResourceAsStream("style/"+path));
+		label.setGraphic(new ImageView(image));
 	}
 
 }

@@ -2,27 +2,32 @@ package main.ui.controller;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TreeTableColumn;
-import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.impl.user.UserServiceImpl;
-import main.business.service.RepositoryService;
 import main.business.service.UserService;
-import main.ui.MainUI;
-import main.vo.RepositoryVO;
+import main.vo.Contri_ProVO;
+import main.vo.ContributorVO;
+import main.vo.Crea_ProVO;
 import main.vo.UserVO;
 
 public class UserController implements Initializable{
 	private static UserController instance;
-	private MainUI app;
 
 	@FXML
 	private Label userNameLabel;
+	@FXML
+	private Button user_back;
 	@FXML
 	private Label joinTime;
 	@FXML
@@ -34,13 +39,16 @@ public class UserController implements Initializable{
 	@FXML
 	private Label Tot_num;
 	@FXML
-	private TableColumn Contri_Pro;//填入此用户贡献的项目
+	private TableView<Contri_ProVO> Contri_Pro_View;
 	@FXML
-	private TableColumn Crea_Pro;//填入此用户创造的项目
+	private TableColumn<Contri_ProVO,String> Contri_Pro;//填入此用户贡献的项目
+	@FXML
+	private TableView<Crea_ProVO> Crea_Pro_View;
+	@FXML
+	private TableColumn<Crea_ProVO,String> Crea_Pro;//填入此用户创造的项目
 
-	private UserService impl;
-	private List<String> contriList;
-	private List<String> creaList;
+
+
 
 	public static UserController getInstance() {
 		if (instance == null) {
@@ -49,27 +57,42 @@ public class UserController implements Initializable{
 		return instance;
 	}
 
-	public void setApp(MainUI app) {
-		this.app = app;
-	}
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		impl = UserServiceImpl.getInstance();
-		UserService us = UserServiceImpl.getInstance();
+
 		instance=this;
-		
+
 	}
-	
+
 	public void setVO(UserVO vo){
 		if(vo!=null){
 			userNameLabel.setText(vo.getName());
 			joinTime.setText(vo.getCreated_at());
 			Company.setText(vo.getLocation()+"/"+vo.getEmail());
-			contriList=impl.getContributeRepos(vo.getName());
-			creaList=impl.getCreateRepos(vo.getName());
-			
+
+			//contributed pros
+			if(vo.getContributions_fullname()!=null){
+				ObservableList<Contri_ProVO> contri_pros = FXCollections.observableArrayList();
+				for (String name : vo.getContributions_fullname()) {
+					Contri_ProVO cv = new Contri_ProVO(name);
+					contri_pros.add(cv);
+				}
+				Contri_Pro_View.setItems(contri_pros);
+				Contri_Pro.setCellValueFactory(cellData->cellData.getValue().getProperty());
+			}
+
+
+			//created pros
+			if (vo.getRepos_fullname() != null) {
+				ObservableList<Crea_ProVO> crea_pros = FXCollections.observableArrayList();
+				for (String name : vo.getRepos_fullname()) {
+					Crea_ProVO cv = new Crea_ProVO(name);
+					crea_pros.add(cv);
+				}
+				Crea_Pro_View.setItems(crea_pros);
+				Crea_Pro.setCellValueFactory(cellData->cellData.getValue().getProperty());
+			}
 //			Eff_num.setText("");
 //			qua_num.setText("");
 //			Tot_num.setText("");

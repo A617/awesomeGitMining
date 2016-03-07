@@ -53,6 +53,10 @@ public class MainUI extends Application{
 	public static MainUI getUI(){
 		return ui;
 	}
+	
+	public Stage getStage() {
+		return stage;
+	}
 
 	public static void main(String[] args) {
 		launch(args);

@@ -1,6 +1,7 @@
 package main.vo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author tj
@@ -15,9 +16,26 @@ public class UserVO extends VO {
 	private int followers;
 	private int following;
 	private String html_url; // github主页
-	private ArrayList<String> pProjects;// 用户参与的项目
-	private ArrayList<String> cProjects;// 用户创建的项目
+	private List<String> contributions_fullname; //贡献过的项目
+	private List<String> repos_fullname;		//创建的项目
 	private String created_at;
+
+	public List<String> getContributions_fullname() {
+		return contributions_fullname;
+	}
+
+	public void setContributions_fullname(List<String> contributions_fullname) {
+		this.contributions_fullname = contributions_fullname;
+	}
+
+	public List<String> getRepos_fullname() {
+		return repos_fullname;
+	}
+
+	public void setRepos_fullname(List<String> repos_fullname) {
+		this.repos_fullname = repos_fullname;
+	}
+
 	public String getCreated_at() {
 		return created_at;
 	}
@@ -41,8 +59,8 @@ public class UserVO extends VO {
 		this.followers = followers;
 		this.following = following;
 		this.html_url = html_url;
-		this.pProjects = pProjects;
-		this.cProjects = cProjects;
+		this.contributions_fullname = pProjects;
+		this.repos_fullname = cProjects;
 	}
 
 	public String getLogin() {
@@ -109,20 +127,6 @@ public class UserVO extends VO {
 		this.html_url = html_url;
 	}
 
-	public ArrayList<String> getpProjects() {
-		return pProjects;
-	}
 
-	public void setpProjects(ArrayList<String> pProjects) {
-		this.pProjects = pProjects;
-	}
-
-	public ArrayList<String> getcProjects() {
-		return cProjects;
-	}
-
-	public void setcProjects(ArrayList<String> cProjects) {
-		this.cProjects = cProjects;
-	}
 
 }
