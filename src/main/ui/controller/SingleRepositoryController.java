@@ -1,8 +1,6 @@
 package main.ui.controller;
 
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;

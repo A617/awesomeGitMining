@@ -3,8 +3,6 @@ package main.ui.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import org.controlsfx.dialog.Dialogs;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;

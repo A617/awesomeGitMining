@@ -6,6 +6,7 @@ import java.util.List;
 
 import main.business.dto.Converter;
 import main.business.service.RepositoryService;
+import main.business.utility.LocalHelper;
 import main.business.utility.SortHelper;
 import main.dao.DataFactory;
 import main.dao.entity.Repository;
@@ -81,7 +82,24 @@ public class RepositoryServiceImpl implements RepositoryService {
 
 	@Override
 	public List<RepositoryVO> showReposByStar(int startIndex) {
-		List<RepositoryVO> vos = showRepositories(startIndex);
+		List<RepositoryVO> vos = new ArrayList<RepositoryVO>();
+		List<String> names = LocalHelper.getRepos("repo_starSort");
+		if (names != null) {
+			for (String name : names) {
+				Repository po = null;
+				try {
+					po = daoImpl.getRepository(name);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if(po!=null){
+					RepositoryVO vo = (RepositoryVO) Converter.convert("RepositoryVO", po);
+					vos.add(vo);
+				}
+				
+			}
+		}
 		vos = (List<RepositoryVO>) SortHelper.sortReposByStar(vos);
 		return vos;
 	}
