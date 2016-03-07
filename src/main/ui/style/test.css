@@ -22,3 +22,9 @@
 #repositoryName:hover{
 	-fx-text-fill: #77DDFF;
 }
+#min{
+	-fx-background-image: url("exitFrameExit.png");
+}
+#close{
+	-fx-background-image: url("exitFrameExit.png");
+}
