@@ -9,6 +9,7 @@ import java.util.List;
 
 import main.business.dto.Converter;
 import main.business.utility.SortHelper;
+import main.dao.DataFactory;
 import main.dao.entity.Repository;
 import main.dao.impl.IRepoDao;
 import main.vo.RepositoryVO;
@@ -30,6 +31,7 @@ public class SortRepository {
 	}
 
 	public void sortRepos() {
+		repoDao = DataFactory.getRepoDataInstance();
 		List<String> names = repoDao.getAllRepo();
 		list = new ArrayList<RepositoryVO>();
 		if (names != null) {

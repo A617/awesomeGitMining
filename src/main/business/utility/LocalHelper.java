@@ -38,6 +38,6 @@ public class LocalHelper {
 			}
 
 		}
-		return null;
+		return list;
 	}
 }

@@ -138,6 +138,8 @@ public class HomeController implements Initializable {
 			generalList = impl.showRepositories(generalPage);
 			if (generalList.size() > 0) {
 				initTabPane(tab_general, new ScrollPane(), new VBox(), generalList);
+			}else{
+				generalPage--;
 			}
 		}
 	}
@@ -145,9 +147,11 @@ public class HomeController implements Initializable {
 	private void generalPre() {
 		if (tab_general.isSelected()) {
 			generalPage--;
-			if (generalPage > 0) {
+			if (generalPage >= 0) {
 				generalList = impl.showRepositories(generalPage);
 				initTabPane(tab_general, new ScrollPane(), new VBox(), generalList);
+			}else{
+				generalPage++;
 			}
 		}
 	}
@@ -159,6 +163,8 @@ public class HomeController implements Initializable {
 			starList = impl.showReposByStar(starPage);
 			if (starList.size() > 0) {
 				initTabPane(tab_star, new ScrollPane(), new VBox(), starList);
+			}else{
+				starPage--;
 			}
 		}
 	}
@@ -166,9 +172,11 @@ public class HomeController implements Initializable {
 	private void starPre() {
 		if (tab_star.isSelected()) {
 			starPage--;
-			if (starPage > 0) {
+			if (starPage >= 0) {
 				starList = impl.showReposByStar(starPage);
 				initTabPane(tab_star, new ScrollPane(), new VBox(), starList);
+			}else{
+				starPage++;
 			}
 		}
 	}
@@ -180,6 +188,8 @@ public class HomeController implements Initializable {
 			forkList = impl.showReposByFork(forkPage);
 			if (forkList.size() > 0) {
 				initTabPane(tab_fork, new ScrollPane(), new VBox(), forkList);
+			}else{
+				forkPage--;
 			}
 		}
 	}
@@ -187,9 +197,11 @@ public class HomeController implements Initializable {
 	private void forkPre() {
 		if (tab_fork.isSelected()) {
 			forkPage--;
-			if (forkPage > 0) {
+			if (forkPage >= 0) {
 				forkList = impl.showReposByFork(forkPage);
 				initTabPane(tab_fork, new ScrollPane(), new VBox(), forkList);
+			}else{
+				forkPage++;
 			}
 		}
 	}
@@ -201,6 +213,8 @@ public class HomeController implements Initializable {
 			contriList = impl.showReposByContribute(contriPage);
 			if (contriList.size() > 0) {
 				initTabPane(tab_contributor, new ScrollPane(), new VBox(), contriList);
+			}else{
+				contriPage--;
 			}
 		}
 	}
@@ -208,9 +222,11 @@ public class HomeController implements Initializable {
 	private void contriPre() {
 		if (tab_contributor.isSelected()) {
 			contriPage--;
-			if (contriPage > 0) {
+			if (contriPage >= 0) {
 				contriList = impl.showReposByContribute(contriPage);
 				initTabPane(tab_contributor, new ScrollPane(), new VBox(), contriList);
+			}else{
+				contriPage++;
 			}
 		}
 	}
