@@ -93,26 +93,36 @@ public class RepositoryServiceImpl implements RepositoryService {
 		return vos;
 	}
 
-	// private RepositoryVO setLists(RepositoryVO vo, RepositoryPO po) {
-	// List<String> languages = new List<String>();// 项目使用的语言
-	// List<String> contributors = new List<String>();// 项目贡献者
-	// List<String> collaborators = new List<String>();// 项目合作者
-	// List<String> forks = new List<String>();// fork的项目
-	// //给languages赋值
-	// Map<String, Integer> polan = po.getLanguages();
-	// if (polan != null) {
-	// for (Map.Entry<String, Integer> entry : polan.entrySet()) {
-	// languages.add(entry.getKey());
-	// }
-	// }
-	//
-	// return vo;
-	// }
-
 	@Override
 	public List<RepositoryVO> showReposByContribute(int startIndex) {
 		List<RepositoryVO> vos = showRepositories(startIndex);
 		vos = (List<RepositoryVO>) SortHelper.sortReposByContribute(vos);
+		return vos;
+	}
+
+	@Override
+	public List<RepositoryVO> searchRepository(String id, int pageIndex) {
+		List<RepositoryVO> vos = new ArrayList<RepositoryVO>();
+		if (daoImpl != null) {
+			List<String> names = daoImpl.searchRepository(id);
+			if (names != null) {
+				for (int i = pageIndex; i < 10 + pageIndex; i++) {
+					if (i < names.size()) {
+						Repository po = null;
+						try {
+							po = daoImpl.getRepository(names.get(i));
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						if (po != null) {
+							RepositoryVO vo = (RepositoryVO) Converter.convert("RepositoryVO", po);
+							vos.add(vo);
+						}
+					}
+				}
+			}
+		}
 		return vos;
 	}
 }

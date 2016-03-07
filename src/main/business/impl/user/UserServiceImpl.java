@@ -98,4 +98,30 @@ public class UserServiceImpl implements UserService {
 		}
 		return lists;
 	}
+
+	@Override
+	public List<UserVO> searchUser(String id, int pageIndex) {
+		List<UserVO> vos = new ArrayList<UserVO>();
+		if (daoImpl != null) {
+			List<String> names = daoImpl.searchUser(id);
+			if (names != null) {
+				for (int i = pageIndex; i < 5 + pageIndex; i++) {
+					if (i < names.size()) {
+						User po = null;
+						try {
+							po = daoImpl.getUser(names.get(i));
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						if (po != null) {
+							UserVO vo = (UserVO) Converter.convert("UserVO", po);
+							vos.add(vo);
+						}
+					}
+				}
+			}
+		}
+		return vos;
+	}
 }
