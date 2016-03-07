@@ -14,8 +14,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TreeTableColumn;
+import javafx.scene.layout.AnchorPane;
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.UserService;
+import main.ui.utility.fxmlLoader;
 import main.vo.Contri_ProVO;
 import main.vo.ContributorVO;
 import main.vo.Crea_ProVO;
@@ -60,8 +62,10 @@ public class UserController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-
 		instance=this;
+		user_back.setOnAction((e) -> {
+			MainController.getInstance().setPanel("Ui_SearchPanel.fxml");
+		});
 
 	}
 

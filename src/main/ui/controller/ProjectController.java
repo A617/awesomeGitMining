@@ -72,7 +72,9 @@ public class ProjectController implements Initializable {
 //		}
 //		languageTable.setItems(lang);
 //		languageColumn.setCellValueFactory(cellData -> cellData.getValue().getLanguage());
-
+		project_back.setOnAction((e) -> {
+			MainController.getInstance().setPanel("Ui_SearchPanel.fxml");
+		});
 	}
 
 	public void setVO(RepositoryVO vo) {
