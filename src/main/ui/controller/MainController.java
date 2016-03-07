@@ -3,14 +3,13 @@ package main.ui.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import org.controlsfx.dialog.Dialogs;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -46,22 +45,6 @@ public class MainController implements Initializable {
 		search.setText("");
 	}
 
-	@FXML
-	public void handleMenu() {
-		initPanel();
-	}
-
-	@FXML
-	public void handleSearch() {
-		if (getSearchId() != null && !getSearchId().isEmpty())
-			setPanel("Ui_SearchPanel.fxml");
-		// } else {
-		// Dialogs.create().title("No Input").masthead("Nothing input!")
-		// .message("Please input the keyword of what you want to
-		// search.").showWarning();
-		// }
-	}
-
 	/**
 	 * when start the app, init the homePagePanel
 	 */
@@ -93,10 +76,30 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		instance = this;
-		justTest();
+		
+		Tooltip toolTip = new Tooltip();
+		toolTip.setText("enter the keyword of what you want to search");
+		search.setTooltip(toolTip);
+		
+		buttonInit();
+		logoInit();
+	}
+	
+	private void buttonInit() {
+		/*
+		 * use lambda expression to refactor code
+		 */
+		btn_search.setOnAction((e) -> {
+			if (getSearchId() != null && !getSearchId().isEmpty())
+				setPanel("Ui_SearchPanel.fxml");
+		});
+		btn_menu.setOnAction((e) -> {
+			initPanel();
+		});
+
 	}
 
-	private void justTest() {
+	private void logoInit() {
 		logo.setText("awesomeGitmining");
 		logo.setFont(Font.font("Calibri", 27));
 		Image image = new Image(MainUI.class.getResourceAsStream("style/mark.png"));

@@ -32,7 +32,10 @@ public class SingleRepositoryController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		repositoryName.setOnMouseClicked((e) -> {
+			MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
+			ProjectController.getInstance().setVO(vo);
+		});
 	}
 
 	/**
@@ -50,12 +53,6 @@ public class SingleRepositoryController implements Initializable {
 			starNum.setText(vo.getSubscribers_count() + "");
 			lastUpdated.setText(vo.getUpdated_at());
 		}
-	}
-
-	@FXML
-	public void handleClick() {
-		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
-		ProjectController.getInstance().setVO(vo);
 	}
 
 }
