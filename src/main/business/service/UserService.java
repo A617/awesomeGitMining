@@ -12,6 +12,13 @@ public interface UserService {
 	 */
 	public abstract List<UserVO> searchUser(String id);
 	/**
+	 * 
+	 * @param id
+	 * @param pageIndex
+	 * @return ArrayList of @see UserVO
+	 */
+	public abstract List<UserVO> searchUser(String id, int pageIndex);
+	/**
 	 * search user by id
 	 * @param id
 	 * @return @see UserVO

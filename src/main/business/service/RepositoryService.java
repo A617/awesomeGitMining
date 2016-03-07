@@ -16,6 +16,13 @@ public interface RepositoryService {
 	 */
 	public abstract List<RepositoryVO> searchRepository(String id);
 	/**
+	 * 
+	 * @param id
+	 * @param pageIndex
+	 * @return @see ArrayList of @see RepositoryVO that size = 10
+	 */
+	public abstract List<RepositoryVO> searchRepository(String id, int pageIndex);
+	/**
 	 * default orders
 	 * @return @see ArrayList of @see RepositoryVO that size = 10
 	 */
