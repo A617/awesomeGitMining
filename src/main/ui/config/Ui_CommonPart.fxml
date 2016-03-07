@@ -50,6 +50,8 @@
             <Label id="close" fx:id="close" layoutX="980.0" layoutY="14.0" prefHeight="31.0" prefWidth="32.0" />
             <Label id="min" fx:id="min" layoutX="943.0" layoutY="14.0" prefHeight="31.0" prefWidth="32.0" />
             <Label fx:id="logo" layoutX="461.0" layoutY="24.0" prefHeight="100.0" prefWidth="600.0" text="Label" AnchorPane.leftAnchor="490.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="24.0" />
+            <Label fx:id="exit" layoutX="980.0" layoutY="16.0" />
+            <Label fx:id="minimize" layoutX="934.0" layoutY="16.0" />
          </children>
       </AnchorPane>
    </children>

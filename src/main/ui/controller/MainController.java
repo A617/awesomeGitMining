@@ -36,6 +36,10 @@ public class MainController implements Initializable {
 	private Button btn_search, btn_menu;
 	@FXML
 	private Label logo;
+	@FXML
+	private Label minimize;
+	@FXML
+	private Label exit;
 
 	public String getSearchId() {
 		return search.getText();
@@ -94,17 +98,50 @@ public class MainController implements Initializable {
 			if (getSearchId() != null && !getSearchId().isEmpty())
 				setPanel("Ui_SearchPanel.fxml");
 		});
+		
 		btn_menu.setOnAction((e) -> {
 			initPanel();
 		});
-
+		
+		minimize.setOnMouseEntered((e) -> {
+			labelInit(minimize,"min_hover.png");
+		});
+		minimize.setOnMouseExited((e) -> {
+			labelInit(minimize,"min_normal.png");
+		});
+		minimize.setOnMousePressed((e) -> {
+			labelInit(minimize,"min_active.png");
+		});
+		minimize.setOnMouseReleased((e) -> {
+			MainUI.getUI().getStage().setIconified(true);
+		});
+		
+		exit.setOnMouseEntered((e) -> {
+			labelInit(exit,"exitFrameExit.png");
+		});
+		exit.setOnMouseExited((e) -> {
+			labelInit(exit,"exitFrameMove.png");
+		});
+		exit.setOnMousePressed((e) -> {
+			labelInit(exit,"exitFrameClick.png");
+		});
+		exit.setOnMouseReleased((e) -> {
+			System.exit(0);
+		});
+		
 	}
 
 	private void logoInit() {
 		logo.setText("awesomeGitmining");
 		logo.setFont(Font.font("Calibri", 27));
-		Image image = new Image(MainUI.class.getResourceAsStream("style/mark.png"));
-		logo.setGraphic(new ImageView(image));
+		labelInit(logo,"mark.png");
+		labelInit(minimize, "min_normal.png");
+		labelInit(exit, "exitFrameExit.png");
+	}
+	
+	private void labelInit(Label label,String path) {
+		Image image = new Image(MainUI.class.getResourceAsStream("style/"+path));
+		label.setGraphic(new ImageView(image));
 	}
 
 }

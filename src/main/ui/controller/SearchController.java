@@ -155,8 +155,10 @@ public class SearchController implements Initializable {
 		userVO = userService.searchUser(id, userPage);
 		repositoryVO = repositoryService.searchRepository(id, projectPage);
 
-		initUser(userVO);
-		initProject(repositoryVO);
+		if(!userVO.isEmpty())
+			initUser(userVO);
+		if(!repositoryVO.isEmpty())
+			initProject(repositoryVO);
 	}
 
 }
