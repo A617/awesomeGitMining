@@ -34,9 +34,9 @@ public class SearchController implements Initializable {
 	@FXML
 	private AnchorPane mainPane;
 	@FXML
-	private ScrollPane userPanel;
+	private ScrollPane userPane;
 	@FXML
-	private ScrollPane projectPanel;
+	private ScrollPane projectPane;
 	@FXML
 	private Button btn_userPrevious;
 	@FXML
@@ -60,8 +60,8 @@ public class SearchController implements Initializable {
 		// pane->VBox->ScrollPane->Pane
 		VBox baseBox = new VBox();
 		VBox box = new VBox();
-		baseBox.getChildren().add(userPanel);
-		VBox.setVgrow(userPanel, Priority.ALWAYS);
+		baseBox.getChildren().add(userPane);
+		VBox.setVgrow(userPane, Priority.ALWAYS);
 		for (int i = 0; i < 5; i++) {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainUI.class.getResource("config/Ui_SingleUserView.fxml"));
@@ -76,17 +76,17 @@ public class SearchController implements Initializable {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			userPanel.setContent(box);
+			userPane.setContent(box);
 		}
-		mainPane.getChildren().add(userPanel);
+		mainPane.getChildren().add(userPane);
 	}
 
 	private void initProject(List<RepositoryVO> list) {
 		// pane->VBox->ScrollPane->Pane
 		VBox baseBox = new VBox();
 		VBox box = new VBox();
-		baseBox.getChildren().add(projectPanel);
-		VBox.setVgrow(projectPanel, Priority.ALWAYS);
+		baseBox.getChildren().add(projectPane);
+		VBox.setVgrow(projectPane, Priority.ALWAYS);
 		for (int i = 0; i < 10; i++) {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainUI.class.getResource("config/Ui_SingleReposView.fxml"));
@@ -101,9 +101,9 @@ public class SearchController implements Initializable {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			projectPanel.setContent(box);
+			projectPane.setContent(box);
 		}
-		mainPane.getChildren().add(projectPanel);
+		mainPane.getChildren().add(projectPane);
 	}
 
 	@FXML

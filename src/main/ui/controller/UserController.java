@@ -49,9 +49,6 @@ public class UserController implements Initializable{
 	@FXML
 	private TableColumn<Crea_ProVO,String> Crea_Pro;//填入此用户创造的项目
 
-
-
-
 	public static UserController getInstance() {
 		if (instance == null) {
 			instance = new UserController();
@@ -64,7 +61,11 @@ public class UserController implements Initializable{
 		// TODO Auto-generated method stub
 		instance=this;
 		user_back.setOnAction((e) -> {
-			MainController.getInstance().setPanel("Ui_SearchPanel.fxml");
+			if(MainController.getInstance().getSearchId() == ""){
+				MainController.getInstance().initPanel();
+			} else{
+				MainController.getInstance().setPanel("Ui_SearchPanel.fxml");
+			}
 		});
 
 	}
