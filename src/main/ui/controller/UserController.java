@@ -6,8 +6,10 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TreeTableColumn;
 import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.impl.user.UserServiceImpl;
@@ -24,6 +26,8 @@ public class UserController implements Initializable{
 	@FXML
 	private Label userNameLabel;
 	@FXML
+	private Button user_back;
+	@FXML
 	private Label joinTime;
 	@FXML
 	private Label Company;
@@ -36,8 +40,12 @@ public class UserController implements Initializable{
 	@FXML
 	private TableColumn Contri_Pro;//填入此用户贡献的项目
 	@FXML
+	private TableView Contri_Pro_View;
+	@FXML
 	private TableColumn Crea_Pro;//填入此用户创造的项目
-
+	@FXML
+	private TableView Crea_Pro_View;
+	
 	private UserService impl;
 	private List<String> contriList;
 	private List<String> creaList;
@@ -59,9 +67,9 @@ public class UserController implements Initializable{
 		impl = UserServiceImpl.getInstance();
 		UserService us = UserServiceImpl.getInstance();
 		instance=this;
-		
+
 	}
-	
+
 	public void setVO(UserVO vo){
 		if(vo!=null){
 			userNameLabel.setText(vo.getName());
@@ -69,7 +77,7 @@ public class UserController implements Initializable{
 			Company.setText(vo.getLocation()+"/"+vo.getEmail());
 			contriList=impl.getContributeRepos(vo.getName());
 			creaList=impl.getCreateRepos(vo.getName());
-			
+
 //			Eff_num.setText("");
 //			qua_num.setText("");
 //			Tot_num.setText("");

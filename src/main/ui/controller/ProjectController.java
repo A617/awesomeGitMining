@@ -14,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -32,7 +33,8 @@ public class ProjectController implements Initializable {
 
 	@FXML
 	private Label profile;// 用来显示项目的介绍
-
+	@FXML
+	private Button project_back;
 	@FXML
 	private TableView<LanguageVO> languageTable;
 	@FXML

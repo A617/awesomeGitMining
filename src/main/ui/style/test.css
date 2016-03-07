@@ -23,7 +23,7 @@
 	-fx-text-fill: #77DDFF;
 }
 #min{
-	-fx-background-image: url("exitFrameExit.png");
+	-fx-background-image: url("min_normal.png");
 }
 #close{
 	-fx-background-image: url("exitFrameExit.png");

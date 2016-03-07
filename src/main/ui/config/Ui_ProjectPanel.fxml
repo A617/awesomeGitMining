@@ -48,6 +48,7 @@
                   <TableColumn fx:id="forkColumn" prefWidth="165.0" text="forks" />
                </columns>
             </TableView>
+            <Button fx:id="project_back" layoutX="41.0" layoutY="7.0" mnemonicParsing="false" text="back" />
          </children></AnchorPane>
    </children>
 </Group>
