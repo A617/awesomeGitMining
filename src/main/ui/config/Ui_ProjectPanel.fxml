@@ -18,7 +18,7 @@
                   <Font name="System Bold Italic" size="45.0" />
                </font>
             </Label>
-            <Label fx:id="profile" layoutX="38.0" layoutY="88.0" prefHeight="50.0" prefWidth="768.0" text="description" textFill="#615c5c">
+            <Label fx:id="profile" layoutX="38.0" layoutY="88.0" prefHeight="81.0" prefWidth="876.0" text="description" textFill="#615c5c">
                <font>
                   <Font size="13.0" />
                </font>
@@ -43,7 +43,7 @@
                   <TableColumn fx:id="collaboratorColumn" prefWidth="165.0" text="collaborators" />
                </columns>
             </TableView>
-            <TableView fx:id="forkTable" layoutX="723.0" layoutY="227.0" onScrollStarted="#handleScroll" prefHeight="345.0" prefWidth="166.0">
+            <TableView fx:id="forkTable" layoutX="723.0" layoutY="227.0" prefHeight="345.0" prefWidth="166.0">
                <columns>
                   <TableColumn fx:id="forkColumn" prefWidth="165.0" text="forks" />
                </columns>

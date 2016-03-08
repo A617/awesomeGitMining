@@ -11,8 +11,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.util.Callback;
 import main.vo.CollaboratorVO;
 import main.vo.ContributorVO;
 import main.vo.ForkVO;
@@ -56,20 +58,22 @@ public class ProjectController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		instance = this;
-//		Map<String, Integer> m = new HashMap<String, Integer>();
-//		for (int i = 0; i < 100; i++) {
-//			m.put("java"+i,i );
-//		}
-//		ObservableList<LanguageVO> lang = FXCollections.observableArrayList();
-//		for (Entry<String, Integer> entry : m.entrySet()) {
-//			lang.add(new LanguageVO(entry.getKey() + " : " + entry.getValue()));
-//		}
-//		languageTable.setItems(lang);
-//		languageColumn.setCellValueFactory(cellData -> cellData.getValue().getLanguage());
+		// Map<String, Integer> m = new HashMap<String, Integer>();
+		// for (int i = 0; i < 100; i++) {
+		// m.put("java"+i,i );
+		// }
+		// ObservableList<LanguageVO> lang =
+		// FXCollections.observableArrayList();
+		// for (Entry<String, Integer> entry : m.entrySet()) {
+		// lang.add(new LanguageVO(entry.getKey() + " : " + entry.getValue()));
+		// }
+		// languageTable.setItems(lang);
+		// languageColumn.setCellValueFactory(cellData ->
+		// cellData.getValue().getLanguage());
 		project_back.setOnAction((e) -> {
-			if(MainController.getInstance().getSearchId().equals("")){
+			if (MainController.getInstance().getSearchId().equals("")) {
 				MainController.getInstance().initPanel();
-			} else{
+			} else {
 				MainController.getInstance().setPanel("Ui_SearchPanel.fxml");
 			}
 		});
@@ -77,19 +81,28 @@ public class ProjectController implements Initializable {
 
 	public void setVO(RepositoryVO vo) {
 		if (vo != null) {
-			profile.setText(vo.getDescription());
+			// set description
+			String str = vo.getDescription();
+			int size = 150;
+			int line = str.length() / size;
+			String result = "";
+			int i = 0;
+			for (i = 0; i < line; i++) {
+				result += str.substring(i * size, i * size + size) + "\n";
+			}
+			profile.setText(result + str.substring(i * size));
 			projectNameLabel.setText(vo.getFull_name());
-			//languages
+			// languages
 			Map<String, Integer> map = vo.getLanguages();
 			if (map != null) {
 				ObservableList<LanguageVO> lan = FXCollections.observableArrayList();
 				for (Entry<String, Integer> entry : map.entrySet()) {
-					lan.add(new LanguageVO(entry.getKey() + " : " + entry.getValue()+" lines"));
+					lan.add(new LanguageVO(entry.getKey() + " : " + entry.getValue() + " lines"));
 				}
 				languageTable.setItems(lan);
 				languageColumn.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 			}
-			//contributors
+			// contributors
 			if (vo.getContributors_login() != null) {
 				ObservableList<ContributorVO> contributors = FXCollections.observableArrayList();
 				for (String name : vo.getContributors_login()) {
@@ -97,9 +110,9 @@ public class ProjectController implements Initializable {
 					contributors.add(cv);
 				}
 				contributorTable.setItems(contributors);
-				contributorColumn.setCellValueFactory(cellData->cellData.getValue().getProperty());
+				contributorColumn.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 			}
-			//collaborators
+			// collaborators
 			if (vo.getCollaborators_login() != null) {
 				ObservableList<CollaboratorVO> collaborators = FXCollections.observableArrayList();
 				for (String name : vo.getCollaborators_login()) {
@@ -107,9 +120,9 @@ public class ProjectController implements Initializable {
 					collaborators.add(cv);
 				}
 				collaboratorTable.setItems(collaborators);
-				collaboratorColumn.setCellValueFactory(cellData->cellData.getValue().getProperty());
+				collaboratorColumn.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 			}
-			//forks
+			// forks
 			if (vo.getForks_fullname() != null) {
 				ObservableList<ForkVO> forks = FXCollections.observableArrayList();
 				for (String name : vo.getForks_fullname()) {
@@ -117,8 +130,26 @@ public class ProjectController implements Initializable {
 					forks.add(fv);
 				}
 				forkTable.setItems(forks);
-				forkColumn.setCellValueFactory(cellData->cellData.getValue().getProperty());
+				forkColumn.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 			}
 		}
 	}
+	private Callback<TableColumn<LanguageVO, String>, TableCell<LanguageVO, String>> getCustomCellFactory(final String color) {
+        return new Callback<TableColumn<LanguageVO, String>, TableCell<LanguageVO, String>>() {
+			@Override
+			public TableCell<LanguageVO, String> call(TableColumn<LanguageVO, String> arg0) {
+				TableCell<LanguageVO, String> cell = new TableCell<LanguageVO, String>() {
+
+                    @Override
+                    public void updateItem(final String item, boolean empty) {
+                        if (item != null) {
+                            setText(item);
+                            setStyle("-fx-font-family:"+ "\"Microsoft YaHei\"");
+                        }
+                    }
+                };
+                return cell;
+			}
+        };
+    }
 }

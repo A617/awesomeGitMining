@@ -47,9 +47,18 @@ public class SingleRepositoryController implements Initializable {
 			repositoryName.setText(vo.getFull_name());
 			contriNum.setText(vo.getContributors_login().size() + "");
 			forkNum.setText(vo.getForks_count() + "");
-			description.setText(vo.getDescription());
 			starNum.setText(vo.getSubscribers_count() + "");
 			lastUpdated.setText(vo.getUpdated_at());
+			//set description
+			String str = vo.getDescription();
+			int size = 40;
+			int line = str.length()/size;
+			String result = "";
+			int i = 0;
+			for(i = 0;i<line;i++){
+				result+=str.substring(i*size,i*size+size)+"\n";
+			}
+			description.setText(result+str.substring(i*size));
 		}
 	}
 

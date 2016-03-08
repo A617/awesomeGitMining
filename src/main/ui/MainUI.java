@@ -30,14 +30,13 @@ public class MainUI extends Application{
 	 */
 	public void start(Stage primaryStage) throws Exception {
 		this.stage = primaryStage;
-		primaryStage.initStyle(StageStyle.UNDECORATED);
+		primaryStage.initStyle(StageStyle.TRANSPARENT);
 		ui = this;
 
 		common = fxmlLoader.loadPanel("Ui_CommonPart.fxml");
 		stage.setTitle("awesomeGitmining");
 		stage.setMinWidth(1024);
 		stage.setMinHeight(768);
-		//stage.initStyle(StageStyle.TRANSPARENT);
 		scene = new Scene(common);
 
 		stage.setScene(scene);

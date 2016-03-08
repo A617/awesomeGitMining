@@ -20,7 +20,7 @@
               <tabs>
                 <Tab fx:id="tab_general" onSelectionChanged="#selectGeneral" text="  General  ">
                      <content>
-                        <ScrollPane fx:id="generalPane" prefHeight="200.0" prefWidth="200.0" />
+                        <ScrollPane fx:id="generalPane" opacity="0.53" prefHeight="200.0" prefWidth="200.0" />
                      </content>
                 </Tab>
                 <Tab fx:id="tab_star" onSelectionChanged="#selectStar" text="  Star  ">
