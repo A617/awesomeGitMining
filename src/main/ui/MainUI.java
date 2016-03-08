@@ -6,11 +6,11 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.ui.controller.MainController;
@@ -66,11 +66,10 @@ public class MainUI extends Application{
 		Group root = new Group();
 		Scene scene1 = new Scene(root, 300, 250);
 		scene1.getStylesheets().add(MainUI.class.getResource("style/test.css").toExternalForm());
+		
 		Label label = new Label();
 		label.setText("Please wait for a while ~");
-
-		ProgressBar pb = new ProgressBar();
-		pb.setProgress(-1.0f);
+		label.setFont(new Font("Calibri", 30));
 
 		ProgressIndicator pin = new ProgressIndicator();
 		pin.setProgress(-1.0f);
