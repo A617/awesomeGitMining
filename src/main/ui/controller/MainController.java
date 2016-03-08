@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import main.ui.MainUI;
@@ -101,6 +102,13 @@ public class MainController implements Initializable {
 		
 		btn_menu.setOnAction((e) -> {
 			initPanel();
+		});
+		
+		search.setOnKeyPressed((e) -> {
+			if(e.getCode() == KeyCode.ENTER){
+				if (getSearchId() != null && !getSearchId().isEmpty())
+					setPanel("Ui_SearchPanel.fxml");
+			}
 		});
 		
 		minimize.setOnMouseEntered((e) -> {
