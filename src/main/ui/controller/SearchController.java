@@ -146,6 +146,7 @@ public class SearchController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		MainUI.getUI().test1();
 		repositoryService = RepositoryServiceImpl.getInstance();
 		userService = UserServiceImpl.getInstance();
 		userPage = 0;
@@ -155,10 +156,9 @@ public class SearchController implements Initializable {
 		userVO = userService.searchUser(id, userPage);
 		repositoryVO = repositoryService.searchRepository(id, projectPage);
 
-		if(!userVO.isEmpty())
-			initUser(userVO);
-		if(!repositoryVO.isEmpty())
-			initProject(repositoryVO);
+		initUser(userVO);
+		initProject(repositoryVO);
+		MainUI.getUI().test2();
 	}
 
 }
