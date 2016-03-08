@@ -1,6 +1,7 @@
 package main.ui.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -14,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TreeTableColumn;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.UserService;
@@ -33,8 +35,6 @@ public class UserController implements Initializable{
 	@FXML
 	private Label joinTime;
 	@FXML
-	private Label Company;
-	@FXML
 	private Label Eff_num;
 	@FXML
 	private Label qua_num;
@@ -48,7 +48,25 @@ public class UserController implements Initializable{
 	private TableView<Crea_ProVO> Crea_Pro_View;
 	@FXML
 	private TableColumn<Crea_ProVO,String> Crea_Pro;//填入此用户创造的项目
+	@FXML
+	private Label name;//用户的名字
+	@FXML
+	private Label location;
+	@FXML
+	private Label url;
+	@FXML
+	private Label email;
+	@FXML
+	private Label blog;
+	@FXML
+	private Label image;//用户头像
+	@FXML
+	private Label followers;//粉丝数
+	@FXML
+	private Label followings;//关注数
 
+	List<String> text1;
+	List<String> text2;
 	public static UserController getInstance() {
 		if (instance == null) {
 			instance = new UserController();
@@ -72,14 +90,54 @@ public class UserController implements Initializable{
 
 	public void setVO(UserVO vo){
 		if(vo!=null){
-			userNameLabel.setText(vo.getName());
+			userNameLabel.setText(vo.getLogin());
 			joinTime.setText(vo.getCreated_at());
-			Company.setText(vo.getLocation()+"/"+vo.getEmail());
+			name.setText(vo.getName());
+			if(vo.getLocation()!=null){
+				location.setText(vo.getLocation());
+			}
+			if(vo.getEmail()!=null){
+				email.setText(vo.getEmail());
+			}
+			if(vo.getBlog()!=null){
+				blog.setText(vo.getBlog());
+			}
+			if(vo.getHtml_url()!=null){
+				url.setText(vo.getHtml_url());
+//				if(vo.getHtml_url().length()<25){
+//					url.setText(vo.getHtml_url());
+//				}else{
+//					int len=vo.getHtml_url().length();
+//					String text="";
+//					for(int i=0;i<=(len/24);i++){
+//						text+=vo.getHtml_url().substring(24*i,24*(i+1))+"\n";
+//					}url.setText(text);
+//				}
 
+			}
+			if(vo.getAvatar()!=null){
+				image.setGraphic(new ImageView(vo.getAvatar()));
+			}else{
+				MainController.getInstance().labelInit(image, "morentouxiang.jpg");
+			}
+
+			followers.setText(vo.getFollowers()+"");
+			followings.setText(vo.getFollowing()+"");
 			//contributed pros
 			if(vo.getContributions_fullname()!=null){
 				ObservableList<Contri_ProVO> contri_pros = FXCollections.observableArrayList();
 				for (String name : vo.getContributions_fullname()) {
+					Contri_ProVO cv = new Contri_ProVO(name);
+					contri_pros.add(cv);
+				}
+				Contri_Pro_View.setItems(contri_pros);
+				Contri_Pro.setCellValueFactory(cellData->cellData.getValue().getProperty());
+			}else{
+
+				text1=new ArrayList<String>();
+				text1.add("Hasn't contributed any projects.:)");
+				ObservableList<Contri_ProVO> contri_pros = FXCollections.observableArrayList();
+				for (String name : text1) {
 					Contri_ProVO cv = new Contri_ProVO(name);
 					contri_pros.add(cv);
 				}
@@ -92,6 +150,17 @@ public class UserController implements Initializable{
 			if (vo.getRepos_fullname() != null) {
 				ObservableList<Crea_ProVO> crea_pros = FXCollections.observableArrayList();
 				for (String name : vo.getRepos_fullname()) {
+					Crea_ProVO cv = new Crea_ProVO(name);
+					crea_pros.add(cv);
+				}
+				Crea_Pro_View.setItems(crea_pros);
+				Crea_Pro.setCellValueFactory(cellData->cellData.getValue().getProperty());
+			}
+			else{
+				text2=new ArrayList<String>();
+				text2.add("Hasn't created any projects.:)");
+				ObservableList<Crea_ProVO> crea_pros = FXCollections.observableArrayList();
+				for (String name : text2) {
 					Crea_ProVO cv = new Crea_ProVO(name);
 					crea_pros.add(cv);
 				}

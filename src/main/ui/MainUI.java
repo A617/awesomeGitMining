@@ -6,11 +6,11 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.ui.controller.MainController;
@@ -26,7 +26,7 @@ public class MainUI extends Application{
 
 	@Override
 	/**
-	 * initialize all the fxml document
+	 * initialize all the fxml document		
 	 */
 	public void start(Stage primaryStage) throws Exception {
 		this.stage = primaryStage;
@@ -56,26 +56,25 @@ public class MainUI extends Application{
 	public static MainUI getUI(){
 		return ui;
 	}
-	
+
 	public Stage getStage() {
 		return stage;
 	}
-	
+
 	public void test1() {
 		Group root = new Group();
 		Scene scene1 = new Scene(root, 300, 250);
 		scene1.getStylesheets().add(MainUI.class.getResource("style/test.css").toExternalForm());
+		
 		Label label = new Label();
-		label.setText("Please wait for a while ~");
-
-		ProgressBar pb = new ProgressBar();
-		pb.setProgress(-1.0f);
+		label.setText("Please wait for a while");
+		label.setFont(new Font("Calibri", 28));
 
 		ProgressIndicator pin = new ProgressIndicator();
-		pin.setProgress(-1.0f);
+		pin.setProgress(-1.0F);
 
 		HBox hb = new HBox();
-		hb.setSpacing(5);
+		hb.setSpacing(7);
 		hb.setAlignment(Pos.CENTER);
 		hb.getChildren().addAll(pin, label);
 

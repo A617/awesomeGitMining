@@ -18,12 +18,12 @@
                   <Font name="System Bold Italic" size="45.0" />
                </font>
             </Label>
-            <Label fx:id="joinTime" layoutX="38.0" layoutY="84.0" prefHeight="50.0" prefWidth="768.0" text="JoinTime" textFill="#615c5c">
+            <Label fx:id="joinTime" layoutX="301.0" layoutY="129.0" prefHeight="15.0" prefWidth="170.0" text="hasn't given :)" textFill="#615c5c">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <VBox layoutX="38.0" layoutY="238.0">
+            <VBox layoutX="38.0" layoutY="350.0">
                <children>
                   <Label fx:id="Eff_num" layoutX="38.0" layoutY="238.0" text="Eff_num">
                      <font>
@@ -38,7 +38,7 @@
                </children>
             </VBox>
             <VBox layoutX="414.0" layoutY="238.0" />
-            <VBox layoutX="128.0" layoutY="238.0">
+            <VBox layoutX="128.0" layoutY="350.0">
                <children>
                   <Label fx:id="qua_num" layoutX="128.0" layoutY="238.0" text="qua_num">
                      <font>
@@ -52,7 +52,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox layoutX="214.0" layoutY="238.0">
+            <VBox layoutX="214.0" layoutY="350.0">
                <children>
                   <Label fx:id="Tot_num" layoutX="218.0" layoutY="238.0" text="Tot_num">
                      <font>
@@ -67,7 +67,7 @@
                </children>
             </VBox>
             <VBox layoutX="308.0" layoutY="238.0" />
-            <Label layoutX="41.0" layoutY="165.0" text="Evaluation">
+            <Label layoutX="38.0" layoutY="320.0" text="Evaluation">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -87,12 +87,59 @@
                </children>
             </AnchorPane>
             <Button fx:id="user_back" layoutX="41.0" layoutY="7.0" mnemonicParsing="false" text="back" />
+            <Label fx:id="image" layoutX="43.0" layoutY="89.0" prefHeight="170.0" prefWidth="170.0" text="Label" />
+            <Label layoutX="43.0" layoutY="276.0" text="Followers" textFill="#00aaaa">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="128.0" layoutY="276.0" text="Followings" textFill="#00aaaa">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="followers" layoutX="64.0" layoutY="301.0" text="0" textFill="#f596c8">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="followings" layoutX="150.0" layoutY="301.0" text="0" textFill="#f596c8">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="233.0" layoutY="131.0" text="Join Time" textFill="#00aaaa" />
+            <Label layoutX="233.0" layoutY="161.0" text="Location" textFill="#00aaaa" />
+            <Label layoutX="233.0" layoutY="99.0" text="Name" textFill="#00aaaa" />
+            <Label fx:id="name" layoutX="301.0" layoutY="97.0" prefHeight="15.0" prefWidth="170.0" text="hasn't given :)" textFill="#615c5c">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="location" layoutX="301.0" layoutY="159.0" prefHeight="15.0" prefWidth="170.0" text="hasn't given :)" textFill="#615c5c">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="233.0" layoutY="192.0" text="Email" textFill="#00aaaa" />
+            <Label fx:id="email" layoutX="301.0" layoutY="190.0" prefHeight="15.0" prefWidth="170.0" text="hasn't given :)" textFill="#615c5c">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="233.0" layoutY="222.0" text="Blog" textFill="#00aaaa" />
+            <Label fx:id="blog" layoutX="301.0" layoutY="220.0" prefHeight="15.0" prefWidth="170.0" text="hasn't given :)" textFill="#615c5c">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="233.0" layoutY="253.0" text="html url" textFill="#00aaaa" />
+            <Label fx:id="url" layoutX="301.0" layoutY="251.0" prefHeight="15.0" prefWidth="170.0" text="hasn't given :)" textFill="#615c5c">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <Label fx:id="Company" layoutX="30.0" layoutY="110.0" prefHeight="50.0" prefWidth="768.0" text="Company" textFill="#615c5c">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Label>
    </children>
 </Group>
