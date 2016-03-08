@@ -29,6 +29,9 @@ public class RepoDaoImpl implements IRepoDao {
 	
 	/* 项目-语言使用情况 */
 	Map<String, Map<String, Integer>> mapR2L;
+	
+	/* 项目-fork项目 */
+	Map<String, List<String>> mapR2Fork;
 
 	public RepoDaoImpl() {
 		
@@ -46,6 +49,10 @@ public class RepoDaoImpl implements IRepoDao {
 				new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-languageNames.txt",
 				new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-languageCounts.txt");
 
+		this.mapR2Fork = DataInitHelper
+				.getMap(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-forks.txt");
+		
+		
 		System.out.println("RepoDaoImpl initialized!");
 	}
 
@@ -60,7 +67,7 @@ public class RepoDaoImpl implements IRepoDao {
 			po.setCollaborators_login(mapR2Clb.get(name));
 			po.setOwner_name(name.split("/")[0]);
 			// po.setBranches_name(this.getBranches_name(name));
-			// po.setForks_fullname(this.getForks_fullname(name));
+			po.setForks_fullname(mapR2Fork.get(name));
 			po.setLanguages(mapR2L.get(name));
 		}
 		return po;

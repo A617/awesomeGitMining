@@ -31,9 +31,10 @@ public class DataConvertHelper {
 		List<String> repoList = DataInitHelper
 				.getList(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\repo_fullname.txt");
 
-		String path = new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\user-repos.txt";
+		String path = new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\repo-forks.txt";
 
-		dch.getUser2RepocreatedMap(repoList, path);
+		dch.get(path);
+		
 
 	}
 

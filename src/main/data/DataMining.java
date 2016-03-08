@@ -43,10 +43,12 @@ public class DataMining {
 		getDataMapFromGithub(userpath,url,path,"/repos", "full_name");
 		*/
 		
-		String url = "http://www.gitmining.net/api/repository/";
+	//	String url = "http://www.gitmining.net/api/repository/";
 		String path = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-forks.txt";
-		getDataMap(path, "/forks/names");
+	//	getDataMap(path, "/forks/names");
 		
+		getDataMapFromGithub("api.github.com/repos/", path, "/forks", "full_name");
+
 	/*	String path1 = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-languageNames.txt";
 		String path2 = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-languageCounts.txt";
 		getLanguages(path1, path2);
@@ -141,11 +143,18 @@ public class DataMining {
 		BufferedWriter writer = null;
 
 		try {
-			fw = new FileWriter(file);
+			fw = new FileWriter(file, true);
 			writer = new BufferedWriter(fw);
 			
 
+	//		boolean flag= false;
 			for (String repoFull_name : repositories) {
+				
+	//			if(repoFull_name.equals("beppu/squatting"))
+	//				flag = true;
+				
+	//			if(!flag)
+	//				continue;
 
 				writer.write(repoFull_name + ": ");
 
@@ -285,33 +294,14 @@ public class DataMining {
 
 	/**
 	 * 用来从github api获取repo-contributorslist
-	 * @param src 所有key的文件
 	 * @param url 
 	 * @param path 存储路径
 	 * @param param 
 	 * @param key 要获得的字段
 	 */
-	public static void getDataMapFromGithub(String src,String url,String path,  String param,String key) {
+	public static void getDataMapFromGithub(String url,String path,  String param,String key) {
 
-		List<String> list = new ArrayList<String>();
-
-		try {
-			File file = new File(src);
-			if (file.isFile() && file.exists()) { // 判断文件是否存在
-				InputStreamReader read = new InputStreamReader(new FileInputStream(file));
-				BufferedReader bufferedReader = new BufferedReader(read);
-				String lineTxt = null;
-				while ((lineTxt = bufferedReader.readLine()) != null) {
-					list.add(lineTxt);
-				}
-				read.close();
-			} else {
-				System.out.println("找不到指定的文件");
-			}
-		} catch (Exception e) {
-			System.out.println("读取文件内容出错");
-			e.printStackTrace();
-		}
+		List<String> list = readFromRepoTxt();
 
 
 		String page = "";
@@ -323,15 +313,24 @@ public class DataMining {
 		BufferedWriter writer = null;
 
 		try {
-			fw = new FileWriter(file);
+			fw = new FileWriter(file, true);
 			writer = new BufferedWriter(fw);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
+		
+		
+		boolean flag = false;
 		for (String repoFull_name : list) {
 
+			
+			if(repoFull_name.equals("basho/riak"))
+				flag = true;
+			
+			if(!flag)
+				continue;
+			
 			try {
 
 				writer.write(repoFull_name + ": ");
@@ -346,12 +345,12 @@ public class DataMining {
 								repoFull_name + param + "?per_page=100&page=" + page_num);
 					} catch (IOException e) {
 						e.printStackTrace();
-						writer.newLine();
 						writer.flush();
 						break;
 					}
 
 					if (!page.contains("{")) {
+						writer.flush();
 						break;
 					}
 
@@ -361,8 +360,7 @@ public class DataMining {
 
 					// 写本页的所有用户名
 					for (String login : logins) {
-						writer.write(login + " ");
-
+							writer.write(login + " ");
 					}
 
 					page_num++;
