@@ -43,7 +43,7 @@
                   <TableColumn fx:id="collaboratorColumn" prefWidth="165.0" text="collaborators" />
                </columns>
             </TableView>
-            <TableView fx:id="forkTable" layoutX="723.0" layoutY="227.0" prefHeight="345.0" prefWidth="166.0">
+            <TableView fx:id="forkTable" layoutX="723.0" layoutY="227.0" onScrollStarted="#handleScroll" prefHeight="345.0" prefWidth="166.0">
                <columns>
                   <TableColumn fx:id="forkColumn" prefWidth="165.0" text="forks" />
                </columns>

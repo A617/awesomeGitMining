@@ -64,8 +64,8 @@ public class RepositoryServiceImpl implements RepositoryService {
 			try {
 				pos = daoImpl.getAllRepo();
 				if (pos != null) {
-					for (int i = startIndex; i < startIndex + 10; i++) {
-						if (i < pos.size() && i > 0) {
+					for (int i = startIndex * 10; i < startIndex * 10 + 10; i++) {
+						if (i < pos.size() && i >= 0) {
 							Repository po = daoImpl.getRepository(pos.get(i));
 							RepositoryVO vo = (RepositoryVO) Converter.convert("RepositoryVO", po);
 							vos.add(vo);
@@ -99,8 +99,8 @@ public class RepositoryServiceImpl implements RepositoryService {
 		List<RepositoryVO> vos = new ArrayList<RepositoryVO>();
 		List<String> names = LocalHelper.getRepos(path);
 		if (names != null) {
-			for (int i = startIndex; i < 10 + startIndex; i++) {
-				if (i < names.size() && i > 0) {
+			for (int i = startIndex * 10; i < 10 + startIndex * 10; i++) {
+				if (i < names.size() && i >= 0) {
 					Repository po = null;
 					try {
 						po = daoImpl.getRepository(names.get(i));
@@ -114,7 +114,13 @@ public class RepositoryServiceImpl implements RepositoryService {
 				}
 			}
 		}
-		vos = (List<RepositoryVO>) SortHelper.sortReposByStar(vos);
+		if (path.equals("repo_starSort")) {
+			vos = SortHelper.sortReposByStar(vos);
+		}else if(path.equals("repo_forkSort")){
+			vos = SortHelper.sortReposByFork(vos);
+		}else if(path.equals("repo_contriSort")){
+			vos = SortHelper.sortReposByContribute(vos);
+		}
 		return vos;
 	}
 
@@ -124,7 +130,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 		if (daoImpl != null) {
 			List<String> names = daoImpl.searchRepository(id);
 			if (names != null) {
-				for (int i = pageIndex; i < 10 + pageIndex; i++) {
+				for (int i = pageIndex * 10; i < 10 + pageIndex * 10; i++) {
 					if (i < names.size() && i >= 0) {
 						Repository po = null;
 						try {
