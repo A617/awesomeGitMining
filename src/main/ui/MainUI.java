@@ -68,14 +68,14 @@ public class MainUI extends Application{
 		scene1.getStylesheets().add(MainUI.class.getResource("style/test.css").toExternalForm());
 		
 		Label label = new Label();
-		label.setText("Please wait for a while ~");
-		label.setFont(new Font("Calibri", 30));
+		label.setText("Please wait for a while");
+		label.setFont(new Font("Calibri", 28));
 
 		ProgressIndicator pin = new ProgressIndicator();
-		pin.setProgress(-1.0f);
+		pin.setProgress(-1.0F);
 
 		HBox hb = new HBox();
-		hb.setSpacing(5);
+		hb.setSpacing(7);
 		hb.setAlignment(Pos.CENTER);
 		hb.getChildren().addAll(pin, label);
 

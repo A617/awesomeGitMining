@@ -109,9 +109,11 @@ public class SearchController implements Initializable {
 	@FXML
 	public void handleUserPre() {
 		userPage--;
-		if (userPage > 0) {
+		if (userPage >= 0) {
 			userVO = userService.searchUser(id, userPage);
 			initUser(userVO);
+		}else {
+			userPage++;
 		}
 
 	}
@@ -122,15 +124,19 @@ public class SearchController implements Initializable {
 		userVO = userService.searchUser(id, userPage);
 		if (userVO.size() > 0) {
 			initUser(userVO);
+		}else {
+			userPage--;
 		}
 	}
 
 	@FXML
 	public void handleProjectPre() {
 		projectPage--;
-		if (projectPage > 0) {
+		if (projectPage >= 0) {
 			repositoryVO = repositoryService.searchRepository(id, projectPage);
 			initProject(repositoryVO);
+		}else {
+			projectPage++;
 		}
 
 	}
@@ -141,6 +147,8 @@ public class SearchController implements Initializable {
 		repositoryVO = repositoryService.searchRepository(id, projectPage);
 		if (repositoryVO.size() > 0) {
 			initProject(repositoryVO);
+		}else {
+			projectPage--;
 		}
 	}
 
