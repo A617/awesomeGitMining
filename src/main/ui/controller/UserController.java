@@ -90,6 +90,18 @@ public class UserController implements Initializable{
 
 	public void setVO(UserVO vo){
 		if(vo!=null){
+			if(vo.getHtml_url()!=null){
+			String str = vo.getHtml_url();
+			int size = 24;
+			int line = str.length() / size;
+			String result = "";
+			int i = 0;
+			for (i = 0; i < line; i++) {
+				result += str.substring(i * size, i * size + size) + "\n";
+			}
+			url.setText(result + str.substring(i * size));
+			}
+
 			userNameLabel.setText(vo.getLogin());
 			joinTime.setText(vo.getCreated_at());
 			name.setText(vo.getName());
@@ -102,17 +114,7 @@ public class UserController implements Initializable{
 			if(vo.getBlog()!=null){
 				blog.setText(vo.getBlog());
 			}
-			if(vo.getHtml_url()!=null){
-				url.setText(vo.getHtml_url());
-//				if(vo.getHtml_url().length()<25){
-//					url.setText(vo.getHtml_url());
-//				}else{
-//					int len=vo.getHtml_url().length();
-//					String text="";
-//					for(int i=0;i<=(len/24);i++){
-//						text+=vo.getHtml_url().substring(24*i,24*(i+1))+"\n";
-//					}url.setText(text);
-//				}
+
 
 			}
 			if(vo.getAvatar()!=null){
@@ -173,4 +175,4 @@ public class UserController implements Initializable{
 		}
 	}
 
-}
+
