@@ -26,7 +26,7 @@ public class MainUI extends Application{
 
 	@Override
 	/**
-	 * initialize all the fxml document
+	 * initialize all the fxml document		
 	 */
 	public void start(Stage primaryStage) throws Exception {
 		this.stage = primaryStage;
@@ -57,11 +57,11 @@ public class MainUI extends Application{
 	public static MainUI getUI(){
 		return ui;
 	}
-	
+
 	public Stage getStage() {
 		return stage;
 	}
-	
+
 	public void test1() {
 		Group root = new Group();
 		Scene scene1 = new Scene(root, 300, 250);

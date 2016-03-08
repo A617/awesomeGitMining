@@ -3,6 +3,8 @@ package main.vo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.image.Image;
+
 /**
  * @author tj
  * @date 2016年2月29日
@@ -19,6 +21,15 @@ public class UserVO extends VO {
 	private List<String> contributions_fullname; //贡献过的项目
 	private List<String> repos_fullname;		//创建的项目
 	private String created_at;
+	private Image avatar;//头像
+
+	public Image getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(Image avatar) {
+		this.avatar = avatar;
+	}
 
 	public List<String> getContributions_fullname() {
 		return contributions_fullname;
