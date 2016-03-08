@@ -151,7 +151,7 @@ public class HomeController implements Initializable {
 	private void generalPre() {
 		if (tab_general.isSelected()) {
 			generalPage--;
-			if (generalPage > 0) {
+			if (generalPage >= 0) {
 				generalList = repositoryImpl.showRepositories(generalPage);
 				initTabPane(tab_general, new ScrollPane(), new VBox(), generalList);
 			}else{
@@ -176,7 +176,7 @@ public class HomeController implements Initializable {
 	private void starPre() {
 		if (tab_star.isSelected()) {
 			starPage--;
-			if (starPage > 0) {
+			if (starPage >= 0) {
 				starList = repositoryImpl.showReposByStar(starPage);
 				initTabPane(tab_star, new ScrollPane(), new VBox(), starList);
 			}else{
@@ -201,7 +201,7 @@ public class HomeController implements Initializable {
 	private void forkPre() {
 		if (tab_fork.isSelected()) {
 			forkPage--;		
-			if (forkPage > 0) {
+			if (forkPage >= 0) {
 				forkList = repositoryImpl.showReposByFork(forkPage);
 				initTabPane(tab_fork, new ScrollPane(), new VBox(), forkList);
 			}else{
@@ -226,7 +226,7 @@ public class HomeController implements Initializable {
 	private void contriPre() {
 		if (tab_contributor.isSelected()) {
 			contriPage--;
-			if (contriPage > 0) {
+			if (contriPage >= 0) {
 				contriList = repositoryImpl.showReposByContribute(contriPage);
 				initTabPane(tab_contributor, new ScrollPane(), new VBox(), contriList);
 			}else{
