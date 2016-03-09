@@ -38,27 +38,40 @@ public class RepoDaoImpl implements IRepoDao {
 
 	public RepoDaoImpl() {
 
-		String path = DataMining.class.getResource("gitminingApi/").getPath();
+		String path = DataMining.class.getResource("gitmining-api/").getPath();
 		this.repoList = DataInitHelper
 				.getList(path+"repo_fullname.txt");
 
+		System.out.println("repoList");
+		
 		this.mapR2Clb = DataInitHelper
 				.getMap(path+"repo-collaborators.txt");
+		
+		System.out.println("repoList");
 
 		this.mapR2Ctb = DataInitHelper
 				.getMap(path+"repo-contributors.txt");
+		
+		System.out.println("ctb");
 
 		this.mapR2L = DataInitHelper.getLanguages(
 				 path+"repo-languageNames.txt",
 				path+"repo-languageCounts.txt");
+		
+		System.out.println("language");
 
 		this.mapR2Fork = DataInitHelper
 				.getMap(path+"repo-forks.txt");
+		
+		System.out.println("fork");
 
 		this.repoAll = DataInitHelper
 				.getAllReposJson(path + "repo-all.txt");
+		
+		System.out.println("repo");
 
 		System.out.println("RepoDaoImpl initialized!");
+		
 	}
 
 	@Override
