@@ -23,6 +23,7 @@ public class MainUI extends Application {
 	private AnchorPane common;
 	public static Group test;
 	private static MainUI ui;
+	private double opa = 0;
 
 	@Override
 	/**
@@ -37,6 +38,7 @@ public class MainUI extends Application {
 					@Override
 					public void run() {
 						MainController.getInstance().initPanel();
+						
 					}
 				});
 			}
@@ -79,7 +81,8 @@ public class MainUI extends Application {
 
 	public void test1() {
 		Group root = new Group();
-		Scene scene1 = new Scene(root, 300, 250);
+		Scene scene1 = new Scene(root, 1024,768);
+		
 		scene1.getStylesheets().add(MainUI.class.getResource("style/test.css").toExternalForm());
 
 		Label label = new Label();
