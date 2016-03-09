@@ -42,17 +42,43 @@ public class DataMining {
 		String path = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/user-followers.txt";
 		getDataMapFromGithub(userpath,url,path,"/repos", "full_name");
 		*/
+	
 		
-	//	String url = "http://www.gitmining.net/api/repository/";
-		String path = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-forks.txt";
-	//	getDataMap(path, "/forks/names");
+		String url = "http://www.gitmining.net/api/repository/";
+		String path = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-all.txt";
 		
-		getDataMapFromGithub("api.github.com/repos/", path, "/forks", "full_name");
+		List<String> repos = readFromRepoTxt();
+		
+		File file = new File(path);
+		FileWriter fw = null;
+		BufferedWriter writer = null;
 
-	/*	String path1 = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-languageNames.txt";
-		String path2 = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-languageCounts.txt";
-		getLanguages(path1, path2);
-*/
+		try {
+			fw = new FileWriter(file);
+			writer = new BufferedWriter(fw);
+			
+			
+			for(int i=0;i<repos.size();i++){
+				try {
+					String s = HttpRequest.sendGet(url, repos.get(i));
+					writer.write(s);
+					writer.newLine();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+			}
+			
+			writer.flush();
+			
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		
+		
 		long endTime = System.nanoTime();
 		System.out.println("Took " + (endTime - startTime) + " ns");
 	}

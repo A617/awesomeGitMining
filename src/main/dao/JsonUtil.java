@@ -19,20 +19,19 @@ public class JsonUtil {
 	 * 
 	 * @param jsonStr
 	 *            Json数据字符串
-	 * @param cls 
+	 * @param cls
 	 *            转换目标对象类型
 	 * @return
 	 */
-	public static<T> T parseJson2Bean(String jsonStr, Class<T> cls) {
-		
+	public static <T> T parseJson2Bean(String jsonStr, Class<T> cls) {
+
 		JsonConfig config = Config.getConfig(cls);
 		JSONObject jo = JSONObject.fromObject(jsonStr, config);
 		T t = (T) JSONObject.toBean(jo, cls);
-		
+
 		return t;
 	}
 
-	
 	/**
 	 * 将json array解析成对象列表
 	 * 
@@ -42,11 +41,10 @@ public class JsonUtil {
 	 */
 	public static <T> List<T> parseJson2Beanlist(String jsonStr, Class<T> cls) {
 		JsonConfig config = Config.getConfig(cls);
-		JSONArray ja = JSONArray.fromObject(jsonStr,config);
+		JSONArray ja = JSONArray.fromObject(jsonStr, config);
 		return JSONArray.toList(ja, cls);
 	}
-	
-	
+
 	/**
 	 * 解析json map
 	 * 
@@ -55,7 +53,7 @@ public class JsonUtil {
 	 */
 	public static <V> Map<String, V> parseJSON2Map(String jsonStr) {
 		Map<String, V> map = new HashMap<String, V>();
-		
+
 		JSONObject json = JSONObject.fromObject(jsonStr);
 		for (Object k : json.keySet()) {
 			Object v = json.get(k);
@@ -67,27 +65,22 @@ public class JsonUtil {
 			}
 
 		}
-		
+
 		return map;
 	}
-	
-	
+
 	/**
 	 * 获取列表
+	 * 
 	 * @param jsonStr
 	 * @return
 	 */
-	public static List<String> parseJson2List(String jsonStr){
-		
-		List<String> list = (List<String>)JSONArray.toList((JSONArray.fromObject(jsonStr)));
+	public static List<String> parseJson2List(String jsonStr) {
+
+		List<String> list = (List<String>) JSONArray.toList((JSONArray.fromObject(jsonStr)));
 		return list;
 	}
 
-	
-	
-
-
-	
 	/**
 	 * 从json object中提取一个对象
 	 * 
@@ -101,18 +94,16 @@ public class JsonUtil {
 	public static <T> T getObjectfromJson(String jsonStr, Class<T> cls, String id) {
 
 		T des = null;
-		
+
 		JsonConfig config = Config.getConfig(cls);
 		JSONObject src = JSONObject.fromObject(jsonStr);
 
 		Object o = src.get(id);
-		
-		des = (T)JSONObject.toBean(JSONObject.fromObject(o,config), cls);
+
+		des = (T) JSONObject.toBean(JSONObject.fromObject(o, config), cls);
 
 		return des;
 	}
-	
-	
 
 	/**
 	 * 从json object中提取指定属性的元素
@@ -131,8 +122,6 @@ public class JsonUtil {
 		return value;
 	}
 
-	
-	
 	/**
 	 * 从json array中提取所有指定属性的元素
 	 * 
@@ -155,9 +144,6 @@ public class JsonUtil {
 
 		return list;
 	}
-	
-	
-	
 
 	/**
 	 * 从json array中提取所有指定属性的元素
@@ -182,5 +168,7 @@ public class JsonUtil {
 
 		return list;
 	}
+
+	
 
 }

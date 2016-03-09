@@ -91,7 +91,6 @@ public class HttpRequest {
 
 	
 	public static InputStream sendGetforStream(String url) throws IOException {
-		BufferedReader in = null;
 
 		
 	//	System.out.println(url + param);
