@@ -1,7 +1,7 @@
 package main.ui;
 
-
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -16,19 +16,31 @@ import javafx.stage.StageStyle;
 import main.ui.controller.MainController;
 import main.ui.utility.fxmlLoader;
 
-public class MainUI extends Application{
+public class MainUI extends Application {
 
 	private Stage stage;
 	private Scene scene;
-	private AnchorPane common ;
+	private AnchorPane common;
 	public static Group test;
 	private static MainUI ui;
 
 	@Override
 	/**
-	 * initialize all the fxml document		
+	 * initialize all the fxml document
 	 */
 	public void start(Stage primaryStage) throws Exception {
+		
+		Thread thread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						MainController.getInstance().initPanel();
+					}
+				});
+			}
+		});
 		this.stage = primaryStage;
 		primaryStage.initStyle(StageStyle.TRANSPARENT);
 		ui = this;
@@ -41,19 +53,23 @@ public class MainUI extends Application{
 
 		stage.setScene(scene);
 		scene.getStylesheets().add(MainUI.class.getResource("style/test.css").toExternalForm());
-		//添加图标
+		// 添加图标
 		this.stage.getIcons().add(new Image("file:src/main/ui/style/mark.png"));
-		MainController.getInstance().initPanel();
-//		stage.setFullScreen(false);
-//		Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-//		stage.setX(primaryScreenBounds.getMinX());
-//		stage.setY(primaryScreenBounds.getMinY());
-//		stage.setWidth(primaryScreenBounds.getWidth());
-//		stage.setHeight(primaryScreenBounds.getHeight());//全屏 等要用的时候再说
+
 		stage.show();
+		test1();
+		// stage.setFullScreen(false);
+		// Rectangle2D primaryScreenBounds =
+		// Screen.getPrimary().getVisualBounds();
+		// stage.setX(primaryScreenBounds.getMinX());
+		// stage.setY(primaryScreenBounds.getMinY());
+		// stage.setWidth(primaryScreenBounds.getWidth());
+		// stage.setHeight(primaryScreenBounds.getHeight());//全屏 等要用的时候再说
+		thread.start();
+
 	}
 
-	public static MainUI getUI(){
+	public static MainUI getUI() {
 		return ui;
 	}
 
@@ -65,7 +81,7 @@ public class MainUI extends Application{
 		Group root = new Group();
 		Scene scene1 = new Scene(root, 300, 250);
 		scene1.getStylesheets().add(MainUI.class.getResource("style/test.css").toExternalForm());
-		
+
 		Label label = new Label();
 		label.setText("Please wait for a while");
 		label.setFont(new Font("Calibri", 28));

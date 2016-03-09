@@ -1,6 +1,5 @@
 package main.dao.impl;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -13,54 +12,82 @@ import main.dao.entity.Contributor;
 import main.dao.entity.Fork;
 import main.dao.entity.Owner;
 import main.dao.entity.Repository;
+import main.data.DataMining;
 
 public class RepoDaoImpl implements IRepoDao {
 
 	final String gitmining_repo_url = "http://gitmining.net/api/repository/";
 
-	/* 所有项目列表 */
+	/* 所有项目名称列表 */
 	List<String> repoList;
-	
+
 	/* 项目-贡献者 */
 	Map<String, List<String>> mapR2Ctb;
-	
+
 	/* 项目-合作者 */
 	Map<String, List<String>> mapR2Clb;
-	
+
 	/* 项目-语言使用情况 */
 	Map<String, Map<String, Integer>> mapR2L;
-	
+
 	/* 项目-fork项目 */
 	Map<String, List<String>> mapR2Fork;
 
+	/* 所有项目jsonStr列表 */
+	List<String> repoAll;
+
 	public RepoDaoImpl() {
-		
-		
+
+		String path = DataMining.class.getResource("gitmining-api/").getPath();
 		this.repoList = DataInitHelper
-				.getList(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_fullname.txt");
-	
+				.getList(path+"repo_fullname.txt");
+
+		System.out.println("repoList");
+		
 		this.mapR2Clb = DataInitHelper
-				.getMap(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-collaborators.txt");
-	
+				.getMap(path+"repo-collaborators.txt");
+		
+		System.out.println("repoList");
+
 		this.mapR2Ctb = DataInitHelper
-				.getMap(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-contributors.txt");
-	
+				.getMap(path+"repo-contributors.txt");
+		
+		System.out.println("ctb");
+
 		this.mapR2L = DataInitHelper.getLanguages(
-				new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-languageNames.txt",
-				new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-languageCounts.txt");
+				 path+"repo-languageNames.txt",
+				path+"repo-languageCounts.txt");
+		
+		System.out.println("language");
 
 		this.mapR2Fork = DataInitHelper
-				.getMap(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-forks.txt");
+				.getMap(path+"repo-forks.txt");
 		
+		System.out.println("fork");
+
+		this.repoAll = DataInitHelper
+				.getAllReposJson(path + "repo-all.txt");
 		
+		System.out.println("repo");
+
 		System.out.println("RepoDaoImpl initialized!");
+		
 	}
 
 	@Override
 	public Repository getRepository(String name) throws IOException {
 
-		String s = HttpRequest.sendGet(gitmining_repo_url, name);
-		Repository po = JsonUtil.<Repository> parseJson2Bean(s, Repository.class);
+		// String s = HttpRequest.sendGet(gitmining_repo_url, name);
+		// Repository po = JsonUtil.<Repository> parseJson2Bean(s,
+		// Repository.class);
+
+		int index = repoList.indexOf(name);
+
+		if (index == -1) {
+			return null;
+		}
+
+		Repository po = JsonUtil.parseJson2Bean(repoAll.get(index),Repository.class);
 
 		if (po != null) {
 			po.setContributors_login(mapR2Ctb.get(name));
@@ -123,7 +150,8 @@ public class RepoDaoImpl implements IRepoDao {
 
 		return s;
 	}
-
+	
+/*
 	private List<String> getForks_fullname(String name) throws IOException {
 		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/forks/names");
 		return JsonUtil.parseJson2List(s);
@@ -146,7 +174,9 @@ public class RepoDaoImpl implements IRepoDao {
 		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/collaborators/login");
 		return JsonUtil.parseJson2List(s);
 	}
-
+*/
+	
+	
 	@Override
 	public Map<String, Integer> getLanguages(String name) throws IOException {
 		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/languages");

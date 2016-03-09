@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import main.dao.HttpRequest;
 import main.dao.JsonUtil;
 import main.dao.entity.User;
+import main.data.DataMining;
 
 public class UserDaoImpl implements IUserDao {
 
@@ -27,15 +28,15 @@ public class UserDaoImpl implements IUserDao {
 
 	public UserDaoImpl() {
 
+		String path = DataMining.class.getResource("gitmining-api/").getPath();
 		this.userList = DataInitHelper
-				.getList(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/user_login.txt");
+				.getList(path+"user_login.txt");
 		this.mapUser2Collaborations = DataInitHelper
-				.getMap(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/collaborator-repos.txt");
+				.getMap(path+"collaborator-repos.txt");
 		this.mapUser2Contrbutions = DataInitHelper
-				.getMap(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/contributor-repos.txt");
+				.getMap(path+"contributor-repos.txt");
 		this.mapUser2Repos = DataInitHelper
-				.getMap(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/user-repos.txt");
-
+				.getMap(path+"user-repos.txt");
 		
 		System.out.println("UserDaoImpl initialized!");
 	}

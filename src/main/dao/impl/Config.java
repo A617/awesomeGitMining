@@ -44,7 +44,8 @@ public class Config {
 	};
 	
 	private final static String[] repoExcludes = {//只要设置这个数组，指定过滤哪些字段。    
-    		"id",
+			"_id",
+			"id",
     	    "owner",
     	    "private",
     	    "url",

@@ -11,6 +11,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import main.dao.JsonUtil;
+import main.dao.entity.Repository;
+import net.sf.json.JSONArray;
+
 /**
  * 这个类帮助在项目启动时从本地初始化一些数据
  * 
@@ -185,6 +189,54 @@ public class DataInitHelper {
 			System.out.println("找不到指定的文件" + path);
 		}
 		return map;
+	}
+	
+	
+	/**
+	 * 把json array拆分成多个json string
+	 * @param path
+	 * @return
+	 */
+	public static List<String> getAllReposJson(String path){
+		File file = new File(path);
+		List<String> list = null;
+
+		if (file.isFile() && file.exists()) { // 判断文件是否存在
+
+			InputStreamReader read = null;
+			BufferedReader bufferedReader = null;
+			String line;
+			String[] tmpMap;
+			String[] users;
+
+			try {
+				read = new InputStreamReader(new FileInputStream(file));
+				bufferedReader = new BufferedReader(read);
+				list = new ArrayList<>();
+
+				while ((line = bufferedReader.readLine()) != null) { // 读取文件每一行
+
+					list.add(line);
+
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+
+			} finally {
+
+				try {
+					read.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		} else {
+			System.out.println("找不到指定的文件" + path);
+		}
+		return list;
 	}
 
 }
