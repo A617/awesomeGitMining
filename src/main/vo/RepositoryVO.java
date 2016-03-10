@@ -22,8 +22,8 @@ public class RepositoryVO extends VO {
 	public RepositoryVO() {
 
 	}
-	
-	
+
+
 
 	public RepositoryVO(String full_name, int subscribers_count, Map<String, Integer> languages,
 			List<String> contributors_login, List<String> collaborators_login, List<String> forks_fullname,
@@ -116,13 +116,19 @@ public class RepositoryVO extends VO {
 	}
 
 	public String getUpdated_at() {
-		return updated_at;
+		String str=updated_at;
+		if(updated_at.contains("T")){
+			str=str.replace("T", " ");
+		}if(updated_at.contains("Z")){
+			str=str.replace("Z", " ");
+		}
+		return str;
 	}
 
 	public void setUpdated_at(String updated_at) {
 		this.updated_at = updated_at;
 	}
 
-	
+
 
 }

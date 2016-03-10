@@ -48,7 +48,14 @@ public class UserVO extends VO {
 	}
 
 	public String getCreated_at() {
-		return created_at;
+		String str=created_at;
+		if(created_at.contains("T")){
+			str=str.replace("T", " ");
+		}if(created_at.contains("Z")){
+			str=str.replace("Z", " ");
+		}
+		return str;
+
 	}
 
 	public void setCreated_at(String created_at) {

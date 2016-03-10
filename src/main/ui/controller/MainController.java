@@ -45,7 +45,7 @@ public class MainController implements Initializable {
 	public String getSearchId() {
 		return search.getText();
 	}
-	
+
 	public void initSearchId() {
 		search.setPromptText("search what you want...");
 		search.setText("");
@@ -60,7 +60,7 @@ public class MainController implements Initializable {
 
 	/**
 	 * the common method to change the current panel
-	 * 
+	 *
 	 * @param panel
 	 */
 	public void setPanel(String name) {
@@ -82,15 +82,15 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		instance = this;
-		
+
 		Tooltip toolTip = new Tooltip();
 		toolTip.setText("enter the keyword of what you want to search");
 		search.setTooltip(toolTip);
-		
+
 		buttonInit();
 		logoInit();
 	}
-	
+
 	private void buttonInit() {
 		/*
 		 * use lambda expression to refactor code
@@ -99,18 +99,18 @@ public class MainController implements Initializable {
 			if (getSearchId() != null && !getSearchId().isEmpty())
 				setPanel("Ui_SearchPanel.fxml");
 		});
-		
+
 		btn_menu.setOnAction((e) -> {
 			initPanel();
 		});
-		
+
 		search.setOnKeyPressed((e) -> {
 			if(e.getCode() == KeyCode.ENTER){
 				if (getSearchId() != null && !getSearchId().isEmpty())
 					setPanel("Ui_SearchPanel.fxml");
 			}
 		});
-		
+
 		minimize.setOnMouseEntered((e) -> {
 			labelInit(minimize,"min_hover.png");
 		});
@@ -123,7 +123,7 @@ public class MainController implements Initializable {
 		minimize.setOnMouseReleased((e) -> {
 			MainUI.getUI().getStage().setIconified(true);
 		});
-		
+
 		exit.setOnMouseEntered((e) -> {
 			labelInit(exit,"exitFrameExit.png");
 		});
@@ -136,7 +136,7 @@ public class MainController implements Initializable {
 		exit.setOnMouseReleased((e) -> {
 			System.exit(0);
 		});
-		
+
 	}
 
 	private void logoInit() {
@@ -146,10 +146,18 @@ public class MainController implements Initializable {
 		labelInit(minimize, "min_normal.png");
 		labelInit(exit, "exitFrameExit.png");
 	}
-	
+
 	public void labelInit(Label label,String path) {
 		Image image = new Image(MainUI.class.getResourceAsStream("style/"+path));
 		label.setGraphic(new ImageView(image));
+	}
+	public String dateConvert(String str){
+		if(str.contains("T")||str.contains("Z")){
+			str.replace("T", " ");
+			str.replace("Z", " ");
+		}
+		return str;
+
 	}
 
 }
