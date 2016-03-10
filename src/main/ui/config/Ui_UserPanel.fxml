@@ -134,7 +134,7 @@
                </font>
             </Label>
             <Label layoutX="233.0" layoutY="253.0" text="html url" textFill="#00aaaa" />
-            <Label fx:id="url" layoutX="301.0" layoutY="251.0" prefHeight="15.0" prefWidth="170.0" text="hasn't given :)" textFill="#615c5c">
+            <Label fx:id="url" layoutX="301.0" layoutY="251.0" lineSpacing="1.0" prefHeight="30.0" prefWidth="170.0" text="hasn't given :)" textFill="#615c5c">
                <font>
                   <Font size="13.0" />
                </font>
