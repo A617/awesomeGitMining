@@ -151,13 +151,6 @@ public class MainController implements Initializable {
 		Image image = new Image(MainUI.class.getResourceAsStream("style/"+path));
 		label.setGraphic(new ImageView(image));
 	}
-	public String dateConvert(String str){
-		if(str.contains("T")||str.contains("Z")){
-			str.replace("T", " ");
-			str.replace("Z", " ");
-		}
-		return str;
 
-	}
 
 }
