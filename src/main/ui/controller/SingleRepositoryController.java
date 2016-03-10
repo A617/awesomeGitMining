@@ -25,7 +25,7 @@ public class SingleRepositoryController implements Initializable {
 	private Label description;
 	@FXML
 	private Label starNum;
-	
+
 	private RepositoryVO vo;
 
 	@Override
@@ -38,7 +38,7 @@ public class SingleRepositoryController implements Initializable {
 
 	/**
 	 * set text on the labels
-	 * 
+	 *
 	 * @param vo
 	 */
 	public void setVO(RepositoryVO vo) {
@@ -48,7 +48,7 @@ public class SingleRepositoryController implements Initializable {
 			contriNum.setText(vo.getContributors_login().size() + "");
 			forkNum.setText(vo.getForks_count() + "");
 			starNum.setText(vo.getSubscribers_count() + "");
-			lastUpdated.setText(vo.getUpdated_at());
+			lastUpdated.setText(vo.getUpdated_at()+"");
 			//set description
 			String str = vo.getDescription();
 			int size = 40;

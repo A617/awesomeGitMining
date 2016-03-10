@@ -36,7 +36,7 @@ public class MainUI extends Application {
 	 * initialize all the fxml document
 	 */
 	public void start(Stage primaryStage) throws Exception {
-		
+
 		Thread thread = new Thread(new Runnable() {
 			@Override
 			public void run() {

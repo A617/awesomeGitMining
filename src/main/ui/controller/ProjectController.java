@@ -58,18 +58,6 @@ public class ProjectController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		instance = this;
-		// Map<String, Integer> m = new HashMap<String, Integer>();
-		// for (int i = 0; i < 100; i++) {
-		// m.put("java"+i,i );
-		// }
-		// ObservableList<LanguageVO> lang =
-		// FXCollections.observableArrayList();
-		// for (Entry<String, Integer> entry : m.entrySet()) {
-		// lang.add(new LanguageVO(entry.getKey() + " : " + entry.getValue()));
-		// }
-		// languageTable.setItems(lang);
-		// languageColumn.setCellValueFactory(cellData ->
-		// cellData.getValue().getLanguage());
 		project_back.setOnAction((e) -> {
 			if (MainController.getInstance().getSearchId().equals("")) {
 				MainController.getInstance().initPanel();
@@ -83,7 +71,7 @@ public class ProjectController implements Initializable {
 		if (vo != null) {
 			// set description
 			String str = vo.getDescription();
-			int size = 150;
+			int size = 100;
 			int line = str.length() / size;
 			String result = "";
 			int i = 0;
