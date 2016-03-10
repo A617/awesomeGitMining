@@ -2,6 +2,8 @@ package main.ui;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Task;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -13,6 +15,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import main.business.impl.repository.RepositoryServiceImpl;
+import main.business.impl.user.UserServiceImpl;
+import main.business.service.RepositoryService;
+import main.ui.controller.HomeController;
 import main.ui.controller.MainController;
 import main.ui.utility.fxmlLoader;
 
@@ -58,8 +64,63 @@ public class MainUI extends Application {
 		// 添加图标
 		this.stage.getIcons().add(new Image("file:src/main/ui/style/mark.png"));
 
+		Group root = new Group();
+		Scene scene1 = new Scene(root, 1024,768);
+		
+		scene1.getStylesheets().add(MainUI.class.getResource("style/test.css").toExternalForm());
+
+		Label label = new Label();
+		label.setText("Welcome to Gitmining.");
+		label.setFont(new Font("Calibri", 28));
+
+		ProgressIndicator pin = new ProgressIndicator(-1);
+
+		HBox hb = new HBox();
+		hb.setSpacing(7);
+		hb.setAlignment(Pos.CENTER);
+		hb.getChildren().addAll(pin, label);
+
+		scene1.setRoot(hb);
+		stage.setScene(scene1);
+		
 		stage.show();
-		test1();
+	//	thread.start();
+
+		
+		
+		Task<Void> task = new Task<Void>() {
+
+			@Override
+			protected Void call() throws Exception {
+				
+				
+				HomeController.getInstance();
+				
+				
+				updateProgress(1,1);
+				
+				
+				
+				return null;
+			}
+
+		};
+
+		
+		
+		pin.progressProperty().bind(task.progressProperty());
+		Thread th = new Thread(task);
+		th.start();
+		
+		pin.progressProperty().addListener((ObservableValue<? extends Number> ov, Number old_val,   
+	            Number new_val) -> {  
+	               if(new_val.intValue() == 1){
+	            	   test2();
+	               MainController.getInstance().initPanel();
+	               }
+	        }); 
+		
+		
 		// stage.setFullScreen(false);
 		// Rectangle2D primaryScreenBounds =
 		// Screen.getPrimary().getVisualBounds();
@@ -67,8 +128,6 @@ public class MainUI extends Application {
 		// stage.setY(primaryScreenBounds.getMinY());
 		// stage.setWidth(primaryScreenBounds.getWidth());
 		// stage.setHeight(primaryScreenBounds.getHeight());//全屏 等要用的时候再说
-		thread.start();
-
 	}
 
 	public static MainUI getUI() {
@@ -80,25 +139,7 @@ public class MainUI extends Application {
 	}
 
 	public void test1() {
-		Group root = new Group();
-		Scene scene1 = new Scene(root, 1024,768);
 		
-		scene1.getStylesheets().add(MainUI.class.getResource("style/test.css").toExternalForm());
-
-		Label label = new Label();
-		label.setText("Please wait for a while");
-		label.setFont(new Font("Calibri", 28));
-
-		ProgressIndicator pin = new ProgressIndicator();
-		pin.setProgress(-1.0F);
-
-		HBox hb = new HBox();
-		hb.setSpacing(7);
-		hb.setAlignment(Pos.CENTER);
-		hb.getChildren().addAll(pin, label);
-
-		scene1.setRoot(hb);
-		stage.setScene(scene1);
 	}
 
 	public void test2() {

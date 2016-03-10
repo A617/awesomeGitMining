@@ -59,10 +59,10 @@ public class HomeController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		MainUI.getUI().test1();
+//		MainUI.getUI().test1();
 		MainController.getInstance().initSearchId();
 		selectGeneral();
-		MainUI.getUI().test2();
+//		MainUI.getUI().test2();
 	}
 
 	public void selectGeneral() {

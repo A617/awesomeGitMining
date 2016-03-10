@@ -38,7 +38,7 @@ public class UserDaoImpl implements IUserDao {
 		this.mapUser2Repos = DataInitHelper
 				.getMap(path+"user-repos.txt");
 		
-		System.out.println("UserDaoImpl initialized!");
+//		System.out.println("UserDaoImpl initialized!");
 	}
 
 	@Override

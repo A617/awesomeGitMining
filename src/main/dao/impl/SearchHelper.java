@@ -24,7 +24,6 @@ public class SearchHelper {
 				Matcher matcher = pattern.matcher(str);
 				if(matcher.find()){
 					result.add(str);
-					System.out.println(str);
 				}
 				
 			}
