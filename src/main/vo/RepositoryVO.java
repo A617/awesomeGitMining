@@ -18,16 +18,15 @@ public class RepositoryVO extends VO {
 	private String clone_url;// 项目主页
 	private String description;// 项目描述信息
 	private String updated_at;
+	private int open_issues;
 
 	public RepositoryVO() {
 
 	}
 
-
-
 	public RepositoryVO(String full_name, int subscribers_count, Map<String, Integer> languages,
 			List<String> contributors_login, List<String> collaborators_login, List<String> forks_fullname,
-			int forks_count, String clone_url, String description, String updated_at) {
+			int forks_count, String clone_url, String description, String updated_at,int open_issues) {
 		super();
 		this.full_name = full_name;
 		this.subscribers_count = subscribers_count;
@@ -39,9 +38,16 @@ public class RepositoryVO extends VO {
 		this.clone_url = clone_url;
 		this.description = description;
 		this.updated_at = updated_at;
+		this.open_issues = open_issues;
 	}
 
+	public int getOpen_issues() {
+		return open_issues;
+	}
 
+	public void setOpen_issues(int open_issues) {
+		this.open_issues = open_issues;
+	}
 
 	public String getFull_name() {
 		return full_name;
@@ -116,11 +122,12 @@ public class RepositoryVO extends VO {
 	}
 
 	public String getUpdated_at() {
-		String str=updated_at;
-		if(updated_at.contains("T")){
-			str=str.replace("T", " ");
-		}if(updated_at.contains("Z")){
-			str=str.replace("Z", " ");
+		String str = updated_at;
+		if (updated_at.contains("T")) {
+			str = str.replace("T", " ");
+		}
+		if (updated_at.contains("Z")) {
+			str = str.replace("Z", " ");
 		}
 		return str;
 	}
@@ -128,7 +135,5 @@ public class RepositoryVO extends VO {
 	public void setUpdated_at(String updated_at) {
 		this.updated_at = updated_at;
 	}
-
-
 
 }

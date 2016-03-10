@@ -26,7 +26,12 @@ public class ProjectController implements Initializable {
 
 	@FXML
 	private Label projectNameLabel;// 用来显示项目的名字
-
+	@FXML
+	private Label urlLabel;
+	@FXML
+	private Label starNum;
+	@FXML
+	private Label openNum;
 	@FXML
 	private Label profile;// 用来显示项目的介绍
 	@FXML
@@ -80,6 +85,9 @@ public class ProjectController implements Initializable {
 			}
 			profile.setText(result + str.substring(i * size));
 			projectNameLabel.setText(vo.getFull_name());
+			urlLabel.setText("git url: "+vo.getClone_url());
+			starNum.setText(vo.getSubscribers_count()+"");
+			openNum.setText(vo.getOpen_issues()+"");
 			// languages
 			Map<String, Integer> map = vo.getLanguages();
 			if (map != null) {

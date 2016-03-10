@@ -18,7 +18,7 @@
                   <Font name="System Bold Italic" size="45.0" />
                </font>
             </Label>
-            <Label fx:id="profile" layoutX="38.0" layoutY="88.0" prefHeight="81.0" prefWidth="876.0" text="description" textFill="#615c5c">
+            <Label fx:id="profile" layoutX="38.0" layoutY="88.0" prefHeight="81.0" prefWidth="643.0" text="description" textFill="#615c5c">
                <font>
                   <Font size="13.0" />
                </font>
@@ -49,6 +49,19 @@
                </columns>
             </TableView>
             <Button fx:id="project_back" layoutX="41.0" layoutY="7.0" mnemonicParsing="false" text="back" />
+            <VBox layoutX="692.0" layoutY="102.0">
+               <children>
+                  <Label fx:id="starNum" layoutX="692.0" layoutY="102.0" text="starNum" />
+                  <Label layoutX="707.0" layoutY="135.0" text="stars" />
+               </children>
+            </VBox>
+            <VBox layoutX="793.0" layoutY="102.0">
+               <children>
+                  <Label fx:id="openNum" layoutX="793.0" layoutY="102.0" text="open_issues" />
+                  <Label layoutX="815.0" layoutY="135.0" text="issues" />
+               </children>
+            </VBox>
+            <Label fx:id="urlLabel" layoutX="41.0" layoutY="199.0" prefHeight="20.0" prefWidth="583.0" text="git url:" />
          </children></AnchorPane>
    </children>
 </Group>
