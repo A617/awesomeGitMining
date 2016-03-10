@@ -91,6 +91,7 @@ public class UserController implements Initializable{
 	public void setVO(UserVO vo){
 		if(vo!=null){
 			if(vo.getHtml_url()!=null){
+				//String str="123456789012345678901234567890";
 			String str = vo.getHtml_url();
 			int size = 24;
 			int line = str.length() / size;
