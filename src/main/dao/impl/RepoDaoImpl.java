@@ -37,8 +37,10 @@ public class RepoDaoImpl implements IRepoDao {
 	List<String> repoAll;
 
 	public RepoDaoImpl() {
+		
 
-		String path = DataMining.class.getResource("gitmining-api/").getPath();
+
+		String path = "src/main/data/gitmining-api/";
 		this.repoList = DataInitHelper
 				.getList(path+"repo_fullname.txt");
 
@@ -78,7 +80,7 @@ public class RepoDaoImpl implements IRepoDao {
 			return null;
 		}
 
-		Repository po = JsonUtil.parseJson2Bean(repoAll.get(index),Repository.class);
+		Repository po = JsonUtil.parseJson2Bean(repoAll.get(index), Repository.class);
 
 		if (po != null) {
 			po.setContributors_login(mapR2Ctb.get(name));
@@ -134,6 +136,13 @@ public class RepoDaoImpl implements IRepoDao {
 		String s = HttpRequest.sendGet(gitmining_repo_url, name);
 
 		return JsonUtil.getObjectfromJson(s, Owner.class, "owner");
+	}
+
+
+	private String getOwner_name(String name) throws IOException {
+		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/item/owner_name");
+
+		return s;
 	}
 
 	

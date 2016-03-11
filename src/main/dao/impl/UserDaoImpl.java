@@ -29,13 +29,15 @@ public class UserDaoImpl implements IUserDao {
 
 	public UserDaoImpl() {
 
-		String path = DataMining.class.getResource("gitmining-api/").getPath();
+
+
+		String path = "src/main/data/gitmining-api/";
 		this.userList = DataInitHelper.getList(path + "user_login.txt");
 		this.locationList = DataInitHelper.getList(path + "user_brief.txt");
 		this.mapUser2Collaborations = DataInitHelper.getMap(path + "collaborator-repos.txt");
 		this.mapUser2Contrbutions = DataInitHelper.getMap(path + "contributor-repos.txt");
 		this.mapUser2Repos = DataInitHelper.getMap(path + "user-repos.txt");
-
+		
 		System.out.println("UserDaoImpl initialized!");
 	}
 
