@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import main.business.impl.user.UserServiceImpl;
+import main.business.service.UserService;
 import main.vo.UserVO;
 
 public class SingleUserController implements Initializable {
@@ -15,13 +17,17 @@ public class SingleUserController implements Initializable {
 	@FXML
 	private Label company;
 
+	private UserService userImpl;
 	private UserVO vo;
+	private UserVO fullVO;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		userImpl = UserServiceImpl.getInstance();
 		userName.setOnMouseClicked((e) -> {
 			MainController.getInstance().setGroup("Ui_UserPanel.fxml");
-			UserController.getInstance().setVO(vo);
+			fullVO = userImpl.searchUserInfo(vo.getLogin());
+			UserController.getInstance().setVO(fullVO);
 		});
 	}
 

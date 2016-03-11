@@ -29,26 +29,13 @@ public class MainUI extends Application {
 	private AnchorPane common;
 	public static Group test;
 	private static MainUI ui;
-	private double opa = 0;
-
+	
 	@Override
 	/**
 	 * initialize all the fxml document
 	 */
 	public void start(Stage primaryStage) throws Exception {
 
-		Thread thread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						MainController.getInstance().initPanel();
-						
-					}
-				});
-			}
-		});
 		this.stage = primaryStage;
 		primaryStage.initStyle(StageStyle.TRANSPARENT);
 		ui = this;
@@ -84,30 +71,21 @@ public class MainUI extends Application {
 		stage.setScene(scene1);
 		
 		stage.show();
-	//	thread.start();
-
-		
-		
+	
 		Task<Void> task = new Task<Void>() {
 
 			@Override
 			protected Void call() throws Exception {
 				
-				
 				HomeController.getInstance();
 				
-				
 				updateProgress(1,1);
-				
-				
-				
+
 				return null;
 			}
 
 		};
 
-		
-		
 		pin.progressProperty().bind(task.progressProperty());
 		Thread th = new Thread(task);
 		th.start();
@@ -136,10 +114,6 @@ public class MainUI extends Application {
 
 	public Stage getStage() {
 		return stage;
-	}
-
-	public void test1() {
-		
 	}
 
 	public void test2() {

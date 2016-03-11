@@ -154,7 +154,6 @@ public class SearchController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		MainUI.getUI().test1();
 		repositoryService = RepositoryServiceImpl.getInstance();
 		userService = UserServiceImpl.getInstance();
 		userPage = 0;

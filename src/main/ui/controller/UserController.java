@@ -160,8 +160,5 @@ public class UserController implements Initializable {
 			Crea_Pro_View.setItems(crea_pros);
 			Crea_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		}
-		// Eff_num.setText("");
-		// qua_num.setText("");
-		// Tot_num.setText("");
 	}
 }
