@@ -15,12 +15,8 @@ public interface RepositoryService {
 	 * @return a list of @see RepositoryVO
 	 */
 	public abstract List<RepositoryVO> searchRepository(String id);
-	/**
-	 * 
-	 * @param id
-	 * @return the name of the repository
-	 */
-	public abstract List<String> searchRepositoryInfo(String id,int pageIndex);
+	
+	public abstract RepositoryVO searchRepositoryInfo(String id);
 	/**
 	 * 
 	 * @param id
