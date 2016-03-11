@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.image.Image;
 import main.business.dto.Converter;
 import main.business.service.UserService;
 import main.dao.DataFactory;
@@ -63,6 +64,12 @@ public class UserServiceImpl implements UserService {
 		}
 		if (po != null) {
 			vo = (UserVO) Converter.convert("UserVO", po);
+			try {
+				vo.setAvatar(daoImpl.getAvatar(po.getAvatar_url()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return vo;
 	}
@@ -132,6 +139,7 @@ public class UserServiceImpl implements UserService {
 		}
 		return result;
 	}
+
 
 	
 }

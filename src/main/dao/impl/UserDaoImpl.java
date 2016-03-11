@@ -63,8 +63,8 @@ public class UserDaoImpl implements IUserDao {
 	public Image getAvatar(String url) throws IOException {
 
 		InputStream is = HttpRequest.sendGetforStream(url);
-
-		return is == null ? null : new Image(is, 50, 50, true, false);
+		
+		return is == null ? null : new Image(is, 120, 120, true, false);
 	}
 
 	@Override
