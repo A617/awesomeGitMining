@@ -20,7 +20,7 @@ public interface RepositoryService {
 	 * @param id
 	 * @return the name of the repository
 	 */
-	public abstract List<String> searchRepositoryInfo(String id,int pageIndex);
+	public abstract RepositoryVO searchRepositoryInfo(String id);
 	/**
 	 * 
 	 * @param id

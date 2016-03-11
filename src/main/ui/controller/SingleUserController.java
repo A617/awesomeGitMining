@@ -26,7 +26,7 @@ public class SingleUserController implements Initializable {
 		userImpl = UserServiceImpl.getInstance();
 		userName.setOnMouseClicked((e) -> {
 			MainController.getInstance().setGroup("Ui_UserPanel.fxml");
-			fullVO = userImpl.searchUserInfo(vo.getLogin());
+			fullVO = userImpl.getUser(vo.getLogin());
 			UserController.getInstance().setVO(fullVO);
 		});
 	}
