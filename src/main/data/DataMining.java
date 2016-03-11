@@ -13,6 +13,7 @@ import java.util.Map;
 
 import main.dao.HttpRequest;
 import main.dao.JsonUtil;
+import net.sf.json.JSONException;
 
 public class DataMining {
 	static String repopath = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_fullname.txt";
@@ -22,69 +23,16 @@ public class DataMining {
 
 		long startTime = System.nanoTime();
 
-		// String user_url =
-		// "https://api.github.com/search/users?q=followers:>=0&per_page=100";
-		// String user_path = new
-		// File("").getAbsolutePath()+"/src/main/user.txt";
+		String url = "http://www.gitmining.net/api/user/";
+		String path = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/user-brief.txt";
 
-		/*
-		 * String repo_url =
-		 * "api.github.com/search/repositories?q=stars:>=0&per_page=100";
-		 * 
-		 * String repo_path = new File("").getAbsolutePath() +
-		 * "/src/main/repository.txt";
-		 * 
-		 * getData(repo_url, repo_path, "full_name");
-		 */
-/*
-		String param = "/followers";
-		String url = "api.github.com/users/";
-		String path = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/user-followers.txt";
-		getDataMapFromGithub(userpath,url,path,"/repos", "full_name");
-		*/
-	
-		
-		String url = "http://www.gitmining.net/api/repository/";
-		String path = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-all.txt";
-		
-		List<String> repos = readFromRepoTxt();
-		
-		File file = new File(path);
-		FileWriter fw = null;
-		BufferedWriter writer = null;
+		getDataFromDtaMining(url, path, "location");
 
-		try {
-			fw = new FileWriter(file);
-			writer = new BufferedWriter(fw);
-			
-			
-			for(int i=0;i<repos.size();i++){
-				try {
-					String s = HttpRequest.sendGet(url, repos.get(i));
-					writer.write(s);
-					writer.newLine();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				
-			}
-			
-			writer.flush();
-			
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		
-		
-		
 		long endTime = System.nanoTime();
 		System.out.println("Took " + (endTime - startTime) + " ns");
 	}
 
 	/**
-	 * 从官方api获取某一关键字的所有值（自动换页），分行记录在文本文件 用来获取所有项目名、用户名列表
 	 * 
 	 * @param url
 	 *            下载路径
@@ -93,7 +41,7 @@ public class DataMining {
 	 * @param key
 	 *            要查找的关键字
 	 */
-	public static void getData(String url, String path, String key) {
+	public static void getDataFromGithub(String url, String path, String key) {
 
 		String page = "";
 		try {
@@ -147,6 +95,61 @@ public class DataMining {
 		}
 	}
 
+	public static void getDataFromDtaMining(String url, String path, String key) {
+
+		List<String> repositories = readFromRepoTxt();
+		System.out.println(repositories.size());
+
+		String page = "";
+
+		List<String> logins;
+
+		File file = new File(path);
+		FileWriter fw = null;
+		BufferedWriter writer = null;
+
+		try {
+			fw = new FileWriter(file);
+			writer = new BufferedWriter(fw);
+
+			// boolean flag= false;
+			for (String repoFull_name : repositories) {
+
+				// if(repoFull_name.equals("beppu/squatting"))
+				// flag = true;
+
+				// if(!flag)
+				// continue;
+
+
+				try {
+					page = HttpRequest.sendGet(url, repoFull_name);
+				} catch (IOException e) {
+					e.printStackTrace();
+					writer.newLine();
+					writer.flush();
+					continue;
+				}
+
+				try{
+				writer.write(JsonUtil.getStringfromJson(page, key));
+				}catch(JSONException e){
+					writer.newLine();
+					writer.flush();
+					e.printStackTrace();
+					continue;
+				}
+				
+				writer.newLine();
+				writer.flush();
+			}
+			writer.flush();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+
 	/**
 	 * 用来从gitmining api获取repo-contributorslist
 	 * 
@@ -171,16 +174,15 @@ public class DataMining {
 		try {
 			fw = new FileWriter(file, true);
 			writer = new BufferedWriter(fw);
-			
 
-	//		boolean flag= false;
+			// boolean flag= false;
 			for (String repoFull_name : repositories) {
-				
-	//			if(repoFull_name.equals("beppu/squatting"))
-	//				flag = true;
-				
-	//			if(!flag)
-	//				continue;
+
+				// if(repoFull_name.equals("beppu/squatting"))
+				// flag = true;
+
+				// if(!flag)
+				// continue;
 
 				writer.write(repoFull_name + ": ");
 
@@ -192,7 +194,6 @@ public class DataMining {
 					writer.flush();
 					continue;
 				}
-
 
 				logins = JsonUtil.parseJson2List(page);
 
@@ -214,18 +215,17 @@ public class DataMining {
 		}
 
 	}
-	
-	
-	
+
 	/**
 	 * 用来读取项目列表
+	 * 
 	 * @return
 	 */
-	private static List<String> readFromRepoTxt(){
+	private static List<String> readFromRepoTxt() {
 		List<String> repositories = new ArrayList<String>();
 
 		try {
-			File file = new File(repopath);
+			File file = new File(userpath);
 			if (file.isFile() && file.exists()) { // 判断文件是否存在
 				InputStreamReader read = new InputStreamReader(new FileInputStream(file));
 				BufferedReader bufferedReader = new BufferedReader(read);
@@ -241,16 +241,18 @@ public class DataMining {
 			System.out.println("读取文件内容出错");
 			e.printStackTrace();
 		}
-		
+	
 		return repositories;
 	}
-	
+
 	/**
 	 * 
-	 * @param path1 第一个文件地址，用来储存每个项目用了哪些语言
-	 * @param path2 第二个文件地址，用来储存每个项目用的语言的数目
+	 * @param path1
+	 *            第一个文件地址，用来储存每个项目用了哪些语言
+	 * @param path2
+	 *            第二个文件地址，用来储存每个项目用的语言的数目
 	 */
-	public static void getLanguages(String path1,String path2) {
+	public static void getLanguages(String path1, String path2) {
 
 		List<String> repositories = readFromRepoTxt();
 
@@ -258,7 +260,7 @@ public class DataMining {
 
 		String page = "";
 
-		Map<String,Integer> map;
+		Map<String, Integer> map;
 
 		File file1 = new File(path1);
 		File file2 = new File(path2);
@@ -270,10 +272,9 @@ public class DataMining {
 		try {
 			fw1 = new FileWriter(file1);
 			writer1 = new BufferedWriter(fw1);
-			
+
 			fw2 = new FileWriter(file2);
 			writer2 = new BufferedWriter(fw2);
-			
 
 			for (String repoFull_name : repositories) {
 
@@ -291,7 +292,6 @@ public class DataMining {
 					continue;
 				}
 
-
 				map = JsonUtil.parseJSON2Map(page);
 				map.remove("fn");
 
@@ -299,7 +299,7 @@ public class DataMining {
 				for (String key : map.keySet()) {
 					int count = map.get(key);
 					writer1.write(key + ",");
-					writer2.write(count+ ",");
+					writer2.write(count + ",");
 				}
 
 				writer1.newLine();
@@ -315,20 +315,20 @@ public class DataMining {
 		}
 
 	}
-	
-	
 
 	/**
 	 * 用来从github api获取repo-contributorslist
-	 * @param url 
-	 * @param path 存储路径
-	 * @param param 
-	 * @param key 要获得的字段
+	 * 
+	 * @param url
+	 * @param path
+	 *            存储路径
+	 * @param param
+	 * @param key
+	 *            要获得的字段
 	 */
-	public static void getDataMapFromGithub(String url,String path,  String param,String key) {
+	public static void getDataMapFromGithub(String url, String path, String param, String key) {
 
 		List<String> list = readFromRepoTxt();
-
 
 		String page = "";
 
@@ -345,18 +345,16 @@ public class DataMining {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		
+
 		boolean flag = false;
 		for (String repoFull_name : list) {
 
-			
-			if(repoFull_name.equals("basho/riak"))
+			if (repoFull_name.equals("basho/riak"))
 				flag = true;
-			
-			if(!flag)
+
+			if (!flag)
 				continue;
-			
+
 			try {
 
 				writer.write(repoFull_name + ": ");
@@ -386,7 +384,7 @@ public class DataMining {
 
 					// 写本页的所有用户名
 					for (String login : logins) {
-							writer.write(login + " ");
+						writer.write(login + " ");
 					}
 
 					page_num++;

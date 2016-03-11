@@ -42,44 +42,35 @@ public class RepoDaoImpl implements IRepoDao {
 		this.repoList = DataInitHelper
 				.getList(path+"repo_fullname.txt");
 
-//		System.out.println("repoList");
 		
 		mapR2Clb = DataInitHelper
 				.getMap(path+"repo-collaborators.txt");
 		
-//		System.out.println("repoList");
 
 		mapR2Ctb = DataInitHelper
 				.getMap(path+"repo-contributors.txt");
 		
-//		System.out.println("ctb");
 
 		mapR2L = DataInitHelper.getLanguages(
 				 path+"repo-languageNames.txt",
 				path+"repo-languageCounts.txt");
 		
-//		System.out.println("language");
 
 		mapR2Fork = DataInitHelper
 				.getMap(path+"repo-forks.txt");
 		
-//		System.out.println("fork");
 		
 		this.repoAll = DataInitHelper
 				.getAllReposJson(path + "repo-all.txt");
 		
-//		System.out.println("repo");
 
-//		System.out.println("RepoDaoImpl initialized!");
+		System.out.println("RepoDaoImpl initialized!");
 		
 	}
 
 	@Override
 	public Repository getRepository(String name) throws IOException {
 
-		// String s = HttpRequest.sendGet(gitmining_repo_url, name);
-		// Repository po = JsonUtil.<Repository> parseJson2Bean(s,
-		// Repository.class);
 
 		int index = repoList.indexOf(name);
 
@@ -145,37 +136,6 @@ public class RepoDaoImpl implements IRepoDao {
 		return JsonUtil.getObjectfromJson(s, Owner.class, "owner");
 	}
 
-	private String getOwner_name(String name) throws IOException {
-		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/item/owner_name");
-
-		return s;
-	}
-	
-/*
-	private List<String> getForks_fullname(String name) throws IOException {
-		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/forks/names");
-		return JsonUtil.parseJson2List(s);
-	}
-
-	private List<String> getBranches_name(String name) throws IOException {
-		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/branches/names");
-		return JsonUtil.parseJson2List(s);
-	}
-
-	private List<String> getContributors_login(String name) throws IOException {
-		// return
-		// HttpRequest.sendGetforList("http://gitmining.net/api/repository/",
-		// name + "/contributors/login");
-		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/contributors/login");
-		return JsonUtil.parseJson2List(s);
-	}
-
-	private List<String> getCollaborators_login(String name) throws IOException {
-		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/collaborators/login");
-		return JsonUtil.parseJson2List(s);
-	}
-*/
-	
 	
 	@Override
 	public Map<String, Integer> getLanguages(String name) throws IOException {

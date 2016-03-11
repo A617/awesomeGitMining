@@ -8,6 +8,7 @@ import java.util.Map;
 
 import main.dao.impl.Config;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 
@@ -122,6 +123,25 @@ public class JsonUtil {
 		return value;
 	}
 
+	
+	/**
+	 * 从json object中提取指定属性的元素
+	 * 
+	 * @param jsonStr
+	 * @param id
+	 *            要获取的值在json中的key
+	 * @return
+	 * @throws JSONException
+	 */
+	public static String getStringfromJson(String jsonStr, String id) throws JSONException{
+
+		JSONObject src = JSONObject.fromObject(jsonStr);
+
+		String value = src.getString(id);
+
+		return value;
+	}
+	
 	/**
 	 * 从json array中提取所有指定属性的元素
 	 * 

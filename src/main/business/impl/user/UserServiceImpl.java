@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if(po!=null){
+		if (po != null) {
 			vo = (UserVO) Converter.convert("UserVO", po);
 		}
 		return vo;
@@ -73,13 +73,13 @@ public class UserServiceImpl implements UserService {
 		List<String> lists = new ArrayList<String>();
 		try {
 			po = daoImpl.getUser(id);
-			if(po!=null){
+			if (po != null) {
 				lists = po.getContributions_fullname();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return lists;
 	}
 
@@ -92,7 +92,7 @@ public class UserServiceImpl implements UserService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if(po!=null){
+		if (po != null) {
 			lists = po.getRepos_fullname();
 		}
 		return lists;
@@ -106,28 +106,24 @@ public class UserServiceImpl implements UserService {
 			if (names != null) {
 				for (int i = pageIndex; i < 5 + pageIndex; i++) {
 					if (i < names.size()) {
-						User po = null;
-						try {
-							po = daoImpl.getUser(names.get(i));
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-						if (po != null) {
-							UserVO vo = (UserVO) Converter.convert("UserVO", po);
-							vos.add(vo);
-						}
+						String login = names.get(i);
+						UserVO vo = new UserVO();
+						vo.setLogin(login);
+						vo.setLocation(daoImpl.getLocation(login));
+						vos.add(vo);
 					}
 				}
 			}
 		}
-		return vos;
+	return vos;
+
 	}
 
 	@Override
 	public List<String> searchUserInfo(String id, int pageIndex) {
 		List<String> names = daoImpl.searchUser(id);
 		List<String> result = new ArrayList<String>();
-		if(names!=null){
+		if (names != null) {
 			for (int i = pageIndex * 10; i < 10 + pageIndex * 10; i++) {
 				if (i < names.size() && i >= 0) {
 					result.add(names.get(i));
@@ -136,4 +132,6 @@ public class UserServiceImpl implements UserService {
 		}
 		return result;
 	}
+
+	
 }

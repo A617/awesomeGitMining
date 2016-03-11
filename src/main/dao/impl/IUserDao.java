@@ -36,4 +36,13 @@ public interface IUserDao {
 	 * @throws IOException
 	 */
 	public Image getAvatar(String url) throws IOException;
+
+
+	/**
+	 * 获取用户所在地
+	 * @param login
+	 * @return
+	 */
+	public String getLocation(String login);
+
 }
