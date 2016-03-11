@@ -10,12 +10,12 @@
 
 <AnchorPane fx:id="mainPane" prefHeight="604.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.SearchController">
 	<children>
-		<Label layoutX="23.0" layoutY="169.0" text="Users" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="5.0">
+		<Label layoutX="23.0" layoutY="169.0" text="Users" textFill="#f5f3f3" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="5.0">
 			<font>
 				<Font name="System Bold" size="14.0" />
 			</font>
 		</Label>
-		<Label layoutX="23.0" layoutY="371.0" text="Projects" AnchorPane.bottomAnchor="346.0" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="224.0">
+		<Label layoutX="23.0" layoutY="371.0" text="Projects" textFill="#f5f3f3" AnchorPane.bottomAnchor="346.0" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="224.0">
 			<font>
 				<Font name="System Bold" size="14.0" />
 			</font>

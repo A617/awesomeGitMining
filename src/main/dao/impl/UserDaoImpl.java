@@ -27,8 +27,8 @@ public class UserDaoImpl implements IUserDao {
 	private Map<String, List<String>> mapUser2Repos;
 
 	public UserDaoImpl() {
-
-		String path = DataMining.class.getResource("gitmining-api/").getPath();
+		String path = "src/main/data/gitmining-api/";
+	//	String path = DataMining.class.getResource("gitmining-api/").getPath();
 		this.userList = DataInitHelper
 				.getList(path+"user_login.txt");
 		this.mapUser2Collaborations = DataInitHelper
