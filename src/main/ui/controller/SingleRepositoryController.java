@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import main.business.impl.repository.RepositoryServiceImpl;
+import main.business.service.RepositoryService;
 import main.vo.RepositoryVO;
 
 /**
@@ -26,13 +28,17 @@ public class SingleRepositoryController implements Initializable {
 	@FXML
 	private Label starNum;
 
+	private RepositoryService repositoryImpl;
 	private RepositoryVO vo;
+	private RepositoryVO fullVO;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		repositoryImpl = RepositoryServiceImpl.getInstance();
 		repositoryName.setOnMouseClicked((e) -> {
 			MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
-			ProjectController.getInstance().setVO(vo);
+			fullVO = repositoryImpl.searchRepositoryInfo(vo.getFull_name());
+			ProjectController.getInstance().setVO(fullVO);
 		});
 	}
 

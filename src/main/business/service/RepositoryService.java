@@ -18,6 +18,12 @@ public interface RepositoryService {
 	/**
 	 * 
 	 * @param id
+	 * @return the full info of the repository
+	 */
+	public abstract RepositoryVO searchRepositoryInfo(String id);
+	/**
+	 * 
+	 * @param id
 	 * @param pageIndex
 	 * @return @see ArrayList of @see RepositoryVO that size = 10
 	 */
