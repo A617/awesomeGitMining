@@ -136,7 +136,6 @@ public class RepositoryServiceImpl implements RepositoryService {
 						try {
 							po = daoImpl.getRepository(names.get(i));
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						if (po != null) {
@@ -148,5 +147,19 @@ public class RepositoryServiceImpl implements RepositoryService {
 			}
 		}
 		return vos;
+	}
+
+	@Override
+	public List<String> searchRepositoryInfo(String id, int pageIndex) {
+		List<String> names = daoImpl.searchRepository(id);
+		List<String> result = new ArrayList<String>();
+		if(names!=null){
+			for (int i = pageIndex * 10; i < 10 + pageIndex * 10; i++) {
+				if (i < names.size() && i >= 0) {
+					result.add(names.get(i));
+				}
+			}
+		}
+		return result;
 	}
 }

@@ -15,9 +15,9 @@ public interface UserService {
 	/**
 	 * 
 	 * @param id
-	 * @return the full info of the user
+	 * @return the name of the user
 	 */
-	public abstract UserVO searchUserInfo(String id);
+	public abstract List<String> searchUserInfo(String id,int pageIndex);
 	/**
 	 * 
 	 * @param id

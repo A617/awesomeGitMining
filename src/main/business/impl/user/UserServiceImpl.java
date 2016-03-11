@@ -90,7 +90,6 @@ public class UserServiceImpl implements UserService {
 		try {
 			po = daoImpl.getUser(id);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(po!=null){
@@ -111,7 +110,6 @@ public class UserServiceImpl implements UserService {
 						try {
 							po = daoImpl.getUser(names.get(i));
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						if (po != null) {
@@ -123,5 +121,19 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 		return vos;
+	}
+
+	@Override
+	public List<String> searchUserInfo(String id, int pageIndex) {
+		List<String> names = daoImpl.searchUser(id);
+		List<String> result = new ArrayList<String>();
+		if(names!=null){
+			for (int i = pageIndex * 10; i < 10 + pageIndex * 10; i++) {
+				if (i < names.size() && i >= 0) {
+					result.add(names.get(i));
+				}
+			}
+		}
+		return result;
 	}
 }
