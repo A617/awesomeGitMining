@@ -37,7 +37,7 @@ public class UserDaoImpl implements IUserDao {
 		this.mapUser2Collaborations = DataInitHelper.getMap(path + "collaborator-repos.txt");
 		this.mapUser2Contrbutions = DataInitHelper.getMap(path + "contributor-repos.txt");
 		this.mapUser2Repos = DataInitHelper.getMap(path + "user-repos.txt");
-		
+
 		System.out.println("UserDaoImpl initialized!");
 	}
 
@@ -63,8 +63,8 @@ public class UserDaoImpl implements IUserDao {
 	public Image getAvatar(String url) throws IOException {
 
 		InputStream is = HttpRequest.sendGetforStream(url);
-		
-		return is == null ? null : new Image(is, 120, 120, true, false);
+
+		return is == null ? null : new Image(is, 170, 170, true, false);
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class UserDaoImpl implements IUserDao {
 
 	}
 
-	
+
 	@Override
 	public String getLocation(String login){
 		int index = userList.indexOf(login);
