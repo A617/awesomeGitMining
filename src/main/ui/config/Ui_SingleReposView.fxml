@@ -8,36 +8,32 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<Pane fx:id="pane" prefHeight="175.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.SingleRepositoryController">
+<Group layoutX="5.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.SingleRepositoryController">
    <children>
-      <Group>
+      <Label fx:id="lastUpdated" layoutX="37.0" layoutY="151.0" prefHeight="20.0" prefWidth="949.0" text="Last updated" />
+      <VBox layoutX="628.0" layoutY="28.0">
          <children>
-            <Label fx:id="lastUpdated" layoutX="27.0" layoutY="141.0" prefHeight="20.0" prefWidth="317.0" text="Last updated" />
-            <VBox layoutX="550.0" layoutY="25.0">
-               <children>
-                  <Label fx:id="contriNum" layoutX="555.0" layoutY="25.0" text="contriNum" />
-                  <Label layoutX="550.0" layoutY="58.0" text="contributors" />
-               </children>
-            </VBox>
-            <VBox layoutX="466.0" layoutY="25.0">
-               <children>
-                  <Label fx:id="forkNum" layoutX="485.0" layoutY="25.0" text="forkNum" />
-                  <Label layoutX="492.0" layoutY="58.0" text="forks" />
-               </children>
-            </VBox>
-            <Label fx:id="description" layoutX="27.0" layoutY="55.0" prefHeight="86.0" prefWidth="357.0" text="Description" />
-            <Label id="repositoryName" fx:id="repositoryName" layoutX="24.0" layoutY="22.0" text="RepositoryName/" textFill="#5184c2">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
-            </Label>
-            <VBox layoutX="389.0" layoutY="27.0">
-               <children>
-                  <Label fx:id="starNum" layoutX="415.0" layoutY="25.0" text="starNum" />
-                  <Label layoutX="436.0" layoutY="58.0" text="stars" />
-               </children>
-            </VBox>
+            <Label fx:id="contriNum" layoutX="555.0" layoutY="25.0" text="contriNum" />
+            <Label layoutX="550.0" layoutY="58.0" text="contributors" />
          </children>
-      </Group>
+      </VBox>
+      <Label id="repositoryName" fx:id="repositoryName" layoutX="37.0" layoutY="23.0" prefHeight="33.0" prefWidth="570.0" text="RepositoryName/" textFill="#5184c2">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="description" layoutX="37.0" layoutY="65.0" prefHeight="86.0" prefWidth="949.0" text="Description" />
+      <VBox layoutX="783.0" layoutY="28.0">
+         <children>
+            <Label fx:id="forkNum" layoutX="485.0" layoutY="25.0" text="forkNum" />
+            <Label layoutX="492.0" layoutY="58.0" text="forks" />
+         </children>
+      </VBox>
+      <VBox layoutX="906.0" layoutY="28.0">
+         <children>
+            <Label fx:id="starNum" layoutX="415.0" layoutY="25.0" text="starNum" />
+            <Label layoutX="436.0" layoutY="58.0" text="stars" />
+         </children>
+      </VBox>
    </children>
-</Pane>
+</Group>

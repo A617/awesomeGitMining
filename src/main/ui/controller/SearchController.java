@@ -159,13 +159,13 @@ public class SearchController implements Initializable {
 		userPage = 0;
 		projectPage = 0;
 
-		id = MainController.getInstance().getSearchId();
-		userVO = userService.searchUser(id, userPage);
-		repositoryVO = repositoryService.searchRepository(id, projectPage);
-
-		initUser(userVO);
-		initProject(repositoryVO);
-		MainUI.getUI().test2();
+//		id = MainController.getInstance().getSearchId();
+//		userVO = userService.searchUser(id, userPage);
+//		repositoryVO = repositoryService.searchRepository(id, projectPage);
+//
+//		initUser(userVO);
+//		initProject(repositoryVO);
+//		MainUI.getUI().test2();
 	}
 
 }

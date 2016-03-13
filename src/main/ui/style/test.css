@@ -1,9 +1,9 @@
 .root {
-     -fx-background-image: url("back4.jpg");
+    -fx-background-image: url("back.png");
 }
 .button {
     -fx-background-radius: 0.0;
-    -fx-background-color: #444444;
+    -fx-background-color: #71af8c;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 11.0pt;
     -fx-text-fill: #d8d8d8;
@@ -16,8 +16,21 @@
   -fx-background-color: white;
   -fx-text-fill: #1d1d1d;
 }
+#headPane{
+	-fx-background-color: #67a582;
+}
+#sortPane{
+	-fx-background-color:#71af8c;
+}
+.label:hover{
+	-fx-background-color: #5d9b78;
+}
+
 #back{
 	-fx-background-image: url("back5.png");
+}
+#scrollPane{
+	
 }
 #repositoryName:hover{
 	-fx-text-fill: #77DDFF;

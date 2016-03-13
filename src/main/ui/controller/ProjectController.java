@@ -63,13 +63,13 @@ public class ProjectController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		instance = this;
-		project_back.setOnAction((e) -> {
-			if (MainController.getInstance().getSearchId().equals("")) {
-				MainController.getInstance().initPanel();
-			} else {
-				MainController.getInstance().setPanel("Ui_SearchPanel.fxml");
-			}
-		});
+//		project_back.setOnAction((e) -> {
+//			if (MainController.getInstance().getSearchId().equals("")) {
+//				MainController.getInstance().initPanel();
+//			} else {
+//				MainController.getInstance().setPanel("Ui_SearchPanel.fxml");
+//			}
+//		});
 	}
 
 	public void setVO(RepositoryVO vo) {

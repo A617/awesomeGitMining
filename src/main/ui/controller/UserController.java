@@ -76,13 +76,13 @@ public class UserController implements Initializable {
 		// TODO Auto-generated method stub
 		instance = this;
 		
-		user_back.setOnAction((e) -> {
-			if (MainController.getInstance().getSearchId() == "") {
-				MainController.getInstance().initPanel();
-			} else {
-				MainController.getInstance().setPanel("Ui_SearchPanel.fxml");
-			}
-		});
+//		user_back.setOnAction((e) -> {
+//			if (MainController.getInstance().getSearchId() == "") {
+//				MainController.getInstance().initPanel();
+//			} else {
+//				MainController.getInstance().setPanel("Ui_SearchPanel.fxml");
+//			}
+//		});
 
 	}
 
