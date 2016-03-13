@@ -150,16 +150,19 @@ public class RepositoryServiceImpl implements RepositoryService {
 	}
 
 	@Override
-	public List<String> searchRepositoryInfo(String id, int pageIndex) {
-		List<String> names = daoImpl.searchRepository(id);
-		List<String> result = new ArrayList<String>();
-		if(names!=null){
-			for (int i = pageIndex * 10; i < 10 + pageIndex * 10; i++) {
-				if (i < names.size() && i >= 0) {
-					result.add(names.get(i));
-				}
+	public RepositoryVO searchRepositoryInfo(String id) {
+		RepositoryVO vo = null;
+		Repository po  = null;
+		if(daoImpl!=null){
+			try {
+				po = daoImpl.getRepository(id);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if(po!=null){
+				vo = (RepositoryVO) Converter.convert("RepositoryVO", po);
 			}
 		}
-		return result;
+		return vo;
 	}
 }

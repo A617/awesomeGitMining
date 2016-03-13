@@ -14,6 +14,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
+import main.business.impl.user.UserServiceImpl;
+import main.business.service.UserService;
 import main.vo.Contri_ProVO;
 import main.vo.Crea_ProVO;
 import main.vo.UserVO;
@@ -60,7 +62,8 @@ public class UserController implements Initializable {
 
 	List<String> text1;
 	List<String> text2;
-
+	
+	
 	public static UserController getInstance() {
 		if (instance == null) {
 			instance = new UserController();
@@ -72,6 +75,7 @@ public class UserController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		instance = this;
+		
 		user_back.setOnAction((e) -> {
 			if (MainController.getInstance().getSearchId() == "") {
 				MainController.getInstance().initPanel();

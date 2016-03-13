@@ -28,12 +28,7 @@ public class DataConvertHelper {
 	public static void main(String[] args) {
 
 		DataConvertHelper dch = new DataConvertHelper();
-		List<String> repoList = DataInitHelper
-				.getList(new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\repo_fullname.txt");
-
-		String path = new File("").getAbsolutePath() + "\\src\\main\\data\\gitmining-api\\repo-forks.txt";
-
-		dch.get(path);
+		
 		
 
 	}
