@@ -11,7 +11,7 @@
 
 <Group layoutX="57.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.ProjectController">
    <children>
-      <AnchorPane id="back" layoutX="-8.0" layoutY="-8.0" prefHeight="720.0" prefWidth="1366.0">
+      <AnchorPane id="back" layoutX="-58.0" layoutY="-1.0" prefHeight="720.0" prefWidth="1366.0">
          <children>
             <Label fx:id="projectNameLabel" layoutX="38.0" layoutY="44.0" prefHeight="58.0" prefWidth="849.0" text="Label" textFill="#3dabcd">
                <font>
@@ -51,7 +51,7 @@
                </children>
             </VBox>
             <Button fx:id="btn_clone" layoutX="38.0" layoutY="178.0" mnemonicParsing="false" text="Clone" />
-            <TextField fx:id="url" layoutX="90.0" layoutY="178.0" prefHeight="26.0" prefWidth="524.0" />
+            <TextField fx:id="url" layoutX="97.0" layoutY="178.0" prefHeight="26.0" prefWidth="524.0" />
             <VBox layoutX="205.0" layoutY="265.0" prefHeight="47.0" prefWidth="73.0">
                <children>
                   <Label fx:id="subNum" layoutX="692.0" layoutY="102.0" text="subNum" />
@@ -70,8 +70,8 @@
                   <Label layoutX="815.0" layoutY="135.0" prefHeight="31.0" prefWidth="85.0" text="collaborators" />
                </children>
             </VBox>
-            <Label fx:id="raderchart" layoutX="1034.0" layoutY="178.0" prefHeight="299.0" prefWidth="300.0" text="rader chart" AnchorPane.bottomAnchor="243.0" AnchorPane.topAnchor="178.0" />
-            <AnchorPane fx:id="piechart" layoutX="664.0" layoutY="178.0" prefHeight="299.0" prefWidth="300.0" AnchorPane.topAnchor="178.0" />
+            <AnchorPane fx:id="raderchart" layoutX="664.0" layoutY="178.0" prefHeight="299.0" prefWidth="300.0" AnchorPane.leftAnchor="1016.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="178.0" />
+            <AnchorPane fx:id="piechart" layoutX="663.0" layoutY="178.0" prefHeight="299.0" prefWidth="300.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="178.0" />
          </children></AnchorPane>
       <Button fx:id="btn_back" layoutX="-34.0" layoutY="10.0" mnemonicParsing="false" text="back" />
    </children>

@@ -49,7 +49,7 @@ public class ProjectController implements Initializable {
 	@FXML
 	private AnchorPane piechart;
 	@FXML
-	private Label raderchart;
+	private AnchorPane raderchart;
 	@FXML
 	private TableView<ContributorVO> contributorTable;
 	@FXML
@@ -144,4 +144,7 @@ public class ProjectController implements Initializable {
 			}
         };
     }
+	
+	//TODO
+	//create CategoryDataset
 }

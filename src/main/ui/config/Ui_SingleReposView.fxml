@@ -10,11 +10,11 @@
 
 <AnchorPane id="singlePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="201.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.SingleRepositoryController">
    <children>
-      <Line endX="1300.0" endY="198.0" startY="198.0" />
+      <Line endX="1300.0" endY="198.0" startY="198.0" stroke="#000000d3" />
       <Group layoutX="-17.0" layoutY="11.0">
          <children>
             <Label fx:id="lastUpdated" layoutX="37.0" layoutY="151.0" prefHeight="20.0" prefWidth="949.0" text="Last updated" />
-            <VBox layoutX="628.0" layoutY="28.0">
+            <VBox layoutX="678.0" layoutY="28.0">
                <children>
                   <Label fx:id="contriNum" layoutX="555.0" layoutY="25.0" text="contriNum" />
                   <Label layoutX="550.0" layoutY="58.0" text="contributors" />
@@ -26,18 +26,23 @@
                </font>
             </Label>
             <Label fx:id="description" layoutX="37.0" layoutY="65.0" prefHeight="86.0" prefWidth="940.0" text="Description" />
-            <VBox layoutX="783.0" layoutY="28.0">
+            <VBox layoutX="809.0" layoutY="28.0">
                <children>
                   <Label fx:id="forkNum" layoutX="485.0" layoutY="25.0" text="forkNum" />
                   <Label layoutX="492.0" layoutY="58.0" text="forks" />
                </children>
             </VBox>
-            <VBox layoutX="906.0" layoutY="28.0">
+            <VBox layoutX="921.0" layoutY="28.0">
                <children>
                   <Label fx:id="starNum" layoutX="415.0" layoutY="25.0" text="starNum" />
                   <Label layoutX="436.0" layoutY="58.0" text="stars" />
                </children>
             </VBox>
+            <Label fx:id="language" layoutX="574.0" layoutY="36.0" text="language">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
          </children>
       </Group>
    </children>
