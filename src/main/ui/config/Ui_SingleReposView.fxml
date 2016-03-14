@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import javafx.scene.*?>
@@ -8,12 +10,31 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane id="singlePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="201.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.SingleRepositoryController">
+<AnchorPane id="singlePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="201.0" prefWidth="1300.0" style="-fx-background-color: #faf6f2;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.SingleRepositoryController">
    <children>
-      <Line endX="1300.0" endY="198.0" startY="198.0" stroke="#000000d3" />
+      <Line endX="1300.0" endY="198.0" startY="198.0" strokeWidth="10.0" AnchorPane.bottomAnchor="-8.0">
+         <stroke>
+            <LinearGradient endX="0.39805825242718446" endY="1.0" startY="0.8543689320388349">
+               <stops>
+                  <Stop color="#c3d6a9" />
+                  <Stop color="#fce4a6d4" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </stroke></Line>
+      <Line endX="1300.0" endY="198.0" layoutY="-194.0" startY="198.0" strokeWidth="8.0">
+         <stroke>
+            <LinearGradient endX="0.39805825242718446" endY="1.0" startY="0.8543689320388349">
+               <stops>
+                  <Stop color="#c3d6a9" />
+                  <Stop color="#fce4a6d4" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </stroke>
+      </Line>
       <Group layoutX="-17.0" layoutY="11.0">
          <children>
-            <Label fx:id="lastUpdated" layoutX="37.0" layoutY="151.0" prefHeight="20.0" prefWidth="949.0" text="Last updated" />
+            <Label layoutX="37.0" layoutY="142.0" prefHeight="20.0" prefWidth="124.0" text="Last Updated at: " />
+            <Label fx:id="lastUpdated" layoutX="167.0" layoutY="142.0" prefHeight="20.0" prefWidth="815.0" text="Last updated" />
             <VBox layoutX="678.0" layoutY="28.0">
                <children>
                   <Label fx:id="contriNum" layoutX="555.0" layoutY="25.0" text="contriNum" />
@@ -25,7 +46,7 @@
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
-            <Label fx:id="description" layoutX="37.0" layoutY="65.0" prefHeight="86.0" prefWidth="940.0" text="Description" />
+            <Label fx:id="description" layoutX="37.0" layoutY="65.0" prefHeight="75.0" prefWidth="940.0" text="Description" />
             <VBox layoutX="809.0" layoutY="28.0">
                <children>
                   <Label fx:id="forkNum" layoutX="485.0" layoutY="25.0" text="forkNum" />

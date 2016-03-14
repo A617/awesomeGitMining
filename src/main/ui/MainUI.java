@@ -100,11 +100,10 @@ public class MainUI extends Application {
 		
 		
 		final Timeline timeline = new Timeline();
-		timeline.setCycleCount(Timeline.INDEFINITE);
-		timeline.setAutoReverse(true);
+		timeline.setCycleCount(0);
 		final KeyValue kv1 = new KeyValue(stack1.layoutYProperty(), 0);
 		final KeyValue kv2 = new KeyValue(stack2.opacityProperty(), 1);
-		final KeyFrame kf = new KeyFrame(Duration.millis(3000), kv1,kv2);
+		final KeyFrame kf = new KeyFrame(Duration.millis(3600), kv1,kv2);
 		timeline.getKeyFrames().add(kf);
 		timeline.play();
 

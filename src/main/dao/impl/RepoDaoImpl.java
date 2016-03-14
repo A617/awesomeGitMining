@@ -4,15 +4,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import main.dao.HttpRequest;
 import main.dao.JsonUtil;
-import main.dao.entity.Branch;
-import main.dao.entity.Collaborator;
-import main.dao.entity.Contributor;
-import main.dao.entity.Fork;
-import main.dao.entity.Owner;
 import main.dao.entity.Repository;
-import main.data.DataMining;
 
 public class RepoDaoImpl implements IRepoDao {
 
@@ -60,7 +53,7 @@ public class RepoDaoImpl implements IRepoDao {
 
 		mapR2Fork = DataInitHelper
 				.getMap(path+"repo-forks.txt");
-		
+	
 		
 		this.repoAll = DataInitHelper
 				.getAllReposJson(path + "repo-all.txt");
@@ -86,7 +79,6 @@ public class RepoDaoImpl implements IRepoDao {
 			po.setContributors_login(mapR2Ctb.get(name));
 			po.setCollaborators_login(mapR2Clb.get(name));
 			po.setOwner_name(name.split("/")[0]);
-			// po.setBranches_name(this.getBranches_name(name));
 			po.setForks_fullname(mapR2Fork.get(name));
 			po.setLanguages(mapR2L.get(name));
 		}
