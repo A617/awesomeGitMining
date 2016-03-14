@@ -28,6 +28,7 @@ import javafx.util.Duration;
 import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.RepositoryService;
+import main.business.service.UserService;
 import main.ui.controller.HomeController;
 import main.ui.controller.MainController;
 import main.ui.utility.fxmlLoader;
@@ -39,6 +40,8 @@ public class MainUI extends Application {
 	private AnchorPane common;
 	public static Group test;
 	private static MainUI ui;
+	private RepositoryService repositoryImpl;
+	private UserService userImpl;
 	
 	@Override
 	/**
@@ -145,7 +148,8 @@ public class MainUI extends Application {
 			@Override
 			protected Void call() throws Exception {
 				
-				HomeController.getInstance();
+				repositoryImpl = RepositoryServiceImpl.getInstance();
+				userImpl = UserServiceImpl.getInstance();
 				
 				updateProgress(1,1);
 

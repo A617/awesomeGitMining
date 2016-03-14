@@ -18,7 +18,7 @@
                   <Font name="System Bold Italic" size="45.0" />
                </font>
             </Label>
-            <Label fx:id="profile" layoutX="39.0" layoutY="74.0" prefHeight="81.0" prefWidth="584.0" text="description" textFill="#615c5c">
+            <Label fx:id="profile" layoutX="39.0" layoutY="80.0" prefHeight="81.0" prefWidth="584.0" text="description" textFill="#615c5c">
                <font>
                   <Font size="13.0" />
                </font>
@@ -38,36 +38,66 @@
                   <TableColumn fx:id="collaboratorColumn" prefWidth="249.0" text="collaborators" />
                </columns>
             </TableView>
-            <VBox layoutX="39.0" layoutY="265.0" prefHeight="47.0" prefWidth="51.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="1276.0" AnchorPane.topAnchor="265.0">
+            <VBox layoutX="39.0" layoutY="265.0" prefHeight="47.0" prefWidth="63.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="1264.0" AnchorPane.topAnchor="265.0">
                <children>
-                  <Label fx:id="starNum" layoutX="692.0" layoutY="102.0" text="starNum" />
-                  <Label layoutX="707.0" layoutY="135.0" prefHeight="43.0" prefWidth="54.0" text="stars" />
+                  <Label fx:id="starNum" layoutX="692.0" layoutY="102.0" text="starNum">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label layoutX="707.0" layoutY="135.0" prefHeight="29.0" prefWidth="60.0" text="stars">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
                </children>
             </VBox>
-            <VBox layoutX="120.0" layoutY="265.0" prefHeight="47.0" prefWidth="53.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="1193.0">
+            <VBox layoutX="129.0" layoutY="265.0" prefHeight="47.0" prefWidth="60.0" AnchorPane.leftAnchor="129.0" AnchorPane.rightAnchor="1177.0">
                <children>
-                  <Label fx:id="forkNum" layoutX="793.0" layoutY="102.0" prefHeight="19.0" prefWidth="57.0" text="forkNum" />
-                  <Label layoutX="815.0" layoutY="135.0" prefHeight="30.0" prefWidth="52.0" text="forks" />
+                  <Label fx:id="forkNum" layoutX="793.0" layoutY="102.0" prefHeight="19.0" prefWidth="57.0" text="forkNum">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label layoutX="815.0" layoutY="135.0" prefHeight="30.0" prefWidth="52.0" text="forks">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
                </children>
             </VBox>
             <Button fx:id="btn_clone" layoutX="38.0" layoutY="178.0" mnemonicParsing="false" text="Clone" />
             <TextField fx:id="url" layoutX="97.0" layoutY="178.0" prefHeight="26.0" prefWidth="524.0" />
-            <VBox layoutX="205.0" layoutY="265.0" prefHeight="47.0" prefWidth="73.0">
+            <VBox layoutX="220.0" layoutY="265.0" prefHeight="47.0" prefWidth="82.0">
                <children>
-                  <Label fx:id="subNum" layoutX="692.0" layoutY="102.0" text="subNum" />
-                  <Label layoutX="707.0" layoutY="135.0" prefHeight="31.0" prefWidth="76.0" text="subscribers" />
+                  <Label fx:id="subNum" layoutX="692.0" layoutY="102.0" text="subNum">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label layoutX="707.0" layoutY="135.0" prefHeight="31.0" prefWidth="76.0" text="subscribers">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
                </children>
             </VBox>
-            <VBox layoutX="309.0" layoutY="265.0" prefHeight="47.0" prefWidth="73.0">
+            <VBox layoutX="336.0" layoutY="265.0" prefHeight="47.0" prefWidth="82.0">
                <children>
-                  <Label fx:id="conNum" layoutX="793.0" layoutY="102.0" text="conNum" />
-                  <Label layoutX="815.0" layoutY="135.0" prefHeight="31.0" prefWidth="76.0" text="contributers" />
+                  <Label fx:id="conNum" layoutX="793.0" layoutY="102.0" text="conNum">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label layoutX="815.0" layoutY="135.0" prefHeight="29.0" prefWidth="87.0" text="contributers">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
                </children>
             </VBox>
-            <VBox layoutX="415.0" layoutY="265.0" prefHeight="47.0" prefWidth="82.0">
+            <VBox layoutX="448.0" layoutY="265.0" prefHeight="47.0" prefWidth="89.0">
                <children>
-                  <Label fx:id="coNum" layoutX="793.0" layoutY="102.0" text="coNum" />
-                  <Label layoutX="815.0" layoutY="135.0" prefHeight="31.0" prefWidth="85.0" text="collaborators" />
+                  <Label fx:id="coNum" layoutX="793.0" layoutY="102.0" text="coNum">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label layoutX="815.0" layoutY="135.0" prefHeight="31.0" prefWidth="85.0" text="collaborators">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
                </children>
             </VBox>
             <AnchorPane fx:id="raderchart" layoutX="664.0" layoutY="178.0" prefHeight="299.0" prefWidth="300.0" AnchorPane.leftAnchor="1016.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="178.0">
