@@ -18,7 +18,7 @@
                   <Font name="System Bold Italic" size="45.0" />
                </font>
             </Label>
-            <Label fx:id="profile" layoutX="39.0" layoutY="74.0" prefHeight="81.0" prefWidth="643.0" text="description" textFill="#615c5c">
+            <Label fx:id="profile" layoutX="39.0" layoutY="74.0" prefHeight="81.0" prefWidth="584.0" text="description" textFill="#615c5c">
                <font>
                   <Font size="13.0" />
                </font>

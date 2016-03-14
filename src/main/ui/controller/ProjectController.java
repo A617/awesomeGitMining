@@ -7,6 +7,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -78,8 +80,17 @@ public class ProjectController implements Initializable {
 		btn_clone.setOnAction((e) -> {
 			content.putString(url.getText());
 			clipboard.setContent(content);
+			//复制成功之后的反馈
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information Dialog");
+			alert.setHeaderText(null);
+			alert.setContentText("copy successfully!");
+			alert.showAndWait();
 		});
-		//TODO
+		btn_back.setOnAction((e) -> {
+			//TODO
+			MainController.getInstance().setPanel("test.fxml");
+		});
 	}
 
 	public void setVO(RepositoryVO vo) {
