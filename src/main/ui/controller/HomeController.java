@@ -52,8 +52,6 @@ public class HomeController implements Initializable {
 	private boolean selectContri;
 
 	private RepositoryService repositoryImpl;
-	@SuppressWarnings("unused")
-	private UserService userImpl;
 	// record the pages currently,count from 0
 	private int generalPage = 0;
 	private int starPage = 0;
@@ -72,13 +70,9 @@ public class HomeController implements Initializable {
 		return instance;
 	}
 
-	public HomeController() {
-		repositoryImpl = RepositoryServiceImpl.getInstance();
-		userImpl = UserServiceImpl.getInstance();
-	}
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		repositoryImpl = RepositoryServiceImpl.getInstance();
 		scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 		selectGeneral();
 	}
