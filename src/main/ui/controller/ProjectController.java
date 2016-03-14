@@ -1,6 +1,5 @@
 package main.ui.controller;
 
-import java.awt.datatransfer.StringSelection;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -50,6 +49,8 @@ public class ProjectController implements Initializable {
 	private AnchorPane piechart;
 	@FXML
 	private AnchorPane raderchart;
+	@FXML
+	private Label chart;
 	@FXML
 	private TableView<ContributorVO> contributorTable;
 	@FXML

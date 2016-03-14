@@ -70,7 +70,10 @@
                   <Label layoutX="815.0" layoutY="135.0" prefHeight="31.0" prefWidth="85.0" text="collaborators" />
                </children>
             </VBox>
-            <AnchorPane fx:id="raderchart" layoutX="664.0" layoutY="178.0" prefHeight="299.0" prefWidth="300.0" AnchorPane.leftAnchor="1016.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="178.0" />
+            <AnchorPane fx:id="raderchart" layoutX="664.0" layoutY="178.0" prefHeight="299.0" prefWidth="300.0" AnchorPane.leftAnchor="1016.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="178.0">
+               <children>
+                  <Label fx:id="chart" layoutY="6.0" prefHeight="299.0" prefWidth="301.0" text="Label" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children></AnchorPane>
             <AnchorPane fx:id="piechart" layoutX="663.0" layoutY="178.0" prefHeight="299.0" prefWidth="300.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="178.0" />
          </children></AnchorPane>
       <Button fx:id="btn_back" layoutX="-34.0" layoutY="10.0" mnemonicParsing="false" text="back" />

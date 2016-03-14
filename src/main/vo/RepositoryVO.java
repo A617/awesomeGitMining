@@ -10,6 +10,7 @@ import java.util.Map;
 public class RepositoryVO extends VO {
 	private String full_name;// 项目名
 	private int subscribers_count;// 点赞人数
+	private String language;	//编程语言
 	private Map<String, Integer> languages;// 项目使用的语言
 	private List<String> contributors_login;// 项目贡献者
 	private List<String> collaborators_login;// 项目合作者
@@ -25,12 +26,13 @@ public class RepositoryVO extends VO {
 
 	}
 
-	public RepositoryVO(String full_name, int subscribers_count, Map<String, Integer> languages,
+	public RepositoryVO(String full_name, int subscribers_count, String language,Map<String, Integer> languages,
 			List<String> contributors_login, List<String> collaborators_login, List<String> forks_fullname,
 			int star_count,int forks_count, String clone_url, String description, String updated_at,int open_issues) {
 		super();
 		this.full_name = full_name;
 		this.subscribers_count = subscribers_count;
+		this.language = language;
 		this.languages = languages;
 		this.contributors_login = contributors_login;
 		this.collaborators_login = collaborators_login;
@@ -145,5 +147,14 @@ public class RepositoryVO extends VO {
 	public void setUpdated_at(String updated_at) {
 		this.updated_at = updated_at;
 	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+	
 
 }

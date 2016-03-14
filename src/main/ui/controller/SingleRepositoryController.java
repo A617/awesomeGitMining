@@ -20,6 +20,8 @@ public class SingleRepositoryController implements Initializable {
 	@FXML
 	private Label lastUpdated;
 	@FXML
+	private Label language;
+	@FXML
 	private Label contriNum;
 	@FXML
 	private Label forkNum;
@@ -51,6 +53,7 @@ public class SingleRepositoryController implements Initializable {
 		this.vo = vo;
 		if (vo != null) {
 			repositoryName.setText(vo.getFull_name());
+			language.setText(vo.getLanguage());
 			contriNum.setText(vo.getContributors_login().size() + "");
 			forkNum.setText(vo.getForks_count() + "");
 			starNum.setText(vo.getSubscribers_count() + "");

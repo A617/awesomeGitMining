@@ -68,8 +68,7 @@ public class MainController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		instance = this;
 	}
-		
-
+	
 	public void labelInit(Label label,String path) {
 		Image image = new Image(MainUI.class.getResourceAsStream("style/"+path));
 		label.setGraphic(new ImageView(image));
