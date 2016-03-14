@@ -14,6 +14,7 @@ public class RepositoryVO extends VO {
 	private List<String> contributors_login;// 项目贡献者
 	private List<String> collaborators_login;// 项目合作者
 	private List<String> forks_fullname;// fork的项目
+	private int stargazers_count;
 	private int forks_count;// 被fork的次数
 	private String clone_url;// 项目主页
 	private String description;// 项目描述信息
@@ -26,13 +27,14 @@ public class RepositoryVO extends VO {
 
 	public RepositoryVO(String full_name, int subscribers_count, Map<String, Integer> languages,
 			List<String> contributors_login, List<String> collaborators_login, List<String> forks_fullname,
-			int forks_count, String clone_url, String description, String updated_at,int open_issues) {
+			int star_count,int forks_count, String clone_url, String description, String updated_at,int open_issues) {
 		super();
 		this.full_name = full_name;
 		this.subscribers_count = subscribers_count;
 		this.languages = languages;
 		this.contributors_login = contributors_login;
 		this.collaborators_login = collaborators_login;
+		this.stargazers_count = star_count;
 		this.forks_fullname = forks_fullname;
 		this.forks_count = forks_count;
 		this.clone_url = clone_url;
@@ -119,6 +121,14 @@ public class RepositoryVO extends VO {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public int getStargazers_count(){
+		return stargazers_count;
+	}
+
+	public void setStargazers_count(int stargazers_count) {
+		this.stargazers_count = stargazers_count;
 	}
 
 	public String getUpdated_at() {

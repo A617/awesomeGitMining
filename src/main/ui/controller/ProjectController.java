@@ -1,8 +1,7 @@
 package main.ui.controller;
 
+import java.awt.datatransfer.StringSelection;
 import java.net.URL;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -14,10 +13,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import main.vo.CollaboratorVO;
 import main.vo.ContributorVO;
-import main.vo.ForkVO;
 import main.vo.LanguageVO;
 import main.vo.RepositoryVO;
 
@@ -25,33 +27,40 @@ public class ProjectController implements Initializable {
 	private static ProjectController instance;
 
 	@FXML
+	private Button btn_back;
+	@FXML
 	private Label projectNameLabel;// 用来显示项目的名字
-	@FXML
-	private Label urlLabel;
-	@FXML
-	private Label starNum;
-	@FXML
-	private Label openNum;
 	@FXML
 	private Label profile;// 用来显示项目的介绍
 	@FXML
-	private Button project_back;
+	private Button btn_clone;
 	@FXML
-	private TableView<LanguageVO> languageTable;
+	private TextField url;
+	@FXML
+	private Label starNum;
+	@FXML
+	private Label forkNum;
+	@FXML
+	private Label subNum;
+	@FXML
+	private Label conNum;
+	@FXML
+	private Label coNum;
+	@FXML
+	private AnchorPane piechart;
+	@FXML
+	private Label raderchart;
 	@FXML
 	private TableView<ContributorVO> contributorTable;
 	@FXML
 	private TableView<CollaboratorVO> collaboratorTable;
 	@FXML
-	private TableView<ForkVO> forkTable;
-	@FXML
-	private TableColumn<LanguageVO, String> languageColumn;
-	@FXML
 	private TableColumn<ContributorVO, String> contributorColumn;
 	@FXML
 	private TableColumn<CollaboratorVO, String> collaboratorColumn;
-	@FXML
-	private TableColumn<ForkVO, String> forkColumn;
+	
+	private Clipboard clipboard;//获取系统剪贴板
+	private ClipboardContent content;
 
 	public static ProjectController getInstance() {
 		if (instance == null) {
@@ -63,13 +72,13 @@ public class ProjectController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		instance = this;
-//		project_back.setOnAction((e) -> {
-//			if (MainController.getInstance().getSearchId().equals("")) {
-//				MainController.getInstance().initPanel();
-//			} else {
-//				MainController.getInstance().setPanel("Ui_SearchPanel.fxml");
-//			}
-//		});
+		clipboard = Clipboard.getSystemClipboard();
+		content = new ClipboardContent();
+		btn_clone.setOnAction((e) -> {
+			content.putString(url.getText());
+			clipboard.setContent(content);
+		});
+		//TODO
 	}
 
 	public void setVO(RepositoryVO vo) {
@@ -85,19 +94,16 @@ public class ProjectController implements Initializable {
 			}
 			profile.setText(result + str.substring(i * size));
 			projectNameLabel.setText(vo.getFull_name());
-			urlLabel.setText("git url: "+vo.getClone_url());
-			starNum.setText(vo.getSubscribers_count()+"");
-			openNum.setText(vo.getOpen_issues()+"");
-			// languages
-			Map<String, Integer> map = vo.getLanguages();
-			if (map != null) {
-				ObservableList<LanguageVO> lan = FXCollections.observableArrayList();
-				for (Entry<String, Integer> entry : map.entrySet()) {
-					lan.add(new LanguageVO(entry.getKey() + " : " + entry.getValue() + " lines"));
-				}
-				languageTable.setItems(lan);
-				languageColumn.setCellValueFactory(cellData -> cellData.getValue().getProperty());
-			}
+			url.setText(vo.getClone_url());
+			starNum.setText(String.valueOf(vo.getStargazers_count()));
+			forkNum.setText(String.valueOf(vo.getForks_count()));
+			subNum.setText(String.valueOf(vo.getSubscribers_count()));
+			conNum.setText(String.valueOf(vo.getContributors_login().size()));
+			coNum.setText(String.valueOf(vo.getCollaborators_login().size()));
+			//TODO
+			/*
+			 * the 2 charts
+			 */
 			// contributors
 			if (vo.getContributors_login() != null) {
 				ObservableList<ContributorVO> contributors = FXCollections.observableArrayList();
@@ -117,16 +123,6 @@ public class ProjectController implements Initializable {
 				}
 				collaboratorTable.setItems(collaborators);
 				collaboratorColumn.setCellValueFactory(cellData -> cellData.getValue().getProperty());
-			}
-			// forks
-			if (vo.getForks_fullname() != null) {
-				ObservableList<ForkVO> forks = FXCollections.observableArrayList();
-				for (String name : vo.getForks_fullname()) {
-					ForkVO fv = new ForkVO(name);
-					forks.add(fv);
-				}
-				forkTable.setItems(forks);
-				forkColumn.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 			}
 		}
 	}

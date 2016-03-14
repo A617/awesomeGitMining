@@ -220,8 +220,8 @@ public class Repository {
 	public void setSize(int size) {
 		this.size = size;
 	}
-
-	public int getStargazers_count() {
+	
+	public int getStargazers_count(){
 		return stargazers_count;
 	}
 

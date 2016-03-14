@@ -98,7 +98,8 @@ public class RepoDaoImpl implements IRepoDao {
 
 		return repoList;
 	}
-
+	
+/*
 	@Override
 	public List<Branch> getBranches(String name) throws IOException {
 		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/branches");
@@ -143,9 +144,9 @@ public class RepoDaoImpl implements IRepoDao {
 		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/item/owner_name");
 
 		return s;
-	}
+	}*/
 
-	
+/*	
 	@Override
 	public Map<String, Integer> getLanguages(String name) throws IOException {
 		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/languages");
@@ -153,7 +154,7 @@ public class RepoDaoImpl implements IRepoDao {
 		result.remove("fn");
 		return result;
 	}
-
+*/
 	@Override
 	public List<String> searchRepository(String name) {
 		return SearchHelper.fuzzySearch(repoList, name);

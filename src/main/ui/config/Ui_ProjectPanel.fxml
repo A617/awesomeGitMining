@@ -11,57 +11,68 @@
 
 <Group layoutX="57.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.ProjectController">
    <children>
-      <AnchorPane id="back" layoutX="-8.0" layoutY="-8.0" prefHeight="604.0" prefWidth="924.0">
+      <AnchorPane id="back" layoutX="-8.0" layoutY="-8.0" prefHeight="720.0" prefWidth="1366.0">
          <children>
-            <Label fx:id="projectNameLabel" layoutX="38.0" layoutY="31.0" prefHeight="58.0" prefWidth="849.0" text="Label" textFill="#3dabcd">
+            <Label fx:id="projectNameLabel" layoutX="38.0" layoutY="44.0" prefHeight="58.0" prefWidth="849.0" text="Label" textFill="#3dabcd">
                <font>
                   <Font name="System Bold Italic" size="45.0" />
                </font>
             </Label>
-            <Label fx:id="profile" layoutX="38.0" layoutY="88.0" prefHeight="81.0" prefWidth="643.0" text="description" textFill="#615c5c">
+            <Label fx:id="profile" layoutX="39.0" layoutY="74.0" prefHeight="81.0" prefWidth="643.0" text="description" textFill="#615c5c">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="41.0" layoutY="165.0" text="Repository Statistics">
+            <Label layoutX="38.0" layoutY="224.0" text="Repository Statistics">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TableView fx:id="languageTable" layoutX="26.0" layoutY="227.0" prefHeight="345.0" prefWidth="166.0">
-              <columns>
-                <TableColumn fx:id="languageColumn" prefWidth="165.0" text="languages" />
-              </columns>
-            </TableView>
-            <TableView fx:id="contributorTable" layoutX="256.0" layoutY="227.0" prefHeight="345.0" prefWidth="166.0">
+            <TableView fx:id="contributorTable" layoutX="38.0" layoutY="516.0" prefHeight="345.0" prefWidth="166.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="1078.0" AnchorPane.topAnchor="485.0">
                <columns>
-                  <TableColumn fx:id="contributorColumn" prefWidth="165.0" text="contributors" />
+                  <TableColumn fx:id="contributorColumn" prefWidth="249.0" text="contributors" />
                </columns>
             </TableView>
-            <TableView fx:id="collaboratorTable" layoutX="490.0" layoutY="227.0" prefHeight="345.0" prefWidth="166.0">
+            <TableView fx:id="collaboratorTable" layoutX="372.0" layoutY="485.0" prefHeight="199.0" prefWidth="250.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="372.0" AnchorPane.rightAnchor="744.0" AnchorPane.topAnchor="485.0">
                <columns>
-                  <TableColumn fx:id="collaboratorColumn" prefWidth="165.0" text="collaborators" />
+                  <TableColumn fx:id="collaboratorColumn" prefWidth="249.0" text="collaborators" />
                </columns>
             </TableView>
-            <TableView fx:id="forkTable" layoutX="723.0" layoutY="227.0" prefHeight="345.0" prefWidth="166.0">
-               <columns>
-                  <TableColumn fx:id="forkColumn" prefWidth="165.0" text="forks" />
-               </columns>
-            </TableView>
-            <Button fx:id="project_back" layoutX="41.0" layoutY="7.0" mnemonicParsing="false" text="back" />
-            <VBox layoutX="692.0" layoutY="102.0">
+            <VBox layoutX="39.0" layoutY="265.0" prefHeight="47.0" prefWidth="51.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="1276.0" AnchorPane.topAnchor="265.0">
                <children>
                   <Label fx:id="starNum" layoutX="692.0" layoutY="102.0" text="starNum" />
-                  <Label layoutX="707.0" layoutY="135.0" text="stars" />
+                  <Label layoutX="707.0" layoutY="135.0" prefHeight="43.0" prefWidth="54.0" text="stars" />
                </children>
             </VBox>
-            <VBox layoutX="793.0" layoutY="102.0">
+            <VBox layoutX="120.0" layoutY="265.0" prefHeight="47.0" prefWidth="53.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="1193.0">
                <children>
-                  <Label fx:id="openNum" layoutX="793.0" layoutY="102.0" text="open_issues" />
-                  <Label layoutX="815.0" layoutY="135.0" text="issues" />
+                  <Label fx:id="forkNum" layoutX="793.0" layoutY="102.0" prefHeight="19.0" prefWidth="57.0" text="forkNum" />
+                  <Label layoutX="815.0" layoutY="135.0" prefHeight="30.0" prefWidth="52.0" text="forks" />
                </children>
             </VBox>
-            <Label fx:id="urlLabel" layoutX="41.0" layoutY="199.0" prefHeight="20.0" prefWidth="583.0" text="git url:" />
+            <Button fx:id="btn_clone" layoutX="38.0" layoutY="178.0" mnemonicParsing="false" text="Clone" />
+            <TextField fx:id="url" layoutX="90.0" layoutY="178.0" prefHeight="26.0" prefWidth="524.0" />
+            <VBox layoutX="205.0" layoutY="265.0" prefHeight="47.0" prefWidth="73.0">
+               <children>
+                  <Label fx:id="subNum" layoutX="692.0" layoutY="102.0" text="subNum" />
+                  <Label layoutX="707.0" layoutY="135.0" prefHeight="31.0" prefWidth="76.0" text="subscribers" />
+               </children>
+            </VBox>
+            <VBox layoutX="309.0" layoutY="265.0" prefHeight="47.0" prefWidth="73.0">
+               <children>
+                  <Label fx:id="conNum" layoutX="793.0" layoutY="102.0" text="conNum" />
+                  <Label layoutX="815.0" layoutY="135.0" prefHeight="31.0" prefWidth="76.0" text="contributers" />
+               </children>
+            </VBox>
+            <VBox layoutX="415.0" layoutY="265.0" prefHeight="47.0" prefWidth="82.0">
+               <children>
+                  <Label fx:id="coNum" layoutX="793.0" layoutY="102.0" text="coNum" />
+                  <Label layoutX="815.0" layoutY="135.0" prefHeight="31.0" prefWidth="85.0" text="collaborators" />
+               </children>
+            </VBox>
+            <Label fx:id="raderchart" layoutX="1034.0" layoutY="178.0" prefHeight="299.0" prefWidth="300.0" text="rader chart" AnchorPane.bottomAnchor="243.0" AnchorPane.topAnchor="178.0" />
+            <AnchorPane fx:id="piechart" layoutX="664.0" layoutY="178.0" prefHeight="299.0" prefWidth="300.0" AnchorPane.topAnchor="178.0" />
          </children></AnchorPane>
+      <Button fx:id="btn_back" layoutX="-34.0" layoutY="10.0" mnemonicParsing="false" text="back" />
    </children>
 </Group>
