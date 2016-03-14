@@ -16,11 +16,10 @@
       <AnchorPane fx:id="center_panel" layoutY="51.0" prefHeight="720.0" prefWidth="1366.0" />
       <AnchorPane id="headPane" fx:id="common" prefHeight="48.0" prefWidth="1366.0">
          <children>
-            <Label layoutY="4.0" prefHeight="51.0" prefWidth="120.0" text="   Repository" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1246.0" AnchorPane.topAnchor="0.0" />
-            <Label layoutX="120.0" prefHeight="51.0" prefWidth="120.0" text="           User" textFill="WHITE" />
-            <Label layoutX="240.0" prefHeight="51.0" prefWidth="176.0" text="   RepositoryStatistics" textFill="WHITE" />
-            <Label layoutX="416.0" prefHeight="51.0" prefWidth="120.0" text="   UserStatistics" textFill="WHITE" />
-            <Label layoutX="536.0" prefHeight="51.0" prefWidth="120.0" text="        Search" textFill="WHITE" />
+            <Label id="headLabel" layoutY="4.0" prefHeight="51.0" prefWidth="120.0" text="   Repository" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1246.0" AnchorPane.topAnchor="0.0" />
+            <Label id="headLabel" layoutX="120.0" prefHeight="51.0" prefWidth="120.0" text="           User" textFill="WHITE" />
+            <Label id="headLabel" layoutX="240.0" prefHeight="51.0" prefWidth="176.0" text="   RepositoryStatistics" textFill="WHITE" />
+            <Label id="headLabel" layoutX="416.0" prefHeight="51.0" prefWidth="120.0" text="   UserStatistics" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

@@ -5,19 +5,14 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javafx.beans.binding.DoubleExpression;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.impl.user.UserServiceImpl;
@@ -38,11 +33,20 @@ public class HomeController implements Initializable {
 	@FXML
 	private Label tab_contributor;
 	@FXML
-	private StackPane scrollPane;
-	@FXML
-	private ScrollBar scrollBar;
-	private VBox box = new VBox();
+	private ScrollPane scrollPane;
+	private VBox box;
+	
+	private String styleStr = "-fx-background-color: ";
+	private String enterColor = "#5d9b78;";
+	private String baseColor = "#71af8c;";
+	
+	private boolean selectGeneral;
+	private boolean selectStar;
+	private boolean selectFork;
+	private boolean selectContri;
+	
 	private RepositoryService repositoryImpl;
+	@SuppressWarnings("unused")
 	private UserService userImpl;
 	// record the pages currently,count from 0
 	private int generalPage = 0;
@@ -69,194 +73,225 @@ public class HomeController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// scrollBar.setMax(360);
-		// scrollBar.setMin(0);
-		// scrollBar.setUnitIncrement(5.0);
-		// scrollBar.setBlockIncrement(100.0);
-		// scrollBar.valueProperty().addListener(new ChangeListener<Object>() {
-		//
-		// @SuppressWarnings("rawtypes")
-		// @Override
-		// public void changed(ObservableValue arg0, Object arg1, Object arg2) {
-		// double y = (double) arg2;
-		// if (-y > 0 && -y < scrollPane.getHeight()){
-		// System.out.println("hhh");
-		// box.setLayoutY(-y);
-		// }
-		// }
-		//
-		// });
-		// scrollBar.valueProperty().addListener((ov, old_val, new_val) -> {
-		// box.setLayoutY(-new_val.doubleValue()*5);
-		// });
-
+		scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
+		selectGeneral();
 	}
 
+	@FXML
+	public void enterGeneral() {
+		tab_fork.setStyle(styleStr + baseColor);
+		tab_contributor.setStyle(styleStr + baseColor);
+		tab_star.setStyle(styleStr + baseColor);
+		tab_general.setStyle(styleStr + enterColor);
+	}
+
+	@FXML
+	public void enterFork() {
+		tab_contributor.setStyle(styleStr + baseColor);
+		tab_star.setStyle(styleStr + baseColor);
+		tab_general.setStyle(styleStr + baseColor);
+		tab_fork.setStyle(styleStr + enterColor);
+	}
+
+	@FXML
+	public void enterStar() {
+		tab_contributor.setStyle(styleStr + baseColor);
+		tab_general.setStyle(styleStr + baseColor);
+		tab_fork.setStyle(styleStr + baseColor);
+		tab_star.setStyle(styleStr + enterColor);
+	}
+
+	@FXML
+	public void enterContributor() {
+		tab_general.setStyle(styleStr + baseColor);
+		tab_fork.setStyle(styleStr + baseColor);
+		tab_star.setStyle(styleStr + baseColor);
+		tab_contributor.setStyle(styleStr + enterColor);
+	}
+
+	@FXML
 	public void selectGeneral() {
-		// scrollBar.setVisible(true);
+		selectStar = false;
+		selectFork = false;
+		selectContri = false;
+		selectGeneral = true;
+		enterGeneral();
 		generalList = repositoryImpl.showRepositories(0);
 		initTabPane(generalList);
-
 	}
-	//
-	// public void selectStar() {
-	// if (tab_star.isSelected()) {
-	// starList = repositoryImpl.showReposByStar(0);
-	// initTabPane(tab_star, new ScrollPane(), new VBox(), starList);
-	// }
-	// }
-	//
-	// public void selectFork() {
-	// if (tab_fork.isSelected()) {
-	// forkList = repositoryImpl.showReposByFork(0);
-	// initTabPane(tab_fork, new ScrollPane(), new VBox(), forkList);
-	// }
-	// }
-	//
-	// public void selectContributor() {
-	// if (tab_contributor.isSelected()) {
-	// contriList = repositoryImpl.showReposByContribute(0);
-	// initTabPane(tab_contributor, new ScrollPane(), new VBox(), contriList);
-	// }
-	// }
-	//
+
+	@FXML
+	public void selectStar() {
+		selectStar = true;
+		selectFork = false;
+		selectContri = false;
+		selectGeneral = false;
+		enterStar();
+		starList = repositoryImpl.showReposByStar(0);
+		initTabPane(starList);
+	}
+
+	@FXML
+	public void selectFork() {
+		selectStar = false;
+		selectFork = true;
+		selectContri = false;
+		selectGeneral = false;
+		enterFork();
+		forkList = repositoryImpl.showReposByFork(0);
+		initTabPane(forkList);
+	}
+
+	@FXML
+	public void selectContributor() {
+		selectStar = false;
+		selectFork = false;
+		selectContri = true;
+		selectGeneral = false;
+		enterContributor();
+		contriList = repositoryImpl.showReposByContribute(0);
+		initTabPane(contriList);
+	}
 
 	private void initTabPane(List<RepositoryVO> list) {
-		// Pane->VBox->ScrollPane->VBox
-		// AnchorPane sp = new AnchorPane();
-
-		// box.getChildren().add(scrollPane);
+		box = new VBox();
 		VBox.setVgrow(scrollPane, Priority.ALWAYS);
 		box.setSpacing(4);
 		for (int i = 0; i < 10; i++) {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainUI.class.getResource("config/Ui_SingleReposView.fxml"));
 			try {
-				Group single = (Group) loader.load();
+				AnchorPane single = (AnchorPane) loader.load();
 				SingleRepositoryController controller = loader.getController();
 				if (i < list.size()) {
 					RepositoryVO vo = list.get(i);
 					controller.setVO(vo);
+
 					box.getChildren().add(single);
+
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-
-		scrollPane.getChildren().add(box);
+		scrollPane.setContent(box);
+		box = null;
 	}
 
 	@FXML
 	public void handleNextButton() {
-
+		generalNext();
+		starNext();
+		forkNext();
+		contriNext();
 	}
 
 	@FXML
 	public void handlePreButton() {
-
+		generalPre();
+		starPre();
+		forkPre();
+		contriPre();
 	}
 
-	// handle the general tab pane
-	// private void generalNext() {
-	// if (tab_general.isSelected()) {
-	// generalPage++;
-	// generalList = repositoryImpl.showRepositories(generalPage);
-	// if (generalList.size() > 0) {
-	// initTabPane(tab_general, new ScrollPane(), new VBox(), generalList);
-	// }else{
-	// generalPage--;
-	// }
-	// }
-	// }
-	//
-	// private void generalPre() {
-	// if (tab_general.isSelected()) {
-	// generalPage--;
-	// if (generalPage >= 0) {
-	// generalList = repositoryImpl.showRepositories(generalPage);
-	// initTabPane(tab_general, new ScrollPane(), new VBox(), generalList);
-	// }else{
-	// generalPage++;
-	// }
-	// }
-	// }
+	private void generalNext() {
+		if (selectGeneral) {
+			generalPage++;
+			generalList = repositoryImpl.showRepositories(generalPage);
+			if (generalList.size() > 0) {
+				initTabPane(generalList);
+			} else {
+				generalPage--;
+			}
+		}
+	}
 
-	// handle the star tab pane
-	// private void starNext() {
-	// if (tab_star.isSelected()) {
-	// starPage++;
-	// starList = repositoryImpl.showReposByStar(starPage);
-	// if (starList.size() > 0) {
-	// initTabPane(tab_star, new ScrollPane(), new VBox(), starList);
-	// }else{
-	// starPage--;
-	// }
-	// }
-	// }
-	//
-	// private void starPre() {
-	// if (tab_star.isSelected()) {
-	// starPage--;
-	// if (starPage >= 0) {
-	// starList = repositoryImpl.showReposByStar(starPage);
-	// initTabPane(tab_star, new ScrollPane(), new VBox(), starList);
-	// }else{
-	// starPage++;
-	// }
-	// }
-	// }
-	//
-	// // handle the fork tab pane
-	// private void forkNext() {
-	// if (tab_fork.isSelected()) {
-	// forkPage++;
-	// forkList = repositoryImpl.showReposByFork(forkPage);
-	// if (forkList.size() > 0) {
-	// initTabPane(tab_fork, new ScrollPane(), new VBox(), forkList);
-	// }else{
-	// forkPage--;
-	// }
-	// }
-	// }
-	//
-	// private void forkPre() {
-	// if (tab_fork.isSelected()) {
-	// forkPage--;
-	// if (forkPage >= 0) {
-	// forkList = repositoryImpl.showReposByFork(forkPage);
-	// initTabPane(tab_fork, new ScrollPane(), new VBox(), forkList);
-	// }else{
-	// forkPage++;
-	// }
-	// }
-	// }
+	private void generalPre() {
+		if (selectGeneral) {
+			generalPage--;
+			if (generalPage >= 0) {
+				generalList = repositoryImpl.showRepositories(generalPage);
+				initTabPane(generalList);
+			} else {
+				generalPage++;
+			}
+		}
+	}
+
+	private void starNext() {
+		if (selectStar) {
+			starPage++;
+			starList = repositoryImpl.showReposByStar(starPage);
+			if (starList.size() > 0) {
+				initTabPane(starList);
+			} else {
+				starPage--;
+			}
+		}
+	}
+
+	private void starPre() {
+		if (selectStar) {
+			starPage--;
+			if (starPage >= 0) {
+				starList = repositoryImpl.showReposByStar(starPage);
+				initTabPane(starList);
+			} else {
+				starPage++;
+			}
+		}
+	}
+
+	// handle the fork tab pane
+	private void forkNext() {
+		if (selectFork) {
+			forkPage++;
+			forkList = repositoryImpl.showReposByFork(forkPage);
+			if (forkList.size() > 0) {
+				initTabPane(forkList);
+			} else {
+				forkPage--;
+			}
+		}
+	}
+
+	private void forkPre() {
+		if (selectFork) {
+			forkPage--;
+			if (forkPage >= 0) {
+				forkList = repositoryImpl.showReposByFork(forkPage);
+				initTabPane(forkList);
+			} else {
+				forkPage++;
+			}
+		}
+	}
 
 	// handle the contributor tab pane
-	// private void contriNext() {
-	// if (tab_contributor.isSelected()) {
-	// contriPage++;
-	// contriList = repositoryImpl.showReposByContribute(contriPage);
-	// if (contriList.size() > 0) {
-	// initTabPane(tab_contributor, new ScrollPane(), new VBox(), contriList);
-	// }else{
-	// contriPage--;
-	// }
-	// }
-	// }
-	//
-	// private void contriPre() {
-	// if (tab_contributor.isSelected()) {
-	// contriPage--;
-	// if (contriPage >= 0) {
-	// contriList = repositoryImpl.showReposByContribute(contriPage);
-	// initTabPane(tab_contributor, new ScrollPane(), new VBox(), contriList);
-	// }else{
-	// contriPage++;
-	// }
-	// }
-	// }
-	//
+	private void contriNext() {
+		if (selectContri) {
+			contriPage++;
+			contriList = repositoryImpl.showReposByContribute(contriPage);
+			if (contriList.size() > 0) {
+				initTabPane(contriList);
+			} else {
+				contriPage--;
+			}
+		}
+	}
+
+	private void contriPre() {
+		if (selectContri) {
+			contriPage--;
+			if (contriPage >= 0) {
+				contriList = repositoryImpl.showReposByContribute(contriPage);
+				initTabPane(contriList);
+			} else {
+				contriPage++;
+			}
+		}
+	}
+
 	// private void test() {
 	// generalList = new ArrayList<RepositoryVO>();
 	// for (int i = 0; i < 200; i++) {

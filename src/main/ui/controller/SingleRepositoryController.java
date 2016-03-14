@@ -57,7 +57,7 @@ public class SingleRepositoryController implements Initializable {
 			lastUpdated.setText(vo.getUpdated_at()+"");
 			//set description
 			String str = vo.getDescription();
-			int size = 40;
+			int size = 130;
 			int line = str.length()/size;
 			String result = "";
 			int i = 0;

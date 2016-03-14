@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1376.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.HomeController">
+   <children>
+      <AnchorPane id="sortPane" layoutX="313.0" layoutY="6.0" prefHeight="40.0" prefWidth="1109.0">
+         <children>
+            <Label id="headLabel" fx:id="tab_general" layoutY="0.0" onMouseEntered="#enterGeneral" onMouseReleased="#selectGeneral" prefHeight="40.0" prefWidth="121.0" text="      General" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="988.0" AnchorPane.topAnchor="0.0" />
+            <Label id="headLabel" fx:id="tab_fork" layoutX="121.0" layoutY="1.0" onMouseEntered="#enterFork" onMouseReleased="#selectFork" prefHeight="40.0" prefWidth="121.0" text="         Fork" />
+            <Label id="headLabel" fx:id="tab_star" layoutX="242.0" layoutY="1.0" onMouseEntered="#enterStar" onMouseReleased="#selectStar" prefHeight="40.0" prefWidth="121.0" text="           Star" />
+            <Label id="headLabel" fx:id="tab_contributor" layoutX="363.0" layoutY="1.0" onMouseEntered="#enterContributor" onMouseReleased="#selectContributor" prefHeight="40.0" prefWidth="121.0" text="   Contributor" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="2.0" prefHeight="720.0" prefWidth="290.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="7.0" layoutY="89.0" prefHeight="48.0" prefWidth="91.0" text="Category">
+               <font>
+                  <Font name="Microsoft YaHei Bold" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="7.0" layoutY="137.0" text="Language:">
+               <font>
+                  <Font name="Microsoft YaHei UI" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="7.0" layoutY="169.0" text="Java" />
+            <Label layoutX="71.0" layoutY="169.0" text="C++" />
+            <TextField layoutX="3.0" layoutY="28.0" />
+            <Button layoutX="207.0" layoutY="28.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="Search" />
+         </children></AnchorPane>
+      <Button layoutX="668.0" layoutY="667.0" mnemonicParsing="false" onAction="#handlePreButton" text="Previous" />
+      <Button layoutX="863.0" layoutY="667.0" mnemonicParsing="false" onAction="#handleNextButton" text="Next" />
+      <ScrollPane fx:id="scrollPane" layoutX="313.0" layoutY="47.0" prefHeight="595.0" prefWidth="1050.0" />
+   </children>
+</AnchorPane>

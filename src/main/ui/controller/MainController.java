@@ -40,7 +40,7 @@ public class MainController implements Initializable {
 	 * when start the app, init the homePagePanel
 	 */
 	public void initPanel() {
-		setPanel("Ui_HomePagePanel2.fxml");
+		setPanel("test.fxml");
 	}
 
 	/**
