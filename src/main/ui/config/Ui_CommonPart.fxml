@@ -16,19 +16,19 @@
       <AnchorPane fx:id="center_panel" layoutY="51.0" prefHeight="720.0" prefWidth="1366.0" />
       <AnchorPane id="headPane" fx:id="common" prefHeight="48.0" prefWidth="1366.0">
          <children>
-            <Label id="headLabel" prefHeight="51.0" prefWidth="140.0" text="        Repository" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1246.0" AnchorPane.topAnchor="0.0">
+            <Label id="headLabel" fx:id="repository" onMouseEntered="#enterRepos" onMouseExited="#exitRepos" onMouseReleased="#releaseRepos" prefHeight="51.0" prefWidth="140.0" text="      Repository" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1246.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label id="headLabel" layoutX="140.0" prefHeight="51.0" prefWidth="140.0" text="           User" textFill="WHITE">
+            <Label id="headLabel" fx:id="user" layoutX="120.0" onMouseEntered="#enterUser" onMouseExited="#exitUser" onMouseReleased="#releaseUser" prefHeight="51.0" prefWidth="140.0" text="            User" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label id="headLabel" layoutX="280.0" prefHeight="51.0" prefWidth="140.0" text="RepositoryStatistics" textFill="WHITE">
+            <Label id="headLabel" fx:id="repositorySta" layoutX="260.0" onMouseEntered="#enterReposSta" onMouseExited="#exitReposSta" onMouseReleased="#releaseReposSta" prefHeight="51.0" prefWidth="140.0" text="RepositoryStatistics" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label id="headLabel" layoutX="420.0" prefHeight="51.0" prefWidth="140.0" text="         UserStatistics" textFill="WHITE">
+            <Label id="headLabel" fx:id="userSta" layoutX="400.0" onMouseEntered="#enterUserSta" onMouseExited="#exitUserSta" onMouseReleased="#releaseUserSta" prefHeight="51.0" prefWidth="140.0" text="     UserStatistics" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font></Label>

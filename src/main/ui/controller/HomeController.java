@@ -8,9 +8,11 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -34,17 +36,21 @@ public class HomeController implements Initializable {
 	private Label tab_contributor;
 	@FXML
 	private ScrollPane scrollPane;
+	@FXML
+	private Button searchButton;
+	@FXML
+	private TextField textField;
 	private VBox box;
-	
+
 	private String styleStr = "-fx-background-color: ";
 	private String enterColor = "#5d9b78;";
 	private String baseColor = "#71af8c;";
-	
+
 	private boolean selectGeneral;
 	private boolean selectStar;
 	private boolean selectFork;
 	private boolean selectContri;
-	
+
 	private RepositoryService repositoryImpl;
 	@SuppressWarnings("unused")
 	private UserService userImpl;
@@ -292,13 +298,16 @@ public class HomeController implements Initializable {
 		}
 	}
 
-	// private void test() {
-	// generalList = new ArrayList<RepositoryVO>();
-	// for (int i = 0; i < 200; i++) {
-	// RepositoryVO vo = new RepositoryVO();
-	// vo.setFull_name(i + "awesome");
-	// generalList.add(vo);
-	// }
-	// }
-
+	@FXML
+	public void handleSearch() {
+		if(textField.getText().isEmpty()){
+			return;
+		}
+		MainController main = MainController.getInstance();
+		if(main.isSelectRepos()){
+			main.setPanel("Ui_SearchRepos.fxml");
+		}else if(main.isSelectUser()){
+			main.setPanel("Ui_SearchUser.fxml");
+		}
+	}
 }
