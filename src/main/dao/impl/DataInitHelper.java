@@ -53,19 +53,14 @@ public class DataInitHelper {
 
 					repo = new HashMap<String, Integer>();
 
-					String repoName = line1.split(": ")[0];
 
-					if (line1.split(": ").length == 2) {
-						
-
-						line1 = line1.split(": ")[1];
-						line2 = line2.split(": ")[1];
+					if (!line1.equals("")) {
 
 						String[] languageNames = line1.split(",");
 						String[] languageCounts = line2.split(",");
 
 						if (languageCounts.length != languageNames.length)
-							System.out.println("Error! " + repoName);
+							System.out.println("Language txt Error! " );
 
 						// 读入每一组语言-行数
 						for (int i = 0; i < languageNames.length; i++) {
@@ -73,7 +68,6 @@ public class DataInitHelper {
 						}
 					}
 					map.add(repo);
-
 				}
 
 			} catch (IOException e) {
