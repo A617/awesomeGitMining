@@ -178,7 +178,7 @@ public class MainUI extends Application {
 		// stage.setWidth(primaryScreenBounds.getWidth());
 		// stage.setHeight(primaryScreenBounds.getHeight());//全屏 等要用的时候再说
 	}
-
+	
 	public static MainUI getUI() {
 		return ui;
 	}

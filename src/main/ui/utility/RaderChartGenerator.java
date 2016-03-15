@@ -14,14 +14,14 @@ import org.jfree.ui.RectangleEdge;
 
 import javafx.scene.image.Image;
 
-public class ChartGenerator {
+public class RaderChartGenerator {
 
 	private String path = "src/main/ui/style/spider.png";
-	private static ChartGenerator instance;
+	private static RaderChartGenerator instance;
 	
-	public static ChartGenerator getInstance() {
+	public static RaderChartGenerator getInstance() {
 		if(instance == null) {
-			instance = new ChartGenerator();
+			instance = new RaderChartGenerator();
 		}
 		return instance;
 	}
