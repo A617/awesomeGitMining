@@ -76,7 +76,7 @@ public class UserPageController implements Initializable{
 	public void handleUserPre() {
 		userPage--;
 		if (userPage >= 0) {
-			userVO = userImpl.searchUsers(userPage);
+			userVO = userImpl.showUsers(userPage);
 			initUser(userVO);
 		}else {
 			userPage++;
@@ -87,7 +87,7 @@ public class UserPageController implements Initializable{
 	@FXML
 	public void handleUserNext() {
 		userPage++;
-		userVO = userImpl.searchUsers(userPage);
+		userVO = userImpl.showUsers(userPage);
 		if (userVO.size() > 0) {
 			initUser(userVO);
 		}else {
