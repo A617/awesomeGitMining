@@ -38,11 +38,31 @@
 #userName:hover{
 	-fx-text-fill: #77DDFF;
 }
+#tag{
+	-fx-font-family:"Microsoft YaHei"
+}
+#tag:hover{
+	-fx-border-color:#5d9b78;
+}
+.scroll-pane  .scroll-bar .increment-arrow,
+.scroll-pane  .scroll-bar .decrement-arrow{
+    -fx-shape: " ";
+    -fx-padding:0;
+}
+ 
+
+.scroll-pane .scroll-bar:horizontal .thumb,
+
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color:derive(#67a582,100%);
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 3em;
+}
 .table-view:row-selection{
     -fx-background-color: transparent;
 }
 .table-view .column-header-background{
-    -fx-background-color: linear-gradient(#CFDFEF 0%, #4080BF 100%);
+    -fx-background-color: #67a582;
 }
 .table-view .column-header-background .label{
     -fx-background-color: transparent;
@@ -56,19 +76,19 @@
     -fx-font-family:"Microsoft YaHei"
 }
 .table-row-cell{
-    -fx-background-color: -fx-table-cell-border-color, #9FBFDF;
+    -fx-background-color: -fx-table-cell-border-color, #9FDFBF;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em; /* 0 */
 }
 
 .table-row-cell:odd{
-    -fx-background-color: -fx-table-cell-border-color, #709FCF;
+    -fx-background-color: -fx-table-cell-border-color, #70CF9F;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em; /* 0 */  
 }
 
 .table-row-cell:selected {
-    -fx-background-color: #4080BF;
+    -fx-background-color: #67a582;
     -fx-background-insets: 0;
     -fx-background-radius: 1;
 }
@@ -79,7 +99,7 @@
 .table-view > .virtual-flow > .scroll-bar:horizontal,
 .table-view > .virtual-flow > .scroll-bar:horizontal > .track,
 .table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
-    -fx-background-color: #4080BF;
+    -fx-background-color: #67a582;
 }
 
 

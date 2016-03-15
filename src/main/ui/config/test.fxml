@@ -21,40 +21,40 @@
       <ScrollPane fx:id="scrollPane" layoutX="313.0" layoutY="47.0" prefHeight="595.0" prefWidth="1045.0" />
       <AnchorPane layoutX="2.0" prefHeight="720.0" prefWidth="301.0" style="-fx-background-color: #faf6f2;">
          <children>
-            <Label layoutX="9.0" layoutY="82.0" text="Language:">
+            <Label layoutX="6.0" layoutY="78.0" text="Language:">
                <font>
-                  <Font name="Microsoft YaHei UI" size="15.0" />
+                  <Font name="Microsoft YaHei UI" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="language_all" layoutX="9.0" layoutY="113.0" text="All" />
-            <Label fx:id="cpp" layoutX="74.0" layoutY="143.0" text="C++" />
-            <Label fx:id="c" layoutX="137.0" layoutY="113.0" text="C" />
-            <Label fx:id="java" layoutX="180.0" layoutY="113.0" text="Java" />
-            <Label fx:id="ruby" layoutX="237.0" layoutY="113.0" text="Ruby" />
-            <Label fx:id="python" layoutX="9.0" layoutY="143.0" text="Python" />
-            <Label fx:id="javaScript" layoutX="8.0" layoutY="203.0" text="JavaScript" />
-            <Label fx:id="perl" layoutX="131.0" layoutY="143.0" text="Perl" />
-            <Label fx:id="php" layoutX="180.0" layoutY="143.0" text="PHP" />
-            <Label fx:id="html" layoutX="237.0" layoutY="143.0" text="HTML" />
-            <Label fx:id="shell" layoutX="9.0" layoutY="173.0" text="Shell" />
-            <Label fx:id="objectiveC" layoutX="43.0" layoutY="113.0" text="Objective-C" />
-            <Label fx:id="viml" layoutX="179.0" layoutY="173.0" text="Viml" />
-            <Label fx:id="csharp" layoutX="88.0" layoutY="203.0" text="C#" />
-            <Label fx:id="emacsLisp" layoutX="7.0" layoutY="233.0" text="Emacs Lisp" />
-            <Label fx:id="erlang" layoutX="236.0" layoutY="233.0" text="Erlang" />
-            <Label layoutX="133.0" layoutY="203.0" text="Lua" />
-            <Label fx:id="clojure" layoutX="174.0" layoutY="203.0" text="Clojure" />
-            <Label fx:id="css" layoutX="241.0" layoutY="173.0" text="CSS" />
-            <Label fx:id="haskell" layoutX="232.0" layoutY="203.0" text="Haskell" />
-            <Label fx:id="scala" layoutX="72.0" layoutY="173.0" text="Scala" />
-            <Label fx:id="commonLisp" layoutX="124.0" layoutY="233.0" text="Common Lisp" />
-            <Label fx:id="r" layoutX="138.0" layoutY="173.0" text="R" />
-            <Label fx:id="others" layoutX="7.0" layoutY="263.0" text="Others" />
+            <Label id="tag" fx:id="language_all" layoutX="9.0" layoutY="113.0" text="All" />
+            <Label id="tag" fx:id="cpp" layoutX="74.0" layoutY="143.0" text="C++" />
+            <Label id="tag" fx:id="c" layoutX="137.0" layoutY="113.0" text="C" />
+            <Label id="tag" fx:id="java" layoutX="180.0" layoutY="113.0" text="Java" />
+            <Label id="tag" fx:id="ruby" layoutX="237.0" layoutY="113.0" text="Ruby" />
+            <Label id="tag" fx:id="python" layoutX="9.0" layoutY="143.0" text="Python" />
+            <Label id="tag" fx:id="javaScript" layoutX="8.0" layoutY="203.0" text="JavaScript" />
+            <Label id="tag" fx:id="perl" layoutX="131.0" layoutY="143.0" text="Perl" />
+            <Label id="tag" fx:id="php" layoutX="180.0" layoutY="143.0" text="PHP" />
+            <Label id="tag" fx:id="html" layoutX="237.0" layoutY="143.0" text="HTML" />
+            <Label id="tag" fx:id="shell" layoutX="9.0" layoutY="173.0" text="Shell" />
+            <Label id="tag" fx:id="objectiveC" layoutX="43.0" layoutY="113.0" text="Objective-C" />
+            <Label id="tag" fx:id="viml" layoutX="179.0" layoutY="173.0" text="Viml" />
+            <Label id="tag" fx:id="csharp" layoutX="88.0" layoutY="203.0" text="C#" />
+            <Label id="tag" fx:id="emacsLisp" layoutX="7.0" layoutY="233.0" text="Emacs Lisp" />
+            <Label id="tag" fx:id="erlang" layoutX="236.0" layoutY="233.0" text="Erlang" />
+            <Label id="tag" layoutX="133.0" layoutY="203.0" text="Lua" />
+            <Label id="tag" fx:id="clojure" layoutX="174.0" layoutY="203.0" text="Clojure" />
+            <Label id="tag" fx:id="css" layoutX="241.0" layoutY="173.0" text="CSS" />
+            <Label id="tag" fx:id="haskell" layoutX="232.0" layoutY="203.0" text="Haskell" />
+            <Label id="tag" fx:id="scala" layoutX="72.0" layoutY="173.0" text="Scala" />
+            <Label id="tag" fx:id="commonLisp" layoutX="124.0" layoutY="233.0" text="Common Lisp" />
+            <Label id="tag" fx:id="r" layoutX="138.0" layoutY="173.0" text="R" />
+            <Label id="tag" fx:id="others" layoutX="7.0" layoutY="263.0" text="Others" />
             <Line endX="200.0" layoutX="100.0" layoutY="319.0" startX="-100.0" stroke="#dad8d8" />
             <Line endX="200.0" layoutX="100.0" layoutY="500.0" startX="-100.0" stroke="#dad8d8" />
             <Label layoutX="8.0" layoutY="511.0" text="Create Time:">
                <font>
-                  <Font name="Microsoft YaHei UI" size="15.0" />
+                  <Font name="Microsoft YaHei UI" size="22.0" />
                </font>
             </Label>
             <Label fx:id="time_all" layoutX="8.0" layoutY="544.0" text="All" />
