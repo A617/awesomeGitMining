@@ -89,4 +89,12 @@
     -fx-opacity: 0;
 }
 
-
+.data0.chart-pie { -fx-pie-color: pink; }
+.data1.chart-pie { -fx-pie-color: salmon; }
+.data2.chart-pie { -fx-pie-color: sandybrown; }
+.data3.chart-pie { -fx-pie-color: gold; }
+.data4.chart-pie { -fx-pie-color: lightgreen; }
+.data5.chart-pie { -fx-pie-color: mediumaquamarine; }
+.data6.chart-pie { -fx-pie-color: skyblue; }
+.data7.chart-pie { -fx-pie-color: plum; }
+.data8.chart-pie { -fx-pie-color: mediumslateblue; }

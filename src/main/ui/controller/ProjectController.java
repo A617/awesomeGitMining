@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -19,6 +20,7 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
+import main.ui.utility.PieChartGenerator;
 import main.vo.CollaboratorVO;
 import main.vo.ContributorVO;
 import main.vo.LanguageVO;
@@ -48,9 +50,9 @@ public class ProjectController implements Initializable {
 	@FXML
 	private Label coNum;
 	@FXML
-	private AnchorPane piechart;
+	private AnchorPane piePane;
 	@FXML
-	private AnchorPane raderchart;
+	private AnchorPane raderPane;
 	@FXML
 	private Label chart;
 	@FXML
@@ -64,6 +66,7 @@ public class ProjectController implements Initializable {
 	
 	private Clipboard clipboard;//获取系统剪贴板
 	private ClipboardContent content;
+	private PieChart piechart;
 
 	public static ProjectController getInstance() {
 		if (instance == null) {
@@ -112,10 +115,15 @@ public class ProjectController implements Initializable {
 			subNum.setText(String.valueOf(vo.getSubscribers_count()));
 			conNum.setText(String.valueOf(vo.getContributors_login().size()));
 			coNum.setText(String.valueOf(vo.getCollaborators_login().size()));
+			
+			//piechart
+			piechart = PieChartGenerator.getInstance().generateChart(vo.getLanguages());
+			piechart.setTitle("Languages");
+			piechart.setMaxWidth(340);
+			piechart.setMaxHeight(320);
+			piePane.getChildren().add(piechart);
 			//TODO
-			/*
-			 * the 2 charts
-			 */
+			//raderchart
 			// contributors
 			if (vo.getContributors_login() != null) {
 				ObservableList<ContributorVO> contributors = FXCollections.observableArrayList();
