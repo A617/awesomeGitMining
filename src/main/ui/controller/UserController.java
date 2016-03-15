@@ -16,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.UserService;
+import main.vo.Colla_ProVO;
 import main.vo.Contri_ProVO;
 import main.vo.Crea_ProVO;
 import main.vo.UserVO;
@@ -44,6 +45,10 @@ public class UserController implements Initializable {
 	@FXML
 	private TableColumn<Crea_ProVO, String> Crea_Pro;// 填入此用户创造的项目
 	@FXML
+	private TableView<Colla_ProVO> Colla_Pro_View;
+	@FXML
+	private TableColumn<Colla_ProVO,String> Colla_Pro;//填入此用户参与过的项目
+	@FXML
 	private Label name;// 用户的名字
 	@FXML
 	private Label location;
@@ -59,11 +64,13 @@ public class UserController implements Initializable {
 	private Label followers;// 粉丝数
 	@FXML
 	private Label followings;// 关注数
+	@FXML
+	private Label user_eva_img;//用户详细信息分析雷达图
 
 	List<String> text1;
 	List<String> text2;
-	
-	
+	List<String> text3;
+
 	public static UserController getInstance() {
 		if (instance == null) {
 			instance = new UserController();
@@ -75,7 +82,7 @@ public class UserController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		instance = this;
-		
+
 //		user_back.setOnAction((e) -> {
 //			if (MainController.getInstance().getSearchId() == "") {
 //				MainController.getInstance().initPanel();
@@ -164,5 +171,28 @@ public class UserController implements Initializable {
 			Crea_Pro_View.setItems(crea_pros);
 			Crea_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		}
+
+		// contributed pros
+				if (vo.getCollaboration_fullname() != null) {
+					ObservableList<Colla_ProVO> colla_pros = FXCollections.observableArrayList();
+					for (String name : vo.getCollaboration_fullname()) {
+						Colla_ProVO cv = new Colla_ProVO(name);
+						colla_pros.add(cv);
+					}
+					Colla_Pro_View.setItems(colla_pros);
+					Colla_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
+				} else {
+
+					text3 = new ArrayList<String>();
+					text3.add("Hasn't collaborated any projects.:)");
+					ObservableList<Colla_ProVO> colla_pros = FXCollections.observableArrayList();
+					for (String name : text3) {
+						Colla_ProVO cv = new Colla_ProVO(name);
+						colla_pros.add(cv);
+					}
+					Colla_Pro_View.setItems(colla_pros);
+					Colla_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
+				}
+
 	}
 }

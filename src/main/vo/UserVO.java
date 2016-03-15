@@ -20,8 +20,17 @@ public class UserVO extends VO {
 	private String html_url; // github主页
 	private List<String> contributions_fullname; //贡献过的项目
 	private List<String> repos_fullname;		//创建的项目
+	private List<String> collaboration_fullname;//参与过的项目
 	private String created_at;
 	private Image avatar;//头像
+
+	public List<String> getCollaboration_fullname() {
+		return collaboration_fullname;
+	}
+
+	public void setCollaboration_fullname(List<String> collaboration_fullname) {
+		this.collaboration_fullname = collaboration_fullname;
+	}
 
 	public Image getAvatar() {
 		return avatar;
