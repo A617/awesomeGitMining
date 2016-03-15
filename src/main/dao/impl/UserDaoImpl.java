@@ -8,6 +8,7 @@ import java.util.Map;
 import javafx.scene.image.Image;
 import main.dao.HttpRequest;
 import main.dao.JsonUtil;
+import main.dao.entity.Type;
 import main.dao.entity.User;
 import main.data.DataMining;
 
@@ -19,7 +20,12 @@ public class UserDaoImpl implements IUserDao {
 
 	/* 所有用户列表 */
 	private List<String> userList;
+	/*所有用户位置列表*/
 	private List<String> locationList;
+	/*所有用户公司列表*/
+	private List<String> companyList;
+	/*所有用户类型列表*/
+	private List<String> typeList;
 	/* 所有用户与贡献项目列表 */
 	private Map<String, List<String>> mapUser2Contrbutions;
 	/* 所有用户与合作项目列表 */
@@ -33,9 +39,11 @@ public class UserDaoImpl implements IUserDao {
 
 		String path = "src/main/data/gitmining-api/";
 		this.userList = DataInitHelper.getList(path + "user_login.txt");
-		this.locationList = DataInitHelper.getList(path + "user_brief.txt");
-		this.mapUser2Collaborations = DataInitHelper.getMap(path + "collaborator-repos.txt");
-		this.mapUser2Contrbutions = DataInitHelper.getMap(path + "contributor-repos.txt");
+		this.locationList = DataInitHelper.getList(path + "user-location.txt");
+		this.companyList = DataInitHelper.getList(path + "user-company.txt");
+	//	this.typeList = DataInitHelper.getList(path + "user-type.txt");
+		this.mapUser2Collaborations = DataInitHelper.getMap(path + "user-collaborated.txt");
+		this.mapUser2Contrbutions = DataInitHelper.getMap(path + "user-contributed.txt");
 		this.mapUser2Repos = DataInitHelper.getMap(path + "user-repos.txt");
 
 		System.out.println("UserDaoImpl initialized!");
@@ -69,12 +77,7 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public List<String> searchUser(String input) {
-		/*
-		 * String s =
-		 * HttpRequest.sendGet("https://api.github.com/search/users?q=", input);
-		 * return JsonUtil.<String>getListfromJsonArray(s, "items", "login");
-		 */
-
+		
 		List<String> result = SearchHelper.fuzzySearch(userList, input);
 
 		return result;
@@ -89,4 +92,44 @@ public class UserDaoImpl implements IUserDao {
 			return null;
 		return locationList.get(index);
 	}
+
+	@Override
+	public List<String> getAllUser() {
+		return userList;
+	}
+
+	@Override
+	public String getCompany(String login) {
+		int index = userList.indexOf(login);
+		if(index == -1)
+			return null;
+		return companyList.get(index);
+	}
+
+	@Override
+	public Type getType(String login) {
+		
+		Type type =Type.valueOf("User");
+		return type;
+	}
+
+	@Override
+	public int[] getTypeStatistic() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int[] getCreatedTimeStatistics() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int[] getCompanyStatistics() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 }

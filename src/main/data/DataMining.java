@@ -8,6 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,10 +25,24 @@ public class DataMining {
 
 		long startTime = System.nanoTime();
 
-		String url = "http://www.gitmining.net/api/user/";
-		String path = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/user-brief.txt";
+		/*String url = "http://www.gitmining.net/api/user/";
+		String path = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/user-type.txt";
 
-		getDataFromDtaMining(url, path, "location");
+		getDataFromDtaMining(url, path, "type");*/
+		
+		String path = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-contributors.txt";
+
+/*		
+		erlide/erlide: 5903725,116921,15392,12869,10450,176846,1150,1149309,8996,
+		technomancy/leiningen: 361,23412,13380,469479,3396,
+		chrisboyle/sgtpuzzles: 215083,11748,254,3644513,34483,42824,3219,45736,442333,100340,
+		cschwan/sage-on-gentoo: 265818,2327,386,15396,4342,2718,834,
+		mvz/gir_ffi: 82,626140,
+		sni/Thruk: 3153168,67071,4412429,2453339,4032,
+		ocaml-batteries-team/batteries-included: 5046,2986,2200428,7877,916,
+		padrino/padrino-framework: 9493,4785,33427,1223746,
+		riotfamily/riot: 2233399,149040,950085,8433,*/
+		test(path);
 
 		long endTime = System.nanoTime();
 		System.out.println("Took " + (endTime - startTime) + " ns");
@@ -95,14 +111,19 @@ public class DataMining {
 		}
 	}
 
+	/**
+	 * 将每个仓库或用户的某项信息记录在本地文件
+	 * 用api中的/item查询
+	 * @param url
+	 * @param path
+	 * @param key 要查询的属性
+	 */
 	public static void getDataFromDtaMining(String url, String path, String key) {
 
-		List<String> repositories = readFromRepoTxt();
+		List<String> repositories = readFromUserTxt();
 		System.out.println(repositories.size());
 
 		String page = "";
-
-		List<String> logins;
 
 		File file = new File(path);
 		FileWriter fw = null;
@@ -123,7 +144,7 @@ public class DataMining {
 
 
 				try {
-					page = HttpRequest.sendGet(url, repoFull_name);
+					page = HttpRequest.sendGet(url+repoFull_name+"/item/", key);
 				} catch (IOException e) {
 					e.printStackTrace();
 					writer.newLine();
@@ -132,7 +153,7 @@ public class DataMining {
 				}
 
 				try{
-				writer.write(JsonUtil.getStringfromJson(page, key));
+				writer.write(page);
 				}catch(JSONException e){
 					writer.newLine();
 					writer.flush();
@@ -222,6 +243,36 @@ public class DataMining {
 	 * @return
 	 */
 	private static List<String> readFromRepoTxt() {
+		List<String> repositories = new ArrayList<String>();
+
+		try {
+			File file = new File(repopath);
+			if (file.isFile() && file.exists()) { // 判断文件是否存在
+				InputStreamReader read = new InputStreamReader(new FileInputStream(file));
+				BufferedReader bufferedReader = new BufferedReader(read);
+				String lineTxt = null;
+				while ((lineTxt = bufferedReader.readLine()) != null) {
+					repositories.add(lineTxt);
+				}
+				read.close();
+			} else {
+				System.out.println("找不到指定的文件");
+			}
+		} catch (Exception e) {
+			System.out.println("读取文件内容出错");
+			e.printStackTrace();
+		}
+	
+		return repositories;
+	}
+	
+	
+	/**
+	 * 用来读取用户列表
+	 * 
+	 * @return
+	 */
+	private static List<String> readFromUserTxt() {
 		List<String> repositories = new ArrayList<String>();
 
 		try {
@@ -438,6 +489,81 @@ public class DataMining {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			}
+		}
+	}
+	
+	public static void test(String path){
+		File file = new File(path);
+
+		List<String> list = null;
+		if (file.isFile() && file.exists()) { // 判断文件是否存在
+
+			InputStreamReader read = null;
+			BufferedReader bufferedReader = null;
+			String line;
+			String[] tmpMap;
+			String[] users;
+
+			try {
+				read = new InputStreamReader(new FileInputStream(file));
+				bufferedReader = new BufferedReader(read);
+				list = new ArrayList<>();
+
+				while ((line = bufferedReader.readLine()) != null) { // 读取文件每一行
+
+					tmpMap = line.split(": ");
+
+					if (tmpMap.length < 2){
+						list.add("");
+						continue;
+					}
+
+					list.add(tmpMap[1]); // 向mapR2U中加入一组 项目-用户
+				}
+
+				System.out.println(list.size());
+			} catch (IOException e) {
+				e.printStackTrace();
+
+			} finally {
+
+				try {
+					read.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		} else {
+			System.out.println("找不到指定的文件" + path);
+		}
+		
+		
+		FileWriter fw = null;
+		BufferedWriter writer = null;
+
+		try {
+
+			fw = new FileWriter(file);
+			writer = new BufferedWriter(fw);
+
+			for (String full_name : list) {
+				writer.write(full_name);
+				writer.newLine();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				writer.flush();
+				writer.close();
+				fw.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 	}

@@ -29,5 +29,15 @@ public interface IRepoDao {
 	 */
 	public List<String> getAllRepo();
 	
+	/**
+	 * 获取使用每种语言的项目数目
+	 * @return
+	 */
+	public int[] getLanguageStatistics();
 	
+	/**
+	 * 获取2007-2015创建项目的个数
+	 * @return
+	 */
+	public int[] getCreatedTimeStatistics();
 }

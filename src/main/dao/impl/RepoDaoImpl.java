@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import main.dao.JsonUtil;
+import main.dao.entity.Language;
 import main.dao.entity.Repository;
 
 public class RepoDaoImpl implements IRepoDao {
@@ -21,17 +22,16 @@ public class RepoDaoImpl implements IRepoDao {
 	Map<String, List<String>> mapR2Clb;
 
 	/* 项目-语言使用情况 */
-	Map<String, Map<String, Integer>> mapR2L;
+	List<Map<String, Integer>> mapR2L;
 
 	/* 项目-fork项目 */
-	Map<String, List<String>> mapR2Fork;
+//	Map<String, List<String>> mapR2Fork;
 
 	/* 所有项目jsonStr列表 */
 	List<String> repoAll;
 
 	public RepoDaoImpl() {
 		
-
 
 		String path = "src/main/data/gitmining-api/";
 		this.repoList = DataInitHelper
@@ -51,8 +51,8 @@ public class RepoDaoImpl implements IRepoDao {
 				path+"repo-languageCounts.txt");
 		
 
-		mapR2Fork = DataInitHelper
-				.getMap(path+"repo-forks.txt");
+	//	mapR2Fork = DataInitHelper
+	//			.getMap(path+"repo-forks.txt");
 	
 		
 		this.repoAll = DataInitHelper
@@ -79,8 +79,8 @@ public class RepoDaoImpl implements IRepoDao {
 			po.setContributors_login(mapR2Ctb.get(name));
 			po.setCollaborators_login(mapR2Clb.get(name));
 			po.setOwner_name(name.split("/")[0]);
-			po.setForks_fullname(mapR2Fork.get(name));
-			po.setLanguages(mapR2L.get(name));
+		//	po.setForks_fullname(mapR2Fork.get(name));
+			po.setLanguages(mapR2L.get(index));
 		}
 		return po;
 	}
@@ -91,65 +91,21 @@ public class RepoDaoImpl implements IRepoDao {
 		return repoList;
 	}
 	
-/*
-	@Override
-	public List<Branch> getBranches(String name) throws IOException {
-		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/branches");
-
-		List<Branch> list = JsonUtil.<Branch> parseJson2Beanlist(s, Branch.class);
-		return list;
-	}
-
-	@Override
-	public List<Contributor> getContributors(String name) throws IOException {
-		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/contributors");
-
-		List<Contributor> list = JsonUtil.parseJson2Beanlist(s, Contributor.class);
-		return list;
-	}
-
-	@Override
-	public List<Collaborator> getCollaborators(String name) throws IOException {
-		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/collaborators");
-
-		List<Collaborator> list = JsonUtil.parseJson2Beanlist(s, Collaborator.class);
-		return list;
-	}
-
-	@Override
-	public List<Fork> getForks(String name) throws IOException {
-		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/forks");
-
-		List<Fork> list = JsonUtil.parseJson2Beanlist(s, Fork.class);
-		return list;
-	}
-
-	@Override
-	public Owner getOwner(String name) throws IOException {
-		String s = HttpRequest.sendGet(gitmining_repo_url, name);
-
-		return JsonUtil.getObjectfromJson(s, Owner.class, "owner");
-	}
-
-
-	private String getOwner_name(String name) throws IOException {
-		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/item/owner_name");
-
-		return s;
-	}*/
-
-/*	
-	@Override
-	public Map<String, Integer> getLanguages(String name) throws IOException {
-		String s = HttpRequest.sendGet(gitmining_repo_url, name + "/languages");
-		Map<String, Integer> result = JsonUtil.<Integer> parseJSON2Map(s);
-		result.remove("fn");
-		return result;
-	}
-*/
 	@Override
 	public List<String> searchRepository(String name) {
 		return SearchHelper.fuzzySearch(repoList, name);
+	}
+
+	@Override
+	public int[] getLanguageStatistics() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int[] getCreatedTimeStatistics() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
