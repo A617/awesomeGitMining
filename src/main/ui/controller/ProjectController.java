@@ -120,7 +120,7 @@ public class ProjectController implements Initializable {
 			piechart = PieChartGenerator.getInstance().generateChart(vo.getLanguages());
 			piechart.setTitle("Languages");
 			piechart.setMaxWidth(340);
-			piechart.setMaxHeight(320);
+			piechart.setMaxHeight(340);
 			piePane.getChildren().add(piechart);
 			//TODO
 			//raderchart

@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
 
 public class PieChartGenerator {
@@ -26,6 +27,7 @@ public class PieChartGenerator {
 		PieChart chart = new PieChart(pieChartData);
 		chart.setClockwise(false);
 		chart.setStartAngle(90);
+		chart.setLabelsVisible(false);
 
 		return chart;
 	}
