@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.scene.image.Image;
 import main.business.dto.Converter;
 import main.business.service.UserService;
 import main.dao.DataFactory;
@@ -138,6 +137,12 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public List<UserVO> showUsers(int pageIndex) {
+		
+		return null;
 	}
 
 

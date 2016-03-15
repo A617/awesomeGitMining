@@ -2,7 +2,6 @@ package main.business.service;
 
 import java.util.List;
 
-import javafx.scene.image.Image;
 import main.vo.UserVO;
 
 public interface UserService {
@@ -29,9 +28,9 @@ public interface UserService {
 	/**
 	 * 
 	 * @param pageIndex
-	 * @return arraylist of UserVO
+	 * @return get all users by page index
 	 */
-	public abstract List<UserVO> searchUsers(int pageIndex);
+	public abstract List<UserVO> showUsers(int pageIndex);
 	/**
 	 * search user by id
 	 * @param id

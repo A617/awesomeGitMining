@@ -16,7 +16,6 @@ import main.ui.utility.fxmlLoader;
 public class MainController implements Initializable {
 
 	private static MainController instance;
-
 	public static MainController getInstance() {
 		if (instance == null) {
 			instance = new MainController();
@@ -38,7 +37,7 @@ public class MainController implements Initializable {
 	private Label repositorySta;
 	@FXML
 	private Label userSta;
-	private boolean selectRepos = true;
+	private boolean selectRepos;
 	private boolean selectUser;
 	private boolean selectReposSta;
 	private boolean selectUserSta;
@@ -62,6 +61,10 @@ public class MainController implements Initializable {
 		AnchorPane panel = fxmlLoader.loadPanel(name);
 		center_panel.getChildren().clear();
 		center_panel.getChildren().add(panel);
+		AnchorPane field = fxmlLoader.loadPanel("Ui_TextField.fxml");
+		panel.getChildren().add(field);
+		field.setLayoutX(10);
+		field.setLayoutY(-10);
 		// otherwise the searchButton cannot use
 		common.toFront();
 	}
@@ -77,6 +80,8 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		instance = this;
+		selectRepos = true;
+		enterRepos();
 	}
 
 	public void labelInit(Label label, String path) {
@@ -87,33 +92,21 @@ public class MainController implements Initializable {
 	@FXML
 	public void enterRepos() {
 		repository.setStyle(styleStr + enterColor);
-		user.setStyle(styleStr + baseColor);
-		repositorySta.setStyle(styleStr + baseColor);
-		userSta.setStyle(styleStr + baseColor);
 	}
 
 	@FXML
 	public void enterUser() {
 		user.setStyle(styleStr + enterColor);
-		repositorySta.setStyle(styleStr + baseColor);
-		userSta.setStyle(styleStr + baseColor);
-		repository.setStyle(styleStr + baseColor);
 	}
 
 	@FXML
 	public void enterReposSta() {
 		repositorySta.setStyle(styleStr + enterColor);
-		user.setStyle(styleStr + baseColor);
-		userSta.setStyle(styleStr + baseColor);
-		repository.setStyle(styleStr + baseColor);
 	}
 
 	@FXML
 	public void enterUserSta() {
 		userSta.setStyle(styleStr + enterColor);
-		repositorySta.setStyle(styleStr + baseColor);
-		user.setStyle(styleStr + baseColor);
-		repository.setStyle(styleStr + baseColor);
 	}
 
 	@FXML
@@ -188,5 +181,4 @@ public class MainController implements Initializable {
 	public boolean isSelectUser() {
 		return selectUser;
 	}
-
 }

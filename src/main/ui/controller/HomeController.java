@@ -8,18 +8,14 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import main.business.impl.repository.RepositoryServiceImpl;
-import main.business.impl.user.UserServiceImpl;
 import main.business.service.RepositoryService;
-import main.business.service.UserService;
 import main.ui.MainUI;
 import main.vo.RepositoryVO;
 
@@ -36,10 +32,7 @@ public class HomeController implements Initializable {
 	private Label tab_contributor;
 	@FXML
 	private ScrollPane scrollPane;
-	@FXML
-	private Button searchButton;
-	@FXML
-	private TextField textField;
+
 	private VBox box;
 
 	private String styleStr = "-fx-background-color: ";
@@ -79,33 +72,21 @@ public class HomeController implements Initializable {
 
 	@FXML
 	public void enterGeneral() {
-		tab_fork.setStyle(styleStr + baseColor);
-		tab_contributor.setStyle(styleStr + baseColor);
-		tab_star.setStyle(styleStr + baseColor);
 		tab_general.setStyle(styleStr + enterColor);
 	}
 
 	@FXML
 	public void enterFork() {
-		tab_contributor.setStyle(styleStr + baseColor);
-		tab_star.setStyle(styleStr + baseColor);
-		tab_general.setStyle(styleStr + baseColor);
 		tab_fork.setStyle(styleStr + enterColor);
 	}
 
 	@FXML
 	public void enterStar() {
-		tab_contributor.setStyle(styleStr + baseColor);
-		tab_general.setStyle(styleStr + baseColor);
-		tab_fork.setStyle(styleStr + baseColor);
 		tab_star.setStyle(styleStr + enterColor);
 	}
 
 	@FXML
 	public void enterContributor() {
-		tab_general.setStyle(styleStr + baseColor);
-		tab_fork.setStyle(styleStr + baseColor);
-		tab_star.setStyle(styleStr + baseColor);
 		tab_contributor.setStyle(styleStr + enterColor);
 	}
 
@@ -176,6 +157,34 @@ public class HomeController implements Initializable {
 		}
 		scrollPane.setContent(box);
 		box = null;
+	}
+
+	@FXML
+	public void exitGeneral() {
+		if (!selectGeneral) {
+			tab_general.setStyle(styleStr + baseColor);
+		}
+	}
+
+	@FXML
+	public void exitFork() {
+		if (!selectFork) {
+			tab_fork.setStyle(styleStr + baseColor);
+		}
+	}
+
+	@FXML
+	public void exitStar() {
+		if (!selectStar) {
+			tab_star.setStyle(styleStr + baseColor);
+		}
+	}
+
+	@FXML
+	public void exitContri() {
+		if (!selectContri) {
+			tab_contributor.setStyle(styleStr + baseColor);
+		}
 	}
 
 	@FXML
@@ -289,19 +298,6 @@ public class HomeController implements Initializable {
 			} else {
 				contriPage++;
 			}
-		}
-	}
-
-	@FXML
-	public void handleSearch() {
-		if(textField.getText().isEmpty()){
-			return;
-		}
-		MainController main = MainController.getInstance();
-		if(main.isSelectRepos()){
-			main.setPanel("Ui_SearchRepos.fxml");
-		}else if(main.isSelectUser()){
-			main.setPanel("Ui_SearchUser.fxml");
 		}
 	}
 }
