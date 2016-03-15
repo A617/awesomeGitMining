@@ -38,7 +38,6 @@ public class Config {
 		    "repos_url",
 		    "events_url",
 		    "received_events_url",
-		    "company",
 		    "hireable",
 		    "bio"
 	};

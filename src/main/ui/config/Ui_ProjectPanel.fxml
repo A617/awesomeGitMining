@@ -100,11 +100,11 @@
                      </font></Label>
                </children>
             </VBox>
-            <AnchorPane fx:id="raderchart" layoutX="664.0" layoutY="178.0" prefHeight="299.0" prefWidth="300.0" AnchorPane.leftAnchor="1016.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="178.0">
+            <AnchorPane fx:id="raderPane" layoutX="1004.0" layoutY="178.0" prefHeight="321.0" prefWidth="340.0" AnchorPane.leftAnchor="1004.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="178.0">
                <children>
-                  <Label fx:id="chart" layoutY="6.0" prefHeight="299.0" prefWidth="301.0" text="Label" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="chart" layoutY="6.0" prefHeight="305.0" prefWidth="307.0" text="Label" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0" />
                </children></AnchorPane>
-            <AnchorPane fx:id="piechart" layoutX="663.0" layoutY="178.0" prefHeight="299.0" prefWidth="300.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="178.0" />
+            <AnchorPane fx:id="piePane" layoutX="630.0" layoutY="178.0" prefHeight="321.0" prefWidth="340.0" AnchorPane.rightAnchor="396.0" AnchorPane.topAnchor="178.0" />
          </children></AnchorPane>
       <Button fx:id="btn_back" layoutX="-34.0" layoutY="10.0" mnemonicParsing="false" text="back" />
    </children>

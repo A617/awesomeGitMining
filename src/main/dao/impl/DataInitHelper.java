@@ -23,11 +23,11 @@ import net.sf.json.JSONArray;
  */
 public class DataInitHelper {
 
-	public static Map<String, Map<String, Integer>> getLanguages(String path1, String path2) {
+	public static List<Map<String, Integer>> getLanguages(String path1, String path2) {
 
 		File file1 = new File(path1);
 		File file2 = new File(path2);
-		Map<String, Map<String, Integer>> map = null;
+		List<Map<String, Integer>> map = null;
 
 		if (file1.isFile() && file1.exists() && file2.isFile() && file2.exists()) { // 判断文件是否存在
 
@@ -39,7 +39,7 @@ public class DataInitHelper {
 			String line2;
 
 			try {
-				map = new HashMap<String, Map<String, Integer>>();
+				map = new ArrayList<Map<String, Integer>>();
 
 				read1 = new InputStreamReader(new FileInputStream(file1));
 				bufferedReader1 = new BufferedReader(read1);
@@ -72,7 +72,7 @@ public class DataInitHelper {
 							repo.put(languageNames[i], Integer.parseInt(languageCounts[i]));
 						}
 					}
-					map.put(repoName, repo);
+					map.add(repo);
 
 				}
 

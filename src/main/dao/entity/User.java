@@ -21,7 +21,9 @@ public class User {
 	private String location;	//所在地
 	private String email;
 	private String blog;
+	private String company;
 	private List<String> contributions_fullname; //贡献过的项目
+	private List<String> collaboration_fullname;
 	private List<String> followers_name;
 	private List<String> following_name;
 	private List<String> repos_fullname;		//创建的项目
@@ -39,6 +41,18 @@ public class User {
 	
 	
 	
+	public String getCompany() {
+		return company;
+	}
+
+
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+
+
 	public List<String> getContributions_fullname() {
 		return contributions_fullname;
 	}
@@ -182,6 +196,18 @@ public class User {
 
 	public void setAvatar_url(String avatar_url) {
 		this.avatar_url = avatar_url;
+	}
+
+	
+
+	public List<String> getCollaboration_fullname() {
+		return collaboration_fullname;
+	}
+
+
+
+	public void setCollaboration_fullname(List<String> collaboration_fullname) {
+		this.collaboration_fullname = collaboration_fullname;
 	}
 
 
