@@ -11,7 +11,7 @@
 
 <Group layoutX="57.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.UserController">
    <children>
-      <AnchorPane id="back" layoutX="-8.0" layoutY="-8.0" prefHeight="604.0" prefWidth="924.0">
+      <AnchorPane id="back" layoutX="-58.0" layoutY="-1.0" prefHeight="720.0" prefWidth="1366.0">
          <children>
             <Label fx:id="userNameLabel" layoutX="38.0" layoutY="31.0" prefHeight="58.0" prefWidth="487.0" text="Username" textFill="#3dabcd">
                <font>
@@ -29,7 +29,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="user_back" layoutX="41.0" layoutY="7.0" mnemonicParsing="false" text="back" />
+            <Button fx:id="user_back" layoutX="-34.0" layoutY="10.0" mnemonicParsing="false" text="back" />
             <Label fx:id="image" layoutX="43.0" layoutY="89.0" prefHeight="170.0" prefWidth="170.0" />
             <Group>
                <children>
