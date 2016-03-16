@@ -1,17 +1,24 @@
 package main.ui.controller;
 
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
+import org.jfree.data.category.DefaultCategoryDataset;
+
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -19,8 +26,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 import main.ui.utility.PieChartGenerator;
+import main.ui.utility.RaderChartGenerator;
 import main.vo.CollaboratorVO;
 import main.vo.ContributorVO;
 import main.vo.LanguageVO;
@@ -67,6 +76,7 @@ public class ProjectController implements Initializable {
 	private Clipboard clipboard;//获取系统剪贴板
 	private ClipboardContent content;
 	private PieChart piechart;
+	private DefaultCategoryDataset dataset;
 
 	public static ProjectController getInstance() {
 		if (instance == null) {
@@ -78,6 +88,7 @@ public class ProjectController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		instance = this;
+		dataset = new DefaultCategoryDataset();
 		clipboard = Clipboard.getSystemClipboard();
 		content = new ClipboardContent();
 		btn_clone.setOnAction((e) -> {
@@ -124,6 +135,12 @@ public class ProjectController implements Initializable {
 			piePane.getChildren().add(piechart);
 			//TODO
 			//raderchart
+//			Map<String, Integer> map = vo.getLanguages();
+			String group1 = "score";
+//			for(Map.Entry<String, Integer> entry : map.entrySet()) {
+//				dataset.addValue(entry.getValue(),group1,entry.getKey());
+//			}
+			dealRader();
 			// contributors
 			if (vo.getContributors_login() != null) {
 				ObservableList<ContributorVO> contributors = FXCollections.observableArrayList();
@@ -151,7 +168,6 @@ public class ProjectController implements Initializable {
 			@Override
 			public TableCell<LanguageVO, String> call(TableColumn<LanguageVO, String> arg0) {
 				TableCell<LanguageVO, String> cell = new TableCell<LanguageVO, String>() {
-
                     @Override
                     public void updateItem(final String item, boolean empty) {
                         if (item != null) {
@@ -165,6 +181,34 @@ public class ProjectController implements Initializable {
         };
     }
 	
-	//TODO
-	//create CategoryDataset
+	public void dealRader(){
+		ProgressIndicator pin = new ProgressIndicator(-1);
+		HBox hb = new HBox();
+	    hb.setAlignment(Pos.CENTER);
+	    hb.getChildren().addAll(pin);
+	    
+	    raderPane.getChildren().clear();
+	    raderPane.getChildren().add(hb);
+	    
+	    Task<Void> task = new Task<Void>() {
+	    	@Override
+	    	protected Void call() throws Exception {
+	    		RaderChartGenerator.getInstance().createChart(dataset);
+	    		updateProgress(1,1);
+	    		return null;
+	    	}
+	    };
+	    pin.progressProperty().bind(task.progressProperty());
+	    Thread th = new Thread(task);
+	    th.start();
+	    
+	    pin.progressProperty().addListener((ObservableValue<? extends Number> ov, Number old_val,
+	    		Number new_val) -> {
+	    			if(new_val.intValue() == 1){
+	    				MainController.getInstance().labelInit(chart,"spider.png");
+	    				raderPane.getChildren().clear();
+	    				raderPane.getChildren().add(chart);
+	    			}
+	    		});
+	}
 }

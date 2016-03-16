@@ -4,15 +4,20 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.swing.JFrame;
 
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.title.LegendTitle;
 import org.jfree.chart.title.TextTitle;
-import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.RectangleEdge;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class RaderChartGenerator {
 
@@ -26,16 +31,13 @@ public class RaderChartGenerator {
 		return instance;
 	}
 	
-	public Image createChart(CategoryDataset dataset) {
+	public void createChart(DefaultCategoryDataset dataset) {
 		MySpiderChart spider = new MySpiderChart(dataset);
-		//TODO
 		JFreeChart jfreechart = new JFreeChart("Score of Repository(total:8)", TextTitle.DEFAULT_FONT, spider, false);
 		LegendTitle lt = new LegendTitle(spider);
 		lt.setPosition(RectangleEdge.BOTTOM);
 		jfreechart.addSubtitle(lt);
 		saveAsPng(jfreechart);
-		Image image = new Image(path);
-		return image;
 	}
 	
 	private void saveAsPng(JFreeChart chart){
