@@ -15,14 +15,14 @@ public interface UserService {
 	/**
 	 * 
 	 * @param id
-	 * @return the name of the user
+	 * @return the name of the users whose name contains id
 	 */
 	public abstract List<String> searchUserInfo(String id,int pageIndex);
 	/**
 	 * 
 	 * @param id
 	 * @param pageIndex
-	 * @return ArrayList of @see UserVO
+	 * @return ArrayList of @see UserVO whose name contains id
 	 */
 	public abstract List<UserVO> searchUser(String id, int pageIndex);
 	/**
@@ -34,7 +34,7 @@ public interface UserService {
 	/**
 	 * search user by id
 	 * @param id
-	 * @return @see UserVO
+	 * @return @see UserVO whose name is id
 	 */
 	public abstract UserVO getUser(String id);
 	/**

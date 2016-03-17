@@ -13,13 +13,13 @@ public interface RepositoryService {
 	 * 
 	 * @param the
 	 *            Repository's name
-	 * @return a list of @see RepositoryVO
+	 * @return a list of @see RepositoryVO that contains id
 	 */
 	public abstract List<RepositoryVO> searchRepository(String id);
 	/**
 	 * 
 	 * @param id
-	 * @return the name of the repository
+	 * @return @see RepositoryVO that name is id
 	 */
 	public abstract RepositoryVO searchRepositoryInfo(String id);
 
@@ -27,7 +27,7 @@ public interface RepositoryService {
 	 * 
 	 * @param id
 	 * @param pageIndex
-	 * @return @see ArrayList of @see RepositoryVO that size = 10
+	 * @return @see ArrayList of @see RepositoryVO that size = 10 which names contains id
 	 */
 	public abstract List<RepositoryVO> searchRepository(String id, int pageIndex);
 

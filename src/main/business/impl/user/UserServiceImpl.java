@@ -111,7 +111,7 @@ public class UserServiceImpl implements UserService {
 			List<String> names = daoImpl.searchUser(id);
 			if (names != null) {
 				for (int i = pageIndex; i < 5 + pageIndex; i++) {
-					if (i < names.size()) {
+					if (i < names.size() && i >= 0) {
 						String login = names.get(i);
 						UserVO vo = new UserVO();
 						vo.setLogin(login);
@@ -121,7 +121,7 @@ public class UserServiceImpl implements UserService {
 				}
 			}
 		}
-	return vos;
+		return vos;
 
 	}
 
@@ -141,10 +141,28 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserVO> showUsers(int pageIndex) {
-		
-		return null;
+		List<String> names = daoImpl.getAllUser();
+		List<UserVO> vos = new ArrayList<UserVO>();
+		if (names != null) {
+			for (int i = pageIndex * 10; i < 10 + pageIndex * 10; i++) {
+				if (i < names.size() && i >= 0) {
+					String name = names.get(i);
+					User po = null;
+					try {
+						po = daoImpl.getUser(name);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					if (po != null) {
+						UserVO vo = new UserVO();
+						vo.setLocation(daoImpl.getLocation(name));
+						vo.setLogin(name);
+						vos.add(vo);
+					}
+				}
+			}
+		}
+		return vos;
 	}
 
-
-	
 }
