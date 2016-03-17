@@ -8,9 +8,10 @@ import java.util.Map;
 import javafx.scene.image.Image;
 import main.dao.HttpRequest;
 import main.dao.JsonUtil;
+import main.dao.entity.Company;
+import main.dao.entity.Statistics;
 import main.dao.entity.Type;
 import main.dao.entity.User;
-import main.data.DataMining;
 
 public class UserDaoImpl implements IUserDao {
 
@@ -32,6 +33,8 @@ public class UserDaoImpl implements IUserDao {
 	private Map<String, List<String>> mapUser2Collaborations;
 	/* 所有用户与语言列表 */
 	private Map<String, List<String>> mapUser2Repos;
+	/*用户创建时间*/
+	private List<String> createdTimeList;
 
 	public UserDaoImpl() {
 
@@ -115,20 +118,51 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public int[] getTypeStatistic() {
-		// TODO Auto-generated method stub
-		return null;
+		int[] result = new int[2];
+		for(String type: typeList){
+			if(type.equals(Type.User.name()))
+				result[0]++;
+			else
+				result[1]++;
+		}
+		return result;
 	}
 
 	@Override
 	public int[] getCreatedTimeStatistics() {
-		// TODO Auto-generated method stub
-		return null;
+		String path = "src/main/data/gitmining-api/";
+		this.createdTimeList = DataInitHelper.getList(path + "user-createdTime.txt");
+
+		String[] years = Statistics.year;
+		int[] result = new int[years.length];
+		int year;
+
+		try {
+			for (String time : createdTimeList) {
+				year = Integer.parseInt(time.split("-")[0]);
+				result[year - Integer.parseInt(years[0])]++;
+			}
+		} catch (NumberFormatException e) {
+			System.out.println("数字不符合格式");
+			e.printStackTrace();
+		}
+		return result;
 	}
 
+	
 	@Override
 	public int[] getCompanyStatistics() {
-		// TODO Auto-generated method stub
-		return null;
+		Company[] list = Company.values();
+		int[] result = new int[list.length];
+		
+		for(String company:companyList){
+			for(Company cp:list){
+				if(company.toLowerCase().contains(cp.name().toLowerCase()))
+					result[cp.ordinal()]++;
+			}
+		}
+			
+		return result;
 	}
 	
 	

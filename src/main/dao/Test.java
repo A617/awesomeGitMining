@@ -1,20 +1,19 @@
 package main.dao;
 
-import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-import javax.imageio.ImageIO;
-
-import main.dao.entity.Language;
-
 public class Test {
 
 	public static void main(String[] args) {
 
 		long startTime = System.nanoTime();
+		
+		int total =0;
+		int[] list=DataFactory.getRepoDataInstance().getLanguageStatistics();
+		for(int i:list){
+			total+=i;
+			System.out.println(i);
+		}
+		System.out.println(total);
+		
 		
 /*
 		Process proc;

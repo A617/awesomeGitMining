@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import main.dao.JsonUtil;
-import main.dao.entity.Language;
 import main.dao.entity.Repository;
+import main.dao.entity.Statistics;
 
 public class RepoDaoImpl implements IRepoDao {
 
@@ -23,6 +23,12 @@ public class RepoDaoImpl implements IRepoDao {
 
 	/* 项目-语言使用情况 */
 	List<Map<String, Integer>> mapR2L;
+	
+	/*项目创建时间列表*/
+	List<String> createdTimeList;
+	
+	/*项目语言列表*/
+	List<String> languageList;
 
 	/* 项目-fork项目 */
 //	Map<String, List<String>> mapR2Fork;
@@ -98,14 +104,48 @@ public class RepoDaoImpl implements IRepoDao {
 
 	@Override
 	public int[] getLanguageStatistics() {
-		// TODO Auto-generated method stub
-		return null;
+		String path = "src/main/data/gitmining-api/";
+		this.languageList = DataInitHelper.getList(path + "repo-language.txt");
+
+		String[] languages = Statistics.language;
+		int[] result = new int[languages.length];
+
+			loop:for (String language : languageList) {
+				if(language.equals(""))
+					continue;
+				for(int i=0;i<languages.length;i++){
+					if(language.equals(languages[i])){
+						result[i]++;
+						continue loop;
+					}
+				}
+				result[languages.length-1]++;
+			}
+		return result;
 	}
 
+	
+	
 	@Override
 	public int[] getCreatedTimeStatistics() {
-		// TODO Auto-generated method stub
-		return null;
+
+		String path = "src/main/data/gitmining-api/";
+		this.createdTimeList = DataInitHelper.getList(path + "repo-createdTime.txt");
+
+		String[] years = Statistics.year;
+		int[] result = new int[years.length];
+		int year;
+
+		try {
+			for (String time : createdTimeList) {
+				year = Integer.parseInt(time.split("-")[0]);
+				result[year - Integer.parseInt(years[0])]++;
+			}
+		} catch (NumberFormatException e) {
+			System.out.println("数字不符合格式");
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }
