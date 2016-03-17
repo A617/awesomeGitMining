@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1376.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1376.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.UserPageController">
    <children>
       <AnchorPane layoutX="2.0" prefHeight="720.0" prefWidth="290.0" style="-fx-background-color: white;">
          <children>
@@ -22,8 +22,6 @@
             </Label>
             <Label fx:id="language_all" layoutX="7.0" layoutY="177.0" text="All" />
             <Label fx:id="cpp" layoutX="79.0" layoutY="267.0" text="C++" />
-            <TextField fx:id="textfield" layoutX="3.0" layoutY="30.0" prefHeight="26.0" prefWidth="197.0" AnchorPane.rightAnchor="100.0" />
-            <Button fx:id="btn_search" layoutX="207.0" layoutY="28.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="Search" />
             <Line endX="200.0" layoutX="99.0" layoutY="137.0" startX="-100.0" stroke="#dad8d8" />
             <Label fx:id="c" layoutX="135.0" layoutY="177.0" text="C" />
             <Label fx:id="java" layoutX="178.0" layoutY="177.0" text="Java" />

@@ -111,41 +111,53 @@ public class MainController implements Initializable {
 
 	@FXML
 	public void releaseRepos() {
-		selectRepos = true;
 		selectUser = false;
 		selectReposSta = false;
 		selectUserSta = false;
+		selectRepos = true;
 		enterRepos();
+		user.setStyle(styleStr + baseColor);
+		repositorySta.setStyle(styleStr + baseColor);
+		userSta.setStyle(styleStr + baseColor);
 		setPanel("test.fxml");
 	}
 
 	@FXML
 	public void releaseUser() {
-		selectRepos = false;
 		selectUser = true;
+		selectRepos = false;
 		selectReposSta = false;
 		selectUserSta = false;
 		enterUser();
-		setPanel("Ui_UserListPanel.fxml");
+		repository.setStyle(styleStr + baseColor);
+		repositorySta.setStyle(styleStr + baseColor);
+		userSta.setStyle(styleStr + baseColor);
+		setPanel("Ui_UserPagePanel.fxml");
 	}
 
 	@FXML
 	public void releaseReposSta() {
+		selectReposSta = true;
 		selectRepos = false;
 		selectUser = false;
-		selectReposSta = true;
 		selectUserSta = false;
 		enterReposSta();
+		user.setStyle(styleStr + baseColor);
+		repository.setStyle(styleStr + baseColor);
+		userSta.setStyle(styleStr + baseColor);
 		setPanel("Ui_ReposSta.fxml");
 	}
 
 	@FXML
 	public void releaseUserSta() {
+		selectUserSta = true;
 		selectRepos = false;
 		selectUser = false;
 		selectReposSta = false;
-		selectUserSta = true;
 		enterUserSta();
+		user.setStyle(styleStr + baseColor);
+		repositorySta.setStyle(styleStr + baseColor);
+		repository.setStyle(styleStr + baseColor);
 		setPanel("Ui_UserSta.fxml");
 	}
 

@@ -97,6 +97,9 @@ public class HomeController implements Initializable {
 		selectContri = false;
 		selectGeneral = true;
 		enterGeneral();
+		tab_fork.setStyle(styleStr + baseColor);
+		tab_star.setStyle(styleStr + baseColor);
+		tab_contributor.setStyle(styleStr + baseColor);
 		generalList = repositoryImpl.showRepositories(0);
 		initTabPane(generalList);
 	}
@@ -108,6 +111,9 @@ public class HomeController implements Initializable {
 		selectContri = false;
 		selectGeneral = false;
 		enterStar();
+		tab_fork.setStyle(styleStr + baseColor);
+		tab_general.setStyle(styleStr + baseColor);
+		tab_contributor.setStyle(styleStr + baseColor);
 		starList = repositoryImpl.showReposByStar(0);
 		initTabPane(starList);
 	}
@@ -119,6 +125,9 @@ public class HomeController implements Initializable {
 		selectContri = false;
 		selectGeneral = false;
 		enterFork();
+		tab_general.setStyle(styleStr + baseColor);
+		tab_star.setStyle(styleStr + baseColor);
+		tab_contributor.setStyle(styleStr + baseColor);
 		forkList = repositoryImpl.showReposByFork(0);
 		initTabPane(forkList);
 	}
@@ -130,6 +139,9 @@ public class HomeController implements Initializable {
 		selectContri = true;
 		selectGeneral = false;
 		enterContributor();
+		tab_fork.setStyle(styleStr + baseColor);
+		tab_star.setStyle(styleStr + baseColor);
+		tab_general.setStyle(styleStr + baseColor);
 		contriList = repositoryImpl.showReposByContribute(0);
 		initTabPane(contriList);
 	}

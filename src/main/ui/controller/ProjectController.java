@@ -1,7 +1,6 @@
 package main.ui.controller;
 
 import java.net.URL;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import org.jfree.data.category.DefaultCategoryDataset;

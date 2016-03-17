@@ -10,8 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import main.business.impl.user.UserServiceImpl;
@@ -26,10 +25,6 @@ public class UserPageController implements Initializable{
 //	private String baseColor = "#71af8c;";
 	private int userPage;
 	
-	@FXML
-	private TextField textfield;
-	@FXML
-	private Button btn_search;
 	@FXML
 	private ScrollPane scrollPane;
 	@FXML
@@ -56,7 +51,7 @@ public class UserPageController implements Initializable{
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainUI.class.getResource("config/Ui_SingleUserView.fxml"));
 			try {
-				AnchorPane single = (AnchorPane) loader.load();
+				Pane single = (Pane) loader.load();
 				SingleUserController controller = loader.getController();
 				if (i < user.size()) {
 					UserVO vo = user.get(i);
@@ -99,8 +94,8 @@ public class UserPageController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		userImpl = UserServiceImpl.getInstance();
 		userPage = 0;
-		//TODO
-		//加search的监听
+		userVO = userImpl.showUsers(userPage);
+		initUser(userVO);
 	}
 
 }

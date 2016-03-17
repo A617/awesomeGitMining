@@ -44,13 +44,6 @@
 #tag:hover{
 	-fx-border-color:#5d9b78;
 }
-.scroll-pane  .scroll-bar .increment-arrow,
-.scroll-pane  .scroll-bar .decrement-arrow{
-    -fx-shape: " ";
-    -fx-padding:0;
-}
- 
-
 .scroll-pane .scroll-bar:horizontal .thumb,
 
 .scroll-pane .scroll-bar:vertical .thumb {

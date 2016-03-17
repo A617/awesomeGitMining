@@ -13,9 +13,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.UserService;
+import main.ui.MainUI;
 import main.vo.Colla_ProVO;
 import main.vo.Contri_ProVO;
 import main.vo.Crea_ProVO;
@@ -47,7 +49,7 @@ public class UserController implements Initializable {
 	@FXML
 	private TableView<Colla_ProVO> Colla_Pro_View;
 	@FXML
-	private TableColumn<Colla_ProVO,String> Colla_Pro;//填入此用户参与过的项目
+	private TableColumn<Colla_ProVO, String> Colla_Pro;// 填入此用户参与过的项目
 	@FXML
 	private Label name;// 用户的名字
 	@FXML
@@ -65,7 +67,7 @@ public class UserController implements Initializable {
 	@FXML
 	private Label followings;// 关注数
 	@FXML
-	private Label user_eva_img;//用户详细信息分析雷达图
+	private Label user_eva_img;// 用户详细信息分析雷达图
 
 	List<String> text1;
 	List<String> text2;
@@ -83,13 +85,13 @@ public class UserController implements Initializable {
 		// TODO Auto-generated method stub
 		instance = this;
 
-//		user_back.setOnAction((e) -> {
-//			if (MainController.getInstance().getSearchId() == "") {
-//				MainController.getInstance().initPanel();
-//			} else {
-//				MainController.getInstance().setPanel("Ui_SearchPanel.fxml");
-//			}
-//		});
+		// user_back.setOnAction((e) -> {
+		// if (MainController.getInstance().getSearchId() == "") {
+		// MainController.getInstance().initPanel();
+		// } else {
+		// MainController.getInstance().setPanel("Ui_SearchPanel.fxml");
+		// }
+		// });
 
 	}
 
@@ -121,12 +123,6 @@ public class UserController implements Initializable {
 			}
 
 		}
-		if (vo.getAvatar() != null) {
-			image.setGraphic(new ImageView(vo.getAvatar()));
-		} else {
-			MainController.getInstance().labelInit(image, "morentouxiang.jpg");
-		}
-
 		followers.setText(vo.getFollowers() + "");
 		followings.setText(vo.getFollowing() + "");
 		// contributed pros
@@ -150,7 +146,7 @@ public class UserController implements Initializable {
 			Contri_Pro_View.setItems(contri_pros);
 			Contri_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		}
-
+		
 		// created pros
 		if (vo.getRepos_fullname() != null) {
 			ObservableList<Crea_ProVO> crea_pros = FXCollections.observableArrayList();
@@ -173,26 +169,39 @@ public class UserController implements Initializable {
 		}
 
 		// contributed pros
-				if (vo.getCollaboration_fullname() != null) {
-					ObservableList<Colla_ProVO> colla_pros = FXCollections.observableArrayList();
-					for (String name : vo.getCollaboration_fullname()) {
-						Colla_ProVO cv = new Colla_ProVO(name);
-						colla_pros.add(cv);
-					}
-					Colla_Pro_View.setItems(colla_pros);
-					Colla_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
-				} else {
+		if (vo.getCollaboration_fullname() != null) {
+			ObservableList<Colla_ProVO> colla_pros = FXCollections.observableArrayList();
+			for (String name : vo.getCollaboration_fullname()) {
+				Colla_ProVO cv = new Colla_ProVO(name);
+				colla_pros.add(cv);
+			}
+			Colla_Pro_View.setItems(colla_pros);
+			Colla_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
+		} else {
 
-					text3 = new ArrayList<String>();
-					text3.add("Hasn't collaborated any projects.:)");
-					ObservableList<Colla_ProVO> colla_pros = FXCollections.observableArrayList();
-					for (String name : text3) {
-						Colla_ProVO cv = new Colla_ProVO(name);
-						colla_pros.add(cv);
-					}
-					Colla_Pro_View.setItems(colla_pros);
-					Colla_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
-				}
+			text3 = new ArrayList<String>();
+			text3.add("Hasn't collaborated any projects.:)");
+			ObservableList<Colla_ProVO> colla_pros = FXCollections.observableArrayList();
+			for (String name : text3) {
+				Colla_ProVO cv = new Colla_ProVO(name);
+				colla_pros.add(cv);
+			}
+			Colla_Pro_View.setItems(colla_pros);
+			Colla_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
+		}
+		if (vo.getAvatar() != null) {
+			loadImage();
+		} else {
+			Image img = new Image(MainUI.class.getResourceAsStream("style/morentouxiang.jpg"));
+			image.setGraphic(new ImageView(img));
+		}
 
+	}
+	public void loadImage(){
+//		if (vo.getAvatar() != null) {
+//			image.setGraphic(new ImageView(vo.getAvatar()));
+//		} else {
+//			MainController.getInstance().labelInit(image, "morentouxiang.jpg");
+//		}
 	}
 }
