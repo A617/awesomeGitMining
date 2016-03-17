@@ -11,12 +11,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Map.Entry;
 
+import main.dao.DataFactory;
 import main.dao.impl.DataInitHelper;
 
 public class DataConvertHelper {
@@ -28,9 +27,12 @@ public class DataConvertHelper {
 	public static void main(String[] args) {
 
 		DataConvertHelper dch = new DataConvertHelper();
-		
-		
-
+/*		
+		List<String> repos = DataFactory.getRepoDataInstance().getAllRepo();
+		String path = "src/main/data/gitmining-api/user-repos";
+		dch.getUser2RepocreatedMap(repos, path);
+*/
+	//	dch.test();
 	}
 
 	public Map<String, List<String>> getUser2RepocreatedMap(List<String> repos, String path) {
@@ -69,17 +71,21 @@ public class DataConvertHelper {
 		File file = new File(path);
 		FileWriter fw = null;
 		BufferedWriter writer = null;
+		
+		List<String> users = DataFactory.getUserDataInstance().getAllUser();
 
 		try {
 			fw = new FileWriter(file);
 			writer = new BufferedWriter(fw);
 
-			for (String key : map.keySet()) {
-				System.out.println(key + ": " + map.get(key));
+			for (String user : users) {
+				if(map.get(user)==null){
+					writer.newLine();
+					continue;
+				}
+					
 
-				writer.write(key + ": ");
-
-				for (String repo : map.get(key)) {
+				for (String repo : map.get(user)) {
 					writer.write(repo + " ");
 				}
 				writer.newLine();
@@ -273,4 +279,41 @@ public class DataConvertHelper {
 		}
 
 	}
+
+	public void test(){
+		
+		String path = "src/main/data/gitmining-api/user-collaborated.txt";
+		Map<String,List<String>> map=DataInitHelper.getMap("src/main/data/gitmining-api/user-collaborated.txt");
+		
+		List<String> users = DataFactory.getUserDataInstance().getAllUser();
+		
+		
+		File file = new File(path);
+		FileWriter fw = null;
+		BufferedWriter writer = null;
+		try {
+			fw = new FileWriter(file);
+			writer = new BufferedWriter(fw);
+
+			for (String user : users) {
+				if(map.get(user)==null){
+					writer.newLine();
+					continue;
+				}
+					
+
+				for (String repo : map.get(user)) {
+					writer.write(repo + " ");
+				}
+				writer.newLine();
+			}
+			writer.flush();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+
+
+	
 }
