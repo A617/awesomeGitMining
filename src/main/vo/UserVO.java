@@ -154,6 +154,15 @@ public class UserVO extends VO {
 		this.html_url = html_url;
 	}
 
+	@Override
+	public String toString() {
+		return "UserVO [login=" + login + ", name=" + name + ", location=" + location + ", email=" + email + ", blog="
+				+ blog + ", followers=" + followers + ", following=" + following + ", html_url=" + html_url
+				+ ", contributions_fullname=" + contributions_fullname + ", repos_fullname=" + repos_fullname
+				+ ", collaboration_fullname=" + collaboration_fullname + ", created_at=" + created_at + ", avatar="
+				+ avatar + "]";
+	}
 
 
+	
 }

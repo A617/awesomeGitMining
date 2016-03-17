@@ -96,6 +96,8 @@ public class UserController implements Initializable {
 	}
 
 	public void setVO(UserVO vo) {
+		
+		System.out.println(vo);
 		if (vo != null) {
 			if (vo.getHtml_url() != null) {
 				String str = vo.getHtml_url();
