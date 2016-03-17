@@ -25,12 +25,11 @@ public class DataMining {
 
 		long startTime = System.nanoTime();
 
-		/*String url = "http://www.gitmining.net/api/user/";
-		String path = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/user-type.txt";
+		String url = "http://www.gitmining.net/api/repository/";
+		String path = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-language.txt";
 
-		getDataFromDtaMining(url, path, "type");*/
+		getDataFromDtaMining(url, path, "language");
 		
-		String path = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-contributors.txt";
 
 /*		
 		erlide/erlide: 5903725,116921,15392,12869,10450,176846,1150,1149309,8996,
@@ -42,7 +41,6 @@ public class DataMining {
 		ocaml-batteries-team/batteries-included: 5046,2986,2200428,7877,916,
 		padrino/padrino-framework: 9493,4785,33427,1223746,
 		riotfamily/riot: 2233399,149040,950085,8433,*/
-		test(path);
 
 		long endTime = System.nanoTime();
 		System.out.println("Took " + (endTime - startTime) + " ns");
@@ -120,7 +118,7 @@ public class DataMining {
 	 */
 	public static void getDataFromDtaMining(String url, String path, String key) {
 
-		List<String> repositories = readFromUserTxt();
+		List<String> repositories = readFromRepoTxt();
 		System.out.println(repositories.size());
 
 		String page = "";
