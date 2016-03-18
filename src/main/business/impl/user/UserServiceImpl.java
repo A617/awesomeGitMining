@@ -112,8 +112,6 @@ public class UserServiceImpl implements UserService {
 						UserVO vo = new UserVO();
 						vo.setLogin(login);
 						vo.setLocation(daoImpl.getLocation(login));
-						vo.setCompany(daoImpl.getCompany(login));
-						vo.setContributions_fullname(daoImpl.getFollowers_name(login));
 						vos.add(vo);
 					}
 				}
