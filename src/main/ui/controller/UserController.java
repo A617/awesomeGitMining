@@ -5,24 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import main.business.impl.repository.RepositoryServiceImpl;
-import main.business.impl.user.UserServiceImpl;
-import main.business.service.UserService;
 import main.ui.MainUI;
 import main.vo.Colla_ProVO;
 import main.vo.Contri_ProVO;
@@ -102,7 +94,7 @@ public class UserController implements Initializable {
 	}
 
 	public void setVO(UserVO vo) {
-		
+
 		if (vo != null) {
 			if (vo.getHtml_url() != null) {
 				String str = vo.getHtml_url();
@@ -153,7 +145,7 @@ public class UserController implements Initializable {
 			Contri_Pro_View.setItems(contri_pros);
 			Contri_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		}
-		
+
 		// created pros
 		if (vo.getRepos_fullname() != null) {
 			ObservableList<Crea_ProVO> crea_pros = FXCollections.observableArrayList();
@@ -175,7 +167,6 @@ public class UserController implements Initializable {
 			Crea_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		}
 
-		
 		if (vo.getCollaboration_fullname() != null) {
 			ObservableList<Colla_ProVO> colla_pros = FXCollections.observableArrayList();
 			for (String name : vo.getCollaboration_fullname()) {
@@ -196,7 +187,7 @@ public class UserController implements Initializable {
 			Colla_Pro_View.setItems(colla_pros);
 			Colla_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		}
-	
+
 		if (vo.getAvatar() != null) {
 			image.setGraphic(new ImageView(vo.getAvatar()));
 		} else {
@@ -204,5 +195,12 @@ public class UserController implements Initializable {
 			image.setGraphic(new ImageView(img));
 		}
 
+	}
+
+	@FXML
+	public void handleBack() {
+		user_back.setOnAction((e) -> {
+			MainController.getInstance().setPanel("test.fxml");
+		});
 	}
 }
