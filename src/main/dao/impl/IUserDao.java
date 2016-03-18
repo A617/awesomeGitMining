@@ -67,6 +67,13 @@ public interface IUserDao {
 	public Type getType(String login);
 	
 	/**
+	 * 获取用户followers
+	 * @param login
+	 * @return
+	 */
+	public List<String> getFollowers_name(String login);
+	
+	/**
 	 * 获取用户类型统计数据
 	 * @return 
 	 */

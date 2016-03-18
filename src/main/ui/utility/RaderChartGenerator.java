@@ -1,7 +1,5 @@
 package main.ui.utility;
 
-import java.awt.Dimension;
-
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 

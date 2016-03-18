@@ -13,6 +13,7 @@ public class UserVO extends VO {
 	private String login;// 登录名
 	private String name;
 	private String location;
+	private String company;
 	private String email;
 	private String blog;
 	private int followers;
@@ -75,12 +76,13 @@ public class UserVO extends VO {
 
 	}
 
-	public UserVO(String login, String name, String location, String email, String blog, int followers, int following,
+	public UserVO(String login, String name, String location, String company,String email, String blog, int followers, int following,
 			String html_url, ArrayList<String> pProjects, ArrayList<String> cProjects) {
 		super();
 		this.login = login;
 		this.name = name;
 		this.location = location;
+		this.company = company;
 		this.email = email;
 		this.blog = blog;
 		this.followers = followers;
@@ -152,6 +154,14 @@ public class UserVO extends VO {
 
 	public void setHtml_url(String html_url) {
 		this.html_url = html_url;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
 	}
 
 	@Override

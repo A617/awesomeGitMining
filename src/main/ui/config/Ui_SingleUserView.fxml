@@ -9,28 +9,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane prefHeight="160.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.SingleUserController">
+<Pane prefHeight="137.0" prefWidth="1301.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.SingleUserController">
    <children>
       <Group>
          <children>
-            <Label fx:id="company" layoutX="60.0" layoutY="50.0" prefHeight="86.0" prefWidth="419.0" text="Company" />
-            <Label fx:id="userName" layoutX="60.0" layoutY="26.0" prefHeight="25.0" prefWidth="417.0" text="UserName" textFill="#5184c2">
+            <Label fx:id="location" layoutX="60.0" layoutY="47.0" prefHeight="86.0" prefWidth="335.0" text="Location" />
+            <Label fx:id="userName" layoutX="60.0" layoutY="30.0" prefHeight="25.0" prefWidth="417.0" text="UserName" textFill="#5184c2">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
+            <Label fx:id="company" layoutX="407.0" layoutY="66.0" prefHeight="48.0" prefWidth="383.0" text="Company" />
          </children>
       </Group>
-      <Line endX="1300.0" endY="198.0" layoutY="-38.0" startY="198.0" strokeWidth="10.0">
-         <stroke>
-            <LinearGradient endX="0.39805825242718446" endY="1.0" startY="0.8543689320388349">
-               <stops>
-                  <Stop color="#c3d6a9" />
-                  <Stop color="#fce4a6d4" offset="1.0" />
-               </stops>
-            </LinearGradient>
-         </stroke>
-      </Line>
       <Line endX="1300.0" endY="198.0" layoutY="-193.0" startY="198.0" strokeWidth="10.0">
          <stroke>
             <LinearGradient endX="0.39805825242718446" endY="1.0" startY="0.8543689320388349">
@@ -41,5 +32,29 @@
             </LinearGradient>
          </stroke>
       </Line>
+      <Line endX="1300.0" endY="198.0" layoutY="-62.0" startY="198.0" strokeWidth="10.0">
+         <stroke>
+            <LinearGradient endX="0.39805825242718446" endY="1.0" startY="0.8543689320388349">
+               <stops>
+                  <Stop color="#c3d6a9" />
+                  <Stop color="#fce4a6d4" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </stroke>
+      </Line>
+      <VBox layoutX="805.0" layoutY="26.0" prefHeight="86.0" prefWidth="91.0">
+         <children>
+            <Label prefHeight="36.0" prefWidth="92.0" text="Followers">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="followers" prefHeight="31.0" prefWidth="45.0" text="Nums">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
    </children>
 </Pane>
