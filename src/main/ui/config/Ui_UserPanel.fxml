@@ -124,7 +124,7 @@
             <VBox layoutX="238.0" layoutY="380.0" />
             <AnchorPane layoutX="960.0" prefHeight="709.0" prefWidth="277.0">
                <children>
-                  <TableView fx:id="Colla__Pro_View" layoutX="26.0" layoutY="473.0" prefHeight="177.0" prefWidth="210.0">
+                  <TableView fx:id="Colla_Pro_View" layoutX="26.0" layoutY="473.0" prefHeight="177.0" prefWidth="210.0">
                      <columns>
                         <TableColumn fx:id="Colla_Pro" prefWidth="209.0" text="Collaborated Projects" />
                      </columns>

@@ -100,10 +100,7 @@
                      </font></Label>
                </children>
             </VBox>
-            <AnchorPane fx:id="raderPane" layoutX="1006.0" layoutY="178.0" prefHeight="340.0" prefWidth="340.0" AnchorPane.leftAnchor="1006.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="178.0">
-               <children>
-                  <Label fx:id="chart" layoutX="16.0" layoutY="17.0" prefHeight="340.0" prefWidth="340.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children></AnchorPane>
+            <AnchorPane fx:id="raderPane" layoutX="1006.0" layoutY="178.0" prefHeight="340.0" prefWidth="340.0" AnchorPane.leftAnchor="1006.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="178.0" />
             <AnchorPane fx:id="piePane" layoutX="636.0" layoutY="178.0" prefHeight="340.0" prefWidth="340.0" AnchorPane.rightAnchor="390.0" AnchorPane.topAnchor="178.0" />
          </children></AnchorPane>
       <Button fx:id="btn_back" layoutX="-34.0" layoutY="10.0" mnemonicParsing="false" text="back" />

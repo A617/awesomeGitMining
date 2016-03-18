@@ -236,4 +236,50 @@ public class DataInitHelper {
 		return list;
 	}
 
+	
+	public static List<List<String>> getListList(String path) {
+
+		File file = new File(path);
+		List< List<String>> map = null;
+
+		if (file.isFile() && file.exists()) { // 判断文件是否存在
+
+			InputStreamReader read = null;
+			BufferedReader bufferedReader = null;
+			String line;
+			String[] tmpMap;
+			String[] users;
+
+			try {
+				read = new InputStreamReader(new FileInputStream(file));
+				bufferedReader = new BufferedReader(read);
+				map = new ArrayList<List<String>>();
+
+				while ((line = bufferedReader.readLine()) != null) { // 读取文件每一行
+
+
+					users = line.split(" ");
+
+					map.add( Arrays.asList(users)); // 向mapR2U中加入一组 项目-用户
+
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+
+			} finally {
+
+				try {
+					read.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		} else {
+			System.out.println("找不到指定的文件" + path);
+		}
+		return map;
+	}
 }

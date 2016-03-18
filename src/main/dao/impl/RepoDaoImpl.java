@@ -16,10 +16,10 @@ public class RepoDaoImpl implements IRepoDao {
 	List<String> repoList;
 
 	/* 项目-贡献者 */
-	Map<String, List<String>> mapR2Ctb;
+	List<List<String>> mapR2Ctb;
 
 	/* 项目-合作者 */
-	Map<String, List<String>> mapR2Clb;
+	List<List<String>> mapR2Clb;
 
 	/* 项目-语言使用情况 */
 	List<Map<String, Integer>> mapR2L;
@@ -45,11 +45,11 @@ public class RepoDaoImpl implements IRepoDao {
 
 		
 		mapR2Clb = DataInitHelper
-				.getMap(path+"repo-collaborators.txt");
+				.getListList(path+"repo-collaborators.txt");
 		
 
 		mapR2Ctb = DataInitHelper
-				.getMap(path+"repo-contributors.txt");
+				.getListList(path+"repo-contributors.txt");
 		
 
 		mapR2L = DataInitHelper.getLanguages(
@@ -82,8 +82,8 @@ public class RepoDaoImpl implements IRepoDao {
 		Repository po = JsonUtil.parseJson2Bean(repoAll.get(index), Repository.class);
 
 		if (po != null) {
-			po.setContributors_login(mapR2Ctb.get(name));
-			po.setCollaborators_login(mapR2Clb.get(name));
+			po.setContributors_login(mapR2Ctb.get(index));
+			po.setCollaborators_login(mapR2Clb.get(index));
 			po.setOwner_name(name.split("/")[0]);
 		//	po.setForks_fullname(mapR2Fork.get(name));
 			po.setLanguages(mapR2L.get(index));
@@ -110,17 +110,17 @@ public class RepoDaoImpl implements IRepoDao {
 		String[] languages = Statistics.language;
 		int[] result = new int[languages.length];
 
-			loop:for (String language : languageList) {
-				if(language.equals(""))
-					continue;
-				for(int i=0;i<languages.length;i++){
-					if(language.equals(languages[i])){
-						result[i]++;
-						continue loop;
-					}
+		loop: for (String language : languageList) {
+			if (language.equals(""))
+				continue;
+			for (int i = 0; i < languages.length; i++) {
+				if (language.equals(languages[i])) {
+					result[i]++;
+					continue loop;
 				}
-				result[languages.length-1]++;
 			}
+			result[languages.length - 1]++;
+		}
 		return result;
 	}
 

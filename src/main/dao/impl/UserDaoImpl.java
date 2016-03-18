@@ -28,11 +28,11 @@ public class UserDaoImpl implements IUserDao {
 	/*所有用户类型列表*/
 	private List<String> typeList;
 	/* 所有用户与贡献项目列表 */
-	private Map<String, List<String>> mapUser2Contrbutions;
+	private List<List<String>> mapUser2Contrbutions;
 	/* 所有用户与合作项目列表 */
-	private Map<String, List<String>> mapUser2Collaborations;
-	/* 所有用户与语言列表 */
-	private Map<String, List<String>> mapUser2Repos;
+	private List<List<String>> mapUser2Collaborations;
+	/* 所有用户与创建项目列表 */
+	private List<List<String>> mapUser2Repos;
 	/*用户创建时间*/
 	private List<String> createdTimeList;
 
@@ -45,28 +45,34 @@ public class UserDaoImpl implements IUserDao {
 		this.locationList = DataInitHelper.getList(path + "user-location.txt");
 		this.companyList = DataInitHelper.getList(path + "user-company.txt");
 	//	this.typeList = DataInitHelper.getList(path + "user-type.txt");
-		this.mapUser2Collaborations = DataInitHelper.getMap(path + "user-collaborated.txt");
-		this.mapUser2Contrbutions = DataInitHelper.getMap(path + "user-contributed.txt");
-		this.mapUser2Repos = DataInitHelper.getMap(path + "user-repos.txt");
+		this.mapUser2Collaborations = DataInitHelper.getListList(path + "user-collaborated.txt");
+		this.mapUser2Contrbutions = DataInitHelper.getListList(path + "user-contributed.txt");
+		this.mapUser2Repos = DataInitHelper.getListList(path + "user-repos.txt");
 
 		System.out.println("UserDaoImpl initialized!");
 	}
 
 	@Override
 	public User getUser(String login) throws IOException {
-		User us;
+		User us =null;
+		int index = userList.indexOf(login);
 
-			String s = HttpRequest.sendGet(gitmining_user_url, login);
-			us = JsonUtil.<User> parseJson2Bean(s, User.class);
-
-			if (us != null) {
-				us.setRepos_fullname(mapUser2Repos.get(login));
-				// us.setFollowers_name(getFollowers_name(login));
-				// us.setFollowing_name(getFollowing_name(login));
-				us.setContributions_fullname(mapUser2Contrbutions.get(login));
-			}
-
+		if (index == -1) {
 			return us;
+		}
+
+		String s = HttpRequest.sendGet(gitmining_user_url, login);
+		us = JsonUtil.<User> parseJson2Bean(s, User.class);
+
+		if (us != null) {
+			us.setRepos_fullname(mapUser2Repos.get(index));
+			// us.setFollowers_name(getFollowers_name(login));
+			// us.setFollowing_name(getFollowing_name(login));
+			us.setContributions_fullname(mapUser2Contrbutions.get(index));
+			us.setCollaboration_fullname(mapUser2Collaborations.get(index));
+		}
+
+		return us;
 
 	}
 

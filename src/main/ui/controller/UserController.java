@@ -96,6 +96,8 @@ public class UserController implements Initializable {
 	}
 
 	public void setVO(UserVO vo) {
+		
+		System.out.println(vo);
 		if (vo != null) {
 			if (vo.getHtml_url() != null) {
 				String str = vo.getHtml_url();
@@ -168,7 +170,7 @@ public class UserController implements Initializable {
 			Crea_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		}
 
-		// contributed pros
+		
 		if (vo.getCollaboration_fullname() != null) {
 			ObservableList<Colla_ProVO> colla_pros = FXCollections.observableArrayList();
 			for (String name : vo.getCollaboration_fullname()) {
@@ -189,19 +191,15 @@ public class UserController implements Initializable {
 			Colla_Pro_View.setItems(colla_pros);
 			Colla_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		}
+	
 		if (vo.getAvatar() != null) {
-			loadImage();
+			System.out.println("true");
+			image.setGraphic(new ImageView(vo.getAvatar()));
 		} else {
+			System.out.println("false");
 			Image img = new Image(MainUI.class.getResourceAsStream("style/morentouxiang.jpg"));
 			image.setGraphic(new ImageView(img));
 		}
 
-	}
-	public void loadImage(){
-//		if (vo.getAvatar() != null) {
-//			image.setGraphic(new ImageView(vo.getAvatar()));
-//		} else {
-//			MainController.getInstance().labelInit(image, "morentouxiang.jpg");
-//		}
 	}
 }

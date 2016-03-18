@@ -26,21 +26,10 @@ public class DataMining {
 		long startTime = System.nanoTime();
 
 		String url = "http://www.gitmining.net/api/repository/";
-		String path = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-language.txt";
+		String path = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo-collaborators.txt";
 
-		getDataFromDtaMining(url, path, "language");
-		
+	//	test(path);
 
-/*		
-		erlide/erlide: 5903725,116921,15392,12869,10450,176846,1150,1149309,8996,
-		technomancy/leiningen: 361,23412,13380,469479,3396,
-		chrisboyle/sgtpuzzles: 215083,11748,254,3644513,34483,42824,3219,45736,442333,100340,
-		cschwan/sage-on-gentoo: 265818,2327,386,15396,4342,2718,834,
-		mvz/gir_ffi: 82,626140,
-		sni/Thruk: 3153168,67071,4412429,2453339,4032,
-		ocaml-batteries-team/batteries-included: 5046,2986,2200428,7877,916,
-		padrino/padrino-framework: 9493,4785,33427,1223746,
-		riotfamily/riot: 2233399,149040,950085,8433,*/
 
 		long endTime = System.nanoTime();
 		System.out.println("Took " + (endTime - startTime) + " ns");

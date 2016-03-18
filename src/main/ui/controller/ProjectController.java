@@ -1,7 +1,10 @@
 package main.ui.controller;
 
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
+
+import javax.swing.JPanel;
 
 import org.jfree.data.category.DefaultCategoryDataset;
 
@@ -9,6 +12,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
+import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -62,8 +66,6 @@ public class ProjectController implements Initializable {
 	@FXML
 	private AnchorPane raderPane;
 	@FXML
-	private Label chart;
-	@FXML
 	private TableView<ContributorVO> contributorTable;
 	@FXML
 	private TableView<CollaboratorVO> collaboratorTable;
@@ -76,6 +78,7 @@ public class ProjectController implements Initializable {
 	private ClipboardContent content;
 	private PieChart piechart;
 	private DefaultCategoryDataset dataset;
+	private SwingNode swingNode;
 
 	public static ProjectController getInstance() {
 		if (instance == null) {
@@ -134,12 +137,8 @@ public class ProjectController implements Initializable {
 			piePane.getChildren().add(piechart);
 			//TODO
 			//raderchart
-//			Map<String, Integer> map = vo.getLanguages();
-			String group1 = "score";
-//			for(Map.Entry<String, Integer> entry : map.entrySet()) {
-//				dataset.addValue(entry.getValue(),group1,entry.getKey());
-//			}
-			dealRader();
+			createRader(vo.getLanguages());
+			
 			// contributors
 			if (vo.getContributors_login() != null) {
 				ObservableList<ContributorVO> contributors = FXCollections.observableArrayList();
@@ -180,7 +179,14 @@ public class ProjectController implements Initializable {
         };
     }
 	
-	public void dealRader(){
+	private void createRader(Map<String, Integer> map) {
+		dataset = new DefaultCategoryDataset();
+		String group1 = "score";
+		for(Map.Entry<String, Integer> entry : map.entrySet()) {
+			dataset.addValue(entry.getValue(),group1,entry.getKey());
+		}
+		swingNode = new SwingNode();
+		
 		ProgressIndicator pin = new ProgressIndicator(-1);
 		HBox hb = new HBox();
 	    hb.setAlignment(Pos.CENTER);
@@ -192,22 +198,22 @@ public class ProjectController implements Initializable {
 	    Task<Void> task = new Task<Void>() {
 	    	@Override
 	    	protected Void call() throws Exception {
-	    		RaderChartGenerator.getInstance().createChart(dataset);
+	    		JPanel panel = RaderChartGenerator.getInstance().createPanel(dataset);
+	    		swingNode.setContent(panel);
 	    		updateProgress(1,1);
 	    		return null;
 	    	}
 	    };
 	    pin.progressProperty().bind(task.progressProperty());
-	    Thread th = new Thread(task);
-	    th.start();
+	    new Thread(task).start();
 	    
 	    pin.progressProperty().addListener((ObservableValue<? extends Number> ov, Number old_val,
 	    		Number new_val) -> {
 	    			if(new_val.intValue() == 1){
-	    				MainController.getInstance().labelInit(chart,"spider.png");
 	    				raderPane.getChildren().clear();
-	    				raderPane.getChildren().add(chart);
+	    				raderPane.getChildren().add(swingNode);
 	    			}
 	    		});
 	}
+	
 }
