@@ -11,12 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import main.dao.JsonUtil;
-import main.dao.entity.Repository;
-import net.sf.json.JSONArray;
-
 /**
- * 这个类帮助在项目启动时从本地初始化一些数据
+ * 这个类在项目启动时从本地初始化数据
  * 
  * @author Dora
  *
@@ -116,6 +112,51 @@ public class DataInitHelper {
 
 					list.add(line);
 
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+
+			} finally {
+
+				try {
+					read.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		} else {
+			System.out.println("找不到指定的文件" + path);
+		}
+		return list;
+	}
+	
+	
+	public static List<Integer> getIntList(String path) {
+		File file = new File(path);
+		List<Integer> list = null;
+
+		if (file.isFile() && file.exists()) { // 判断文件是否存在
+
+			InputStreamReader read = null;
+			BufferedReader bufferedReader = null;
+			String line;
+
+			try {
+				read = new InputStreamReader(new FileInputStream(file));
+				bufferedReader = new BufferedReader(read);
+				list = new ArrayList<>();
+
+				while ((line = bufferedReader.readLine()) != null) { // 读取文件每一行
+
+					try{
+					list.add(Integer.parseInt(line));
+					}catch(NumberFormatException e){
+						System.out.println(path+"数据错误");
+						e.printStackTrace();
+					}
 				}
 
 			} catch (IOException e) {

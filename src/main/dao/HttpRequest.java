@@ -35,9 +35,10 @@ public class HttpRequest {
 		// 打开和URL之间的连接
 		URLConnection connection = realUrl.openConnection();
 		
-		connection.setConnectTimeout(10000);
+	/*
+	 	connection.setConnectTimeout(10000);
 		connection.setReadTimeout(10000);
-
+*/
 		// System.out.println("Connected: "+realUrl);
 
 		// 读取URL的响应

@@ -1,6 +1,7 @@
 package main.dao.impl;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,59 +11,52 @@ import main.dao.entity.Statistics;
 
 public class RepoDaoImpl implements IRepoDao {
 
-	final String gitmining_repo_url = "http://gitmining.net/api/repository/";
-
 	/* 所有项目名称列表 */
-	List<String> repoList;
+	private List<String> repoList;
 
 	/* 项目-贡献者 */
-	List<List<String>> mapR2Ctb;
+	private List<List<String>> mapR2Ctb;
 
 	/* 项目-合作者 */
-	List<List<String>> mapR2Clb;
+	private List<List<String>> mapR2Clb;
 
 	/* 项目-语言使用情况 */
-	List<Map<String, Integer>> mapR2L;
+	private List<Map<String, Integer>> mapR2L;
 	
 	/*项目创建时间列表*/
-	List<String> createdTimeList;
+	private List<String> createdTimeList;
 	
 	/*项目语言列表*/
-	List<String> languageList;
-
-	/* 项目-fork项目 */
-//	Map<String, List<String>> mapR2Fork;
+	private List<String> languageList;
 
 	/* 所有项目jsonStr列表 */
-	List<String> repoAll;
+	private List<String> repoAll;
 
+	
 	public RepoDaoImpl() {
-		
 
 		String path = "src/main/data/gitmining-api/";
 		this.repoList = DataInitHelper
 				.getList(path+"repo_fullname.txt");
 
 		
-		mapR2Clb = DataInitHelper
+		this.mapR2Clb = DataInitHelper
 				.getListList(path+"repo-collaborators.txt");
 		
 
-		mapR2Ctb = DataInitHelper
+		this.mapR2Ctb = DataInitHelper
 				.getListList(path+"repo-contributors.txt");
 		
-
-		mapR2L = DataInitHelper.getLanguages(
-				 path+"repo-languageNames.txt",
-				path+"repo-languageCounts.txt");
-		
-
-	//	mapR2Fork = DataInitHelper
-	//			.getMap(path+"repo-forks.txt");
-	
 		
 		this.repoAll = DataInitHelper
 				.getAllReposJson(path + "repo-all.txt");
+		
+		
+		
+		this.mapR2L = DataInitHelper.getLanguages(
+				 path+"repo-languageNames.txt",
+				path+"repo-languageCounts.txt");
+		
 		
 
 		System.out.println("RepoDaoImpl initialized!");
@@ -85,7 +79,6 @@ public class RepoDaoImpl implements IRepoDao {
 			po.setContributors_login(mapR2Ctb.get(index));
 			po.setCollaborators_login(mapR2Clb.get(index));
 			po.setOwner_name(name.split("/")[0]);
-		//	po.setForks_fullname(mapR2Fork.get(name));
 			po.setLanguages(mapR2L.get(index));
 		}
 		return po;

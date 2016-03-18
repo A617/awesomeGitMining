@@ -5,16 +5,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.UserService;
 import main.ui.MainUI;
@@ -97,7 +103,6 @@ public class UserController implements Initializable {
 
 	public void setVO(UserVO vo) {
 		
-		System.out.println(vo);
 		if (vo != null) {
 			if (vo.getHtml_url() != null) {
 				String str = vo.getHtml_url();
@@ -193,10 +198,8 @@ public class UserController implements Initializable {
 		}
 	
 		if (vo.getAvatar() != null) {
-			System.out.println("true");
 			image.setGraphic(new ImageView(vo.getAvatar()));
 		} else {
-			System.out.println("false");
 			Image img = new Image(MainUI.class.getResourceAsStream("style/morentouxiang.jpg"));
 			image.setGraphic(new ImageView(img));
 		}

@@ -48,7 +48,6 @@ public class UserPageController implements Initializable{
 		VBox.setVgrow(scrollPane, Priority.ALWAYS);
 		box.setSpacing(4);
 		
-		long start = System.nanoTime();
 		for (int i = 0; i < 10; i++) {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainUI.class.getResource("config/Ui_SingleUserView.fxml"));
@@ -66,8 +65,6 @@ public class UserPageController implements Initializable{
 				e.printStackTrace();
 			}
 		}
-		long end = System.nanoTime();
-		System.out.println(end-start);
 		
 		scrollPane.setContent(box);
 	}
