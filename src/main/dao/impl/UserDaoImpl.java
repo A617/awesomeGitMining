@@ -98,7 +98,7 @@ public class UserDaoImpl implements IUserDao {
 		if(index!=-1){
 			is = HttpRequest.sendGetforStream(avatar_urlList.get(index));
 		}
-		return is == null ? null : new Image(is, 170, 170, true, false);
+		return is == null ? null : new Image(is, 200, 200, true, false);
 	}
 
 	@Override
@@ -152,7 +152,7 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public int[] getCreatedTimeStatistics() {
-		
+
 
 		String[] years = Statistics.year;
 		int[] result = new int[years.length];

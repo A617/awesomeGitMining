@@ -45,17 +45,17 @@ public class UserController implements Initializable {
 	@FXML
 	private TableView<Contri_ProVO> Contri_Pro_View;
 	@FXML
-	private TableColumn<Contri_ProVO, String> Contri_Pro;// 填入此用户贡献的项目
+	private TableColumn<Contri_ProVO, String> Contri_Pro;// 濉叆姝ょ敤鎴疯础鐚殑椤圭洰
 	@FXML
 	private TableView<Crea_ProVO> Crea_Pro_View;
 	@FXML
-	private TableColumn<Crea_ProVO, String> Crea_Pro;// 填入此用户创造的项目
+	private TableColumn<Crea_ProVO, String> Crea_Pro;// 濉叆姝ょ敤鎴峰垱閫犵殑椤圭洰
 	@FXML
 	private TableView<Colla_ProVO> Colla_Pro_View;
 	@FXML
-	private TableColumn<Colla_ProVO, String> Colla_Pro;// 填入此用户参与过的项目
+	private TableColumn<Colla_ProVO, String> Colla_Pro;// 濉叆姝ょ敤鎴峰弬涓庤繃鐨勯」鐩�
 	@FXML
-	private Label name;// 用户的名字
+	private Label name;// 鐢ㄦ埛鐨勫悕瀛�
 	@FXML
 	private Label location;
 	@FXML
@@ -65,13 +65,13 @@ public class UserController implements Initializable {
 	@FXML
 	private Label blog;
 	@FXML
-	private Label image;// 用户头像
+	private Label image;// 鐢ㄦ埛澶村儚
 	@FXML
-	private Label followers;// 粉丝数
+	private Label followers;// 绮変笣鏁�
 	@FXML
-	private Label followings;// 关注数
+	private Label followings;// 鍏虫敞鏁�
 	@FXML
-	private Label user_eva_img;// 用户详细信息分析雷达图
+	private Label user_eva_img;// 鐢ㄦ埛璇︾粏淇℃伅鍒嗘瀽闆疯揪鍥�
 
 	List<String> text1;
 	List<String> text2;
@@ -189,18 +189,16 @@ public class UserController implements Initializable {
 			Colla_Pro_View.setItems(colla_pros);
 			Colla_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		}
-		
-		
-		//显示头像
+
+		// 鏄剧ず澶村儚
 		showAvatar(vo.getLogin());
 	}
-	
-	
-	//在加载头像的同时显示进度条
-	public void showAvatar(String login){
-		
+
+	// 鍦ㄥ姞杞藉ご鍍忕殑鍚屾椂鏄剧ず杩涘害鏉�
+	public void showAvatar(String login) {
+
 		ProgressIndicator pin = new ProgressIndicator(-1);
-		pin.setMaxSize(60,60);
+		pin.setMaxSize(60, 60);
 		image.setAlignment(Pos.CENTER);
 		image.setGraphic(pin);
 
@@ -210,8 +208,8 @@ public class UserController implements Initializable {
 			protected Void call() throws Exception {
 
 				UserService user = UserServiceImpl.getInstance();
-				img=user.getAvatar(login);
-				
+				img = user.getAvatar(login);
+
 				updateProgress(1, 1);
 
 				return null;

@@ -67,16 +67,19 @@ public class MainController implements Initializable {
 	 */
 	public void setPanel(String name) {
 		AnchorPane panel = fxmlLoader.loadPanel(name);
-		if (panel != null) {
-			center_panel.getChildren().clear();
-			center_panel.getChildren().add(panel);
-			AnchorPane field = fxmlLoader.loadPanel("Ui_TextField.fxml");
-			panel.getChildren().add(field);
-			field.setLayoutX(10);
-			field.setLayoutY(-10);
-			// otherwise the searchButton cannot use
-			common.toFront();
+
+		center_panel.getChildren().clear();
+		center_panel.getChildren().add(panel);
+		//if shows statistics
+		if(name.equals("Ui_ReposSta.fxml")||name.equals("Ui_UserSta.fxml")){
+			return;
 		}
+		AnchorPane field = fxmlLoader.loadPanel("Ui_TextField.fxml");
+		panel.getChildren().add(field);
+		field.setLayoutX(10);
+		field.setLayoutY(-10);
+		// otherwise the searchButton cannot use
+		common.toFront();
 	}
 
 	public void setGroup(String name) {

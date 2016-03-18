@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
 		}
 		if (po != null) {
 			vo = (UserVO) Converter.convert("UserVO", po);
-		
+
 		}
 		return vo;
 	}
@@ -162,6 +162,14 @@ public class UserServiceImpl implements UserService {
 		}
 		return vos;
 	}
+
+	@Override
+	public List<String> getEvaluation(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 	@Override
 	public Image getAvatar(String id) {
