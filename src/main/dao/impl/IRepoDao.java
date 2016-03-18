@@ -40,4 +40,5 @@ public interface IRepoDao {
 	 * @return
 	 */
 	public int[] getCreatedTimeStatistics();
+	
 }

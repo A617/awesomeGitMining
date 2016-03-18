@@ -20,7 +20,7 @@ public class RepositoryVO extends VO {
 	private String clone_url;// 项目主页
 	private String description;// 项目描述信息
 	private String updated_at;
-	private int open_issues;
+	private int open_issues_count;
 
 	public RepositoryVO() {
 
@@ -42,15 +42,15 @@ public class RepositoryVO extends VO {
 		this.clone_url = clone_url;
 		this.description = description;
 		this.updated_at = updated_at;
-		this.open_issues = open_issues;
+		this.open_issues_count = open_issues;
 	}
 
-	public int getOpen_issues() {
-		return open_issues;
+	public int getOpen_issues_count() {
+		return open_issues_count;
 	}
 
-	public void setOpen_issues(int open_issues) {
-		this.open_issues = open_issues;
+	public void setOpen_issues_count(int open_issues) {
+		this.open_issues_count = open_issues;
 	}
 
 	public String getFull_name() {

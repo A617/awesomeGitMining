@@ -2,6 +2,7 @@ package main.business.service;
 
 import java.util.List;
 
+import javafx.scene.image.Image;
 import main.vo.UserVO;
 
 public interface UserService {
@@ -50,5 +51,5 @@ public interface UserService {
 	 */
 	public abstract List<String> getCreateRepos(String id);
 	
-	
+	public abstract Image getAvatar(String login);
 }

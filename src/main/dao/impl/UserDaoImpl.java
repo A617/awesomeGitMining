@@ -74,7 +74,7 @@ public class UserDaoImpl implements IUserDao {
 		}
 
 		User us = new User();
-
+		us.setLogin(login);
 		us.setName(nameList.get(index));
 		us.setRepos_fullname(reposList.get(index));
 		us.setContributions_fullname(contrbutionsList.get(index));
@@ -92,10 +92,13 @@ public class UserDaoImpl implements IUserDao {
 	}
 
 	@Override
-	public Image getAvatar(String url) throws IOException {
+	public Image getAvatar(String login) throws IOException {
+		int index = userList.indexOf(login);
 
-		InputStream is = HttpRequest.sendGetforStream(url);
-
+		InputStream is=null;
+		if(index!=-1){
+			is = HttpRequest.sendGetforStream(avatar_urlList.get(index));
+		}
 		return is == null ? null : new Image(is, 170, 170, true, false);
 	}
 

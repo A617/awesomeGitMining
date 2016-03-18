@@ -99,17 +99,11 @@ public class HttpRequest {
 		// 打开和URL之间的连接
 		URLConnection connection = new URL(url).openConnection();
 		
-		InputStream inStream = connection.getInputStream();
+		connection.setConnectTimeout(10000);
+		connection.setReadTimeout(10000);
 		
-     /*   ByteArrayOutputStream outStream = new ByteArrayOutputStream();  
-        
-        byte[] buffer = new byte[1024];  
-        int len = 0;  
-        while( (len=inStream.read(buffer)) != -1 ){  
-            outStream.write(buffer, 0, len);  
-        }  
-        inStream.close();  
-      */  
+		InputStream inStream = connection.getInputStream();
+
         return inStream;
     }
 }
