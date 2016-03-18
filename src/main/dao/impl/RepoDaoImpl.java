@@ -2,6 +2,8 @@ package main.dao.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -64,7 +66,7 @@ public class RepoDaoImpl implements IRepoDao {
 	}
 
 	@Override
-	public Repository getRepository(String name) throws IOException {
+	public Repository getRepository(String name) throws IOException{
 
 
 		int index = repoList.indexOf(name);
@@ -80,6 +82,18 @@ public class RepoDaoImpl implements IRepoDao {
 			po.setCollaborators_login(mapR2Clb.get(index));
 			po.setOwner_name(name.split("/")[0]);
 			po.setLanguages(mapR2L.get(index));
+			
+			int[] ranks = new int[7];
+			String path = "src/main/data/gitmining-api/";
+			ranks[0] = DataInitHelper.getIntList(path + "repo_starRank.txt").get(index);
+			ranks[1] = DataInitHelper.getIntList(path + "repo_forkRank.txt").get(index);
+			ranks[2] = DataInitHelper.getIntList(path + "repo_watchRank.txt").get(index);
+			ranks[3] = DataInitHelper.getIntList(path + "repo_subscriRank.txt").get(index);
+			ranks[4] = DataInitHelper.getIntList(path + "repo_issueRank.txt").get(index);
+			ranks[5] = DataInitHelper.getIntList(path + "repo_contriRank.txt").get(index);
+			ranks[6] = DataInitHelper.getIntList(path + "repo_collaRank.txt").get(index);
+			po.setRanks(ranks);
+			
 		}
 		return po;
 	}
@@ -141,4 +155,31 @@ public class RepoDaoImpl implements IRepoDao {
 		return result;
 	}
 
+	private List<Integer> rankList(List<Integer> srcList) {  
+		   
+		List<Integer> rankList = new ArrayList<>();
+		
+		List<Integer> sortList = new ArrayList<>(srcList);
+		
+		Collections.sort(sortList, new Comparator<Integer>() {
+			
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				return o2-o1;
+			}
+		});
+		
+		System.out.println(srcList);
+		
+		for(int element: srcList){
+			
+			int rank = sortList.indexOf(element);
+			
+			rankList.add(rank);
+			
+		}
+		
+	    return rankList;  
+	}
+	
 }

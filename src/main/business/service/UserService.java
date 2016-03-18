@@ -2,6 +2,7 @@ package main.business.service;
 
 import java.util.List;
 
+import javafx.scene.image.Image;
 import main.vo.UserVO;
 
 public interface UserService {
@@ -49,10 +50,13 @@ public interface UserService {
 	 * @return the created repository
 	 */
 	public abstract List<String> getCreateRepos(String id);
+
 	/**
 	 *
 	 * @param id
 	 * @return user's evaluation(including efficiency . quality . total.)
 	 */
 	public abstract List<String> getEvaluation(String id);
+
+	public abstract Image getAvatar(String login);
 }
