@@ -2,6 +2,7 @@ package main.business.service;
 
 import java.util.List;
 
+import main.vo.RepositoryRateVO;
 import main.vo.RepositoryVO;
 
 /**
@@ -58,4 +59,11 @@ public interface RepositoryService {
 	 * @return @see ArrayList of @see RepositoryVO
 	 */
 	public abstract List<RepositoryVO> showReposByContribute(int startIndex);
+	/**
+	 * 
+	 * @param id
+	 * @return @see RepositoryRateVO
+	 */
+	public abstract RepositoryRateVO showReposRate(String id);
+			
 }

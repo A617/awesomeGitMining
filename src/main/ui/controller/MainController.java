@@ -3,19 +3,24 @@ package main.ui.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import main.ui.MainUI;
 import main.ui.utility.fxmlLoader;
 
 public class MainController implements Initializable {
-
+	private final Delta dragDelta = new Delta();
 	private static MainController instance;
+
 	public static MainController getInstance() {
 		if (instance == null) {
 			instance = new MainController();
@@ -23,6 +28,8 @@ public class MainController implements Initializable {
 		return instance;
 	}
 
+	@FXML
+	private AnchorPane layout;
 	@FXML
 	private AnchorPane center_panel, common;
 	@FXML
@@ -82,6 +89,7 @@ public class MainController implements Initializable {
 		instance = this;
 		selectRepos = true;
 		enterRepos();
+		addDraggableNode(common);
 	}
 
 	public void labelInit(Label label, String path) {
@@ -163,34 +171,64 @@ public class MainController implements Initializable {
 
 	@FXML
 	public void exitRepos() {
-		if(!selectRepos){
+		if (!selectRepos) {
 			repository.setStyle(styleStr + baseColor);
 		}
 	}
 
 	@FXML
 	public void exitUser() {
-		if(!selectUser){
+		if (!selectUser) {
 			user.setStyle(styleStr + baseColor);
 		}
 	}
+
 	@FXML
-	public void exitReposSta(){
-		if(!selectReposSta){
+	public void exitReposSta() {
+		if (!selectReposSta) {
 			repositorySta.setStyle(styleStr + baseColor);
 		}
 	}
+
 	@FXML
-	public void exitUserSta(){
-		if(!selectUserSta){
+	public void exitUserSta() {
+		if (!selectUserSta) {
 			userSta.setStyle(styleStr + baseColor);
 		}
 	}
+
 	public boolean isSelectRepos() {
 		return selectRepos;
 	}
 
 	public boolean isSelectUser() {
 		return selectUser;
+	}
+
+	class Delta {
+		double x, y;
+	}
+
+	private void addDraggableNode(final Node node) {
+
+		node.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent me) {
+				if (me.getButton() != MouseButton.MIDDLE) {
+					dragDelta.x = me.getSceneX();
+					dragDelta.y = me.getSceneY();
+				}
+			}
+		});
+
+		node.setOnMouseDragged(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent me) {
+				if (me.getButton() != MouseButton.MIDDLE) {
+					node.getScene().getWindow().setX(me.getScreenX() - dragDelta.x);
+					node.getScene().getWindow().setY(me.getScreenY() - dragDelta.y);
+				}
+			}
+		});
 	}
 }
