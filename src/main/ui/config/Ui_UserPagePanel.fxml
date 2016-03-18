@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1376.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.UserPageController">
    <children>
-      <AnchorPane layoutX="2.0" prefHeight="720.0" prefWidth="290.0" style="-fx-background-color: white;">
+      <AnchorPane layoutX="2.0" prefHeight="720.0" prefWidth="290.0" style="-fx-background-color: #faf6f2;">
          <children>
             <Label layoutX="7.0" layoutY="89.0" prefHeight="48.0" prefWidth="91.0" text="Category">
                <font>
@@ -46,8 +46,8 @@
             <Label fx:id="r" layoutX="136.0" layoutY="237.0" text="R" />
             <Label fx:id="others" layoutX="233.0" layoutY="297.0" text="Others" />
          </children></AnchorPane>
-      <Button fx:id="btn_previous" layoutX="668.0" layoutY="667.0" mnemonicParsing="false" text="Previous" onAction="#handleUserPre"/>
-      <Button fx:id="btn_next" layoutX="863.0" layoutY="667.0" mnemonicParsing="false" text="Next" onAction="#handleUserNext"/>
-      <ScrollPane fx:id="scrollPane" layoutX="313.0" layoutY="27.0" prefHeight="624.0" prefWidth="1050.0" AnchorPane.bottomAnchor="70.0" />
+      <Button fx:id="btn_previous" layoutX="668.0" layoutY="667.0" mnemonicParsing="false" onAction="#handleUserPre" text="Previous" />
+      <Button fx:id="btn_next" layoutX="863.0" layoutY="667.0" mnemonicParsing="false" onAction="#handleUserNext" text="Next" />
+      <ScrollPane fx:id="scrollPane" layoutX="313.0" layoutY="27.0" prefHeight="636.0" prefWidth="1050.0" AnchorPane.bottomAnchor="70.0" />
    </children>
 </AnchorPane>

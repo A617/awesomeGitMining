@@ -1,8 +1,11 @@
 package main.ui.controller;
 
+import java.awt.Dimension;
 import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
+
+import javax.swing.JPanel;
 
 import org.jfree.data.category.DefaultCategoryDataset;
 
@@ -29,12 +32,15 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
+import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.impl.user.UserServiceImpl;
+import main.business.service.RepositoryService;
+import main.business.service.UserService;
 import main.ui.utility.PieChartGenerator;
 import main.ui.utility.RaderChartGenerator;
 import main.vo.CollaboratorVO;
 import main.vo.ContributorVO;
-import main.vo.LanguageVO;
+import main.vo.RepositoryRateVO;
 import main.vo.RepositoryVO;
 import main.vo.UserVO;
 
@@ -80,6 +86,8 @@ public class ProjectController implements Initializable {
 	private DefaultCategoryDataset dataset;
 	private SwingNode swingNode;
 	private UserVO fullVO;
+	private RepositoryService repositoryImpl;
+	private UserService userImpl;
 
 	public static ProjectController getInstance() {
 		if (instance == null) {
@@ -91,7 +99,9 @@ public class ProjectController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		instance = this;
-		dataset = new DefaultCategoryDataset();
+		repositoryImpl = RepositoryServiceImpl.getInstance();
+		userImpl = UserServiceImpl.getInstance();
+		
 		clipboard = Clipboard.getSystemClipboard();
 		content = new ClipboardContent();
 		btn_clone.setOnAction((e) -> {
@@ -138,7 +148,10 @@ public class ProjectController implements Initializable {
 			piePane.getChildren().add(piechart);
 
 			// raderchart
-			createRader(vo.getLanguages());
+			RepositoryRateVO ratevo = repositoryImpl.showReposRate(vo.getFull_name());
+			if(ratevo!=null) {
+				createRader(ratevo.getRates());
+			}
 
 			// contributors
 			if (vo.getContributors_login() != null) {
@@ -165,25 +178,6 @@ public class ProjectController implements Initializable {
 		}
 	}
 
-	private Callback<TableColumn<LanguageVO, String>, TableCell<LanguageVO, String>> getCustomCellFactory(
-			final String color) {
-		return new Callback<TableColumn<LanguageVO, String>, TableCell<LanguageVO, String>>() {
-			@Override
-			public TableCell<LanguageVO, String> call(TableColumn<LanguageVO, String> arg0) {
-				TableCell<LanguageVO, String> cell = new TableCell<LanguageVO, String>() {
-					@Override
-					public void updateItem(final String item, boolean empty) {
-						if (item != null) {
-							setText(item);
-							setStyle("-fx-font-family:" + "\"Microsoft YaHei\"");
-						}
-					}
-				};
-				return cell;
-			}
-		};
-	}
-
 	private void createRader(Map<String, Integer> map) {
 		dataset = new DefaultCategoryDataset();
 		String group1 = "score";
@@ -200,7 +194,9 @@ public class ProjectController implements Initializable {
 		Task<Void> task = new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
-				swingNode.setContent(RaderChartGenerator.getInstance().createPanel(dataset));
+				JPanel panel = RaderChartGenerator.getInstance().createPanel(dataset);
+				panel.setPreferredSize(new Dimension(340,340));
+				swingNode.setContent(panel);
 
 				updateProgress(1, 1);
 				return null;
@@ -226,7 +222,7 @@ public class ProjectController implements Initializable {
 		            if (t.getClickCount() == 2) {
 		            	String temp = cell.getText();
 		            	MainController.getInstance().setGroup("Ui_UserPanel.fxml");
-		    			fullVO = UserServiceImpl.getInstance().getUser(temp);
+		    			fullVO = userImpl.getUser(temp);
 		    			
 		    			if(fullVO!=null)
 		    				UserController.getInstance().setVO(fullVO);
@@ -245,7 +241,7 @@ public class ProjectController implements Initializable {
 		            if (t.getClickCount() == 2) {
 		            	String temp = cell.getText();
 		            	MainController.getInstance().setGroup("Ui_UserPanel.fxml");
-		    			fullVO = UserServiceImpl.getInstance().getUser(temp);
+		    			fullVO = userImpl.getUser(temp);
 		    			
 		    			if(fullVO!=null)
 		    				UserController.getInstance().setVO(fullVO);
