@@ -1,6 +1,5 @@
 package main.ui;
 
-
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -42,7 +41,7 @@ public class MainUI extends Application {
 	private static MainUI ui;
 	private RepositoryService repositoryImpl;
 	private UserService userImpl;
-	
+
 	@Override
 	/**
 	 * initialize all the fxml document
@@ -65,92 +64,78 @@ public class MainUI extends Application {
 		this.stage.getIcons().add(new Image("file:src/main/ui/style/mark.png"));
 
 		Group root = new Group();
-		Scene scene1 = new Scene(root, 1366,768);
-		
+		Scene scene1 = new Scene(root, 1366, 768);
+
 		scene1.getStylesheets().add(MainUI.class.getResource("style/test.css").toExternalForm());
 		stage.setWidth(1366);
-        stage.setHeight(768);
-		
-		
+		stage.setHeight(768);
+
 		Label sunset = new Label();
 		Image img1 = new Image("file:src/main/ui/style/gradient-from-black.jpg");
 		sunset.setGraphic(new ImageView(img1));
-		sunset.setMaxSize(1366,1068);
-		
+		sunset.setMaxSize(1366, 1068);
+
 		StackPane stack1 = new StackPane();
 		stack1.getChildren().addAll(sunset);
 		stack1.setLayoutX(0);
 		stack1.setLayoutY(-300);
-		
-		
+
 		Label stars = new Label();
 		Image img2 = new Image("file:src/main/ui/style/stars.png");
 		stars.setGraphic(new ImageView(img2));
-		stars.setMaxSize(1366,768);
-		
-	/*	Label text = new Label("G I T M I N I N G");
-		text.setFont(new Font("Calibri", 64));
-		text.setTextFill(Color.WHITE);
-		*/
+		stars.setMaxSize(1366, 768);
+
+		/*
+		 * Label text = new Label("G I T M I N I N G"); text.setFont(new
+		 * Font("Calibri", 64)); text.setTextFill(Color.WHITE);
+		 */
 		Label logo = new Label();
 		Image img3 = new Image("file:src/main/ui/style/logo.png");
 		logo.setGraphic(new ImageView(img3));
-		
+
 		StackPane stack2 = new StackPane();
-		stack2.getChildren().addAll(stars,logo);
+		stack2.getChildren().addAll(stars, logo);
 		stack2.setOpacity(0);
 		stack2.setAlignment(Pos.TOP_CENTER);
-		
-		
+
 		final Timeline timeline = new Timeline();
 		timeline.setCycleCount(0);
 		final KeyValue kv1 = new KeyValue(stack1.layoutYProperty(), 0);
 		final KeyValue kv2 = new KeyValue(stack2.opacityProperty(), 1);
-		final KeyFrame kf = new KeyFrame(Duration.millis(3600), kv1,kv2);
+		final KeyFrame kf = new KeyFrame(Duration.millis(3600), kv1, kv2);
 		timeline.getKeyFrames().add(kf);
 		timeline.play();
-
-		
 
 		Group p = new Group();
 		Scene scene = new Scene(p);
 		ProgressIndicator pin = new ProgressIndicator(-1);
 		pin.setVisible(false);
 		stage.setScene(scene);
-		p.getChildren().addAll(stack1,stack2,pin);
-		
-		
-		
-		
-		
-		
-        
+		p.getChildren().addAll(stack1, stack2, pin);
 
-		/*Label label = new Label();
-		label.setText("Welcome to Gitmining.");
-		label.setFont(new Font("Calibri", 28));
+		/*
+		 * Label label = new Label(); label.setText("Welcome to Gitmining.");
+		 * label.setFont(new Font("Calibri", 28));
+		 * 
+		 * ProgressIndicator pin = new ProgressIndicator(-1);
+		 * 
+		 * HBox hb = new HBox(); hb.setSpacing(7); hb.setAlignment(Pos.CENTER);
+		 * hb.getChildren().addAll(pin,label);
+		 * 
+		 * scene1.setRoot(hb); stage.setScene(scene1);
+		 */
 
-		ProgressIndicator pin = new ProgressIndicator(-1);
-
-		HBox hb = new HBox();
-		hb.setSpacing(7);
-		hb.setAlignment(Pos.CENTER);
-		hb.getChildren().addAll(pin,label);
-
-		scene1.setRoot(hb);
-		stage.setScene(scene1);*/
-		
 		stage.show();
-	
+
 		Task<Void> task = new Task<Void>() {
 
 			@Override
 			protected Void call() throws Exception {
-				
+
 				repositoryImpl = RepositoryServiceImpl.getInstance();
 				userImpl = UserServiceImpl.getInstance();
-				
-				updateProgress(1,1);
+
+				updateProgress(1, 1);
 
 				return null;
 			}
@@ -160,16 +145,14 @@ public class MainUI extends Application {
 		pin.progressProperty().bind(task.progressProperty());
 		Thread th = new Thread(task);
 		th.start();
-		
-		pin.progressProperty().addListener((ObservableValue<? extends Number> ov, Number old_val,   
-	            Number new_val) -> {  
-	               if(new_val.intValue() == 1){
-	            	   test2();
-	               MainController.getInstance().initPanel();
-	               }
-	        }); 
-		
-		
+
+		pin.progressProperty().addListener((ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
+			if (new_val.intValue() == 1) {
+				test2();
+				MainController.getInstance().initPanel();
+			}
+		});
+
 		// stage.setFullScreen(false);
 		// Rectangle2D primaryScreenBounds =
 		// Screen.getPrimary().getVisualBounds();
@@ -178,7 +161,7 @@ public class MainUI extends Application {
 		// stage.setWidth(primaryScreenBounds.getWidth());
 		// stage.setHeight(primaryScreenBounds.getHeight());//全屏 等要用的时候再说
 	}
-	
+
 	public static MainUI getUI() {
 		return ui;
 	}

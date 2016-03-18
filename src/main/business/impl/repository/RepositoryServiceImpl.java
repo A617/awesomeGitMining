@@ -11,6 +11,7 @@ import main.business.utility.SortHelper;
 import main.dao.DataFactory;
 import main.dao.entity.Repository;
 import main.dao.impl.IRepoDao;
+import main.vo.RepositoryRateVO;
 import main.vo.RepositoryVO;
 
 /**
@@ -164,5 +165,11 @@ public class RepositoryServiceImpl implements RepositoryService {
 			}
 		}
 		return vo;
+	}
+
+	@Override
+	public RepositoryRateVO showReposRate(String id) {
+		
+		return null;
 	}
 }
