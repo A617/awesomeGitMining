@@ -3,24 +3,26 @@ package main.ui.utility;
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.LoadException;
 import javafx.scene.Group;
 import javafx.scene.layout.AnchorPane;
 import main.ui.MainUI;
 
 public class fxmlLoader {
 
-	public static AnchorPane loadPanel(String fxml){
+	public static AnchorPane loadPanel(String fxml) {
+
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(MainUI.class.getResource("config/"+fxml));
-        AnchorPane result = null;
+		loader.setLocation(MainUI.class.getResource("config/" + fxml));
+		AnchorPane result = null;
 		try {
 			result = (AnchorPane) loader.load();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println(fxml + "加载失败");
 		}
-        
-        return result;
+		return result;
 	}
+	
 	public static Group loadGroup(String fxml){
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(MainUI.class.getResource("config/"+fxml));

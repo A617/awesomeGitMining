@@ -34,8 +34,8 @@ public class Repository {
 	protected String default_branch;
 	protected int stargazers_count;
 	protected int forks_count;	//被fork的次数
-	protected int open_issues;
 	protected int subscribers_count;
+	protected int[] ranks; //star、fork、watchers、subscribers、issues、contributors、collabotators数目排名排名
 
 	public Repository() {
 		super();
@@ -47,6 +47,16 @@ public class Repository {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	
+	
+	public int[] getRanks() {
+		return ranks;
+	}
+
+	public void setRanks(int[] ranks) {
+		this.ranks = ranks;
 	}
 
 	public String getOwner_name() {
@@ -237,13 +247,6 @@ public class Repository {
 		this.forks_count = forks_count;
 	}
 
-	public int getOpen_issues() {
-		return open_issues;
-	}
-
-	public void setOpen_issues(int open_issues) {
-		this.open_issues = open_issues;
-	}
 
 	public int getSubscribers_count() {
 		return subscribers_count;
@@ -281,22 +284,6 @@ public class Repository {
 	public void setFork(boolean fork) {
 		this.fork = fork;
 	}
-
-	@Override
-	public String toString() {
-		return "Repository [name=" + name + ", owner_name=" + owner_name + ", full_name=" + full_name + ", language="
-				+ language + ", contributors_login=" + contributors_login + ", collaborators_login="
-				+ collaborators_login + ", branches_name=" + branches_name + ", forks_fullname=" + forks_fullname
-				+ ", languages=" + languages + ", fork=" + fork + ", has_issues=" + has_issues + ", has_downloads="
-				+ has_downloads + ", has_wiki=" + has_wiki + ", has_pages=" + has_pages + ", open_issues_count="
-				+ open_issues_count + ", watchers_count=" + watchers_count + ", clone_url=" + clone_url + ", home_url="
-				+ home_url + ", homepage=" + homepage + ", description=" + description + ", created_at=" + created_at
-				+ ", pushed_at=" + pushed_at + ", updated_at=" + updated_at + ", size=" + size + ", default_branch="
-				+ default_branch + ", stargazers_count=" + stargazers_count + ", forks_count=" + forks_count
-				+ ", open_issues=" + open_issues + ", subscribers_count=" + subscribers_count + "]";
-	}
-
-	
 	
 }
 

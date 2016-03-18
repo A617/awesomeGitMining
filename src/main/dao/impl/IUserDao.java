@@ -2,7 +2,6 @@ package main.dao.impl;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import javafx.scene.image.Image;
 import main.dao.entity.Type;
@@ -75,13 +74,13 @@ public interface IUserDao {
 	
 	/**
 	 * 获取用户注册时间统计数据
-	 * @return 2007-2015各年的注册人数
+	 * @return 按照Statistics.year中的年份列表，各年的注册人数
 	 */
 	public int[] getCreatedTimeStatistics();
 
 	/**
-	 * 获取用户注册时间统计数据
-	 * @return 2007-2015各年的注册人数
+	 * 获取用户所属公司统计数据
+	 * @return 按照Statistics.company中的公司列表
 	 */
 	public int[] getCompanyStatistics();
 	

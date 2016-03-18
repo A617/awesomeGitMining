@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.fxml.LoadException;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -66,6 +67,7 @@ public class MainController implements Initializable {
 	 */
 	public void setPanel(String name) {
 		AnchorPane panel = fxmlLoader.loadPanel(name);
+
 		center_panel.getChildren().clear();
 		center_panel.getChildren().add(panel);
 		//if shows statistics

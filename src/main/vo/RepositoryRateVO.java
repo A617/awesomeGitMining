@@ -1,6 +1,6 @@
 package main.vo;
 
-import com.sun.javafx.collections.MappingChange.Map;
+import java.util.Map;
 
 public class RepositoryRateVO {
 	private Map<String,Integer> rates;

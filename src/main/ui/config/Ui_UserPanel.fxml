@@ -11,7 +11,7 @@
    <children>
       <AnchorPane prefHeight="720.0" prefWidth="1366.0">
          <children>
-            <Label fx:id="image" layoutX="38.0" layoutY="119.0" prefHeight="170.0" prefWidth="170.0" />
+            <Label fx:id="image" layoutX="38.0" layoutY="119.0" prefHeight="200.0" prefWidth="200.0" />
             <Label layoutX="347.0" layoutY="119.0" text="Evaluation">
                <font>
                   <Font name="System Bold" size="18.0" />

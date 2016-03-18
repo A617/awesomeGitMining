@@ -19,10 +19,7 @@ import main.ui.MainUI;
 import main.vo.UserVO;
 
 public class UserPageController implements Initializable{
-	
-//	private String styleStr = "-fx-background-color: ";
-//	private String enterColor = "#5d9b78;";
-//	private String baseColor = "#71af8c;";
+
 	private int userPage;
 	
 	@FXML

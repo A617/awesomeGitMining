@@ -5,16 +5,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import main.business.impl.user.UserServiceImpl;
+import main.business.service.UserService;
 import main.ui.MainUI;
 import main.vo.Colla_ProVO;
 import main.vo.Contri_ProVO;
@@ -39,17 +45,17 @@ public class UserController implements Initializable {
 	@FXML
 	private TableView<Contri_ProVO> Contri_Pro_View;
 	@FXML
-	private TableColumn<Contri_ProVO, String> Contri_Pro;// 填入此用户贡献的项目
+	private TableColumn<Contri_ProVO, String> Contri_Pro;// 濉叆姝ょ敤鎴疯础鐚殑椤圭洰
 	@FXML
 	private TableView<Crea_ProVO> Crea_Pro_View;
 	@FXML
-	private TableColumn<Crea_ProVO, String> Crea_Pro;// 填入此用户创造的项目
+	private TableColumn<Crea_ProVO, String> Crea_Pro;// 濉叆姝ょ敤鎴峰垱閫犵殑椤圭洰
 	@FXML
 	private TableView<Colla_ProVO> Colla_Pro_View;
 	@FXML
-	private TableColumn<Colla_ProVO, String> Colla_Pro;// 填入此用户参与过的项目
+	private TableColumn<Colla_ProVO, String> Colla_Pro;// 濉叆姝ょ敤鎴峰弬涓庤繃鐨勯」鐩�
 	@FXML
-	private Label name;// 用户的名字
+	private Label name;// 鐢ㄦ埛鐨勫悕瀛�
 	@FXML
 	private Label location;
 	@FXML
@@ -59,17 +65,18 @@ public class UserController implements Initializable {
 	@FXML
 	private Label blog;
 	@FXML
-	private Label image;// 用户头像
+	private Label image;// 鐢ㄦ埛澶村儚
 	@FXML
-	private Label followers;// 粉丝数
+	private Label followers;// 绮変笣鏁�
 	@FXML
-	private Label followings;// 关注数
+	private Label followings;// 鍏虫敞鏁�
 	@FXML
-	private Label user_eva_img;// 用户详细信息分析雷达图
+	private Label user_eva_img;// 鐢ㄦ埛璇︾粏淇℃伅鍒嗘瀽闆疯揪鍥�
 
 	List<String> text1;
 	List<String> text2;
 	List<String> text3;
+	Image img;
 
 	public static UserController getInstance() {
 		if (instance == null) {
@@ -83,18 +90,13 @@ public class UserController implements Initializable {
 		// TODO Auto-generated method stub
 		instance = this;
 
-		// user_back.setOnAction((e) -> {
-		// if (MainController.getInstance().getSearchId() == "") {
-		// MainController.getInstance().initPanel();
-		// } else {
-		// MainController.getInstance().setPanel("Ui_SearchPanel.fxml");
-		// }
-		// });
+		user_back.setOnAction((e) -> {
+			MainController.getInstance().setPanel("Ui_UserPagePanel.fxml");
+		});
 
 	}
 
 	public void setVO(UserVO vo) {
-
 		if (vo != null) {
 			if (vo.getHtml_url() != null) {
 				String str = vo.getHtml_url();
@@ -188,19 +190,45 @@ public class UserController implements Initializable {
 			Colla_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		}
 
-		if (vo.getAvatar() != null) {
-			image.setGraphic(new ImageView(vo.getAvatar()));
-		} else {
-			Image img = new Image(MainUI.class.getResourceAsStream("style/morentouxiang.jpg"));
-			image.setGraphic(new ImageView(img));
-		}
-
+		// 鏄剧ず澶村儚
+		showAvatar(vo.getLogin());
 	}
 
-	@FXML
-	public void handleBack() {
-		user_back.setOnAction((e) -> {
-			MainController.getInstance().setPanel("test.fxml");
+	// 鍦ㄥ姞杞藉ご鍍忕殑鍚屾椂鏄剧ず杩涘害鏉�
+	public void showAvatar(String login) {
+
+		ProgressIndicator pin = new ProgressIndicator(-1);
+		pin.setMaxSize(60, 60);
+		image.setAlignment(Pos.CENTER);
+		image.setGraphic(pin);
+
+		Task<Void> task = new Task<Void>() {
+
+			@Override
+			protected Void call() throws Exception {
+
+				UserService user = UserServiceImpl.getInstance();
+				img = user.getAvatar(login);
+
+				updateProgress(1, 1);
+
+				return null;
+			}
+
+		};
+
+		pin.progressProperty().bind(task.progressProperty());
+		Thread th = new Thread(task);
+		th.start();
+
+		pin.progressProperty().addListener((ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
+			if (new_val.intValue() == 1) {
+				if (img != null) {
+					image.setGraphic(new ImageView(img));
+				} else
+					image.setGraphic(
+							new ImageView(new Image(MainUI.class.getResourceAsStream("style/morentouxiang.jpg"))));
+			}
 		});
 	}
 }
