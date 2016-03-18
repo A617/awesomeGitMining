@@ -165,4 +165,10 @@ public class UserServiceImpl implements UserService {
 		return vos;
 	}
 
+	@Override
+	public List<String> getEvaluation(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
