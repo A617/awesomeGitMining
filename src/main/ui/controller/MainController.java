@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.fxml.LoadException;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -66,14 +67,16 @@ public class MainController implements Initializable {
 	 */
 	public void setPanel(String name) {
 		AnchorPane panel = fxmlLoader.loadPanel(name);
-		center_panel.getChildren().clear();
-		center_panel.getChildren().add(panel);
-		AnchorPane field = fxmlLoader.loadPanel("Ui_TextField.fxml");
-		panel.getChildren().add(field);
-		field.setLayoutX(10);
-		field.setLayoutY(-10);
-		// otherwise the searchButton cannot use
-		common.toFront();
+		if (panel != null) {
+			center_panel.getChildren().clear();
+			center_panel.getChildren().add(panel);
+			AnchorPane field = fxmlLoader.loadPanel("Ui_TextField.fxml");
+			panel.getChildren().add(field);
+			field.setLayoutX(10);
+			field.setLayoutY(-10);
+			// otherwise the searchButton cannot use
+			common.toFront();
+		}
 	}
 
 	public void setGroup(String name) {

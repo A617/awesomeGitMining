@@ -10,12 +10,15 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import main.dao.DataFactory;
 import main.dao.HttpRequest;
 import main.dao.JsonUtil;
+import main.dao.entity.Repository;
 import net.sf.json.JSONException;
 
 public class DataMining {
@@ -26,10 +29,47 @@ public class DataMining {
 
 		long startTime = System.nanoTime();
 
-		String url = "http://www.gitmining.net/api/user/";
-		String path = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/user_name.txt";
-		getDataFromDtaMining(url, path, "name");
-	
+		String pathStar = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_starRank.txt";
+		String pathContri = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_contriRank.txt";
+		String pathColla = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_collaRank.txt";
+		String pathWatch = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_watchRank.txt";
+		String pathSubscri = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_subscriRank.txt";
+		String pathIssue = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_issueRank.txt";
+		String pathFork = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_forkRank.txt";
+		
+		List<Integer> srcStar = new ArrayList<>();
+		List<Integer> srcContri = new ArrayList<>();
+		List<Integer> srcWatch = new ArrayList<>();
+		List<Integer> srcIssue = new ArrayList<>();
+		List<Integer> srcSubscri = new ArrayList<>();
+		List<Integer> srcColla = new ArrayList<>();
+		List<Integer> srcFork = new ArrayList<>();
+		
+		for(String name: readFromRepoTxt()){
+			Repository po;
+			try {
+				po = DataFactory.getRepoDataInstance().getRepository(name);
+				srcContri.add(po.getContributors_login().size());
+				srcIssue.add(po.getOpen_issues_count());
+				srcSubscri.add(po.getSubscribers_count());
+				srcWatch.add(po.getWatchers_count());
+				srcColla.add(po.getCollaborators_login().size());
+				srcFork.add(po.getForks_count());
+				srcStar.add(po.getStargazers_count());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		rankList(srcStar,pathStar);
+		rankList(srcFork,pathFork);
+		rankList(srcContri,pathContri);
+		rankList(srcColla,pathColla);
+		rankList(srcIssue,pathIssue);
+		rankList(srcWatch,pathWatch);
+		rankList(srcSubscri,pathSubscri);
+		
+		
 		long endTime = System.nanoTime();
 		System.out.println("Took " + (endTime - startTime) + " ns");
 	}
@@ -218,17 +258,17 @@ public class DataMining {
 	}
 	
 	
-	private static List<String> readFromTxt() {
-		List<String> repositories = new ArrayList<String>();
+	private static List<Integer> readFromTxt(String path) {
+		List<Integer> repositories = new ArrayList<>();
 
 		try {
-			File file = new File(userpath);
+			File file = new File(path);
 			if (file.isFile() && file.exists()) { // 判断文件是否存在
 				InputStreamReader read = new InputStreamReader(new FileInputStream(file));
 				BufferedReader bufferedReader = new BufferedReader(read);
 				String lineTxt = null;
 				while ((lineTxt = bufferedReader.readLine()) != null) {
-					repositories.add(lineTxt);
+					repositories.add(Integer.parseInt(lineTxt));
 				}
 				read.close();
 			} else {
@@ -324,13 +364,19 @@ public class DataMining {
 
 
 
-	public List<Integer> rankList(List<Integer> srcList) {  
+	public static List<Integer> rankList(List<Integer> srcList, String path) {  
 	   
 		List<Integer> rankList = new ArrayList<>();
 		
 		List<Integer> sortList = new ArrayList<>(srcList);
 		
-		Collections.sort(sortList);
+		Collections.sort(sortList, new Comparator<Integer>() {
+			
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				return o2-o1;
+			}
+		});
 		
 		System.out.println(srcList);
 		
@@ -342,7 +388,34 @@ public class DataMining {
 			
 		}
 		
-		System.out.println(rankList);
+		// write to txt
+		FileWriter fw = null;
+		BufferedWriter writer = null;
+		File file = new File(path);
+
+		try {
+
+			fw = new FileWriter(file);
+			writer = new BufferedWriter(fw);
+
+			for (int i : rankList) {
+				writer.write(i+"");
+				writer.newLine();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				writer.flush();
+				writer.close();
+				fw.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		
 	    return rankList;  
 	}

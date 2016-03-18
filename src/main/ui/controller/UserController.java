@@ -9,12 +9,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+<<<<<<< HEAD
+=======
+import javafx.geometry.Pos;
+>>>>>>> 37a0e88c19e0b820478b47021384d23ee4aadea1
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+<<<<<<< HEAD
+=======
+import main.business.impl.user.UserServiceImpl;
+import main.business.service.UserService;
+>>>>>>> 37a0e88c19e0b820478b47021384d23ee4aadea1
 import main.ui.MainUI;
 import main.vo.Colla_ProVO;
 import main.vo.Contri_ProVO;
@@ -70,6 +79,7 @@ public class UserController implements Initializable {
 	List<String> text1;
 	List<String> text2;
 	List<String> text3;
+	Image img;
 
 	public static UserController getInstance() {
 		if (instance == null) {
@@ -90,7 +100,6 @@ public class UserController implements Initializable {
 	}
 
 	public void setVO(UserVO vo) {
-
 		if (vo != null) {
 			if (vo.getHtml_url() != null) {
 				String str = vo.getHtml_url();
@@ -183,13 +192,48 @@ public class UserController implements Initializable {
 			Colla_Pro_View.setItems(colla_pros);
 			Colla_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		}
+		
+		
+		//显示头像
+		showAvatar(vo.getLogin());
+	}
+	
+	
+	//在加载头像的同时显示进度条
+	public void showAvatar(String login){
+		
+		ProgressIndicator pin = new ProgressIndicator(-1);
+		pin.setMaxSize(60,60);
+		image.setAlignment(Pos.CENTER);
+		image.setGraphic(pin);
 
-		if (vo.getAvatar() != null) {
-			image.setGraphic(new ImageView(vo.getAvatar()));
-		} else {
-			Image img = new Image(MainUI.class.getResourceAsStream("style/morentouxiang.jpg"));
-			image.setGraphic(new ImageView(img));
-		}
+		Task<Void> task = new Task<Void>() {
 
+			@Override
+			protected Void call() throws Exception {
+
+				UserService user = UserServiceImpl.getInstance();
+				img=user.getAvatar(login);
+				
+				updateProgress(1, 1);
+
+				return null;
+			}
+
+		};
+
+		pin.progressProperty().bind(task.progressProperty());
+		Thread th = new Thread(task);
+		th.start();
+
+		pin.progressProperty().addListener((ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
+			if (new_val.intValue() == 1) {
+				if (img != null) {
+					image.setGraphic(new ImageView(img));
+				} else
+					image.setGraphic(
+							new ImageView(new Image(MainUI.class.getResourceAsStream("style/morentouxiang.jpg"))));
+			}
+		});
 	}
 }

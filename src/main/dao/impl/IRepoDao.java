@@ -31,13 +31,14 @@ public interface IRepoDao {
 	
 	/**
 	 * 获取使用每种语言的项目数目
-	 * @return
+	 * @return 按照Statistics.language中的语言列表
 	 */
 	public int[] getLanguageStatistics();
 	
 	/**
 	 * 获取2007-2015创建项目的个数
-	 * @return
+	 * @return 按照Statistics.year中的年份列表
 	 */
 	public int[] getCreatedTimeStatistics();
+	
 }

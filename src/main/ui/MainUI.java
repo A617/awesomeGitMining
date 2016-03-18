@@ -85,10 +85,6 @@ public class MainUI extends Application {
 		stars.setGraphic(new ImageView(img2));
 		stars.setMaxSize(1366, 768);
 
-		/*
-		 * Label text = new Label("G I T M I N I N G"); text.setFont(new
-		 * Font("Calibri", 64)); text.setTextFill(Color.WHITE);
-		 */
 		Label logo = new Label();
 		Image img3 = new Image("file:src/main/ui/style/logo.png");
 		logo.setGraphic(new ImageView(img3));
@@ -112,18 +108,6 @@ public class MainUI extends Application {
 		pin.setVisible(false);
 		stage.setScene(scene);
 		p.getChildren().addAll(stack1, stack2, pin);
-
-		/*
-		 * Label label = new Label(); label.setText("Welcome to Gitmining.");
-		 * label.setFont(new Font("Calibri", 28));
-		 * 
-		 * ProgressIndicator pin = new ProgressIndicator(-1);
-		 * 
-		 * HBox hb = new HBox(); hb.setSpacing(7); hb.setAlignment(Pos.CENTER);
-		 * hb.getChildren().addAll(pin,label);
-		 * 
-		 * scene1.setRoot(hb); stage.setScene(scene1);
-		 */
 
 		stage.show();
 
