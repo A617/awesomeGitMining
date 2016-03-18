@@ -5,25 +5,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-<<<<<<< HEAD
-=======
 import javafx.geometry.Pos;
->>>>>>> 37a0e88c19e0b820478b47021384d23ee4aadea1
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-<<<<<<< HEAD
-=======
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.UserService;
->>>>>>> 37a0e88c19e0b820478b47021384d23ee4aadea1
 import main.ui.MainUI;
 import main.vo.Colla_ProVO;
 import main.vo.Contri_ProVO;
