@@ -7,7 +7,9 @@ public class Statistics {
 			"Objective-C", "others" };
 
 	public static String[] year = { "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015" };
-	
-	public  String[] rank = {"star","fork","watchers","subscribers","issues","contributors","collabotators"};
-	
+
+	public String[] rank = { "star", "fork", "watchers", "subscribers", "issues", "contributors", "collabotators" };
+
+	public static String[] company = { "Shopify", "Github", "Google", "Twitter", "Facebook", "Xamarin", "Red Hat",
+			"Heroku", "Microsoft", "Mozilla" };
 }

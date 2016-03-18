@@ -6,7 +6,6 @@ import java.util.List;
 
 import javafx.scene.image.Image;
 import main.dao.HttpRequest;
-import main.dao.entity.Company;
 import main.dao.entity.Statistics;
 import main.dao.entity.Type;
 import main.dao.entity.User;
@@ -173,13 +172,13 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public int[] getCompanyStatistics() {
-		Company[] list = Company.values();
+		String[] list = Statistics.company;
 		int[] result = new int[list.length];
 
 		for (String company : companyList) {
-			for (Company cp : list) {
-				if (company.toLowerCase().contains(cp.name().toLowerCase()))
-					result[cp.ordinal()]++;
+			for (int i=0;i<list.length;i++) {
+				if (company.toLowerCase().contains(list[i].toLowerCase()))
+					result[i]++;
 			}
 		}
 

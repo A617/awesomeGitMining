@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,8 +12,6 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
@@ -24,8 +19,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.util.Duration;
-import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.UserService;
 import main.ui.MainUI;
@@ -200,19 +193,10 @@ public class UserController implements Initializable {
 		
 		//显示头像
 		showAvatar(vo.getLogin());
-	/*	
-		if (vo.getAvatar() != null) {
-			
-			
-			
-			image.setGraphic(new ImageView(vo.getAvatar()));
-		} else {
-			Image img = new Image(MainUI.class.getResourceAsStream("style/morentouxiang.jpg"));
-			image.setGraphic(new ImageView(img));
-		}
-*/
 	}
 	
+	
+	//在加载头像的同时显示进度条
 	public void showAvatar(String login){
 		
 		ProgressIndicator pin = new ProgressIndicator(-1);
