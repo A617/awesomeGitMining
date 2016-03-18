@@ -37,7 +37,6 @@ public class RaderChartGenerator{
 		jfreechart.setBackgroundImage(new ImageIcon("src/main/ui/style/raderback.png").getImage());
 	
 		ChartPanel chart = new ChartPanel(jfreechart);
-		chart.setPreferredSize(new Dimension(340,340));
 		return chart;
 	}
 }
