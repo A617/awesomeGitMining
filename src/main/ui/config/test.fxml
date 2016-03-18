@@ -12,10 +12,22 @@
       <Button layoutX="668.0" layoutY="667.0" mnemonicParsing="false" onAction="#handlePreButton" text="Previous" />
       <AnchorPane id="sortPane" layoutX="313.0" layoutY="6.0" prefHeight="41.0" prefWidth="1045.0">
          <children>
-            <Label id="headLabel" fx:id="tab_general" alignment="CENTER" layoutY="0.0" onMouseEntered="#enterGeneral" onMouseExited="#exitGeneral" onMouseReleased="#selectGeneral" prefHeight="41.0" prefWidth="121.0" text="General" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="929.0" AnchorPane.topAnchor="0.0" />
-            <Label id="headLabel" fx:id="tab_fork" alignment="CENTER" layoutX="121.0" layoutY="1.0" onMouseEntered="#enterFork" onMouseExited="#exitFork" onMouseReleased="#selectFork" prefHeight="40.0" prefWidth="121.0" text="Fork" />
-            <Label id="headLabel" fx:id="tab_star" alignment="CENTER" layoutX="242.0" layoutY="1.0" onMouseEntered="#enterStar" onMouseExited="#exitStar" onMouseReleased="#selectStar" prefHeight="40.0" prefWidth="121.0" text="Star" />
-            <Label id="headLabel" fx:id="tab_contributor" alignment="CENTER" layoutX="363.0" layoutY="1.0" onMouseEntered="#enterContributor" onMouseExited="#exitContri" onMouseReleased="#selectContributor" prefHeight="40.0" prefWidth="121.0" text="Contributor" />
+            <Label id="headLabel" fx:id="tab_general" alignment="CENTER" layoutY="0.0" onMouseEntered="#enterGeneral" onMouseExited="#exitGeneral" onMouseReleased="#selectGeneral" prefHeight="41.0" prefWidth="121.0" text="General" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="929.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Microsoft YaHei" size="15.0" />
+               </font></Label>
+            <Label id="headLabel" fx:id="tab_fork" alignment="CENTER" layoutX="121.0" layoutY="1.0" onMouseEntered="#enterFork" onMouseExited="#exitFork" onMouseReleased="#selectFork" prefHeight="40.0" prefWidth="121.0" text="Fork" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei UI" size="15.0" />
+               </font></Label>
+            <Label id="headLabel" fx:id="tab_star" alignment="CENTER" layoutX="242.0" layoutY="1.0" onMouseEntered="#enterStar" onMouseExited="#exitStar" onMouseReleased="#selectStar" prefHeight="40.0" prefWidth="121.0" text="Star" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei" size="15.0" />
+               </font></Label>
+            <Label id="headLabel" fx:id="tab_contributor" alignment="CENTER" layoutX="363.0" layoutY="1.0" onMouseEntered="#enterContributor" onMouseExited="#exitContri" onMouseReleased="#selectContributor" prefHeight="40.0" prefWidth="121.0" text="Contributor" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei UI" size="15.0" />
+               </font></Label>
          </children>
       </AnchorPane>
       <ScrollPane fx:id="scrollPane" layoutX="313.0" layoutY="47.0" prefHeight="595.0" prefWidth="1045.0" />
