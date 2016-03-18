@@ -91,18 +91,14 @@ public class UserController implements Initializable {
 		// TODO Auto-generated method stub
 		instance = this;
 
-		// user_back.setOnAction((e) -> {
-		// if (MainController.getInstance().getSearchId() == "") {
-		// MainController.getInstance().initPanel();
-		// } else {
-		// MainController.getInstance().setPanel("Ui_SearchPanel.fxml");
-		// }
-		// });
+		user_back.setOnAction((e) -> {
+			MainController.getInstance().setPanel("Ui_UserPagePanel.fxml");
+		});
 
 	}
 
 	public void setVO(UserVO vo) {
-		
+
 		if (vo != null) {
 			if (vo.getHtml_url() != null) {
 				String str = vo.getHtml_url();
@@ -153,7 +149,7 @@ public class UserController implements Initializable {
 			Contri_Pro_View.setItems(contri_pros);
 			Contri_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		}
-		
+
 		// created pros
 		if (vo.getRepos_fullname() != null) {
 			ObservableList<Crea_ProVO> crea_pros = FXCollections.observableArrayList();
@@ -175,7 +171,6 @@ public class UserController implements Initializable {
 			Crea_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		}
 
-		
 		if (vo.getCollaboration_fullname() != null) {
 			ObservableList<Colla_ProVO> colla_pros = FXCollections.observableArrayList();
 			for (String name : vo.getCollaboration_fullname()) {
@@ -196,7 +191,7 @@ public class UserController implements Initializable {
 			Colla_Pro_View.setItems(colla_pros);
 			Colla_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		}
-	
+
 		if (vo.getAvatar() != null) {
 			image.setGraphic(new ImageView(vo.getAvatar()));
 		} else {
