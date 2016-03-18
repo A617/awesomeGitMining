@@ -198,8 +198,8 @@ public class ProjectController implements Initializable {
 	    Task<Void> task = new Task<Void>() {
 	    	@Override
 	    	protected Void call() throws Exception {
-	    		JPanel panel = RaderChartGenerator.getInstance().createPanel(dataset);
-	    		swingNode.setContent(panel);
+	    		swingNode.setContent(RaderChartGenerator.getInstance().createPanel(dataset));
+	    		
 	    		updateProgress(1,1);
 	    		return null;
 	    	}
