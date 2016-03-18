@@ -88,6 +88,7 @@ public class ProjectController implements Initializable {
 	private UserVO fullVO;
 	private RepositoryService repositoryImpl;
 	private UserService userImpl;
+	private JPanel panel;
 
 	public static ProjectController getInstance() {
 		if (instance == null) {
@@ -194,9 +195,8 @@ public class ProjectController implements Initializable {
 		Task<Void> task = new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
-				JPanel panel = RaderChartGenerator.getInstance().createPanel(dataset);
+				panel = RaderChartGenerator.getInstance().createPanel(dataset);
 				panel.setPreferredSize(new Dimension(340,340));
-				swingNode.setContent(panel);
 
 				updateProgress(1, 1);
 				return null;
@@ -207,8 +207,11 @@ public class ProjectController implements Initializable {
 
 		pin.progressProperty().addListener((ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
 			if (new_val.intValue() == 1) {
-				raderPane.getChildren().clear();
-				raderPane.getChildren().add(swingNode);
+				if(panel!=null){
+					swingNode.setContent(panel);
+					raderPane.getChildren().clear();
+					raderPane.getChildren().add(swingNode);
+				}
 			}
 		});
 	}

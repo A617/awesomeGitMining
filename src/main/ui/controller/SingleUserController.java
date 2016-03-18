@@ -6,8 +6,11 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.UserService;
+import main.ui.MainUI;
 import main.vo.UserVO;
 
 public class SingleUserController implements Initializable {
@@ -15,7 +18,11 @@ public class SingleUserController implements Initializable {
 	@FXML
 	private Label userName;
 	@FXML
+	private Label location;
+	@FXML
 	private Label company;
+	@FXML
+	private Label followers;
 
 	private UserService userImpl;
 	private UserVO vo;
@@ -37,8 +44,16 @@ public class SingleUserController implements Initializable {
 		this.vo=vo;
 		if(vo!=null) {
 			userName.setText(vo.getLogin());
-			MainController.getInstance().labelInit(company,"place.png");
-			company.setText(vo.getLocation());
+
+			Image image = new Image(MainUI.class.getResourceAsStream("style/place.png"));
+			location.setGraphic(new ImageView(image));
+			location.setText(vo.getLocation());
+			
+			image = new Image(MainUI.class.getResourceAsStream("style/company.png"));
+			location.setGraphic(new ImageView(image));
+			company.setText(vo.getCompany());
+			
+			followers.setText(String.valueOf(vo.getContributions_fullname().size()));
 		}
 	}
 
