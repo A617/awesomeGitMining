@@ -51,6 +51,12 @@
     -fx-background-insets: 2, 0, 0;
     -fx-background-radius: 3em;
 }
+.chart-bar {
+    -fx-background-color: rgba(255,218,185,0.8);
+    -fx-border-color: rgba(131,175,155,0.5) rgba(131,175,155,0.5) transparent rgba(131,175,155,0.5);
+    -fx-background-radius: 0;
+    -fx-background-position: left center;
+}
 .table-view:row-selection{
     -fx-background-color: transparent;
 }

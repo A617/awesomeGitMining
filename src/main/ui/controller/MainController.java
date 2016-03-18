@@ -71,7 +71,7 @@ public class MainController implements Initializable {
 		center_panel.getChildren().clear();
 		center_panel.getChildren().add(panel);
 		//if shows statistics
-		if(name.equals("Ui_ReposSta.fxml")||name.equals("Ui_UserSta.fxml")){
+		if(name.equals("Ui_ReposStaPane.fxml")||name.equals("Ui_UserSta.fxml")){
 			return;
 		}
 		AnchorPane field = fxmlLoader.loadPanel("Ui_TextField.fxml");
@@ -159,7 +159,7 @@ public class MainController implements Initializable {
 		user.setStyle(styleStr + baseColor);
 		repository.setStyle(styleStr + baseColor);
 		userSta.setStyle(styleStr + baseColor);
-		setPanel("Ui_ReposSta.fxml");
+		setPanel("Ui_ReposStaPane.fxml");
 	}
 
 	@FXML
