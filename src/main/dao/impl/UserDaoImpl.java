@@ -130,6 +130,14 @@ public class UserDaoImpl implements IUserDao {
 			return null;
 		return companyList.get(index);
 	}
+	
+	@Override
+	public int getFollowers(String login) {
+		int index = userList.indexOf(login);
+		if (index == -1)
+			return 0;
+		return followersList.get(index);
+	}
 
 	@Override
 	public Type getType(String login) {

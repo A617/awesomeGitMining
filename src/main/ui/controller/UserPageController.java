@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.UserService;
 import main.ui.MainUI;
+import main.vo.SimpleUserVO;
 import main.vo.UserVO;
 
 public class UserPageController implements Initializable{
@@ -31,7 +32,7 @@ public class UserPageController implements Initializable{
 	
 	private UserService userImpl;
 	private static UserPageController instance;
-	private List<UserVO> userVO;
+	private List<SimpleUserVO> userVO;
 	
 	public static UserPageController getInstance() {
 		if(instance == null) {
@@ -40,7 +41,7 @@ public class UserPageController implements Initializable{
 		return instance;
 	}
 	
-	public void initUser(List<UserVO> user) {
+	public void initUser(List<SimpleUserVO> user) {
 		VBox box = new VBox();
 		VBox.setVgrow(scrollPane, Priority.ALWAYS);
 		box.setSpacing(4);
@@ -52,7 +53,7 @@ public class UserPageController implements Initializable{
 				Pane single = (Pane) loader.load();
 				SingleUserController controller = loader.getController();
 				if (i < user.size()) {
-					UserVO vo = user.get(i);
+					SimpleUserVO vo = user.get(i);
 					controller.setVO(vo);
 
 					box.getChildren().add(single);

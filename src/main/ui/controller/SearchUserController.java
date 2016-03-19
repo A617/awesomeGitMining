@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.UserService;
 import main.ui.MainUI;
+import main.vo.SimpleUserVO;
 import main.vo.UserVO;
 
 /**
@@ -23,7 +24,7 @@ import main.vo.UserVO;
 public class SearchUserController implements Initializable {
 	private static SearchUserController instance;
 	private UserService service;
-	private List<UserVO> list;
+	private List<SimpleUserVO> list;
 	private String id;
 	private VBox box = new VBox();
 	@FXML
@@ -54,7 +55,7 @@ public class SearchUserController implements Initializable {
 				Pane single = (Pane) loader.load();
 				SingleUserController controller = loader.getController();
 				if (i < list.size()) {
-					UserVO vo = list.get(i);
+					SimpleUserVO vo = list.get(i);
 					controller.setVO(vo);
 					box.getChildren().add(single);
 				}

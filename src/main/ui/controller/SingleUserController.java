@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.UserService;
 import main.ui.MainUI;
+import main.vo.SimpleUserVO;
 import main.vo.UserVO;
 
 public class SingleUserController implements Initializable {
@@ -25,7 +26,7 @@ public class SingleUserController implements Initializable {
 	private Label followers;
 
 	private UserService userImpl;
-	private UserVO vo;
+	private SimpleUserVO vo;
 	private UserVO fullVO;
 
 	@Override
@@ -40,20 +41,20 @@ public class SingleUserController implements Initializable {
 		});
 	}
 
-	public void setVO(UserVO vo) {
+	public void setVO(SimpleUserVO vo) {
 		this.vo=vo;
 		if(vo!=null) {
 			userName.setText(vo.getLogin());
 
-//			Image image = new Image(MainUI.class.getResourceAsStream("style/place.png"));
-//			location.setGraphic(new ImageView(image));
-//			location.setText(vo.getLocation());
-//			
-//			image = new Image(MainUI.class.getResourceAsStream("style/company.png"));
-//			location.setGraphic(new ImageView(image));
-//			company.setText(vo.getCompany());
-//			
-//			followers.setText(String.valueOf(vo.getContributions_fullname().size()));
+			Image image1 = new Image(MainUI.class.getResourceAsStream("style/place.png"));
+			location.setGraphic(new ImageView(image1));
+			location.setText(vo.getLocation());
+			
+			Image image2 = new Image(MainUI.class.getResourceAsStream("style/company.png"));
+			company.setGraphic(new ImageView(image2));
+			company.setText(vo.getCompany());
+			
+			followers.setText(String.valueOf(vo.getFollowers()));
 		}
 	}
 

@@ -10,6 +10,7 @@ import main.business.service.UserService;
 import main.dao.DataFactory;
 import main.dao.entity.User;
 import main.dao.impl.IUserDao;
+import main.vo.SimpleUserVO;
 import main.vo.UserVO;
 
 /**
@@ -101,17 +102,19 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<UserVO> searchUser(String id, int pageIndex) {
-		List<UserVO> vos = new ArrayList<UserVO>();
+	public List<SimpleUserVO> searchUser(String id, int pageIndex) {
+		List<SimpleUserVO> vos = new ArrayList<SimpleUserVO>();
 		if (daoImpl != null) {
 			List<String> names = daoImpl.searchUser(id);
 			if (names != null) {
 				for (int i = pageIndex; i < 5 + pageIndex; i++) {
 					if (i < names.size() && i >= 0) {
 						String login = names.get(i);
-						UserVO vo = new UserVO();
+						SimpleUserVO vo = new SimpleUserVO();
 						vo.setLogin(login);
 						vo.setLocation(daoImpl.getLocation(login));
+						vo.setCompany(daoImpl.getCompany(login));
+						vo.setFollowers(daoImpl.getFollowers(login));
 						vos.add(vo);
 					}
 				}
@@ -136,9 +139,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<UserVO> showUsers(int pageIndex) {
+	public List<SimpleUserVO> showUsers(int pageIndex) {
 		List<String> names = daoImpl.getAllUser();
-		List<UserVO> vos = new ArrayList<UserVO>();
+		List<SimpleUserVO> vos = new ArrayList<SimpleUserVO>();
 		if (names != null) {
 			for (int i = pageIndex * 10; i < 10 + pageIndex * 10; i++) {
 				if (i < names.size() && i >= 0) {
@@ -150,9 +153,11 @@ public class UserServiceImpl implements UserService {
 						e.printStackTrace();
 					}
 					if (po != null) {
-						UserVO vo = new UserVO();
+						SimpleUserVO vo = new SimpleUserVO();
 						vo.setLocation(daoImpl.getLocation(name));
 						vo.setLogin(name);
+						vo.setCompany(daoImpl.getCompany(name));
+						vo.setFollowers(daoImpl.getFollowers(name));
 						vos.add(vo);
 					}
 				}

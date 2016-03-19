@@ -53,6 +53,15 @@ public interface IUserDao {
 	 */
 	public String getLocation(String login);
 	
+	
+	/**
+	 * 获取用户粉丝个数
+	 * @param login
+	 * @return
+	 */
+	public int getFollowers(String login);
+	
+	
 	/**
 	 * 获取用户公司
 	 * @param login
