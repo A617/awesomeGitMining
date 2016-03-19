@@ -32,8 +32,8 @@
                <font>
                   <Font name="Microsoft YaHei Bold" size="14.0" />
                </font></Label>
-            <Label fx:id="exit" layoutX="1326.0" onMouseClicked="#clickExit" onMouseEntered="#enterExit" onMouseExited="#exitExit" onMouseReleased="#releaseExit" prefHeight="27.0" prefWidth="40.0" />
-            <Label fx:id="min" layoutX="1286.0" onMouseClicked="#clickMin" onMouseEntered="#enterMin" onMouseExited="#exitMin" onMouseReleased="#releaseMin" prefHeight="27.0" prefWidth="40.0" />
+            <Label fx:id="exit" layoutX="1326.0" onMouseEntered="#enterExit" onMouseExited="#exitExit" onMouseReleased="#releaseExit" prefHeight="27.0" prefWidth="40.0" />
+            <Label fx:id="min" layoutX="1286.0" onMouseEntered="#enterMin" onMouseExited="#exitMin" onMouseReleased="#releaseMin" prefHeight="27.0" prefWidth="40.0" />
          </children>
       </AnchorPane>
    </children>

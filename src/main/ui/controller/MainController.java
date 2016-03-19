@@ -1,8 +1,11 @@
 package main.ui.controller;
 
+import java.awt.SystemTray;
+import java.awt.TrayIcon;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,12 +18,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import main.ui.MainUI;
 import main.ui.utility.fxmlLoader;
 
 public class MainController implements Initializable {
 	private final Delta dragDelta = new Delta();
 	private static MainController instance;
+	private TrayIcon trayIcon;
 
 	public static MainController getInstance() {
 		if (instance == null) {
@@ -110,15 +115,16 @@ public class MainController implements Initializable {
 	}
 	@FXML
 	public void exitExit(){
-		//labelInit(exit,"exit_active.png");
+		labelInit(exit,"exit_normal.png");
 	}
-	@FXML
-	public void clickExit(){
-		labelInit(exit,"exit_active.png");
-	}
+
 	@FXML
 	public void releaseExit(){
-		labelInit(exit,"exit_normal.png");
+		labelInit(exit,"exit_active.png");
+		SystemTray.getSystemTray().remove(trayIcon);
+		Platform.exit();
+		return;
+
 	}
 	@FXML
 	public void enterMin(){
@@ -126,15 +132,14 @@ public class MainController implements Initializable {
 	}
 	@FXML
 	public void exitMin(){
-		//labelInit(min,"min_active.png");
+		labelInit(min,"min_normal.png");
 	}
-	@FXML
-	public void clickMin(){
-		labelInit(min,"min_active.png");
-	}
+
 	@FXML
 	public void releaseMin(){
-		labelInit(min,"min_normal.png");
+		labelInit(min,"min_active.png");
+		MainUI.getUI().getStage().setIconified(true);
+
 	}
 	@FXML
 	public void enterRepos() {
