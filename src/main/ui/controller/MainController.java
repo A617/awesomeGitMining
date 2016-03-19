@@ -34,7 +34,7 @@ public class MainController implements Initializable {
 	@FXML
 	private AnchorPane center_panel, common;
 	@FXML
-	private Label minimize;
+	private Label min;
 	@FXML
 	private Label exit;
 	@FXML
@@ -80,6 +80,8 @@ public class MainController implements Initializable {
 		field.setLayoutY(-10);
 		// otherwise the searchButton cannot use
 		common.toFront();
+		labelInit(exit,"exit_normal.png");
+		labelInit(min,"min_normal.png");
 	}
 
 	public void setGroup(String name) {
@@ -102,7 +104,38 @@ public class MainController implements Initializable {
 		Image image = new Image(MainUI.class.getResourceAsStream("style/" + path));
 		label.setGraphic(new ImageView(image));
 	}
-
+	@FXML
+	public void enterExit(){
+		labelInit(exit,"exit_move.png");
+	}
+	@FXML
+	public void exitExit(){
+		//labelInit(exit,"exit_active.png");
+	}
+	@FXML
+	public void clickExit(){
+		labelInit(exit,"exit_active.png");
+	}
+	@FXML
+	public void releaseExit(){
+		labelInit(exit,"exit_normal.png");
+	}
+	@FXML
+	public void enterMin(){
+		labelInit(min,"min_move.png");
+	}
+	@FXML
+	public void exitMin(){
+		//labelInit(min,"min_active.png");
+	}
+	@FXML
+	public void clickMin(){
+		labelInit(min,"min_active.png");
+	}
+	@FXML
+	public void releaseMin(){
+		labelInit(min,"min_normal.png");
+	}
 	@FXML
 	public void enterRepos() {
 		repository.setStyle(styleStr + enterColor);

@@ -73,7 +73,7 @@ public class UserController implements Initializable {
 	@FXML
 	private Label user_eva_img;// 鐢ㄦ埛璇︾粏淇℃伅鍒嗘瀽闆疯揪鍥�
 
-	List<String> text1;
+	List<String> text1= new ArrayList<String>();
 	List<String> text2;
 	List<String> text3;
 	Image img;
@@ -115,12 +115,18 @@ public class UserController implements Initializable {
 			name.setText(vo.getName());
 			if (vo.getLocation() != null) {
 				location.setText(vo.getLocation());
+			}else{
+				location.setText("He hasn't writen down the location yet :)");
 			}
 			if (vo.getEmail() != null) {
 				email.setText(vo.getEmail());
+			}else{
+				email.setText("He hasn't writen down the email address yet :)");
 			}
 			if (vo.getBlog() != null) {
 				blog.setText(vo.getBlog());
+			}else{
+				blog.setText("He hasn't writen down the blog address yet :)");
 			}
 
 		}
@@ -135,9 +141,9 @@ public class UserController implements Initializable {
 			}
 			Contri_Pro_View.setItems(contri_pros);
 			Contri_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
-		} else {
+		}
+		if (vo.getContributions_fullname() == null){
 
-			text1 = new ArrayList<String>();
 			text1.add("Hasn't contributed any projects.:)");
 			ObservableList<Contri_ProVO> contri_pros = FXCollections.observableArrayList();
 			for (String name : text1) {
@@ -159,6 +165,8 @@ public class UserController implements Initializable {
 			Crea_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		} else {
 			text2 = new ArrayList<String>();
+			text2.add(" ");
+			text2.add(" ");
 			text2.add("Hasn't created any projects.:)");
 			ObservableList<Crea_ProVO> crea_pros = FXCollections.observableArrayList();
 			for (String name : text2) {
@@ -178,9 +186,11 @@ public class UserController implements Initializable {
 			Colla_Pro_View.setItems(colla_pros);
 			Colla_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		} else {
-
 			text3 = new ArrayList<String>();
+			text3.add(" ");
+			text3.add(" ");
 			text3.add("Hasn't collaborated any projects.:)");
+
 			ObservableList<Colla_ProVO> colla_pros = FXCollections.observableArrayList();
 			for (String name : text3) {
 				Colla_ProVO cv = new Colla_ProVO(name);

@@ -148,17 +148,17 @@
             <VBox layoutX="238.0" layoutY="380.0" />
             <AnchorPane layoutX="960.0" prefHeight="709.0" prefWidth="277.0">
                <children>
-                  <TableView fx:id="Colla_Pro_View" layoutX="26.0" layoutY="473.0" prefHeight="177.0" prefWidth="210.0">
+                  <TableView fx:id="Colla_Pro_View" layoutX="26.0" layoutY="473.0" opacity="0.6" prefHeight="177.0" prefWidth="210.0">
                      <columns>
                         <TableColumn fx:id="Colla_Pro" prefWidth="209.0" text="Collaborated Projects" />
                      </columns>
                   </TableView>
-                  <TableView fx:id="Contri_Pro_View" layoutX="26.0" layoutY="119.0" prefHeight="177.0" prefWidth="210.0">
+                  <TableView fx:id="Contri_Pro_View" layoutX="26.0" layoutY="119.0" opacity="0.6" prefHeight="177.0" prefWidth="210.0">
                      <columns>
                         <TableColumn fx:id="Contri_Pro" prefWidth="209.0" text="Contributed Projects" />
                      </columns>
                   </TableView>
-                  <TableView fx:id="Crea_Pro_View" layoutX="26.0" layoutY="296.0" prefHeight="177.0" prefWidth="210.0">
+                  <TableView fx:id="Crea_Pro_View" layoutX="26.0" layoutY="296.0" opacity="0.6" prefHeight="177.0" prefWidth="210.0">
                      <columns>
                         <TableColumn fx:id="Crea_Pro" prefWidth="209.0" text="Created Projects" />
                      </columns>
