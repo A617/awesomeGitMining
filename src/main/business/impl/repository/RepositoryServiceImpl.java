@@ -3,10 +3,12 @@ package main.business.impl.repository;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import main.business.dto.Converter;
 import main.business.service.RepositoryService;
 import main.business.utility.LocalHelper;
+import main.business.utility.ScoreCalculator;
 import main.business.utility.SortHelper;
 import main.dao.DataFactory;
 import main.dao.entity.Repository;
@@ -169,7 +171,20 @@ public class RepositoryServiceImpl implements RepositoryService {
 
 	@Override
 	public RepositoryRateVO showReposRate(String id) {
-		
-		return null;
+		RepositoryRateVO vo = new RepositoryRateVO();
+		Repository po = null;
+		if(daoImpl!=null){
+			try {
+				po = daoImpl.getRepository(id);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if(po!=null){
+				Map<String,Integer> map = ScoreCalculator.getReposScore(po.getRanks());
+				map.put("size", po.getSize());
+				vo.setRates(map);
+			}
+		}
+		return vo;
 	}
 }
