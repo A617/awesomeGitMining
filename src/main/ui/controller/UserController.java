@@ -237,11 +237,11 @@ public class UserController implements Initializable {
 		        cell.setOnMouseClicked((MouseEvent t) -> {
 		        	if (t.getClickCount() == 2) {
 		            	String temp = cell.getText();
-		            	if(temp!=null) {
+		            	repository = repositoryImpl.searchRepositoryInfo(temp);
+		    			
+		            	if(repository!=null) {
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
-		            		repository = repositoryImpl.searchRepositoryInfo(temp);
-		    				if(repository!=null)
-		    					ProjectController.getInstance().setVO(repository);
+		            		ProjectController.getInstance().setVO(repository);
 		            	}
 		            }
 		        });
@@ -257,11 +257,11 @@ public class UserController implements Initializable {
 		        cell.setOnMouseClicked((MouseEvent t) -> {
 		        	if (t.getClickCount() == 2) {
 		            	String temp = cell.getText();
-		            	if(temp!=null) {
+		            	repository = repositoryImpl.searchRepositoryInfo(temp);
+		    			
+		            	if(repository!=null) {
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
-		            		repository = repositoryImpl.searchRepositoryInfo(temp);
-		    				if(repository!=null)
-		    					ProjectController.getInstance().setVO(repository);
+		            		ProjectController.getInstance().setVO(repository);
 		            	}
 		            }
 		        });
@@ -277,11 +277,11 @@ public class UserController implements Initializable {
 		        cell.setOnMouseClicked((MouseEvent t) -> {
 		        	if (t.getClickCount() == 2) {
 		            	String temp = cell.getText();
-		            	if(temp!=null) {
+		            	repository = repositoryImpl.searchRepositoryInfo(temp);
+		    			
+		            	if(repository!=null) {
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
-		            		repository = repositoryImpl.searchRepositoryInfo(temp);
-		    				if(repository!=null)
-		    					ProjectController.getInstance().setVO(repository);
+		            		ProjectController.getInstance().setVO(repository);
 		            	}
 		            }
 		        });
