@@ -224,11 +224,12 @@ public class ProjectController implements Initializable {
 		        cell.setOnMouseClicked((MouseEvent t) -> {
 		            if (t.getClickCount() == 2) {
 		            	String temp = cell.getText();
-		            	MainController.getInstance().setGroup("Ui_UserPanel.fxml");
-		    			fullVO = userImpl.getUser(temp);
-		    			
-		    			if(fullVO!=null)
-		    				UserController.getInstance().setVO(fullVO);
+		            	if(temp!=null) {
+		            		MainController.getInstance().setGroup("Ui_UserPanel.fxml");
+		    				fullVO = userImpl.getUser(temp);
+		    				if(fullVO!=null)
+		    					UserController.getInstance().setVO(fullVO);
+		            	}
 		            }
 		        });
 		        return cell;
@@ -243,11 +244,12 @@ public class ProjectController implements Initializable {
 		        cell.setOnMouseClicked((MouseEvent t) -> {
 		            if (t.getClickCount() == 2) {
 		            	String temp = cell.getText();
-		            	MainController.getInstance().setGroup("Ui_UserPanel.fxml");
-		    			fullVO = userImpl.getUser(temp);
-		    			
-		    			if(fullVO!=null)
-		    				UserController.getInstance().setVO(fullVO);
+		            	if(temp!=null) {
+		            		MainController.getInstance().setGroup("Ui_UserPanel.fxml");
+		    				fullVO = userImpl.getUser(temp);
+		    				if(fullVO!=null)
+		    					UserController.getInstance().setVO(fullVO);
+		            	}
 		            }
 		        });
 		        return cell;

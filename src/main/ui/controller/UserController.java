@@ -15,16 +15,23 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
+import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.impl.user.UserServiceImpl;
+import main.business.service.RepositoryService;
 import main.business.service.UserService;
 import main.ui.MainUI;
 import main.vo.Colla_ProVO;
 import main.vo.Contri_ProVO;
 import main.vo.Crea_ProVO;
+import main.vo.RepositoryVO;
 import main.vo.UserVO;
 
 public class UserController implements Initializable {
@@ -77,6 +84,8 @@ public class UserController implements Initializable {
 	List<String> text2;
 	List<String> text3;
 	Image img;
+	private RepositoryService repositoryImpl;
+	private RepositoryVO repository;
 
 	public static UserController getInstance() {
 		if (instance == null) {
@@ -89,6 +98,7 @@ public class UserController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		instance = this;
+		repositoryImpl = RepositoryServiceImpl.getInstance();
 
 		user_back.setOnAction((e) -> {
 			MainController.getInstance().setPanel("Ui_UserPagePanel.fxml");
@@ -140,18 +150,10 @@ public class UserController implements Initializable {
 				contri_pros.add(cv);
 			}
 			Contri_Pro_View.setItems(contri_pros);
+			Contri_Pro.setCellFactory(new ContributionCellFactory());
 			Contri_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
-		}
-		if (vo.getContributions_fullname() == null){
-
+		} else {
 			text1.add("Hasn't contributed any projects.:)");
-			ObservableList<Contri_ProVO> contri_pros = FXCollections.observableArrayList();
-			for (String name : text1) {
-				Contri_ProVO cv = new Contri_ProVO(name);
-				contri_pros.add(cv);
-			}
-			Contri_Pro_View.setItems(contri_pros);
-			Contri_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		}
 
 		// created pros
@@ -162,19 +164,13 @@ public class UserController implements Initializable {
 				crea_pros.add(cv);
 			}
 			Crea_Pro_View.setItems(crea_pros);
+			Crea_Pro.setCellFactory(new CreateCellFactory());
 			Crea_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		} else {
 			text2 = new ArrayList<String>();
 			text2.add(" ");
 			text2.add(" ");
 			text2.add("Hasn't created any projects.:)");
-			ObservableList<Crea_ProVO> crea_pros = FXCollections.observableArrayList();
-			for (String name : text2) {
-				Crea_ProVO cv = new Crea_ProVO(name);
-				crea_pros.add(cv);
-			}
-			Crea_Pro_View.setItems(crea_pros);
-			Crea_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		}
 
 		if (vo.getCollaboration_fullname() != null) {
@@ -184,20 +180,13 @@ public class UserController implements Initializable {
 				colla_pros.add(cv);
 			}
 			Colla_Pro_View.setItems(colla_pros);
+			Colla_Pro.setCellFactory(new CollaborationCellFactory());
 			Colla_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		} else {
 			text3 = new ArrayList<String>();
 			text3.add(" ");
 			text3.add(" ");
 			text3.add("Hasn't collaborated any projects.:)");
-
-			ObservableList<Colla_ProVO> colla_pros = FXCollections.observableArrayList();
-			for (String name : text3) {
-				Colla_ProVO cv = new Colla_ProVO(name);
-				colla_pros.add(cv);
-			}
-			Colla_Pro_View.setItems(colla_pros);
-			Colla_Pro.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 		}
 
 		// 鏄剧ず澶村儚
@@ -213,7 +202,6 @@ public class UserController implements Initializable {
 		image.setGraphic(pin);
 
 		Task<Void> task = new Task<Void>() {
-
 			@Override
 			protected Void call() throws Exception {
 
@@ -226,7 +214,6 @@ public class UserController implements Initializable {
 			}
 
 		};
-
 		pin.progressProperty().bind(task.progressProperty());
 		Thread th = new Thread(task);
 		th.start();
@@ -240,5 +227,65 @@ public class UserController implements Initializable {
 							new ImageView(new Image(MainUI.class.getResourceAsStream("style/morentouxiang.jpg"))));
 			}
 		});
+	}
+	
+	private class ContributionCellFactory implements Callback<TableColumn<Contri_ProVO, String>, TableCell<Contri_ProVO, String>> {
+
+		@Override
+		public TableCell<Contri_ProVO, String> call(TableColumn<Contri_ProVO, String> arg0) {
+			 TextFieldTableCell<Contri_ProVO, String> cell = new TextFieldTableCell<>();
+		        cell.setOnMouseClicked((MouseEvent t) -> {
+		        	if (t.getClickCount() == 2) {
+		            	String temp = cell.getText();
+		            	if(temp!=null) {
+		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
+		            		repository = repositoryImpl.searchRepositoryInfo(temp);
+		    				if(repository!=null)
+		    					ProjectController.getInstance().setVO(repository);
+		            	}
+		            }
+		        });
+		        return cell;
+		}	
+	}
+	
+	private class CreateCellFactory implements Callback<TableColumn<Crea_ProVO, String>, TableCell<Crea_ProVO, String>> {
+
+		@Override
+		public TableCell<Crea_ProVO, String> call(TableColumn<Crea_ProVO, String> arg0) {
+			 TextFieldTableCell<Crea_ProVO, String> cell = new TextFieldTableCell<>();
+		        cell.setOnMouseClicked((MouseEvent t) -> {
+		        	if (t.getClickCount() == 2) {
+		            	String temp = cell.getText();
+		            	if(temp!=null) {
+		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
+		            		repository = repositoryImpl.searchRepositoryInfo(temp);
+		    				if(repository!=null)
+		    					ProjectController.getInstance().setVO(repository);
+		            	}
+		            }
+		        });
+		        return cell;
+		}	
+	}
+	
+	private class CollaborationCellFactory implements Callback<TableColumn<Colla_ProVO, String>, TableCell<Colla_ProVO, String>> {
+
+		@Override
+		public TableCell<Colla_ProVO, String> call(TableColumn<Colla_ProVO, String> arg0) {
+			 TextFieldTableCell<Colla_ProVO, String> cell = new TextFieldTableCell<>();
+		        cell.setOnMouseClicked((MouseEvent t) -> {
+		        	if (t.getClickCount() == 2) {
+		            	String temp = cell.getText();
+		            	if(temp!=null) {
+		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
+		            		repository = repositoryImpl.searchRepositoryInfo(temp);
+		    				if(repository!=null)
+		    					ProjectController.getInstance().setVO(repository);
+		            	}
+		            }
+		        });
+		        return cell;
+		}	
 	}
 }

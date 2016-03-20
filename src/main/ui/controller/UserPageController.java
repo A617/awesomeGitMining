@@ -17,7 +17,6 @@ import main.business.impl.user.UserServiceImpl;
 import main.business.service.UserService;
 import main.ui.MainUI;
 import main.vo.SimpleUserVO;
-import main.vo.UserVO;
 
 public class UserPageController implements Initializable{
 
