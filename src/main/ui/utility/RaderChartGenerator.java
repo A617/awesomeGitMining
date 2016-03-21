@@ -23,7 +23,7 @@ public class RaderChartGenerator{
 	}
 	
 	public JPanel createPanel(DefaultCategoryDataset dataset) {
-		SpiderWebPlot spider = new SpiderWebPlot(dataset);
+		MySpiderChart spider = new MySpiderChart(dataset);
 		//this.setMaxValue(8);
 		spider.setBackgroundAlpha(0.0f);
 		//spider.setOutlinePaint(null);
