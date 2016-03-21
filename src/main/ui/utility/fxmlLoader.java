@@ -3,7 +3,6 @@ package main.ui.utility;
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.LoadException;
 import javafx.scene.Group;
 import javafx.scene.layout.AnchorPane;
 import main.ui.MainUI;
