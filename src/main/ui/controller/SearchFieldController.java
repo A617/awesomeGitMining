@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 
 /**
  *@author tj
@@ -34,5 +35,11 @@ public class SearchFieldController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		main = MainController.getInstance();
+		
+		textField.setOnKeyPressed((e) -> {
+		 	if(e.getCode() == KeyCode.ENTER){
+		 	 	handleSearch();
+		 	}
+		});
 	}
 }

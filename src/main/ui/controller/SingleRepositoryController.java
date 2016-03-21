@@ -6,8 +6,11 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.service.RepositoryService;
+import main.ui.MainUI;
 import main.vo.RepositoryVO;
 
 /**
@@ -22,13 +25,19 @@ public class SingleRepositoryController implements Initializable {
 	@FXML
 	private Label language;
 	@FXML
+	private Label contributors;
+	@FXML
 	private Label contriNum;
+	@FXML
+	private Label forks;
 	@FXML
 	private Label forkNum;
 	@FXML
-	private Label description;
+	private Label stars;
 	@FXML
 	private Label starNum;
+	@FXML
+	private Label description;
 
 	private RepositoryService repositoryImpl;
 	private RepositoryVO vo;
@@ -42,6 +51,13 @@ public class SingleRepositoryController implements Initializable {
 			fullVO = repositoryImpl.searchRepositoryInfo(vo.getFull_name());
 			ProjectController.getInstance().setVO(fullVO);
 		});
+		
+		Image image = new Image(MainUI.class.getResourceAsStream("style/contributor.png"));
+		contriNum.setGraphic(new ImageView(image));
+		image = new Image(MainUI.class.getResourceAsStream("style/fork.png"));
+		forkNum.setGraphic(new ImageView(image)); 
+		image = new Image(MainUI.class.getResourceAsStream("style/star.png"));
+		starNum.setGraphic(new ImageView(image)); 
 	}
 
 	/**
@@ -54,9 +70,9 @@ public class SingleRepositoryController implements Initializable {
 		if (vo != null) {
 			repositoryName.setText(vo.getFull_name());
 			language.setText(vo.getLanguage());
-			contriNum.setText(vo.getContributors_login().size() + "");
-			forkNum.setText(vo.getForks_count() + "");
-			starNum.setText(vo.getSubscribers_count() + "");
+			contributors.setText("  "+vo.getContributors_login().size());
+			forks.setText(" "+vo.getForks_count());
+			stars.setText(" "+vo.getSubscribers_count());
 			lastUpdated.setText(vo.getUpdated_at()+"");
 			//set description
 			String str = vo.getDescription();
