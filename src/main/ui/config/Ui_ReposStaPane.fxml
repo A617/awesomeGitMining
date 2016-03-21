@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.layout.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -8,10 +9,23 @@
    <children>
       <AnchorPane prefHeight="720.0" prefWidth="200.0">
          <children>
-            <Label fx:id="language" layoutX="25.0" layoutY="14.0" onMouseReleased="#selectLanguage" prefHeight="45.0" prefWidth="200.0" text="             language" AnchorPane.bottomAnchor="675.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Label fx:id="createTime" layoutY="45.0" onMouseReleased="#selectCreateTime" prefHeight="45.0" prefWidth="200.0" text="             created time" />
-            <Label fx:id="star" layoutY="90.0" onMouseReleased="#selectStar" prefHeight="45.0" prefWidth="200.0" text="             star" />
-            <Label fx:id="fork" layoutY="135.0" onMouseReleased="#selectFork" prefHeight="45.0" prefWidth="200.0" text="             fork" />
+            <Label fx:id="language" layoutX="25.0" layoutY="14.0" onMouseEntered="#enterLanguage" onMouseExited="#exitLanguage" onMouseReleased="#selectLanguage" prefHeight="45.0" prefWidth="200.0" text="             language" textFill="WHITE" AnchorPane.bottomAnchor="675.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="createTime" layoutY="45.0" onMouseEntered="#enterCreateTime" onMouseExited="#exitCreateTime" onMouseReleased="#selectCreateTime" prefHeight="45.0" prefWidth="200.0" text="             created time" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="star" layoutY="90.0" onMouseEntered="#enterStar" onMouseExited="#exitStar" onMouseReleased="#selectStar" prefHeight="45.0" prefWidth="200.0" text="             star" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="fork" layoutY="135.0" onMouseEntered="#enterFork" onMouseExited="#exitFork" onMouseReleased="#selectFork" prefHeight="45.0" prefWidth="200.0" text="             fork" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="blank" layoutY="180.0" prefHeight="540.0" prefWidth="200.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="center" layoutX="200.0" prefHeight="720.0" prefWidth="1166.0" />
