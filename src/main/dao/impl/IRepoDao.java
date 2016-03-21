@@ -41,4 +41,15 @@ public interface IRepoDao {
 	 */
 	public int[] getCreatedTimeStatistics();
 	
+	/**
+	 * 获取所有项目被fork数目的分布数据
+	 * @return 每100为一个分界
+	 */
+	public int[] getForksStatistics();
+	
+	/**
+	 * 获取所有项目被star数目的分布数据
+	 * @return 每100为一个分界
+	 */
+	public int[] getStarsStatistics();
 }

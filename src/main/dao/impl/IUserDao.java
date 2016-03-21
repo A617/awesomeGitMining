@@ -93,5 +93,23 @@ public interface IUserDao {
 	 */
 	public int[] getCompanyStatistics();
 	
+	/**
+	 * 获取用户创建项目数量统计数据
+	 * @return
+	 */
+	public int[] getRepoCreatedStatistics();
+	
+	/**
+	 * 获取用户参与项目数量统计数据
+	 * @return
+	 */
+	public int[] getRepoCollabortedStatistics();
+
+	/**
+	 * 获取用户贡献项目数量统计数据
+	 * @return
+	 */
+	int[] getRepoContributedStatistics();
+	
 	
 }
