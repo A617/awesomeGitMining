@@ -7,7 +7,7 @@ public class Test {
 		long startTime = System.nanoTime();
 		
 		int total =0;
-		int[] list=DataFactory.getRepoDataInstance().getLanguageStatistics();
+		int[] list=DataFactory.getRepoDataInstance().getForksStatistics();
 		for(int i:list){
 			total+=i;
 			System.out.println(i);

@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javafx.geometry.Pos;
 import main.dao.DataFactory;
 import main.dao.HttpRequest;
 import main.dao.JsonUtil;
@@ -29,46 +30,23 @@ public class DataMining {
 
 		long startTime = System.nanoTime();
 
-		String pathStar = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_starRank.txt";
-		String pathContri = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_contriRank.txt";
-		String pathColla = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_collaRank.txt";
-		String pathWatch = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_watchRank.txt";
-		String pathSubscri = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_subscriRank.txt";
-		String pathIssue = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_issueRank.txt";
-		String pathFork = new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_forkRank.txt";
-		
-		List<Integer> srcStar = new ArrayList<>();
-		List<Integer> srcContri = new ArrayList<>();
-		List<Integer> srcWatch = new ArrayList<>();
-		List<Integer> srcIssue = new ArrayList<>();
-		List<Integer> srcSubscri = new ArrayList<>();
-		List<Integer> srcColla = new ArrayList<>();
-		List<Integer> srcFork = new ArrayList<>();
-		
-		for(String name: readFromRepoTxt()){
-			Repository po;
+		List<String> names = DataFactory.getRepoDataInstance().getAllRepo();
+		List<Integer> stars = new ArrayList<>();
+		List<Integer> forks = new ArrayList<>();
+		for(String name:names){
+			Repository po = null;
 			try {
 				po = DataFactory.getRepoDataInstance().getRepository(name);
-				srcContri.add(po.getContributors_login().size());
-				srcIssue.add(po.getOpen_issues_count());
-				srcSubscri.add(po.getSubscribers_count());
-				srcWatch.add(po.getWatchers_count());
-				srcColla.add(po.getCollaborators_login().size());
-				srcFork.add(po.getForks_count());
-				srcStar.add(po.getStargazers_count());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			stars.add(po.getStargazers_count());
+			forks.add(po.getForks_count());
 		}
-		rankList(srcStar,pathStar);
-		rankList(srcFork,pathFork);
-		rankList(srcContri,pathContri);
-		rankList(srcColla,pathColla);
-		rankList(srcIssue,pathIssue);
-		rankList(srcWatch,pathWatch);
-		rankList(srcSubscri,pathSubscri);
 		
+		writeToTxt(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_stars.txt", stars);
+		writeToTxt(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_forks.txt", forks);
 		
 		long endTime = System.nanoTime();
 		System.out.println("Took " + (endTime - startTime) + " ns");
@@ -388,38 +366,39 @@ public class DataMining {
 			
 		}
 		
-		// write to txt
-		FileWriter fw = null;
-		BufferedWriter writer = null;
-		File file = new File(path);
-
-		try {
-
-			fw = new FileWriter(file);
-			writer = new BufferedWriter(fw);
-
-			for (int i : rankList) {
-				writer.write(i+"");
-				writer.newLine();
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				writer.flush();
-				writer.close();
-				fw.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
+		writeToTxt(path, rankList);
 		
 	    return rankList;  
 	}
 
 
+	private static <T>  void  writeToTxt(String path,List<T> list){
+		// write to txt
+				FileWriter fw = null;
+				BufferedWriter writer = null;
+				File file = new File(path);
 
+				try {
+
+					fw = new FileWriter(file);
+					writer = new BufferedWriter(fw);
+
+					for (T i : list) {
+						writer.write(i+"");
+						writer.newLine();
+					}
+
+				} catch (IOException e) {
+					e.printStackTrace();
+				} finally {
+					try {
+						writer.flush();
+						writer.close();
+						fw.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+	}
 }

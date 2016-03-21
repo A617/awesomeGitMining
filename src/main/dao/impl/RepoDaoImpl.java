@@ -1,9 +1,6 @@
 package main.dao.impl;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -74,8 +71,9 @@ public class RepoDaoImpl implements IRepoDao {
 		if (index == -1) {
 			return null;
 		}
+		Repository po=null;
 
-		Repository po = JsonUtil.parseJson2Bean(repoAll.get(index), Repository.class);
+		po = JsonUtil.parseJson2Bean(repoAll.get(index), Repository.class);
 
 		if (po != null) {
 			po.setContributors_login(mapR2Ctb.get(index));
@@ -154,32 +152,34 @@ public class RepoDaoImpl implements IRepoDao {
 		}
 		return result;
 	}
+	
+	
 
-	private List<Integer> rankList(List<Integer> srcList) {  
-		   
-		List<Integer> rankList = new ArrayList<>();
+	@Override
+	public int[] getForksStatistics() {
 		
-		List<Integer> sortList = new ArrayList<>(srcList);
-		
-		Collections.sort(sortList, new Comparator<Integer>() {
-			
-			@Override
-			public int compare(Integer o1, Integer o2) {
-				return o2-o1;
-			}
-		});
-		
-		System.out.println(srcList);
-		
-		for(int element: srcList){
-			
-			int rank = sortList.indexOf(element);
-			
-			rankList.add(rank);
-			
+		int[] result = new int[100];
+		String path = "src/main/data/gitmining-api/";
+		List<Integer> forks = DataInitHelper.getIntList(path + "repo_forks.txt");
+
+		for(int fork: forks){
+			result[fork/100]++;
 		}
 		
-	    return rankList;  
+		return result;
+	}
+
+	@Override
+	public int[] getStarsStatistics() {
+		int[] result = new int[370];
+		String path = "src/main/data/gitmining-api/";
+		List<Integer> stars = DataInitHelper.getIntList(path + "repo_stars.txt");
+
+		for(int star: stars){
+			result[star/100]++;
+		}
+		
+		return result;
 	}
 	
 }
