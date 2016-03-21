@@ -4,9 +4,16 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.ReposStaPaneController">
    <children>
-      <ScrollPane fx:id="scrollPane" layoutX="317.0" layoutY="197.0" prefHeight="720.0" prefWidth="1366.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane prefHeight="720.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="language" layoutX="25.0" layoutY="14.0" onMouseReleased="#selectLanguage" prefHeight="45.0" prefWidth="200.0" text="             language" AnchorPane.bottomAnchor="675.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label fx:id="createTime" layoutY="45.0" onMouseReleased="#selectCreateTime" prefHeight="45.0" prefWidth="200.0" text="             created time" />
+            <Label fx:id="star" layoutY="90.0" onMouseReleased="#selectStar" prefHeight="45.0" prefWidth="200.0" text="             star" />
+            <Label fx:id="fork" layoutY="135.0" onMouseReleased="#selectFork" prefHeight="45.0" prefWidth="200.0" text="             fork" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="center" layoutX="200.0" prefHeight="720.0" prefWidth="1166.0" />
    </children>
 </AnchorPane>

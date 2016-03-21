@@ -13,8 +13,12 @@ import main.business.utility.SortHelper;
 import main.dao.DataFactory;
 import main.dao.entity.Repository;
 import main.dao.impl.IRepoDao;
+import main.vo.CreatedTimeStatisticsVO;
+import main.vo.ForksStatisticsVO;
+import main.vo.LanguageStatisticsVO;
 import main.vo.RepositoryRateVO;
 import main.vo.RepositoryVO;
+import main.vo.StarsStatisticsVO;
 
 /**
  * @author tj
@@ -119,9 +123,9 @@ public class RepositoryServiceImpl implements RepositoryService {
 		}
 		if (path.equals("repo_starSort")) {
 			vos = SortHelper.sortReposByStar(vos);
-		}else if(path.equals("repo_forkSort")){
+		} else if (path.equals("repo_forkSort")) {
 			vos = SortHelper.sortReposByFork(vos);
-		}else if(path.equals("repo_contriSort")){
+		} else if (path.equals("repo_contriSort")) {
 			vos = SortHelper.sortReposByContribute(vos);
 		}
 		return vos;
@@ -155,14 +159,14 @@ public class RepositoryServiceImpl implements RepositoryService {
 	@Override
 	public RepositoryVO searchRepositoryInfo(String id) {
 		RepositoryVO vo = null;
-		Repository po  = null;
-		if(daoImpl!=null){
+		Repository po = null;
+		if (daoImpl != null) {
 			try {
 				po = daoImpl.getRepository(id);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			if(po!=null){
+			if (po != null) {
 				vo = (RepositoryVO) Converter.convert("RepositoryVO", po);
 			}
 		}
@@ -173,17 +177,65 @@ public class RepositoryServiceImpl implements RepositoryService {
 	public RepositoryRateVO showReposRate(String id) {
 		RepositoryRateVO vo = new RepositoryRateVO();
 		Repository po = null;
-		if(daoImpl!=null){
+		if (daoImpl != null) {
 			try {
 				po = daoImpl.getRepository(id);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			if(po!=null){
-				Map<String,Integer> map = ScoreCalculator.getReposScore(po.getRanks());
+			if (po != null) {
+				Map<String, Integer> map = ScoreCalculator.getReposScore(po.getRanks());
 				vo.setRates(map);
 			}
 		}
+		return vo;
+	}
+
+	@Override
+	public LanguageStatisticsVO getLanguageStatistics() {
+		LanguageStatisticsVO vo = new LanguageStatisticsVO();
+		int[] nums = daoImpl.getLanguageStatistics();
+		vo.setLanguageNum(nums);
+		vo = SortHelper.sortLanguageStatistics(vo);
+		return vo;
+	}
+
+	@Override
+	public CreatedTimeStatisticsVO getCreatedTimeStatistics() {
+		CreatedTimeStatisticsVO vo = new CreatedTimeStatisticsVO();
+		int[] nums = daoImpl.getCreatedTimeStatistics();
+		String[] years = new String[nums.length];
+		for (int i = 0; i < nums.length; i++) {
+			years[i] = 2007 + i + "";
+		}
+		vo.setTimes(years);
+		vo.setNum(nums);
+		return vo;
+	}
+
+	@Override
+	public ForksStatisticsVO getForksStatistics() {
+		ForksStatisticsVO vo = new ForksStatisticsVO();
+		int[] nums = daoImpl.getForksStatistics();
+		String[] types = new String[nums.length];
+		for (int i = 0; i < nums.length; i++) {
+			types[i] = i * 100 + "";
+		}
+		vo.setNums(nums);
+		vo.setTypes(types);
+		return vo;
+	}
+
+	@Override
+	public StarsStatisticsVO getStarsStatistics() {
+		StarsStatisticsVO vo = new StarsStatisticsVO();
+		int[] nums = daoImpl.getStarsStatistics();
+		String[] types = new String[nums.length];
+		for (int i = 0; i < nums.length; i++) {
+			types[i] = i * 100 + "";
+		}
+		vo.setNums(nums);
+		vo.setTypes(types);
 		return vo;
 	}
 }

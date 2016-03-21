@@ -4,6 +4,7 @@ import java.util.List;
 
 import javafx.scene.image.Image;
 import main.vo.SimpleUserVO;
+import main.vo.UserRateVO;
 import main.vo.UserVO;
 
 public interface UserService {
@@ -57,7 +58,7 @@ public interface UserService {
 	 * @param id
 	 * @return user's evaluation(including efficiency . quality . total.)
 	 */
-	public abstract List<String> getEvaluation(String id);
+	public abstract UserRateVO getEvaluation(String id);
 
 	public abstract Image getAvatar(String login);
 }

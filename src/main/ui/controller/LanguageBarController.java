@@ -18,6 +18,9 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
 import javafx.util.Duration;
+import main.business.impl.repository.RepositoryServiceImpl;
+import main.business.service.RepositoryService;
+import main.vo.LanguageStatisticsVO;
 
 public class LanguageBarController implements Initializable {
 	@FXML
@@ -25,10 +28,17 @@ public class LanguageBarController implements Initializable {
 	@FXML
 	private CategoryAxis xAxis;
 	private ObservableList<String> languages = FXCollections.observableArrayList();
-
+	private RepositoryService service;
+	private LanguageStatisticsVO vo;
+	private int typeNum;
+	private int[] nums;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		String[] types = { "Java", "C++", "C", "Python", "Perl", "JavaScript" };
+		service = RepositoryServiceImpl.getInstance();
+		vo = service.getLanguageStatistics();
+		nums = vo.getLanguageNum();
+		String[] types = vo.getLanguageType();
+		typeNum = types.length;
 		languages.addAll(types);
 		xAxis.setCategories(languages);
 		setData();
@@ -38,13 +48,9 @@ public class LanguageBarController implements Initializable {
 	}
 
 	public void setData() {
-		int[] counter = new int[6];
-		for (int i = 0; i < 6; i++) {
-			counter[i] = 0;
-		}
 		XYChart.Series<String, Integer> series = new XYChart.Series<>();
-		for (int i = 0; i < counter.length; i++) {
-			series.getData().add(new XYChart.Data<>(languages.get(i), counter[i]));
+		for (int i = 0; i < typeNum; i++) {
+			series.getData().add(new XYChart.Data<>(languages.get(i), 0));
 		}
 		barChart.getData().add(series);
 		series.setName("Language");
@@ -54,8 +60,8 @@ public class LanguageBarController implements Initializable {
 			public void handle(ActionEvent actionEvent) {
 				int i = 0;
 				for (Data<String, Integer> data : series.getData()) {
+					data.setYValue(nums[i]);
 					i++;
-					data.setYValue(i);
 				}
 			}
 		}));

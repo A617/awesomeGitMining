@@ -2,8 +2,12 @@ package main.business.service;
 
 import java.util.List;
 
+import main.vo.CreatedTimeStatisticsVO;
+import main.vo.ForksStatisticsVO;
+import main.vo.LanguageStatisticsVO;
 import main.vo.RepositoryRateVO;
 import main.vo.RepositoryVO;
+import main.vo.StarsStatisticsVO;
 
 /**
  * @author tj
@@ -65,5 +69,24 @@ public interface RepositoryService {
 	 * @return @see RepositoryRateVO
 	 */
 	public abstract RepositoryRateVO showReposRate(String id);
-			
+	/**
+	 * 
+	 * @return @see LanguageStatisticsVO{language,number}
+	 */
+	public abstract LanguageStatisticsVO getLanguageStatistics();
+	/**
+	 * 
+	 * @return a map{year(2007-2015),number}
+	 */
+	public abstract CreatedTimeStatisticsVO getCreatedTimeStatistics();
+	/**
+	 * 
+	 * @return a map{0-100,100-200......,number}
+	 */
+	public abstract ForksStatisticsVO getForksStatistics();
+	/**
+	 * 
+	 * @return a map{0-100,100-200......,number}
+	 */
+	public abstract StarsStatisticsVO getStarsStatistics();
 }

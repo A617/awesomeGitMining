@@ -11,6 +11,7 @@ import main.dao.DataFactory;
 import main.dao.entity.User;
 import main.dao.impl.IUserDao;
 import main.vo.SimpleUserVO;
+import main.vo.UserRateVO;
 import main.vo.UserVO;
 
 /**
@@ -167,9 +168,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<String> getEvaluation(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public UserRateVO getEvaluation(String id) {
+		UserRateVO vo = new UserRateVO();
+		//TODO
+		return vo;
 	}
 
 

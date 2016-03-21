@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import main.vo.LanguageStatisticsVO;
 import main.vo.RepositoryVO;
 
 /**
@@ -36,5 +37,25 @@ public class SortHelper {
 			}
 		});
 		return vos;
+	}
+
+	public static LanguageStatisticsVO sortLanguageStatistics(LanguageStatisticsVO vo) {
+		int[] nums = vo.getLanguageNum();
+		String[] types = vo.getLanguageType();
+		for (int i = 0; i < nums.length-1; i++) {
+			for (int j = 0; j < nums.length -1 - i; j++) {
+				if(nums[j]<nums[j+1]){
+					int temp = nums[j];
+					nums[j] = nums[j+1];
+					nums[j+1] = temp;
+					String tempType = types[j];
+					types[j] = types[j+1];
+					types[j+1] = tempType;
+				}
+			}
+		}
+		vo.setLanguageNum(nums);
+		vo.setLanguageType(types);
+		return vo;
 	}
 }
