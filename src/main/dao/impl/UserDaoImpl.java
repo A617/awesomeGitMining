@@ -2,6 +2,7 @@ package main.dao.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Iterator;
 import java.util.List;
 
 import javafx.scene.image.Image;
@@ -42,6 +43,8 @@ public class UserDaoImpl implements IUserDao {
 	private List<Integer> followersList;
 	/*用户头像地址*/
 	private List<String> avatar_urlList;
+	
+	private int length;
 
 	public UserDaoImpl() {
 
@@ -60,6 +63,8 @@ public class UserDaoImpl implements IUserDao {
 		this.createdTimeList = DataInitHelper.getList(path + "user-createdTime.txt");
 		this.nameList = DataInitHelper.getList(path+"user_name.txt");
 		this.avatar_urlList = DataInitHelper.getList(path+"user_avatar_url.txt");
+		
+		length = userList.size();
 
 		System.out.println("UserDaoImpl initialized!");
 	}
@@ -190,6 +195,40 @@ public class UserDaoImpl implements IUserDao {
 			}
 		}
 
+		return result;
+	}
+
+	@Override
+	public int[] getRepoCreatedStatistics() {
+		
+		int[] result = new int[length];
+		Iterator<List<String>> it = reposList.iterator();
+		int i=0;
+		while(it.hasNext()){
+			result[i++] = it.next().size();
+		}
+		return result;
+	}
+
+	@Override
+	public int[] getRepoCollabortedStatistics() {
+		int[] result = new int[length];
+		Iterator<List<String>> it = collaborationsList.iterator();
+		int i=0;
+		while(it.hasNext()){
+			result[i++] = it.next().size();
+		}
+		return result;
+	}
+	
+	@Override
+	public int[] getRepoContributedStatistics() {
+		int[] result = new int[length];
+		Iterator<List<String>> it = contrbutionsList.iterator();
+		int i=0;
+		while(it.hasNext()){
+			result[i++] = it.next().size();
+		}
 		return result;
 	}
 
