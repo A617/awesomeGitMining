@@ -181,7 +181,6 @@ public class RepositoryServiceImpl implements RepositoryService {
 			}
 			if(po!=null){
 				Map<String,Integer> map = ScoreCalculator.getReposScore(po.getRanks());
-				map.put("size", po.getSize());
 				vo.setRates(map);
 			}
 		}
