@@ -35,7 +35,7 @@ public class MainController implements Initializable {
 	@FXML
 	private AnchorPane layout;
 	@FXML
-	private AnchorPane center_panel, common;
+	private AnchorPane center_panel,common;
 	@FXML
 	private Label min;
 	@FXML
