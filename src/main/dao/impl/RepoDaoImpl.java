@@ -128,7 +128,6 @@ public class RepoDaoImpl implements IRepoDao {
 			result[languages.length - 1]++;
 		}
 	
-		System.out.println("--------");
 		return result;
 	}
 
