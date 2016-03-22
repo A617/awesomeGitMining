@@ -1,6 +1,7 @@
 package main.ui.utility;
 
 import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Composite;
 import java.awt.Graphics2D;
 import java.awt.font.FontRenderContext;
@@ -21,6 +22,8 @@ import org.jfree.data.category.CategoryDataset;
  */
 public class MySpiderChart extends SpiderWebPlot{
 	
+	private static final long serialVersionUID = 1L;
+	
 	private int ticks = DEFAULT_TICKS;
 	private static final int DEFAULT_TICKS = 5;
 	private NumberFormat format = NumberFormat.getInstance();
@@ -32,6 +35,7 @@ public class MySpiderChart extends SpiderWebPlot{
 	
 	public MySpiderChart(CategoryDataset categoryDataset) {
 		super(categoryDataset);
+		this.setSeriesPaint(0,Color.PINK);
 	}
 	
 	@Override
@@ -81,8 +85,6 @@ public class MySpiderChart extends SpiderWebPlot{
 				final String label = format
 						.format(((double) i / (double) ticks)
 								* this.getMaxValue());
-				final Rectangle2D labelBounds = getLabelFont().getStringBounds(
-						label, frc);
 				final LineMetrics lm = getLabelFont()
 						.getLineMetrics(label, frc);
 				final double ascent = lm.getAscent();

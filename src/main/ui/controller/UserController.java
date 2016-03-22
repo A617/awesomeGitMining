@@ -28,6 +28,8 @@ import main.business.impl.user.UserServiceImpl;
 import main.business.service.RepositoryService;
 import main.business.service.UserService;
 import main.ui.MainUI;
+import main.ui.utility.BackType;
+import main.ui.utility.HandleBack;
 import main.vo.Colla_ProVO;
 import main.vo.Contri_ProVO;
 import main.vo.Crea_ProVO;
@@ -101,11 +103,11 @@ public class UserController implements Initializable {
 		repositoryImpl = RepositoryServiceImpl.getInstance();
 
 		user_back.setOnAction((e) -> {
-			MainController.getInstance().setPanel("Ui_UserPagePanel.fxml");
+			HandleBack.getInstance().handleUserBack();
 		});
 
 	}
-
+	
 	public void setVO(UserVO vo) {
 		if (vo != null) {
 			if (vo.getHtml_url() != null) {
@@ -240,6 +242,7 @@ public class UserController implements Initializable {
 		            	repository = repositoryImpl.searchRepositoryInfo(temp);
 		    			
 		            	if(repository!=null) {
+		            		HandleBack.getInstance().setRepoBack(BackType.USER,userNameLabel.getText());
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
 		            		ProjectController.getInstance().setVO(repository);
 		            	}
@@ -260,6 +263,7 @@ public class UserController implements Initializable {
 		            	repository = repositoryImpl.searchRepositoryInfo(temp);
 		    			
 		            	if(repository!=null) {
+		            		HandleBack.getInstance().setRepoBack(BackType.USER,userNameLabel.getText());
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
 		            		ProjectController.getInstance().setVO(repository);
 		            	}
@@ -280,6 +284,7 @@ public class UserController implements Initializable {
 		            	repository = repositoryImpl.searchRepositoryInfo(temp);
 		    			
 		            	if(repository!=null) {
+		            		HandleBack.getInstance().setRepoBack(BackType.USER,userNameLabel.getText());
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
 		            		ProjectController.getInstance().setVO(repository);
 		            	}

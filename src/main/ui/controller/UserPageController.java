@@ -16,6 +16,8 @@ import javafx.scene.layout.VBox;
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.UserService;
 import main.ui.MainUI;
+import main.ui.utility.BackType;
+import main.ui.utility.HandleBack;
 import main.vo.SimpleUserVO;
 
 public class UserPageController implements Initializable{

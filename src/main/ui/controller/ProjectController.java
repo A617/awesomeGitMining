@@ -38,6 +38,8 @@ import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.RepositoryService;
 import main.business.service.UserService;
+import main.ui.utility.BackType;
+import main.ui.utility.HandleBack;
 import main.ui.utility.PieChartGenerator;
 import main.ui.utility.RaderChartGenerator;
 import main.vo.CollaboratorVO;
@@ -119,10 +121,10 @@ public class ProjectController implements Initializable {
 		});
 
 		btn_back.setOnAction((e) -> {
-			MainController.getInstance().setPanel("test.fxml");
+			HandleBack.getInstance().handleRepoBack();
 		});
 	}
-
+	
 	public void setVO(RepositoryVO vo) {
 		if (vo != null) {
 			// set description
@@ -229,6 +231,7 @@ public class ProjectController implements Initializable {
 		            if (t.getClickCount() == 2) {
 		            	String temp = cell.getText();
 		            	if(temp!=null) {
+		            		HandleBack.getInstance().setUserBack(BackType.PROJECT,projectNameLabel.getText());
 		            		MainController.getInstance().setGroup("Ui_UserPanel.fxml");
 		    				fullVO = userImpl.getUser(temp);
 		    				if(fullVO!=null)
@@ -249,6 +252,7 @@ public class ProjectController implements Initializable {
 		            if (t.getClickCount() == 2) {
 		            	String temp = cell.getText();
 		            	if(temp!=null) {
+		            		HandleBack.getInstance().setUserBack(BackType.PROJECT,projectNameLabel.getText());
 		            		MainController.getInstance().setGroup("Ui_UserPanel.fxml");
 		    				fullVO = userImpl.getUser(temp);
 		    				if(fullVO!=null)
