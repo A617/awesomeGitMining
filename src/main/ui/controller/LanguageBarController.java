@@ -3,7 +3,6 @@ package main.ui.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -15,8 +14,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.service.RepositoryService;
@@ -27,11 +28,17 @@ public class LanguageBarController implements Initializable {
 	private BarChart<String, Integer> barChart;
 	@FXML
 	private CategoryAxis xAxis;
+	@FXML
+	private NumberAxis yAxis;
+	@FXML
+	private AnchorPane pane;
 	private ObservableList<String> languages = FXCollections.observableArrayList();
 	private RepositoryService service;
 	private LanguageStatisticsVO vo;
 	private int typeNum;
 	private int[] nums;
+	private XYChart.Series<String, Integer> series;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		service = RepositoryServiceImpl.getInstance();
@@ -47,10 +54,12 @@ public class LanguageBarController implements Initializable {
 		});
 	}
 
-	public void setData() {
-		XYChart.Series<String, Integer> series = new XYChart.Series<>();
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private void setData() {
+		series = new XYChart.Series();
 		for (int i = 0; i < typeNum; i++) {
-			series.getData().add(new XYChart.Data<>(languages.get(i), 0));
+			XYChart.Data<String, Integer> data = new XYChart.Data(languages.get(i), 0);
+			series.getData().add(data);
 		}
 		barChart.getData().add(series);
 		series.setName("Language");
@@ -65,7 +74,7 @@ public class LanguageBarController implements Initializable {
 				}
 			}
 		}));
-		tl.setCycleCount(Animation.INDEFINITE);
+		yAxis.setAnimated(false);
 		tl.play();
 	}
 

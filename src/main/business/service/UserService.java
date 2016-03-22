@@ -61,4 +61,9 @@ public interface UserService {
 	public abstract UserRateVO getEvaluation(String id);
 
 	public abstract Image getAvatar(String login);
+	/**
+	 * 
+	 * @return organization,individual
+	 */
+	public abstract int[] getTypeStatistic();
 }

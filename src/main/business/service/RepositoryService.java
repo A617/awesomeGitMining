@@ -89,4 +89,10 @@ public interface RepositoryService {
 	 * @return a map{0-100,100-200......,number}
 	 */
 	public abstract StarsStatisticsVO getStarsStatistics();
+	/**
+	 * show repositories by specific language
+	 * @param language
+	 * @return a list of RepositoryVO
+	 */
+	public abstract List<RepositoryVO> getReposByLanguage(String language);
 }

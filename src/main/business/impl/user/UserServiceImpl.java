@@ -3,10 +3,12 @@ package main.business.impl.user;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javafx.scene.image.Image;
 import main.business.dto.Converter;
 import main.business.service.UserService;
+import main.business.utility.ScoreCalculator;
 import main.dao.DataFactory;
 import main.dao.entity.User;
 import main.dao.impl.IUserDao;
@@ -170,15 +172,22 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserRateVO getEvaluation(String id) {
 		UserRateVO vo = new UserRateVO();
-		//TODO
+		User po = null;
+		try {
+			po = daoImpl.getUser(id);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if (po != null) {
+			Map<String, Integer> map = ScoreCalculator.getUserScore();
+			vo.setRates(map);
+		}
 		return vo;
 	}
 
-
-
 	@Override
 	public Image getAvatar(String id) {
-		Image avatar =null;
+		Image avatar = null;
 		try {
 			avatar = daoImpl.getAvatar(id);
 		} catch (IOException e) {
@@ -186,6 +195,14 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 		}
 		return avatar;
+	}
+
+	@Override
+	public int[] getTypeStatistic() {
+		int[] types = new int[2];
+		types[0] = daoImpl.getAllUser().size();
+		types[1] = 0;
+		return types;
 	}
 
 }

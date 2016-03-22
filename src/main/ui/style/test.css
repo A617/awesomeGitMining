@@ -57,6 +57,11 @@
     -fx-background-radius: 0;
     -fx-background-position: left center;
 }
+.chart-pie { 
+	-fx-background-color: rgba(187,255,255,0.2);
+	-fx-border-color: rgba(131,175,155,0.5) rgba(131,175,155,0.5) transparent rgba(131,175,155,0.5);
+}
+
 .table-view:row-selection{
     -fx-background-color: transparent;
 }

@@ -12,6 +12,7 @@ import main.business.utility.ScoreCalculator;
 import main.business.utility.SortHelper;
 import main.dao.DataFactory;
 import main.dao.entity.Repository;
+import main.dao.entity.Statistics;
 import main.dao.impl.IRepoDao;
 import main.vo.CreatedTimeStatisticsVO;
 import main.vo.ForksStatisticsVO;
@@ -195,7 +196,13 @@ public class RepositoryServiceImpl implements RepositoryService {
 	public LanguageStatisticsVO getLanguageStatistics() {
 		LanguageStatisticsVO vo = new LanguageStatisticsVO();
 		int[] nums = daoImpl.getLanguageStatistics();
+		System.out.println("--------------------------------------------");
+		for (int i = 0; i < nums.length; i++) {
+			System.out.println(nums[i]);
+		}
+		String[] types = Statistics.language;
 		vo.setLanguageNum(nums);
+		vo.setLanguageType(types);
 		vo = SortHelper.sortLanguageStatistics(vo);
 		return vo;
 	}
@@ -237,5 +244,11 @@ public class RepositoryServiceImpl implements RepositoryService {
 		vo.setNums(nums);
 		vo.setTypes(types);
 		return vo;
+	}
+
+	@Override
+	public List<RepositoryVO> getReposByLanguage(String language) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
