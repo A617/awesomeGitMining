@@ -56,7 +56,7 @@ public class RepoDaoImpl implements IRepoDao {
 				 path+"repo-languageNames.txt",
 				path+"repo-languageCounts.txt");
 		
-		
+		this.languageList = DataInitHelper.getList(path + "repo-language.txt");
 
 		System.out.println("RepoDaoImpl initialized!");
 		
@@ -109,11 +109,12 @@ public class RepoDaoImpl implements IRepoDao {
 
 	@Override
 	public int[] getLanguageStatistics() {
-		String path = "src/main/data/gitmining-api/";
-		this.languageList = DataInitHelper.getList(path + "repo-language.txt");
+		
 
-		String[] languages = Statistics.language;
+		String[] languages = Statistics.getInstance().getLanguage();
 		int[] result = new int[languages.length];
+		for(int i=0;i<languages.length;i++)
+			result[i] = 0;
 
 		loop: for (String language : languageList) {
 			if (language.equals(""))
@@ -126,6 +127,8 @@ public class RepoDaoImpl implements IRepoDao {
 			}
 			result[languages.length - 1]++;
 		}
+	
+		System.out.println("--------");
 		return result;
 	}
 
@@ -137,7 +140,7 @@ public class RepoDaoImpl implements IRepoDao {
 		String path = "src/main/data/gitmining-api/";
 		this.createdTimeList = DataInitHelper.getList(path + "repo-createdTime.txt");
 
-		String[] years = Statistics.year;
+		String[] years = Statistics.getInstance().getYear();
 		int[] result = new int[years.length];
 		int year;
 
