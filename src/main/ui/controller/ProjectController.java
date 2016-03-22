@@ -16,6 +16,7 @@ import javafx.concurrent.Task;
 import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -31,11 +32,14 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.util.Callback;
 import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.RepositoryService;
 import main.business.service.UserService;
+import main.ui.utility.BackType;
+import main.ui.utility.HandleBack;
 import main.ui.utility.PieChartGenerator;
 import main.ui.utility.RaderChartGenerator;
 import main.vo.CollaboratorVO;
@@ -68,9 +72,9 @@ public class ProjectController implements Initializable {
 	@FXML
 	private Label coNum;
 	@FXML
-	private AnchorPane piePane;
+	private StackPane piePane;
 	@FXML
-	private AnchorPane raderPane;
+	private StackPane raderPane;
 	@FXML
 	private TableView<ContributorVO> contributorTable;
 	@FXML
@@ -102,7 +106,7 @@ public class ProjectController implements Initializable {
 		instance = this;
 		repositoryImpl = RepositoryServiceImpl.getInstance();
 		userImpl = UserServiceImpl.getInstance();
-		
+
 		clipboard = Clipboard.getSystemClipboard();
 		content = new ClipboardContent();
 		btn_clone.setOnAction((e) -> {
@@ -117,7 +121,7 @@ public class ProjectController implements Initializable {
 		});
 
 		btn_back.setOnAction((e) -> {
-			MainController.getInstance().setPanel("test.fxml");
+			HandleBack.getInstance().handleRepoBack();
 		});
 	}
 
@@ -143,10 +147,11 @@ public class ProjectController implements Initializable {
 
 			// piechart
 			piechart = PieChartGenerator.getInstance().generateChart(vo.getLanguages());
-			piechart.setTitle("Languages");
-			piechart.setMaxWidth(340);
-			piechart.setMaxHeight(340);
+			piechart.setMaxSize(240, 340);
+			piechart.setPrefSize(240, 340);
+			piechart.autosize();
 			piePane.getChildren().add(piechart);
+			piePane.setAlignment(Pos.TOP_CENTER);
 
 			// raderchart
 			RepositoryRateVO ratevo = repositoryImpl.showReposRate(vo.getFull_name());
@@ -188,6 +193,7 @@ public class ProjectController implements Initializable {
 		swingNode = new SwingNode();
 
 		ProgressIndicator pin = new ProgressIndicator(-1);
+		pin.setMaxSize(70, 70);
 
 		raderPane.getChildren().clear();
 		raderPane.getChildren().add(pin);
@@ -225,6 +231,7 @@ public class ProjectController implements Initializable {
 		            if (t.getClickCount() == 2) {
 		            	String temp = cell.getText();
 		            	if(temp!=null) {
+		            		HandleBack.getInstance().setUserBack(BackType.PROJECT,projectNameLabel.getText());
 		            		MainController.getInstance().setGroup("Ui_UserPanel.fxml");
 		    				fullVO = userImpl.getUser(temp);
 		    				if(fullVO!=null)
@@ -233,9 +240,9 @@ public class ProjectController implements Initializable {
 		            }
 		        });
 		        return cell;
-		}	
+		}
 	}
-	
+
 	private class CollaboratorCellFactory implements Callback<TableColumn<CollaboratorVO, String>, TableCell<CollaboratorVO, String>> {
 
 		@Override
@@ -245,6 +252,7 @@ public class ProjectController implements Initializable {
 		            if (t.getClickCount() == 2) {
 		            	String temp = cell.getText();
 		            	if(temp!=null) {
+		            		HandleBack.getInstance().setUserBack(BackType.PROJECT,projectNameLabel.getText());
 		            		MainController.getInstance().setGroup("Ui_UserPanel.fxml");
 		    				fullVO = userImpl.getUser(temp);
 		    				if(fullVO!=null)
@@ -253,6 +261,6 @@ public class ProjectController implements Initializable {
 		            }
 		        });
 		        return cell;
-		}	
+		}
 	}
 }
