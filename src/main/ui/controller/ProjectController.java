@@ -122,7 +122,7 @@ public class ProjectController implements Initializable {
 			HandleBack.getInstance().handleRepoBack();
 		});
 	}
-	
+
 	public void setVO(RepositoryVO vo) {
 		if (vo != null) {
 			// set description
