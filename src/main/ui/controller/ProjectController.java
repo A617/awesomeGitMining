@@ -104,7 +104,7 @@ public class ProjectController implements Initializable {
 		instance = this;
 		repositoryImpl = RepositoryServiceImpl.getInstance();
 		userImpl = UserServiceImpl.getInstance();
-		
+
 		clipboard = Clipboard.getSystemClipboard();
 		content = new ClipboardContent();
 		btn_clone.setOnAction((e) -> {
@@ -236,9 +236,9 @@ public class ProjectController implements Initializable {
 		            }
 		        });
 		        return cell;
-		}	
+		}
 	}
-	
+
 	private class CollaboratorCellFactory implements Callback<TableColumn<CollaboratorVO, String>, TableCell<CollaboratorVO, String>> {
 
 		@Override
@@ -257,6 +257,6 @@ public class ProjectController implements Initializable {
 		            }
 		        });
 		        return cell;
-		}	
+		}
 	}
 }
