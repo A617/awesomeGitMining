@@ -196,11 +196,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 	public LanguageStatisticsVO getLanguageStatistics() {
 		LanguageStatisticsVO vo = new LanguageStatisticsVO();
 		int[] nums = daoImpl.getLanguageStatistics();
-		System.out.println("--------------------------------------------");
-		for (int i = 0; i < nums.length; i++) {
-			System.out.println(nums[i]);
-		}
-		String[] types = Statistics.language;
+		String[] types = Statistics.getInstance().getLanguage();
 		vo.setLanguageNum(nums);
 		vo.setLanguageType(types);
 		vo = SortHelper.sortLanguageStatistics(vo);
