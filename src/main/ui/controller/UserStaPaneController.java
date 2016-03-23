@@ -141,7 +141,7 @@ public class UserStaPaneController implements Initializable {
 		create.setStyle(styleStr + baseColor);
 		company.setStyle(styleStr + baseColor);
 		collaborate.setStyle(styleStr + baseColor);
-		//setChart("Ui_UserTypeChar.fxml");
+		setChart("Ui_UserRegisTime.fxml");
 	}
 	@FXML
 	public void selectCreate() {

@@ -14,6 +14,7 @@ import main.dao.entity.User;
 import main.dao.impl.IUserDao;
 import main.vo.SimpleUserVO;
 import main.vo.UserRateVO;
+import main.vo.UserRegisTimeVO;
 import main.vo.UserVO;
 
 /**
@@ -203,6 +204,13 @@ public class UserServiceImpl implements UserService {
 		types[0] = daoImpl.getAllUser().size();
 		types[1] = 0;
 		return types;
+	}
+
+	@Override
+	public UserRegisTimeVO getRegisTimeStatistics() {
+		UserRegisTimeVO vo = new UserRegisTimeVO();
+		vo.setNums(daoImpl.getCreatedTimeStatistics());
+		return vo;
 	}
 
 }

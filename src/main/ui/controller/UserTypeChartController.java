@@ -25,16 +25,19 @@ public class UserTypeChartController implements Initializable {
 	final Label caption = new Label("");
 	private ObservableList<PieChart.Data> pieChartData;
 	private double division;
+	private int[] types;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		service = UserServiceImpl.getInstance();
-		int[] types = service.getTypeStatistic();
-		division = 100*types[0]/((types[1]+types[0])*1.0);
+		types = service.getTypeStatistic();
 		pieChartData = FXCollections.observableArrayList();
-		pieChartData.add(new PieChart.Data("organization", types[1]));
-		pieChartData.add(new PieChart.Data("individual", types[0]));
+		division = 100 * types[0] / ((types[1] + types[0]) * 1.0);
+		pieChartData.add(new PieChart.Data("organization", 0));
+		pieChartData.add(new PieChart.Data("individual", division));
+		setAnimation();
 		pieChart.setData(pieChartData);
+		pieChart.setAnimated(true);
 		setLabel();
 	}
 
@@ -52,5 +55,17 @@ public class UserTypeChartController implements Initializable {
 			});
 		}
 		pane.getChildren().add(caption);
+	}
+
+	private void setAnimation() {
+		for (int i = 0; i < types[1]; i++) {
+			try {
+				Thread.sleep(5);
+				pieChart.getData().get(1).setPieValue(i);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 }
