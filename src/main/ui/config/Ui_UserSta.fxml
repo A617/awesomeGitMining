@@ -9,23 +9,27 @@
    <children>
       <AnchorPane prefHeight="720.0" prefWidth="200.0">
          <children>
-            <Label fx:id="type" layoutX="25.0" layoutY="14.0" prefHeight="45.0" prefWidth="200.0" text="             type" textFill="WHITE" AnchorPane.bottomAnchor="675.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label fx:id="type" layoutX="25.0" layoutY="14.0" onMouseEntered="#enterType" onMouseExited="#exitType" onMouseReleased="#selectType" prefHeight="45.0" prefWidth="200.0" text="       type" textFill="WHITE" AnchorPane.bottomAnchor="675.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="registerTime" layoutY="45.0" prefHeight="45.0" prefWidth="200.0" text="             registered time" textFill="WHITE">
+            <Label fx:id="registerTime" layoutY="45.0" onMouseEntered="#enterRegisterTime" onMouseExited="#exitRegisterTime" onMouseReleased="#selectRegisterTime" prefHeight="45.0" prefWidth="200.0" text="       registered time" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="collaborate" layoutY="90.0" prefHeight="45.0" prefWidth="200.0" text="          collaborted repositories" textFill="WHITE">
+            <Label fx:id="collaborate" layoutY="90.0" onMouseEntered="#enterCollaborate" onMouseExited="#exitCollaborate" onMouseReleased="#selectCollaborate" prefHeight="45.0" prefWidth="200.0" text="       collaborted repositories" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="create" layoutY="135.0" prefHeight="45.0" prefWidth="200.0" text="             created repositories" textFill="WHITE">
+            <Label fx:id="create" layoutY="135.0" onMouseEntered="#enterCreate" onMouseExited="#exitCreate" onMouseReleased="#selectCreate" prefHeight="45.0" prefWidth="200.0" text="       created repositories" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="company" layoutY="180.0" prefHeight="45.0" prefWidth="200.0" text="                  company" textFill="WHITE" />
+            <Label fx:id="company" layoutY="180.0" onMouseEntered="#enterCompany" onMouseExited="#exitCompany" onMouseReleased="#selectCompany" prefHeight="45.0" prefWidth="200.0" text="       company" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="blank" layoutY="225.0" prefHeight="500.0" prefWidth="200.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="center" layoutX="200.0" prefHeight="720.0" prefWidth="1166.0" />
