@@ -202,6 +202,7 @@ public class ProjectController implements Initializable {
 			@Override
 			protected Void call() throws Exception {
 				panel = RaderChartGenerator.getInstance().createPanel(dataset);
+				panel.validate();
 				panel.setPreferredSize(new Dimension(330,330));
 
 				updateProgress(1, 1);
