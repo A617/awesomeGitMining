@@ -13,6 +13,7 @@ import main.dao.DataFactory;
 import main.dao.entity.User;
 import main.dao.impl.IUserDao;
 import main.vo.SimpleUserVO;
+import main.vo.UserCompanyVO;
 import main.vo.UserRateVO;
 import main.vo.UserRegisTimeVO;
 import main.vo.UserVO;
@@ -210,6 +211,13 @@ public class UserServiceImpl implements UserService {
 	public UserRegisTimeVO getRegisTimeStatistics() {
 		UserRegisTimeVO vo = new UserRegisTimeVO();
 		vo.setNums(daoImpl.getCreatedTimeStatistics());
+		return vo;
+	}
+
+	@Override
+	public UserCompanyVO getUserCompanyStatistics() {
+		UserCompanyVO vo = new UserCompanyVO();
+		vo.setNums(daoImpl.getCompanyStatistics());
 		return vo;
 	}
 

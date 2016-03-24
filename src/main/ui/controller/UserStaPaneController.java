@@ -39,7 +39,7 @@ public class UserStaPaneController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		//setChart("Ui_UserTypeChar.fxml");
 		blank.setStyle(styleStr + baseColor);
-		selectType();
+		selectCompany();
 
 	}
 
@@ -170,7 +170,7 @@ public class UserStaPaneController implements Initializable {
 		create.setStyle(styleStr + baseColor);
 		type.setStyle(styleStr + baseColor);
 		collaborate.setStyle(styleStr + baseColor);
-		//setChart("Ui_UserTypeChar.fxml");
+		setChart("Ui_UserCompanyChart.fxml");
 	}
 
 	@FXML

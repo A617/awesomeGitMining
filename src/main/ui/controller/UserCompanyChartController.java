@@ -19,42 +19,54 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.UserService;
+import main.vo.UserCompanyVO;
 
-public class UserTypeChartController implements Initializable {
+public class UserCompanyChartController implements Initializable {
 	private UserService service;
 	@FXML
 	private PieChart pieChart;
 	@FXML
 	private AnchorPane pane;
-	final Label caption = new Label("");
+
+	private UserCompanyVO vo;
 	private ObservableList<PieChart.Data> pieChartData;
-	private double division;
-	private int[] types;
+	private int[] company;
+	private int sum = 0;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		service = UserServiceImpl.getInstance();
-		types = service.getTypeStatistic();
+		vo = service.getUserCompanyStatistics();
+		company = vo.getNums();
 		pieChartData = FXCollections.observableArrayList();
-		division = 100 * types[0] / ((types[1] + types[0]) * 1.0);
-		pieChartData.add(new PieChart.Data("organization", 0));
-		pieChartData.add(new PieChart.Data("individual", 0));
+		setData();
 		pieChart.setAnimated(true);
-		pieChart.setData(pieChartData);
 		setLabel();
 		setAnimation();
 	}
 
+	private void setData() {
+		for (int i = 0; i < company.length; i++) {
+			pieChartData.add(new PieChart.Data(vo.getCompany()[i], 0));
+		}
+		pieChart.setData(pieChartData);
+	}
+
 	private void setLabel() {
+		for (int i = 0; i < company.length; i++) {
+			sum += company[i];
+		}
+		Label caption = new Label();
 		caption.setTextFill(Color.DARKORANGE);
 		caption.setStyle("-fx-font: 24 arial;");
 		for (final PieChart.Data data : pieChart.getData()) {
 			data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent e) {
-					caption.setTranslateX(e.getSceneX());
-					caption.setTranslateY(e.getSceneY());
-					caption.setText(String.valueOf(division) + "%");
+					double division = 100 * data.getPieValue() * 1.0 / sum;
+					caption.setText(String.format("%.2f", division) + "%");
+					caption.setTranslateX(e.getSceneX() - 250);
+					caption.setTranslateY(e.getSceneY() - 30);
 				}
 			});
 		}
@@ -63,10 +75,17 @@ public class UserTypeChartController implements Initializable {
 
 	private void setAnimation() {
 		Timeline tl = new Timeline();
-		tl.getKeyFrames().add(new KeyFrame(Duration.millis(1), new EventHandler<ActionEvent>() {
+		tl.getKeyFrames().add(new KeyFrame(Duration.millis(500), new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent actionEvent) {
-				pieChart.getData().get(1).setPieValue(division);
+				int j = 0;
+				for (PieChart.Data data : pieChart.getData()) {
+					int nums = company[j];
+					for (int i = 0; i < nums; i++) {
+						data.setPieValue(i);
+					}
+					j++;
+				}
 			}
 		}));
 		tl.play();
