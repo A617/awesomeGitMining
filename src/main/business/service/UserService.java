@@ -4,6 +4,7 @@ import java.util.List;
 
 import javafx.scene.image.Image;
 import main.vo.SimpleUserVO;
+import main.vo.UserCompanyVO;
 import main.vo.UserRateVO;
 import main.vo.UserRegisTimeVO;
 import main.vo.UserVO;
@@ -72,4 +73,9 @@ public interface UserService {
 	 * @return user's register time array
 	 */
 	public UserRegisTimeVO getRegisTimeStatistics();
+	/**
+	 * 
+	 * @return number of users of each company
+	 */
+	public UserCompanyVO getCompanyStatistics();
 }
