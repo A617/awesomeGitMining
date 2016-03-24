@@ -4,6 +4,7 @@ import main.dao.entity.Statistics;
 
 public class UserCompanyVO {
 	private int[] nums;
+
 	private String[] company;
 
 	public UserCompanyVO() {

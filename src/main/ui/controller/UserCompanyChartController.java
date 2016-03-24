@@ -78,6 +78,7 @@ public class UserCompanyChartController implements Initializable {
 		tl.getKeyFrames().add(new KeyFrame(Duration.millis(500), new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent actionEvent) {
+
 				int j = 0;
 				for (PieChart.Data data : pieChart.getData()) {
 					int nums = company[j];
@@ -89,6 +90,6 @@ public class UserCompanyChartController implements Initializable {
 			}
 		}));
 		tl.play();
-
 	}
+
 }
