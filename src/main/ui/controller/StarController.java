@@ -19,10 +19,10 @@ public class StarController implements Initializable{
 	private BarChart<String,Number> barchart;
 	private StarsStatisticsVO vo;
 	private RepositoryService service;
+	private int[] datas1;
+	private String[] types1;
 	private int[] datas;
 	private String[] types;
-	private int[] cataDatas;
-	private String[] cataTypes;
 	int kind;
 	@FXML
 	private AnchorPane starPane;
@@ -40,9 +40,26 @@ public class StarController implements Initializable{
 		// TODO Auto-generated method stub
 		instance = this;
 		service = RepositoryServiceImpl.getInstance();
-		vo = service.getStarsStatistics();
-//		datas=vo.getNums();
-//		types=vo.getTypes();
+		vo=service.getStarsStatistics();
+		datas1=vo.getNums();
+		types1=vo.getTypes();
+		int p=0;
+		int count=0;
+		for(int i=0;i<datas1.length;i++){
+			if(datas1[i]!=0){
+				count++;
+			}
+		}
+		datas=new int[count];
+		types=new String[count];
+
+		for(int u=0;u<datas1.length;u++){
+			if(datas1[u]!=0){
+			datas[p]=datas1[u];
+			types[p]=types1[u];
+			p++;
+			}
+		}
 		setVO(vo);
 	}
 	public void setVO(StarsStatisticsVO vo){
