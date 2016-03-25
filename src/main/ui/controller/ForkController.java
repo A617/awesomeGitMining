@@ -10,12 +10,14 @@ import javafx.scene.layout.AnchorPane;
 import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.service.RepositoryService;
 import main.ui.utility.Histogram;
+import main.vo.ForksStatisticsVO;
 import main.vo.StarsStatisticsVO;
 
-public class StarController implements Initializable{
-	private static StarController instance;
+public class ForkController implements Initializable{
+
+	private static ForkController instance;
 	private BarChart<String,Number> barchart;
-	private StarsStatisticsVO vo;
+	private ForksStatisticsVO vo;
 	private RepositoryService service;
 	private int[] datas1;
 	private String[] types1;
@@ -23,12 +25,12 @@ public class StarController implements Initializable{
 	private String[] types;
 	int kind;
 	@FXML
-	private AnchorPane starPane;
+	private AnchorPane forkPane;
 
 
-	public static StarController getInstance() {
+	public static ForkController getInstance() {
 		if (instance == null) {
-			instance = new StarController();
+			instance = new ForkController();
 		}
 		return instance;
 	}
@@ -38,7 +40,7 @@ public class StarController implements Initializable{
 		// TODO Auto-generated method stub
 		instance = this;
 		service = RepositoryServiceImpl.getInstance();
-		vo=service.getStarsStatistics();
+		vo=service.getForksStatistics();
 		datas1=vo.getNums();
 		types1=vo.getTypes();
 		int p=0;
@@ -60,10 +62,10 @@ public class StarController implements Initializable{
 		}
 		setVO(vo);
 	}
-	public void setVO(StarsStatisticsVO vo){
+	public void setVO(ForksStatisticsVO vo){
 		if(vo!=null){
 			barchart=Histogram.getInstance().generateHistogram(datas,types);
-			starPane.getChildren().add(barchart);
+			forkPane.getChildren().add(barchart);
 
 		}
 		else{
@@ -72,4 +74,5 @@ public class StarController implements Initializable{
 
 
 	}
+
 }

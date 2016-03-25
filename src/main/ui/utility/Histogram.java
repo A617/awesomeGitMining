@@ -87,7 +87,7 @@ public class Histogram {
 	        barChart.setBarGap(0);
 
 	        xAxis.setLabel("Range");//横纵坐标的名字
-	        yAxis.setLabel("Population");
+	        yAxis.setLabel("Number");
 
 	        XYChart.Series series1 = new XYChart.Series();
 	        series1.setName("Histogram");
