@@ -5,6 +5,7 @@ import java.util.List;
 import javafx.scene.image.Image;
 import main.vo.SimpleUserVO;
 import main.vo.UserCompanyVO;
+import main.vo.UserCreateReposNumVO;
 import main.vo.UserRateVO;
 import main.vo.UserRegisTimeVO;
 import main.vo.UserVO;
@@ -83,4 +84,9 @@ public interface UserService {
 	 * @return the user page numbers(10 users one page)
 	 */
 	public abstract int getPageNums();
+	/**
+	 * 
+	 * @return user create repository numbers statistics
+	 */
+	public abstract UserCreateReposNumVO getUserCreateReposNum();
 }

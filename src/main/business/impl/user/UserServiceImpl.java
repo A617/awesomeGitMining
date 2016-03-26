@@ -14,6 +14,7 @@ import main.dao.entity.User;
 import main.dao.impl.IUserDao;
 import main.vo.SimpleUserVO;
 import main.vo.UserCompanyVO;
+import main.vo.UserCreateReposNumVO;
 import main.vo.UserRateVO;
 import main.vo.UserRegisTimeVO;
 import main.vo.UserVO;
@@ -226,6 +227,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int getPageNums() {
 		return pageNums;
+	}
+
+	@Override
+	public UserCreateReposNumVO getUserCreateReposNum() {
+		
+		return null;
 	}
 
 }
