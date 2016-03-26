@@ -11,5 +11,10 @@
       <Button layoutX="770.0" layoutY="655.0" mnemonicParsing="false" onAction="#handleProjectNext" prefHeight="30.0" prefWidth="82.0" text="Next" />
       <Button layoutX="526.0" layoutY="655.0" mnemonicParsing="false" onAction="#handleProjectPre" text="Previous" />
       <ScrollPane fx:id="projectPane" layoutX="33.0" layoutY="44.0" prefHeight="595.0" prefWidth="1300.0" />
+      <Label fx:id="page" layoutX="925.0" layoutY="661.0" text="30000">
+         <font>
+            <Font name="Ebrima Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

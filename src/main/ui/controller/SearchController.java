@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -25,7 +26,9 @@ public class SearchController implements Initializable {
 	private VBox box = new VBox();
 	@FXML
 	private ScrollPane projectPane;
-
+	@FXML
+	private Label page;
+	private int pageNums;
 	private int projectPage;
 
 	public static SearchController getInstance() {
@@ -66,7 +69,7 @@ public class SearchController implements Initializable {
 		} else {
 			projectPage++;
 		}
-
+		page.setText(projectPage + 1 + " / " + pageNums);
 	}
 
 	@FXML
@@ -78,14 +81,22 @@ public class SearchController implements Initializable {
 		} else {
 			projectPage--;
 		}
+		page.setText(projectPage + 1 + " / " + pageNums);
 	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		instance = this;
 	}
-	public void setSearchID(String id){
+
+	public void setSearchID(String id) {
 		this.id = id;
 		repositoryVO = repositoryService.searchRepository(id, 0);
+		pageNums = (int) (repositoryVO.size() / (1.0 * 10));
+		if (pageNums < 1) {
+			pageNums = 1;
+		}
+		page.setText("1 / " + pageNums);
 		initProject(repositoryVO);
 	}
 }

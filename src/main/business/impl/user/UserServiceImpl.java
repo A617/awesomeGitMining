@@ -24,11 +24,13 @@ import main.vo.UserVO;
  */
 public class UserServiceImpl implements UserService {
 	private static UserServiceImpl instance;
-	// TODO daoImpl尚未赋值
 	private IUserDao daoImpl;
-
+	private int pageNums;
 	private UserServiceImpl() {
 		daoImpl = DataFactory.getUserDataInstance();
+		if(daoImpl!=null){
+			pageNums = (int) (daoImpl.getAllUser().size()/(1.0*10));
+		}
 	}
 
 	public static UserServiceImpl getInstance() {
@@ -219,6 +221,11 @@ public class UserServiceImpl implements UserService {
 		UserCompanyVO vo = new UserCompanyVO();
 		vo.setNums(daoImpl.getCompanyStatistics());
 		return vo;
+	}
+
+	@Override
+	public int getPageNums() {
+		return pageNums;
 	}
 
 }

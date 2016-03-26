@@ -78,4 +78,9 @@ public interface UserService {
 	 * @return user's company statistics
 	 */
 	public UserCompanyVO getUserCompanyStatistics();
+	/**
+	 * 
+	 * @return the user page numbers(10 users one page)
+	 */
+	public abstract int getPageNums();
 }

@@ -34,7 +34,9 @@ public class HomeController implements Initializable {
 	private Label tab_contributor;
 	@FXML
 	private ScrollPane scrollPane;
-
+	@FXML
+	private Label page;
+	
 	private VBox box;
 
 	private String styleStr = "-fx-background-color: ";
@@ -52,7 +54,7 @@ public class HomeController implements Initializable {
 	private int starPage = 0;
 	private int forkPage = 0;
 	private int contriPage = 0;
-
+	private int pageNum;
 	private List<RepositoryVO> generalList;
 	private List<RepositoryVO> starList;
 	private List<RepositoryVO> forkList;
@@ -69,6 +71,7 @@ public class HomeController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		repositoryImpl = RepositoryServiceImpl.getInstance();
 		scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
+		pageNum = repositoryImpl.getPageNums();
 		selectGeneral();
 	}
 
@@ -94,6 +97,7 @@ public class HomeController implements Initializable {
 
 	@FXML
 	public void selectGeneral() {
+		page.setText("1 / "+pageNum);
 		selectStar = false;
 		selectFork = false;
 		selectContri = false;
@@ -108,6 +112,7 @@ public class HomeController implements Initializable {
 
 	@FXML
 	public void selectStar() {
+		page.setText("1 / "+pageNum);
 		selectStar = true;
 		selectFork = false;
 		selectContri = false;
@@ -122,6 +127,7 @@ public class HomeController implements Initializable {
 
 	@FXML
 	public void selectFork() {
+		page.setText("1 / "+pageNum);
 		selectStar = false;
 		selectFork = true;
 		selectContri = false;
@@ -136,6 +142,7 @@ public class HomeController implements Initializable {
 
 	@FXML
 	public void selectContributor() {
+		page.setText("1 / "+pageNum);
 		selectStar = false;
 		selectFork = false;
 		selectContri = true;
@@ -161,9 +168,7 @@ public class HomeController implements Initializable {
 				if (i < list.size()) {
 					RepositoryVO vo = list.get(i);
 					controller.setVO(vo);
-
 					box.getChildren().add(single);
-
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -226,6 +231,7 @@ public class HomeController implements Initializable {
 			} else {
 				generalPage--;
 			}
+			page.setText(generalPage+1+" / "+pageNum);
 		}
 	}
 
@@ -238,6 +244,7 @@ public class HomeController implements Initializable {
 			} else {
 				generalPage++;
 			}
+			page.setText(generalPage+1+" / "+pageNum);
 		}
 	}
 
@@ -250,6 +257,7 @@ public class HomeController implements Initializable {
 			} else {
 				starPage--;
 			}
+			page.setText(starPage+1+" / "+pageNum);
 		}
 	}
 
@@ -262,6 +270,7 @@ public class HomeController implements Initializable {
 			} else {
 				starPage++;
 			}
+			page.setText(starPage+1+" / "+pageNum);
 		}
 	}
 
@@ -275,6 +284,7 @@ public class HomeController implements Initializable {
 			} else {
 				forkPage--;
 			}
+			page.setText(forkPage+1+" / "+pageNum);
 		}
 	}
 
@@ -287,6 +297,7 @@ public class HomeController implements Initializable {
 			} else {
 				forkPage++;
 			}
+			page.setText(forkPage+1+" / "+pageNum);
 		}
 	}
 
@@ -300,6 +311,7 @@ public class HomeController implements Initializable {
 			} else {
 				contriPage--;
 			}
+			page.setText(contriPage+1+" / "+pageNum);
 		}
 	}
 
@@ -312,6 +324,7 @@ public class HomeController implements Initializable {
 			} else {
 				contriPage++;
 			}
+			page.setText(contriPage+1+" / "+pageNum);
 		}
 	}
 }

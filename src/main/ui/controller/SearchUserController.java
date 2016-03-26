@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -28,7 +29,9 @@ public class SearchUserController implements Initializable {
 	private VBox box = new VBox();
 	@FXML
 	private ScrollPane userPane;
-
+	@FXML
+	private Label page;
+	private int pageNums;
 	private int userPage;
 
 	public static SearchUserController getInstance() {
@@ -69,6 +72,11 @@ public class SearchUserController implements Initializable {
 	public void setSearchID(String id) {
 		this.id = id;
 		list = service.searchUser(id, 0);
+		pageNums = (int) (list.size() / (1.0 * 10));
+		if (pageNums < 1) {
+			pageNums = 1;
+		}
+		page.setText("1 / " + pageNums);
 		initPane();
 	}
 
@@ -81,7 +89,7 @@ public class SearchUserController implements Initializable {
 		} else {
 			userPage++;
 		}
-
+		page.setText(userPage + 1 + " / " + pageNums);
 	}
 
 	@FXML
@@ -93,5 +101,6 @@ public class SearchUserController implements Initializable {
 		} else {
 			userPage--;
 		}
+		page.setText(userPage + 1 + " / " + pageNums);
 	}
 }

@@ -28,9 +28,13 @@ import main.vo.StarsStatisticsVO;
 public class RepositoryServiceImpl implements RepositoryService {
 	private static RepositoryServiceImpl instance;
 	private IRepoDao daoImpl;
+	private int pageNum;
 
 	private RepositoryServiceImpl() {
 		daoImpl = DataFactory.getRepoDataInstance();
+		if(daoImpl!=null){
+			pageNum = (int) (daoImpl.getAllRepo().size()/(1.0*10));
+		}
 	}
 
 	public static RepositoryServiceImpl getInstance() {
@@ -246,5 +250,10 @@ public class RepositoryServiceImpl implements RepositoryService {
 	public List<RepositoryVO> getReposByLanguage(String language) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int getPageNums() {
+		return pageNum;
 	}
 }
