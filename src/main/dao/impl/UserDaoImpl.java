@@ -168,7 +168,7 @@ public class UserDaoImpl implements IUserDao {
 	public int[] getCreatedTimeStatistics() {
 
 
-		String[] years = Statistics.getInstance().getYear();
+		String[] years = Statistics.year;
 		int[] result = new int[years.length];
 		int year;
 
@@ -186,7 +186,7 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public int[] getCompanyStatistics() {
-		String[] list = Statistics.getInstance().getCompany();
+		String[] list = Statistics.company;
 		int[] result = new int[list.length];
 
 		for (String company : companyList) {

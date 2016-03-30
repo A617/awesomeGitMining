@@ -8,7 +8,7 @@ public class UserCompanyVO {
 	private String[] company;
 
 	public UserCompanyVO() {
-		company = Statistics.getInstance().getCompany();
+		company = Statistics.company.clone();
 	}
 
 	public int[] getNums() {

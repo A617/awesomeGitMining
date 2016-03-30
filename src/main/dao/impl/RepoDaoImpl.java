@@ -177,5 +177,11 @@ public class RepoDaoImpl implements IRepoDao {
 		
 		return stars;
 	}
+
+	@Override
+	public List<String> getReposByLanguage(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
