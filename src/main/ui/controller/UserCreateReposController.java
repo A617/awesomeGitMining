@@ -14,12 +14,13 @@ import javafx.scene.layout.AnchorPane;
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.UserService;
 import main.ui.utility.BarChartGenerator;
+import main.vo.UserCreateReposNumVO;
 
-/** 
-* @author  tj 
-* @date 2016年3月26日 下午5:20:46 
-*/
-public class UserCreateReposController implements Initializable{
+/**
+ * @author tj
+ * @date 2016年3月26日 下午5:20:46
+ */
+public class UserCreateReposController implements Initializable {
 	private UserService service;
 	@FXML
 	private BarChart<String, Integer> barChart;
@@ -29,13 +30,15 @@ public class UserCreateReposController implements Initializable{
 	private NumberAxis yAxis;
 	@FXML
 	private AnchorPane pane;
-	
-	
+	private UserCreateReposNumVO vo;
+
 	private ObservableList<String> numbers = FXCollections.observableArrayList();
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		service = UserServiceImpl.getInstance();
-		BarChartGenerator barChartGenerator = new BarChartGenerator(pane,barChart,xAxis,yAxis);
+		vo = service.getUserCreateReposNum();
+		BarChartGenerator barChartGenerator = new BarChartGenerator(pane, barChart, xAxis, yAxis);
 	}
 
 }

@@ -27,10 +27,11 @@ public class UserServiceImpl implements UserService {
 	private static UserServiceImpl instance;
 	private IUserDao daoImpl;
 	private int pageNums;
+
 	private UserServiceImpl() {
 		daoImpl = DataFactory.getUserDataInstance();
-		if(daoImpl!=null){
-			pageNums = (int) (daoImpl.getAllUser().size()/(1.0*10));
+		if (daoImpl != null) {
+			pageNums = (int) (daoImpl.getAllUser().size() / (1.0 * 10));
 		}
 	}
 
@@ -55,7 +56,6 @@ public class UserServiceImpl implements UserService {
 					}
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -231,7 +231,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserCreateReposNumVO getUserCreateReposNum() {
-		
+		List<Integer> list = daoImpl.getRepoCreatedStatistics();
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+		}
 		return null;
 	}
 
