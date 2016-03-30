@@ -2,6 +2,7 @@ package main.dao.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -199,35 +200,32 @@ public class UserDaoImpl implements IUserDao {
 	}
 
 	@Override
-	public int[] getRepoCreatedStatistics() {
+	public List<Integer> getRepoCreatedStatistics() {
 		
-		int[] result = new int[length];
+		List<Integer> result = new ArrayList<Integer>();
 		Iterator<List<String>> it = reposList.iterator();
-		int i=0;
 		while(it.hasNext()){
-			result[i++] = it.next().size();
+			result.add(it.next().size());
 		}
 		return result;
 	}
 
 	@Override
-	public int[] getRepoCollabortedStatistics() {
-		int[] result = new int[length];
+	public List<Integer> getRepoCollabortedStatistics() {
+		List<Integer> result = new ArrayList<Integer>();
 		Iterator<List<String>> it = collaborationsList.iterator();
-		int i=0;
 		while(it.hasNext()){
-			result[i++] = it.next().size();
+			result.add(it.next().size());
 		}
 		return result;
 	}
 	
 	@Override
-	public int[] getRepoContributedStatistics() {
-		int[] result = new int[length];
+	public List<Integer> getRepoContributedStatistics() {
+		List<Integer> result = new ArrayList<Integer>();
 		Iterator<List<String>> it = contrbutionsList.iterator();
-		int i=0;
 		while(it.hasNext()){
-			result[i++] = it.next().size();
+			result.add(it.next().size());
 		}
 		return result;
 	}

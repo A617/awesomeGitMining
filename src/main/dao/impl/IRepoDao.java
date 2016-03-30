@@ -43,13 +43,19 @@ public interface IRepoDao {
 	
 	/**
 	 * 获取所有项目被fork数目的分布数据
-	 * @return 每100为一个分界
+	 * @return 
 	 */
-	public int[] getForksStatistics();
+	public List<Integer> getForksStatistics();
 	
 	/**
 	 * 获取所有项目被star数目的分布数据
-	 * @return 每100为一个分界
+	 * @return 
 	 */
-	public int[] getStarsStatistics();
+	public List<Integer> getStarsStatistics();
+	
+	/**
+	 * 获取一种语言对应的项目名称列表
+	 * @return
+	 */
+	public List<String> getReposByLanguage(int i);
 }

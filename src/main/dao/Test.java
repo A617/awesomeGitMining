@@ -1,18 +1,18 @@
 package main.dao;
 
+import java.util.List;
+
 public class Test {
 
 	public static void main(String[] args) {
 
 		long startTime = System.nanoTime();
 		
-		int total =0;
-		int[] list=DataFactory.getRepoDataInstance().getForksStatistics();
+		List<Integer> list=DataFactory.getUserDataInstance().getRepoCollabortedStatistics();
 		for(int i:list){
-			total+=i;
 			System.out.println(i);
 		}
-		System.out.println(total);
+		System.out.println(list.size());
 		
 		
 /*

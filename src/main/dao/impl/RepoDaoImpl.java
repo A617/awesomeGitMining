@@ -1,6 +1,7 @@
 package main.dao.impl;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -111,7 +112,7 @@ public class RepoDaoImpl implements IRepoDao {
 	public int[] getLanguageStatistics() {
 		
 
-		String[] languages = Statistics.getInstance().getLanguage();
+		String[] languages = Statistics.language;
 		int[] result = new int[languages.length];
 		for(int i=0;i<languages.length;i++)
 			result[i] = 0;
@@ -139,7 +140,7 @@ public class RepoDaoImpl implements IRepoDao {
 		String path = "src/main/data/gitmining-api/";
 		this.createdTimeList = DataInitHelper.getList(path + "repo-createdTime.txt");
 
-		String[] years = Statistics.getInstance().getYear();
+		String[] years = Statistics.year;
 		int[] result = new int[years.length];
 		int year;
 
@@ -158,30 +159,23 @@ public class RepoDaoImpl implements IRepoDao {
 	
 
 	@Override
-	public int[] getForksStatistics() {
+	public List<Integer> getForksStatistics() {
 		
-		int[] result = new int[100];
 		String path = "src/main/data/gitmining-api/";
 		List<Integer> forks = DataInitHelper.getIntList(path + "repo_forks.txt");
 
-		for(int fork: forks){
-			result[fork/100]++;
-		}
+		Collections.sort(forks);
 		
-		return result;
+		return forks;
 	}
 
 	@Override
-	public int[] getStarsStatistics() {
-		int[] result = new int[370];
+	public List<Integer> getStarsStatistics() {
 		String path = "src/main/data/gitmining-api/";
 		List<Integer> stars = DataInitHelper.getIntList(path + "repo_stars.txt");
-
-		for(int star: stars){
-			result[star/100]++;
-		}
+		Collections.sort(stars);
 		
-		return result;
+		return stars;
 	}
 	
 }

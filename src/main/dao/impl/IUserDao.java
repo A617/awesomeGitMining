@@ -97,19 +97,19 @@ public interface IUserDao {
 	 * 获取用户创建项目数量统计数据
 	 * @return
 	 */
-	public int[] getRepoCreatedStatistics();
+	public List<Integer> getRepoCreatedStatistics();
 	
 	/**
 	 * 获取用户参与项目数量统计数据
 	 * @return
 	 */
-	public int[] getRepoCollabortedStatistics();
+	public List<Integer> getRepoCollabortedStatistics();
 
 	/**
 	 * 获取用户贡献项目数量统计数据
 	 * @return
 	 */
-	int[] getRepoContributedStatistics();
+	public List<Integer> getRepoContributedStatistics();
 	
 	
 }
