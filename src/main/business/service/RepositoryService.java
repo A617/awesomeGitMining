@@ -95,4 +95,14 @@ public interface RepositoryService {
 	 * @return a list of RepositoryVO
 	 */
 	public abstract List<RepositoryVO> getReposByLanguage(String language);
+	/**
+	 * 
+	 * @return the repository page numbers(10 repositories one page)
+	 */
+	public abstract int getPageNums();
+	/**
+	 * 
+	 * @return the searched repository page numbers(10 repositories one page)
+	 */
+	public abstract int getSearchPageNums(String id);
 }

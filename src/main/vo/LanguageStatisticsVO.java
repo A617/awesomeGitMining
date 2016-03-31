@@ -4,7 +4,11 @@ import main.dao.entity.Statistics;
 
 public class LanguageStatisticsVO {
 	private int[] languageNum;
-	private String[] languageType = Statistics.getInstance().getLanguage();
+	private String[] languageType;
+	
+	public LanguageStatisticsVO() {
+		languageType = Statistics.language.clone();
+	}
 
 	public int[] getLanguageNum() {
 		return languageNum;

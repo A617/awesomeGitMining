@@ -2,6 +2,8 @@ package main.dao.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -167,7 +169,7 @@ public class UserDaoImpl implements IUserDao {
 	public int[] getCreatedTimeStatistics() {
 
 
-		String[] years = Statistics.getInstance().getYear();
+		String[] years = Statistics.year;
 		int[] result = new int[years.length];
 		int year;
 
@@ -185,7 +187,7 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public int[] getCompanyStatistics() {
-		String[] list = Statistics.getInstance().getCompany();
+		String[] list = Statistics.company;
 		int[] result = new int[list.length];
 
 		for (String company : companyList) {
@@ -199,35 +201,34 @@ public class UserDaoImpl implements IUserDao {
 	}
 
 	@Override
-	public int[] getRepoCreatedStatistics() {
+	public List<Integer> getRepoCreatedStatistics() {
 		
-		int[] result = new int[length];
+		List<Integer> result = new ArrayList<Integer>();
 		Iterator<List<String>> it = reposList.iterator();
-		int i=0;
 		while(it.hasNext()){
-			result[i++] = it.next().size();
+			result.add(it.next().size());
 		}
+		Collections.sort(result);
 		return result;
 	}
 
 	@Override
-	public int[] getRepoCollabortedStatistics() {
-		int[] result = new int[length];
+	public List<Integer> getRepoCollabortedStatistics() {
+		List<Integer> result = new ArrayList<Integer>();
 		Iterator<List<String>> it = collaborationsList.iterator();
-		int i=0;
 		while(it.hasNext()){
-			result[i++] = it.next().size();
+			result.add(it.next().size());
 		}
+		Collections.sort(result);
 		return result;
 	}
 	
 	@Override
-	public int[] getRepoContributedStatistics() {
-		int[] result = new int[length];
+	public List<Integer> getRepoContributedStatistics() {
+		List<Integer> result = new ArrayList<Integer>();
 		Iterator<List<String>> it = contrbutionsList.iterator();
-		int i=0;
 		while(it.hasNext()){
-			result[i++] = it.next().size();
+			result.add(it.next().size());
 		}
 		return result;
 	}

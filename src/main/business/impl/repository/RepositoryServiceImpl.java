@@ -12,7 +12,6 @@ import main.business.utility.ScoreCalculator;
 import main.business.utility.SortHelper;
 import main.dao.DataFactory;
 import main.dao.entity.Repository;
-import main.dao.entity.Statistics;
 import main.dao.impl.IRepoDao;
 import main.vo.CreatedTimeStatisticsVO;
 import main.vo.ForksStatisticsVO;
@@ -28,9 +27,13 @@ import main.vo.StarsStatisticsVO;
 public class RepositoryServiceImpl implements RepositoryService {
 	private static RepositoryServiceImpl instance;
 	private IRepoDao daoImpl;
+	private int pageNum;
 
 	private RepositoryServiceImpl() {
 		daoImpl = DataFactory.getRepoDataInstance();
+		if (daoImpl != null) {
+			pageNum = (int) (daoImpl.getAllRepo().size() / (1.0 * 10));
+		}
 	}
 
 	public static RepositoryServiceImpl getInstance() {
@@ -196,9 +199,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 	public LanguageStatisticsVO getLanguageStatistics() {
 		LanguageStatisticsVO vo = new LanguageStatisticsVO();
 		int[] nums = daoImpl.getLanguageStatistics();
-		String[] types = Statistics.getInstance().getLanguage();
 		vo.setLanguageNum(nums);
-		vo.setLanguageType(types);
 		vo = SortHelper.sortLanguageStatistics(vo);
 		return vo;
 	}
@@ -219,10 +220,20 @@ public class RepositoryServiceImpl implements RepositoryService {
 	@Override
 	public ForksStatisticsVO getForksStatistics() {
 		ForksStatisticsVO vo = new ForksStatisticsVO();
-		int[] nums = daoImpl.getForksStatistics();
-		String[] types = new String[nums.length];
-		for (int i = 0; i < nums.length; i++) {
-			types[i] = i * 100 + "";
+		List<Integer> list = daoImpl.getForksStatistics();
+		// 已经确保他们的last index不是-1
+		int[] range = { 0, 10, 20, 30, 40, 50, 60, 80, 100, 200, 300, 500 };
+		int[] nums = new int[range.length];
+		String[] types = new String[range.length];
+		// 根据分布情况确定直方图组距
+		for (int i = 0; i < range.length - 1; i++) {
+			types[i] = range[i] + "~" + range[i + 1];
+		}
+		types[range.length - 1] = range[range.length - 1] + "~" + list.get(list.size() - 1);
+		nums[0] = list.lastIndexOf(range[1]) + 1;
+		nums[range.length - 1] = list.size() - list.lastIndexOf(range[range.length - 1]);
+		for (int i = 1; i < range.length - 1; i++) {
+			nums[i] = list.lastIndexOf(range[i + 1]) - list.lastIndexOf(range[i]);
 		}
 		vo.setNums(nums);
 		vo.setTypes(types);
@@ -232,10 +243,20 @@ public class RepositoryServiceImpl implements RepositoryService {
 	@Override
 	public StarsStatisticsVO getStarsStatistics() {
 		StarsStatisticsVO vo = new StarsStatisticsVO();
-		int[] nums = daoImpl.getStarsStatistics();
-		String[] types = new String[nums.length];
-		for (int i = 0; i < nums.length; i++) {
-			types[i] = i * 100 + "";
+		List<Integer> list = daoImpl.getForksStatistics();
+		// 已经确保他们的last index不是-1
+		int[] range = { 0, 10, 20, 30, 40, 50, 60, 80, 100, 200, 300, 500 };
+		int[] nums = new int[range.length];
+		String[] types = new String[range.length];
+		// 根据分布情况确定直方图组距
+		for (int i = 0; i < range.length - 1; i++) {
+			types[i] = range[i] + "~" + range[i + 1];
+		}
+		types[range.length - 1] = range[range.length - 1] + "~" + list.get(list.size() - 1);
+		nums[0] = list.lastIndexOf(range[1]) + 1;
+		nums[range.length - 1] = list.size() - list.lastIndexOf(range[range.length - 1]);
+		for (int i = 1; i < range.length - 1; i++) {
+			nums[i] = list.lastIndexOf(range[i + 1]) - list.lastIndexOf(range[i]);
 		}
 		vo.setNums(nums);
 		vo.setTypes(types);
@@ -246,5 +267,20 @@ public class RepositoryServiceImpl implements RepositoryService {
 	public List<RepositoryVO> getReposByLanguage(String language) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int getPageNums() {
+		return pageNum;
+	}
+
+	@Override
+	public int getSearchPageNums(String id) {
+		if (daoImpl != null) {
+			if (daoImpl.searchRepository(id) != null) {
+				return daoImpl.searchRepository(id).size();
+			}
+		}
+		return 0;
 	}
 }

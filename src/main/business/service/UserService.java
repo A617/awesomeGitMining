@@ -4,7 +4,9 @@ import java.util.List;
 
 import javafx.scene.image.Image;
 import main.vo.SimpleUserVO;
+import main.vo.UserCollaReposNumVO;
 import main.vo.UserCompanyVO;
+import main.vo.UserCreateReposNumVO;
 import main.vo.UserRateVO;
 import main.vo.UserRegisTimeVO;
 import main.vo.UserVO;
@@ -78,4 +80,24 @@ public interface UserService {
 	 * @return user's company statistics
 	 */
 	public UserCompanyVO getUserCompanyStatistics();
+	/**
+	 * 
+	 * @return the user page numbers(10 users one page)
+	 */
+	public abstract int getPageNums();
+	/**
+	 * 
+	 * @return the searched user page numbers(5 users one page)
+	 */
+	public abstract int getSearchPageNums(String id);
+	/**
+	 * 
+	 * @return user create repository numbers statistics
+	 */
+	public abstract UserCreateReposNumVO getUserCreateReposNum();
+	/**
+	 * 
+	 * @return user collaborate repository numbers statistics
+	 */
+	public abstract UserCollaReposNumVO getUserCollaReposNum();
 }

@@ -155,7 +155,7 @@ public class UserStaPaneController implements Initializable {
 		type.setStyle(styleStr + baseColor);
 		company.setStyle(styleStr + baseColor);
 		collaborate.setStyle(styleStr + baseColor);
-		//setChart("Ui_UserTypeChar.fxml");
+		setChart("Ui_UserCreateChart.fxml");
 	}
 
 	@FXML
@@ -185,6 +185,6 @@ public class UserStaPaneController implements Initializable {
 		create.setStyle(styleStr + baseColor);
 		company.setStyle(styleStr + baseColor);
 		type.setStyle(styleStr + baseColor);
-		//setChart("Ui_UserTypeChar.fxml");
+		setChart("Ui_UserCollaChart.fxml");
 	}
 }

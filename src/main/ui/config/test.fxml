@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.HomeController">
    <children>
-      <Button layoutX="912.0" layoutY="667.0" mnemonicParsing="false" onAction="#handleNextButton" prefHeight="30.0" prefWidth="82.0" text="Next" />
+      <Button layoutX="873.0" layoutY="667.0" mnemonicParsing="false" onAction="#handleNextButton" prefHeight="30.0" prefWidth="82.0" text="Next" />
       <Button layoutX="668.0" layoutY="667.0" mnemonicParsing="false" onAction="#handlePreButton" text="Previous" />
       <AnchorPane id="sortPane" layoutX="313.0" layoutY="6.0" prefHeight="41.0" prefWidth="1045.0">
          <children>
@@ -28,6 +28,7 @@
                <font>
                   <Font name="Microsoft YaHei UI" size="15.0" />
                </font></Label>
+            <Label fx:id="changeStyle" layoutX="523.0" layoutY="13.0" onMouseReleased="#change" text="change" />
          </children>
       </AnchorPane>
       <ScrollPane fx:id="scrollPane" layoutX="313.0" layoutY="47.0" prefHeight="595.0" prefWidth="1045.0" />
@@ -82,5 +83,9 @@
             <Label layoutX="8.0" layoutY="604.0" text="2016" />
             <Label layoutX="54.0" layoutY="604.0" text="Others" />
          </children></AnchorPane>
+      <Label fx:id="page" layoutX="1003.0" layoutY="672.0" text="30000">
+         <font>
+            <Font name="Ebrima Bold" size="15.0" />
+         </font></Label>
    </children>
 </AnchorPane>

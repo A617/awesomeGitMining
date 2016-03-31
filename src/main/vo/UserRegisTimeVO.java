@@ -8,7 +8,7 @@ public class UserRegisTimeVO {
 
 	// bad coding
 	public UserRegisTimeVO() {
-		years = Statistics.getInstance().getYear();
+		years = Statistics.year.clone();
 	}
 
 	public int[] getNums() {

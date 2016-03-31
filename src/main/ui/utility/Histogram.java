@@ -1,8 +1,5 @@
 package main.ui.utility;
 
-import java.util.Random;
-import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
