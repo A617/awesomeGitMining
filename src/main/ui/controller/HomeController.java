@@ -34,7 +34,8 @@ public class HomeController implements Initializable {
 	private ScrollPane scrollPane;
 	@FXML
 	private Label page;
-	
+	@FXML
+	private Label changeStyle;
 	private VBox box;
 
 	private String styleStr = "-fx-background-color: ";
@@ -152,7 +153,10 @@ public class HomeController implements Initializable {
 		contriList = repositoryImpl.showReposByContribute(0);
 		initTabPane(contriList);
 	}
-
+	@FXML
+	public void change(){
+		MainUI.getUI().changeStyle("black");
+	}
 	private void initTabPane(List<RepositoryVO> list) {
 		box = new VBox();
 		VBox.setVgrow(scrollPane, Priority.ALWAYS);
