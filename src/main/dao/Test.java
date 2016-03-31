@@ -8,8 +8,8 @@ public class Test {
 
 		long startTime = System.nanoTime();
 		
-		List<Integer> list=DataFactory.getUserDataInstance().getRepoCollabortedStatistics();
-		for(int i:list){
+		List<String> list=DataFactory.getRepoDataInstance().getReposByLanguage(0);
+		for(String i:list){
 			System.out.println(i);
 		}
 		System.out.println(list.size());

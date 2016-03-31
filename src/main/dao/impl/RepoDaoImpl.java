@@ -1,6 +1,7 @@
 package main.dao.impl;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -22,57 +23,44 @@ public class RepoDaoImpl implements IRepoDao {
 
 	/* 项目-语言使用情况 */
 	private List<Map<String, Integer>> mapR2L;
-	
-	/*项目创建时间列表*/
+
+	/* 项目创建时间列表 */
 	private List<String> createdTimeList;
-	
-	/*项目语言列表*/
+
+	/* 项目语言列表 */
 	private List<String> languageList;
 
 	/* 所有项目jsonStr列表 */
 	private List<String> repoAll;
 
-	
 	public RepoDaoImpl() {
 
 		String path = "src/main/data/gitmining-api/";
-		this.repoList = DataInitHelper
-				.getList(path+"repo_fullname.txt");
+		this.repoList = DataInitHelper.getList(path + "repo_fullname.txt");
 
-		
-		this.mapR2Clb = DataInitHelper
-				.getListList(path+"repo-collaborators.txt");
-		
+		this.mapR2Clb = DataInitHelper.getListList(path + "repo-collaborators.txt");
 
-		this.mapR2Ctb = DataInitHelper
-				.getListList(path+"repo-contributors.txt");
-		
-		
-		this.repoAll = DataInitHelper
-				.getAllReposJson(path + "repo-all.txt");
-		
-		
-		
-		this.mapR2L = DataInitHelper.getLanguages(
-				 path+"repo-languageNames.txt",
-				path+"repo-languageCounts.txt");
-		
+		this.mapR2Ctb = DataInitHelper.getListList(path + "repo-contributors.txt");
+
+		this.repoAll = DataInitHelper.getAllReposJson(path + "repo-all.txt");
+
+		this.mapR2L = DataInitHelper.getLanguages(path + "repo-languageNames.txt", path + "repo-languageCounts.txt");
+
 		this.languageList = DataInitHelper.getList(path + "repo-language.txt");
 
 		System.out.println("RepoDaoImpl initialized!");
-		
+
 	}
 
 	@Override
-	public Repository getRepository(String name) throws IOException{
-
+	public Repository getRepository(String name) throws IOException {
 
 		int index = repoList.indexOf(name);
 
 		if (index == -1) {
 			return null;
 		}
-		Repository po=null;
+		Repository po = null;
 
 		po = JsonUtil.parseJson2Bean(repoAll.get(index), Repository.class);
 
@@ -81,7 +69,7 @@ public class RepoDaoImpl implements IRepoDao {
 			po.setCollaborators_login(mapR2Clb.get(index));
 			po.setOwner_name(name.split("/")[0]);
 			po.setLanguages(mapR2L.get(index));
-			
+
 			int[] ranks = new int[7];
 			String path = "src/main/data/gitmining-api/";
 			ranks[0] = DataInitHelper.getIntList(path + "repo_starRank.txt").get(index);
@@ -92,7 +80,7 @@ public class RepoDaoImpl implements IRepoDao {
 			ranks[5] = DataInitHelper.getIntList(path + "repo_contriRank.txt").get(index);
 			ranks[6] = DataInitHelper.getIntList(path + "repo_collaRank.txt").get(index);
 			po.setRanks(ranks);
-			
+
 		}
 		return po;
 	}
@@ -102,7 +90,7 @@ public class RepoDaoImpl implements IRepoDao {
 
 		return repoList;
 	}
-	
+
 	@Override
 	public List<String> searchRepository(String name) {
 		return SearchHelper.fuzzySearch(repoList, name);
@@ -110,11 +98,10 @@ public class RepoDaoImpl implements IRepoDao {
 
 	@Override
 	public int[] getLanguageStatistics() {
-		
 
 		String[] languages = Statistics.language;
 		int[] result = new int[languages.length];
-		for(int i=0;i<languages.length;i++)
+		for (int i = 0; i < languages.length; i++)
 			result[i] = 0;
 
 		loop: for (String language : languageList) {
@@ -128,12 +115,10 @@ public class RepoDaoImpl implements IRepoDao {
 			}
 			result[languages.length - 1]++;
 		}
-	
+
 		return result;
 	}
 
-	
-	
 	@Override
 	public int[] getCreatedTimeStatistics() {
 
@@ -155,17 +140,15 @@ public class RepoDaoImpl implements IRepoDao {
 		}
 		return result;
 	}
-	
-	
 
 	@Override
 	public List<Integer> getForksStatistics() {
-		
+
 		String path = "src/main/data/gitmining-api/";
 		List<Integer> forks = DataInitHelper.getIntList(path + "repo_forks.txt");
 
 		Collections.sort(forks);
-		
+
 		return forks;
 	}
 
@@ -174,14 +157,23 @@ public class RepoDaoImpl implements IRepoDao {
 		String path = "src/main/data/gitmining-api/";
 		List<Integer> stars = DataInitHelper.getIntList(path + "repo_stars.txt");
 		Collections.sort(stars);
-		
+
 		return stars;
 	}
 
 	@Override
 	public List<String> getReposByLanguage(int i) {
-		// TODO Auto-generated method stub
-		return null;
+		String[] languages = Statistics.language;
+
+		List<String> result = new ArrayList<>();
+
+		for (int index = 0; index < languageList.size(); index++) {
+			if (languageList.get(index).equals(languages[i]))
+				result.add(repoList.get(index));
+
+		}
+
+		return result;
 	}
-	
+
 }
