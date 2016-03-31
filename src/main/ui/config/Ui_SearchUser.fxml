@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -9,5 +10,10 @@
       <Button layoutX="770.0" layoutY="655.0" mnemonicParsing="false" onAction="#handleNext" prefHeight="30.0" prefWidth="82.0" text="Next" />
       <Button layoutX="526.0" layoutY="655.0" mnemonicParsing="false" onAction="#handlePre" text="Previous" />
       <ScrollPane fx:id="userPane" layoutX="33.0" layoutY="44.0" prefHeight="595.0" prefWidth="1300.0" />
+      <Label fx:id="page" layoutX="900.0" layoutY="660.0" text="Label">
+         <font>
+            <Font name="Ebrima Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

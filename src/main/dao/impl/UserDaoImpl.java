@@ -3,6 +3,7 @@ package main.dao.impl;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -207,6 +208,7 @@ public class UserDaoImpl implements IUserDao {
 		while(it.hasNext()){
 			result.add(it.next().size());
 		}
+		Collections.sort(result);
 		return result;
 	}
 
@@ -217,6 +219,7 @@ public class UserDaoImpl implements IUserDao {
 		while(it.hasNext()){
 			result.add(it.next().size());
 		}
+		Collections.sort(result);
 		return result;
 	}
 	

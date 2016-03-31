@@ -38,7 +38,14 @@ public class UserCreateReposController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		service = UserServiceImpl.getInstance();
 		vo = service.getUserCreateReposNum();
+		int[] datas=vo.getNums();
+		String[] types=vo.getRanges();
 		BarChartGenerator barChartGenerator = new BarChartGenerator(pane, barChart, xAxis, yAxis);
+		numbers.addAll(types);
+		xAxis.setCategories(numbers);
+		barChartGenerator.setData(numbers,datas,"created repositories");
+		barChart.setCategoryGap(0);
+		barChart.setBarGap(0);
 	}
 
 }

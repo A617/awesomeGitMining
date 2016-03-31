@@ -273,4 +273,14 @@ public class RepositoryServiceImpl implements RepositoryService {
 	public int getPageNums() {
 		return pageNum;
 	}
+
+	@Override
+	public int getSearchPageNums(String id) {
+		if (daoImpl != null) {
+			if (daoImpl.searchRepository(id) != null) {
+				return daoImpl.searchRepository(id).size();
+			}
+		}
+		return 0;
+	}
 }

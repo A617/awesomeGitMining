@@ -92,7 +92,7 @@ public class SearchController implements Initializable {
 	public void setSearchID(String id) {
 		this.id = id;
 		repositoryVO = repositoryService.searchRepository(id, 0);
-		pageNums = (int) (repositoryVO.size() / (1.0 * 10));
+		pageNums = (int) (repositoryService.getSearchPageNums(id) / (1.0 * 10));
 		if (pageNums < 1) {
 			pageNums = 1;
 		}

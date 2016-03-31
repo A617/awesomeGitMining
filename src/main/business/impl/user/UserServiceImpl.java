@@ -13,6 +13,7 @@ import main.dao.DataFactory;
 import main.dao.entity.User;
 import main.dao.impl.IUserDao;
 import main.vo.SimpleUserVO;
+import main.vo.UserCollaReposNumVO;
 import main.vo.UserCompanyVO;
 import main.vo.UserCreateReposNumVO;
 import main.vo.UserRateVO;
@@ -115,7 +116,7 @@ public class UserServiceImpl implements UserService {
 		if (daoImpl != null) {
 			List<String> names = daoImpl.searchUser(id);
 			if (names != null) {
-				for (int i = pageIndex; i < 5 + pageIndex; i++) {
+				for (int i = pageIndex * 5; i < 5 + pageIndex * 5; i++) {
 					if (i < names.size() && i >= 0) {
 						String login = names.get(i);
 						SimpleUserVO vo = new SimpleUserVO();
@@ -231,11 +232,43 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserCreateReposNumVO getUserCreateReposNum() {
+		UserCreateReposNumVO vo = new UserCreateReposNumVO();
 		List<Integer> list = daoImpl.getRepoCreatedStatistics();
+		int[] range = { 0, 1, 4 };
+		int[] nums = new int[range.length];
+		String[] types = new String[range.length];
+		for (int i = 0; i < range.length - 1; i++) {
+			types[i] = range[i] + "~" + range[i + 1];
+		}
+		types[range.length - 1] = range[range.length - 1] + "~" + list.get(list.size() - 1);
+		nums[0] = list.lastIndexOf(range[1]) + 1;
+		nums[range.length - 1] = list.size() - list.lastIndexOf(range[range.length - 1]);
+		for (int i = 1; i < range.length - 1; i++) {
+			nums[i] = list.lastIndexOf(range[i + 1]) - list.lastIndexOf(range[i]);
+		}
+		vo.setNums(nums);
+		vo.setRanges(types);
+		return vo;
+	}
+
+	@Override
+	public UserCollaReposNumVO getUserCollaReposNum() {
+		UserCollaReposNumVO vo = new UserCollaReposNumVO();
+		List<Integer> list = daoImpl.getRepoCollabortedStatistics();
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i));
 		}
-		return null;
+		return vo;
+	}
+
+	@Override
+	public int getSearchPageNums(String id) {
+		if (daoImpl != null) {
+			if (daoImpl.searchUser(id) != null) {
+				return daoImpl.searchUser(id).size();
+			}
+		}
+		return 0;
 	}
 
 }
