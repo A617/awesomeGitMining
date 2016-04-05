@@ -35,6 +35,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Callback;
 import main.business.impl.repository.RepositoryServiceImpl;
@@ -91,6 +92,8 @@ public class ProjectController implements Initializable {
 	@FXML
 	private StackPane raderPane;
 	@FXML
+	private AnchorPane pane;
+	@FXML
 	private TableView<ContributorVO> contributorTable;
 	@FXML
 	private TableView<CollaboratorVO> collaboratorTable;
@@ -111,6 +114,7 @@ public class ProjectController implements Initializable {
 	private UserService userImpl;
 	private JPanel panel;
 	private final XYChart.Series<String, Integer> series = new XYChart.Series<>();
+	private RepositoryVO vo;
 
 	public static ProjectController getInstance() {
 		if (instance == null) {
@@ -118,19 +122,21 @@ public class ProjectController implements Initializable {
 		}
 		return instance;
 	}
+
 	public void labelInit(Label label, String path) {
 		Image image = new Image(MainUI.class.getResourceAsStream("style/" + path));
 		label.setGraphic(new ImageView(image));
 	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		instance = this;
 		repositoryImpl = RepositoryServiceImpl.getInstance();
 		userImpl = UserServiceImpl.getInstance();
 
-		labelInit(stars,"Star_32.png");
-		labelInit(forks,"forks.png");
-		labelInit(subs,"subs.png");
+		labelInit(stars, "Star_32.png");
+		labelInit(forks, "forks.png");
+		labelInit(subs, "subs.png");
 		clipboard = Clipboard.getSystemClipboard();
 		content = new ClipboardContent();
 		btn_clone.setOnAction((e) -> {
@@ -151,6 +157,7 @@ public class ProjectController implements Initializable {
 
 	public void setVO(RepositoryVO vo) {
 		if (vo != null) {
+			this.vo = vo;
 			// set description
 			String str = vo.getDescription();
 			int size = 90;
@@ -206,16 +213,39 @@ public class ProjectController implements Initializable {
 				collaboratorColumn.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 			}
 			// areaChart
-			CodeFrequencyVO cv = repositoryImpl.getCodeFrequency(vo.getFull_name());
-			int[] data = cv.getData();
-			String[] time = cv.getTime();
-			
-			for (int j = 0; j < data.length; j++) {
-				series.getData().add(new XYChart.Data<String, Integer>(time[j], data[j]));
-			}
-			areaChart.getData().add(series);
-			
+			addAreaChart();
 		}
+	}
+
+	private void addAreaChart() {
+		ProgressIndicator pin = new ProgressIndicator(-1);
+		pin.setLayoutX(areaChart.getLayoutX()+areaChart.getPrefWidth()/2);
+		pin.setLayoutY(areaChart.getLayoutY()+areaChart.getPrefHeight()/2);
+		pane.getChildren().add(pin);
+		Task<Void> task = new Task<Void>() {
+			@Override
+			protected Void call() throws Exception {
+				CodeFrequencyVO cv = repositoryImpl.getCodeFrequency(vo.getFull_name());
+				int[] data = cv.getData();
+				String[] time = cv.getTime();
+
+				for (int j = 0; j < data.length; j++) {
+					series.getData().add(new XYChart.Data<String, Integer>(time[j], data[j]));
+				}
+				updateProgress(1, 1);
+				return null;
+			}
+		};
+		pin.progressProperty().bind(task.progressProperty());
+		new Thread(task).start();
+
+		pin.progressProperty().addListener((ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
+			if (new_val.intValue() == 1) {
+				areaChart.getData().add(series);
+				series.setName("Addition");
+				pane.getChildren().remove(pin);
+			}
+		});
 	}
 
 	private void createRader(Map<String, Integer> map) {
