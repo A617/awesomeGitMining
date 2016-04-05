@@ -1,10 +1,12 @@
 package main.business.utility;
 
+import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Map;
 
 import main.data.IRepoDao;
 import main.data.IUserDao;
+import main.main.RMIHelper;
 
 public class ScoreCalculator {
 	private static final int REPOS_LEN = getReposLen();
@@ -51,11 +53,25 @@ public class ScoreCalculator {
 	}
 
 	private static int getReposLen() {
-		daoImpl = DataFactory.getRepoDataInstance();
-		return daoImpl.getAllRepo().size();
+		daoImpl = RMIHelper.getRepoDao();
+		int size =0;
+		try {
+			size = daoImpl.getAllRepo().size();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return size;
 	}
 	private static int getUserLen(){
-		userDao = DataFactory.getUserDataInstance();
-		return userDao.getAllUser().size();
+		userDao = RMIHelper.getUserDao();
+		int size =0;
+		try {
+			size = userDao.getAllUser().size();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return size;
 	}
 }

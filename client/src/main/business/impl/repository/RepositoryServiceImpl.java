@@ -12,8 +12,6 @@ import main.business.utility.ScoreCalculator;
 import main.business.utility.SortHelper;
 import main.po.Repository;
 import main.po.Statistics;
-import main.data.IRepoDao;
-import main.main.RMIHelper;
 import main.vo.CodeFrequencyVO;
 import main.vo.CreatedTimeStatisticsVO;
 import main.vo.ForksStatisticsVO;
@@ -21,6 +19,8 @@ import main.vo.LanguageStatisticsVO;
 import main.vo.RepositoryRateVO;
 import main.vo.RepositoryVO;
 import main.vo.StarsStatisticsVO;
+import main.data.IRepoDao;
+import main.main.RMIHelper;
 
 /**
  * @author tj
@@ -375,7 +375,12 @@ public class RepositoryServiceImpl implements RepositoryService {
 		} else {
 			int index = Statistics.getLanguageIndex(language);
 			if (index != -1) {
-				names = daoImpl.getReposByLanguage(index);
+				try {
+					names = daoImpl.getReposByLanguage(index);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		tagPageNum = names.size();

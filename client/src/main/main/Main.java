@@ -2,7 +2,7 @@ package main.main;
 
 import java.rmi.RemoteException;
 
-import main.dao.IRepoDao;
+import main.data.IRepoDao;
 
 public class Main {
 

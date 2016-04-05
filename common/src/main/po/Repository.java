@@ -8,14 +8,14 @@ import java.util.Map;
  * @author tj
  */
 public class Repository implements Serializable{
-	protected String name;	//项目名
-	private String owner_name;	//项目主人
+	protected String name;	//椤圭洰鍚�
+	private String owner_name;	//椤圭洰涓讳汉
 	protected String full_name;
-	protected String language;	//编程语言
-	private List<String> contributors_login;	//该项目所有贡献者
+	protected String language;	//缂栫▼璇█
+	private List<String> contributors_login;	//璇ラ」鐩墍鏈夎础鐚��
 	private List<String> collaborators_login;
-	private List<String> branches_name;	//该项目所有版本名
-	private List<String> forks_fullname;	//该项目所有fork项目
+	private List<String> branches_name;	//璇ラ」鐩墍鏈夌増鏈悕
+	private List<String> forks_fullname;	//璇ラ」鐩墍鏈塮ork椤圭洰
 	private Map<String, Integer> languages;
 	protected boolean fork;
 	protected boolean has_issues;
@@ -24,19 +24,19 @@ public class Repository implements Serializable{
 	protected boolean has_pages;
 	protected int open_issues_count;
 	protected int watchers_count;
-	protected String clone_url;	//git地址
+	protected String clone_url;	//git鍦板潃
 	protected String home_url;
 	protected String homepage;
 	protected String description;
-	protected String created_at;	//创建时间
-	protected String pushed_at;	//最后push时间
-	protected String updated_at;	//最后更新时间
+	protected String created_at;	//鍒涘缓鏃堕棿
+	protected String pushed_at;	//鏈�鍚巔ush鏃堕棿
+	protected String updated_at;	//鏈�鍚庢洿鏂版椂闂�
 	protected int size;
 	protected String default_branch;
 	protected int stargazers_count;
-	protected int forks_count;	//被fork的次数
+	protected int forks_count;	//琚玣ork鐨勬鏁�
 	protected int subscribers_count;
-	protected int[] ranks; //star、fork、watchers、subscribers、issues、contributors、collabotators数目排名排名
+	protected int[] ranks; //star銆乫ork銆亀atchers銆乻ubscribers銆乮ssues銆乧ontributors銆乧ollabotators鏁扮洰鎺掑悕鎺掑悕
 
 	public Repository() {
 		super();
