@@ -13,6 +13,7 @@ import main.business.utility.SortHelper;
 import main.dao.DataFactory;
 import main.dao.entity.Repository;
 import main.dao.impl.IRepoDao;
+import main.vo.CodeFrequencyVO;
 import main.vo.CreatedTimeStatisticsVO;
 import main.vo.ForksStatisticsVO;
 import main.vo.LanguageStatisticsVO;
@@ -282,5 +283,30 @@ public class RepositoryServiceImpl implements RepositoryService {
 			}
 		}
 		return 0;
+	}
+
+	@Override
+	public CodeFrequencyVO getCodeFrequency(String id) {
+		CodeFrequencyVO vo = new CodeFrequencyVO();
+		if (daoImpl != null) {
+			List<Integer> list = null;
+			try {
+				list = daoImpl.getCodeFrequency(id);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if (list != null) {
+				int len = list.size();
+				int[] data = new int[len];
+				String[] time = new String[len];
+				for (int i = 0; i < len; i++) {
+					time[i] = i + 1 + "";
+					data[i] = list.get(i);
+				}
+				vo.setData(data);
+				vo.setTime(time);
+			}
+		}
+		return vo;
 	}
 }
