@@ -28,7 +28,7 @@ import main.ui.utility.fxmlLoader;
 public class MainUI extends Application {
 
 	private Stage stage;
-	private Scene scene;
+	private  Scene scene;
 	private AnchorPane common;
 	public static Group test;
 	private static MainUI ui;
@@ -54,9 +54,9 @@ public class MainUI extends Application {
 		// 添加图标
 		this.stage.getIcons().add(new Image("file:src/main/ui/style/mark.png"));
 		stage.show();
-		
-		
-		
+
+
+
 		ProgressIndicator pin = new ProgressIndicator(-1);
 		pin.setVisible(false);
 		AnimationGroup ag = new AnimationGroup();
@@ -90,13 +90,13 @@ public class MainUI extends Application {
 			}
 		});
 
-		
+
 /*		RepositoryService repositoryImpl = RepositoryServiceImpl.getInstance();
 		UserService userImpl = UserServiceImpl.getInstance();
 		stage.setScene(this.scene);
 		MainController.getInstance().initPanel();
-*/		
-		
+*/
+
 		// stage.setFullScreen(false);
 		// Rectangle2D primaryScreenBounds =
 		// Screen.getPrimary().getVisualBounds();
@@ -114,12 +114,24 @@ public class MainUI extends Application {
 		return stage;
 	}
 
+
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
+
+	public void changeStyle(String style){
+		if(style=="black"){
+			System.out.println("111");
+			scene.getStylesheets().add(MainUI.class.getResource("style/black.css").toExternalForm());
+			System.out.print("222");
+		}
+		else if(style=="pink"){
+			scene.getStylesheets().add(MainUI.class.getResource("style/pink.css").toExternalForm());
+		}
+
+	}
 	private  class AnimationGroup extends Group{
-		
+
 		public AnimationGroup() {
 			Label sunset = new Label();
 			Image img1 = new Image("file:src/main/ui/style/gradient-from-black.jpg");
@@ -153,9 +165,9 @@ public class MainUI extends Application {
 			timeline.getKeyFrames().add(kf);
 			timeline.play();
 
-			
+
 			this.getChildren().addAll(stack1, stack2);
 		}
-		
+
 	}
 }

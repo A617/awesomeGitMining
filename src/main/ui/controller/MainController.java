@@ -48,6 +48,7 @@ public class MainController implements Initializable {
 	private Label repositorySta;
 	@FXML
 	private Label userSta;
+	
 	private boolean selectRepos;
 	private boolean selectUser;
 	private boolean selectReposSta;
@@ -107,6 +108,7 @@ public class MainController implements Initializable {
 		Image image = new Image(MainUI.class.getResourceAsStream("style/" + path));
 		label.setGraphic(new ImageView(image));
 	}
+	
 	@FXML
 	public void enterExit(){
 		labelInit(exit,"exit_move.png");

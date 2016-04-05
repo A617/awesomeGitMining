@@ -72,7 +72,7 @@ public class SearchUserController implements Initializable {
 	public void setSearchID(String id) {
 		this.id = id;
 		list = service.searchUser(id, 0);
-		pageNums = (int) (list.size() / (1.0 * 10));
+		pageNums = (int) (service.getSearchPageNums(id) / (1.0 * 10));
 		if (pageNums < 1) {
 			pageNums = 1;
 		}

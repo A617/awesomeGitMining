@@ -100,4 +100,9 @@ public interface RepositoryService {
 	 * @return the repository page numbers(10 repositories one page)
 	 */
 	public abstract int getPageNums();
+	/**
+	 * 
+	 * @return the searched repository page numbers(10 repositories one page)
+	 */
+	public abstract int getSearchPageNums(String id);
 }
