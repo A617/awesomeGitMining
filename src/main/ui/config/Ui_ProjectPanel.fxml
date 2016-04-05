@@ -49,44 +49,44 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="forkNum" layoutX="170.0" layoutY="304.0" prefHeight="19.0" prefWidth="35.0" text="fork">
+            <Label fx:id="forkNum" layoutX="179.0" layoutY="304.0" prefHeight="19.0" prefWidth="35.0" text="fork">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="forks" layoutX="127.0" layoutY="298.0" prefHeight="29.0" prefWidth="50.0">
+            <Label fx:id="forks" layoutX="134.0" layoutY="298.0" prefHeight="29.0" prefWidth="50.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
             <Button fx:id="btn_clone" layoutX="29.0" layoutY="194.0" mnemonicParsing="false" text="Clone" />
             <TextField fx:id="url" layoutX="88.0" layoutY="194.0" prefHeight="26.0" prefWidth="524.0" />
-            <Label fx:id="subs" layoutX="218.0" layoutY="298.0" prefHeight="29.0" prefWidth="50.0">
+            <Label fx:id="subs" layoutX="227.0" layoutY="298.0" prefHeight="29.0" prefWidth="50.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="subNum" layoutX="279.0" layoutY="304.0" text="subN">
+            <Label fx:id="subNum" layoutX="288.0" layoutY="304.0" text="subN">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="conNum" layoutX="374.0" layoutY="304.0" text="conN">
+            <Label fx:id="conNum" layoutX="383.0" layoutY="304.0" text="conN">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="cons" layoutX="329.0" layoutY="298.0" prefHeight="29.0" prefWidth="20.0">
+            <Label fx:id="cons" layoutX="338.0" layoutY="298.0" prefHeight="29.0" prefWidth="20.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="coNum" layoutX="471.0" layoutY="304.0" text="coNu">
+            <Label fx:id="coNum" layoutX="480.0" layoutY="304.0" text="coNu">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="collas" layoutX="423.0" layoutY="298.0" prefHeight="29.0" prefWidth="50.0">
+            <Label fx:id="collas" layoutX="432.0" layoutY="298.0" prefHeight="29.0" prefWidth="50.0">
                <font>
                   <Font size="14.0" />
                </font>
