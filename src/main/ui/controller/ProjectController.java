@@ -78,8 +78,7 @@ public class ProjectController implements Initializable {
 	private Label coNum;
 	@FXML
 	private Label stars;
-	@FXML
-	private Label startag;
+
 	@FXML
 	private Label forks;
 	@FXML
@@ -131,7 +130,7 @@ public class ProjectController implements Initializable {
 		userImpl = UserServiceImpl.getInstance();
 
 		labelInit(stars,"Star_32.png");
-		labelInit(startag,"tag.png");
+		labelInit(forks,"forks.png");
 		labelInit(subs,"subs.png");
 		labelInit(cons,"cons.png");
 		labelInit(collas,"collas.png");
