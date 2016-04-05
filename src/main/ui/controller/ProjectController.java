@@ -77,6 +77,8 @@ public class ProjectController implements Initializable {
 	@FXML
 	private Label stars;
 	@FXML
+	private Label startag;
+	@FXML
 	private Label forks;
 	@FXML
 	private Label subs;
@@ -124,8 +126,11 @@ public class ProjectController implements Initializable {
 		userImpl = UserServiceImpl.getInstance();
 
 		labelInit(stars,"Star_32.png");
-		labelInit(forks,"forks.png");
+		labelInit(startag,"tag.png");
 		labelInit(subs,"subs.png");
+		labelInit(cons,"cons.png");
+		labelInit(collas,"collas.png");
+
 		clipboard = Clipboard.getSystemClipboard();
 		content = new ClipboardContent();
 		btn_clone.setOnAction((e) -> {
