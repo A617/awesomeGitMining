@@ -17,7 +17,9 @@ import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -33,7 +35,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Callback;
 import main.business.impl.repository.RepositoryServiceImpl;
@@ -45,6 +46,7 @@ import main.ui.utility.BackType;
 import main.ui.utility.HandleBack;
 import main.ui.utility.PieChartGenerator;
 import main.ui.utility.RaderChartGenerator;
+import main.vo.CodeFrequencyVO;
 import main.vo.CollaboratorVO;
 import main.vo.ContributorVO;
 import main.vo.RepositoryRateVO;
@@ -98,6 +100,8 @@ public class ProjectController implements Initializable {
 	private TableColumn<ContributorVO, String> contributorColumn;
 	@FXML
 	private TableColumn<CollaboratorVO, String> collaboratorColumn;
+	@FXML
+	private AreaChart<String, Integer> areaChart;
 
 	private Clipboard clipboard;// 获取系统剪贴板
 	private ClipboardContent content;
@@ -108,6 +112,7 @@ public class ProjectController implements Initializable {
 	private RepositoryService repositoryImpl;
 	private UserService userImpl;
 	private JPanel panel;
+	private final XYChart.Series<String, Integer> series = new XYChart.Series<>();
 
 	public static ProjectController getInstance() {
 		if (instance == null) {
@@ -153,7 +158,7 @@ public class ProjectController implements Initializable {
 		if (vo != null) {
 			// set description
 			String str = vo.getDescription();
-			int size = 100;
+			int size = 90;
 			int line = str.length() / size;
 			String result = "";
 			int i = 0;
@@ -179,7 +184,7 @@ public class ProjectController implements Initializable {
 
 			// raderchart
 			RepositoryRateVO ratevo = repositoryImpl.showReposRate(vo.getFull_name());
-			if(ratevo!=null) {
+			if (ratevo != null) {
 				createRader(ratevo.getRates());
 			}
 
@@ -205,6 +210,16 @@ public class ProjectController implements Initializable {
 				collaboratorColumn.setCellFactory(new CollaboratorCellFactory());
 				collaboratorColumn.setCellValueFactory(cellData -> cellData.getValue().getProperty());
 			}
+			// areaChart
+			CodeFrequencyVO cv = repositoryImpl.getCodeFrequency(vo.getFull_name());
+			int[] data = cv.getData();
+			String[] time = cv.getTime();
+
+			for (int j = 0; j < data.length; j++) {
+				series.getData().add(new XYChart.Data<String, Integer>(time[j], data[j]));
+			}
+			areaChart.getData().add(series);
+
 		}
 	}
 
@@ -227,7 +242,7 @@ public class ProjectController implements Initializable {
 			protected Void call() throws Exception {
 				panel = RaderChartGenerator.getInstance().createPanel(dataset);
 				panel.validate();
-				panel.setPreferredSize(new Dimension(330,330));
+				panel.setPreferredSize(new Dimension(330, 330));
 
 				updateProgress(1, 1);
 				return null;
@@ -238,7 +253,7 @@ public class ProjectController implements Initializable {
 
 		pin.progressProperty().addListener((ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
 			if (new_val.intValue() == 1) {
-				if(panel!=null){
+				if (panel != null) {
 					swingNode.setContent(panel);
 					raderPane.getChildren().clear();
 					raderPane.getChildren().add(swingNode);
@@ -247,45 +262,47 @@ public class ProjectController implements Initializable {
 		});
 	}
 
-	private class ContributorCellFactory implements Callback<TableColumn<ContributorVO, String>, TableCell<ContributorVO, String>> {
+	private class ContributorCellFactory
+			implements Callback<TableColumn<ContributorVO, String>, TableCell<ContributorVO, String>> {
 
 		@Override
 		public TableCell<ContributorVO, String> call(TableColumn<ContributorVO, String> arg0) {
-			 TextFieldTableCell<ContributorVO, String> cell = new TextFieldTableCell<>();
-		        cell.setOnMouseClicked((MouseEvent t) -> {
-		            if (t.getClickCount() == 2) {
-		            	String temp = cell.getText();
-		            	if(temp!=null) {
-		            		HandleBack.getInstance().setUserBack(BackType.PROJECT,projectNameLabel.getText());
-		            		MainController.getInstance().setGroup("Ui_UserPanel.fxml");
-		    				fullVO = userImpl.getUser(temp);
-		    				if(fullVO!=null)
-		    					UserController.getInstance().setVO(fullVO);
-		            	}
-		            }
-		        });
-		        return cell;
+			TextFieldTableCell<ContributorVO, String> cell = new TextFieldTableCell<>();
+			cell.setOnMouseClicked((MouseEvent t) -> {
+				if (t.getClickCount() == 2) {
+					String temp = cell.getText();
+					if (temp != null) {
+						HandleBack.getInstance().setUserBack(BackType.PROJECT, projectNameLabel.getText());
+						MainController.getInstance().setGroup("Ui_UserPanel.fxml");
+						fullVO = userImpl.getUser(temp);
+						if (fullVO != null)
+							UserController.getInstance().setVO(fullVO);
+					}
+				}
+			});
+			return cell;
 		}
 	}
 
-	private class CollaboratorCellFactory implements Callback<TableColumn<CollaboratorVO, String>, TableCell<CollaboratorVO, String>> {
+	private class CollaboratorCellFactory
+			implements Callback<TableColumn<CollaboratorVO, String>, TableCell<CollaboratorVO, String>> {
 
 		@Override
 		public TableCell<CollaboratorVO, String> call(TableColumn<CollaboratorVO, String> arg0) {
-			 TextFieldTableCell<CollaboratorVO, String> cell = new TextFieldTableCell<>();
-		        cell.setOnMouseClicked((MouseEvent t) -> {
-		            if (t.getClickCount() == 2) {
-		            	String temp = cell.getText();
-		            	if(temp!=null) {
-		            		HandleBack.getInstance().setUserBack(BackType.PROJECT,projectNameLabel.getText());
-		            		MainController.getInstance().setGroup("Ui_UserPanel.fxml");
-		    				fullVO = userImpl.getUser(temp);
-		    				if(fullVO!=null)
-		    					UserController.getInstance().setVO(fullVO);
-		            	}
-		            }
-		        });
-		        return cell;
+			TextFieldTableCell<CollaboratorVO, String> cell = new TextFieldTableCell<>();
+			cell.setOnMouseClicked((MouseEvent t) -> {
+				if (t.getClickCount() == 2) {
+					String temp = cell.getText();
+					if (temp != null) {
+						HandleBack.getInstance().setUserBack(BackType.PROJECT, projectNameLabel.getText());
+						MainController.getInstance().setGroup("Ui_UserPanel.fxml");
+						fullVO = userImpl.getUser(temp);
+						if (fullVO != null)
+							UserController.getInstance().setVO(fullVO);
+					}
+				}
+			});
+			return cell;
 		}
 	}
 }

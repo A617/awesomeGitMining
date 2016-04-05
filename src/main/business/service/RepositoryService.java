@@ -2,6 +2,7 @@ package main.business.service;
 
 import java.util.List;
 
+import main.vo.CodeFrequencyVO;
 import main.vo.CreatedTimeStatisticsVO;
 import main.vo.ForksStatisticsVO;
 import main.vo.LanguageStatisticsVO;
@@ -105,4 +106,9 @@ public interface RepositoryService {
 	 * @return the searched repository page numbers(10 repositories one page)
 	 */
 	public abstract int getSearchPageNums(String id);
+	/**
+	 * @return the code frequency of the repository
+	 * @param id
+	 */
+	public abstract CodeFrequencyVO getCodeFrequency(String id);
 }

@@ -57,7 +57,11 @@
     -fx-background-radius: 0;
     -fx-background-position: left center;
 }
-
+.default-color0.chart-area-symbol { 
+	visibility: hidden;
+}
+.default-color0.chart-series-area-line { -fx-stroke: #70CF9F; }
+.default-color0.chart-series-area-fill { -fx-fill: #70CF9F; }
 .table-view:row-selection{
     -fx-background-color: transparent;
 }

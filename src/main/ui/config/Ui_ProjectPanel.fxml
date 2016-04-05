@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.shape.*?>
@@ -13,27 +14,27 @@
    <children>
       <AnchorPane id="back" layoutX="-58.0" layoutY="-1.0" prefHeight="720.0" prefWidth="1366.0">
          <children>
-            <Label fx:id="projectNameLabel" layoutX="38.0" layoutY="44.0" prefHeight="58.0" prefWidth="849.0" text="Label" textFill="#3dabcd">
+            <Label fx:id="projectNameLabel" layoutX="29.0" layoutY="43.0" prefHeight="58.0" prefWidth="625.0" text="Label" textFill="#3dabcd">
                <font>
-                  <Font name="System Bold Italic" size="45.0" />
+                  <Font name="System Bold Italic" size="30.0" />
                </font>
             </Label>
-            <Label fx:id="profile" layoutX="39.0" layoutY="80.0" prefHeight="81.0" prefWidth="584.0" text="description" textFill="#615c5c">
+            <Label fx:id="profile" layoutX="29.0" layoutY="101.0" prefHeight="81.0" prefWidth="609.0" text="description" textFill="#615c5c">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label layoutX="38.0" layoutY="224.0" text="Repository Statistics">
+            <Label layoutX="35.0" layoutY="252.0" text="Repository Statistics">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TableView fx:id="contributorTable" layoutX="38.0" layoutY="516.0" prefHeight="345.0" prefWidth="166.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="1078.0" AnchorPane.topAnchor="485.0">
+            <TableView fx:id="contributorTable" layoutX="44.0" layoutY="386.0" prefHeight="345.0" prefWidth="166.0" AnchorPane.bottomAnchor="119.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="1072.0" AnchorPane.topAnchor="386.0">
                <columns>
                   <TableColumn fx:id="contributorColumn" prefWidth="249.0" text="contributors" />
                </columns>
             </TableView>
-            <TableView fx:id="collaboratorTable" layoutX="372.0" layoutY="485.0" prefHeight="199.0" prefWidth="250.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="372.0" AnchorPane.rightAnchor="744.0" AnchorPane.topAnchor="485.0">
+            <TableView fx:id="collaboratorTable" layoutX="346.0" layoutY="386.0" prefHeight="199.0" prefWidth="250.0" AnchorPane.bottomAnchor="119.0" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="770.0" AnchorPane.topAnchor="386.0">
                <columns>
                   <TableColumn fx:id="collaboratorColumn" prefWidth="249.0" text="collaborators" />
                </columns>
@@ -93,6 +94,78 @@
             </Label>
             <StackPane fx:id="raderPane" layoutX="1006.0" layoutY="178.0" maxHeight="340.0" maxWidth="340.0" prefHeight="340.0" prefWidth="340.0" />
             <StackPane fx:id="piePane" layoutX="640.0" layoutY="178.0" maxHeight="340.0" maxWidth="340.0" prefHeight="340.0" prefWidth="340.0" />
+            <VBox layoutX="37.0" layoutY="298.0" prefHeight="47.0" prefWidth="63.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="1266.0" AnchorPane.topAnchor="298.0">
+               <children>
+                  <Label fx:id="starNum" layoutX="692.0" layoutY="102.0" text="starNum">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label fx:id="stars" layoutX="707.0" layoutY="135.0" prefHeight="29.0" prefWidth="60.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+               </children>
+            </VBox>
+            <VBox layoutX="127.0" layoutY="298.0" prefHeight="47.0" prefWidth="60.0" AnchorPane.leftAnchor="127.0" AnchorPane.rightAnchor="1179.0">
+               <children>
+                  <Label fx:id="forkNum" layoutX="793.0" layoutY="102.0" prefHeight="19.0" prefWidth="79.0" text="forkNum">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label fx:id="forks" layoutX="815.0" layoutY="135.0" prefHeight="30.0" prefWidth="52.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+               </children>
+            </VBox>
+            <Button fx:id="btn_clone" layoutX="29.0" layoutY="194.0" mnemonicParsing="false" text="Clone" />
+            <TextField fx:id="url" layoutX="88.0" layoutY="194.0" prefHeight="26.0" prefWidth="524.0" />
+            <VBox layoutX="218.0" layoutY="298.0" prefHeight="47.0" prefWidth="95.0">
+               <children>
+                  <Label fx:id="subNum" layoutX="692.0" layoutY="102.0" text="subNum">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label fx:id="subs" layoutX="707.0" layoutY="135.0" prefHeight="31.0" prefWidth="76.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+               </children>
+            </VBox>
+            <VBox layoutX="334.0" layoutY="298.0" prefHeight="47.0" prefWidth="98.0">
+               <children>
+                  <Label fx:id="conNum" layoutX="793.0" layoutY="102.0" text="conNum">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label layoutX="815.0" layoutY="135.0" prefHeight="29.0" prefWidth="95.0" text="contributers">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+               </children>
+            </VBox>
+            <VBox layoutX="446.0" layoutY="298.0" prefHeight="47.0" prefWidth="116.0">
+               <children>
+                  <Label fx:id="coNum" layoutX="793.0" layoutY="102.0" text="coNum">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label layoutX="815.0" layoutY="135.0" prefHeight="28.0" prefWidth="118.0" text="collaborators">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+               </children>
+            </VBox>
+            <StackPane fx:id="raderPane" layoutX="1006.0" layoutY="24.0" maxHeight="340.0" maxWidth="340.0" prefHeight="340.0" prefWidth="340.0" />
+            <StackPane fx:id="piePane" layoutX="653.0" layoutY="24.0" maxHeight="340.0" maxWidth="340.0" prefHeight="340.0" prefWidth="340.0" />
+            <AreaChart id="areaChart" fx:id="areaChart" layoutX="631.0" layoutY="386.0" prefHeight="311.0" prefWidth="699.0" title="Addition">
+              <xAxis>
+                <CategoryAxis label="weeks" side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </AreaChart>
          </children></AnchorPane>
       <Button fx:id="btn_back" layoutX="-34.0" layoutY="10.0" mnemonicParsing="false" text="back" />
    </children>
