@@ -79,6 +79,7 @@ public class ProjectController implements Initializable {
 	private Label coNum;
 	@FXML
 	private Label stars;
+
 	@FXML
 	private Label forks;
 	@FXML
@@ -134,9 +135,12 @@ public class ProjectController implements Initializable {
 		repositoryImpl = RepositoryServiceImpl.getInstance();
 		userImpl = UserServiceImpl.getInstance();
 
-		labelInit(stars, "Star_32.png");
-		labelInit(forks, "forks.png");
-		labelInit(subs, "subs.png");
+		labelInit(stars,"Star_32.png");
+		labelInit(forks,"forks.png");
+		labelInit(subs,"subs.png");
+		labelInit(cons,"cons.png");
+		labelInit(collas,"collas.png");
+
 		clipboard = Clipboard.getSystemClipboard();
 		content = new ClipboardContent();
 		btn_clone.setOnAction((e) -> {

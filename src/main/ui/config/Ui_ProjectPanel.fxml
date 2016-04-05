@@ -83,7 +83,7 @@
                      <font>
                         <Font size="14.0" />
                      </font></Label>
-                  <Label layoutX="815.0" layoutY="135.0" prefHeight="29.0" prefWidth="95.0" text="contributers">
+                  <Label fx:id="cons" layoutX="815.0" layoutY="135.0" prefHeight="29.0" prefWidth="95.0">
                      <font>
                         <Font size="14.0" />
                      </font></Label>
@@ -95,7 +95,7 @@
                      <font>
                         <Font size="14.0" />
                      </font></Label>
-                  <Label layoutX="815.0" layoutY="135.0" prefHeight="28.0" prefWidth="118.0" text="collaborators">
+                  <Label fx:id="collas" layoutX="815.0" layoutY="135.0" prefHeight="28.0" prefWidth="118.0">
                      <font>
                         <Font size="14.0" />
                      </font></Label>
