@@ -36,6 +36,7 @@ public class MySpiderChart extends SpiderWebPlot{
 	public MySpiderChart(CategoryDataset categoryDataset) {
 		super(categoryDataset);
 		this.setSeriesPaint(0,Color.PINK);
+		this.setMaxValue(8);
 	}
 	
 	@Override
