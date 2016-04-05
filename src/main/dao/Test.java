@@ -1,5 +1,6 @@
 package main.dao;
 
+import java.io.IOException;
 import java.util.List;
 
 public class Test {
@@ -8,11 +9,17 @@ public class Test {
 
 		long startTime = System.nanoTime();
 		
-		List<String> list=DataFactory.getRepoDataInstance().getReposByLanguage(0);
-		for(String i:list){
-			System.out.println(i);
+		List<Integer> list;
+		try {
+			list = DataFactory.getRepoDataInstance().getCodeFrequency("sc89703312-org/-");
+			for(int i:list){
+				System.out.println(i);
+			}
+			System.out.println(list.size());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		System.out.println(list.size());
 		
 		
 /*

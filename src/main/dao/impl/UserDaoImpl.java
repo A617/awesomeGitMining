@@ -16,7 +16,7 @@ public class UserDaoImpl implements IUserDao {
 
 	/* 所有用户列表 */
 	private List<String> userList;
-	/*用户昵称列表*/
+	/* 用户昵称列表 */
 	private List<String> nameList;
 	/* 所有用户位置列表 */
 	private List<String> locationList;
@@ -42,12 +42,13 @@ public class UserDaoImpl implements IUserDao {
 	private List<Integer> followingList;
 	/* 用户粉丝人数 */
 	private List<Integer> followersList;
-	/*用户头像地址*/
+	/* 用户头像地址 */
 	private List<String> avatar_urlList;
-	
+
 	private int length;
 
 	public UserDaoImpl() {
+		long startTime = System.nanoTime();
 
 		String path = "src/main/data/gitmining-api/";
 		this.userList = DataInitHelper.getList(path + "user_login.txt");
@@ -62,12 +63,14 @@ public class UserDaoImpl implements IUserDao {
 		this.followersList = DataInitHelper.getIntList(path + "user_followers.txt");
 		this.followingList = DataInitHelper.getIntList(path + "user_following.txt");
 		this.createdTimeList = DataInitHelper.getList(path + "user-createdTime.txt");
-		this.nameList = DataInitHelper.getList(path+"user_name.txt");
-		this.avatar_urlList = DataInitHelper.getList(path+"user_avatar_url.txt");
-		
+		this.nameList = DataInitHelper.getList(path + "user_name.txt");
+		this.avatar_urlList = DataInitHelper.getList(path + "user_avatar_url.txt");
+
 		length = userList.size();
 
 		System.out.println("UserDaoImpl initialized!");
+		long endTime = System.nanoTime();
+		System.out.println("Took " + (endTime - startTime) + " ns");
 	}
 
 	@Override
@@ -100,8 +103,8 @@ public class UserDaoImpl implements IUserDao {
 	public Image getAvatar(String login) throws IOException {
 		int index = userList.indexOf(login);
 
-		InputStream is=null;
-		if(index!=-1){
+		InputStream is = null;
+		if (index != -1) {
 			is = HttpRequest.sendGetforStream(avatar_urlList.get(index));
 		}
 		return is == null ? null : new Image(is, 200, 200, true, false);
@@ -136,7 +139,7 @@ public class UserDaoImpl implements IUserDao {
 			return null;
 		return companyList.get(index);
 	}
-	
+
 	@Override
 	public int getFollowers(String login) {
 		int index = userList.indexOf(login);
@@ -167,7 +170,6 @@ public class UserDaoImpl implements IUserDao {
 	@Override
 	public int[] getCreatedTimeStatistics() {
 
-
 		String[] years = Statistics.year;
 		int[] result = new int[years.length];
 		int year;
@@ -190,7 +192,7 @@ public class UserDaoImpl implements IUserDao {
 		int[] result = new int[list.length];
 
 		for (String company : companyList) {
-			for (int i=0;i<list.length;i++) {
+			for (int i = 0; i < list.length; i++) {
 				if (company.toLowerCase().contains(list[i].toLowerCase()))
 					result[i]++;
 			}
@@ -201,10 +203,10 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public List<Integer> getRepoCreatedStatistics() {
-		
+
 		List<Integer> result = new ArrayList<Integer>();
 		Iterator<List<String>> it = reposList.iterator();
-		while(it.hasNext()){
+		while (it.hasNext()) {
 			result.add(it.next().size());
 		}
 		return result;
@@ -214,20 +216,38 @@ public class UserDaoImpl implements IUserDao {
 	public List<Integer> getRepoCollabortedStatistics() {
 		List<Integer> result = new ArrayList<Integer>();
 		Iterator<List<String>> it = collaborationsList.iterator();
-		while(it.hasNext()){
-			result.add(it.next().size());
-		}
-		return result;
-	}
-	
-	@Override
-	public List<Integer> getRepoContributedStatistics() {
-		List<Integer> result = new ArrayList<Integer>();
-		Iterator<List<String>> it = contrbutionsList.iterator();
-		while(it.hasNext()){
+		while (it.hasNext()) {
 			result.add(it.next().size());
 		}
 		return result;
 	}
 
+	@Override
+	public List<Integer> getRepoContributedStatistics() {
+		List<Integer> result = new ArrayList<Integer>();
+		Iterator<List<String>> it = contrbutionsList.iterator();
+		while (it.hasNext()) {
+			result.add(it.next().size());
+		}
+		return result;
+	}
+
+	
+	@Override
+	public List<String> getLanguageSkills(String login) {
+		
+		int index = userList.indexOf(login);
+		
+		if (index != -1) {
+			
+			String path = "src/main/data/gitmining-api/";
+			List<List<String>> languageList = DataInitHelper.getListList(path + "user_languages.txt");
+			return languageList.get(index);
+			
+		} else {
+			
+			return null;
+			
+		}
+	}
 }

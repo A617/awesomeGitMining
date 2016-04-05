@@ -3,12 +3,16 @@ package main.dao.impl;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import main.dao.HttpRequest;
 import main.dao.JsonUtil;
 import main.dao.entity.Repository;
 import main.dao.entity.Statistics;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 public class RepoDaoImpl implements IRepoDao {
 
@@ -34,6 +38,7 @@ public class RepoDaoImpl implements IRepoDao {
 	private List<String> repoAll;
 
 	public RepoDaoImpl() {
+		long startTime = System.nanoTime();
 
 		String path = "src/main/data/gitmining-api/";
 		this.repoList = DataInitHelper.getList(path + "repo_fullname.txt");
@@ -49,6 +54,8 @@ public class RepoDaoImpl implements IRepoDao {
 		this.languageList = DataInitHelper.getList(path + "repo-language.txt");
 
 		System.out.println("RepoDaoImpl initialized!");
+		long endTime = System.nanoTime();
+		System.out.println("Took " + (endTime - startTime) + " ns");
 
 	}
 
@@ -174,6 +181,24 @@ public class RepoDaoImpl implements IRepoDao {
 		}
 
 		return result;
+	}
+	
+	
+	@Override
+	public List<Integer> getCodeFrequency(String name) throws IOException{
+	
+		List<Integer> list = new ArrayList<>();
+		
+		String jsonStr = HttpRequest.sendGetWithAuth("api.github.com/repos/",name+"/stats/code_frequency");
+		JSONArray ja = JSONArray.fromObject(jsonStr);
+
+		Iterator<JSONArray> it = ja.iterator();
+		while (it.hasNext()) {
+			JSONArray line = it.next();
+			list.add(line.getInt(1)+line.getInt(2));
+		}
+		
+		return list;
 	}
 
 }

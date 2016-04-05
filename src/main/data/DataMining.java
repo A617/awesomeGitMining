@@ -12,14 +12,19 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javafx.geometry.Pos;
 import main.dao.DataFactory;
 import main.dao.HttpRequest;
 import main.dao.JsonUtil;
 import main.dao.entity.Repository;
+import main.dao.impl.DataInitHelper;
+import main.dao.impl.IRepoDao;
+import main.dao.impl.IUserDao;
 import net.sf.json.JSONException;
 
 public class DataMining {
@@ -30,23 +35,9 @@ public class DataMining {
 
 		long startTime = System.nanoTime();
 
-		List<String> names = DataFactory.getRepoDataInstance().getAllRepo();
-		List<Integer> stars = new ArrayList<>();
-		List<Integer> forks = new ArrayList<>();
-		for(String name:names){
-			Repository po = null;
-			try {
-				po = DataFactory.getRepoDataInstance().getRepository(name);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			stars.add(po.getStargazers_count());
-			forks.add(po.getForks_count());
-		}
 		
-		writeToTxt(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_stars.txt", stars);
-		writeToTxt(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/repo_forks.txt", forks);
+		getUserLanguages(new File("").getAbsolutePath() + "/src/main/data/gitmining-api/user_languages.txt");
+		
 		
 		long endTime = System.nanoTime();
 		System.out.println("Took " + (endTime - startTime) + " ns");
@@ -400,5 +391,63 @@ public class DataMining {
 						e.printStackTrace();
 					}
 				}
+	}
+	
+	private static void getUserLanguages(String savepath){
+		
+		String path = "src/main/data/gitmining-api/";
+		List<String> repoList = DataInitHelper.getList(path + "repo_fullname.txt");
+		List<String> languageList = DataInitHelper.getList(path + "repo-language.txt");
+		List<List<String>> collaborationsList = DataInitHelper.getListList(path + "user-collaborated.txt");
+		List<List<String>> contrbutionsList = DataInitHelper.getListList(path + "user-contributed.txt");
+		List<List<String>> reposList = DataInitHelper.getListList(path + "user-repos.txt");
+		
+		
+		
+		FileWriter fw = null;
+		BufferedWriter writer = null;
+		File file = new File(savepath);
+
+		try {
+			fw = new FileWriter(file);
+			writer = new BufferedWriter(fw);
+
+			for(int i =0;i<contrbutionsList.size();i++){
+				Set<String> set = new HashSet<>();
+				
+				for(String repo: collaborationsList.get(i)){
+					if(repoList.contains(repo))
+					set.add(languageList.get(repoList.indexOf(repo)));
+				}
+				
+				for(String repo: contrbutionsList.get(i)){
+					if(repoList.contains(repo))
+					set.add(languageList.get(repoList.indexOf(repo)));
+				}
+				
+				for(String repo: reposList.get(i)){
+					if(repoList.contains(repo))
+					set.add(languageList.get(repoList.indexOf(repo)));
+				}
+				
+				for(String language: set){
+					writer.write(language+" ");
+				}
+				writer.newLine();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				writer.flush();
+				writer.close();
+				fw.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
 	}
 }

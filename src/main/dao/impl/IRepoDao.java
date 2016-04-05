@@ -58,4 +58,11 @@ public interface IRepoDao {
 	 * @return
 	 */
 	public List<String> getReposByLanguage(int i);
+	
+	/**
+	 * 获取一个项目每周的代码贡献量
+	 * @param name
+	 * @return 从项目创建时间到即时
+	 */
+	public List<Integer> getCodeFrequency(String name) throws IOException;
 }

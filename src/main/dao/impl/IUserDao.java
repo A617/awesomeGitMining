@@ -111,5 +111,5 @@ public interface IUserDao {
 	 */
 	public List<Integer> getRepoContributedStatistics();
 	
-	
+	public List<String> getLanguageSkills(String login);
 }
