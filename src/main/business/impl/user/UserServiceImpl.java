@@ -271,4 +271,13 @@ public class UserServiceImpl implements UserService {
 		return 0;
 	}
 
+	@Override
+	public List<String> getLanguageSkills(String login) {
+		List<String> result = new ArrayList<String>();
+		if (daoImpl != null) {
+			result = daoImpl.getLanguageSkills(login);
+		}
+		return result;
+	}
+
 }

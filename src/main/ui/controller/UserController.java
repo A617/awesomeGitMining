@@ -22,6 +22,10 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.util.Callback;
 import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.impl.user.UserServiceImpl;
@@ -54,17 +58,17 @@ public class UserController implements Initializable {
 	@FXML
 	private TableView<Contri_ProVO> Contri_Pro_View;
 	@FXML
-	private TableColumn<Contri_ProVO, String> Contri_Pro;// 濉叆姝ょ敤鎴疯础鐚殑椤圭洰
+	private TableColumn<Contri_ProVO, String> Contri_Pro;
 	@FXML
 	private TableView<Crea_ProVO> Crea_Pro_View;
 	@FXML
-	private TableColumn<Crea_ProVO, String> Crea_Pro;// 濉叆姝ょ敤鎴峰垱閫犵殑椤圭洰
+	private TableColumn<Crea_ProVO, String> Crea_Pro;
 	@FXML
 	private TableView<Colla_ProVO> Colla_Pro_View;
 	@FXML
-	private TableColumn<Colla_ProVO, String> Colla_Pro;// 濉叆姝ょ敤鎴峰弬涓庤繃鐨勯」鐩�
+	private TableColumn<Colla_ProVO, String> Colla_Pro;
 	@FXML
-	private Label name;// 鐢ㄦ埛鐨勫悕瀛�
+	private Label name;
 	@FXML
 	private Label location;
 	@FXML
@@ -74,13 +78,15 @@ public class UserController implements Initializable {
 	@FXML
 	private Label blog;
 	@FXML
-	private Label image;// 鐢ㄦ埛澶村儚
+	private Label image;
 	@FXML
-	private Label followers;// 绮変笣鏁�
+	private Label followers;
 	@FXML
-	private Label followings;// 鍏虫敞鏁�
+	private Label followings;
 	@FXML
-	private Label user_eva_img;// 鐢ㄦ埛璇︾粏淇℃伅鍒嗘瀽闆疯揪鍥�
+	private StackPane user_eva;
+	@FXML
+	private FlowPane languages;
 
 	List<String> text1= new ArrayList<String>();
 	List<String> text2;
@@ -88,6 +94,7 @@ public class UserController implements Initializable {
 	Image img;
 	private RepositoryService repositoryImpl;
 	private RepositoryVO repository;
+	private UserService userImpl;
 
 	public static UserController getInstance() {
 		if (instance == null) {
@@ -101,6 +108,7 @@ public class UserController implements Initializable {
 		// TODO Auto-generated method stub
 		instance = this;
 		repositoryImpl = RepositoryServiceImpl.getInstance();
+		userImpl = UserServiceImpl.getInstance();
 
 		user_back.setOnAction((e) -> {
 			HandleBack.getInstance().handleUserBack();
@@ -193,6 +201,7 @@ public class UserController implements Initializable {
 
 		// 鏄剧ず澶村儚
 		showAvatar(vo.getLogin());
+		setLanguages(vo.getLogin());
 	}
 
 	// 鍦ㄥ姞杞藉ご鍍忕殑鍚屾椂鏄剧ず杩涘害鏉�
@@ -292,5 +301,16 @@ public class UserController implements Initializable {
 		        });
 		        return cell;
 		}	
+	}
+	
+	private void setLanguages(String login) {
+		List<String> language = userImpl.getLanguageSkills(login);
+		for (int i = 0;i < language.size();i++) {
+			Label label = new Label();
+			label.setFont(Font.font("Arial",FontWeight.BOLD, 17));
+			label.setText(language.get(i));
+			label.setPrefSize(110,30);
+			languages.getChildren().add(label);
+		}
 	}
 }

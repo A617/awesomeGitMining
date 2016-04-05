@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
@@ -12,41 +13,37 @@
       <AnchorPane prefHeight="720.0" prefWidth="1366.0">
          <children>
             <Label fx:id="image" layoutX="38.0" layoutY="119.0" prefHeight="200.0" prefWidth="200.0" />
-            <Label layoutX="345.0" layoutY="119.0" text="Evaluation">
+            <Label layoutX="335.0" layoutY="249.0" text="Evaluation">
                <font>
                   <Font name="System Bold" size="23.0" />
                </font>
             </Label>
-            <Label layoutX="615.0" layoutY="225.0" text="Total" textFill="#00aaaa">
+            <Label fx:id="Tot_num" layoutX="614.0" layoutY="330.0" text="Total" textFill="#00aaaa">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <VBox layoutX="414.0" layoutY="380.0" />
             <Button fx:id="user_back" layoutX="-34.0" layoutY="10.0" mnemonicParsing="false" text="back" />
-            <Label fx:id="Tot_num" layoutX="615.0" layoutY="186.0" text="Tot_num">
+            <Label layoutX="598.0" layoutY="297.0" text="Tot_num">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="Eff_num" layoutX="336.0" layoutY="330.0" text="Efficiency" textFill="#00aaaa">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="347.0" layoutY="225.0" text="Efficiency" textFill="#00aaaa">
+            <Label layoutX="339.0" layoutY="296.0" text="Eff_num">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="qua_num" layoutX="470.0" layoutY="330.0" text="Quantity" textFill="#00aaaa">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="Eff_num" layoutX="347.0" layoutY="186.0" text="Eff_num">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <VBox layoutX="508.0" layoutY="268.0" />
-            <VBox layoutX="614.0" layoutY="268.0" />
-            <Label layoutX="481.0" layoutY="225.0" text="Quantity" textFill="#00aaaa">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <VBox layoutX="328.0" layoutY="380.0" />
             <Label fx:id="userNameLabel" layoutX="38.0" layoutY="44.0" prefHeight="58.0" prefWidth="487.0" text="Username" textFill="#3dabcd">
                <font>
                   <Font name="System Bold Italic" size="45.0" />
@@ -76,9 +73,9 @@
                   </Label>
                </children>
             </Group>
-            <Label fx:id="qua_num" layoutX="481.0" layoutY="186.0" text="qua_num">
+            <Label layoutX="470.0" layoutY="295.0" prefHeight="23.0" prefWidth="79.0" text="qua_num">
                <font>
-                  <Font size="16.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
             </Label>
             <Group layoutX="78.0" layoutY="62.0">
@@ -165,7 +162,16 @@
                   </TableView>
                </children>
             </AnchorPane>
-            <Label fx:id="user_eva_img" layoutX="308.0" layoutY="268.0" prefHeight="398.0" prefWidth="487.0" />
+            <StackPane fx:id="user_eva" layoutX="339.0" layoutY="374.0" prefHeight="324.0" prefWidth="593.0" />
+            <Label layoutX="332.0" layoutY="119.0" text="Languages">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <FlowPane fx:id="languages" hgap="10.0" layoutX="332.0" layoutY="152.0" prefHeight="90.0" prefWidth="590.0" vgap="20.0">
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding></FlowPane>
          </children>
       </AnchorPane>
    </children>

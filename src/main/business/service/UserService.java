@@ -100,4 +100,10 @@ public interface UserService {
 	 * @return user collaborate repository numbers statistics
 	 */
 	public abstract UserCollaReposNumVO getUserCollaReposNum();
+	/**
+	 * 
+	 * @param login
+	 * @return the list of languages the user knows
+	 */
+	public abstract List<String> getLanguageSkills(String login);
 }
