@@ -45,7 +45,7 @@
                      <font>
                         <Font size="14.0" />
                      </font></Label>
-                  <Label layoutX="707.0" layoutY="135.0" prefHeight="29.0" prefWidth="60.0" text="stars">
+                  <Label fx:id="stars" layoutX="707.0" layoutY="135.0" prefHeight="29.0" prefWidth="60.0">
                      <font>
                         <Font size="14.0" />
                      </font></Label>
@@ -57,7 +57,7 @@
                      <font>
                         <Font size="14.0" />
                      </font></Label>
-                  <Label layoutX="815.0" layoutY="135.0" prefHeight="30.0" prefWidth="52.0" text="forks">
+                  <Label fx:id="forks" layoutX="815.0" layoutY="135.0" prefHeight="30.0" prefWidth="52.0">
                      <font>
                         <Font size="14.0" />
                      </font></Label>
@@ -71,7 +71,7 @@
                      <font>
                         <Font size="14.0" />
                      </font></Label>
-                  <Label layoutX="707.0" layoutY="135.0" prefHeight="31.0" prefWidth="76.0" text="subscribers">
+                  <Label fx:id="subs" layoutX="707.0" layoutY="135.0" prefHeight="31.0" prefWidth="76.0">
                      <font>
                         <Font size="14.0" />
                      </font></Label>
