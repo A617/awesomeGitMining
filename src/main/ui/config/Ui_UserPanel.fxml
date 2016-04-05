@@ -168,7 +168,7 @@
                   <Font name="System Bold" size="23.0" />
                </font>
             </Label>
-            <FlowPane fx:id="languages" hgap="10.0" layoutX="332.0" layoutY="152.0" prefHeight="90.0" prefWidth="590.0" vgap="20.0">
+            <FlowPane fx:id="languages" hgap="5.0" layoutX="332.0" layoutY="152.0" prefHeight="90.0" prefWidth="580.0" vgap="20.0">
                <padding>
                   <Insets bottom="5.0" top="5.0" />
                </padding></FlowPane>

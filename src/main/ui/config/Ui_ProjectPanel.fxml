@@ -39,68 +39,58 @@
                   <TableColumn fx:id="collaboratorColumn" prefWidth="249.0" text="collaborators" />
                </columns>
             </TableView>
-            <VBox layoutX="37.0" layoutY="298.0" prefHeight="47.0" prefWidth="63.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="1266.0" AnchorPane.topAnchor="298.0">
-               <children>
-                  <Label fx:id="starNum" layoutX="692.0" layoutY="102.0" text="starNum">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Label>
-                  <Label fx:id="stars" layoutX="707.0" layoutY="135.0" prefHeight="29.0" prefWidth="60.0">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Label>
-               </children>
-            </VBox>
-            <VBox layoutX="127.0" layoutY="298.0" prefHeight="47.0" prefWidth="60.0" AnchorPane.leftAnchor="127.0" AnchorPane.rightAnchor="1179.0">
-               <children>
-                  <Label fx:id="forkNum" layoutX="793.0" layoutY="102.0" prefHeight="19.0" prefWidth="79.0" text="forkNum">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Label>
-                  <Label fx:id="forks" layoutX="815.0" layoutY="135.0" prefHeight="30.0" prefWidth="52.0">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Label>
-               </children>
-            </VBox>
+            <Label fx:id="stars" layoutX="37.0" layoutY="298.0" prefHeight="29.0" prefWidth="49.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="starNum" layoutX="80.0" layoutY="304.0" text="star">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="forkNum" layoutX="179.0" layoutY="304.0" prefHeight="19.0" prefWidth="35.0" text="fork">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="forks" layoutX="134.0" layoutY="298.0" prefHeight="29.0" prefWidth="50.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
             <Button fx:id="btn_clone" layoutX="29.0" layoutY="194.0" mnemonicParsing="false" text="Clone" />
             <TextField fx:id="url" layoutX="88.0" layoutY="194.0" prefHeight="26.0" prefWidth="524.0" />
-            <VBox layoutX="218.0" layoutY="298.0" prefHeight="47.0" prefWidth="95.0">
-               <children>
-                  <Label fx:id="subNum" layoutX="692.0" layoutY="102.0" text="subNum">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Label>
-                  <Label fx:id="subs" layoutX="707.0" layoutY="135.0" prefHeight="31.0" prefWidth="76.0">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Label>
-               </children>
-            </VBox>
-            <VBox layoutX="334.0" layoutY="298.0" prefHeight="47.0" prefWidth="98.0">
-               <children>
-                  <Label fx:id="conNum" layoutX="793.0" layoutY="102.0" text="conNum">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Label>
-                  <Label fx:id="cons" layoutX="815.0" layoutY="135.0" prefHeight="29.0" prefWidth="95.0">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Label>
-               </children>
-            </VBox>
-            <VBox layoutX="446.0" layoutY="298.0" prefHeight="47.0" prefWidth="116.0">
-               <children>
-                  <Label fx:id="coNum" layoutX="793.0" layoutY="102.0" text="coNum">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Label>
-                  <Label fx:id="collas" layoutX="815.0" layoutY="135.0" prefHeight="28.0" prefWidth="118.0">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Label>
-               </children>
-            </VBox>
+            <Label fx:id="subs" layoutX="227.0" layoutY="298.0" prefHeight="29.0" prefWidth="50.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="subNum" layoutX="288.0" layoutY="304.0" text="subN">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="conNum" layoutX="383.0" layoutY="304.0" text="conN">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="cons" layoutX="338.0" layoutY="298.0" prefHeight="29.0" prefWidth="20.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="coNum" layoutX="480.0" layoutY="304.0" text="coNu">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="collas" layoutX="432.0" layoutY="298.0" prefHeight="29.0" prefWidth="50.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
             <StackPane fx:id="raderPane" layoutX="1006.0" layoutY="24.0" maxHeight="340.0" maxWidth="340.0" prefHeight="340.0" prefWidth="340.0" />
             <StackPane fx:id="piePane" layoutX="653.0" layoutY="24.0" maxHeight="340.0" maxWidth="340.0" prefHeight="340.0" prefWidth="340.0" />
             <AreaChart id="areaChart" fx:id="areaChart" layoutX="631.0" layoutY="386.0" prefHeight="311.0" prefWidth="699.0" title="Addition">
