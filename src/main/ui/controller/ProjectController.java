@@ -3,6 +3,7 @@ package main.ui.controller;
 import java.awt.Dimension;
 import java.net.URL;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.ResourceBundle;
 
 import javax.swing.JPanel;
@@ -252,10 +253,10 @@ public class ProjectController implements Initializable {
 		});
 	}
 
-	private void createRader(Map<String, Integer> map) {
+	private void createRader(Map<String, Double> map) {
 		dataset = new DefaultCategoryDataset();
 		String group1 = "score";
-		for (Map.Entry<String, Integer> entry : map.entrySet()) {
+		for (Entry<String, Double> entry : map.entrySet()) {
 			dataset.addValue(entry.getValue(), group1, entry.getKey());
 		}
 		swingNode = new SwingNode();

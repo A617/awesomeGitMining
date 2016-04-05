@@ -189,7 +189,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 				e.printStackTrace();
 			}
 			if (po != null) {
-				Map<String, Integer> map = ScoreCalculator.getReposScore(po.getRanks());
+				Map<String, Double> map = ScoreCalculator.getReposScore(po.getRanks());
 				vo.setRates(map);
 			}
 		}
