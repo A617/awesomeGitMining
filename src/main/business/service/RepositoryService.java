@@ -95,7 +95,7 @@ public interface RepositoryService {
 	 * @param language
 	 * @return a list of RepositoryVO
 	 */
-	public abstract List<RepositoryVO> getReposByLanguage(String language);
+	public abstract List<RepositoryVO> getReposByLanguage(String language,int pageIndex);
 	/**
 	 * 
 	 * @return the repository page numbers(10 repositories one page)
@@ -106,6 +106,12 @@ public interface RepositoryService {
 	 * @return the searched repository page numbers(10 repositories one page)
 	 */
 	public abstract int getSearchPageNums(String id);
+	/**
+	 * 
+	 * @return the tag repository page numbers(10 repositories one page)
+	 */
+	public abstract int getTagPageNum();
+	
 	/**
 	 * @return the code frequency of the repository
 	 * @param id

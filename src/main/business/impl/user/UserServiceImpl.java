@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 	private UserServiceImpl() {
 		daoImpl = DataFactory.getUserDataInstance();
 		if (daoImpl != null) {
-			pageNums = (int) (daoImpl.getAllUser().size() / (1.0 * 10));
+			pageNums = (int) (daoImpl.getAllUser().size() / (1.0 * 10)) + 1;
 		}
 	}
 
@@ -265,7 +265,7 @@ public class UserServiceImpl implements UserService {
 	public int getSearchPageNums(String id) {
 		if (daoImpl != null) {
 			if (daoImpl.searchUser(id) != null) {
-				return daoImpl.searchUser(id).size();
+				return daoImpl.searchUser(id).size() / 5 + 1;
 			}
 		}
 		return 0;

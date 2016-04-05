@@ -19,9 +19,7 @@
 #headPane{
 	-fx-background-color: #67a582;
 }
-#sortPane{
-	-fx-background-color:#71af8c;
-}
+
 #headLabel:hover{
 	-fx-background-color: #5d9b78;
 }

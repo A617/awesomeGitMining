@@ -5,12 +5,15 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -36,6 +39,10 @@ public class HomeController implements Initializable {
 	private Label page;
 	@FXML
 	private Label changeStyle;
+	@FXML
+	private Group group;
+	@FXML
+	private AnchorPane listPane;
 	private VBox box;
 
 	private String styleStr = "-fx-background-color: ";
@@ -72,6 +79,7 @@ public class HomeController implements Initializable {
 		scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 		pageNum = repositoryImpl.getPageNums();
 		selectGeneral();
+		addTagListener();
 	}
 
 	@FXML
@@ -96,7 +104,7 @@ public class HomeController implements Initializable {
 
 	@FXML
 	public void selectGeneral() {
-		page.setText("1 / "+pageNum);
+		page.setText("1 / " + pageNum);
 		selectStar = false;
 		selectFork = false;
 		selectContri = false;
@@ -111,7 +119,7 @@ public class HomeController implements Initializable {
 
 	@FXML
 	public void selectStar() {
-		page.setText("1 / "+pageNum);
+		page.setText("1 / " + pageNum);
 		selectStar = true;
 		selectFork = false;
 		selectContri = false;
@@ -126,7 +134,7 @@ public class HomeController implements Initializable {
 
 	@FXML
 	public void selectFork() {
-		page.setText("1 / "+pageNum);
+		page.setText("1 / " + pageNum);
 		selectStar = false;
 		selectFork = true;
 		selectContri = false;
@@ -141,7 +149,7 @@ public class HomeController implements Initializable {
 
 	@FXML
 	public void selectContributor() {
-		page.setText("1 / "+pageNum);
+		page.setText("1 / " + pageNum);
 		selectStar = false;
 		selectFork = false;
 		selectContri = true;
@@ -153,10 +161,12 @@ public class HomeController implements Initializable {
 		contriList = repositoryImpl.showReposByContribute(0);
 		initTabPane(contriList);
 	}
+
 	@FXML
-	public void change(){
+	public void change() {
 		MainUI.getUI().changeStyle("black");
 	}
+
 	private void initTabPane(List<RepositoryVO> list) {
 		box = new VBox();
 		VBox.setVgrow(scrollPane, Priority.ALWAYS);
@@ -233,7 +243,7 @@ public class HomeController implements Initializable {
 			} else {
 				generalPage--;
 			}
-			page.setText(generalPage+1+" / "+pageNum);
+			page.setText(generalPage + 1 + " / " + pageNum);
 		}
 	}
 
@@ -246,7 +256,7 @@ public class HomeController implements Initializable {
 			} else {
 				generalPage++;
 			}
-			page.setText(generalPage+1+" / "+pageNum);
+			page.setText(generalPage + 1 + " / " + pageNum);
 		}
 	}
 
@@ -259,7 +269,7 @@ public class HomeController implements Initializable {
 			} else {
 				starPage--;
 			}
-			page.setText(starPage+1+" / "+pageNum);
+			page.setText(starPage + 1 + " / " + pageNum);
 		}
 	}
 
@@ -272,7 +282,7 @@ public class HomeController implements Initializable {
 			} else {
 				starPage++;
 			}
-			page.setText(starPage+1+" / "+pageNum);
+			page.setText(starPage + 1 + " / " + pageNum);
 		}
 	}
 
@@ -286,7 +296,7 @@ public class HomeController implements Initializable {
 			} else {
 				forkPage--;
 			}
-			page.setText(forkPage+1+" / "+pageNum);
+			page.setText(forkPage + 1 + " / " + pageNum);
 		}
 	}
 
@@ -299,7 +309,7 @@ public class HomeController implements Initializable {
 			} else {
 				forkPage++;
 			}
-			page.setText(forkPage+1+" / "+pageNum);
+			page.setText(forkPage + 1 + " / " + pageNum);
 		}
 	}
 
@@ -313,7 +323,7 @@ public class HomeController implements Initializable {
 			} else {
 				contriPage--;
 			}
-			page.setText(contriPage+1+" / "+pageNum);
+			page.setText(contriPage + 1 + " / " + pageNum);
 		}
 	}
 
@@ -326,7 +336,42 @@ public class HomeController implements Initializable {
 			} else {
 				contriPage++;
 			}
-			page.setText(contriPage+1+" / "+pageNum);
+			page.setText(contriPage + 1 + " / " + pageNum);
 		}
+	}
+
+	/**
+	 * jump to another page
+	 */
+	private void addTagListener() {
+		for (int i = 0; i < group.getChildren().size(); i++) {
+			Label label = (Label) group.getChildren().get(i);
+			label.setOnMouseReleased(new EventHandler<MouseEvent>() {
+
+				@Override
+				public void handle(MouseEvent arg0) {
+					for (int i = 0; i < group.getChildren().size(); i++) {
+						Label label = (Label) group.getChildren().get(i);
+						label.setStyle("-fx-border-radius:0;");
+					}
+					String text = label.getText();
+					FXMLLoader loader = new FXMLLoader();
+					loader.setLocation(MainUI.class.getResource("config/Ui_ReposTagPane.fxml"));
+					AnchorPane result = null;
+					try {
+						result = (AnchorPane) loader.load();
+					} catch (IOException e) {
+						System.out.println("Ui_ReposTagPane加载失败");
+					}
+					ReposTagPaneController controller = loader.getController();
+					controller.setText(text);
+					listPane.getChildren().clear();
+					listPane.getChildren().add(result);
+					label.setStyle("-fx-border-color:#5d9b78;");
+				}
+
+			});
+		}
+
 	}
 }

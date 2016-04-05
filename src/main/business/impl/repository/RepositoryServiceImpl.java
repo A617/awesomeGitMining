@@ -12,6 +12,7 @@ import main.business.utility.ScoreCalculator;
 import main.business.utility.SortHelper;
 import main.dao.DataFactory;
 import main.dao.entity.Repository;
+import main.dao.entity.Statistics;
 import main.dao.impl.IRepoDao;
 import main.vo.CodeFrequencyVO;
 import main.vo.CreatedTimeStatisticsVO;
@@ -29,11 +30,12 @@ public class RepositoryServiceImpl implements RepositoryService {
 	private static RepositoryServiceImpl instance;
 	private IRepoDao daoImpl;
 	private int pageNum;
+	private int tagPageNum;
 
 	private RepositoryServiceImpl() {
 		daoImpl = DataFactory.getRepoDataInstance();
 		if (daoImpl != null) {
-			pageNum = (int) (daoImpl.getAllRepo().size() / (1.0 * 10));
+			pageNum = (int) (daoImpl.getAllRepo().size() / (1.0 * 10)) + 1;
 		}
 	}
 
@@ -265,9 +267,35 @@ public class RepositoryServiceImpl implements RepositoryService {
 	}
 
 	@Override
-	public List<RepositoryVO> getReposByLanguage(String language) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<RepositoryVO> getReposByLanguage(String language, int pageIndex) {
+		List<RepositoryVO> list = new ArrayList<>();
+		List<String> names = null;
+		if (language.equals("All")) {
+			names = daoImpl.getAllRepo();
+		} else {
+			int index = Statistics.getLanguageIndex(language);
+			if (index != -1) {
+				names = daoImpl.getReposByLanguage(index);
+			}
+		}
+		tagPageNum = names.size();
+		if (names != null) {
+			for (int i = pageIndex * 10; i < 10 + pageIndex * 10; i++) {
+				if (i < names.size() && i >= 0) {
+					Repository po = null;
+					try {
+						po = daoImpl.getRepository(names.get(i));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					if (po != null) {
+						RepositoryVO vo = (RepositoryVO) Converter.convert("RepositoryVO", po);
+						list.add(vo);
+					}
+				}
+			}
+		}
+		return list;
 	}
 
 	@Override
@@ -279,7 +307,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 	public int getSearchPageNums(String id) {
 		if (daoImpl != null) {
 			if (daoImpl.searchRepository(id) != null) {
-				return daoImpl.searchRepository(id).size();
+				return daoImpl.searchRepository(id).size() / 10 + 1;
 			}
 		}
 		return 0;
@@ -308,5 +336,10 @@ public class RepositoryServiceImpl implements RepositoryService {
 			}
 		}
 		return vo;
+	}
+
+	@Override
+	public int getTagPageNum() {
+		return tagPageNum / 10 + 1;
 	}
 }
