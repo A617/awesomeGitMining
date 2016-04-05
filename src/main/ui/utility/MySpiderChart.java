@@ -25,7 +25,7 @@ public class MySpiderChart extends SpiderWebPlot{
 	private static final long serialVersionUID = 1L;
 	
 	private int ticks = DEFAULT_TICKS;
-	private static final int DEFAULT_TICKS = 5;
+	private static final int DEFAULT_TICKS = 8;
 	private NumberFormat format = NumberFormat.getInstance();
 	private static final double PERPENDICULAR = 90;
 	private static final double TICK_SCALE = 0.015;

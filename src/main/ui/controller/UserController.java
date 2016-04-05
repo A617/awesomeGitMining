@@ -34,6 +34,7 @@ import main.business.service.UserService;
 import main.ui.MainUI;
 import main.ui.utility.BackType;
 import main.ui.utility.HandleBack;
+import main.ui.utility.LanguageIcon;
 import main.vo.Colla_ProVO;
 import main.vo.Contri_ProVO;
 import main.vo.Crea_ProVO;
@@ -305,12 +306,24 @@ public class UserController implements Initializable {
 	
 	private void setLanguages(String login) {
 		List<String> language = userImpl.getLanguageSkills(login);
+		Label label = null;
 		for (int i = 0;i < language.size();i++) {
-			Label label = new Label();
-			label.setFont(Font.font("Arial",FontWeight.BOLD, 17));
+			label = new Label();
+			label.setGraphic(new ImageView(setIcon(language.get(i))));
+			label.setFont(Font.font("Arial", 17));
 			label.setText(language.get(i));
 			label.setPrefSize(110,30);
 			languages.getChildren().add(label);
 		}
+	}
+	private Image setIcon(String name) {
+		Image result = null;
+		int in = LanguageIcon.getInstance().hasLanguage(name);
+		if(in == -1) {
+			result = new Image(MainUI.class.getResourceAsStream("style/other.png"));
+		}else {
+			result = new Image(MainUI.class.getResourceAsStream("style/"+name+".png"));
+		}
+		return result;
 	}
 }
