@@ -28,6 +28,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
@@ -38,6 +40,7 @@ import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.RepositoryService;
 import main.business.service.UserService;
+import main.ui.MainUI;
 import main.ui.utility.BackType;
 import main.ui.utility.HandleBack;
 import main.ui.utility.PieChartGenerator;
@@ -72,6 +75,16 @@ public class ProjectController implements Initializable {
 	@FXML
 	private Label coNum;
 	@FXML
+	private Label stars;
+	@FXML
+	private Label forks;
+	@FXML
+	private Label subs;
+	@FXML
+	private Label cons;
+	@FXML
+	private Label collas;
+	@FXML
 	private StackPane piePane;
 	@FXML
 	private StackPane raderPane;
@@ -100,13 +113,19 @@ public class ProjectController implements Initializable {
 		}
 		return instance;
 	}
-
+	public void labelInit(Label label, String path) {
+		Image image = new Image(MainUI.class.getResourceAsStream("style/" + path));
+		label.setGraphic(new ImageView(image));
+	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		instance = this;
 		repositoryImpl = RepositoryServiceImpl.getInstance();
 		userImpl = UserServiceImpl.getInstance();
 
+		labelInit(stars,"Star_32.png");
+		labelInit(forks,"forks.png");
+		labelInit(subs,"subs.png");
 		clipboard = Clipboard.getSystemClipboard();
 		content = new ClipboardContent();
 		btn_clone.setOnAction((e) -> {
