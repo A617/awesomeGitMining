@@ -369,7 +369,6 @@ public class RepositoryServiceImpl implements RepositoryService {
 			try {
 				names = daoImpl.getAllRepo();
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
@@ -378,7 +377,6 @@ public class RepositoryServiceImpl implements RepositoryService {
 				try {
 					names = daoImpl.getReposByLanguage(index);
 				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
