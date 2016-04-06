@@ -1,5 +1,6 @@
 package main.ui.controller;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.net.URL;
 import java.util.Map;
@@ -136,11 +137,11 @@ public class ProjectController implements Initializable {
 		repositoryImpl = RepositoryServiceImpl.getInstance();
 		userImpl = UserServiceImpl.getInstance();
 
-		labelInit(stars,"Star_32.png");
-		labelInit(forks,"forks.png");
-		labelInit(subs,"subs.png");
-		labelInit(cons,"cons.png");
-		labelInit(collas,"collas.png");
+		labelInit(stars, "Star_32.png");
+		labelInit(forks, "forks.png");
+		labelInit(subs, "subs.png");
+		labelInit(cons, "cons.png");
+		labelInit(collas, "collas.png");
 
 		clipboard = Clipboard.getSystemClipboard();
 		content = new ClipboardContent();
@@ -224,13 +225,15 @@ public class ProjectController implements Initializable {
 
 	private void addAreaChart() {
 		ProgressIndicator pin = new ProgressIndicator(-1);
-		pin.setLayoutX(areaChart.getLayoutX()+areaChart.getPrefWidth()/2);
-		pin.setLayoutY(areaChart.getLayoutY()+areaChart.getPrefHeight()/2);
+		pin.setLayoutX(areaChart.getLayoutX() + areaChart.getPrefWidth() / 2);
+		pin.setLayoutY(areaChart.getLayoutY() + areaChart.getPrefHeight() / 2);
 		pane.getChildren().add(pin);
 		Task<Void> task = new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
 				CodeFrequencyVO cv = repositoryImpl.getCodeFrequency(vo.getFull_name());
+				System.out.println("data ok");
+
 				int[] data = cv.getData();
 				String[] time = cv.getTime();
 
@@ -238,6 +241,7 @@ public class ProjectController implements Initializable {
 					series.getData().add(new XYChart.Data<String, Integer>(time[j], data[j]));
 				}
 				updateProgress(1, 1);
+				System.out.println("progress ok");
 				return null;
 			}
 		};
@@ -256,9 +260,11 @@ public class ProjectController implements Initializable {
 	private void createRader(Map<String, Double> map) {
 		dataset = new DefaultCategoryDataset();
 		String group1 = "score";
-		for (Entry<String, Double> entry : map.entrySet()) {
-			dataset.addValue(entry.getValue(), group1, entry.getKey());
-		}
+		dataset.addValue(map.get("famous"), group1, "famous");
+		dataset.addValue(map.get("mature"), group1, "mature");
+		dataset.addValue(map.get("contributor"), group1, "contributor");
+		dataset.addValue(map.get("popular"), group1, "popular");
+		dataset.addValue(map.get("hot"), group1, "hot");
 		swingNode = new SwingNode();
 
 		ProgressIndicator pin = new ProgressIndicator(-1);
@@ -275,6 +281,7 @@ public class ProjectController implements Initializable {
 				panel.setPreferredSize(new Dimension(330, 330));
 
 				updateProgress(1, 1);
+				System.out.println("reder progress ok");
 				return null;
 			}
 		};
