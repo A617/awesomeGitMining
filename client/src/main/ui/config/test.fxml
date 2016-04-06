@@ -54,7 +54,6 @@
                   <Label id="tag" fx:id="c" layoutX="137.0" layoutY="113.0" text="C" />
                   <Label id="tag" fx:id="java" layoutX="180.0" layoutY="113.0" text="Perl" />
                   <Label id="tag" fx:id="php" layoutX="180.0" layoutY="143.0" text="PHP" />
-                  <Label id="tag" fx:id="others" layoutX="7.0" layoutY="263.0" text="Others" />
                   <Label id="tag" fx:id="language_all" layoutX="9.0" layoutY="113.0" text="All" />
                   <Label id="tag" fx:id="objectiveC" layoutX="43.0" layoutY="113.0" text="JavaScript" />
                   <Label id="tag" fx:id="r" layoutX="138.0" layoutY="173.0" text="C++" />
