@@ -45,9 +45,57 @@
 .scroll-pane .scroll-bar:horizontal .thumb,
 
 .scroll-pane .scroll-bar:vertical .thumb {
-    -fx-background-color:derive(#67a582,100%);
+    -fx-background-color:derive(#434343,20%);
+    -fx-opacity: 0.2;
     -fx-background-insets: 2, 0, 0;
     -fx-background-radius: 3em;
+}
+.scroll-pane {
+  -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar .increment-button {
+  visibility: hidden;
+}
+
+.scroll-pane .scroll-bar .decrement-button {
+  visibility: hidden;
+}
+
+.scroll-pane .scroll-bar:vertical {
+  -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar:vertical .track-background {
+  visibility: hidden;
+}
+
+.scroll-pane .scroll-bar:vertical .track {
+  visibility: hidden;
+}
+
+.scroll-pane .hide-thumb .scroll-bar:vertical .thumb {
+  -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar:horizontal:hover .track ,
+
+.scroll-pane .scroll-bar:horizontal:pressed .track ,
+
+.scroll-pane .scroll-bar:vertical:hover .track,
+
+.scroll-pane .scroll-bar:vertical:pressed .track{
+     -fx-background-color: derive(#434343,20%);
+     -fx-opacity: 0.2;
+     fx-background-radius: 0em;
+}
+.scroll-pane .scroll-bar .thumb:hover ,
+
+.scroll-pane .scroll-bar .thumb:pressed {
+     -fx-background-color: derive(#434343,20%);
+     -fx-opacity: 0.5;
+     -fx-background-insets: 2, 0, 0;
+     -fx-background-radius: 3em;
 }
 .chart-bar {
     -fx-background-color: rgba(255,218,185,0.8);
