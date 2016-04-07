@@ -49,6 +49,7 @@ import main.ui.utility.BackType;
 import main.ui.utility.HandleBack;
 import main.ui.utility.PieChartGenerator;
 import main.ui.utility.RaderChartGenerator;
+import main.ui.utility.SkinConfig;
 import main.vo.CodeFrequencyVO;
 import main.vo.CollaboratorVO;
 import main.vo.ContributorVO;
@@ -232,7 +233,6 @@ public class ProjectController implements Initializable {
 			@Override
 			protected Void call() throws Exception {
 				CodeFrequencyVO cv = repositoryImpl.getCodeFrequency(vo.getFull_name());
-				System.out.println("data ok");
 
 				int[] data = cv.getData();
 				String[] time = cv.getTime();
@@ -241,7 +241,6 @@ public class ProjectController implements Initializable {
 					series.getData().add(new XYChart.Data<String, Integer>(time[j], data[j]));
 				}
 				updateProgress(1, 1);
-				System.out.println("progress ok");
 				return null;
 			}
 		};
@@ -310,7 +309,7 @@ public class ProjectController implements Initializable {
 					String temp = cell.getText();
 					if (temp != null) {
 						HandleBack.getInstance().setUserBack(BackType.PROJECT, projectNameLabel.getText());
-						MainController.getInstance().setGroup("Ui_UserPanel.fxml");
+						MainController.getInstance().setGroup(SkinConfig.getInstance().getFxmlResoursePath("userPanel"));
 						fullVO = userImpl.getUser(temp);
 						if (fullVO != null)
 							UserController.getInstance().setVO(fullVO);

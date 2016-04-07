@@ -18,6 +18,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import main.ui.MainUI;
+import main.ui.utility.SkinConfig;
 import main.ui.utility.fxmlLoader;
 
 public class MainController implements Initializable {
@@ -61,7 +62,7 @@ public class MainController implements Initializable {
 	 * when start the app, init the homePagePanel
 	 */
 	public void initPanel() {
-		setPanel("test.fxml");
+		setPanel(SkinConfig.getInstance().getFxmlResoursePath("main"));
 	}
 
 	/**
@@ -171,7 +172,7 @@ public class MainController implements Initializable {
 		user.setStyle(styleStr + baseColor);
 		repositorySta.setStyle(styleStr + baseColor);
 		userSta.setStyle(styleStr + baseColor);
-		setPanel("test.fxml");
+		setPanel(SkinConfig.getInstance().getFxmlResoursePath("main"));
 	}
 
 	@FXML

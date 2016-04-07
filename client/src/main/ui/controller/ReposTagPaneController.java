@@ -1,6 +1,7 @@
 package main.ui.controller;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -16,6 +17,7 @@ import javafx.scene.layout.VBox;
 import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.service.RepositoryService;
 import main.ui.MainUI;
+import main.ui.utility.SkinConfig;
 import main.vo.RepositoryVO;
 
 /**
@@ -59,7 +61,12 @@ public class ReposTagPaneController implements Initializable {
 		box.setSpacing(4);
 		for (int i = 0; i < 10; i++) {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainUI.class.getResource("config/Ui_SingleReposView.fxml"));
+			try {
+				loader.setLocation(new URL(SkinConfig.getInstance().getFxmlResoursePath("singleReposView")));
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			try {
 				AnchorPane single = (AnchorPane) loader.load();
 				SingleRepositoryController controller = loader.getController();
