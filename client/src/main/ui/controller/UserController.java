@@ -312,7 +312,7 @@ public class UserController implements Initializable {
 				label.setGraphic(new ImageView(setIcon(language.get(i))));
 			label.setFont(Font.font("Arial", 17));
 			label.setText(language.get(i));
-			label.setPrefSize(112,30);
+			label.setPrefSize(116,30);
 			languages.getChildren().add(label);
 		}
 	}
