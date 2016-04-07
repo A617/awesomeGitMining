@@ -48,7 +48,7 @@ public class SingleRepositoryController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		repositoryImpl = RepositoryServiceImpl.getInstance();
 		repositoryName.setOnMouseClicked((e) -> {
-			MainController.getInstance().setGroup((SkinConfig.getInstance().getFxmlResoursePath("projectPanel")));
+			MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
 			fullVO = repositoryImpl.searchRepositoryInfo(vo.getFull_name());
 			ProjectController.getInstance().setVO(fullVO);
 		});
