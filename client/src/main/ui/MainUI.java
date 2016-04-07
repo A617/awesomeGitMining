@@ -1,5 +1,8 @@
 package main.ui;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -24,6 +27,7 @@ import main.business.service.RepositoryService;
 import main.business.service.UserService;
 import main.main.RMIHelper;
 import main.ui.controller.MainController;
+import main.ui.utility.SkinConfig;
 import main.ui.utility.fxmlLoader;
 
 public class MainUI extends Application {
@@ -51,7 +55,12 @@ public class MainUI extends Application {
 		scene = new Scene(common);
 
 		stage.setScene(scene);
-		scene.getStylesheets().add(MainUI.class.getResource("style/test.css").toExternalForm());
+		
+		
+		scene.getStylesheets().add(new URL(SkinConfig.getInstance().getCssResoursePath()).toExternalForm());
+		
+		
+		
 		// 添加图标
 		this.stage.getIcons().add(new Image("file:src/main/ui/style/mark.png"));
 		stage.show();
@@ -124,12 +133,22 @@ public class MainUI extends Application {
 
 	public void changeStyle(String style){
 		if(style=="black"){
-			System.out.println("111");
-			scene.getStylesheets().add(MainUI.class.getResource("style/black.css").toExternalForm());
-			System.out.print("222");
+			SkinConfig.getInstance().setSkinNum(2);
+			try {
+				scene.getStylesheets().add(new URL(SkinConfig.getInstance().getCssResoursePath()).toExternalForm());
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
 		}
 		else if(style=="pink"){
-			scene.getStylesheets().add(MainUI.class.getResource("style/pink.css").toExternalForm());
+			SkinConfig.getInstance().setSkinNum(1);
+			try {
+				scene.getStylesheets().add(new URL(SkinConfig.getInstance().getCssResoursePath()).toExternalForm());
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 
 	}
