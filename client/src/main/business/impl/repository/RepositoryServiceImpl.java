@@ -3,6 +3,7 @@ package main.business.impl.repository;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -310,23 +311,28 @@ public class RepositoryServiceImpl implements RepositoryService {
 		try {
 			list = daoImpl.getForksStatistics();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// 已经确保他们的last index不是-1
-		int[] range = { 0, 10, 20, 30, 40, 50, 60, 80, 100, 200, 300, 500 };
-		int[] nums = new int[range.length];
-		String[] types = new String[range.length];
-		// 根据分布情况确定直方图组距
-		for (int i = 0; i < range.length - 1; i++) {
-			types[i] = range[i] + "~" + range[i + 1];
+		ArrayList<Integer> temp = new ArrayList<>();
+		outer: for (int i = 0; i < list.size(); i++) {
+			int data = list.get(i);
+			for (int j = 0; j < temp.size(); j++) {
+				if (temp.get(j) == data) {
+					continue outer;
+				}
+			}
+			temp.add(data);
 		}
-		types[range.length - 1] = range[range.length - 1] + "~" + list.get(list.size() - 1);
-		nums[0] = list.lastIndexOf(range[1]) + 1;
-		nums[range.length - 1] = list.size() - list.lastIndexOf(range[range.length - 1]);
-		for (int i = 1; i < range.length - 1; i++) {
-			nums[i] = list.lastIndexOf(range[i + 1]) - list.lastIndexOf(range[i]);
+		Collections.sort(temp);
+		int[] nums = new int[temp.size()];
+		String[] types = new String[temp.size()];
+		nums[0] = list.lastIndexOf(temp.get(0))+1;
+		types[0] = temp.get(0)+"";
+		for (int i = 1; i < temp.size(); i++) {
+			nums[i] = list.lastIndexOf(temp.get(i))-list.lastIndexOf(temp.get(i-1));
+			types[i] = temp.get(i)+"";
 		}
+		
 		vo.setNums(nums);
 		vo.setTypes(types);
 		return vo;
@@ -451,5 +457,4 @@ public class RepositoryServiceImpl implements RepositoryService {
 		return tagPageNum / 10 + 1;
 	}
 
-	
 }

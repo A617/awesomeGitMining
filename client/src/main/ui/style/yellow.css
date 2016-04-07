@@ -40,7 +40,7 @@
 	-fx-font-family:"Microsoft YaHei"
 }
 #tag:hover{
-	-fx-border-color:#5d9b78;
+	-fx-background-color:#5d9b78;
 }
 .scroll-pane .scroll-bar:horizontal .thumb,
 
@@ -108,7 +108,9 @@
 }
 .default-color0.chart-series-area-line { -fx-stroke: #70CF9F; }
 .default-color0.chart-series-area-fill { -fx-fill: #70CF9F; }
-
+.default-color0.chart-line-symbol { 
+	visibility: hidden;
+}
 .table-view *.scroll-bar *.increment-button,
 .table-view *.scroll-bar *.decrement-button {
     -fx-background-color: null;
