@@ -23,6 +23,7 @@ public class LanguageIcon {
 		list.add("Objective-C");
 		list.add("Shell");
 		list.add("Go");
+		list.add("Clojure");
 	}
 	
 	public static LanguageIcon getInstance() {

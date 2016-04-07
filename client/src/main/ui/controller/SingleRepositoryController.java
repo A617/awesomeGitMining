@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.service.RepositoryService;
 import main.ui.MainUI;
+import main.ui.utility.SkinConfig;
 import main.vo.RepositoryVO;
 
 /**
@@ -47,7 +48,7 @@ public class SingleRepositoryController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		repositoryImpl = RepositoryServiceImpl.getInstance();
 		repositoryName.setOnMouseClicked((e) -> {
-			MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
+			MainController.getInstance().setGroup((SkinConfig.getInstance().getFxmlResoursePath("projectPanel")));
 			fullVO = repositoryImpl.searchRepositoryInfo(vo.getFull_name());
 			ProjectController.getInstance().setVO(fullVO);
 		});

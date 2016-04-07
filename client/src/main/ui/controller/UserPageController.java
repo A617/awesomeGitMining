@@ -17,6 +17,7 @@ import javafx.scene.layout.VBox;
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.UserService;
 import main.ui.MainUI;
+import main.ui.utility.SkinConfig;
 import main.vo.SimpleUserVO;
 
 public class UserPageController implements Initializable {
@@ -50,7 +51,7 @@ public class UserPageController implements Initializable {
 
 		for (int i = 0; i < 10; i++) {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainUI.class.getResource("config/Ui_SingleUserView.fxml"));
+			loader.setLocation(MainUI.class.getResource("config/"+SkinConfig.getInstance().getFxmlResoursePath("singleUserView")));
 			try {
 				Pane single = (Pane) loader.load();
 				SingleUserController controller = loader.getController();

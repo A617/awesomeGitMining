@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<skin>
+
+<main>main.fxml</main>
+<userPanel>Ui_UserPanel.fxml</userPanel>
+<projectPanel>Ui_ProjectPanel.fxml</projectPanel>
+<singleUserView>Ui_SingleUserView.fxml</singleUserView>
+<singleReposView>Ui_SingleReposView.fxml</singleReposView>
+<css>yellow.css</css>
+
+</skin>
+
+	

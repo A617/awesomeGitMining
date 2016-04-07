@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import main.business.impl.user.UserServiceImpl;
 import main.business.service.UserService;
 import main.ui.MainUI;
+import main.ui.utility.SkinConfig;
 import main.vo.SimpleUserVO;
 import main.vo.UserVO;
 
@@ -33,7 +34,7 @@ public class SingleUserController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		userImpl = UserServiceImpl.getInstance();
 		userName.setOnMouseClicked((e) -> {
-			MainController.getInstance().setGroup("Ui_UserPanel.fxml");
+			MainController.getInstance().setGroup(SkinConfig.getInstance().getFxmlResoursePath("userPanel"));
 			
 			fullVO = userImpl.getUser(vo.getLogin());
 			if(fullVO!=null)
