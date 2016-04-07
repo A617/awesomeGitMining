@@ -49,7 +49,9 @@ public class MainController implements Initializable {
 	private Label repositorySta;
 	@FXML
 	private Label userSta;
-	
+	@FXML
+	private Label changeStyle;
+
 	private boolean selectRepos;
 	private boolean selectUser;
 	private boolean selectReposSta;
@@ -87,6 +89,7 @@ public class MainController implements Initializable {
 		common.toFront();
 		labelInit(exit,"exit_normal.png");
 		labelInit(min,"min_normal.png");
+		labelInit(changeStyle,"skin1.png");
 	}
 
 	public void setGroup(String name) {
@@ -109,7 +112,23 @@ public class MainController implements Initializable {
 		Image image = new Image(MainUI.class.getResourceAsStream("style/" + path));
 		label.setGraphic(new ImageView(image));
 	}
-	
+	@FXML
+	public void enterChange(){
+		labelInit(changeStyle,"skin3.png");
+	}
+	@FXML
+	public void exitChange(){
+		labelInit(changeStyle,"skin1.png");
+	}
+
+	@FXML
+	public void releaseChange(){
+		labelInit(changeStyle,"skin2.png");
+
+		return;
+
+	}
+
 	@FXML
 	public void enterExit(){
 		labelInit(exit,"exit_move.png");

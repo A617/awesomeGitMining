@@ -40,8 +40,7 @@ public class HomeController implements Initializable {
 	private ScrollPane scrollPane;
 	@FXML
 	private Label page;
-	@FXML
-	private Label changeStyle;
+
 	@FXML
 	private Group group;
 	@FXML
@@ -165,10 +164,6 @@ public class HomeController implements Initializable {
 		initTabPane(contriList);
 	}
 
-	@FXML
-	public void change() {
-		MainUI.getUI().changeStyle("black");
-	}
 
 	private void initTabPane(List<RepositoryVO> list) {
 		box = new VBox();
