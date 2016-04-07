@@ -1,5 +1,5 @@
 .root {
-    -fx-background-image: url("back5.png");
+    -fx-background-image: url("back_dark.png");
 }
 .button {
     -fx-background-radius: 0.0;

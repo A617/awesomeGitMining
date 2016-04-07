@@ -278,7 +278,6 @@ public class ProjectController implements Initializable {
 				panel.setPreferredSize(new Dimension(330, 330));
 
 				updateProgress(1, 1);
-				System.out.println("reder progress ok");
 				return null;
 			}
 		};

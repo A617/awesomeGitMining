@@ -61,12 +61,7 @@ public class ReposTagPaneController implements Initializable {
 		box.setSpacing(4);
 		for (int i = 0; i < 10; i++) {
 			FXMLLoader loader = new FXMLLoader();
-			try {
-				loader.setLocation(new URL(SkinConfig.getInstance().getFxmlResoursePath("singleReposView")));
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+				loader.setLocation(MainUI.class.getResource("config/"+SkinConfig.getInstance().getFxmlResoursePath("singleReposView")));
 			try {
 				AnchorPane single = (AnchorPane) loader.load();
 				SingleRepositoryController controller = loader.getController();

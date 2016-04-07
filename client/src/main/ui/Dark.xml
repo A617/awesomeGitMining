@@ -5,7 +5,7 @@
 <main>main.fxml</main>
 <singleUserView>Ui_SingleUserView.fxml</singleUserView>
 <singleReposView>Ui_SingleReposView.fxml</singleReposView>
-<css>yellow.css</css>
+<css>black.css</css>
 
 </skin>
 

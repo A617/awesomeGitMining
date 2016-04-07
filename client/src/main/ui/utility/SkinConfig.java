@@ -14,7 +14,7 @@ import org.dom4j.io.XMLWriter;
 public class SkinConfig {
 
 	private int currentSkinNum;
-	private final String[] skinXmlPathList = {"src/main/ui/Yellow.xml","src/main/ui/Pink.xml","src/main/ui/Black.xml"};
+	private final String[] skinXmlPathList = {"src/main/ui/Yellow.xml","src/main/ui/Pink.xml","src/main/ui/Dark.xml"};
 	
 	private static SkinConfig instance;
 	
@@ -31,7 +31,7 @@ public class SkinConfig {
 		String name ="";
 		try {
 			Document d = reader.read(new File(skinXmlPathList[currentSkinNum]));
-			
+			System.out.println(skinXmlPathList[currentSkinNum]);
 			Element root = d.getRootElement();
 			
 			name = root.element(key).getText();

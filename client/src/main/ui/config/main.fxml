@@ -38,7 +38,6 @@
                <font>
                   <Font name="Microsoft YaHei Bold" size="15.0" />
                </font></Label>
-            <Label fx:id="changeStyle" layoutX="523.0" layoutY="13.0" onMouseReleased="#change" text="change" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="2.0" prefHeight="720.0" prefWidth="301.0" style="-fx-background-color: #faf6f2;">

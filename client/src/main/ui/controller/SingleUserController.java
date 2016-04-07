@@ -34,7 +34,7 @@ public class SingleUserController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		userImpl = UserServiceImpl.getInstance();
 		userName.setOnMouseClicked((e) -> {
-			MainController.getInstance().setGroup(SkinConfig.getInstance().getFxmlResoursePath("userPanel"));
+			MainController.getInstance().setGroup("Ui_UserPanel.fxml");
 			
 			fullVO = userImpl.getUser(vo.getLogin());
 			if(fullVO!=null)
