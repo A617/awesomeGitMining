@@ -360,7 +360,7 @@ public class HomeController implements Initializable {
 				public void handle(MouseEvent arg0) {
 					for (int i = 0; i < group.getChildren().size(); i++) {
 						Label label = (Label) group.getChildren().get(i);
-						label.setStyle("-fx-border-radius:0;");
+						label.setStyle("-fx-background-color:transparent;");
 					}
 					String text = label.getText();
 					FXMLLoader loader = new FXMLLoader();
@@ -375,7 +375,7 @@ public class HomeController implements Initializable {
 					controller.setText(text);
 					listPane.getChildren().clear();
 					listPane.getChildren().add(result);
-					label.setStyle("-fx-border-color:#5d9b78;");
+					label.setStyle("-fx-background-color:#5d9b78;");
 				}
 
 			});

@@ -20,21 +20,23 @@
             </Label>
             <Button layoutX="370.0" layoutY="658.0" mnemonicParsing="false" onAction="#handlePreButton" text="Previous" />
             <Button layoutX="624.0" layoutY="658.0" mnemonicParsing="false" onAction="#handleNextButton" prefHeight="30.0" prefWidth="82.0" text="Next" />
-            <Label id="headLabel" fx:id="tab_star" alignment="CENTER" layoutX="242.0" layoutY="1.0" onMouseEntered="#enterStar" onMouseExited="#exitStar" onMouseReleased="#selectStar" prefHeight="40.0" prefWidth="121.0" text="Star" textFill="WHITE">
+            <Label id="headLabel" fx:id="tab_star" alignment="CENTER" layoutX="232.0" layoutY="0.0" onMouseEntered="#enterStar" onMouseExited="#exitStar" onMouseReleased="#selectStar" prefHeight="40.0" prefWidth="116.0" text="Star" textFill="WHITE">
                <font>
-                  <Font name="Microsoft YaHei" size="15.0" />
+                  <Font name="Microsoft YaHei Bold" size="15.0" />
                </font></Label>
-            <Label id="headLabel" fx:id="tab_fork" alignment="CENTER" layoutX="121.0" layoutY="1.0" onMouseEntered="#enterFork" onMouseExited="#exitFork" onMouseReleased="#selectFork" prefHeight="40.0" prefWidth="121.0" text="Fork" textFill="WHITE">
+            <Label id="headLabel" fx:id="tab_fork" alignment="CENTER" layoutX="116.0" onMouseEntered="#enterFork" onMouseExited="#exitFork" onMouseReleased="#selectFork" prefHeight="40.0" prefWidth="116.0" text="Fork" textFill="WHITE">
                <font>
-                  <Font name="Microsoft YaHei UI" size="15.0" />
-               </font></Label>
+                  <Font name="Microsoft YaHei Bold" size="15.0" />
+               </font>
+            </Label>
             <Label id="headLabel" fx:id="tab_general" alignment="CENTER" layoutY="0.0" onMouseEntered="#enterGeneral" onMouseExited="#exitGeneral" onMouseReleased="#selectGeneral" prefHeight="40.0" prefWidth="116.0" text="General" textFill="WHITE" AnchorPane.bottomAnchor="662.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="929.0" AnchorPane.topAnchor="0.0">
                <font>
-                  <Font name="Microsoft YaHei" size="15.0" />
-               </font></Label>
-            <Label id="headLabel" fx:id="tab_contributor" alignment="CENTER" layoutX="363.0" layoutY="1.0" onMouseEntered="#enterContributor" onMouseExited="#exitContri" onMouseReleased="#selectContributor" prefHeight="40.0" prefWidth="121.0" text="Contributor" textFill="WHITE">
+                  <Font name="Microsoft YaHei Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label id="headLabel" fx:id="tab_contributor" alignment="CENTER" layoutX="348.0" layoutY="0.0" onMouseEntered="#enterContributor" onMouseExited="#exitContri" onMouseReleased="#selectContributor" prefHeight="40.0" prefWidth="116.0" text="Contributor" textFill="WHITE">
                <font>
-                  <Font name="Microsoft YaHei UI" size="15.0" />
+                  <Font name="Microsoft YaHei Bold" size="15.0" />
                </font></Label>
             <Label fx:id="changeStyle" layoutX="523.0" layoutY="13.0" onMouseReleased="#change" text="change" />
          </children>
