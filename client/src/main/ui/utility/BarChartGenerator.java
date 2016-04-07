@@ -86,8 +86,9 @@ public class BarChartGenerator {
 	 */
 	private void setupHover(XYChart.Series<String, Integer> series) {
 		Label label = new Label();
-		label.setTextFill(Color.DARKORANGE);
-		label.setStyle("-fx-font: 24 arial;");
+		label.setTextFill(Color.DARKCYAN);
+		label.setStyle("-fx-font: 18 arial;"
+				+ "-fx-opacity:0.5");
 		
 	    for (final XYChart.Data<String, Integer> dt : series.getData()) {
 	        final Node n = dt.getNode();

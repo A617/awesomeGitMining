@@ -1,10 +1,8 @@
 package main.ui.controller;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.net.URL;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.ResourceBundle;
 
 import javax.swing.JPanel;
@@ -224,6 +222,7 @@ public class ProjectController implements Initializable {
 	}
 
 	private void addAreaChart() {
+		areaChart.setAnimated(false);
 		ProgressIndicator pin = new ProgressIndicator(-1);
 		pin.setLayoutX(areaChart.getLayoutX() + areaChart.getPrefWidth() / 2);
 		pin.setLayoutY(areaChart.getLayoutY() + areaChart.getPrefHeight() / 2);
@@ -305,17 +304,21 @@ public class ProjectController implements Initializable {
 		@Override
 		public TableCell<ContributorVO, String> call(TableColumn<ContributorVO, String> arg0) {
 			TextFieldTableCell<ContributorVO, String> cell = new TextFieldTableCell<>();
-			cell.setOnMouseClicked((MouseEvent t) -> {
-				if (t.getClickCount() == 2) {
-					String temp = cell.getText();
-					if (temp != null) {
-						HandleBack.getInstance().setUserBack(BackType.PROJECT, projectNameLabel.getText());
-						MainController.getInstance().setGroup("Ui_UserPanel.fxml");
-						fullVO = userImpl.getUser(temp);
-						if (fullVO != null)
-							UserController.getInstance().setVO(fullVO);
-					}
+			cell.setOnMouseReleased((MouseEvent t) -> {
+				String temp = cell.getText();
+				if (temp != null) {
+					HandleBack.getInstance().setUserBack(BackType.PROJECT, projectNameLabel.getText());
+					MainController.getInstance().setGroup("Ui_UserPanel.fxml");
+					fullVO = userImpl.getUser(temp);
+					if (fullVO != null)
+						UserController.getInstance().setVO(fullVO);
 				}
+			});
+			cell.setOnMouseEntered((MouseEvent t) -> {
+				cell.setUnderline(true);
+			});
+			cell.setOnMouseExited((MouseEvent t) -> {
+				cell.setUnderline(false);
 			});
 			return cell;
 		}
