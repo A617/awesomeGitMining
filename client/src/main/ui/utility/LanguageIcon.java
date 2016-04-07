@@ -12,6 +12,17 @@ public class LanguageIcon {
 		list.add("Python");
 		list.add("Ruby");
 		list.add("JavaScript");	
+		list.add("C");
+		list.add("C++");
+		list.add("C#");
+		list.add("HTML");
+		list.add("CSS");
+		list.add("PHP");
+		list.add("Erlang");
+		list.add("Lua");
+		list.add("Objective-C");
+		list.add("Shell");
+		list.add("Go");
 	}
 	
 	public static LanguageIcon getInstance() {

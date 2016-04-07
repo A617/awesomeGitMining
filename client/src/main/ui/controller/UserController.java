@@ -25,7 +25,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.util.Callback;
 import main.business.impl.repository.RepositoryServiceImpl;
 import main.business.impl.user.UserServiceImpl;
@@ -309,7 +308,8 @@ public class UserController implements Initializable {
 		Label label = null;
 		for (int i = 0;i < language.size();i++) {
 			label = new Label();
-			label.setGraphic(new ImageView(setIcon(language.get(i))));
+			if(language.get(i)!=null) 
+				label.setGraphic(new ImageView(setIcon(language.get(i))));
 			label.setFont(Font.font("Arial", 17));
 			label.setText(language.get(i));
 			label.setPrefSize(112,30);
