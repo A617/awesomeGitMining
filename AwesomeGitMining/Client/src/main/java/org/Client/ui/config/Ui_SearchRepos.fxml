@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.SearchController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Client.ui.controller.SearchController">
    <children>
       <Button layoutX="770.0" layoutY="655.0" mnemonicParsing="false" onAction="#handleProjectNext" prefHeight="30.0" prefWidth="82.0" text="Next" />
       <Button layoutX="526.0" layoutY="655.0" mnemonicParsing="false" onAction="#handleProjectPre" text="Previous" />

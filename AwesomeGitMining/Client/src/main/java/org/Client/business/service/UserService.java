@@ -21,7 +21,7 @@ public interface UserService {
 	 * @return ArrayList of  @see UserVO
 	 * just return some info of the user
 	 */
-	public abstract List<User> searchUser(String id);
+	public abstract List<UserVO> searchUser(String id);
 	/**
 	 *
 	 * @param id
