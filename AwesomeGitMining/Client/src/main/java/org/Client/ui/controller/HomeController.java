@@ -41,7 +41,7 @@ public class HomeController implements Initializable {
 	private Label page;
 
 	@FXML
-	private Group group;
+	private Group group_language;
 	@FXML
 	private AnchorPane listPane;
 	private VBox box;
@@ -346,14 +346,14 @@ public class HomeController implements Initializable {
 	 * jump to another page
 	 */
 	private void addTagListener() {
-		for (int i = 0; i < group.getChildren().size(); i++) {
-			Label label = (Label) group.getChildren().get(i);
+		for (int i = 0; i < group_language.getChildren().size(); i++) {
+			Label label = (Label) group_language.getChildren().get(i);
 			label.setOnMouseReleased(new EventHandler<MouseEvent>() {
 
 				@Override
 				public void handle(MouseEvent arg0) {
-					for (int i = 0; i < group.getChildren().size(); i++) {
-						Label label = (Label) group.getChildren().get(i);
+					for (int i = 0; i < group_language.getChildren().size(); i++) {
+						Label label = (Label) group_language.getChildren().get(i);
 						label.setStyle("-fx-background-color:transparent;");
 					}
 					String text = label.getText();
