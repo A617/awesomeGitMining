@@ -21,6 +21,7 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private final String path = "src/main/java/org/Server/data/gitmining-api/";
 	/* 所有用户列表 */
 	private List<String> userList;
 	/* 用户昵称列表 */
@@ -55,7 +56,6 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 	public UserDaoImpl() throws RemoteException{
 		long startTime = System.nanoTime();
 
-		String path = "src/main/java/org/Server/data/gitmining-api/";
 		this.userList = DataInitHelper.getList(path + "user_login.txt");
 		this.locationList = DataInitHelper.getList(path + "user-location.txt");
 		this.companyList = DataInitHelper.getList(path + "user-company.txt");
@@ -245,7 +245,6 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		
 		if (index != -1) {
 			
-			String path = "src/main/data/gitmining-api/";
 			List<List<String>> languageList = DataInitHelper.getListList(path + "user_languages.txt");
 			return languageList.get(index);
 			
@@ -255,4 +254,5 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 			
 		}
 	}
+	
 }

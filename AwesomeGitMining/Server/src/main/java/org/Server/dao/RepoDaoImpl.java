@@ -21,6 +21,7 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private final String path = "src/main/java/org/Server/data/gitmining-api/";
 
 	/* 所有项目名称列表 */
 	private List<String> repoList;
@@ -50,7 +51,6 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 	public RepoDaoImpl() throws RemoteException{
 		long startTime = System.nanoTime();
 
-		String path = "src/main/java/org/Server/data/gitmining-api/";
 		this.repoList = DataInitHelper.getList(path + "repo_fullname.txt");
 
 		this.mapR2Clb = DataInitHelper.getListList(path + "repo-collaborators.txt");
@@ -94,7 +94,6 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 			po.setLanguages(mapR2L.get(index));
 
 			int[] ranks = new int[7];
-			String path = "src/main/data/gitmining-api/";
 			ranks[0] = DataInitHelper.getIntList(path + "repo_starRank.txt").get(index);
 			ranks[1] = DataInitHelper.getIntList(path + "repo_forkRank.txt").get(index);
 			ranks[2] = DataInitHelper.getIntList(path + "repo_watchRank.txt").get(index);
@@ -145,7 +144,6 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 	@Override
 	public int[] getCreatedTimeStatistics() {
 
-		String path = "src/main/data/gitmining-api/";
 		this.createdTimeList = DataInitHelper.getList(path + "repo-createdTime.txt");
 
 		String[] years = Statistics.year;
@@ -167,7 +165,6 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 	@Override
 	public List<Integer> getForksStatistics() {
 
-		String path = "src/main/data/gitmining-api/";
 		List<Integer> forks = DataInitHelper.getIntList(path + "repo_forks.txt");
 
 		Collections.sort(forks);
@@ -177,7 +174,6 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 
 	@Override
 	public List<Integer> getStarsStatistics() throws RemoteException{
-		String path = "src/main/data/gitmining-api/";
 		List<Integer> stars = DataInitHelper.getIntList(path + "repo_stars.txt");
 		Collections.sort(stars);
 
