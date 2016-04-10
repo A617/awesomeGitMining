@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<skin>
+
+<main>main1.fxml</main>
+<singleUserView>Ui_SingleUserView1.fxml</singleUserView>
+<singleReposView>Ui_SingleReposView1.fxml</singleReposView>
+<css>pink.css</css>
+<png>raderback.png</png>
+
+</skin>
+
+	

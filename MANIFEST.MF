@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Class-Path: lib/commons-beanutils-1.7.0.jar lib/commons-codec-1.9.jar lib/commons-logging-1.1.jar lib/commons-collections-3.2.jar lib/commons-lang-2.4.jar lib/controlsfx-8.0.6_20.jar lib/ezmorph-1.0.4.jar lib/jfxrt.jar lib/json-lib-2.2.3-jdk13.jar lib/jsoup-1.8.1.jar
-Main-Class: main.ui.MainUI
