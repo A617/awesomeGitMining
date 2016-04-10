@@ -29,7 +29,7 @@ public class RaderChartGenerator {
 		jfreechart.setAntiAlias(true);
 		jfreechart.clearSubtitles();
 		jfreechart.setBackgroundPaint(new Color(247,242,229));
-		jfreechart.setBackgroundImage(new ImageIcon("src/main/ui/style/raderback.png").getImage());
+		jfreechart.setBackgroundImage(new ImageIcon("src/main/java/org/Client/ui/style/raderback.png").getImage());
 
 		ChartPanel chart = new ChartPanel(jfreechart);
 		return chart;

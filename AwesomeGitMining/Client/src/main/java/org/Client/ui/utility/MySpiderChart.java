@@ -36,7 +36,11 @@ public class MySpiderChart extends SpiderWebPlot{
 	public void drawOutline(Graphics2D g2, Rectangle2D area) {
 	}
 	
-	
+	@Override
+	public void drawLabel(final Graphics2D g2, final Rectangle2D plotArea,final double value, 
+			final int cat, final double startAngle,final double extent) {
+		
+	}
 	
 	@Override
 	protected void drawRadarPoly(Graphics2D g2, Rectangle2D plotArea, Point2D centre, PlotRenderingInfo info,
