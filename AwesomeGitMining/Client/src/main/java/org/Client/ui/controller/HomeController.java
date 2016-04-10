@@ -66,6 +66,7 @@ public class HomeController implements Initializable {
 	private List<RepositoryVO> starList;
 	private List<RepositoryVO> forkList;
 	private List<RepositoryVO> contriList;
+	private final String configPath = "file:src/main/java/org/Client/ui/config/";
 
 	public static HomeController getInstance() {
 		if (instance == null) {
@@ -171,7 +172,7 @@ public class HomeController implements Initializable {
 		for (int i = 0; i < 10; i++) {
 			FXMLLoader loader = new FXMLLoader();
 			try {
-				loader.setLocation(new URL("file:src/main/ui/config/"+(SkinConfig.getInstance().getFxmlResoursePath("singleReposView"))));
+				loader.setLocation(new URL(configPath+(SkinConfig.getInstance().getFxmlResoursePath("singleReposView"))));
 			} catch (MalformedURLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
