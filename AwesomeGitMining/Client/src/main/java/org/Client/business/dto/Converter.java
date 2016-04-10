@@ -18,7 +18,7 @@ public class Converter {
 		Class<?> classType = object.getClass();
 		Field[] datas = classType.getDeclaredFields();
 		Object vo = null;
-		name = "main.vo." + name;
+		name = "org.Common.vo." + name;
 		try {
 			Class<?> c = Class.forName(name);
 			vo = c.newInstance();

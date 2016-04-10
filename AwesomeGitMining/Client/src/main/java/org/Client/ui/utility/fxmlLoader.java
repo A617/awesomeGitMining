@@ -16,7 +16,6 @@ public class fxmlLoader {
 	public static AnchorPane loadPanel(String fxml) {
 
 		FXMLLoader loader = new FXMLLoader();
-			System.out.println(new File("src/main/java/org/Client/ui/config/"+fxml).exists());
 		try {
 			loader.setLocation(new URL("file:src/main/java/org/Client/ui/config/"+fxml));
 		} catch (MalformedURLException e1) {
@@ -28,6 +27,7 @@ public class fxmlLoader {
 			result = (AnchorPane) loader.load();
 		} catch (IOException e) {
 			System.out.println(fxml + "加载失败");
+			e.printStackTrace();
 		}
 		return result;
 	}

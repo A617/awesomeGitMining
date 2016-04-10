@@ -31,7 +31,6 @@ public class SkinConfig {
 		String name ="";
 		try {
 			Document d = reader.read(new File(skinXmlPathList[currentSkinNum]));
-			System.out.println(skinXmlPathList[currentSkinNum]);
 			Element root = d.getRootElement();
 			
 			name = root.element(key).getText();
