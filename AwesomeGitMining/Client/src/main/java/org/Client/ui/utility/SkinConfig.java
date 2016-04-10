@@ -14,7 +14,7 @@ import org.dom4j.io.XMLWriter;
 public class SkinConfig {
 
 	private int currentSkinNum;
-	private final String[] skinXmlPathList = {"src/main/java/org/Client/ui/Yellow.xml","src/main/java/org/Client/ui/Pink.xml","src/main/ui/Dark.xml"};
+	private final String[] skinXmlPathList = {"src/main/java/org/Client/ui/Yellow.xml","src/main/java/org/Client/ui/Pink.xml","src/main/java/org/Client/ui/Dark.xml"};
 	
 	private static SkinConfig instance;
 	

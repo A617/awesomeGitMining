@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="604.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.controller.HomeController">
+   <children>
+      <Pane layoutY="-155.0" prefHeight="768.0" prefWidth="1024.0" AnchorPane.bottomAnchor="155.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-155.0">
+         <children>
+            <TabPane layoutX="179.0" layoutY="163.0" prefHeight="506.0" prefWidth="665.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab fx:id="tab_general" onSelectionChanged="#selectGeneral" text="  General  ">
+                     <content>
+                        <ScrollPane fx:id="generalPane" opacity="0.53" prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                </Tab>
+                <Tab fx:id="tab_star" onSelectionChanged="#selectStar" text="  Star  ">
+                	 <content>
+                        <ScrollPane fx:id="starPane" prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                </Tab>
+                <Tab fx:id="tab_fork" onSelectionChanged="#selectFork" text="  Fork  ">
+                   <content>
+                        <ScrollPane fx:id="forkPane" prefHeight="200.0" prefWidth="200.0" />
+                   </content>
+                </Tab>
+                <Tab fx:id="tab_contributor" onSelectionChanged="#selectContributor" text="  Contributor  ">
+                	<content>
+                        <ScrollPane fx:id="contriPane" opacity="0.64" prefHeight="200.0" prefWidth="200.0" />
+                    </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+            <TreeTableView layoutY="163.0" prefHeight="506.0" prefWidth="180.0">
+              <columns>
+                <TreeTableColumn fx:id="table_class" minWidth="12.0" prefWidth="179.0" text="筛选类别" />
+              </columns>
+            </TreeTableView>
+            <TreeTableView layoutX="844.0" layoutY="163.0" prefHeight="506.0" prefWidth="180.0">
+              <columns>
+                <TreeTableColumn fx:id="table_contributer" prefWidth="179.0" text="杰出贡献者" />
+              </columns>
+            </TreeTableView>
+            <Line endX="924.0" layoutX="99.0" layoutY="668.0" startX="-100.0" stroke="#949292" />
+            <Button layoutX="376.0" layoutY="692.0" mnemonicParsing="false" onAction="#handlePreButton" text="Previous" />
+            <Button layoutX="494.0" layoutY="692.0" mnemonicParsing="false" onAction="#handleNextButton" prefHeight="30.0" prefWidth="81.0" text="Next" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
