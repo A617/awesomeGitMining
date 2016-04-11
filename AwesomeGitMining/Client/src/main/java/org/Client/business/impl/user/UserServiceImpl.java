@@ -3,6 +3,7 @@ package org.Client.business.impl.user;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -318,12 +319,30 @@ public class UserServiceImpl implements UserService {
 		try {
 			list = daoImpl.getRepoCollabortedStatistics();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i));
+		ArrayList<Integer> temp = new ArrayList<>();
+		outer: for (int i = 0; i < list.size(); i++) {
+			int data = list.get(i);
+			for (int j = 0; j < temp.size(); j++) {
+				if (temp.get(j) == data) {
+					continue outer;
+				}
+			}
+			temp.add(data);
 		}
+		Collections.sort(temp);
+		int[] nums = new int[temp.size()];
+		String[] types = new String[temp.size()];
+		nums[0] = list.lastIndexOf(temp.get(0))+1;
+		types[0] = temp.get(0)+"";
+		for (int i = 1; i < temp.size(); i++) {
+			nums[i] = list.lastIndexOf(temp.get(i))-list.lastIndexOf(temp.get(i-1));
+			types[i] = temp.get(i)+"";
+		}
+		
+		vo.setNums(nums);
+		vo.setRanges(types);
 		return vo;
 	}
 
