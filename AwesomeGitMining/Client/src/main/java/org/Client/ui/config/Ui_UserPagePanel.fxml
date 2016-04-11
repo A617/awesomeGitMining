@@ -49,10 +49,10 @@
       <Button fx:id="btn_previous" layoutX="668.0" layoutY="667.0" mnemonicParsing="false" onAction="#handleUserPre" text="Previous" />
       <Button fx:id="btn_next" layoutX="863.0" layoutY="667.0" mnemonicParsing="false" onAction="#handleUserNext" text="Next" />
       <ScrollPane fx:id="scrollPane" layoutX="313.0" layoutY="27.0" prefHeight="636.0" prefWidth="1050.0" AnchorPane.bottomAnchor="70.0" />
-      <Label fx:id="page" layoutX="1003.0" layoutY="672.0" text="30000">
-         <font>
-            <Font name="Ebrima Bold" size="15.0" />
-         </font>
-      </Label>
+     <Label fx:id="page" layoutX="1273.0" layoutY="673.0" text="30000" textFill="#7c7c7c">
+               <font>
+                  <Font name="Ebrima Bold" size="15.0" />
+               </font>
+     </Label>
    </children>
 </AnchorPane>

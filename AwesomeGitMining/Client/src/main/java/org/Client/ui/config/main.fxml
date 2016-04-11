@@ -13,7 +13,7 @@
          <children>
             <AnchorPane prefHeight="40.0" prefWidth="1045.0" style="-fx-background-color: #71af8c;" />
             <ScrollPane fx:id="scrollPane" layoutY="40.0" prefHeight="606.0" prefWidth="1045.0" />
-            <Label fx:id="page" layoutX="771.0" layoutY="664.0" text="30000">
+            <Label fx:id="page" layoutX="972.0" layoutY="664.0" text="30000" textFill="#7c7c7c">
                <font>
                   <Font name="Ebrima Bold" size="15.0" />
                </font>
