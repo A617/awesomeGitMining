@@ -113,5 +113,13 @@ public interface IUserDao extends Remote{
 	 */
 	public List<Integer> getRepoContributedStatistics() throws RemoteException;
 	
+	
+	
 	public List<String> getLanguageSkills(String login) throws RemoteException;
+
+
+	public List<String> getUsersByLanguage(int i) throws RemoteException;
+
+
+	public List<String> getUsersByCompany(int i) throws RemoteException;
 }

@@ -29,13 +29,16 @@ public class DataConvertHelper {
 
 	public static void main(String[] args) {
 
-		DataConvertHelper dch = new DataConvertHelper();
+//		DataConvertHelper dch = new DataConvertHelper();
 /*		
 		List<String> repos = DataFactory.getRepoDataInstance().getAllRepo();
 		String path = "src/main/data/gitmining-api/user-repos";
 		dch.getUser2RepocreatedMap(repos, path);
 */
 	//	dch.test();
+		
+		
+		
 	}
 
 	public Map<String, List<String>> getUser2RepocreatedMap(List<String> repos, String path) {

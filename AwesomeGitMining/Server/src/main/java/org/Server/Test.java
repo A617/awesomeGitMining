@@ -11,10 +11,9 @@ public class Test {
 	
 	public static void main(String[] args) {
 		
-		IRepoDao repo;
 		try {
-			repo = DataFactory.getRepoDataInstance();
-			for(String list:repo.getReposByYear(1))
+			IUserDao user = DataFactory.getUserDataInstance();
+			for(String list:user.getUsersByCompany(0))
 				System.out.println(list);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

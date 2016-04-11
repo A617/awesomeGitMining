@@ -59,6 +59,8 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 	private List<Integer> followersList;
 	/* 用户头像地址 */
 	private List<String> avatar_urlList;
+	
+	private List<List<String>> languageList;
 
 	public UserDaoImpl() throws RemoteException {
 		long startTime = System.nanoTime();
@@ -77,6 +79,7 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		this.createdTimeList = DataInitHelper.getList(path + "user-createdTime.txt");
 		this.nameList = DataInitHelper.getList(path + "user_name.txt");
 		this.avatar_urlList = DataInitHelper.getList(path + "user_avatar_url.txt");
+		this.languageList = DataInitHelper.getListList(path + "user_languages.txt");
 
 		System.out.println("UserDaoImpl initialized!");
 		long endTime = System.nanoTime();
@@ -250,7 +253,6 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 
 		if (index != -1) {
 
-			List<List<String>> languageList = DataInitHelper.getListList(path + "user_languages.txt");
 			return languageList.get(index);
 
 		} else {
@@ -260,6 +262,34 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		}
 	}
 
+	@Override
+	public List<String> getUsersByLanguage( int i){
+		String[] languages = Statistics.language;
+
+		List<String> result = new ArrayList<>();
+
+		for (int index = 0; index < userList.size(); index++) {
+			if (languageList.get(index).contains(languages[i]))
+				result.add(userList.get(index));
+
+		}
+
+		return result;
+	}
 	
+	
+	@Override
+	public List<String> getUsersByCompany(int i){
+		String[] list = Statistics.company;
+		List<String> result = new ArrayList<>();
+
+		for (int index = 0; index < companyList.size(); index++) {
+			if (companyList.get(index).equals(list[i]))
+				result.add(userList.get(index));
+
+		}
+
+		return result;
+	}
 
 }
