@@ -392,7 +392,6 @@ public class HomeController implements Initializable {
 						Label label = (Label) group_year.getChildren().get(i);
 						label.setStyle("-fx-background-color:transparent;");
 					}
-<<<<<<< HEAD
 					String text = label.getText();
 					FXMLLoader loader = new FXMLLoader();
 					loader.setLocation(MainUI.class.getResource("config/Ui_ReposTagPane.fxml"));
@@ -406,7 +405,6 @@ public class HomeController implements Initializable {
 					controller.setText(text);
 					listPane.getChildren().clear();
 					listPane.getChildren().add(result);
-=======
 					// String text = label.getText();
 					// FXMLLoader loader = new FXMLLoader();
 					// loader.setLocation(MainUI.class.getResource("config/Ui_ReposTagPane.fxml"));
@@ -421,7 +419,6 @@ public class HomeController implements Initializable {
 					// controller.setText(text);
 					listPane.getChildren().clear();
 					// listPane.getChildren().add(result);
->>>>>>> aae2d57747e97098921600ab0eca2c5d5f1298bf
 					label.setStyle("-fx-background-color:#5d9b78;");
 				}
 
