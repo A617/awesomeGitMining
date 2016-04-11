@@ -1,5 +1,5 @@
 .root {
-    -fx-background-image: url("back_dark.png");
+    -fx-background-image: url("back.png");
 }
 .button {
     -fx-background-radius: 0.0;
@@ -19,9 +19,7 @@
 #headPane{
 	-fx-background-color: #67a582;
 }
-#sortPane{
-	-fx-background-color:#71af8c;
-}
+
 #headLabel:hover{
 	-fx-background-color: #5d9b78;
 }
@@ -42,14 +40,62 @@
 	-fx-font-family:"Microsoft YaHei"
 }
 #tag:hover{
-	-fx-border-color:#5d9b78;
+	-fx-background-color:#5d9b78;
 }
 .scroll-pane .scroll-bar:horizontal .thumb,
 
 .scroll-pane .scroll-bar:vertical .thumb {
-    -fx-background-color:derive(#67a582,100%);
+    -fx-background-color:derive(#434343,20%);
+    -fx-opacity: 0.2;
     -fx-background-insets: 2, 0, 0;
     -fx-background-radius: 3em;
+}
+.scroll-pane {
+  -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar .increment-button {
+  visibility: hidden;
+}
+
+.scroll-pane .scroll-bar .decrement-button {
+  visibility: hidden;
+}
+
+.scroll-pane .scroll-bar:vertical {
+  -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar:vertical .track-background {
+  visibility: hidden;
+}
+
+.scroll-pane .scroll-bar:vertical .track {
+  visibility: hidden;
+}
+
+.scroll-pane .hide-thumb .scroll-bar:vertical .thumb {
+  -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar:horizontal:hover .track ,
+
+.scroll-pane .scroll-bar:horizontal:pressed .track ,
+
+.scroll-pane .scroll-bar:vertical:hover .track,
+
+.scroll-pane .scroll-bar:vertical:pressed .track{
+     -fx-background-color: derive(#434343,20%);
+     -fx-opacity: 0.2;
+     fx-background-radius: 0em;
+}
+.scroll-pane .scroll-bar .thumb:hover ,
+
+.scroll-pane .scroll-bar .thumb:pressed {
+     -fx-background-color: derive(#434343,20%);
+     -fx-opacity: 0.5;
+     -fx-background-insets: 2, 0, 0;
+     -fx-background-radius: 3em;
 }
 .chart-bar {
     -fx-background-color: rgba(255,218,185,0.8);
@@ -57,7 +103,30 @@
     -fx-background-radius: 0;
     -fx-background-position: left center;
 }
+.default-color0.chart-area-symbol { 
+	visibility: hidden;
+}
+.default-color0.chart-series-area-line { -fx-stroke: #70CF9F; }
+.default-color0.chart-series-area-fill { -fx-fill: #70CF9F; }
+.default-color0.chart-line-symbol { 
+	visibility: hidden;
+}
+.table-view *.scroll-bar *.increment-button,
+.table-view *.scroll-bar *.decrement-button {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
 
+.table-view *.scroll-bar *.increment-arrow, 
+.table-view *.scroll-bar *.decrement-arrow {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-shape: null;
+}
 .table-view:row-selection{
     -fx-background-color: transparent;
 }
@@ -84,18 +153,12 @@
 .table-row-cell:odd{
     -fx-background-color: -fx-table-cell-border-color, #70CF9F;
     -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em; /* 0 */
-}
-
-.table-row-cell:selected {
-    -fx-background-color: #67a582;
-    -fx-background-insets: 0;
-    -fx-background-radius: 1;
+    -fx-padding: 0.0em; /* 0 */  
 }
 
 .table-view > .virtual-flow > .scroll-bar:vertical,
 .table-view > .virtual-flow > .scroll-bar:vertical > .track,
-.table-view > .virtual-flow > .scroll-bar:vertical > .track-background,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track-background, 
 .table-view > .virtual-flow > .scroll-bar:horizontal,
 .table-view > .virtual-flow > .scroll-bar:horizontal > .track,
 .table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
@@ -104,7 +167,7 @@
 
 
 
-.table-view > .virtual-flow > .scroll-bar > .increment-button,
+.table-view > .virtual-flow > .scroll-bar > .increment-button, 
 .table-view > .virtual-flow > .scroll-bar > .decrement-button {
     -fx-opacity: 0;
 }

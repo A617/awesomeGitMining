@@ -14,6 +14,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
@@ -26,32 +27,36 @@ import javafx.util.Duration;
 
 public class CreateTimeController implements Initializable {
 	@FXML
-	private LineChart<String, Integer> lineChart;
-	@FXML
-	private RepositoryService service;
-	@FXML
-	private NumberAxis yAxis;
-	@FXML
 	private AnchorPane pane;
-	private XYChart.Series<String, Integer> series;
+	
+	private LineChart<String, Number> lineChart;
+	private CategoryAxis xAxis = new CategoryAxis();
+	private NumberAxis yAxis = new NumberAxis();
+	private XYChart.Series<String, Number> series;
+	
+	private RepositoryService service;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		series = new XYChart.Series<>();
+		lineChart = new LineChart<String,Number>(xAxis,yAxis);
+		lineChart.setPrefSize(1166,720);
+		lineChart.setTitle("Create Time");
+		series = new XYChart.Series<String, Number>();
 		series.setName("time");
 		service = RepositoryServiceImpl.getInstance();
+		
 		CreatedTimeStatisticsVO vo = service.getCreatedTimeStatistics();
 		int[] nums = vo.getNum();
 		String[] year = vo.getTimes();
 		for (int i = 0; i < nums.length; i++) {
-			series.getData().add(new XYChart.Data<String, Integer>(year[i], 0));
+			series.getData().add(new XYChart.Data<String, Number>(year[i], 0));
 		}
 		Timeline tl = new Timeline();
 		tl.getKeyFrames().add(new KeyFrame(Duration.millis(500), new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent actionEvent) {
 				int i = 0;
-				for (Data<String, Integer> data : series.getData()) {
+				for (Data<String, Number> data : series.getData()) {
 					data.setYValue(nums[i]);
 					i++;
 				}
@@ -61,21 +66,22 @@ public class CreateTimeController implements Initializable {
 		tl.play();
 		lineChart.getData().add(series);
 		lineChart.setCreateSymbols(true);
-		//setupHover();
+		pane.getChildren().add(lineChart);
+		setupHover();
 	}
 
 	private void setupHover() {
 		Label label = new Label();
-		label.setTextFill(Color.DARKORANGE);
-		label.setStyle("-fx-font: 24 arial;");
+		label.setTextFill(Color.DARKCYAN);
+		label.setStyle("-fx-font: 18 arial;" + "-fx-opacity:0.5");
 		
-	    for (final XYChart.Data<String, Integer> dt : series.getData()) {
+	    for (final XYChart.Data<String, Number> dt : series.getData()) {
 	        final Node n = dt.getNode();
 	        n.setEffect(null);
 	        n.setOnMouseEntered(new EventHandler<MouseEvent>() {
 	            @Override
 	            public void handle(MouseEvent e) {
-	            	label.setLayoutX(n.getLayoutX() + 66);
+	            	label.setLayoutX(n.getLayoutX()+40);
 	            	label.setTranslateY(n.getLayoutY());
 	            	label.setText(String.valueOf(dt.getYValue()));
 	            }
