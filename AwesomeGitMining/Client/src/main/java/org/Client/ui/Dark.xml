@@ -3,10 +3,9 @@
 <skin>
 
 <main>main.fxml</main>
-<singleUserView>Ui_SingleUserView.fxml</singleUserView>
-<singleReposView>Ui_SingleReposView.fxml</singleReposView>
+<singleUserView>Ui_SingleUserView_dark.fxml</singleUserView>
+<singleReposView>Ui_SingleReposView_dark.fxml</singleReposView>
 <css>black.css</css>
 
 </skin>
 
-	

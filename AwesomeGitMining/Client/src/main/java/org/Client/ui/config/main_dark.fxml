@@ -11,7 +11,7 @@
    <children>
       <AnchorPane fx:id="listPane" layoutX="313.0" layoutY="6.0" prefHeight="702.0" prefWidth="1045.0">
          <children>
-            <AnchorPane prefHeight="40.0" prefWidth="1045.0" style="-fx-background-color: #b7c4c6;" />
+            <AnchorPane prefHeight="40.0" prefWidth="1045.0" style="-fx-background-color: #71af8c;" />
             <ScrollPane fx:id="scrollPane" layoutY="40.0" prefHeight="606.0" prefWidth="1045.0" />
             <Label fx:id="page" layoutX="771.0" layoutY="664.0" text="30000">
                <font>
@@ -20,21 +20,23 @@
             </Label>
             <Button layoutX="370.0" layoutY="658.0" mnemonicParsing="false" onAction="#handlePreButton" text="Previous" />
             <Button layoutX="624.0" layoutY="658.0" mnemonicParsing="false" onAction="#handleNextButton" prefHeight="30.0" prefWidth="82.0" text="Next" />
-            <Label id="headLabel" fx:id="tab_star" alignment="CENTER" layoutX="242.0" layoutY="1.0" onMouseEntered="#enterStar" onMouseExited="#exitStar" onMouseReleased="#selectStar" prefHeight="40.0" prefWidth="121.0" text="Star" textFill="WHITE">
+            <Label id="headLabel" fx:id="tab_star" alignment="CENTER" layoutX="232.0" layoutY="0.0" onMouseEntered="#enterStar" onMouseExited="#exitStar" onMouseReleased="#selectStar" prefHeight="40.0" prefWidth="116.0" text="Star" textFill="WHITE">
                <font>
-                  <Font name="Microsoft YaHei" size="15.0" />
+                  <Font name="Microsoft YaHei Bold" size="15.0" />
                </font></Label>
-            <Label id="headLabel" fx:id="tab_fork" alignment="CENTER" layoutX="121.0" layoutY="1.0" onMouseEntered="#enterFork" onMouseExited="#exitFork" onMouseReleased="#selectFork" prefHeight="40.0" prefWidth="121.0" text="Fork" textFill="WHITE">
+            <Label id="headLabel" fx:id="tab_fork" alignment="CENTER" layoutX="116.0" onMouseEntered="#enterFork" onMouseExited="#exitFork" onMouseReleased="#selectFork" prefHeight="40.0" prefWidth="116.0" text="Fork" textFill="WHITE">
                <font>
-                  <Font name="Microsoft YaHei UI" size="15.0" />
-               </font></Label>
+                  <Font name="Microsoft YaHei Bold" size="15.0" />
+               </font>
+            </Label>
             <Label id="headLabel" fx:id="tab_general" alignment="CENTER" layoutY="0.0" onMouseEntered="#enterGeneral" onMouseExited="#exitGeneral" onMouseReleased="#selectGeneral" prefHeight="40.0" prefWidth="116.0" text="General" textFill="WHITE" AnchorPane.bottomAnchor="662.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="929.0" AnchorPane.topAnchor="0.0">
                <font>
-                  <Font name="Microsoft YaHei" size="15.0" />
-               </font></Label>
-            <Label id="headLabel" fx:id="tab_contributor" alignment="CENTER" layoutX="363.0" layoutY="1.0" onMouseEntered="#enterContributor" onMouseExited="#exitContri" onMouseReleased="#selectContributor" prefHeight="40.0" prefWidth="121.0" text="Contributor" textFill="WHITE">
+                  <Font name="Microsoft YaHei Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label id="headLabel" fx:id="tab_contributor" alignment="CENTER" layoutX="348.0" layoutY="0.0" onMouseEntered="#enterContributor" onMouseExited="#exitContri" onMouseReleased="#selectContributor" prefHeight="40.0" prefWidth="116.0" text="Contributor" textFill="WHITE">
                <font>
-                  <Font name="Microsoft YaHei UI" size="15.0" />
+                  <Font name="Microsoft YaHei Bold" size="15.0" />
                </font></Label>
          </children>
       </AnchorPane>
@@ -45,7 +47,7 @@
                   <Font name="Microsoft YaHei UI" size="22.0" />
                </font>
             </Label>
-            <Group fx:id="group">
+            <Group fx:id="group_language">
                <children>
                   <Label id="tag" fx:id="emacsLisp" layoutX="9.0" layoutY="203.0" text="Ruby" />
                   <Label id="tag" fx:id="csharp" layoutX="63.0" layoutY="203.0" text="Python" />
@@ -68,6 +70,7 @@
                   <Label id="tag" fx:id="python" layoutX="50.0" layoutY="143.0" text="CoffeeScript" />
                   <Label id="tag" fx:id="perl" layoutX="9.0" layoutY="173.0" text="Prolog" />
                   <Label id="tag" fx:id="javaScript" layoutX="126.0" layoutY="203.0" text="Haskell" />
+                  <Label id="tag" fx:id="shell" layoutX="9.0" layoutY="233.0" text="Shell" />
                </children>
             </Group>
             <Line endX="200.0" layoutX="100.0" layoutY="319.0" startX="-100.0" stroke="#dad8d8" />
@@ -77,19 +80,20 @@
                   <Font name="Microsoft YaHei UI" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="time_all" layoutX="8.0" layoutY="544.0" text="All" />
-            <Label layoutX="54.0" layoutY="544.0" text="2007" />
-            <Label layoutX="116.0" layoutY="544.0" text="2008" />
-            <Label layoutX="174.0" layoutY="544.0" text="2009" />
-            <Label layoutX="232.0" layoutY="544.0" text="2010" />
-            <Label layoutX="8.0" layoutY="574.0" text="2011" />
-            <Label layoutX="54.0" layoutY="574.0" text="2012" />
-            <Label layoutX="116.0" layoutY="574.0" text="2013" />
-            <Label layoutX="174.0" layoutY="574.0" text="2014" />
-            <Label layoutX="232.0" layoutY="574.0" text="2015" />
-            <Label layoutX="8.0" layoutY="604.0" text="2016" />
-            <Label layoutX="54.0" layoutY="604.0" text="Others" />
-            <Label id="tag" fx:id="shell" layoutX="9.0" layoutY="233.0" text="Shell" />
          </children></AnchorPane>
+      <Group fx:id="group_year">
+         <children>
+            <Label id="tag" layoutX="124.0" layoutY="565.0" text="2008" />
+            <Label id="tag" fx:id="time_all" layoutX="9.0" layoutY="565.0" text="All" />
+            <Label id="tag" layoutX="9.0" layoutY="595.0" text="2012" />
+            <Label id="tag" layoutX="244.0" layoutY="595.0" text="2011" />
+            <Label id="tag" layoutX="61.0" layoutY="565.0" text="2007" />
+            <Label id="tag" layoutX="124.0" layoutY="595.0" text="2014" />
+            <Label id="tag" layoutX="187.0" layoutY="595.0" text="2015" />
+            <Label id="tag" layoutX="187.0" layoutY="565.0" text="2009" />
+            <Label id="tag" layoutX="244.0" layoutY="565.0" text="2010" />
+            <Label id="tag" layoutX="61.0" layoutY="595.0" text="2013" />
+         </children>
+      </Group>
    </children>
 </AnchorPane>
