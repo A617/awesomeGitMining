@@ -1,25 +1,18 @@
 package org.Client.business.impl.user;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import javax.imageio.ImageIO;
 
 import org.Client.business.dto.Converter;
 import org.Client.business.service.UserService;
 import org.Client.business.utility.ScoreCalculator;
 import org.Client.main.RMIHelper;
 import org.Common.data.IUserDao;
-import org.Common.po.Repository;
 import org.Common.po.Statistics;
-import org.Common.po.SerializableImage;
 import org.Common.po.User;
-import org.Common.vo.RepositoryVO;
 import org.Common.vo.SimpleUserVO;
 import org.Common.vo.UserCollaReposNumVO;
 import org.Common.vo.UserCompanyVO;
@@ -38,6 +31,7 @@ public class UserServiceImpl implements UserService {
 	private static UserServiceImpl instance;
 	private IUserDao daoImpl;
 	private int pageNums;
+	private int tagPageNum;
 
 	private UserServiceImpl() {
 		daoImpl = RMIHelper.getUserDao();
@@ -239,7 +233,7 @@ public class UserServiceImpl implements UserService {
 	public Image getAvatar(String id) {
 		Image image = null;
 		try {
-			image = new Image(daoImpl.getAvatar(id), 200,200, false,true,true);
+			image = new Image(daoImpl.getAvatar(id), 200, 200, false, true, true);
 		} catch (IOException e) {
 			System.out.println("获取头像超时");
 			e.printStackTrace();
@@ -364,42 +358,46 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<SimpleUserVO> getUserByLanguage(String language, int pageIndex) {
-//		List<RepositoryVO> list = new ArrayList<>();
-//		List<String> names = null;
-//		if (language.equals("All")) {
-//			try {
-//				names = daoImpl.getAllRepo();
-//			} catch (RemoteException e) {
-//				e.printStackTrace();
-//			}
-//		} else {
-//			int index = Statistics.getLanguageIndex(language);
-//			if (index != -1) {
-//				try {
-//					names = daoImpl.getReposByLanguage(index);
-//				} catch (RemoteException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		}
-//		tagPageNum = names.size();
-//		if (names != null) {
-//			for (int i = pageIndex * 10; i < 10 + pageIndex * 10; i++) {
-//				if (i < names.size() && i >= 0) {
-//					Repository po = null;
-//					try {
-//						po = daoImpl.getRepository(names.get(i));
-//					} catch (IOException e) {
-//						e.printStackTrace();
-//					}
-//					if (po != null) {
-//						RepositoryVO vo = (RepositoryVO) Converter.convert("RepositoryVO", po);
-//						list.add(vo);
-//					}
-//				}
-//			}
-//		}
-//		return list;
+		List<SimpleUserVO> result = new ArrayList<SimpleUserVO>();
+		List<String> names = new ArrayList<String>();
+		if (language.equals("All")) {
+			try {
+				names = daoImpl.getAllUser();
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		} else {
+			int index = Statistics.getLanguageIndex(language);
+			if (index != -1) {
+				try {
+					names = daoImpl.getUsersByLanguage(index);
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		tagPageNum = names.size();
+		if (names != null) {
+			for (int i = pageIndex * 10; i < 10 + pageIndex * 10; i++) {
+				if (i < names.size() && i >= 0) {
+					SimpleUserVO vo = new SimpleUserVO();
+					try {
+						vo.setLocation(daoImpl.getLocation(names.get(i)));
+						vo.setLogin(names.get(i));
+						vo.setCompany(daoImpl.getCompany(names.get(i)));
+						vo.setFollowers(daoImpl.getFollowers(names.get(i)));
+						result.add(vo);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		return result;
 	}
 
+	@Override
+	public int getTagPageNum() {
+		return tagPageNum / 10 + 1;
+	}
 }

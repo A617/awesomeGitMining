@@ -378,14 +378,6 @@ public class HomeController implements Initializable {
 
 			});
 		}
-<<<<<<< HEAD
-=======
-
-
-
-
-
->>>>>>> 327a8df438f64a5b59128af41123fbe6132e3475
 	}
 
 
@@ -400,28 +392,24 @@ public class HomeController implements Initializable {
 						Label label = (Label) group_year.getChildren().get(i);
 						label.setStyle("-fx-background-color:transparent;");
 					}
-//					String text = label.getText();
-//					FXMLLoader loader = new FXMLLoader();
-//					loader.setLocation(MainUI.class.getResource("config/Ui_ReposTagPane.fxml"));
-//					AnchorPane result = null;
-//					try {
-//						result = (AnchorPane) loader.load();
-//					} catch (IOException e) {
-//						System.out.println("Ui_ReposTagPane加载失败");
-//					}
-//					ReposTagPaneController controller = loader.getController();
-//					controller.setText(text);
+					String text = label.getText();
+					FXMLLoader loader = new FXMLLoader();
+					loader.setLocation(MainUI.class.getResource("config/Ui_ReposTagPane.fxml"));
+					AnchorPane result = null;
+					try {
+						result = (AnchorPane) loader.load();
+					} catch (IOException e) {
+						System.out.println("Ui_ReposTagPane加载失败");
+					}
+					ReposTagPaneController controller = loader.getController();
+					controller.setText(text);
 					listPane.getChildren().clear();
-					//listPane.getChildren().add(result);
+					listPane.getChildren().add(result);
 					label.setStyle("-fx-background-color:#5d9b78;");
 				}
 
 			});
 		}
-
-
-
-
 
 	}
 
