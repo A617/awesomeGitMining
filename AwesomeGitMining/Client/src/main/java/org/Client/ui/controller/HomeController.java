@@ -43,6 +43,8 @@ public class HomeController implements Initializable {
 	@FXML
 	private Group group_language;
 	@FXML
+	private Group group_year;
+	@FXML
 	private AnchorPane listPane;
 	private VBox box;
 
@@ -82,6 +84,7 @@ public class HomeController implements Initializable {
 		pageNum = repositoryImpl.getPageNums();
 		selectGeneral();
 		addTagListener();
+		addTagListener2();
 	}
 
 	@FXML
@@ -375,5 +378,54 @@ public class HomeController implements Initializable {
 
 			});
 		}
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> 327a8df438f64a5b59128af41123fbe6132e3475
 	}
+
+
+	private void addTagListener2() {
+		for (int i = 0; i < group_year.getChildren().size(); i++) {
+			Label label = (Label) group_year.getChildren().get(i);
+			label.setOnMouseReleased(new EventHandler<MouseEvent>() {
+
+				@Override
+				public void handle(MouseEvent arg0) {
+					for (int i = 0; i < group_year.getChildren().size(); i++) {
+						Label label = (Label) group_year.getChildren().get(i);
+						label.setStyle("-fx-background-color:transparent;");
+					}
+//					String text = label.getText();
+//					FXMLLoader loader = new FXMLLoader();
+//					loader.setLocation(MainUI.class.getResource("config/Ui_ReposTagPane.fxml"));
+//					AnchorPane result = null;
+//					try {
+//						result = (AnchorPane) loader.load();
+//					} catch (IOException e) {
+//						System.out.println("Ui_ReposTagPane加载失败");
+//					}
+//					ReposTagPaneController controller = loader.getController();
+//					controller.setText(text);
+					listPane.getChildren().clear();
+					//listPane.getChildren().add(result);
+					label.setStyle("-fx-background-color:#5d9b78;");
+				}
+
+			});
+		}
+
+
+
+
+
+	}
+
+
+
+
 }

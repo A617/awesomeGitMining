@@ -2,12 +2,11 @@
 
 <skin>
 
-<main>main1.fxml</main>
-<singleUserView>Ui_SingleUserView1.fxml</singleUserView>
-<singleReposView>Ui_SingleReposView1.fxml</singleReposView>
+<main>main_pink.fxml</main>
+<singleUserView>Ui_SingleUserView_pink.fxml</singleUserView>
+<singleReposView>Ui_SingleReposView_pink.fxml</singleReposView>
 <css>pink.css</css>
 <png>raderback.png</png>
 
 </skin>
 
-	

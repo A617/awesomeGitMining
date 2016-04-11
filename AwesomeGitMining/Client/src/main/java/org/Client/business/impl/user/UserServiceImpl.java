@@ -1,10 +1,14 @@
 package org.Client.business.impl.user;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.imageio.ImageIO;
 
 import org.Client.business.dto.Converter;
 import org.Client.business.service.UserService;
@@ -13,6 +17,7 @@ import org.Client.main.RMIHelper;
 import org.Common.data.IUserDao;
 import org.Common.po.Repository;
 import org.Common.po.Statistics;
+import org.Common.po.SerializableImage;
 import org.Common.po.User;
 import org.Common.vo.RepositoryVO;
 import org.Common.vo.SimpleUserVO;
@@ -232,14 +237,15 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Image getAvatar(String id) {
-		Image avatar = null;
+		Image image = null;
 		try {
-			avatar = daoImpl.getAvatar(id);
+			image = new Image(daoImpl.getAvatar(id), 200,200, false,true,true);
 		} catch (IOException e) {
 			System.out.println("获取头像超时");
 			e.printStackTrace();
 		}
-		return avatar;
+		System.out.println(image);
+		return image;
 	}
 
 	@Override

@@ -68,6 +68,9 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 		this.reposByFork = DataInitHelper.getList(path+"repo_forkSort.txt");
 		
 		this.reposByStar = DataInitHelper.getList(path+"repo_starSort.txt");
+		
+		this.createdTimeList = DataInitHelper.getList(path + "repo-createdTime.txt");
+
 
 		System.out.println("RepoDaoImpl initialized!");
 		long endTime = System.nanoTime();
@@ -144,8 +147,6 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 	@Override
 	public int[] getCreatedTimeStatistics() {
 
-		this.createdTimeList = DataInitHelper.getList(path + "repo-createdTime.txt");
-
 		String[] years = Statistics.year;
 		int[] result = new int[years.length];
 		int year;
@@ -195,6 +196,21 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 		return result;
 	}
 	
+	
+	@Override
+	public List<String> getReposByYear(int i){
+		String[] years = Statistics.year;
+		List<String> result = new ArrayList<>();
+
+		for (int index = 0; index < createdTimeList.size(); index++) {
+			if (createdTimeList.get(index).split("-")[0].equals(years[i]))
+				result.add(repoList.get(index));
+
+		}
+
+		return result;
+		
+	}
 	
 	@Override
 	public List<Integer> getCodeFrequency(String name) throws IOException{

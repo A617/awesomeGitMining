@@ -6,7 +6,6 @@
 <singleUserView>Ui_SingleUserView.fxml</singleUserView>
 <singleReposView>Ui_SingleReposView.fxml</singleReposView>
 <css>yellow.css</css>
-<commonPart>Ui_CommonPart.fxml</commonPart>>
 
 </skin>
 
