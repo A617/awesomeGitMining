@@ -17,7 +17,7 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="collaborate" layoutY="90.0" onMouseEntered="#enterCollaborate" onMouseExited="#exitCollaborate" onMouseReleased="#selectCollaborate" prefHeight="45.0" prefWidth="200.0" text="       collaborted repositories" textFill="WHITE">
+            <Label fx:id="collaborate" layoutY="90.0" onMouseEntered="#enterCollaborate" onMouseExited="#exitCollaborate" onMouseReleased="#selectCollaborate" prefHeight="45.0" prefWidth="200.0" text="       collaborated repositories" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font></Label>

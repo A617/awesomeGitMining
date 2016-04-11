@@ -3,7 +3,6 @@ package org.Client.business.service;
 
 import java.util.List;
 
-import org.Common.po.User;
 import org.Common.vo.SimpleUserVO;
 import org.Common.vo.UserCollaReposNumVO;
 import org.Common.vo.UserCompanyVO;
@@ -109,4 +108,13 @@ public interface UserService {
 	 * @return the list of languages the user knows
 	 */
 	public abstract List<String> getLanguageSkills(String login);
+	/**
+	 * 
+	 * @param language
+	 * @param pageIndex
+	 * @return list of user selected by language tag
+	 */
+	public abstract List<SimpleUserVO> getUserByLanguage(String language, int pageIndex);
+	
+	public abstract int getTagPageNum();
 }

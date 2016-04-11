@@ -4,25 +4,17 @@ import java.util.ResourceBundle;
 
 import org.Client.business.impl.repository.RepositoryServiceImpl;
 import org.Client.business.service.RepositoryService;
+import org.Client.ui.utility.BarChartGenerator;
 import org.Common.vo.ForksStatisticsVO;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.scene.chart.XYChart.Data;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.util.Duration;
 
 public class ForkController implements Initializable {
 
@@ -31,7 +23,7 @@ public class ForkController implements Initializable {
 	private RepositoryService service;
 
 	@FXML
-	private LineChart<String, Integer> lineChart;
+	private BarChart<String, Integer> barChart;
 	@FXML
 	private CategoryAxis xAxis;
 	@FXML
@@ -39,8 +31,9 @@ public class ForkController implements Initializable {
 	@FXML
 	private AnchorPane pane;
 
-	private XYChart.Series<String, Integer> series;
-
+	
+	private ObservableList<String> ranges = FXCollections.observableArrayList();
+	private BarChartGenerator barChartGenerator;
 	public static ForkController getInstance() {
 		return instance;
 	}
@@ -52,45 +45,12 @@ public class ForkController implements Initializable {
 		vo = service.getForksStatistics();
 		int[] nums = vo.getNums();
 		String[] types = vo.getTypes();
-		series = new XYChart.Series<>();
-		series.setName("fork");
-		for (int i = 0; i < nums.length; i++) {
-			series.getData().add(new XYChart.Data<String, Integer>(types[i], 0));
-		}
-		Timeline tl = new Timeline();
-		tl.getKeyFrames().add(new KeyFrame(Duration.millis(500), new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent actionEvent) {
-				int i = 0;
-				for (Data<String, Integer> data : series.getData()) {
-					data.setYValue(nums[i]);
-					i++;
-				}
-			}
-		}));
-		yAxis.setAnimated(false);
-		tl.play();
-		lineChart.getData().add(series);
-		setupHover();
+		barChartGenerator = new BarChartGenerator(pane,barChart,xAxis,yAxis);
+		ranges.addAll(types);
+		xAxis.setCategories(ranges);
+		barChartGenerator.setData(ranges,nums,"forks");
+		barChart.setCategoryGap(0);
+		barChart.setBarGap(0);
 	}
 
-	private void setupHover() {
-		Label label = new Label();
-		label.setTextFill(Color.DARKORANGE);
-		label.setStyle("-fx-font: 24 arial;");
-
-		for (final XYChart.Data<String, Integer> dt : series.getData()) {
-			final Node n = dt.getNode();
-			n.setEffect(null);
-			n.setOnMouseEntered(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent e) {
-					label.setLayoutX(n.getLayoutX() + 66);
-					label.setTranslateY(n.getLayoutY());
-					label.setText(String.valueOf(dt.getYValue()));
-				}
-			});
-		}
-		pane.getChildren().add(label);
-	}
 }

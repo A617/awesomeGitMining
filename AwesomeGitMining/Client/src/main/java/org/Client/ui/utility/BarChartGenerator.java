@@ -22,7 +22,7 @@ public class BarChartGenerator {
 	private CategoryAxis xAxis;
 	private NumberAxis yAxis;
 	private AnchorPane pane;
-	
+	private double columnWidth;
 	private XYChart.Series<String, Integer> series;
 	
 	public BarChartGenerator(AnchorPane pane,BarChart<String, Integer> barChart,CategoryAxis xAxis,NumberAxis yAxis) {
@@ -54,6 +54,9 @@ public class BarChartGenerator {
 				}
 			}
 		}));
+		double catSpace = xAxis.getCategorySpacing();
+		double avilableBarSpace = catSpace - (barChart.getCategoryGap() + barChart.getBarGap());
+		columnWidth = (avilableBarSpace / barChart.getData().size()) - barChart.getBarGap();
 		yAxis.setAnimated(false);
 		tl.play();
 		setupHover(series);
@@ -96,7 +99,7 @@ public class BarChartGenerator {
 	        n.setOnMouseEntered(new EventHandler<MouseEvent>() {
 	            @Override
 	            public void handle(MouseEvent e) {
-	            	label.setLayoutX(n.getLayoutX() + 66);
+	            	label.setLayoutX(n.getLayoutX() +columnWidth+90);
 	            	label.setTranslateY(n.getLayoutY());
 	            	label.setText(String.valueOf(dt.getYValue()));
 	            }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="mainpane" fx:controller="org.Client.ui.controller.UserTagController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="1045.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="btn_next" layoutX="624.0" layoutY="658.0" mnemonicParsing="false" onAction="#handleNextButton" prefHeight="30.0" prefWidth="82.0" text="Next" />
+      <Button fx:id="btn_previous" layoutX="370.0" layoutY="658.0" mnemonicParsing="false" onAction="#handlePreButton" text="Previous" />
+      <Label fx:id="page" layoutX="771.0" layoutY="664.0" text="30000">
+         <font>
+            <Font name="Ebrima Bold" size="15.0" />
+         </font>
+      </Label>
+      <ScrollPane fx:id="scrollPane" prefHeight="643.0" prefWidth="1045.0" />
+   </children>
+</AnchorPane>

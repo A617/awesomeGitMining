@@ -222,6 +222,8 @@ public class ProjectController implements Initializable {
 
 	private void addAreaChart() {
 		areaChart.setAnimated(false);
+		areaChart.setHorizontalGridLinesVisible(false);
+		areaChart.setVerticalGridLinesVisible(false);
 		ProgressIndicator pin = new ProgressIndicator(-1);
 		pin.setLayoutX(areaChart.getLayoutX() + areaChart.getPrefWidth() / 2);
 		pin.setLayoutY(areaChart.getLayoutY() + areaChart.getPrefHeight() / 2);

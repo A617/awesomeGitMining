@@ -1,88 +1,88 @@
 package org.Client.ui.controller;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import org.Client.business.impl.repository.RepositoryServiceImpl;
-import org.Client.business.service.RepositoryService;
+import org.Client.business.impl.user.UserServiceImpl;
+import org.Client.business.service.UserService;
 import org.Client.ui.MainUI;
 import org.Client.ui.utility.SkinConfig;
-import org.Common.vo.RepositoryVO;
+import org.Common.vo.SimpleUserVO;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-/**
- * @author tj
- * @date 2016年4月5日 下午11:17:41
- */
-public class ReposTagPaneController implements Initializable {
-	private static ReposTagPaneController instance;
-	private RepositoryService service;
-	private int pageNum;
+public class UserTagController implements Initializable{
 	@FXML
 	private Label page;
 	@FXML
 	private ScrollPane scrollPane;
-	private List<RepositoryVO> list;
+	private static UserTagController instance;
+	private UserService service;
+	private int pageNum;
+	private List<SimpleUserVO> list;
 	private int tempPage;
 	private String language;
-
-	public static ReposTagPaneController getInstance() {
+	
+	public UserTagController getInstance() {
 		if(instance == null)
-			instance = new ReposTagPaneController();
+			instance = new UserTagController();
 		return instance;
 	}
 
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		service = RepositoryServiceImpl.getInstance();
-
+	public void initialize(URL location, ResourceBundle resources) {
+		service = UserServiceImpl.getInstance();
 	}
-
+	
 	public void setText(String text) {
 		this.language = text;
-		list = service.getReposByLanguage(text, 0);
+		list = service.getUserByLanguage(text, 0);
 		pageNum = service.getTagPageNum();
 		page.setText("1 / " + pageNum);
-		initPane();
+		init();
 	}
-
-	private void initPane() {
+	
+	public void init() {
 		VBox box = new VBox();
 		VBox.setVgrow(scrollPane, Priority.ALWAYS);
 		box.setSpacing(4);
+
 		for (int i = 0; i < 10; i++) {
 			FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(MainUI.class.getResource("config/"+SkinConfig.getInstance().getFxmlResoursePath("singleReposView")));
+			loader.setLocation(MainUI.class.getResource("config/"+SkinConfig.getInstance().getFxmlResoursePath("singleUserView")));
 			try {
-				AnchorPane single = (AnchorPane) loader.load();
-				SingleRepositoryController controller = loader.getController();
+				Pane single = (Pane) loader.load();
+				SingleUserController controller = loader.getController();
 				if (i < list.size()) {
-					RepositoryVO vo = list.get(i);
+					SimpleUserVO vo = list.get(i);
 					controller.setVO(vo);
+
 					box.getChildren().add(single);
+
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+
 		scrollPane.setContent(box);
 	}
-
+	
 	@FXML
 	public void handleNextButton() {
 		tempPage++;
-		list = service.getReposByLanguage(language, tempPage);
+		list = service.getUserByLanguage(language, tempPage);
 		if (list.size() > 0) {
-			initPane();
+			init();
 		} else {
 			tempPage--;
 		}
@@ -93,12 +93,13 @@ public class ReposTagPaneController implements Initializable {
 	public void handlePreButton() {
 		tempPage--;
 		if (tempPage >= 0) {
-			list = service.getReposByLanguage(language, tempPage);
-			initPane();
+			list = service.getUserByLanguage(language,tempPage);
+			init();
 		} else {
 			tempPage++;
 		}
 		page.setText(tempPage + 1 + " / " + pageNum);
 	}
+
 
 }

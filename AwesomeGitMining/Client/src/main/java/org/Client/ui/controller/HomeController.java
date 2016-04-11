@@ -1,4 +1,5 @@
 package org.Client.ui.controller;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -167,7 +168,6 @@ public class HomeController implements Initializable {
 		initTabPane(contriList);
 	}
 
-
 	private void initTabPane(List<RepositoryVO> list) {
 		box = new VBox();
 		VBox.setVgrow(scrollPane, Priority.ALWAYS);
@@ -175,7 +175,8 @@ public class HomeController implements Initializable {
 		for (int i = 0; i < 10; i++) {
 			FXMLLoader loader = new FXMLLoader();
 			try {
-				loader.setLocation(new URL(configPath+(SkinConfig.getInstance().getFxmlResoursePath("singleReposView"))));
+				loader.setLocation(
+						new URL(configPath + (SkinConfig.getInstance().getFxmlResoursePath("singleReposView"))));
 			} catch (MalformedURLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -356,11 +357,17 @@ public class HomeController implements Initializable {
 
 				@Override
 				public void handle(MouseEvent arg0) {
+					// 把其他tag变回原来的颜色
 					for (int i = 0; i < group_language.getChildren().size(); i++) {
 						Label label = (Label) group_language.getChildren().get(i);
 						label.setStyle("-fx-background-color:transparent;");
 					}
 					String text = label.getText();
+					// 如果是all，返回初始界面
+					if (text.equals("All")) {
+						MainController.getInstance().setPanel("main.fxml");
+						return;
+					}
 					FXMLLoader loader = new FXMLLoader();
 					loader.setLocation(MainUI.class.getResource("config/Ui_ReposTagPane.fxml"));
 					AnchorPane result = null;
@@ -378,13 +385,7 @@ public class HomeController implements Initializable {
 
 			});
 		}
-
-
-
-
-
 	}
-
 
 	private void addTagListener2() {
 		for (int i = 0; i < group_year.getChildren().size(); i++) {
@@ -397,32 +398,39 @@ public class HomeController implements Initializable {
 						Label label = (Label) group_year.getChildren().get(i);
 						label.setStyle("-fx-background-color:transparent;");
 					}
-//					String text = label.getText();
-//					FXMLLoader loader = new FXMLLoader();
-//					loader.setLocation(MainUI.class.getResource("config/Ui_ReposTagPane.fxml"));
-//					AnchorPane result = null;
-//					try {
-//						result = (AnchorPane) loader.load();
-//					} catch (IOException e) {
-//						System.out.println("Ui_ReposTagPane加载失败");
-//					}
-//					ReposTagPaneController controller = loader.getController();
-//					controller.setText(text);
+					String text = label.getText();
+					FXMLLoader loader = new FXMLLoader();
+					loader.setLocation(MainUI.class.getResource("config/Ui_ReposTagPane.fxml"));
+					AnchorPane result = null;
+					try {
+						result = (AnchorPane) loader.load();
+					} catch (IOException e) {
+						System.out.println("Ui_ReposTagPane加载失败");
+					}
+					ReposTagPaneController controller = loader.getController();
+					controller.setText(text);
 					listPane.getChildren().clear();
-					//listPane.getChildren().add(result);
+					listPane.getChildren().add(result);
+					// String text = label.getText();
+					// FXMLLoader loader = new FXMLLoader();
+					// loader.setLocation(MainUI.class.getResource("config/Ui_ReposTagPane.fxml"));
+					// AnchorPane result = null;
+					// try {
+					// result = (AnchorPane) loader.load();
+					// } catch (IOException e) {
+					// System.out.println("Ui_ReposTagPane加载失败");
+					// }
+					// ReposTagPaneController controller =
+					// loader.getController();
+					// controller.setText(text);
+					listPane.getChildren().clear();
+					// listPane.getChildren().add(result);
 					label.setStyle("-fx-background-color:#5d9b78;");
 				}
 
 			});
 		}
 
-
-
-
-
 	}
-
-
-
 
 }

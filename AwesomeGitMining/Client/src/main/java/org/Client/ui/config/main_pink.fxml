@@ -13,7 +13,7 @@
          <children>
             <AnchorPane prefHeight="40.0" prefWidth="1045.0" style="-fx-background-color: #d4dfff;" />
             <ScrollPane fx:id="scrollPane" layoutY="40.0" prefHeight="606.0" prefWidth="1045.0" />
-            <Label fx:id="page" layoutX="771.0" layoutY="664.0" text="30000">
+            <Label fx:id="page" layoutX="972.0" layoutY="664.0" text="30000" textFill="#7c7c7c">
                <font>
                   <Font name="Ebrima Bold" size="15.0" />
                </font>
@@ -51,7 +51,7 @@
                <children>
                   <Label id="tag" fx:id="emacsLisp" layoutX="9.0" layoutY="203.0" text="Ruby" />
                   <Label id="tag" fx:id="csharp" layoutX="63.0" layoutY="203.0" text="Python" />
-                  <Label id="tag" layoutX="133.0" layoutY="143.0" text="Java" />
+                  <Label id="tag" layoutX="240.0" layoutY="113.0" text="Java" />
                   <Label id="tag" fx:id="c" layoutX="141.0" layoutY="113.0" text="C" />
                   <Label id="tag" fx:id="java" layoutX="186.0" layoutY="113.0" text="Perl" />
                   <Label id="tag" fx:id="php" layoutX="241.0" layoutY="143.0" text="PHP" />
@@ -61,13 +61,12 @@
                   <Label id="tag" fx:id="css" layoutX="241.0" layoutY="173.0" text="HTML" />
                   <Label id="tag" fx:id="cpp" layoutX="9.0" layoutY="143.0" text="C#" />
                   <Label id="tag" fx:id="clojure" layoutX="185.0" layoutY="203.0" text="Scala" />
-                  <Label id="tag" fx:id="html" layoutX="240.0" layoutY="113.0" text="Viml" />
                   <Label id="tag" fx:id="viml" layoutX="186.0" layoutY="173.0" text="CSS" />
                   <Label id="tag" fx:id="erlang" layoutX="137.0" layoutY="173.0" text="Go" />
                   <Label id="tag" fx:id="scala" layoutX="62.0" layoutY="173.0" text="Clojure" />
                   <Label id="tag" fx:id="haskell" layoutX="243.0" layoutY="203.0" text="Lua" />
                   <Label id="tag" fx:id="commonLisp" layoutX="53.0" layoutY="233.0" text="Objective-C" />
-                  <Label id="tag" fx:id="python" layoutX="50.0" layoutY="143.0" text="CoffeeScript" />
+                  <Label id="tag" fx:id="python" layoutX="69.0" layoutY="143.0" text="CoffeeScript" />
                   <Label id="tag" fx:id="perl" layoutX="9.0" layoutY="173.0" text="Prolog" />
                   <Label id="tag" fx:id="javaScript" layoutX="126.0" layoutY="203.0" text="Haskell" />
                   <Label id="tag" fx:id="shell" layoutX="9.0" layoutY="233.0" text="Shell" />

@@ -10,12 +10,16 @@ import org.Client.ui.MainUI;
 import org.Client.ui.utility.SkinConfig;
 import org.Common.vo.SimpleUserVO;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -23,7 +27,6 @@ import javafx.scene.layout.VBox;
 public class UserPageController implements Initializable {
 
 	private int userPage;
-
 	@FXML
 	private ScrollPane scrollPane;
 	@FXML
@@ -32,6 +35,11 @@ public class UserPageController implements Initializable {
 	private Button btn_next;
 	@FXML
 	private Label page;
+	@FXML
+	private Group language_group;
+	@FXML
+	private AnchorPane mainpane;
+	
 	private UserService userImpl;
 	private static UserPageController instance;
 	private List<SimpleUserVO> userVO;
@@ -93,6 +101,36 @@ public class UserPageController implements Initializable {
 		}
 		page.setText(userPage+1 + " / " + pageNums);
 	}
+	
+	public void tagController() {
+		for (int i = 0; i < language_group.getChildren().size(); i++) {
+			Label label = (Label) language_group.getChildren().get(i);
+			label.setOnMouseReleased(new EventHandler<MouseEvent>() {
+				
+				@Override
+				public void handle(MouseEvent arg0) {
+					for (int i = 0; i < language_group.getChildren().size(); i++) {
+						Label label = (Label) language_group.getChildren().get(i);
+						label.setStyle("-fx-background-color:transparent;");
+					}
+					FXMLLoader loader = new FXMLLoader();
+					loader.setLocation(MainUI.class.getResource("config/Ui_UserTagPane.fxml"));
+					AnchorPane result = null;
+					try {
+						result = (AnchorPane) loader.load();
+					} catch (IOException e) {
+						System.out.println("Ui_UserTagPane加载失败");
+					}
+					UserTagController controller = loader.getController();
+					controller.setText(label.getText());
+					mainpane.getChildren().clear();
+					mainpane.getChildren().add(result);
+					label.setStyle("-fx-background-color:#5d9b78;");
+				}
+
+			});
+		}
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -102,6 +140,8 @@ public class UserPageController implements Initializable {
 		initUser(userVO);
 		pageNums = userImpl.getPageNums();
 		page.setText("1 / " + pageNums);
+		
+		tagController();
 	}
 
 }
