@@ -357,11 +357,17 @@ public class HomeController implements Initializable {
 
 				@Override
 				public void handle(MouseEvent arg0) {
+					// 把其他tag变回原来的颜色
 					for (int i = 0; i < group_language.getChildren().size(); i++) {
 						Label label = (Label) group_language.getChildren().get(i);
 						label.setStyle("-fx-background-color:transparent;");
 					}
 					String text = label.getText();
+					// 如果是all，返回初始界面
+					if (text.equals("All")) {
+						MainController.getInstance().setPanel("main.fxml");
+						return;
+					}
 					FXMLLoader loader = new FXMLLoader();
 					loader.setLocation(MainUI.class.getResource("config/Ui_ReposTagPane.fxml"));
 					AnchorPane result = null;
