@@ -5,6 +5,8 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import org.jfree.chart.ChartMouseEvent;
+import org.jfree.chart.ChartMouseListener;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -22,7 +24,7 @@ public class RaderChartGenerator {
 
 	public JPanel createPanel(DefaultCategoryDataset dataset) {
 		MySpiderChart spider = new MySpiderChart(dataset);
-
+		
 		JFreeChart jfreechart = new JFreeChart(spider);
 		jfreechart.setTextAntiAlias(true);
 		jfreechart.setNotify(false);
@@ -32,6 +34,7 @@ public class RaderChartGenerator {
 		jfreechart.setBackgroundImage(new ImageIcon("src/main/java/org/Client/ui/style/raderback.png").getImage());
 
 		ChartPanel chart = new ChartPanel(jfreechart);
+		
 		return chart;
 	}
 }

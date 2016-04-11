@@ -34,6 +34,8 @@ public class SearchUserController implements Initializable {
 	private Label page;
 	private int pageNums;
 	private int userPage;
+	private final String configPath = "file:src/main/java/org/Client/ui/config/";
+
 
 	public static SearchUserController getInstance() {
 		return instance;
@@ -54,7 +56,7 @@ public class SearchUserController implements Initializable {
 		for (int i = 0; i < 10; i++) {
 			FXMLLoader loader = new FXMLLoader();
 			try {
-				loader.setLocation(new URL(SkinConfig.getInstance().getFxmlResoursePath("singleReposView")));
+				loader.setLocation(new URL(configPath+(SkinConfig.getInstance().getFxmlResoursePath("singleUserView"))));
 			} catch (MalformedURLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

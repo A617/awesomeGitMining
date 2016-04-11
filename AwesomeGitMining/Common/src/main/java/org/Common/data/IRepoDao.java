@@ -92,4 +92,11 @@ public interface IRepoDao extends Remote{
 	 * @throws RemoteException
 	 */
 	public List<String> getReposSortedByStar() throws RemoteException;
+
+	/**
+	 * 根据创建 年份获取项目
+	 * @param i
+	 * @return
+	 */
+	List<String> getReposByYear(int i) throws RemoteException;
 }

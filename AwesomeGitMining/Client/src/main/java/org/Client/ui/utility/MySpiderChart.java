@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.math.BigDecimal;
@@ -49,7 +50,6 @@ public class MySpiderChart extends SpiderWebPlot{
 		super.drawRadarPoly(g2, plotArea, centre, info, series, catCount, 8,8);
 		
 		
-		
 		for (int cat = 0; cat < catCount; cat++) {
 
             Number dataValue = getPlotValue(series, cat);
@@ -77,6 +77,7 @@ public class MySpiderChart extends SpiderWebPlot{
 
                     Point2D point = getWebPoint(plotArea, angle,
                             value / this.maxValue);
+                    
                     /*     polygon.addPoint((int) point.getX(), (int) point.getY());
 
                     // put an elipse at the point being plotted..
