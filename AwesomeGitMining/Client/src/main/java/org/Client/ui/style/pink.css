@@ -22,6 +22,9 @@
 #sortPane{
 	-fx-background-color:#f8aec4;
 }
+#headLabel{
+	-fx-background-color: #f8aec4;
+}
 #headLabel:hover{
 	-fx-background-color: #f46a94;
 }
@@ -62,7 +65,7 @@
     -fx-background-color: transparent;
 }
 .table-view .column-header-background{
-    -fx-background-color: #67a582;
+    -fx-background-color: #f8aec4;
 }
 .table-view .column-header-background .label{
     -fx-background-color: transparent;
