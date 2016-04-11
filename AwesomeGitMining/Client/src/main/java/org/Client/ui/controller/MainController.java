@@ -1,4 +1,5 @@
 package org.Client.ui.controller;
+
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
 import java.net.URL;
@@ -36,7 +37,7 @@ public class MainController implements Initializable {
 	@FXML
 	private AnchorPane layout;
 	@FXML
-	private AnchorPane center_panel,common;
+	private AnchorPane center_panel, common;
 	@FXML
 	private Label min;
 	@FXML
@@ -52,6 +53,7 @@ public class MainController implements Initializable {
 	@FXML
 	private Label changeStyle;
 
+	private AnchorPane infoPane;
 	private boolean selectRepos;
 	private boolean selectUser;
 	private boolean selectReposSta;
@@ -77,8 +79,8 @@ public class MainController implements Initializable {
 
 		center_panel.getChildren().clear();
 		center_panel.getChildren().add(panel);
-		//if shows statistics
-		if(name.equals("Ui_ReposStaPane.fxml")||name.equals("Ui_UserSta.fxml")){
+		// if shows statistics
+		if (name.equals("Ui_ReposStaPane.fxml") || name.equals("Ui_UserSta.fxml")) {
 			return;
 		}
 		AnchorPane field = fxmlLoader.loadPanel("Ui_TextField.fxml");
@@ -87,9 +89,9 @@ public class MainController implements Initializable {
 		field.setLayoutY(-10);
 		// otherwise the searchButton cannot use
 		common.toFront();
-		labelInit(exit,"exit_normal.png");
-		labelInit(min,"min_normal.png");
-		labelInit(changeStyle,"skin1.png");
+		labelInit(exit, "exit_normal.png");
+		labelInit(min, "min_normal.png");
+		labelInit(changeStyle, "skin1.png");
 	}
 
 	public void setGroup(String name) {
@@ -106,61 +108,72 @@ public class MainController implements Initializable {
 		selectRepos = true;
 		enterRepos();
 		addDraggableNode(common);
+		infoPane = fxmlLoader.loadPanel("Ui_InfoPane.fxml");
+		infoPane.setLayoutX(changeStyle.getLayoutX());
+		infoPane.setLayoutY(changeStyle.getLayoutY() + changeStyle.getPrefHeight());
 	}
 
 	public void labelInit(Label label, String path) {
 		Image image = new Image(MainUI.class.getResourceAsStream("style/" + path));
 		label.setGraphic(new ImageView(image));
 	}
+
 	@FXML
-	public void enterChange(){
-		labelInit(changeStyle,"skin3.png");
-	}
-	@FXML
-	public void exitChange(){
-		labelInit(changeStyle,"skin1.png");
+	public void enterChange() {
+		labelInit(changeStyle, "skin3.png");
 	}
 
 	@FXML
-	public void releaseChange(){
-		labelInit(changeStyle,"skin2.png");
-
-		return;
-
+	public void exitChange() {
+		labelInit(changeStyle, "skin1.png");
 	}
 
 	@FXML
-	public void enterExit(){
-		labelInit(exit,"exit_move.png");
-	}
-	@FXML
-	public void exitExit(){
-		labelInit(exit,"exit_normal.png");
+	public void releaseChange() {
+		labelInit(changeStyle, "skin2.png");
+		if (layout.getChildren().contains(infoPane)) {
+			layout.getChildren().remove(infoPane);
+		} else {
+			layout.getChildren().add(infoPane);
+		}
 	}
 
 	@FXML
-	public void releaseExit(){
-		labelInit(exit,"exit_active.png");
+	public void enterExit() {
+		labelInit(exit, "exit_move.png");
+	}
+
+	@FXML
+	public void exitExit() {
+		labelInit(exit, "exit_normal.png");
+	}
+
+	@FXML
+	public void releaseExit() {
+		labelInit(exit, "exit_active.png");
 		SystemTray.getSystemTray().remove(trayIcon);
 		Platform.exit();
 		return;
 
 	}
+
 	@FXML
-	public void enterMin(){
-		labelInit(min,"min_move.png");
-	}
-	@FXML
-	public void exitMin(){
-		labelInit(min,"min_normal.png");
+	public void enterMin() {
+		labelInit(min, "min_move.png");
 	}
 
 	@FXML
-	public void releaseMin(){
-		labelInit(min,"min_active.png");
+	public void exitMin() {
+		labelInit(min, "min_normal.png");
+	}
+
+	@FXML
+	public void releaseMin() {
+		labelInit(min, "min_active.png");
 		MainUI.getUI().getStage().setIconified(true);
 
 	}
+
 	@FXML
 	public void enterRepos() {
 		repository.setStyle(styleStr + enterColor);
