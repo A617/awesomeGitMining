@@ -47,22 +47,6 @@
                   <Font name="Microsoft YaHei UI" size="22.0" />
                </font>
             </Label>
-            <Group fx:id="group_language1" layoutY="431.0">
-               <children>
-                  <Label layoutX="68.0" layoutY="114.0" text="2007" />
-                  <Label layoutX="127.0" layoutY="114.0" text="2008" />
-                  <Label layoutX="187.0" layoutY="113.0" text="2009" />
-                  <Label layoutX="243.0" layoutY="113.0" text="2010" />
-                  <Label fx:id="time_all" layoutX="16.0" layoutY="114.0" text="All" />
-                  <Label layoutX="9.0" layoutY="143.0" text="2011" />
-                  <Label layoutX="68.0" layoutY="143.0" text="2012" />
-                  <Label layoutX="126.0" layoutY="143.0" text="2013" />
-                  <Label layoutX="186.0" layoutY="143.0" text="2014" />
-                  <Label layoutX="243.0" layoutY="143.0" text="2015" />
-                  <Label layoutX="9.0" layoutY="174.0" text="2016" />
-                  <Label layoutX="60.0" layoutY="173.0" text="Others" />
-               </children>
-            </Group>
             <Group fx:id="group_language">
                <children>
                   <Label id="tag" fx:id="emacsLisp" layoutX="9.0" layoutY="203.0" text="Ruby" />
@@ -97,5 +81,19 @@
                </font>
             </Label>
          </children></AnchorPane>
+      <Group fx:id="group_year">
+         <children>
+            <Label id="tag" layoutX="124.0" layoutY="565.0" text="2008" />
+            <Label id="tag" fx:id="time_all" layoutX="9.0" layoutY="565.0" text="All" />
+            <Label id="tag" layoutX="9.0" layoutY="595.0" text="2012" />
+            <Label id="tag" layoutX="244.0" layoutY="595.0" text="2011" />
+            <Label id="tag" layoutX="61.0" layoutY="565.0" text="2007" />
+            <Label id="tag" layoutX="124.0" layoutY="595.0" text="2014" />
+            <Label id="tag" layoutX="187.0" layoutY="595.0" text="2015" />
+            <Label id="tag" layoutX="187.0" layoutY="565.0" text="2009" />
+            <Label id="tag" layoutX="244.0" layoutY="565.0" text="2010" />
+            <Label id="tag" layoutX="61.0" layoutY="595.0" text="2013" />
+         </children>
+      </Group>
    </children>
 </AnchorPane>
