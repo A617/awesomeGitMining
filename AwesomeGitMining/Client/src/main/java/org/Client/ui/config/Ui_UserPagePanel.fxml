@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -8,51 +9,54 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1376.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Client.ui.controller.UserPageController">
    <children>
-      <AnchorPane layoutX="2.0" prefHeight="720.0" prefWidth="290.0" style="-fx-background-color: #faf6f2;">
+      <AnchorPane layoutX="3.0" prefHeight="720.0" prefWidth="290.0" style="-fx-background-color: #faf6f2;">
          <children>
-            <Label layoutX="7.0" layoutY="89.0" prefHeight="48.0" prefWidth="91.0" text="Category">
+            <Label layoutX="7.0" layoutY="89.0" prefHeight="48.0" prefWidth="121.0" text="Languages">
                <font>
                   <Font name="Microsoft YaHei Bold" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="7.0" layoutY="146.0" text="Language:">
+            <Line endX="200.0" layoutX="99.0" layoutY="137.0" startX="-100.0" stroke="#dad8d8" />
+            <Group fx:id="language_group" layoutY="139.0">
+               <children>
+                  <Label fx:id="others" layoutX="183.0" layoutY="139.0" text="Others" />
+                  <Label fx:id="language_all" layoutX="14.0" text="All" />
+                  <Label fx:id="erlang" layoutX="63.0" layoutY="-1.0" text="Erlang" />
+                  <Label fx:id="c" layoutX="138.0" text="C" />
+                  <Label fx:id="java" layoutX="254.0" text="Java" />
+                  <Label fx:id="ruby" layoutX="188.0" text="Ruby" />
+                  <Label fx:id="python" layoutX="6.0" layoutY="33.0" text="Python" />
+                  <Label fx:id="javaScript" layoutX="57.0" layoutY="33.0" text="JavaScript" />
+                  <Label fx:id="perl" layoutX="131.0" layoutY="33.0" text="Perl" />
+                  <Label fx:id="php" layoutX="190.0" layoutY="34.0" text="PHP" />
+                  <Label fx:id="html" layoutX="250.0" layoutY="32.0" text="HTML" />
+                  <Label fx:id="shell" layoutX="7.0" layoutY="67.0" text="Shell" />
+                  <Label fx:id="objectiveC" layoutX="51.0" layoutY="67.0" text="Objective-C" />
+                  <Label fx:id="r" layoutX="139.0" layoutY="67.0" text="R" />
+                  <Label fx:id="viml" layoutX="189.0" layoutY="67.0" text="Viml" />
+                  <Label fx:id="csharp" layoutX="258.0" layoutY="67.0" text="C#" />
+                  <Label fx:id="emacsLisp" layoutX="1.0" layoutY="102.0" text="Emacs Lisp" />
+                  <Label fx:id="cpp" layoutX="74.0" layoutY="103.0" text="C++" />
+                  <Label layoutX="132.0" layoutY="103.0" text="Lua" />
+                  <Label fx:id="clojure" layoutX="181.0" layoutY="103.0" text="Clojure" />
+                  <Label fx:id="haskell" layoutX="246.0" layoutY="102.0" text="Haskell" />
+                  <Label fx:id="css" layoutX="4.0" layoutY="139.0" text="CSS" />
+                  <Label fx:id="scala" layoutX="132.0" layoutY="139.0" text="Scala" />
+                  <Label fx:id="commonLisp" layoutX="44.0" layoutY="139.0" text="Common Lisp" />
+               </children>
+            </Group>
+         </children></AnchorPane>
+      <AnchorPane fx:id="mainpane" layoutX="303.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="1045.0">
+         <children>
+            <Button fx:id="btn_next" layoutX="624.0" layoutY="658.0" mnemonicParsing="false" onAction="#handleNextButton" prefHeight="30.0" prefWidth="82.0" text="Next" />
+            <Button fx:id="btn_previous" layoutX="370.0" layoutY="658.0" mnemonicParsing="false" onAction="#handlePreButton" text="Previous" />
+            <Label fx:id="page" layoutX="771.0" layoutY="664.0" text="30000">
                <font>
-                  <Font name="Microsoft YaHei UI" size="15.0" />
+                  <Font name="Ebrima Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="language_all" layoutX="7.0" layoutY="177.0" text="All" />
-            <Label fx:id="cpp" layoutX="79.0" layoutY="267.0" text="C++" />
-            <Line endX="200.0" layoutX="99.0" layoutY="137.0" startX="-100.0" stroke="#dad8d8" />
-            <Label fx:id="c" layoutX="135.0" layoutY="177.0" text="C" />
-            <Label fx:id="java" layoutX="178.0" layoutY="177.0" text="Java" />
-            <Label fx:id="ruby" layoutX="235.0" layoutY="177.0" text="Ruby" />
-            <Label fx:id="python" layoutX="7.0" layoutY="207.0" text="Python" />
-            <Label fx:id="javaScript" layoutX="60.0" layoutY="207.0" text="JavaScript" />
-            <Label fx:id="perl" layoutX="129.0" layoutY="207.0" text="Perl" />
-            <Label fx:id="php" layoutX="178.0" layoutY="207.0" text="PHP" />
-            <Label fx:id="html" layoutX="235.0" layoutY="207.0" text="HTML" />
-            <Label fx:id="shell" layoutX="7.0" layoutY="237.0" text="Shell" />
-            <Label fx:id="objectiveC" layoutX="55.0" layoutY="237.0" text="Objective-C" />
-            <Label fx:id="viml" layoutX="177.0" layoutY="237.0" text="Viml" />
-            <Label fx:id="csharp" layoutX="242.0" layoutY="237.0" text="C#" />
-            <Label fx:id="emacsLisp" layoutX="7.0" layoutY="267.0" text="Emacs Lisp" />
-            <Label fx:id="erlang" layoutX="69.0" layoutY="177.0" text="Erlang" />
-            <Label layoutX="131.0" layoutY="267.0" text="Lua" />
-            <Label fx:id="clojure" layoutX="172.0" layoutY="267.0" text="Clojure" />
-            <Label fx:id="css" layoutX="7.0" layoutY="297.0" text="CSS" />
-            <Label fx:id="haskell" layoutX="230.0" layoutY="267.0" text="Haskell" />
-            <Label fx:id="scala" layoutX="75.0" layoutY="297.0" text="Scala" />
-            <Label fx:id="commonLisp" layoutX="129.0" layoutY="297.0" text="Common Lisp" />
-            <Label fx:id="r" layoutX="136.0" layoutY="237.0" text="R" />
-            <Label fx:id="others" layoutX="233.0" layoutY="297.0" text="Others" />
-         </children></AnchorPane>
-      <Button fx:id="btn_previous" layoutX="668.0" layoutY="667.0" mnemonicParsing="false" onAction="#handleUserPre" text="Previous" />
-      <Button fx:id="btn_next" layoutX="863.0" layoutY="667.0" mnemonicParsing="false" onAction="#handleUserNext" text="Next" />
-      <ScrollPane fx:id="scrollPane" layoutX="313.0" layoutY="27.0" prefHeight="636.0" prefWidth="1050.0" AnchorPane.bottomAnchor="70.0" />
-      <Label fx:id="page" layoutX="1003.0" layoutY="672.0" text="30000">
-         <font>
-            <Font name="Ebrima Bold" size="15.0" />
-         </font>
-      </Label>
+            <ScrollPane fx:id="scrollPane" prefHeight="643.0" prefWidth="1045.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

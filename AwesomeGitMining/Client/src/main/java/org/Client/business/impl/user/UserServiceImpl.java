@@ -11,7 +11,10 @@ import org.Client.business.service.UserService;
 import org.Client.business.utility.ScoreCalculator;
 import org.Client.main.RMIHelper;
 import org.Common.data.IUserDao;
+import org.Common.po.Repository;
+import org.Common.po.Statistics;
 import org.Common.po.User;
+import org.Common.vo.RepositoryVO;
 import org.Common.vo.SimpleUserVO;
 import org.Common.vo.UserCollaReposNumVO;
 import org.Common.vo.UserCompanyVO;
@@ -351,6 +354,46 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public List<SimpleUserVO> getUserByLanguage(String language, int pageIndex) {
+//		List<RepositoryVO> list = new ArrayList<>();
+//		List<String> names = null;
+//		if (language.equals("All")) {
+//			try {
+//				names = daoImpl.getAllRepo();
+//			} catch (RemoteException e) {
+//				e.printStackTrace();
+//			}
+//		} else {
+//			int index = Statistics.getLanguageIndex(language);
+//			if (index != -1) {
+//				try {
+//					names = daoImpl.getReposByLanguage(index);
+//				} catch (RemoteException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		}
+//		tagPageNum = names.size();
+//		if (names != null) {
+//			for (int i = pageIndex * 10; i < 10 + pageIndex * 10; i++) {
+//				if (i < names.size() && i >= 0) {
+//					Repository po = null;
+//					try {
+//						po = daoImpl.getRepository(names.get(i));
+//					} catch (IOException e) {
+//						e.printStackTrace();
+//					}
+//					if (po != null) {
+//						RepositoryVO vo = (RepositoryVO) Converter.convert("RepositoryVO", po);
+//						list.add(vo);
+//					}
+//				}
+//			}
+//		}
+//		return list;
 	}
 
 }
