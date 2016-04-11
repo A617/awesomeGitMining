@@ -20,8 +20,8 @@ public class Statistics {
 	public static final String[] rank = { "star", "fork", "watchers", "subscribers", "issues", "contributors",
 			"collabotators" };
 
-	public static final String[] company = { "Shopify", "Github", "Google", "Twitter", "Facebook", "Xamarin", "Red Hat",
-			"Heroku", "Microsoft", "Mozilla" };
+	public static final String[] company = { "Shopify", "Google","Github", "Twitter", "Red Hat", "Mozilla", "Xamarin", "Heroku", "Facebook",
+			"Microsoft" };
 
 	public static String[] getLanguage() {
 		String[] language = { "Ruby", "Python", "Java", "JavaScript", "C", "Perl", "PHP", "C++", "HTML", "Shell", "C#",
