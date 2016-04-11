@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="infoPane" prefHeight="51.0" prefWidth="101.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Client.ui.controller.InfoPaneController">
+   <children>
+      <Label fx:id="yellow" layoutX="12.0" layoutY="16.0" onMouseReleased="#setYellow" prefHeight="20.0" prefWidth="17.0" text="黄" />
+      <Label fx:id="pink" layoutX="39.0" layoutY="16.0" onMouseReleased="#setPink" prefHeight="20.0" prefWidth="24.0" text="粉" />
+      <Label fx:id="dark" layoutX="73.0" layoutY="16.0" onMouseReleased="#setDark" prefHeight="20.0" prefWidth="17.0" text="蓝" />
+   </children>
+</AnchorPane>

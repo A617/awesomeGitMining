@@ -34,7 +34,7 @@ import javafx.util.Duration;
 public class MainUI extends Application {
 
 	private Stage stage;
-	private  Scene scene;
+	private Scene scene;
 	private AnchorPane common;
 	public static Group test;
 	private static MainUI ui;
@@ -56,17 +56,12 @@ public class MainUI extends Application {
 		scene = new Scene(common);
 
 		stage.setScene(scene);
-		
-		
+
 		scene.getStylesheets().add(new URL(SkinConfig.getInstance().getCssResoursePath()).toExternalForm());
-		
-		
-		
+
 		// 添加图标
 		this.stage.getIcons().add(new Image("file:src/main/java/org/Client/ui/style/mark.png"));
 		stage.show();
-
-
 
 		ProgressIndicator pin = new ProgressIndicator(-1);
 		pin.setVisible(false);
@@ -79,7 +74,7 @@ public class MainUI extends Application {
 			@Override
 			protected Void call() throws Exception {
 
-				//初始化单例
+				// 初始化单例
 				RMIHelper.init();
 				System.out.println("init");
 				RepositoryService repositoryImpl = RepositoryServiceImpl.getInstance();
@@ -103,12 +98,12 @@ public class MainUI extends Application {
 			}
 		});
 
-
-/*		RepositoryService repositoryImpl = RepositoryServiceImpl.getInstance();
-		UserService userImpl = UserServiceImpl.getInstance();
-		stage.setScene(this.scene);
-		MainController.getInstance().initPanel();
-*/
+		/*
+		 * RepositoryService repositoryImpl =
+		 * RepositoryServiceImpl.getInstance(); UserService userImpl =
+		 * UserServiceImpl.getInstance(); stage.setScene(this.scene);
+		 * MainController.getInstance().initPanel();
+		 */
 
 		// stage.setFullScreen(false);
 		// Rectangle2D primaryScreenBounds =
@@ -127,13 +122,12 @@ public class MainUI extends Application {
 		return stage;
 	}
 
-
 	public static void main(String[] args) {
 		launch(args);
 	}
 
 	public void changeStyle(String style){
-		if(style=="black"){
+		if(style.equals("black")){
 			SkinConfig.getInstance().setSkinNum(2);
 			try {
 				scene.getStylesheets().add(new URL(SkinConfig.getInstance().getCssResoursePath()).toExternalForm());
@@ -141,19 +135,26 @@ public class MainUI extends Application {
 				e.printStackTrace();
 			}
 		}
-		else if(style=="pink"){
+		else if(style.equals("pink")){
 			SkinConfig.getInstance().setSkinNum(1);
 			try {
 				scene.getStylesheets().add(new URL(SkinConfig.getInstance().getCssResoursePath()).toExternalForm());
 			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
+		}else if(style.equals("yellow")){
+			SkinConfig.getInstance().setSkinNum(0);
+			try {
+				scene.getStylesheets().add(new URL(SkinConfig.getInstance().getCssResoursePath()).toExternalForm());
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
-	private  class AnimationGroup extends Group{
+
+	private class AnimationGroup extends Group {
 
 		public AnimationGroup() {
 			Label sunset = new Label();
@@ -187,7 +188,6 @@ public class MainUI extends Application {
 			final KeyFrame kf = new KeyFrame(Duration.millis(1500), kv1, kv2);
 			timeline.getKeyFrames().add(kf);
 			timeline.play();
-
 
 			this.getChildren().addAll(stack1, stack2);
 		}
