@@ -1,4 +1,8 @@
 package org.Server.dao;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.rmi.RemoteException;
@@ -8,7 +12,10 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+
 import org.Common.data.IUserDao;
+import org.Common.po.SerializableImage;
 import org.Common.po.Statistics;
 import org.Common.po.Type;
 import org.Common.po.User;
@@ -52,8 +59,10 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 	private List<Integer> followersList;
 	/* 用户头像地址 */
 	private List<String> avatar_urlList;
+	
+	private List<List<String>> languageList;
 
-	public UserDaoImpl() throws RemoteException{
+	public UserDaoImpl() throws RemoteException {
 		long startTime = System.nanoTime();
 
 		this.userList = DataInitHelper.getList(path + "user_login.txt");
@@ -70,6 +79,7 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		this.createdTimeList = DataInitHelper.getList(path + "user-createdTime.txt");
 		this.nameList = DataInitHelper.getList(path + "user_name.txt");
 		this.avatar_urlList = DataInitHelper.getList(path + "user_avatar_url.txt");
+		this.languageList = DataInitHelper.getListList(path + "user_languages.txt");
 
 		System.out.println("UserDaoImpl initialized!");
 		long endTime = System.nanoTime();
@@ -103,14 +113,13 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 	}
 
 	@Override
-	public Image getAvatar(String login) throws IOException {
+	public String getAvatar(String login) throws IOException {
 		int index = userList.indexOf(login);
 
-		InputStream is = null;
 		if (index != -1) {
-			is = HttpRequest.sendGetforStream(avatar_urlList.get(index));
+			return avatar_urlList.get(index);
 		}
-		return is == null ? null : new Image(is, 200, 200, true, false);
+		return null;
 	}
 
 	@Override
@@ -237,22 +246,50 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		return result;
 	}
 
-	
 	@Override
 	public List<String> getLanguageSkills(String login) {
-		
+
 		int index = userList.indexOf(login);
-		
+
 		if (index != -1) {
-			
-			List<List<String>> languageList = DataInitHelper.getListList(path + "user_languages.txt");
+
 			return languageList.get(index);
-			
+
 		} else {
-			
+
 			return null;
-			
+
 		}
 	}
+
+	@Override
+	public List<String> getUsersByLanguage( int i){
+		String[] languages = Statistics.language;
+
+		List<String> result = new ArrayList<>();
+
+		for (int index = 0; index < userList.size(); index++) {
+			if (languageList.get(index).contains(languages[i]))
+				result.add(userList.get(index));
+
+		}
+
+		return result;
+	}
 	
+	
+	@Override
+	public List<String> getUsersByCompany(int i){
+		String[] list = Statistics.company;
+		List<String> result = new ArrayList<>();
+
+		for (int index = 0; index < companyList.size(); index++) {
+			if (companyList.get(index).equals(list[i]))
+				result.add(userList.get(index));
+
+		}
+
+		return result;
+	}
+
 }

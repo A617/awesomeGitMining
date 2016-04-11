@@ -36,6 +36,8 @@ public class ReposTagPaneController implements Initializable {
 	private String language;
 
 	public static ReposTagPaneController getInstance() {
+		if(instance == null)
+			instance = new ReposTagPaneController();
 		return instance;
 	}
 

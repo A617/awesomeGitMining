@@ -76,7 +76,7 @@ public class HandleBack {
 			controlU.setSearchID(userId);
 			break;
 		case PROJECT:
-			MainController.getInstance().setGroup(SkinConfig.getInstance().getFxmlResoursePath("projectPanel"));
+			MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
 			repositoryVO = repositoryImpl.searchRepositoryInfo(userId);
 			ProjectController.getInstance().setVO(repositoryVO);
 			break;
@@ -88,7 +88,7 @@ public class HandleBack {
 	public void handleRepoBack() {
 		switch (repoType) {
 		case HOME_PROJECT:
-			MainController.getInstance().setPanel("main.fxml");
+			MainController.getInstance().setPanel(SkinConfig.getInstance().getFxmlResoursePath("main"));
 			break;
 		case SEARCH_PROJECT:
 			MainController.getInstance().setPanel("Ui_SearchRepos.fxml");
@@ -96,7 +96,7 @@ public class HandleBack {
 			controlP.setSearchID(repoId);
 			break;
 		case USER:
-			MainController.getInstance().setGroup(SkinConfig.getInstance().getFxmlResoursePath("userPanel"));
+			MainController.getInstance().setGroup("Ui_UserPanel.fxml");
 			userVO = userImpl.getUser(repoId);
 			UserController.getInstance().setVO(userVO);
 			break;

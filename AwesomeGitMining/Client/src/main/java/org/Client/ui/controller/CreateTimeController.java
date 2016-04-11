@@ -60,7 +60,8 @@ public class CreateTimeController implements Initializable {
 		yAxis.setAnimated(false);
 		tl.play();
 		lineChart.getData().add(series);
-		setupHover();
+		lineChart.setCreateSymbols(true);
+		//setupHover();
 	}
 
 	private void setupHover() {

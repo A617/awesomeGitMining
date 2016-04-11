@@ -5,10 +5,9 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import org.Common.po.SerializableImage;
 import org.Common.po.Type;
 import org.Common.po.User;
-
-import javafx.scene.image.Image;
 
 /**
  * 
@@ -46,7 +45,7 @@ public interface IUserDao extends Remote{
 	 * @return 
 	 * @throws IOException
 	 */
-	public Image getAvatar(String url) throws IOException, RemoteException;
+	public String getAvatar(String url) throws IOException, RemoteException;
 
 
 	/**
@@ -114,5 +113,13 @@ public interface IUserDao extends Remote{
 	 */
 	public List<Integer> getRepoContributedStatistics() throws RemoteException;
 	
+	
+	
 	public List<String> getLanguageSkills(String login) throws RemoteException;
+
+
+	public List<String> getUsersByLanguage(int i) throws RemoteException;
+
+
+	public List<String> getUsersByCompany(int i) throws RemoteException;
 }
