@@ -140,6 +140,8 @@ public class UserPageController implements Initializable {
 		initUser(userVO);
 		pageNums = userImpl.getPageNums();
 		page.setText("1 / " + pageNums);
+		
+		tagController();
 	}
 
 }

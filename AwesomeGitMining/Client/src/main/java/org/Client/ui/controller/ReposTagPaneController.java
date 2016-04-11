@@ -44,7 +44,6 @@ public class ReposTagPaneController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		service = RepositoryServiceImpl.getInstance();
-		instance = this;
 
 	}
 
@@ -94,7 +93,7 @@ public class ReposTagPaneController implements Initializable {
 	public void handlePreButton() {
 		tempPage--;
 		if (tempPage >= 0) {
-			list = service.showRepositories(tempPage);
+			list = service.getReposByLanguage(language, tempPage);
 			initPane();
 		} else {
 			tempPage++;
