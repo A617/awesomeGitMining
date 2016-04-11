@@ -73,26 +73,59 @@
                </children>
             </Group>
             <Line endX="200.0" layoutX="100.0" layoutY="319.0" startX="-100.0" stroke="#dad8d8" />
-            <Line endX="200.0" layoutX="100.0" layoutY="500.0" startX="-100.0" stroke="#dad8d8" />
-            <Label layoutX="8.0" layoutY="511.0" text="Create Time:">
+            <Line endX="200.0" layoutX="100.0" layoutY="540.0" startX="-100.0" stroke="#dad8d8" />
+            <Label layoutX="6.0" layoutY="552.0" text="Create Time:">
                <font>
                   <Font name="Microsoft YaHei UI" size="22.0" />
                </font>
             </Label>
-         </children></AnchorPane>
-      <Group fx:id="group_year">
-         <children>
-            <Label id="tag" layoutX="124.0" layoutY="565.0" text="2008" />
-            <Label id="tag" fx:id="time_all" layoutX="9.0" layoutY="565.0" text="All" />
-            <Label id="tag" layoutX="9.0" layoutY="595.0" text="2012" />
-            <Label id="tag" layoutX="244.0" layoutY="595.0" text="2011" />
-            <Label id="tag" layoutX="61.0" layoutY="565.0" text="2007" />
-            <Label id="tag" layoutX="124.0" layoutY="595.0" text="2014" />
-            <Label id="tag" layoutX="187.0" layoutY="595.0" text="2015" />
-            <Label id="tag" layoutX="187.0" layoutY="565.0" text="2009" />
-            <Label id="tag" layoutX="244.0" layoutY="565.0" text="2010" />
-            <Label id="tag" layoutX="61.0" layoutY="595.0" text="2013" />
+            <Label layoutX="6.0" layoutY="331.0" text="Keyword:">
+               <font>
+                  <Font name="Microsoft YaHei UI" size="22.0" />
+               </font>
+            </Label>
+            <Group fx:id="keyword">
+               <children>
+                  <Label id="tag" layoutX="183.0" layoutY="366.0" text="jQuery" />
+                  <Label id="tag" layoutX="240.0" layoutY="508.0" text="Maven" />
+                  <Label id="tag" layoutX="197.0" layoutY="441.0" text="JSON" />
+                  <Label id="tag" layoutX="256.0" layoutY="441.0" text="IRC" />
+                  <Label id="tag" layoutX="227.0" layoutY="402.0" text="Android" />
+                  <Label id="tag" layoutX="8.0" layoutY="508.0" text="MVC" />
+                  <Label id="tag" layoutX="9.0" layoutY="366.0" text="API" />
+                  <Label id="tag" layoutX="194.0" layoutY="471.0" text="iOS" />
+                  <Label id="tag" layoutX="141.0" layoutY="402.0" text="database" />
+                  <Label id="tag" layoutX="65.0" layoutY="402.0" text="Plugin" />
+                  <Label id="tag" layoutX="9.0" layoutY="402.0" text="Web" />
+                  <Label id="tag" layoutX="82.0" layoutY="471.0" text=".NET" />
+                  <Label id="tag" layoutX="255.0" layoutY="471.0" text="vim" />
+                  <Label id="tag" layoutX="10.0" layoutY="441.0" text="Git" />
+                  <Label id="tag" layoutX="124.0" layoutY="366.0" text="gem" />
+                  <Label id="tag" layoutX="59.0" layoutY="441.0" text="Emacs" />
+                  <Label id="tag" layoutX="165.0" layoutY="508.0" text="MySQL" />
+                  <Label id="tag" layoutX="55.0" layoutY="366.0" text="Django" />
+                  <Label id="tag" layoutX="11.0" layoutY="471.0" text="toolkit" />
+                  <Label id="tag" layoutX="248.0" layoutY="366.0" text="XML" />
+                  <Label id="tag" layoutX="129.0" layoutY="441.0" text="Linux" />
+                  <Label id="tag" layoutX="147.0" layoutY="471.0" text="OS" />
+                  <Label id="tag" layoutX="77.0" layoutY="508.0" text="Apache" />
+               </children>
+            </Group>
+            <Group fx:id="group_year" layoutX="6.0" layoutY="31.0">
+               <children>
+                  <Label id="tag" layoutX="124.0" layoutY="565.0" text="2008" />
+                  <Label id="tag" fx:id="time_all" layoutX="9.0" layoutY="565.0" text="All" />
+                  <Label id="tag" layoutX="9.0" layoutY="595.0" text="2012" />
+                  <Label id="tag" layoutX="244.0" layoutY="595.0" text="2011" />
+                  <Label id="tag" layoutX="61.0" layoutY="565.0" text="2007" />
+                  <Label id="tag" layoutX="124.0" layoutY="595.0" text="2014" />
+                  <Label id="tag" layoutX="187.0" layoutY="595.0" text="2015" />
+                  <Label id="tag" layoutX="187.0" layoutY="565.0" text="2009" />
+                  <Label id="tag" layoutX="244.0" layoutY="565.0" text="2010" />
+                  <Label id="tag" layoutX="61.0" layoutY="595.0" text="2013" />
+               </children>
+            </Group>
          </children>
-      </Group>
+        </AnchorPane>
    </children>
 </AnchorPane>
