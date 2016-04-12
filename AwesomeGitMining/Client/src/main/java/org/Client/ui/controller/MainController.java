@@ -98,8 +98,14 @@ public class MainController implements Initializable {
 		field.setLayoutY(-10);
 		// otherwise the searchButton cannot use
 		common.toFront();
+		if(skinNum==1){
+			labelInit(exit, "exit_normal_pink.png");
+			labelInit(min, "min_normal_pink.png");
+		}
+		else{
 		labelInit(exit, "exit_normal.png");
 		labelInit(min, "min_normal.png");
+		}
 		labelInit(changeStyle, "skin1.png");
 	}
 
@@ -150,12 +156,29 @@ public class MainController implements Initializable {
 
 	@FXML
 	public void enterExit() {
-		labelInit(exit, "exit_move.png");
+		switch (skinNum){
+		case 0:
+			labelInit(exit, "exit_move.png");
+		case 1:
+			labelInit(exit, "exit_move_pink.png");
+
+//		default:
+//			labelInit(exit, "exit_move.png");
+		}
 	}
 
 	@FXML
 	public void exitExit() {
-		labelInit(exit, "exit_normal.png");
+
+		switch (skinNum){
+		case 0:
+			labelInit(exit, "exit_normal.png");
+		case 1:
+			labelInit(exit, "exit_normal_pink.png");
+
+//		default:
+//			labelInit(exit, "exit_normal.png");
+		}
 	}
 
 	@FXML
@@ -169,12 +192,29 @@ public class MainController implements Initializable {
 
 	@FXML
 	public void enterMin() {
-		labelInit(min, "min_move.png");
+		switch (skinNum){
+		case 0:
+			labelInit(min, "min_move.png");
+		case 1:
+			labelInit(min, "min_move_pink.png");
+
+//		default:
+//			labelInit(min, "min_move.png");
+		}
+
 	}
 
 	@FXML
 	public void exitMin() {
-		labelInit(min, "min_normal.png");
+		switch (skinNum){
+		case 0:
+			labelInit(min, "min_normal.png");
+		case 1:
+			labelInit(min, "min_normal_pink.png");
+
+//		default:
+//			labelInit(min, "min_normal.png");
+		}
 	}
 
 	@FXML
