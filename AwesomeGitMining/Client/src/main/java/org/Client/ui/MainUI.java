@@ -98,20 +98,6 @@ public class MainUI extends Application {
 			}
 		});
 
-		/*
-		 * RepositoryService repositoryImpl =
-		 * RepositoryServiceImpl.getInstance(); UserService userImpl =
-		 * UserServiceImpl.getInstance(); stage.setScene(this.scene);
-		 * MainController.getInstance().initPanel();
-		 */
-
-		// stage.setFullScreen(false);
-		// Rectangle2D primaryScreenBounds =
-		// Screen.getPrimary().getVisualBounds();
-		// stage.setX(primaryScreenBounds.getMinX());
-		// stage.setY(primaryScreenBounds.getMinY());
-		// stage.setWidth(primaryScreenBounds.getWidth());
-		// stage.setHeight(primaryScreenBounds.getHeight());//全屏 等要用的时候再说
 	}
 
 	public static MainUI getUI() {
