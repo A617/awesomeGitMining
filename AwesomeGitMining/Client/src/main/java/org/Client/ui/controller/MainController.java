@@ -156,29 +156,21 @@ public class MainController implements Initializable {
 
 	@FXML
 	public void enterExit() {
-		switch (skinNum){
-		case 0:
+		if(skinNum==0){
 			labelInit(exit, "exit_move.png");
-		case 1:
+		}else if(skinNum==1){
 			labelInit(exit, "exit_move_pink.png");
-
-//		default:
-//			labelInit(exit, "exit_move.png");
 		}
 	}
 
 	@FXML
 	public void exitExit() {
-
-		switch (skinNum){
-		case 0:
+		if(skinNum==0){
 			labelInit(exit, "exit_normal.png");
-		case 1:
+		}else if(skinNum==1){
 			labelInit(exit, "exit_normal_pink.png");
-
-//		default:
-//			labelInit(exit, "exit_normal.png");
 		}
+
 	}
 
 	@FXML
@@ -192,28 +184,20 @@ public class MainController implements Initializable {
 
 	@FXML
 	public void enterMin() {
-		switch (skinNum){
-		case 0:
+		if(skinNum==0){
 			labelInit(min, "min_move.png");
-		case 1:
+		}else if(skinNum==1){
 			labelInit(min, "min_move_pink.png");
-
-//		default:
-//			labelInit(min, "min_move.png");
 		}
 
 	}
 
 	@FXML
 	public void exitMin() {
-		switch (skinNum){
-		case 0:
+		if(skinNum==0){
 			labelInit(min, "min_normal.png");
-		case 1:
+		}else if(skinNum==1){
 			labelInit(min, "min_normal_pink.png");
-
-//		default:
-//			labelInit(min, "min_normal.png");
 		}
 	}
 

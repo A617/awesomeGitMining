@@ -6,8 +6,8 @@
 
 <AnchorPane fx:id="infoPane" prefHeight="134.0" prefWidth="84.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Client.ui.controller.InfoPaneController">
    <children>
-      <Label fx:id="yellow" layoutX="23.0" layoutY="14.0" text="Label" />
-      <Label fx:id="pink" layoutX="23.0" layoutY="60.0" text="Label" />
-      <Label fx:id="dark" layoutX="23.0" layoutY="105.0" text="Label" />
+      <Label fx:id="yellow" layoutX="23.0" layoutY="14.0" onMouseEntered="#enterYellow" onMouseExited="#exitYellow" onMouseReleased="#selectYellow" />
+      <Label fx:id="pink" layoutX="23.0" layoutY="60.0" onMouseEntered="#enterPink" onMouseExited="#exitPink" onMouseReleased="#selectPink" />
+      <Label fx:id="dark" layoutX="23.0" layoutY="105.0" onMouseEntered="#enterDark" onMouseExited="#exitDark" onMouseReleased="#selectDark" />
    </children>
 </AnchorPane>
