@@ -71,15 +71,17 @@ public class InfoPaneController implements Initializable {
 	@FXML
 	public void selectYellow() {
 		labelInit(yellow, "back_icon_flash.png");
-		MainUI.getUI().changeStyle("yellow");
 		SkinConfig.getInstance().setSkinNum(0);
+		MainUI.getUI().changeStyle("yellow");
+
 	}
 
 	@FXML
 	public void selectPink() {
 		labelInit(pink, "back_pink_icon_flash.png");
-		MainUI.getUI().changeStyle("pink");
 		SkinConfig.getInstance().setSkinNum(1);
+		MainUI.getUI().changeStyle("pink");
+
 	}
 
 	@FXML
