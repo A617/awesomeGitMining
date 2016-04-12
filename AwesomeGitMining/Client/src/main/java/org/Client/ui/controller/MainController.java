@@ -26,7 +26,8 @@ public class MainController implements Initializable {
 	private final Delta dragDelta = new Delta();
 	private static MainController instance;
 	private TrayIcon trayIcon;
-
+	private static String enterColor;
+	private static String baseColor;
 	public static MainController getInstance() {
 		if (instance == null) {
 			instance = new MainController();
@@ -59,12 +60,20 @@ public class MainController implements Initializable {
 	private boolean selectReposSta;
 	private boolean selectUserSta;
 	private String styleStr = "-fx-background-color: ";
-	private String enterColor = "#5d9b78;";
-	private String baseColor = "#67a582;";
+	static int skinNum=SkinConfig.getInstance().getSkinNum();
 
 	/**
 	 * when start the app, init the homePagePanel
 	 */
+	public static void getNum(){
+		if(skinNum==0){
+			enterColor = "#5d9b78;";
+			baseColor = "#71af8c;";
+		}else if(skinNum==1){
+			enterColor = "#ff99c7;";
+			baseColor = "#f8aec4;";
+		}
+	}
 	public void initPanel() {
 		setPanel(SkinConfig.getInstance().getFxmlResoursePath("main"));
 	}
@@ -104,6 +113,7 @@ public class MainController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		getNum();
 		instance = this;
 		selectRepos = true;
 		enterRepos();
