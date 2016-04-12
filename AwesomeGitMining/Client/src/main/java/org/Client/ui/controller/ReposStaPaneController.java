@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.Client.ui.MainUI;
+import org.Client.ui.utility.SkinConfig;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,14 +27,27 @@ public class ReposStaPaneController implements Initializable {
 	private AnchorPane center;
 
 	private String styleStr = "-fx-background-color: ";
-	private String enterColor = "#69b589;";
-	private String baseColor = "#74c996;";
+
+	private static String enterColor;
+	private static String baseColor;
 	private boolean selectLanguage;
 	private boolean selectFork;
 	private boolean selectStar;
 	private boolean selectCreateTime;
+	static int skinNum=SkinConfig.getInstance().getSkinNum();
+
+	public static void getNum(){
+		if(skinNum==0){
+			enterColor = "#69b589;";
+			baseColor = "#74c996;";
+		}else if(skinNum==1){
+			enterColor="#abb7d3;";
+			baseColor="#c1cce7;";
+		}
+	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		getNum();
 		blank.setStyle(styleStr + baseColor);
 		selectLanguage();
 	}

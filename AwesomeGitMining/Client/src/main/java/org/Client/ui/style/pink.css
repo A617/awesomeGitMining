@@ -3,7 +3,7 @@
 }
 .button {
     -fx-background-radius: 0.0;
-    -fx-background-color: #ff77b4;
+    -fx-background-color: #ff99c7;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 11.0pt;
     -fx-text-fill: white;
@@ -131,7 +131,7 @@
     -fx-background-color: transparent;
 }
 .table-view .column-header-background{
-    -fx-background-color: #ff99d8;
+    -fx-background-color: #ff99c7;
 }
 .table-view .column-header-background .label{
     -fx-background-color: transparent;
@@ -145,13 +145,13 @@
     -fx-font-family:"Microsoft YaHei"
 }
 .table-row-cell{
-    -fx-background-color: -fx-table-cell-border-color, #f8aec4;
+    -fx-background-color: -fx-table-cell-border-color, #bcddff;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em; /* 0 */
 }
 
 .table-row-cell:odd{
-    -fx-background-color: -fx-table-cell-border-color, #ffd5f1;
+    -fx-background-color: -fx-table-cell-border-color, #e8f0ff;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em; /* 0 */
 }
