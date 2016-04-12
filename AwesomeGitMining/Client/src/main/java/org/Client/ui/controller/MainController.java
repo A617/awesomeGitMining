@@ -26,7 +26,8 @@ public class MainController implements Initializable {
 	private final Delta dragDelta = new Delta();
 	private static MainController instance;
 	private TrayIcon trayIcon;
-
+	private static String enterColor;
+	private static String baseColor;
 	public static MainController getInstance() {
 		if (instance == null) {
 			instance = new MainController();
@@ -59,12 +60,20 @@ public class MainController implements Initializable {
 	private boolean selectReposSta;
 	private boolean selectUserSta;
 	private String styleStr = "-fx-background-color: ";
-	private String enterColor = "#5d9b78;";
-	private String baseColor = "#67a582;";
+	static int skinNum=SkinConfig.getInstance().getSkinNum();
 
 	/**
 	 * when start the app, init the homePagePanel
 	 */
+	public static void getNum(){
+		if(skinNum==0){
+			enterColor = "#5d9b78;";
+			baseColor = "#71af8c;";
+		}else if(skinNum==1){
+			enterColor = "#ff99c7;";
+			baseColor = "#f8aec4;";
+		}
+	}
 	public void initPanel() {
 		setPanel(SkinConfig.getInstance().getFxmlResoursePath("main"));
 	}
@@ -89,8 +98,14 @@ public class MainController implements Initializable {
 		field.setLayoutY(-10);
 		// otherwise the searchButton cannot use
 		common.toFront();
+		if(skinNum==1){
+			labelInit(exit, "exit_normal_pink.png");
+			labelInit(min, "min_normal_pink.png");
+		}
+		else{
 		labelInit(exit, "exit_normal.png");
 		labelInit(min, "min_normal.png");
+		}
 		labelInit(changeStyle, "skin1.png");
 	}
 
@@ -104,6 +119,7 @@ public class MainController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		getNum();
 		instance = this;
 		selectRepos = true;
 		enterRepos();
@@ -140,12 +156,29 @@ public class MainController implements Initializable {
 
 	@FXML
 	public void enterExit() {
-		labelInit(exit, "exit_move.png");
+		switch (skinNum){
+		case 0:
+			labelInit(exit, "exit_move.png");
+		case 1:
+			labelInit(exit, "exit_move_pink.png");
+
+//		default:
+//			labelInit(exit, "exit_move.png");
+		}
 	}
 
 	@FXML
 	public void exitExit() {
-		labelInit(exit, "exit_normal.png");
+
+		switch (skinNum){
+		case 0:
+			labelInit(exit, "exit_normal.png");
+		case 1:
+			labelInit(exit, "exit_normal_pink.png");
+
+//		default:
+//			labelInit(exit, "exit_normal.png");
+		}
 	}
 
 	@FXML
@@ -159,12 +192,29 @@ public class MainController implements Initializable {
 
 	@FXML
 	public void enterMin() {
-		labelInit(min, "min_move.png");
+		switch (skinNum){
+		case 0:
+			labelInit(min, "min_move.png");
+		case 1:
+			labelInit(min, "min_move_pink.png");
+
+//		default:
+//			labelInit(min, "min_move.png");
+		}
+
 	}
 
 	@FXML
 	public void exitMin() {
-		labelInit(min, "min_normal.png");
+		switch (skinNum){
+		case 0:
+			labelInit(min, "min_normal.png");
+		case 1:
+			labelInit(min, "min_normal_pink.png");
+
+//		default:
+//			labelInit(min, "min_normal.png");
+		}
 	}
 
 	@FXML

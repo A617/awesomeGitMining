@@ -20,7 +20,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-public class UserTagController implements Initializable{
+public class UserTagController implements Initializable {
 	@FXML
 	private Label page;
 	@FXML
@@ -29,11 +29,17 @@ public class UserTagController implements Initializable{
 	private UserService service;
 	private int pageNum;
 	private List<SimpleUserVO> list;
-	private int tempPage;
+	private int languagePage;
+	private int companyPage;
 	private String language;
-	
+	private String company;
+	/*
+	 * if true then language selected else company selected
+	 */
+	private boolean state;
+
 	public UserTagController getInstance() {
-		if(instance == null)
+		if (instance == null)
 			instance = new UserTagController();
 		return instance;
 	}
@@ -42,15 +48,27 @@ public class UserTagController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		service = UserServiceImpl.getInstance();
 	}
-	
-	public void setText(String text) {
+
+	public void setLanguages(String text) {
+		languagePage = 0;
+		state = true;
 		this.language = text;
 		list = service.getUserByLanguage(text, 0);
-		pageNum = service.getTagPageNum();
+		pageNum = service.getLanguageTagPageNum();
 		page.setText("1 / " + pageNum);
 		init();
 	}
-	
+
+	public void setCompanys(String text) {
+		companyPage = 0;
+		state = false;
+		this.company = text;
+		list = service.getUserByCompany(text, 0);
+		pageNum = service.getCompanyTagPageNum();
+		page.setText("1 / " + pageNum);
+		init();
+	}
+
 	public void init() {
 		VBox box = new VBox();
 		VBox.setVgrow(scrollPane, Priority.ALWAYS);
@@ -58,7 +76,8 @@ public class UserTagController implements Initializable{
 
 		for (int i = 0; i < 10; i++) {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainUI.class.getResource("config/"+SkinConfig.getInstance().getFxmlResoursePath("singleUserView")));
+			loader.setLocation(MainUI.class
+					.getResource("config/" + SkinConfig.getInstance().getFxmlResoursePath("singleUserView")));
 			try {
 				Pane single = (Pane) loader.load();
 				SingleUserController controller = loader.getController();
@@ -76,30 +95,52 @@ public class UserTagController implements Initializable{
 
 		scrollPane.setContent(box);
 	}
-	
+
 	@FXML
 	public void handleNextButton() {
-		tempPage++;
-		list = service.getUserByLanguage(language, tempPage);
-		if (list.size() > 0) {
-			init();
-		} else {
-			tempPage--;
+		if (state) {
+			languagePage++;
+			list = service.getUserByLanguage(language, languagePage);
+			if (list.size() > 0) {
+				init();
+			} else {
+				languagePage--;
+			}
+			page.setText(languagePage + 1 + " / " + pageNum);
+		}else {
+			companyPage++;
+			list = service.getUserByCompany(company, companyPage);
+			if (list.size() > 0) {
+				init();
+			} else {
+				companyPage--;
+			}
+			page.setText(companyPage + 1 + " / " + pageNum);
 		}
-		page.setText(tempPage + 1 + " / " + pageNum);
+
 	}
 
 	@FXML
 	public void handlePreButton() {
-		tempPage--;
-		if (tempPage >= 0) {
-			list = service.getUserByLanguage(language,tempPage);
-			init();
-		} else {
-			tempPage++;
+		if(state) {
+			languagePage--;
+			if (languagePage >= 0) {
+				list = service.getUserByLanguage(language, languagePage);
+				init();
+			} else {
+				languagePage++;
+			}
+			page.setText(languagePage + 1 + " / " + pageNum);
+		}else {
+			companyPage--;
+			if (companyPage >= 0) {
+				list = service.getUserByCompany(company, companyPage);
+				init();
+			} else {
+				companyPage++;
+			}
+			page.setText(companyPage + 1 + " / " + pageNum);
 		}
-		page.setText(tempPage + 1 + " / " + pageNum);
 	}
-
 
 }

@@ -32,7 +32,8 @@ public class UserServiceImpl implements UserService {
 	private static UserServiceImpl instance;
 	private IUserDao daoImpl;
 	private int pageNums;
-	private int tagPageNum;
+	private int languagePageNum;
+	private int companyPageNum;
 
 	private UserServiceImpl() {
 		daoImpl = RMIHelper.getUserDao();
@@ -129,7 +130,6 @@ public class UserServiceImpl implements UserService {
 			try {
 				names = daoImpl.searchUser(id);
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			if (names != null) {
@@ -161,7 +161,6 @@ public class UserServiceImpl implements UserService {
 		try {
 			names = daoImpl.searchUser(id);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		List<String> result = new ArrayList<String>();
@@ -354,7 +353,6 @@ public class UserServiceImpl implements UserService {
 					return daoImpl.searchUser(id).size() / 5 + 1;
 				}
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -368,7 +366,6 @@ public class UserServiceImpl implements UserService {
 			try {
 				result = daoImpl.getLanguageSkills(login);
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -395,7 +392,7 @@ public class UserServiceImpl implements UserService {
 				}
 			}
 		}
-		tagPageNum = names.size();
+		languagePageNum = names.size();
 		if (names != null) {
 			for (int i = pageIndex * 10; i < 10 + pageIndex * 10; i++) {
 				if (i < names.size() && i >= 0) {
@@ -416,7 +413,53 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int getTagPageNum() {
-		return tagPageNum / 10 + 1;
+	public int getLanguageTagPageNum() {
+		return languagePageNum / 10 + 1;
 	}
+	
+	@Override
+	public List<SimpleUserVO> getUserByCompany(String company, int pageIndex) {
+		List<SimpleUserVO> result = new ArrayList<SimpleUserVO>();
+		List<String> names = new ArrayList<String>();
+		if (company.equals("All")) {
+			try {
+				names = daoImpl.getAllUser();
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		} else {
+			int index = Statistics.getCompanyIndex(company);
+			if (index != -1) {
+				try {
+					names = daoImpl.getUsersByCompany(index);
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		companyPageNum = names.size();
+		if (names != null) {
+			for (int i = pageIndex * 10; i < 10 + pageIndex * 10; i++) {
+				if (i < names.size() && i >= 0) {
+					SimpleUserVO vo = new SimpleUserVO();
+					try {
+						vo.setLocation(daoImpl.getLocation(names.get(i)));
+						vo.setLogin(names.get(i));
+						vo.setCompany(daoImpl.getCompany(names.get(i)));
+						vo.setFollowers(daoImpl.getFollowers(names.get(i)));
+						result.add(vo);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		return result;
+	}
+	
+	@Override
+	public int getCompanyTagPageNum() {
+		return companyPageNum / 10 + 1;
+	}
+
 }

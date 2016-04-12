@@ -24,6 +24,7 @@ public class Statistics {
 			"Microsoft" };
 	public static final String[] categories ={"API","Django","gem","jQuery","Web","IRC","Plugin","database","Android","Git",
 	"Emacs","Linux","JSON","toolkit",".NET","OS","XML","iOS","MVC","vim","Apache","Maven","MySQL"};
+	
 	public static String[] getLanguage() {
 		String[] language = { "Ruby", "Python", "Java", "JavaScript", "C", "Perl", "PHP", "C++", "HTML", "Shell", "C#",
 				"Prolog", "Scala", "Viml", "CSS", "Go", "Clojure", "CoffeeScript", "Haskell", "Lua", "Objective-C",
@@ -46,9 +47,19 @@ public class Statistics {
 				"Microsoft", "Mozilla" };
 		return company;
 	}
+	
 	public static int getLanguageIndex(String name) {
 		for (int i = 0; i < language.length; i++) {
 			if(language[i].equals(name)){
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	public static int getCompanyIndex(String name) {
+		for (int i = 0; i < company.length; i++) {
+			if(company[i].equals(name)){
 				return i;
 			}
 		}

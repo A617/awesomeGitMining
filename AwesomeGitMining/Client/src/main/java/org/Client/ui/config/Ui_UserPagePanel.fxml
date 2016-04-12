@@ -9,47 +9,70 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1376.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Client.ui.controller.UserPageController">
    <children>
-      <AnchorPane layoutX="3.0" prefHeight="720.0" prefWidth="290.0" style="-fx-background-color: #faf6f2;">
+      <AnchorPane prefHeight="720.0" prefWidth="290.0" style="-fx-background-color: #faf6f2;">
          <children>
             <Label layoutX="7.0" layoutY="89.0" prefHeight="48.0" prefWidth="121.0" text="Languages">
                <font>
                   <Font name="Microsoft YaHei Bold" size="19.0" />
                </font>
             </Label>
-            <Line endX="200.0" layoutX="99.0" layoutY="137.0" startX="-100.0" stroke="#dad8d8" />
+            <Line endX="200.0" layoutX="99.0" layoutY="135.0" startX="-100.0" stroke="#dad8d8" />
             <Group fx:id="language_group" layoutY="139.0">
                <children>
-                  <Label id="tag" fx:id="language_all" layoutX="14.0" text="All" />
-                  <Label id="tag" fx:id="c" layoutX="138.0" text="C" />
-                  <Label id="tag" fx:id="java" layoutX="254.0" text="Java" />
-                  <Label id="tag" fx:id="ruby" layoutX="188.0" text="Ruby" />
-                  <Label id="tag" fx:id="python" layoutX="6.0" layoutY="33.0" text="Python" />
-                  <Label id="tag" fx:id="javaScript" layoutX="57.0" layoutY="33.0" text="JavaScript" />
-                  <Label id="tag" fx:id="perl" layoutX="131.0" layoutY="33.0" text="Perl" />
-                  <Label id="tag" fx:id="php" layoutX="190.0" layoutY="34.0" text="PHP" />
-                  <Label id="tag" fx:id="html" layoutX="250.0" layoutY="32.0" text="HTML" />
-                  <Label id="tag" fx:id="shell" layoutX="7.0" layoutY="67.0" text="Shell" />
-                  <Label id="tag" fx:id="objectiveC" layoutX="51.0" layoutY="67.0" text="Objective-C" />
-                  <Label id="tag" fx:id="csharp" layoutX="258.0" layoutY="67.0" text="C#" />
-                  <Label id="tag" fx:id="cpp" layoutX="74.0" layoutY="103.0" text="C++" />
+                  <Label id="tag" layoutX="14.0" text="All" />
+                  <Label id="tag" layoutX="138.0" text="C" />
+                  <Label id="tag" layoutX="254.0" text="Java" />
+                  <Label id="tag" layoutX="188.0" text="Ruby" />
+                  <Label id="tag" layoutX="6.0" layoutY="33.0" text="Python" />
+                  <Label id="tag" layoutX="57.0" layoutY="33.0" text="JavaScript" />
+                  <Label id="tag" layoutX="131.0" layoutY="33.0" text="Perl" />
+                  <Label id="tag" layoutX="190.0" layoutY="34.0" text="PHP" />
+                  <Label id="tag" layoutX="250.0" layoutY="32.0" text="HTML" />
+                  <Label id="tag" layoutX="7.0" layoutY="67.0" text="Shell" />
+                  <Label id="tag" layoutX="51.0" layoutY="67.0" text="Objective-C" />
+                  <Label id="tag" layoutX="258.0" layoutY="67.0" text="C#" />
+                  <Label id="tag" layoutX="74.0" layoutY="103.0" text="C++" />
                   <Label id="tag" layoutX="132.0" layoutY="103.0" text="Lua" />
-                  <Label id="tag" fx:id="clojure" layoutX="183.0" layoutY="67.0" text="Clojure" />
-                  <Label id="tag" fx:id="haskell" layoutX="126.0" layoutY="67.0" text="Haskell" />
-                  <Label id="tag" fx:id="css" layoutX="13.0" layoutY="103.0" text="CSS" />
-                  <Label id="tag" fx:id="scala" layoutX="69.0" text="Scala" />
+                  <Label id="tag" layoutX="183.0" layoutY="67.0" text="Clojure" />
+                  <Label id="tag" layoutX="126.0" layoutY="67.0" text="Haskell" />
+                  <Label id="tag" layoutX="8.0" layoutY="103.0" text="CSS" />
+                  <Label id="tag" layoutX="69.0" text="Scala" />
+               </children>
+            </Group>
+            <Label layoutX="7.0" layoutY="281.0" prefHeight="48.0" prefWidth="121.0" text="Companys">
+               <font>
+                  <Font name="Microsoft YaHei Bold" size="19.0" />
+               </font>
+            </Label>
+            <Line endX="200.0" layoutX="100.0" layoutY="324.0" startX="-100.0" stroke="#dad8d8" />
+            <Group fx:id="company_group" layoutY="329.0">
+               <children>
+                  <Label id="tag" layoutX="14.0" text="All" />
+                  <Label id="tag" layoutX="157.0" text="Google" />
+                  <Label id="tag" layoutX="241.0" layoutY="1.0" text="Github" />
+                  <Label id="tag" layoutX="6.0" layoutY="33.0" text="Twitter" />
+                  <Label id="tag" layoutX="70.0" layoutY="33.0" text="Red Hat" />
+                  <Label id="tag" layoutX="158.0" layoutY="33.0" text="Mozilla" />
+                  <Label id="tag" layoutX="239.0" layoutY="34.0" text="Xamarin" />
+                  <Label id="tag" layoutX="7.0" layoutY="67.0" text="Heroku" />
+                  <Label id="tag" layoutX="66.0" layoutY="67.0" text="Facebook" />
+                  <Label id="tag" layoutX="153.0" layoutY="67.0" text="Microsoft" />
+                  <Label id="tag" layoutX="72.0" text="Shopify" />
                </children>
             </Group>
          </children></AnchorPane>
-      <AnchorPane fx:id="mainpane" layoutX="303.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="1045.0">
+      <AnchorPane fx:id="mainpane" layoutX="314.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="1045.0">
          <children>
             <Button fx:id="btn_next" layoutX="624.0" layoutY="658.0" mnemonicParsing="false" onAction="#handleUserNext" prefHeight="30.0" prefWidth="82.0" text="Next" />
             <Button fx:id="btn_previous" layoutX="370.0" layoutY="658.0" mnemonicParsing="false" onAction="#handleUserPre" text="Previous" />
             <Label fx:id="page" layoutX="771.0" layoutY="664.0" text="30000">
-            <Label fx:id="page" layoutX="977.0" layoutY="664.0" text="30000" textFill="#7c7c7c">
-               <font>
-                  <Font name="Ebrima Bold" size="15.0" />
-               </font>
-            </Label>
+               <text>
+               <Label fx:id="page" layoutX="977.0" layoutY="664.0" text="30000" textFill="#7c7c7c">
+                  <font>
+                     <Font name="Ebrima Bold" size="15.0" />
+                  </font>
+               </Label>
+               </text>
             </Label>
             <ScrollPane fx:id="scrollPane" prefHeight="643.0" prefWidth="1045.0" />
          </children>
