@@ -80,7 +80,9 @@ public class HttpRequest {
 			URLConnection connection = myURL.openConnection();
 			String authString = "Basic " + Base64.encodeBase64String((token + ":x-oauth-basic").getBytes());
 			connection.setRequestProperty("Authorization", authString);
+			connection.setRequestProperty("Accept", "application/vnd.github.v3.star+json");
 
+			
 			in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			String line;
 			while ((line = in.readLine()) != null) {
@@ -107,4 +109,30 @@ public class HttpRequest {
 		
         return inStream;
     }
+	
+	public static String sendGetViaAcceptHeader(String url, String param) throws IOException {
+		String newUrl = "https://" + url + param;
+		System.out.println(newUrl);
+
+		String result = "";
+		BufferedReader in = null;
+
+		URL myURL = null;
+		try {
+			myURL = new URL(newUrl);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		if (myURL != null) {
+			URLConnection connection = myURL.openConnection();
+			connection.setRequestProperty("Accept", "application/vnd.github.v3.star+json");
+
+			in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			String line;
+			while ((line = in.readLine()) != null) {
+				result += line;
+			}
+		}
+		return result;
+	}
 }

@@ -31,6 +31,7 @@ import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
@@ -313,9 +314,11 @@ public class ProjectController implements Initializable {
 				}
 			});
 			cell.setOnMouseEntered((MouseEvent t) -> {
+				cell.setCursor(Cursor.HAND);
 				cell.setUnderline(true);
 			});
 			cell.setOnMouseExited((MouseEvent t) -> {
+				cell.setCursor(Cursor.DEFAULT);
 				cell.setUnderline(false);
 			});
 			return cell;
@@ -339,9 +342,11 @@ public class ProjectController implements Initializable {
 				}
 			});
 			cell.setOnMouseEntered((MouseEvent t) -> {
+				cell.setCursor(Cursor.HAND);
 				cell.setUnderline(true);
 			});
 			cell.setOnMouseExited((MouseEvent t) -> {
+				cell.setCursor(Cursor.DEFAULT);
 				cell.setUnderline(false);
 			});
 			return cell;

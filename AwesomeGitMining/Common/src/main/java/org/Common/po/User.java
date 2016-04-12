@@ -34,7 +34,7 @@ public class User implements Serializable{
 	private int following;
 	private String created_at;
 	private String updated_at;
-
+	private int[] ranks;
 	
 	public User() {
 		super();
@@ -209,6 +209,19 @@ public class User implements Serializable{
 
 	public void setCollaboration_fullname(List<String> collaboration_fullname) {
 		this.collaboration_fullname = collaboration_fullname;
+	}
+
+	
+
+
+	public int[] getRanks() {
+		return ranks;
+	}
+
+
+
+	public void setRanks(int[] ranks) {
+		this.ranks = ranks;
 	}
 
 
