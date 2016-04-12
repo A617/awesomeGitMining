@@ -8,19 +8,12 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Server.main.MainController">
    <children>
-      <Label layoutX="7.0" layoutY="4.0" text="AwesomeGitMining Server">
-         <font>
-            <Font name="System Bold" size="19.0" />
-         </font>
-      </Label>
       <Label fx:id="close" layoutX="560.0" layoutY="-2.0" onMouseEntered="#enterExit" onMouseExited="#exitExit" onMouseReleased="#releaseExit" prefHeight="32.0" prefWidth="40.0" />
       <Label fx:id="min" layoutX="520.0" layoutY="-2.0" onMouseEntered="#enterMin" onMouseExited="#exitMin" onMouseReleased="#releaseMin" prefHeight="32.0" prefWidth="40.0" />
-      <Label fx:id="info" layoutX="199.0" layoutY="257.0" prefHeight="41.0" prefWidth="307.0" textAlignment="CENTER">
+      <Label layoutX="215.0" layoutY="352.0" text="Server connected~" textFill="#545353">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="connect" layoutX="147.0" layoutY="152.0" mnemonicParsing="false" text="  connect  " />
-      <Button fx:id="disconnect" layoutX="370.0" layoutY="152.0" mnemonicParsing="false" text="disconnect" />
    </children>
 </AnchorPane>

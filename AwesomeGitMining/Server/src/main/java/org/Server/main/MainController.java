@@ -5,10 +5,8 @@ import java.util.ResourceBundle;
 
 import org.Server.Test;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,18 +14,11 @@ import javafx.scene.image.ImageView;
 public class MainController implements Initializable{
 	
 	@FXML
-	private Button connect;
-	@FXML
-	private Button disconnect;
-	@FXML
 	private Label min;
 	@FXML
 	private Label close;
-	@FXML
-	private Label info;
 	
 	private static MainController instance;
-	private boolean isConnected;
 	
 	public static MainController getInstance() {
 		if (instance == null) {
@@ -40,18 +31,6 @@ public class MainController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		labelInit(close, "exit_normal.png");
 		labelInit(min, "min_normal.png");
-		isConnected = false;
-		
-		connect.setOnAction((ActionEvent e) -> { 
-			if(!isConnected) {
-				RMIHelper.init();
-				info.setText("start the server successfully!");
-				isConnected = true;
-			}
-		});
-		disconnect.setOnAction((ActionEvent e) -> {  
-			System.exit(0);
-		});
 	}
 	
 	public void labelInit(Label label, String path) {

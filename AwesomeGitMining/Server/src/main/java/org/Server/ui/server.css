@@ -1,5 +1,5 @@
 .root {
-    -fx-background-image: url("back.png");
+    -fx-background-image: url("server-running.gif");
 }
 .button {
     -fx-background-radius: 0.0;
