@@ -102,9 +102,13 @@ public class MainController implements Initializable {
 			labelInit(exit, "exit_normal_pink.png");
 			labelInit(min, "min_normal_pink.png");
 		}
-		else{
+		else if(skinNum==0){
 		labelInit(exit, "exit_normal.png");
 		labelInit(min, "min_normal.png");
+		}
+		else if(skinNum==2){
+			labelInit(exit, "exit_normal_dark.png");
+			labelInit(min, "min_normal_dark.png");
 		}
 		labelInit(changeStyle, "skin1.png");
 	}
@@ -160,6 +164,8 @@ public class MainController implements Initializable {
 			labelInit(exit, "exit_move.png");
 		}else if(skinNum==1){
 			labelInit(exit, "exit_move_pink.png");
+		}else if (skinNum==2){
+			labelInit(exit, "exit_move_dark.png");
 		}
 	}
 
@@ -169,6 +175,8 @@ public class MainController implements Initializable {
 			labelInit(exit, "exit_normal.png");
 		}else if(skinNum==1){
 			labelInit(exit, "exit_normal_pink.png");
+		}else if(skinNum==2){
+			labelInit(exit, "exit_normal_dark.png");
 		}
 
 	}
@@ -188,6 +196,8 @@ public class MainController implements Initializable {
 			labelInit(min, "min_move.png");
 		}else if(skinNum==1){
 			labelInit(min, "min_move_pink.png");
+		}else if(skinNum==2){
+			labelInit(min, "min_move_dark.png");
 		}
 
 	}
@@ -198,6 +208,8 @@ public class MainController implements Initializable {
 			labelInit(min, "min_normal.png");
 		}else if(skinNum==1){
 			labelInit(min, "min_normal_pink.png");
+		}else if(skinNum==2){
+			labelInit(min, "min_normal_dark.png");
 		}
 	}
 
