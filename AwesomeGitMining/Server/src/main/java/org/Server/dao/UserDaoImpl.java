@@ -1,10 +1,6 @@
 package org.Server.dao;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -12,15 +8,10 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.imageio.ImageIO;
-
 import org.Common.data.IUserDao;
-import org.Common.po.SerializableImage;
 import org.Common.po.Statistics;
 import org.Common.po.Type;
 import org.Common.po.User;
-
-import javafx.scene.image.Image;
 
 public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 
@@ -291,5 +282,6 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 
 		return result;
 	}
+	
 
 }
