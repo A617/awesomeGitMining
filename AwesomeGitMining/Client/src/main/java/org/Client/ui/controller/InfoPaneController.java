@@ -21,8 +21,6 @@ public class InfoPaneController implements Initializable {
 	private Label pink;
 	@FXML
 	private Label dark;
-	@FXML
-	private AnchorPane infoPane;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
