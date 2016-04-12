@@ -5,12 +5,12 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Client.ui.controller.SearchUserController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Client.ui.controller.SearchUserController">
    <children>
       <Button layoutX="770.0" layoutY="655.0" mnemonicParsing="false" onAction="#handleNext" prefHeight="30.0" prefWidth="82.0" text="Next" />
       <Button layoutX="526.0" layoutY="655.0" mnemonicParsing="false" onAction="#handlePre" text="Previous" />
       <ScrollPane fx:id="userPane" layoutX="33.0" layoutY="44.0" prefHeight="595.0" prefWidth="1300.0" />
-      <Label fx:id="page" layoutX="1259.0" layoutY="661.0" text="30000" textFill="#7c7c7c">
+      <Label fx:id="page" layoutX="1259.0" layoutY="661.0" textFill="#7c7c7c">
                <font>
                   <Font name="Ebrima Bold" size="15.0" />
                </font>

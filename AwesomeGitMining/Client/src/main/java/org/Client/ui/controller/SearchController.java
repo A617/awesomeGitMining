@@ -1,4 +1,5 @@
 package org.Client.ui.controller;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -14,6 +15,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -28,6 +32,8 @@ public class SearchController implements Initializable {
 	private ScrollPane projectPane;
 	@FXML
 	private Label page;
+	@FXML
+	private AnchorPane pane;
 	private int pageNums;
 	private int projectPage;
 
@@ -87,16 +93,26 @@ public class SearchController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		instance = this;
+		projectPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 	}
 
 	public void setSearchID(String id) {
 		this.id = id;
 		repositoryVO = repositoryService.searchRepository(id, 0);
 		pageNums = repositoryService.getSearchPageNums(id);
-		if (pageNums < 1) {
-			pageNums = 1;
+		if (repositoryVO.size() == 0) {
+			Label infoLabel = new Label();
+			infoLabel.setLayoutX(200);
+			infoLabel.setLayoutY(200);
+			infoLabel.setGraphic(
+					new ImageView(new Image(MainUI.class.getResourceAsStream("style/404.png"))));
+			pane.getChildren().add(infoLabel);
+		}else{
+			if (pageNums < 1) {
+				pageNums = 1;
+			}
+			page.setText("1 / " + pageNums);
+			initProject(repositoryVO);
 		}
-		page.setText("1 / " + pageNums);
-		initProject(repositoryVO);
 	}
 }

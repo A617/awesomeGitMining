@@ -65,7 +65,9 @@
 .scroll-pane .scroll-bar:vertical {
   -fx-background-color: transparent;
 }
-
+.scroll-pane .scroll-bar:horizontal {
+  visibility: hidden;
+}
 .scroll-pane .scroll-bar:vertical .track-background {
   visibility: hidden;
 }
