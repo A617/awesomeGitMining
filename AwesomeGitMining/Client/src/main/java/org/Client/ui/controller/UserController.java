@@ -25,6 +25,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
@@ -260,8 +261,7 @@ public class UserController implements Initializable {
 		@Override
 		public TableCell<Contri_ProVO, String> call(TableColumn<Contri_ProVO, String> arg0) {
 			 TextFieldTableCell<Contri_ProVO, String> cell = new TextFieldTableCell<>();
-		        cell.setOnMouseClicked((MouseEvent t) -> {
-		        	if (t.getClickCount() == 2) {
+		        cell.setOnMouseReleased((MouseEvent t) -> {
 		            	String temp = cell.getText();
 		            	repository = repositoryImpl.searchRepositoryInfo(temp);
 		    			
@@ -270,8 +270,16 @@ public class UserController implements Initializable {
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
 		            		ProjectController.getInstance().setVO(repository);
 		            	}
-		            }
 		        });
+		        cell.setOnMouseEntered((MouseEvent t) -> {
+		        	cell.setCursor(Cursor.HAND);
+					cell.setUnderline(true);
+				});
+				cell.setOnMouseExited((MouseEvent t) -> {
+					cell.setCursor(Cursor.DEFAULT);
+					cell.setUnderline(false);
+				});
+		        
 		        return cell;
 		}	
 	}
@@ -281,8 +289,7 @@ public class UserController implements Initializable {
 		@Override
 		public TableCell<Crea_ProVO, String> call(TableColumn<Crea_ProVO, String> arg0) {
 			 TextFieldTableCell<Crea_ProVO, String> cell = new TextFieldTableCell<>();
-		        cell.setOnMouseClicked((MouseEvent t) -> {
-		        	if (t.getClickCount() == 2) {
+		        cell.setOnMouseReleased((MouseEvent t) -> {
 		            	String temp = cell.getText();
 		            	repository = repositoryImpl.searchRepositoryInfo(temp);
 		    			
@@ -291,8 +298,15 @@ public class UserController implements Initializable {
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
 		            		ProjectController.getInstance().setVO(repository);
 		            	}
-		            }
 		        });
+		        cell.setOnMouseEntered((MouseEvent t) -> {
+		        	cell.setCursor(Cursor.HAND);
+					cell.setUnderline(true);
+				});
+				cell.setOnMouseExited((MouseEvent t) -> {
+					cell.setCursor(Cursor.DEFAULT);
+					cell.setUnderline(false);
+				});
 		        return cell;
 		}	
 	}
@@ -302,8 +316,7 @@ public class UserController implements Initializable {
 		@Override
 		public TableCell<Colla_ProVO, String> call(TableColumn<Colla_ProVO, String> arg0) {
 			 TextFieldTableCell<Colla_ProVO, String> cell = new TextFieldTableCell<>();
-		        cell.setOnMouseClicked((MouseEvent t) -> {
-		        	if (t.getClickCount() == 2) {
+		        cell.setOnMouseReleased((MouseEvent t) -> {
 		            	String temp = cell.getText();
 		            	repository = repositoryImpl.searchRepositoryInfo(temp);
 		    			
@@ -312,8 +325,15 @@ public class UserController implements Initializable {
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
 		            		ProjectController.getInstance().setVO(repository);
 		            	}
-		            }
 		        });
+		        cell.setOnMouseEntered((MouseEvent t) -> {
+		        	cell.setCursor(Cursor.HAND);
+					cell.setUnderline(true);
+				});
+				cell.setOnMouseExited((MouseEvent t) -> {
+					cell.setCursor(Cursor.DEFAULT);
+					cell.setUnderline(false);
+				});
 		        return cell;
 		}	
 	}
