@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -33,7 +34,7 @@ public class ReposTagPaneController implements Initializable {
 	private ScrollPane scrollPane;
 	private List<RepositoryVO> list;
 	private int tempPage;
-	private String language;
+	private String text;
 
 	public static ReposTagPaneController getInstance() {
 		if(instance == null)
@@ -44,17 +45,23 @@ public class ReposTagPaneController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		service = RepositoryServiceImpl.getInstance();
-
+		scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 	}
 
-	public void setText(String text) {
-		this.language = text;
-		list = service.getReposByLanguage(text, 0);
+	public void setLanguage(String language) {
+		this.text = language;
+		list = service.getReposByLanguage(language, 0);
 		pageNum = service.getTagPageNum();
 		page.setText("1 / " + pageNum);
 		initPane();
 	}
-
+	public void setYear(String year){
+		this.text = year;
+		list = service.getReposByYear(year, 0);
+		pageNum = service.getTagPageNum();
+		page.setText("1 / " + pageNum);
+		initPane();
+	}
 	private void initPane() {
 		VBox box = new VBox();
 		VBox.setVgrow(scrollPane, Priority.ALWAYS);
@@ -80,7 +87,7 @@ public class ReposTagPaneController implements Initializable {
 	@FXML
 	public void handleNextButton() {
 		tempPage++;
-		list = service.getReposByLanguage(language, tempPage);
+		list = service.getReposByLanguage(text, tempPage);
 		if (list.size() > 0) {
 			initPane();
 		} else {
@@ -93,7 +100,7 @@ public class ReposTagPaneController implements Initializable {
 	public void handlePreButton() {
 		tempPage--;
 		if (tempPage >= 0) {
-			list = service.getReposByLanguage(language, tempPage);
+			list = service.getReposByLanguage(text, tempPage);
 			initPane();
 		} else {
 			tempPage++;
