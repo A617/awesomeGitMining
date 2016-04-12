@@ -47,6 +47,8 @@ public class Main extends Application {
 		stage.setScene(scene);
 
 		stage.show();
+		RMIHelper.init();
+		System.out.println("server connected");
 	}
 
 	public AnchorPane loadPanel() {
