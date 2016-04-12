@@ -1,10 +1,16 @@
 package org.Server.main;
 
-public class Main {
+import javafx.application.Application;
+import javafx.stage.Stage;
 
+public class Main extends Application{
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		RMIHelper.init();
+	}
 	
 	public static void main(String[] args) {
-		RMIHelper.init();
-		System.out.println("server connected");
+		launch(args);
 	}
 }

@@ -38,6 +38,8 @@ public class UserPageController implements Initializable {
 	@FXML
 	private Group language_group;
 	@FXML
+	private Group company_group;
+	@FXML
 	private AnchorPane mainpane;
 	
 	private UserService userImpl;
@@ -102,7 +104,7 @@ public class UserPageController implements Initializable {
 		page.setText(userPage+1 + " / " + pageNums);
 	}
 	
-	public void tagController() {
+	public void lanTagController() {
 		for (int i = 0; i < language_group.getChildren().size(); i++) {
 			Label label = (Label) language_group.getChildren().get(i);
 			label.setOnMouseReleased(new EventHandler<MouseEvent>() {
@@ -122,7 +124,37 @@ public class UserPageController implements Initializable {
 						System.out.println("Ui_UserTagPane加载失败");
 					}
 					UserTagController controller = loader.getController();
-					controller.setText(label.getText());
+					controller.setLanguages(label.getText());
+					mainpane.getChildren().clear();
+					mainpane.getChildren().add(result);
+					label.setStyle("-fx-background-color:#5d9b78;");
+				}
+
+			});
+		}
+	}
+	
+	public void comTagController() {
+		for (int i = 0; i < company_group.getChildren().size(); i++) {
+			Label label = (Label) company_group.getChildren().get(i);
+			label.setOnMouseReleased(new EventHandler<MouseEvent>() {
+				
+				@Override
+				public void handle(MouseEvent arg0) {
+					for (int i = 0; i < company_group.getChildren().size(); i++) {
+						Label label = (Label) company_group.getChildren().get(i);
+						label.setStyle("-fx-background-color:transparent;");
+					}
+					FXMLLoader loader = new FXMLLoader();
+					loader.setLocation(MainUI.class.getResource("config/Ui_UserTagPane.fxml"));
+					AnchorPane result = null;
+					try {
+						result = (AnchorPane) loader.load();
+					} catch (IOException e) {
+						System.out.println("Ui_UserTagPane加载失败");
+					}
+					UserTagController controller = loader.getController();
+					controller.setCompanys(label.getText());
 					mainpane.getChildren().clear();
 					mainpane.getChildren().add(result);
 					label.setStyle("-fx-background-color:#5d9b78;");
@@ -141,7 +173,8 @@ public class UserPageController implements Initializable {
 		pageNums = userImpl.getPageNums();
 		page.setText("1 / " + pageNums);
 		
-		tagController();
+		lanTagController();
+		comTagController();
 	}
 
 }

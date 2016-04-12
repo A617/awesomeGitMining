@@ -24,6 +24,9 @@ public class LanguageIcon {
 		list.add("Shell");
 		list.add("Go");
 		list.add("Clojure");
+		list.add("Scala");
+		list.add("Haskell");
+		list.add("Perl");
 	}
 	
 	public static LanguageIcon getInstance() {

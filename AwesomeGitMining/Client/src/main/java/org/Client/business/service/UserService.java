@@ -115,6 +115,15 @@ public interface UserService {
 	 * @return list of user selected by language tag
 	 */
 	public abstract List<SimpleUserVO> getUserByLanguage(String language, int pageIndex);
+	/**
+	 * 
+	 * @param company
+	 * @param pageIndex
+	 * @return list of user selected by company tag
+	 */
+	public abstract List<SimpleUserVO> getUserByCompany(String company, int pageIndex);
 	
-	public abstract int getTagPageNum();
+	public abstract int getLanguageTagPageNum();
+	
+	public abstract int getCompanyTagPageNum();
 }
