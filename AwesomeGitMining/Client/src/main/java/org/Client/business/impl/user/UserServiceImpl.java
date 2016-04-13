@@ -12,8 +12,10 @@ import org.Client.business.service.UserService;
 import org.Client.business.utility.ScoreCalculator;
 import org.Client.main.RMIHelper;
 import org.Common.data.IUserDao;
+import org.Common.po.Repository;
 import org.Common.po.Statistics;
 import org.Common.po.User;
+import org.Common.vo.RepositoryRateVO;
 import org.Common.vo.SimpleUserVO;
 import org.Common.vo.UserCollaReposNumVO;
 import org.Common.vo.UserCompanyVO;
@@ -223,7 +225,12 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 		}
 		if (po != null) {
-			Map<String, Integer> map = ScoreCalculator.getUserScore();
+			int[] ranks = {1,1,1,1,1};
+			po.setRanks(ranks);
+			Map<String, Double> map = ScoreCalculator.getUserScore(po.getRanks());
+			if(map==null){
+				System.out.println("map null");
+			}
 			vo.setRates(map);
 		}
 		return vo;
@@ -339,7 +346,7 @@ public class UserServiceImpl implements UserService {
 			nums[i] = list.lastIndexOf(temp.get(i))-list.lastIndexOf(temp.get(i-1));
 			types[i] = temp.get(i)+"";
 		}
-		
+
 		vo.setNums(nums);
 		vo.setRanges(types);
 		return vo;
@@ -416,7 +423,7 @@ public class UserServiceImpl implements UserService {
 	public int getLanguageTagPageNum() {
 		return languagePageNum / 10 + 1;
 	}
-	
+
 	@Override
 	public List<SimpleUserVO> getUserByCompany(String company, int pageIndex) {
 		List<SimpleUserVO> result = new ArrayList<SimpleUserVO>();
@@ -456,10 +463,12 @@ public class UserServiceImpl implements UserService {
 		}
 		return result;
 	}
-	
+
 	@Override
 	public int getCompanyTagPageNum() {
 		return companyPageNum / 10 + 1;
 	}
+
+
 
 }

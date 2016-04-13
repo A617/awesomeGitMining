@@ -65,8 +65,6 @@ public class HttpRequest {
 	public static String sendGetWithAuth(String url, String param) throws IOException {
 
 		String newUrl = "https://" + url + param;
-		System.out.println(newUrl);
-
 		String result = "";
 		BufferedReader in = null;
 
@@ -80,8 +78,6 @@ public class HttpRequest {
 			URLConnection connection = myURL.openConnection();
 			String authString = "Basic " + Base64.encodeBase64String((token + ":x-oauth-basic").getBytes());
 			connection.setRequestProperty("Authorization", authString);
-			connection.setRequestProperty("Accept", "application/vnd.github.v3.star+json");
-
 			
 			in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			String line;
@@ -112,7 +108,6 @@ public class HttpRequest {
 	
 	public static String sendGetViaAcceptHeader(String url, String param) throws IOException {
 		String newUrl = "https://" + url + param;
-		System.out.println(newUrl);
 
 		String result = "";
 		BufferedReader in = null;
@@ -125,6 +120,8 @@ public class HttpRequest {
 		}
 		if (myURL != null) {
 			URLConnection connection = myURL.openConnection();
+			String authString = "Basic " + Base64.encodeBase64String((token + ":x-oauth-basic").getBytes());
+			connection.setRequestProperty("Authorization", authString);
 			connection.setRequestProperty("Accept", "application/vnd.github.v3.star+json");
 
 			in = new BufferedReader(new InputStreamReader(connection.getInputStream()));

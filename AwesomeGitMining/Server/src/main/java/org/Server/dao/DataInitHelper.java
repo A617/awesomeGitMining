@@ -1,4 +1,5 @@
 package org.Server.dao;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -48,14 +49,13 @@ public class DataInitHelper {
 
 					repo = new HashMap<String, Integer>();
 
-
 					if (!line1.equals("")) {
 
 						String[] languageNames = line1.split(",");
 						String[] languageCounts = line2.split(",");
 
 						if (languageCounts.length != languageNames.length)
-							System.out.println("Language txt Error! " );
+							System.out.println("Language txt Error! ");
 
 						// 读入每一组语言-行数
 						for (int i = 0; i < languageNames.length; i++) {
@@ -88,9 +88,6 @@ public class DataInitHelper {
 		return map;
 
 	}
-	
-	
-	
 
 	public static List<String> getList(String path) {
 		File file = new File(path);
@@ -131,8 +128,7 @@ public class DataInitHelper {
 		}
 		return list;
 	}
-	
-	
+
 	public static List<Integer> getIntList(String path) {
 		File file = new File(path);
 		List<Integer> list = null;
@@ -150,10 +146,10 @@ public class DataInitHelper {
 
 				while ((line = bufferedReader.readLine()) != null) { // 读取文件每一行
 
-					try{
-					list.add(Integer.parseInt(line));
-					}catch(NumberFormatException e){
-						System.out.println(path+"数据错误");
+					try {
+						list.add(Integer.parseInt(line));
+					} catch (NumberFormatException e) {
+						System.out.println(path + "数据错误");
 						e.printStackTrace();
 					}
 				}
@@ -175,6 +171,52 @@ public class DataInitHelper {
 			System.out.println("找不到指定的文件" + path);
 		}
 		return list;
+	}
+
+	public static int[] getIntArray(String path, int length) {
+		File file = new File(path);
+		int[] list = new int[length];
+
+		if (file.isFile() && file.exists()) { // 判断文件是否存在
+
+			InputStreamReader read = null;
+			BufferedReader bufferedReader = null;
+			String line;
+
+			try {
+				read = new InputStreamReader(new FileInputStream(file));
+				bufferedReader = new BufferedReader(read);
+
+				for (int i = 0; i < length; i++) {
+					line = bufferedReader.readLine();
+					try {
+						list[i] = Integer.parseInt(line);
+					} catch (NumberFormatException e) {
+						System.out.println(path + "数据错误");
+						e.printStackTrace();
+					}
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+
+			} finally {
+
+				try {
+					read.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		} else
+
+		{
+			System.out.println("找不到指定的文件" + path);
+		}
+		return list;
+
 	}
 
 	public static Map<String, List<String>> getMap(String path) {
@@ -227,14 +269,14 @@ public class DataInitHelper {
 		}
 		return map;
 	}
-	
-	
+
 	/**
 	 * 把json array拆分成多个json string
+	 * 
 	 * @param path
 	 * @return
 	 */
-	public static List<String> getAllReposJson(String path){
+	public static List<String> getAllReposJson(String path) {
 		File file = new File(path);
 		List<String> list = null;
 
@@ -276,11 +318,10 @@ public class DataInitHelper {
 		return list;
 	}
 
-	
 	public static List<List<String>> getListList(String path) {
 
 		File file = new File(path);
-		List< List<String>> map = null;
+		List<List<String>> map = null;
 
 		if (file.isFile() && file.exists()) { // 判断文件是否存在
 
@@ -297,10 +338,9 @@ public class DataInitHelper {
 
 				while ((line = bufferedReader.readLine()) != null) { // 读取文件每一行
 
-
 					users = line.split(" ");
 
-					map.add( Arrays.asList(users)); // 向mapR2U中加入一组 项目-用户
+					map.add(Arrays.asList(users)); // 向mapR2U中加入一组 项目-用户
 
 				}
 

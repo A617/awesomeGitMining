@@ -14,6 +14,7 @@ import org.Common.vo.UserVO;
 import javafx.scene.image.Image;
 
 public interface UserService {
+
 	/**
 	 *
 	 * @param the user's log in name
@@ -68,62 +69,62 @@ public interface UserService {
 
 	public abstract Image getAvatar(String login);
 	/**
-	 * 
+	 *
 	 * @return organization,individual
 	 */
 	public abstract int[] getTypeStatistic();
 	/**
-	 * 
+	 *
 	 * @return user's register time array
 	 */
 	public UserRegisTimeVO getRegisTimeStatistics();
 	/**
-	 * 
+	 *
 	 * @return user's company statistics
 	 */
 	public UserCompanyVO getUserCompanyStatistics();
 	/**
-	 * 
+	 *
 	 * @return the user page numbers(10 users one page)
 	 */
 	public abstract int getPageNums();
 	/**
-	 * 
+	 *
 	 * @return the searched user page numbers(5 users one page)
 	 */
 	public abstract int getSearchPageNums(String id);
 	/**
-	 * 
+	 *
 	 * @return user create repository numbers statistics
 	 */
 	public abstract UserCreateReposNumVO getUserCreateReposNum();
 	/**
-	 * 
+	 *
 	 * @return user collaborate repository numbers statistics
 	 */
 	public abstract UserCollaReposNumVO getUserCollaReposNum();
 	/**
-	 * 
+	 *
 	 * @param login
 	 * @return the list of languages the user knows
 	 */
 	public abstract List<String> getLanguageSkills(String login);
 	/**
-	 * 
+	 *
 	 * @param language
 	 * @param pageIndex
 	 * @return list of user selected by language tag
 	 */
 	public abstract List<SimpleUserVO> getUserByLanguage(String language, int pageIndex);
 	/**
-	 * 
+	 *
 	 * @param company
 	 * @param pageIndex
 	 * @return list of user selected by company tag
 	 */
 	public abstract List<SimpleUserVO> getUserByCompany(String company, int pageIndex);
-	
+
 	public abstract int getLanguageTagPageNum();
-	
+
 	public abstract int getCompanyTagPageNum();
 }

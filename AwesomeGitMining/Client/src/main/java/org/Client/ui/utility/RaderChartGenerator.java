@@ -24,17 +24,17 @@ public class RaderChartGenerator {
 
 	public JPanel createPanel(DefaultCategoryDataset dataset) {
 		MySpiderChart spider = new MySpiderChart(dataset);
-		
+
 		JFreeChart jfreechart = new JFreeChart(spider);
 		jfreechart.setTextAntiAlias(true);
 		jfreechart.setNotify(false);
 		jfreechart.setAntiAlias(true);
 		jfreechart.clearSubtitles();
-		jfreechart.setBackgroundPaint(new Color(247,242,229));
+		jfreechart.setBackgroundPaint(new Color(247, 242, 229));
 		jfreechart.setBackgroundImage(new ImageIcon("src/main/java/org/Client/ui/style/raderback.png").getImage());
 
 		ChartPanel chart = new ChartPanel(jfreechart);
-		
+
 		return chart;
 	}
 }

@@ -34,12 +34,14 @@ public class DataMining {
 
 		long startTime = System.nanoTime();
 
-		// caculateUserScores();
-		// getDataFromDtaMining("http://www.gitmining.net/api/user/",
-		// path+"user_gists.txt", "public_gists");
+	// caculateUserScores();
+	//	getDataFromDtaMining("http://www.gitmining.net/api/repository/",path+"repo_size.txt", "size");
 
-		getDataFromGithub("api.github.com/repos/", path + "repo_staredTime.txt", "starred_at");
+	getDataFromGithub("api.github.com/repos/", path + "repo_staredTime.txt", "starred_at");
 
+		
+	
+		
 		long endTime = System.nanoTime();
 		System.out.println("Took " + (endTime - startTime) + " ns");
 	}
@@ -120,24 +122,21 @@ public class DataMining {
 
 			for (String repo : repos) {
 				
-				if(repo.equals("rubyspec/mspec"))
+				if(repo.equals("mde/timezone-js"))
 					flag = true;
+				
 				if(!flag)
 					continue;
+				
 				int i = 1;
 				String page="";
 				int sum = 0;
-				while (!page.equals("[]")) {
-
-					System.out.println(i);
-
+				loop:while (!page.equals("[]")) {
 					try {
-						page = HttpRequest.sendGetWithAuth(url + repo + "/stargazers", "?per_page=100&page=" + i);
+						page = HttpRequest.sendGetViaAcceptHeader(url + repo + "/stargazers", "?per_page=100&page=" + i);
 					} catch (IOException e) {
 						System.out.println(i);
 						e.printStackTrace();
-						writer.newLine();
-						writer.flush();
 						break;
 					}
 					logins = JsonUtil.getListfromJsonArray(page, key);
@@ -177,7 +176,7 @@ public class DataMining {
 	 */
 	public static void getDataFromDtaMining(String url, String path, String key) {
 
-		List<String> repositories = readFromUserTxt();
+		List<String> repositories = readFromRepoTxt();
 		System.out.println(repositories.size());
 
 		String page = "";

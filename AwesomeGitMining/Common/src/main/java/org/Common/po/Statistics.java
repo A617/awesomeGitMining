@@ -10,6 +10,7 @@ public class Statistics {
 	 * public static Statistics getInstance(){ return instance==null?new
 	 * Statistics():instance; }
 	 */
+	public static final String[] repoRader = {"size","scale","promising","partcipation","hot"};
 
 	public static final String[] language = { "Ruby", "Python", "Java", "JavaScript", "C", "Perl", "PHP", "C++", "HTML",
 			"Shell", "C#", "Prolog", "Scala", "Viml", "CSS", "Go", "Clojure", "CoffeeScript", "Haskell", "Lua",
@@ -54,7 +55,7 @@ public class Statistics {
 				return i;
 			}
 		}
-		return -1;
+		return 21;
 	}
 	
 	public static int getCompanyIndex(String name) {

@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -50,8 +51,14 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 	private List<Integer> followersList;
 	/* 用户头像地址 */
 	private List<String> avatar_urlList;
-	
+	/* 用户使用的语言列表 */
 	private List<List<String>> languageList;
+
+	private List<Integer> quantityRank;
+	private List<Integer> popularityRank;
+	private List<Integer> experienceRank;
+	private List<Integer> livenessRank;
+	private List<Integer> contributionRank;
 
 	public UserDaoImpl() throws RemoteException {
 		long startTime = System.nanoTime();
@@ -71,6 +78,31 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		this.nameList = DataInitHelper.getList(path + "user_name.txt");
 		this.avatar_urlList = DataInitHelper.getList(path + "user_avatar_url.txt");
 		this.languageList = DataInitHelper.getListList(path + "user_languages.txt");
+
+		/*// experience: 5*contributed + gist
+		List<Integer> experienceScoreList = new ArrayList<>();
+		List<Integer> gistList = DataInitHelper.getIntList(path + "user_gists.txt");
+		List<List<String>> contrilistlist = DataInitHelper.getListList(path + "user-contributed.txt");
+		for (int i = 0; i < gistList.size(); i++) {
+			experienceScoreList.add(gistList.get(i) + contrilistlist.get(i).size() * 5);
+		}
+		this.experienceRank = rankList(experienceScoreList);
+		
+
+		// popularity
+		List<Integer> popularityScoreList = DataInitHelper.getIntList(path + "user_followers.txt");
+		this.popularityRank = rankList(popularityScoreList);
+*/
+		
+		// liveness
+		this.livenessRank = DataInitHelper.getIntList(path+"user_liveness.txt");
+		
+		
+		// quantity
+		
+		
+		//contribution
+		
 
 		System.out.println("UserDaoImpl initialized!");
 		long endTime = System.nanoTime();
@@ -254,7 +286,7 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 	}
 
 	@Override
-	public List<String> getUsersByLanguage( int i){
+	public List<String> getUsersByLanguage(int i) {
 		String[] languages = Statistics.language;
 
 		List<String> result = new ArrayList<>();
@@ -267,10 +299,9 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 
 		return result;
 	}
-	
-	
+
 	@Override
-	public List<String> getUsersByCompany(int i){
+	public List<String> getUsersByCompany(int i) {
 		String[] list = Statistics.company;
 		List<String> result = new ArrayList<>();
 
@@ -282,6 +313,34 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 
 		return result;
 	}
-	
 
+	private List<Integer> rankList(List<Integer> srcList) {
+
+		List<Integer> rankList = new ArrayList<>();
+
+		List<Integer> sortList = new ArrayList<>(srcList);
+
+		Collections.sort(sortList, new Comparator<Integer>() {
+
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				return o2 - o1;
+			}
+		});
+
+		for (int element : srcList) {
+
+			int rank = sortList.indexOf(element);
+
+			rankList.add(rank);
+
+		}
+
+		return rankList;
+	}
+	
+	
+	
+	
+	
 }

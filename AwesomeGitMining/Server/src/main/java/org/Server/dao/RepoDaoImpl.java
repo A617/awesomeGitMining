@@ -1,13 +1,11 @@
 package org.Server.dao;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -30,10 +28,10 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 	private List<String> repoList;
 
 	/* 项目-贡献者 */
-	private List<List<String>> mapR2Ctb;
+	private List<List<String>> contributionsList;
 
 	/* 项目-合作者 */
-	private List<List<String>> mapR2Clb;
+	private List<List<String>> collaboratorsList;
 
 	/* 项目-语言使用情况 */
 	private List<Map<String, Integer>> mapR2L;
@@ -51,29 +49,112 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 	private List<String> reposByContribute;
 	private List<String> reposByFork;
 
+	private List<Integer> sizeList;
+	
+	/* 每种语言的项目个数 */
+	private int[] languageRepoCounts;
+
+	private List<Integer> sizeRank;
+	private List<Integer> scaleRank;
+	private List<Integer> hotRank;
+	private List<Integer> participationRank;
+	private List<Integer> promisingRank;
+	
+	private int len;
+
 	public RepoDaoImpl() throws RemoteException {
 		long startTime = System.nanoTime();
 
 		this.repoList = DataInitHelper.getList(path + "repo_fullname.txt");
-
-		this.mapR2Clb = DataInitHelper.getListList(path + "repo-collaborators.txt");
-
-		this.mapR2Ctb = DataInitHelper.getListList(path + "repo-contributors.txt");
-
+		this.collaboratorsList = DataInitHelper.getListList(path + "repo-collaborators.txt");
+		this.contributionsList = DataInitHelper.getListList(path + "repo-contributors.txt");
 		this.repoAll = DataInitHelper.getAllReposJson(path + "repo-all.txt");
-
 		this.mapR2L = DataInitHelper.getLanguages(path + "repo-languageNames.txt", path + "repo-languageCounts.txt");
-
 		this.languageList = DataInitHelper.getList(path + "repo-language.txt");
-
 		this.reposByContribute = DataInitHelper.getList(path + "repo_ContriSort.txt");
-
 		this.reposByFork = DataInitHelper.getList(path + "repo_forkSort.txt");
-
 		this.reposByStar = DataInitHelper.getList(path + "repo_starSort.txt");
-
 		this.createdTimeList = DataInitHelper.getList(path + "repo-createdTime.txt");
+		this.sizeList = DataInitHelper.getIntList(path + "repo_size.txt");
+		
+	/*	String[] languages = Statistics.language;
+		this.languageRepoCounts = new int[languages.length];
+		for (int i = 0; i < languages.length; i++)
+			languageRepoCounts[i] = 0;
+		loop: for (String language : languageList) {
+			if (language.equals(""))
+				continue;
+			for (int i = 0; i < languages.length; i++) {
+				if (language.equals(languages[i])) {
+					languageRepoCounts[i]++;
+					continue loop;
+				}
+			}
+			this.languageRepoCounts[languages.length - 1]++; 
+		}
+*/
 
+		/*
+		 * size: size 在同种语言的项目中比较 scale: collaborators hot:
+		 * stargazers_count,forks_count, and watchers_count
+		 * partcipation：forks_count*5,contributors*5, open_issues
+		 * promising:stargazers_count, forks_count in 1 month(28days)
+		 */
+
+		this.len = repoList.size();
+/*
+		// scale
+		ArrayList<Integer> collaNumList = new ArrayList<>();
+		for (int i = 0; i < repoList.size(); i++) {
+			collaNumList.add(contributionsList.get(i).size());
+		}
+		this.scaleRank = rankList(collaNumList);
+
+		// hot
+		int[] starCountsList = DataInitHelper.getIntArray(path + "repo_stargazers.txt", len);
+		int[] forkCountsList = DataInitHelper.getIntArray(path + "repo_forkedCount.txt", len);
+		int[] watchCountsList = DataInitHelper.getIntArray(path + "repo_watchedCount.txt", len);
+		ArrayList<Integer> hotScoreList = new ArrayList<>();
+		for (int i = 0; i < len; i++) {
+			hotScoreList.add(starCountsList[i] + forkCountsList[i] + watchCountsList[i]);
+		}
+		this.hotRank = rankList(hotScoreList);
+
+		// participatation
+		int[] issueCountsList = DataInitHelper.getIntArray(path + "repo_issuesCount.txt", len);
+		int[] contriNumList = new int[len];
+		for (int i = 0; i < repoList.size(); i++) {
+			contriNumList[i] = contributionsList.get(i).size();
+		}
+		ArrayList<Integer> participationScoreList = new ArrayList<>();
+		for (int i = 0; i < len; i++) {
+			participationScoreList.add(issueCountsList[i] + forkCountsList[i] * 5 + contriNumList[i] * 5);
+		}
+		this.participationRank = rankList(participationScoreList);
+
+		
+		// promising 
+		int[] starCountsIn28DaysList =DataInitHelper.getIntArray(path + "repo_forkedTime.txt", len);
+		int[] forkCountsIn28DaysList = DataInitHelper.getIntArray(path + "repo_forkedTime.txt", len);
+		ArrayList<Integer> promisingScoreList = new ArrayList<>();
+		for (int i = 0; i < len; i++) {
+			promisingScoreList.add(starCountsIn28DaysList[i] + forkCountsIn28DaysList[i]);
+		}
+		this.promisingRank = rankList(promisingScoreList);
+
+		
+		// size
+		List<Integer>[] languageRepoSize = new List[languages.length];
+		for (int i = 0; i < languages.length; i++) {
+			languageRepoSize[i] = getSizeByLanguage(i);
+		}
+		this.sizeRank = new ArrayList<>();
+		for (int i = 0; i < len; i++) {
+			int languageIndex = Statistics.getLanguageIndex(languageList.get(i));
+			sizeRank.add(languageRepoSize[languageIndex].get(i));
+		}
+
+		*/
 		System.out.println("RepoDaoImpl initialized!");
 		long endTime = System.nanoTime();
 		System.out.println("Took " + (endTime - startTime) + " ns");
@@ -93,20 +174,20 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 		po = JsonUtil.parseJson2Bean(repoAll.get(index), Repository.class);
 
 		if (po != null) {
-			po.setContributors_login(mapR2Ctb.get(index));
-			po.setCollaborators_login(mapR2Clb.get(index));
+			po.setContributors_login(contributionsList.get(index));
+			po.setCollaborators_login(collaboratorsList.get(index));
 			po.setOwner_name(name.split("/")[0]);
 			po.setLanguages(mapR2L.get(index));
 
-			int[] ranks = new int[7];
-			ranks[0] = DataInitHelper.getIntList(path + "repo_starRank.txt").get(index);
-			ranks[1] = DataInitHelper.getIntList(path + "repo_forkRank.txt").get(index);
-			ranks[2] = DataInitHelper.getIntList(path + "repo_watchRank.txt").get(index);
-			ranks[3] = DataInitHelper.getIntList(path + "repo_subscriRank.txt").get(index);
-			ranks[4] = DataInitHelper.getIntList(path + "repo_issueRank.txt").get(index);
-			ranks[5] = DataInitHelper.getIntList(path + "repo_contriRank.txt").get(index);
-			ranks[6] = DataInitHelper.getIntList(path + "repo_collaRank.txt").get(index);
-			po.setRanks(ranks);
+			double[] scores = new double[5];
+			scores[0] = 1.0-1.0*sizeRank.get(index)/languageRepoCounts[Statistics.getLanguageIndex(po.getLanguage())];
+			scores[1] = 1.0-1.0*scaleRank.get(index)/len;
+			scores[2] = 1.0-1.0*hotRank.get(index)/len;
+			scores[3] = 1.0-1.0*participationRank.get(index)/len;
+			scores[4] = 1.0-1.0*promisingRank.get(index)/len;
+			po.setScores(scores);
+
+			
 
 		}
 		return po;
@@ -126,24 +207,7 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 	@Override
 	public int[] getLanguageStatistics() {
 
-		String[] languages = Statistics.language;
-		int[] result = new int[languages.length];
-		for (int i = 0; i < languages.length; i++)
-			result[i] = 0;
-
-		loop: for (String language : languageList) {
-			if (language.equals(""))
-				continue;
-			for (int i = 0; i < languages.length; i++) {
-				if (language.equals(languages[i])) {
-					result[i]++;
-					continue loop;
-				}
-			}
-			result[languages.length - 1]++;
-		}
-
-		return result;
+		return this.languageRepoCounts;
 	}
 
 	@Override
@@ -273,4 +337,55 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 
 		return sum;
 	}
+
+	//将列表中的数据由大到小排列，返回每个项目的排名
+	private List<Integer> rankList(List<Integer> srcList) {
+
+		List<Integer> rankList = new ArrayList<>();
+
+		List<Integer> sortList = new ArrayList<>(srcList);
+
+		Collections.sort(sortList, new Comparator<Integer>() {
+
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				return o2 - o1;
+			}
+		});
+
+		for (int element : srcList) {
+
+			int rank = sortList.indexOf(element);
+
+			rankList.add(rank);
+
+		}
+
+		return rankList;
+	}
+
+	public List<Integer> getSizeByLanguage(int i) {
+		String[] languages = Statistics.language;
+
+		List<Integer> result = new ArrayList<>();
+
+		for (int k = 0; k < repoList.size(); k++) {
+			if (languageList.get(k).equals(languages[i]))
+				result.add(sizeList.get(k));
+			else
+				result.add(-1);
+
+		}
+
+		return rankList(result);
+	}
+	
+	public void test(int i){
+		System.out.println(sizeRank.get(i));
+		System.out.println(hotRank.get(i));
+		System.out.println(scaleRank.get(i));
+		System.out.println(participationRank.get(i));
+		System.out.println("----");
+	}
+
 }

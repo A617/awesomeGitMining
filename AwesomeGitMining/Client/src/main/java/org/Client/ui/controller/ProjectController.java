@@ -16,6 +16,7 @@ import org.Client.ui.utility.BackObject;
 import org.Client.ui.utility.BackType;
 import org.Client.ui.utility.PieChartGenerator;
 import org.Client.ui.utility.RaderChartGenerator;
+import org.Common.po.Statistics;
 import org.Common.vo.CodeFrequencyVO;
 import org.Common.vo.CollaboratorVO;
 import org.Common.vo.ContributorVO;
@@ -260,11 +261,9 @@ public class ProjectController implements Initializable {
 	private void createRader(Map<String, Double> map) {
 		dataset = new DefaultCategoryDataset();
 		String group1 = "score";
-		dataset.addValue(map.get("famous"), group1, "famous");
-		dataset.addValue(map.get("mature"), group1, "mature");
-		dataset.addValue(map.get("contributor"), group1, "contributor");
-		dataset.addValue(map.get("popular"), group1, "popular");
-		dataset.addValue(map.get("hot"), group1, "hot");
+		for(String s :Statistics.repoRader){
+			dataset.addValue(map.get(s), group1, s);
+		}
 		swingNode = new SwingNode();
 
 		ProgressIndicator pin = new ProgressIndicator(-1);

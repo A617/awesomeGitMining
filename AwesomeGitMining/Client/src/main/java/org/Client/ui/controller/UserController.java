@@ -1,8 +1,13 @@
 package org.Client.ui.controller;
+import java.awt.Dimension;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+
+import javax.swing.JPanel;
 
 import org.Client.business.impl.repository.RepositoryServiceImpl;
 import org.Client.business.impl.user.UserServiceImpl;
@@ -13,16 +18,21 @@ import org.Client.ui.utility.BackHandler;
 import org.Client.ui.utility.BackObject;
 import org.Client.ui.utility.BackType;
 import org.Client.ui.utility.LanguageIcon;
+import org.Client.ui.utility.RaderChartGenerator;
 import org.Common.vo.Colla_ProVO;
 import org.Common.vo.Contri_ProVO;
 import org.Common.vo.Crea_ProVO;
+import org.Common.vo.RepositoryRateVO;
 import org.Common.vo.RepositoryVO;
+import org.Common.vo.UserRateVO;
 import org.Common.vo.UserVO;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
+import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -44,7 +54,9 @@ import javafx.util.Callback;
 
 public class UserController implements Initializable {
 	private static UserController instance;
-
+	private DefaultCategoryDataset dataset;
+	private SwingNode swingNode;
+	private JPanel panel;
 	@FXML
 	private Label userNameLabel;
 	@FXML
@@ -86,7 +98,7 @@ public class UserController implements Initializable {
 	@FXML
 	private Label followings;
 	@FXML
-	private StackPane user_eva;
+	private StackPane raderPane;
 	@FXML
 	private FlowPane languages;
 
@@ -117,7 +129,7 @@ public class UserController implements Initializable {
 		});
 
 	}
-	
+
 	public void setVO(UserVO vo) {
 		if (vo != null) {
 			if (vo.getHtml_url() != null) {
@@ -200,15 +212,85 @@ public class UserController implements Initializable {
 			text3.add(" ");
 			text3.add("Hasn't collaborated any projects.:)");
 		}
+		// raderchart
+					UserRateVO ratevo = userImpl.getEvaluation(vo.getName());
+					System.err.println(ratevo.getRates());
+					if(ratevo==null){
+						System.out.print("ratevo=null");
+					}
+					if(ratevo.getRates()==null){
+						System.out.print("ratevo get rates null");
+					}
+
+					if (ratevo != null) {
+						Map<String, Double> map = new HashMap<String,Double>();
+						map.put("1", 1.1);
+						map.put("2", 1.2);
+						map.put("3", 1.1);
+						map.put("4", 1.2);
+						map.put("5", 1.1);
+
+						createRader(map);
+						if(ratevo.getRates()==null){
+							System.out.print("ratevo null");
+						}
+					}
+
 
 		// 鏄剧ず澶村儚
 		showAvatar(vo.getLogin());
 		setLanguages(vo.getLogin());
 	}
 
+
+
+	private void createRader(Map<String, Double> map) {
+		dataset = new DefaultCategoryDataset();
+		String group1 = "score";
+		if(map==null){
+			System.out.print("233");
+		}
+		dataset.addValue(map.get("1"), group1, "1");
+		dataset.addValue(map.get("2"), group1, "2");
+		dataset.addValue(map.get("3"), group1, "3");
+		dataset.addValue(map.get("4"), group1, "4");
+		dataset.addValue(map.get("5"), group1, "5");
+		swingNode = new SwingNode();
+
+		ProgressIndicator pin = new ProgressIndicator(-1);
+		pin.setMaxSize(70, 70);
+
+		raderPane.getChildren().clear();
+		raderPane.getChildren().add(pin);
+
+		Task<Void> task = new Task<Void>() {
+			@Override
+			protected Void call() throws Exception {
+				panel = RaderChartGenerator.getInstance().createPanel(dataset);
+				panel.validate();
+				panel.setPreferredSize(new Dimension(330, 330));
+
+				updateProgress(1, 1);
+				return null;
+			}
+		};
+		pin.progressProperty().bind(task.progressProperty());
+		new Thread(task).start();
+
+		pin.progressProperty().addListener((ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
+			if (new_val.intValue() == 1) {
+				if (panel != null) {
+					swingNode.setContent(panel);
+					raderPane.getChildren().clear();
+					raderPane.getChildren().add(swingNode);
+				}
+			}
+		});
+	}
+
 	// 鍦ㄥ姞杞藉ご鍍忕殑鍚屾椂鏄剧ず杩涘害鏉�
 	public void showAvatar(String login) {
-		
+
 		UserService user = UserServiceImpl.getInstance();
 		img = user.getAvatar(login);
 
@@ -242,7 +324,7 @@ public class UserController implements Initializable {
 			}
 		});
 	}
-	
+
 	private class ContributionCellFactory implements Callback<TableColumn<Contri_ProVO, String>, TableCell<Contri_ProVO, String>> {
 
 		@Override
@@ -251,7 +333,7 @@ public class UserController implements Initializable {
 		        cell.setOnMouseReleased((MouseEvent t) -> {
 		            	String temp = cell.getText();
 		            	repository = repositoryImpl.searchRepositoryInfo(temp);
-		    			
+
 		            	if(repository!=null) {
 		            		BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER,userNameLabel.getText()));
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
@@ -266,11 +348,11 @@ public class UserController implements Initializable {
 					cell.setCursor(Cursor.DEFAULT);
 					cell.setUnderline(false);
 				});
-		        
+
 		        return cell;
-		}	
+		}
 	}
-	
+
 	private class CreateCellFactory implements Callback<TableColumn<Crea_ProVO, String>, TableCell<Crea_ProVO, String>> {
 
 		@Override
@@ -279,7 +361,7 @@ public class UserController implements Initializable {
 		        cell.setOnMouseReleased((MouseEvent t) -> {
 		            	String temp = cell.getText();
 		            	repository = repositoryImpl.searchRepositoryInfo(temp);
-		    			
+
 		            	if(repository!=null) {
 		            		BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER,userNameLabel.getText()));
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
@@ -295,9 +377,9 @@ public class UserController implements Initializable {
 					cell.setUnderline(false);
 				});
 		        return cell;
-		}	
+		}
 	}
-	
+
 	private class CollaborationCellFactory implements Callback<TableColumn<Colla_ProVO, String>, TableCell<Colla_ProVO, String>> {
 
 		@Override
@@ -306,7 +388,7 @@ public class UserController implements Initializable {
 		        cell.setOnMouseReleased((MouseEvent t) -> {
 		            	String temp = cell.getText();
 		            	repository = repositoryImpl.searchRepositoryInfo(temp);
-		    			
+
 		            	if(repository!=null) {
 		            		BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER,userNameLabel.getText()));
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
@@ -322,15 +404,15 @@ public class UserController implements Initializable {
 					cell.setUnderline(false);
 				});
 		        return cell;
-		}	
+		}
 	}
-	
+
 	private void setLanguages(String login) {
 		List<String> language = userImpl.getLanguageSkills(login);
 		Label label = null;
 		for (int i = 0;i < language.size();i++) {
 			label = new Label();
-			if(language.get(i)!=null) 
+			if(language.get(i)!=null)
 				label.setGraphic(new ImageView(setIcon(language.get(i))));
 			label.setFont(Font.font("Arial", 17));
 			label.setText(language.get(i));
