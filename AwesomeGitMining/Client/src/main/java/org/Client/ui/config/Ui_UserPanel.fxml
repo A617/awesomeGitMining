@@ -53,7 +53,7 @@
                      <font>
                         <Font size="13.0" />
                      </font></Label>
-                  <Label fx:id="location" layoutX="38.0" layoutY="403.0" prefHeight="15.0" prefWidth="170.0" text="hasn't given :)" textFill="#615c5c">
+                  <Label fx:id="location" layoutX="38.0" layoutY="405.0" prefHeight="15.0" prefWidth="170.0" text="hasn't given :)" textFill="#615c5c">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -75,12 +75,12 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="email" layoutX="38.0" layoutY="434.0" prefHeight="15.0" prefWidth="170.0" text="hasn't given :)" textFill="#615c5c">
+                  <Label fx:id="email" layoutX="38.0" layoutY="436.0" prefHeight="28.0" prefWidth="212.0" text="hasn't given :)" textFill="#615c5c">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="joinTime" layoutX="38.0" layoutY="373.0" prefHeight="15.0" prefWidth="170.0" text="hasn't given :)" textFill="#615c5c">
+                  <Label fx:id="joinTime" layoutX="38.0" layoutY="375.0" prefHeight="15.0" prefWidth="170.0" text="hasn't given :)" textFill="#615c5c">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -93,12 +93,12 @@
                      <font>
                         <Font size="13.0" />
                      </font></Label>
-                  <Label fx:id="url" layoutX="38.0" layoutY="495.0" lineSpacing="1.0" prefHeight="51.0" prefWidth="170.0" text="hasn't given :)" textFill="#615c5c">
+                  <Label fx:id="url" layoutX="38.0" layoutY="502.0" lineSpacing="1.0" prefHeight="43.0" prefWidth="212.0" text="hasn't given :)" textFill="#615c5c">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="blog" layoutX="38.0" layoutY="464.0" prefHeight="15.0" prefWidth="170.0" text="hasn't given :)" textFill="#615c5c">
+                  <Label fx:id="blog" layoutX="38.0" layoutY="466.0" prefHeight="32.0" prefWidth="212.0" text="hasn't given :)" textFill="#615c5c">
                      <font>
                         <Font size="13.0" />
                      </font>
