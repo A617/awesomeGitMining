@@ -7,7 +7,6 @@ import org.Client.business.impl.repository.RepositoryServiceImpl;
 import org.Client.business.impl.user.UserServiceImpl;
 import org.Client.business.service.RepositoryService;
 import org.Client.business.service.UserService;
-import org.Client.ui.controller.HomeController;
 import org.Client.ui.controller.MainController;
 import org.Client.ui.controller.ProjectController;
 import org.Client.ui.controller.SearchController;
@@ -63,8 +62,9 @@ public class BackHandler {
 			MainController.getInstance().setPanel("Ui_SearchRepos.fxml");
 			SearchController controlP = SearchController.getInstance();
 			controlP.setSearchID(repo.getId());
-//			repositoryList = repositoryImpl.searchRepository(repo.getId(), repo.getPage());
-//			SearchController.getInstance().initProject(repositoryList);
+			repositoryList = repositoryImpl.searchRepository(repo.getId(), repo.getPage());
+			SearchController.getInstance().initProject(repositoryList);
+			SearchController.getInstance().setPage(repo.getPage());
 			break;
 			//TODO
 		case USER:
@@ -89,14 +89,16 @@ public class BackHandler {
 			MainController.getInstance().setPanel("Ui_UserPagePanel.fxml");
 //			userList = userImpl.showUsers(user.getPage());
 //			UserPageController.getInstance().initUser(userList);
+//			UserPageController.getInstance().setPage(user.getPage());
 			break;
 		case SEARCH_USER:
 			MainController.getInstance().setPanel("Ui_SearchUser.fxml");
 			SearchUserController controlU = SearchUserController.getInstance();
 			controlU.setSearchID(user.getId());
-//			userList = userImpl.searchUser(user.getId(), user.getPage());
-//			SearchUserController.getInstance().initPane(userList);
-//			break;
+			userList = userImpl.searchUser(user.getId(), user.getPage());
+			SearchUserController.getInstance().initPane(userList);
+			SearchUserController.getInstance().setPage(user.getPage());
+			break;
 //			//TODO
 		case REPO:
 			MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");

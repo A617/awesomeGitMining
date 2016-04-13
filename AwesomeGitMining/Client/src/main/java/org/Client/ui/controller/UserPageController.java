@@ -70,7 +70,7 @@ public class UserPageController implements Initializable {
 				SingleUserController controller = loader.getController();
 				if (i < user.size()) {
 					SimpleUserVO vo = user.get(i);
-					BackHandler.getInstance().setUserBack(new BackObject(BackType.HOME_USER,vo.getLogin()));
+					BackHandler.getInstance().setUserBack(new BackObject(BackType.HOME_USER,vo.getLogin(),userPage));
 					controller.setVO(vo);
 
 					box.getChildren().add(single);
@@ -80,10 +80,13 @@ public class UserPageController implements Initializable {
 				e.printStackTrace();
 			}
 		}
-
 		scrollPane.setContent(box);
 	}
-
+	public void setPage(int num) {
+		userPage = num;
+		page.setText(userPage+1 + " / " + pageNums);
+	}
+	
 	@FXML
 	public void handleUserPre() {
 		userPage--;

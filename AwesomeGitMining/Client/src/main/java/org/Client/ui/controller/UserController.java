@@ -22,7 +22,6 @@ import org.Client.ui.utility.RaderChartGenerator;
 import org.Common.vo.Colla_ProVO;
 import org.Common.vo.Contri_ProVO;
 import org.Common.vo.Crea_ProVO;
-import org.Common.vo.RepositoryRateVO;
 import org.Common.vo.RepositoryVO;
 import org.Common.vo.UserRateVO;
 import org.Common.vo.UserVO;
@@ -335,7 +334,7 @@ public class UserController implements Initializable {
 		            	repository = repositoryImpl.searchRepositoryInfo(temp);
 
 		            	if(repository!=null) {
-		            		BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER,userNameLabel.getText()));
+		            		BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER,userNameLabel.getText(),0));
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
 		            		ProjectController.getInstance().setVO(repository);
 		            	}
@@ -363,7 +362,7 @@ public class UserController implements Initializable {
 		            	repository = repositoryImpl.searchRepositoryInfo(temp);
 
 		            	if(repository!=null) {
-		            		BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER,userNameLabel.getText()));
+		            		BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER,userNameLabel.getText(),0));
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
 		            		ProjectController.getInstance().setVO(repository);
 		            	}
@@ -390,7 +389,7 @@ public class UserController implements Initializable {
 		            	repository = repositoryImpl.searchRepositoryInfo(temp);
 
 		            	if(repository!=null) {
-		            		BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER,userNameLabel.getText()));
+		            		BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER,userNameLabel.getText(),0));
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
 		            		ProjectController.getInstance().setVO(repository);
 		            	}
