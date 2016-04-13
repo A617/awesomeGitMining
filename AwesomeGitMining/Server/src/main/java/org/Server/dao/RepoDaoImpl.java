@@ -19,7 +19,7 @@ import net.sf.json.JSONArray;
 public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private final String path = "src/main/java/org/Server/data/gitmining-api/";
@@ -50,9 +50,9 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 	private List<String> reposByFork;
 
 	private List<Integer> sizeList;
-	
+
 	private ArrayList<Integer> collaNumList;
-	
+
 	/* 每种语言的项目个数 */
 	private int[] languageRepoCounts;
 
@@ -61,7 +61,7 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 	private List<Integer> hotRank;
 	private List<Integer> participationRank;
 	private List<Integer> promisingRank;
-	
+
 	private int len;
 
 	public RepoDaoImpl() throws RemoteException {
@@ -78,7 +78,7 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 		this.reposByStar = DataInitHelper.getList(path + "repo_starSort.txt");
 		this.createdTimeList = DataInitHelper.getList(path + "repo-createdTime.txt");
 		this.sizeList = DataInitHelper.getIntList(path + "repo_size.txt");
-		
+
 		String[] languages = Statistics.language;
 		this.languageRepoCounts = new int[languages.length];
 		for (int i = 0; i < languages.length; i++)
@@ -92,7 +92,7 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 					continue loop;
 				}
 			}
-			this.languageRepoCounts[languages.length - 1]++; 
+			this.languageRepoCounts[languages.length - 1]++;
 		}
 
 
@@ -134,8 +134,8 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 		}
 		this.participationRank = rankList(participationScoreList);
 
-		
-		// promising 
+
+		// promising
 		int[] starCountsIn28DaysList =DataInitHelper.getIntArray(path + "repo_forkedTime.txt", len);
 		int[] forkCountsIn28DaysList = DataInitHelper.getIntArray(path + "repo_forkedTime.txt", len);
 		ArrayList<Integer> promisingScoreList = new ArrayList<>();
@@ -144,7 +144,7 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 		}
 		this.promisingRank = rankList(promisingScoreList);
 
-		
+
 		// size
 		List<Integer>[] languageRepoSize = new List[languages.length];
 		for (int i = 0; i < languages.length; i++) {
@@ -156,7 +156,7 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 			sizeRank.add(languageRepoSize[languageIndex].get(i));
 		}
 
-		
+
 		System.out.println("RepoDaoImpl initialized!");
 		long endTime = System.nanoTime();
 		System.out.println("Took " + (endTime - startTime) + " ns");
@@ -180,7 +180,6 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 			po.setCollaborators_login(collaboratorsList.get(index));
 			po.setOwner_name(name.split("/")[0]);
 			po.setLanguages(mapR2L.get(index));
-
 			double[] scores = new double[5];
 			scores[0] = 1.0-1.0*sizeRank.get(index)/languageRepoCounts[Statistics.getLanguageIndex(po.getLanguage())];
 			scores[1] = 1.0-1.0*scaleRank.get(index)/len;
@@ -189,7 +188,7 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 			scores[4] = 1.0-1.0*promisingRank.get(index)/len;
 			po.setScores(scores);
 
-			
+
 
 		}
 		return po;
@@ -381,7 +380,7 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 
 		return rankList(result);
 	}
-	
+
 	@Override
 	public double getHotScore(String repo){
 		int index = repoList.indexOf(repo);
@@ -389,8 +388,8 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 			return -1;
 		return 1.0-1.0*hotRank.get(index)/len;
 	}
-	
-	
+
+
 	@Override
 	public int getCollaboratorNum(String repo){
 		int index = repoList.indexOf(repo);

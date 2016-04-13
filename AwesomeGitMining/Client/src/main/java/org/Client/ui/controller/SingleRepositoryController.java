@@ -47,7 +47,8 @@ public class SingleRepositoryController implements Initializable {
 	private RepositoryVO vo;
 	private RepositoryVO fullVO;
 
-
+    public double hotNum;
+    public double promisingNum;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -88,13 +89,15 @@ public class SingleRepositoryController implements Initializable {
 			forks.setText(" "+vo.getForks_count());
 			stars.setText(" "+vo.getSubscribers_count());
 			lastUpdated.setText(vo.getUpdated_at()+"");
-			if(vo.getHot()==0){
+			if(vo.getScores()[4]==0){
 				System.out.print("null");
 			}
-			if(vo.getHot()>=7){
+			hotNum=vo.getScores()[4];
+			if(hotNum>=7){
 				labelInit(hot,"hot.png");
 			}
-			if(vo.getPromising()>=7){
+			promisingNum=vo.getScores()[3];
+			if(promisingNum>=7){
 				labelInit(promising,"promising.png");
 			}
 			//set description

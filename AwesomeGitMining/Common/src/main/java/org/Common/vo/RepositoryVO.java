@@ -21,8 +21,7 @@ public class RepositoryVO extends VO {
 	private String description;// 项目描述信息
 	private String updated_at;
 	private int open_issues_count;
-	private int hot;
-	private int promising;
+	private double[] scores;
 
 	public RepositoryVO() {
 
@@ -30,7 +29,7 @@ public class RepositoryVO extends VO {
 
 	public RepositoryVO(String full_name, int subscribers_count, String language,Map<String, Integer> languages,
 			List<String> contributors_login, List<String> collaborators_login, List<String> forks_fullname,
-			int star_count,int forks_count, String clone_url, String description, String updated_at,int open_issues,int hot,int promising) {
+			int star_count,int forks_count, String clone_url, String description, String updated_at,int open_issues,double[]scores) {
 		super();
 		this.full_name = full_name;
 		this.subscribers_count = subscribers_count;
@@ -45,24 +44,17 @@ public class RepositoryVO extends VO {
 		this.description = description;
 		this.updated_at = updated_at;
 		this.open_issues_count = open_issues;
-		this.hot=hot;
-		this.promising=promising;
+		this.scores=scores;
 	}
 
-	public int getHot() {
-		return hot;
+
+
+	public double[] getScores() {
+		return scores;
 	}
 
-	public void setHot(int hot) {
-		this.hot = hot;
-	}
-
-	public int getPromising() {
-		return promising;
-	}
-
-	public void setPromising(int promising) {
-		this.promising = promising;
+	public void setScores(double[] scores) {
+		this.scores = scores;
 	}
 
 	public int getOpen_issues_count() {
