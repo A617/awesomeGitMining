@@ -13,6 +13,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -49,9 +51,11 @@ public class UserTypeChartController implements Initializable {
 		caption.setTextFill(Color.DARKORANGE);
 		caption.setStyle("-fx-font: 24 arial;");
 		for (final PieChart.Data data : pieChart.getData()) {
-			data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+			Node n = data.getNode();
+			n.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent e) {
+					n.setCursor(Cursor.HAND);
 					caption.setTranslateX(e.getSceneX());
 					caption.setTranslateY(e.getSceneY());
 					caption.setText(String.valueOf(division) + "%");

@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
@@ -81,6 +82,7 @@ public class CreateTimeController implements Initializable {
 	        n.setOnMouseEntered(new EventHandler<MouseEvent>() {
 	            @Override
 	            public void handle(MouseEvent e) {
+	            	n.setCursor(Cursor.HAND);
 	            	label.setLayoutX(n.getLayoutX()+40);
 	            	label.setTranslateY(n.getLayoutY());
 	            	label.setText(String.valueOf(dt.getYValue()));

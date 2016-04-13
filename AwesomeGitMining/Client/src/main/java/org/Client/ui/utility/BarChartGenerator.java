@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -99,6 +100,7 @@ public class BarChartGenerator {
 	        n.setOnMouseEntered(new EventHandler<MouseEvent>() {
 	            @Override
 	            public void handle(MouseEvent e) {
+	            	n.setCursor(Cursor.HAND);
 	            	label.setLayoutX(n.getLayoutX() +columnWidth+90);
 	            	label.setTranslateY(n.getLayoutY());
 	            	label.setText(String.valueOf(dt.getYValue()));

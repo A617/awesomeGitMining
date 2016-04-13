@@ -208,17 +208,6 @@ public class UserController implements Initializable {
 	// 鍦ㄥ姞杞藉ご鍍忕殑鍚屾椂鏄剧ず杩涘害鏉�
 	public void showAvatar(String login) {
 		
-		/*UserService user = UserServiceImpl.getInstance();
-		img = user.getAvatar(login);
-		img.
-		
-		if (img != null) {
-			image.setGraphic(new ImageView(img));
-		} else
-			image.setGraphic(
-					new ImageView(new Image(MainUI.class.getResourceAsStream("style/morentouxiang.jpg"))));
-	*/
-		
 		UserService user = UserServiceImpl.getInstance();
 		img = user.getAvatar(login);
 
@@ -241,9 +230,6 @@ public class UserController implements Initializable {
 
 		};
 		pin.progressProperty().bind(img.progressProperty());
-	//	pin.progressProperty().bind(task.progressProperty());
-	//	Thread th = new Thread(task);
-	//	th.start();
 
 		pin.progressProperty().addListener((ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
 			if (new_val.intValue() == 1) {
