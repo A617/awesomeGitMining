@@ -8,6 +8,9 @@ import java.util.ResourceBundle;
 import org.Client.business.impl.repository.RepositoryServiceImpl;
 import org.Client.business.service.RepositoryService;
 import org.Client.ui.MainUI;
+import org.Client.ui.utility.BackHandler;
+import org.Client.ui.utility.BackObject;
+import org.Client.ui.utility.BackType;
 import org.Common.vo.RepositoryVO;
 
 import javafx.fxml.FXML;
@@ -45,7 +48,7 @@ public class SearchController implements Initializable {
 		repositoryService = RepositoryServiceImpl.getInstance();
 	}
 
-	private void initProject(List<RepositoryVO> list) {
+	public void initProject(List<RepositoryVO> list) {
 		box = new VBox();
 		for (int i = 0; i < 10; i++) {
 			FXMLLoader loader = new FXMLLoader();
@@ -56,6 +59,7 @@ public class SearchController implements Initializable {
 				if (i < list.size()) {
 					RepositoryVO vo = list.get(i);
 					controller.setVO(vo);
+					BackHandler.getInstance().setRepoBack(new BackObject(BackType.SEARCH_REPO,id,projectPage));
 					box.getChildren().add(single);
 				}
 			} catch (IOException e) {
@@ -64,6 +68,10 @@ public class SearchController implements Initializable {
 		}
 		projectPane.setContent(box);
 		box = null;
+	}
+	public void setPage(int num) {
+		projectPage = num;
+		page.setText(projectPage + 1 + " / " + pageNums);
 	}
 
 	@FXML

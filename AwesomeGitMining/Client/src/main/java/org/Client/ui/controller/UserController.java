@@ -24,7 +24,6 @@ import org.Common.po.Statistics;
 import org.Common.vo.Colla_ProVO;
 import org.Common.vo.Contri_ProVO;
 import org.Common.vo.Crea_ProVO;
-import org.Common.vo.RepositoryRateVO;
 import org.Common.vo.RepositoryVO;
 import org.Common.vo.UserRateVO;
 import org.Common.vo.UserVO;
@@ -65,12 +64,7 @@ public class UserController implements Initializable {
 	private Button user_back;
 	@FXML
 	private Label joinTime;
-	@FXML
-	private Label Eff_num;
-	@FXML
-	private Label qua_num;
-	@FXML
-	private Label Tot_num;
+	
 	@FXML
 	private TableView<Contri_ProVO> Contri_Pro_View;
 	@FXML
@@ -308,6 +302,7 @@ public class UserController implements Initializable {
 
 		@Override
 		public TableCell<Contri_ProVO, String> call(TableColumn<Contri_ProVO, String> arg0) {
+
 			TextFieldTableCell<Contri_ProVO, String> cell = new TextFieldTableCell<>();
 			cell.setOnMouseReleased((MouseEvent t) -> {
 				String temp = cell.getText();
@@ -329,6 +324,28 @@ public class UserController implements Initializable {
 			});
 
 			return cell;
+
+			 TextFieldTableCell<Contri_ProVO, String> cell = new TextFieldTableCell<>();
+		        cell.setOnMouseReleased((MouseEvent t) -> {
+		            	String temp = cell.getText();
+		            	repository = repositoryImpl.searchRepositoryInfo(temp);
+
+		            	if(repository!=null) {
+		            		BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER,userNameLabel.getText(),0));
+		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
+		            		ProjectController.getInstance().setVO(repository);
+		            	}
+		        });
+		        cell.setOnMouseEntered((MouseEvent t) -> {
+		        	cell.setCursor(Cursor.HAND);
+					cell.setUnderline(true);
+				});
+				cell.setOnMouseExited((MouseEvent t) -> {
+					cell.setCursor(Cursor.DEFAULT);
+					cell.setUnderline(false);
+				});
+
+		        return cell;
 		}
 	}
 
@@ -337,6 +354,7 @@ public class UserController implements Initializable {
 
 		@Override
 		public TableCell<Crea_ProVO, String> call(TableColumn<Crea_ProVO, String> arg0) {
+
 			TextFieldTableCell<Crea_ProVO, String> cell = new TextFieldTableCell<>();
 			cell.setOnMouseReleased((MouseEvent t) -> {
 				String temp = cell.getText();
@@ -357,6 +375,27 @@ public class UserController implements Initializable {
 				cell.setUnderline(false);
 			});
 			return cell;
+
+			 TextFieldTableCell<Crea_ProVO, String> cell = new TextFieldTableCell<>();
+		        cell.setOnMouseReleased((MouseEvent t) -> {
+		            	String temp = cell.getText();
+		            	repository = repositoryImpl.searchRepositoryInfo(temp);
+
+		            	if(repository!=null) {
+		            		BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER,userNameLabel.getText(),0));
+		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
+		            		ProjectController.getInstance().setVO(repository);
+		            	}
+		        });
+		        cell.setOnMouseEntered((MouseEvent t) -> {
+		        	cell.setCursor(Cursor.HAND);
+					cell.setUnderline(true);
+				});
+				cell.setOnMouseExited((MouseEvent t) -> {
+					cell.setCursor(Cursor.DEFAULT);
+					cell.setUnderline(false);
+				});
+		        return cell;
 		}
 	}
 
@@ -365,6 +404,7 @@ public class UserController implements Initializable {
 
 		@Override
 		public TableCell<Colla_ProVO, String> call(TableColumn<Colla_ProVO, String> arg0) {
+
 			TextFieldTableCell<Colla_ProVO, String> cell = new TextFieldTableCell<>();
 			cell.setOnMouseReleased((MouseEvent t) -> {
 				String temp = cell.getText();
@@ -385,6 +425,27 @@ public class UserController implements Initializable {
 				cell.setUnderline(false);
 			});
 			return cell;
+
+			 TextFieldTableCell<Colla_ProVO, String> cell = new TextFieldTableCell<>();
+		        cell.setOnMouseReleased((MouseEvent t) -> {
+		            	String temp = cell.getText();
+		            	repository = repositoryImpl.searchRepositoryInfo(temp);
+
+		            	if(repository!=null) {
+		            		BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER,userNameLabel.getText(),0));
+		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
+		            		ProjectController.getInstance().setVO(repository);
+		            	}
+		        });
+		        cell.setOnMouseEntered((MouseEvent t) -> {
+		        	cell.setCursor(Cursor.HAND);
+					cell.setUnderline(true);
+				});
+				cell.setOnMouseExited((MouseEvent t) -> {
+					cell.setCursor(Cursor.DEFAULT);
+					cell.setUnderline(false);
+				});
+		        return cell;
 		}
 	}
 

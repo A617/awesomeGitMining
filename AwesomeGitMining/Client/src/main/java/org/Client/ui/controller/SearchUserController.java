@@ -9,6 +9,9 @@ import java.util.ResourceBundle;
 import org.Client.business.impl.user.UserServiceImpl;
 import org.Client.business.service.UserService;
 import org.Client.ui.MainUI;
+import org.Client.ui.utility.BackHandler;
+import org.Client.ui.utility.BackObject;
+import org.Client.ui.utility.BackType;
 import org.Client.ui.utility.SkinConfig;
 import org.Common.vo.SimpleUserVO;
 
@@ -58,7 +61,7 @@ public class SearchUserController implements Initializable {
 		userPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 	}
 
-	private void initPane() {
+	public void initPane(List<SimpleUserVO> list) {
 		box = new VBox();
 		for (int i = 0; i < 10; i++) {
 			FXMLLoader loader = new FXMLLoader();
@@ -75,6 +78,7 @@ public class SearchUserController implements Initializable {
 				if (i < list.size()) {
 					SimpleUserVO vo = list.get(i);
 					controller.setVO(vo);
+					BackHandler.getInstance().setUserBack(new BackObject(BackType.SEARCH_USER,id,userPage));
 					box.getChildren().add(single);
 				}
 			} catch (IOException e) {
@@ -83,6 +87,10 @@ public class SearchUserController implements Initializable {
 		}
 		userPane.setContent(box);
 		box = null;
+	}
+	public void setPage(int num) {
+		userPage = num;
+		page.setText(userPage + 1 + " / " + pageNums);
 	}
 
 	public void setSearchID(String id) {
@@ -101,7 +109,7 @@ public class SearchUserController implements Initializable {
 				pageNums = 1;
 			}
 			page.setText("1 / " + pageNums);
-			initPane();
+			initPane(list);
 		}
 	}
 
@@ -110,7 +118,7 @@ public class SearchUserController implements Initializable {
 		userPage--;
 		if (userPage >= 0) {
 			list = service.searchUser(id, userPage);
-			initPane();
+			initPane(list);
 		} else {
 			userPage++;
 		}
@@ -122,7 +130,7 @@ public class SearchUserController implements Initializable {
 		userPage++;
 		list = service.searchUser(id, userPage);
 		if (list.size() > 0) {
-			initPane();
+			initPane(list);
 		} else {
 			userPage--;
 		}
