@@ -35,9 +35,9 @@ public class DataMining {
 		long startTime = System.nanoTime();
 
 	// caculateUserScores();
-	//	getDataFromDtaMining("http://www.gitmining.net/api/repository/",path+"repo_size.txt", "size");
+		getDataFromDtaMining("http://www.gitmining.net/api/repository/",path+"repo_description.txt", "description");
 
-	getDataFromGithub("api.github.com/repos/", path + "repo_staredTime.txt", "starred_at");
+	//getDataFromGithub("api.github.com/repos/", path + "repo_staredTime.txt", "starred_at");
 
 		
 	
@@ -122,7 +122,7 @@ public class DataMining {
 
 			for (String repo : repos) {
 				
-				if(repo.equals("mde/timezone-js"))
+				if(repo.equals("PerlGameDev/SDL"))
 					flag = true;
 				
 				if(!flag)

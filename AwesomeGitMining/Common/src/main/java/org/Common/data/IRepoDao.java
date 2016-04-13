@@ -102,5 +102,12 @@ public interface IRepoDao extends Remote{
 
 	public double getHotScore(String repo) throws RemoteException;
 
-	int getCollaboratorNum(String repo) throws RemoteException;
+	public int getCollaboratorNum(String repo) throws RemoteException;
+
+	/**
+	 * 根据关键字搜索项目
+	 * @param key
+	 * @return
+	 */
+	public List<String> getReposByKeyword(String key) throws RemoteException;
 }
