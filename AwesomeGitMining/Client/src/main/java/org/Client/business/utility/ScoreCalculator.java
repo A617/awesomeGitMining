@@ -45,7 +45,7 @@ public class ScoreCalculator {
 		return map;
 
 	}
-	public static Map<String,Double> getUserScore(int[]rates){
+	public static Map<String,Double> getUserScore(double[]rates){
 		Map<String, Double> map = new HashMap<String,Double>();
 		double star = (REPOS_LEN - rates[0]) / (REPOS_LEN * 1.0);
 		double fork = (REPOS_LEN - rates[1]) / (REPOS_LEN * 1.0);

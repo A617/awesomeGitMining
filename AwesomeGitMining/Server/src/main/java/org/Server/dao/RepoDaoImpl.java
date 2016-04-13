@@ -51,6 +51,8 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 
 	private List<Integer> sizeList;
 	
+	private ArrayList<Integer> collaNumList;
+	
 	/* 每种语言的项目个数 */
 	private int[] languageRepoCounts;
 
@@ -104,7 +106,7 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 		this.len = repoList.size();
 
 		// scale
-		ArrayList<Integer> collaNumList = new ArrayList<>();
+		this.collaNumList = new ArrayList<>();
 		for (int i = 0; i < repoList.size(); i++) {
 			collaNumList.add(contributionsList.get(i).size());
 		}
@@ -380,12 +382,21 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 		return rankList(result);
 	}
 	
-	public void test(int i){
-		System.out.println(sizeRank.get(i));
-		System.out.println(hotRank.get(i));
-		System.out.println(scaleRank.get(i));
-		System.out.println(participationRank.get(i));
-		System.out.println("----");
+	@Override
+	public double getHotScore(String repo){
+		int index = repoList.indexOf(repo);
+		if(index==-1)
+			return -1;
+		return 1.0-1.0*hotRank.get(index)/len;
+	}
+	
+	
+	@Override
+	public int getCollaboratorNum(String repo){
+		int index = repoList.indexOf(repo);
+		if(index==-1)
+			return -1;
+		return collaNumList.get(index);
 	}
 
 }
