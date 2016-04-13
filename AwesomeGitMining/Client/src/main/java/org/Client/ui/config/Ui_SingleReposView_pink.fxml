@@ -42,7 +42,7 @@
                   <Label fx:id="contributors" layoutX="550.0" layoutY="58.0" prefHeight="27.0" prefWidth="88.0" text="contributors" />
                </children>
             </VBox>
-            <Label id="repositoryName" fx:id="repositoryName" layoutX="37.0" layoutY="23.0" prefHeight="33.0" prefWidth="570.0" text="RepositoryName/" textFill="#5184c2">
+            <Label id="repositoryName" fx:id="repositoryName" layoutX="37.0" layoutY="23.0" prefHeight="33.0" prefWidth="396.0" text="RepositoryName/" textFill="#5184c2">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
@@ -65,8 +65,8 @@
                   <Label fx:id="stars" prefHeight="28.0" prefWidth="104.0" text="stars" />
                </children>
             </VBox>
-            <Label fx:id="hot" layoutX="339.0" layoutY="32.0" prefHeight="24.0" prefWidth="24.0" />
-            <Label fx:id="promising" layoutX="394.0" layoutY="32.0" prefHeight="24.0" prefWidth="24.0" />
+            <Label fx:id="hot" layoutX="467.0" layoutY="32.0" prefHeight="24.0" prefWidth="24.0" />
+            <Label fx:id="promising" layoutX="515.0" layoutY="32.0" prefHeight="24.0" prefWidth="24.0" />
          </children>
       </Group>
    </children>

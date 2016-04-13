@@ -89,14 +89,12 @@ public class SingleRepositoryController implements Initializable {
 			forks.setText(" "+vo.getForks_count());
 			stars.setText(" "+vo.getSubscribers_count());
 			lastUpdated.setText(vo.getUpdated_at()+"");
-			if(vo.getScores()[4]==0){
-				System.out.print("null");
-			}
-			hotNum=vo.getScores()[4];
+			hotNum=vo.getScores()[4]*8;
+			System.out.println(hotNum);
 			if(hotNum>=7){
 				labelInit(hot,"hot.png");
 			}
-			promisingNum=vo.getScores()[3];
+			promisingNum=vo.getScores()[3]*8;
 			if(promisingNum>=7){
 				labelInit(promising,"promising.png");
 			}
