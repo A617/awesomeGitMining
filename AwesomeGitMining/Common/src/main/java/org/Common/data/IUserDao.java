@@ -21,7 +21,7 @@ public interface IUserDao extends Remote{
 	 * @return
 	 * @throws IOException
 	 */
-	public User getUser(String login)throws IOException, RemoteException;
+	public User getUser(String login)throws RemoteException;
 	
 	
 	/**
@@ -45,7 +45,7 @@ public interface IUserDao extends Remote{
 	 * @return 
 	 * @throws IOException
 	 */
-	public String getAvatar(String url) throws IOException, RemoteException;
+	public String getAvatar(String url) throws  RemoteException;
 
 
 	/**

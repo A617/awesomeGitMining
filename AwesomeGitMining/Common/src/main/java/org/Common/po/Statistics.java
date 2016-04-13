@@ -11,6 +11,8 @@ public class Statistics {
 	 * Statistics():instance; }
 	 */
 	public static final String[] repoRader = {"size","scale","promising","partcipation","hot"};
+	
+	public static final String[] userRader = {"popular","teamwork","liveness","experience","quantity"};
 
 	public static final String[] language = { "Ruby", "Python", "Java", "JavaScript", "C", "Perl", "PHP", "C++", "HTML",
 			"Shell", "C#", "Prolog", "Scala", "Viml", "CSS", "Go", "Clojure", "CoffeeScript", "Haskell", "Lua",

@@ -8,6 +8,7 @@ import org.Client.business.impl.user.UserServiceImpl;
 import org.Client.business.service.RepositoryService;
 import org.Client.business.service.UserService;
 import org.Client.main.RMIHelper;
+import org.Client.ui.controller.HomeController;
 import org.Client.ui.controller.MainController;
 import org.Client.ui.utility.SkinConfig;
 import org.Client.ui.utility.fxmlLoader;
@@ -112,25 +113,31 @@ public class MainUI extends Application {
 		launch(args);
 	}
 
-	public void changeStyle(String style){
-		if(style.equals("black")){
+	public void changeStyle(String style) {
+		scene.getStylesheets().clear();
+		if (style.equals("black")) {
 			SkinConfig.getInstance().setSkinNum(2);
+			MainController.getInstance().setSkinNum(2);
+			HomeController.getInstance().setSkinNum(2);
 			try {
 				scene.getStylesheets().add(new URL(SkinConfig.getInstance().getCssResoursePath()).toExternalForm());
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
-		}
-		else if(style.equals("pink")){
+		} else if (style.equals("pink")) {
 			SkinConfig.getInstance().setSkinNum(1);
+			MainController.getInstance().setSkinNum(1);
+			HomeController.getInstance().setSkinNum(1);
 			try {
 				scene.getStylesheets().add(new URL(SkinConfig.getInstance().getCssResoursePath()).toExternalForm());
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
 
-		}else if(style.equals("yellow")){
+		} else if (style.equals("yellow")) {
 			SkinConfig.getInstance().setSkinNum(0);
+			MainController.getInstance().setSkinNum(0);
+			HomeController.getInstance().setSkinNum(0);
 			try {
 				scene.getStylesheets().add(new URL(SkinConfig.getInstance().getCssResoursePath()).toExternalForm());
 			} catch (MalformedURLException e) {

@@ -1,6 +1,7 @@
 package org.Common.po;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javafx.scene.image.Image;
@@ -228,12 +229,14 @@ public class User implements Serializable{
 	public String toString() {
 		return "User [login=" + login + ", html_url=" + html_url + ", type=" + type + ", site_admin=" + site_admin
 				+ ", avatar=" + avatar + ", avatar_url=" + avatar_url + ", name=" + name + ", location=" + location
-				+ ", email=" + email + ", blog=" + blog + ", contributions_fullname=" + contributions_fullname
-				+ ", followers_name=" + followers_name + ", following_name=" + following_name + ", repos_fullname="
-				+ repos_fullname + ", public_repos=" + public_repos + ", public_gists=" + public_gists + ", followers="
-				+ followers + ", following=" + following + ", created_at=" + created_at + ", updated_at=" + updated_at
-				+ "]";
+				+ ", email=" + email + ", blog=" + blog + ", company=" + company + ", contributions_fullname="
+				+ contributions_fullname + ", collaboration_fullname=" + collaboration_fullname + ", followers_name="
+				+ followers_name + ", following_name=" + following_name + ", repos_fullname=" + repos_fullname
+				+ ", public_repos=" + public_repos + ", public_gists=" + public_gists + ", followers=" + followers
+				+ ", following=" + following + ", created_at=" + created_at + ", updated_at=" + updated_at + ", scores="
+				+ Arrays.toString(scores) + "]";
 	}
+
 
 
 

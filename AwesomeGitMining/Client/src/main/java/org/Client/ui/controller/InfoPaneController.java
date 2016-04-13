@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.Client.ui.MainUI;
-import org.Client.ui.utility.SkinConfig;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,10 +23,11 @@ public class InfoPaneController implements Initializable {
 	private Label pink;
 	@FXML
 	private Label dark;
+	@FXML
+	private AnchorPane infoPane;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		labelInit(yellow, "back_icon.png");
 		labelInit(pink, "back_pink_icon.png");
 		labelInit(dark, "back_dark_icon.png");
@@ -37,6 +37,7 @@ public class InfoPaneController implements Initializable {
 		Image image = new Image(MainUI.class.getResourceAsStream("style/" + path));
 		label.setGraphic(new ImageView(image));
 	}
+
 	@FXML
 	public void enterYellow() {
 		labelInit(yellow, "back_icon_flash.png");
@@ -67,24 +68,24 @@ public class InfoPaneController implements Initializable {
 		labelInit(dark, "back_dark_icon.png");
 	}
 
-
 	@FXML
 	public void selectYellow() {
 		labelInit(yellow, "back_icon_flash.png");
 		MainUI.getUI().changeStyle("yellow");
-
+		MainController.getInstance().removeInfoPane();
 	}
 
 	@FXML
 	public void selectPink() {
 		labelInit(pink, "back_pink_icon_flash.png");
 		MainUI.getUI().changeStyle("pink");
-
+		MainController.getInstance().removeInfoPane();
 	}
 
 	@FXML
 	public void selectDark() {
 		labelInit(dark, "back_dark_icon_flash.png");
 		MainUI.getUI().changeStyle("black");
+		MainController.getInstance().removeInfoPane();
 	}
 }
