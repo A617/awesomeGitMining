@@ -1,5 +1,8 @@
 package org.Client.ui.controller;
+
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -27,7 +30,7 @@ import javafx.scene.layout.VBox;
 public class ReposTagPaneController implements Initializable {
 	private static ReposTagPaneController instance;
 	private RepositoryService service;
-	private int pageNum;
+	private int pageNum = 0;
 	@FXML
 	private Label page;
 	@FXML
@@ -35,9 +38,10 @@ public class ReposTagPaneController implements Initializable {
 	private List<RepositoryVO> list;
 	private int tempPage;
 	private String text;
+	private String methodName;
 
 	public static ReposTagPaneController getInstance() {
-		if(instance == null)
+		if (instance == null)
 			instance = new ReposTagPaneController();
 		return instance;
 	}
@@ -48,27 +52,31 @@ public class ReposTagPaneController implements Initializable {
 		scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 	}
 
-	public void setLanguage(String language) {
-		this.text = language;
-		list = service.getReposByLanguage(language, 0);
+	/**
+	 * 
+	 * @param text
+	 *            on the tag label
+	 * @param methodName
+	 *            such as"getReposByLanguage"
+	 */
+	public void setText(String text, String methodName) {
+		this.text = text;
+		this.methodName = methodName;
+		this.pageNum = 0;
+		refreshList();
 		pageNum = service.getTagPageNum();
 		page.setText("1 / " + pageNum);
 		initPane();
 	}
-	public void setYear(String year){
-		this.text = year;
-		list = service.getReposByYear(year, 0);
-		pageNum = service.getTagPageNum();
-		page.setText("1 / " + pageNum);
-		initPane();
-	}
+
 	private void initPane() {
 		VBox box = new VBox();
 		VBox.setVgrow(scrollPane, Priority.ALWAYS);
 		box.setSpacing(4);
 		for (int i = 0; i < 10; i++) {
 			FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(MainUI.class.getResource("config/"+SkinConfig.getInstance().getFxmlResoursePath("singleReposView")));
+			loader.setLocation(MainUI.class
+					.getResource("config/" + SkinConfig.getInstance().getFxmlResoursePath("singleReposView")));
 			try {
 				AnchorPane single = (AnchorPane) loader.load();
 				SingleRepositoryController controller = loader.getController();
@@ -87,7 +95,7 @@ public class ReposTagPaneController implements Initializable {
 	@FXML
 	public void handleNextButton() {
 		tempPage++;
-		list = service.getReposByLanguage(text, tempPage);
+		refreshList();
 		if (list.size() > 0) {
 			initPane();
 		} else {
@@ -100,7 +108,7 @@ public class ReposTagPaneController implements Initializable {
 	public void handlePreButton() {
 		tempPage--;
 		if (tempPage >= 0) {
-			list = service.getReposByLanguage(text, tempPage);
+			refreshList();
 			initPane();
 		} else {
 			tempPage++;
@@ -108,4 +116,22 @@ public class ReposTagPaneController implements Initializable {
 		page.setText(tempPage + 1 + " / " + pageNum);
 	}
 
+	/**
+	 * 通过反射更新list
+	 */
+	@SuppressWarnings("unchecked")
+	private void refreshList() {
+		try {
+			Method method = service.getClass().getMethod(methodName, String.class,int.class);
+			this.list = (List<RepositoryVO>) method.invoke(service, text, tempPage);
+		} catch (NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	}
 }
