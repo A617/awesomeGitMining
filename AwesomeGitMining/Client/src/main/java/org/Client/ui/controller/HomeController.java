@@ -77,8 +77,8 @@ public class HomeController implements Initializable {
 	private List<RepositoryVO> forkList;
 	private List<RepositoryVO> contriList;
 	private final String configPath = "file:src/main/java/org/Client/ui/config/";
-	private String[] enterColors = { "#5d9b78;", "#ff99c7;", "#cad2dd;" };
-	private String[] baseColors = { "#71af8c;", "#f8aec4;", "#b4b7bb;" };
+	private String[] enterColors = { "#5d9b78;", "#bdc9e7;", "#c9cacc;" };
+	private String[] baseColors = { "#71af8c;", "#d4dfff;", "#d5d8dd;" };
 	private String[] tagBackColors = { "-fx-background-color:#5d9b78;", "-fx-background-color:#ff99c7;",
 			"-fx-background-color:#cad2dd;" };
 	private int skinNum;

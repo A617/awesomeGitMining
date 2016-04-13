@@ -1,16 +1,30 @@
 package org.Client.ui.controller;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import org.Client.business.impl.repository.RepositoryServiceImpl;
+import org.Client.business.service.RepositoryService;
 import org.Client.ui.MainUI;
+import org.Client.ui.utility.BackHandler;
+import org.Client.ui.utility.BackObject;
+import org.Client.ui.utility.BackType;
 import org.Client.ui.utility.SkinConfig;
+import org.Common.vo.CreatedTimeStatisticsVO;
+import org.Common.vo.ForksStatisticsVO;
+import org.Common.vo.LanguageVO;
+import org.Common.vo.RepositoryVO;
+import org.Common.vo.StarsStatisticsVO;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 
 public class ReposStaPaneController implements Initializable {
 	@FXML
@@ -25,29 +39,40 @@ public class ReposStaPaneController implements Initializable {
 	private Label blank;
 	@FXML
 	private AnchorPane center;
-
+	private List<LanguageVO> languageList;
+	private List<CreatedTimeStatisticsVO> createList;
+	private List<StarsStatisticsVO> starList;
+	private List<ForksStatisticsVO> forkList;
 	private String styleStr = "-fx-background-color: ";
-
+	private RepositoryService repositoryImpl;
 	private static String enterColor;
 	private static String baseColor;
 	private boolean selectLanguage;
 	private boolean selectFork;
 	private boolean selectStar;
 	private boolean selectCreateTime;
-	static int skinNum=SkinConfig.getInstance().getSkinNum();
+	private int skinNum;
+	private final String configPath = "file:src/main/java/org/Client/ui/config/";
+	private String[] enterColors = { "#5d9b78;", "#bdc9e7;", "#c9cacc;" };
+	private String[] baseColors = { "#71af8c;", "#d4dfff;", "#d5d8dd;" };
 
-	public static void getNum(){
-		if(skinNum==0){
-			enterColor = "#69b589;";
-			baseColor = "#74c996;";
-		}else if(skinNum==1){
-			enterColor="#abb7d3;";
-			baseColor="#c1cce7;";
-		}
+	public void setSkinNum(int skinNum) {
+		this.skinNum = skinNum;
+		this.enterColor = enterColors[skinNum];
+		this.baseColor = baseColors[skinNum];
+		language.setStyle(styleStr + baseColor);
+		createTime.setStyle(styleStr + baseColor);
+		star.setStyle(styleStr + baseColor);
+		fork.setStyle(styleStr + baseColor);
+		blank.setStyle(styleStr + baseColor);
 	}
+
+
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		getNum();
+		setSkinNum(SkinConfig.getInstance().getSkinNum());
+		repositoryImpl = RepositoryServiceImpl.getInstance();
 		blank.setStyle(styleStr + baseColor);
 		selectLanguage();
 	}
@@ -90,6 +115,7 @@ public class ReposStaPaneController implements Initializable {
 		fork.setStyle(styleStr + baseColor);
 		createTime.setStyle(styleStr + baseColor);
 		setChart("Ui_ReposSta.fxml");
+
 	}
 
 	@FXML
@@ -161,4 +187,7 @@ public class ReposStaPaneController implements Initializable {
 		star.setStyle(styleStr + baseColor);
 		setChart("Ui_CreateTimeChar.fxml");
 	}
+
+
+
 }
