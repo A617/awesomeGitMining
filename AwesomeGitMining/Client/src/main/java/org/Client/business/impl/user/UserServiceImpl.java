@@ -225,7 +225,7 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 		}
 		if (po != null) {
-			Map<String, Integer> map = ScoreCalculator.getUserScore();
+			Map<String, Integer> map = ScoreCalculator.getUserScore(po.getRanks());
 			vo.setRates(map);
 		}
 		return vo;
@@ -464,23 +464,6 @@ public class UserServiceImpl implements UserService {
 		return companyPageNum / 10 + 1;
 	}
 
-	@Override
-	public UserRateVO showUserRate(String id) {
-		// TODO Auto-generated method stub
-		UserRateVO vo = new UserRateVO();
-		User po = null;
-		if (daoImpl != null) {
-			try {
-				po = daoImpl.getUser(id);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			if (po != null) {
-				Map<String, Double> map = ScoreCalculator.getUserScore(po.getRanks());
-				vo.setRates(map);
-			}
-		}
-		return vo;
-	}
+
 
 }

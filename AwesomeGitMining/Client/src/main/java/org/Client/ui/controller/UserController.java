@@ -1,8 +1,12 @@
 package org.Client.ui.controller;
+import java.awt.Dimension;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+
+import javax.swing.JPanel;
 
 import org.Client.business.impl.repository.RepositoryServiceImpl;
 import org.Client.business.impl.user.UserServiceImpl;
@@ -12,6 +16,7 @@ import org.Client.ui.MainUI;
 import org.Client.ui.utility.BackType;
 import org.Client.ui.utility.HandleBack;
 import org.Client.ui.utility.LanguageIcon;
+import org.Client.ui.utility.RaderChartGenerator;
 import org.Common.vo.Colla_ProVO;
 import org.Common.vo.Contri_ProVO;
 import org.Common.vo.Crea_ProVO;
@@ -19,11 +24,13 @@ import org.Common.vo.RepositoryRateVO;
 import org.Common.vo.RepositoryVO;
 import org.Common.vo.UserRateVO;
 import org.Common.vo.UserVO;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
+import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -45,7 +52,9 @@ import javafx.util.Callback;
 
 public class UserController implements Initializable {
 	private static UserController instance;
-
+	private DefaultCategoryDataset dataset;
+	private SwingNode swingNode;
+	private JPanel panel;
 	@FXML
 	private Label userNameLabel;
 	@FXML
@@ -202,7 +211,7 @@ public class UserController implements Initializable {
 			text3.add("Hasn't collaborated any projects.:)");
 		}
 		// raderchart
-					UserRateVO ratevo = userImpl.showUsers(vo.getName()+"");
+					UserRateVO ratevo = userImpl.getEvaluation(vo.getName());
 					if (ratevo != null) {
 						createRader(ratevo.getRates());
 					}
@@ -211,6 +220,51 @@ public class UserController implements Initializable {
 		// 鏄剧ず澶村儚
 		showAvatar(vo.getLogin());
 		setLanguages(vo.getLogin());
+	}
+
+
+
+	private void createRader(Map<String, Integer> map) {
+		dataset = new DefaultCategoryDataset();
+		String group1 = "score";
+		System.out.print("b");
+		dataset.addValue(map.get("a"), group1, "a");
+		dataset.addValue(map.get("b"), group1, "b");
+		dataset.addValue(map.get("c"), group1, "c");
+		dataset.addValue(map.get("d"), group1, "d");
+		dataset.addValue(map.get("e"), group1, "e");
+		System.out.print("c");
+		swingNode = new SwingNode();
+
+		ProgressIndicator pin = new ProgressIndicator(-1);
+		pin.setMaxSize(70, 70);
+
+		raderPane.getChildren().clear();
+		raderPane.getChildren().add(pin);
+
+		Task<Void> task = new Task<Void>() {
+			@Override
+			protected Void call() throws Exception {
+				panel = RaderChartGenerator.getInstance().createPanel(dataset);
+				panel.validate();
+				panel.setPreferredSize(new Dimension(330, 330));
+
+				updateProgress(1, 1);
+				return null;
+			}
+		};
+		pin.progressProperty().bind(task.progressProperty());
+		new Thread(task).start();
+
+		pin.progressProperty().addListener((ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
+			if (new_val.intValue() == 1) {
+				if (panel != null) {
+					swingNode.setContent(panel);
+					raderPane.getChildren().clear();
+					raderPane.getChildren().add(swingNode);
+				}
+			}
+		});
 	}
 
 	// 鍦ㄥ姞杞藉ご鍍忕殑鍚屾椂鏄剧ず杩涘害鏉�

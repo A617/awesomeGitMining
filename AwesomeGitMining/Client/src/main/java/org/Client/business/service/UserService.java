@@ -15,7 +15,6 @@ import javafx.scene.image.Image;
 
 public interface UserService {
 
-	public abstract UserRateVO showUserRate(String id);
 	/**
 	 *
 	 * @param the user's log in name

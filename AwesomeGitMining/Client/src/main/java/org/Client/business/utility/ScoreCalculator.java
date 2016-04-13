@@ -48,7 +48,16 @@ public class ScoreCalculator {
 	public static Map<String,Integer> getUserScore(int[]rates){
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		 //TODO
-
+		int a=1;
+		map.put("a", 1);
+		int b=2;
+		map.put("b", 2);
+		int c=3;
+		map.put("c", 3);
+		int d=4;
+		map.put("d", 4);
+		int e=5;
+		map.put("e", 1);
 		return map;
 	}
 
