@@ -40,7 +40,7 @@
                </font></Label>
          </children>
       </AnchorPane>
-       <AnchorPane layoutX="2.0" prefHeight="720.0" prefWidth="301.0" style="-fx-background-color: #faf6f2;">
+       <AnchorPane prefHeight="720.0" prefWidth="301.0" style="-fx-background-color: #faf6f2;">
          <children>
             <Label layoutX="6.0" layoutY="78.0" text="Language:">
                <font>

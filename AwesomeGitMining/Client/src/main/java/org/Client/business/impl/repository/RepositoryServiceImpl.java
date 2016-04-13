@@ -451,4 +451,37 @@ public class RepositoryServiceImpl implements RepositoryService {
 		return tagPageNum / 10 + 1;
 	}
 
+	@Override
+	public List<RepositoryVO> getReposByYear(String year, int pageIndex) {
+		int i = Statistics.getCreateYearIndex(year);
+		List<String> names = null;
+		List<RepositoryVO> vos = new ArrayList<>();
+		if (i != -1) {
+			try {
+				names = daoImpl.getReposByLanguage(i);
+				tagPageNum = names.size();
+				if (names != null) {
+					for (int j = pageIndex * 10; j < 10 + pageIndex * 10; j++) {
+						if (j < names.size() && j >= 0) {
+							Repository po = null;
+							try {
+								po = daoImpl.getRepository(names.get(j));
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+							if (po != null) {
+								RepositoryVO vo = (RepositoryVO) Converter.convert("RepositoryVO", po);
+								vos.add(vo);
+							}
+						}
+					}
+				}
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			} 
+		}
+
+		return vos;
+	}
+
 }

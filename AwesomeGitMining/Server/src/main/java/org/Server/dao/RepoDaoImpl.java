@@ -1,5 +1,8 @@
 package org.Server.dao;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -43,12 +46,12 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 
 	/* 所有项目jsonStr列表 */
 	private List<String> repoAll;
-	
+
 	private List<String> reposByStar;
 	private List<String> reposByContribute;
 	private List<String> reposByFork;
 
-	public RepoDaoImpl() throws RemoteException{
+	public RepoDaoImpl() throws RemoteException {
 		long startTime = System.nanoTime();
 
 		this.repoList = DataInitHelper.getList(path + "repo_fullname.txt");
@@ -62,15 +65,14 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 		this.mapR2L = DataInitHelper.getLanguages(path + "repo-languageNames.txt", path + "repo-languageCounts.txt");
 
 		this.languageList = DataInitHelper.getList(path + "repo-language.txt");
-		
-		this.reposByContribute = DataInitHelper.getList(path+"repo_ContriSort.txt");
-		
-		this.reposByFork = DataInitHelper.getList(path+"repo_forkSort.txt");
-		
-		this.reposByStar = DataInitHelper.getList(path+"repo_starSort.txt");
-		
-		this.createdTimeList = DataInitHelper.getList(path + "repo-createdTime.txt");
 
+		this.reposByContribute = DataInitHelper.getList(path + "repo_ContriSort.txt");
+
+		this.reposByFork = DataInitHelper.getList(path + "repo_forkSort.txt");
+
+		this.reposByStar = DataInitHelper.getList(path + "repo_starSort.txt");
+
+		this.createdTimeList = DataInitHelper.getList(path + "repo-createdTime.txt");
 
 		System.out.println("RepoDaoImpl initialized!");
 		long endTime = System.nanoTime();
@@ -174,7 +176,7 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 	}
 
 	@Override
-	public List<Integer> getStarsStatistics() throws RemoteException{
+	public List<Integer> getStarsStatistics() throws RemoteException {
 		List<Integer> stars = DataInitHelper.getIntList(path + "repo_stars.txt");
 		Collections.sort(stars);
 
@@ -195,10 +197,9 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 
 		return result;
 	}
-	
-	
+
 	@Override
-	public List<String> getReposByYear(int i){
+	public List<String> getReposByYear(int i) {
 		String[] years = Statistics.year;
 		List<String> result = new ArrayList<>();
 
@@ -209,39 +210,67 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 		}
 
 		return result;
-		
+
 	}
-	
+
 	@Override
-	public List<Integer> getCodeFrequency(String name) throws IOException{
-	
+	public List<Integer> getCodeFrequency(String name) throws IOException {
+
 		List<Integer> list = new ArrayList<>();
-		
-		String jsonStr = HttpRequest.sendGetWithAuth("api.github.com/repos/",name+"/stats/code_frequency");
+
+		String jsonStr = HttpRequest.sendGetWithAuth("api.github.com/repos/", name + "/stats/code_frequency");
 		JSONArray ja = JSONArray.fromObject(jsonStr);
 
 		Iterator<JSONArray> it = ja.iterator();
 		while (it.hasNext()) {
 			JSONArray line = it.next();
-			list.add(line.getInt(1)+line.getInt(2));
+			list.add(line.getInt(1) + line.getInt(2));
 		}
-		
+
 		return list;
 	}
-	
+
 	@Override
-	public List<String> getReposSortedByStar(){
+	public List<String> getReposSortedByStar() {
 		return reposByStar;
 	}
 
 	@Override
-	public List<String> getReposSortedByContribute(){
+	public List<String> getReposSortedByContribute() {
 		return reposByContribute;
 	}
 
 	@Override
-	public List<String> getReposSortedByFork(){
+	public List<String> getReposSortedByFork() {
 		return reposByFork;
 	}
 
+	private int getDataFromGithub(String fullname, String key) {
+
+		List<String> list;
+		int sum = 0;
+		try {
+
+			int i = 1;
+			String page = "";
+			while (!page.equals("[]")) {
+
+				System.out.println(i);
+
+				page = HttpRequest.sendGetWithAuth("api.github.com/repos/" + fullname + "/stargazers",
+						"?per_page=100&page=" + i);
+				list = JsonUtil.getListfromJsonArray(page, key);
+
+				for (String login : list) {
+					if (login.compareTo("2016-04-01T00:00:00Z") > 0)
+						sum++;
+				}
+				i++;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return sum;
+	}
 }
