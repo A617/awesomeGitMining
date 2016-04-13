@@ -237,7 +237,7 @@ public class UserController implements Initializable {
 		Task<Void> task = new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
-				panel = RaderChartGenerator.getInstance().createPanel(dataset);
+				panel = RaderChartGenerator.getInstance().createPanel(dataset,"src/main/java/org/Client/ui/style/raderback_user.png");
 				panel.validate();
 				panel.setPreferredSize(new Dimension(330, 330));
 

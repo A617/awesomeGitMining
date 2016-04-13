@@ -22,7 +22,7 @@ public class RaderChartGenerator {
 		return instance;
 	}
 
-	public JPanel createPanel(DefaultCategoryDataset dataset) {
+	public JPanel createPanel(DefaultCategoryDataset dataset,String background) {
 		MySpiderChart spider = new MySpiderChart(dataset);
 
 		JFreeChart jfreechart = new JFreeChart(spider);
@@ -31,7 +31,7 @@ public class RaderChartGenerator {
 		jfreechart.setAntiAlias(true);
 		jfreechart.clearSubtitles();
 		jfreechart.setBackgroundPaint(new Color(247, 242, 229));
-		jfreechart.setBackgroundImage(new ImageIcon("src/main/java/org/Client/ui/style/raderback.png").getImage());
+		jfreechart.setBackgroundImage(new ImageIcon(background).getImage());
 
 		ChartPanel chart = new ChartPanel(jfreechart);
 

@@ -77,7 +77,6 @@ public class SkinConfig {
 		try {
 			XMLWriter out = new XMLWriter(new FileWriter(new File("src/main/java/org/Client/ui/SkinConfig.xml")));
 			out.write(d);
-			System.out.println(Integer.parseInt(d.getRootElement().getText()));
 			out.flush();
 	//		out.close();
 		} catch (IOException e) {

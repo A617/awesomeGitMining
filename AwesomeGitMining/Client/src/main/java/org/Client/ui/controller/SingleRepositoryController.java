@@ -126,7 +126,6 @@ public class SingleRepositoryController implements Initializable {
 			stars.setText(" "+vo.getSubscribers_count());
 			lastUpdated.setText(vo.getUpdated_at()+"");
 			hotNum=vo.getScores()[4]*8;
-			System.out.println(hotNum);
 			if(hotNum>=7){
 				labelInit(hot,"hot.png");
 			}

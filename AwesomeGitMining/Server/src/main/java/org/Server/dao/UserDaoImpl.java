@@ -1,5 +1,8 @@
 package org.Server.dao;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -60,7 +63,7 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 	private List<Integer> experienceRank;
 	private List<Integer> livenessRank;
 	private List<Integer> teamworkRank;
-	
+
 	private int len;
 
 	public UserDaoImpl(IRepoDao repodao) throws RemoteException {
@@ -83,51 +86,19 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		this.languageList = DataInitHelper.getListList(path + "user_languages.txt");
 		this.len = userList.size();
 
-		// experience: 5*contributed + gist
-		List<Integer> experienceScoreList = new ArrayList<>();
-		List<Integer> gistList = DataInitHelper.getIntList(path + "user_gists.txt");
-		List<List<String>> contrilistlist = DataInitHelper.getListList(path + "user-contributed.txt");
-		for (int i = 0; i < gistList.size(); i++) {
-			experienceScoreList.add(gistList.get(i) + contrilistlist.get(i).size() * 5);
-		}
-		this.experienceRank = rankList(experienceScoreList);
+		this.experienceRank = DataInitHelper.getIntList(path + "user_experienceRank.txt");
+		this.livenessRank = DataInitHelper.getIntList(path + "user_livenessRank.txt");
+		this.popularityRank = DataInitHelper.getIntList(path + "user_popularRank.txt");
+		this.teamworkRank = DataInitHelper.getIntList(path + "user_teamworkRank.txt");
+		this.quantityRank = DataInitHelper.getIntList(path + "user_quantityRank.txt");
 		
-
-		// popularity
-		List<Integer> popularityScoreList = DataInitHelper.getIntList(path + "user_followers.txt");
-		this.popularityRank = rankList(popularityScoreList);
-
-		
-		// liveness
-		this.livenessRank = DataInitHelper.getIntList(path+"user_liveness.txt");
-		
-		
-		// quantity&teamwork
-		List<Double> quantityList = new ArrayList<>();
-		List<Double> teamworkList = new ArrayList<>();
-		for(List<String> repos: collaborationsList){
-			double qsum = 0;
-			double tsum = 0;
-			for(String repo:repos){
-				qsum += repodao.getHotScore(repo);
-				tsum += repodao.getCollaboratorNum(repo);
-			}
-			qsum = qsum/repos.size();
-			quantityList.add(qsum);
-			tsum = tsum/repos.size();
-			teamworkList.add(tsum);
-		}
-		quantityRank = rankListDouble(quantityList);
-		teamworkRank = rankListDouble(teamworkList);
-		
-
 		System.out.println("UserDaoImpl initialized!");
 		long endTime = System.nanoTime();
 		System.out.println("Took " + (endTime - startTime) + " ns");
 	}
 
 	@Override
-	public User getUser(String login){
+	public User getUser(String login) {
 		int index = userList.indexOf(login);
 
 		if (index == -1) {
@@ -147,18 +118,16 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		us.setEmail(emailList.get(index));
 		us.setCreated_at(createdTimeList.get(index));
 		us.setAvatar_url(avatar_urlList.get(index));
-		
-		
-		//popular,teamwork,liveness,experience,quantity
+
+		// popular,teamwork,liveness,experience,quantity
 		double[] scores = new double[5];
-		scores[0] = 1.0-1.0*popularityRank.get(index)/len;
-		scores[1] = 1.0-1.0*teamworkRank.get(index)/len;
-		scores[2] = 1.0-1.0*livenessRank.get(index)/len;
-		scores[3] = 1.0-1.0*experienceRank.get(index)/len;
-		scores[4] = 1.0-1.0*quantityRank.get(index)/len;
+		scores[0] = 1.0 - 1.0 * popularityRank.get(index) / len;
+		scores[1] = 1.0 - 1.0 * teamworkRank.get(index) / len;
+		scores[2] = 1.0 - 1.0 * livenessRank.get(index) / len;
+		scores[3] = 1.0 - 1.0 * experienceRank.get(index) / len;
+		scores[4] = 1.0 - 1.0 * quantityRank.get(index) / len;
 		us.setScores(scores);
-		
-		
+
 		return us;
 
 	}
@@ -366,9 +335,7 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 
 		return rankList;
 	}
-	
-	
-	
+
 	private List<Integer> rankListDouble(List<Double> srcList) {
 
 		List<Integer> rankList = new ArrayList<>();
@@ -393,7 +360,64 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 
 		return rankList;
 	}
-	
-	
-	
+
+	private static <T> void writeToTxt(String path, List<T> list) {
+		// write to txt
+		FileWriter fw = null;
+		BufferedWriter writer = null;
+		File file = new File(path);
+
+		try {
+
+			fw = new FileWriter(file);
+			writer = new BufferedWriter(fw);
+
+			for (T i : list) {
+				writer.write(i + "");
+				writer.newLine();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				writer.flush();
+				writer.close();
+				fw.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/*
+	 * private void initRanks(IRepoDao repodao) { // popularity List<Integer>
+	 * popularityScoreList = DataInitHelper.getIntList(path +
+	 * "user_followers.txt"); this.popularityRank =
+	 * rankList(popularityScoreList);
+	 * 
+	 * // liveness this.livenessRank = DataInitHelper.getIntList(path +
+	 * "user_livenessRank.txt");
+	 * 
+	 * // quantity&teamwork List<Double> quantityList = new ArrayList<>();
+	 * List<Double> teamworkList = new ArrayList<>(); for (List<String> repos :
+	 * collaborationsList) { double qsum = 0; double tsum = 0; for (String repo
+	 * : repos) { try { qsum += repodao.getHotScore(repo); tsum +=
+	 * repodao.getCollaboratorNum(repo); } catch (RemoteException e) { // TODO
+	 * Auto-generated catch block e.printStackTrace(); } } qsum = qsum /
+	 * repos.size(); quantityList.add(qsum); tsum = tsum / repos.size();
+	 * teamworkList.add(tsum); } quantityRank = rankListDouble(quantityList);
+	 * teamworkRank = rankListDouble(teamworkList);
+	 * 
+	 * 
+	 * // experience: 5*contributed + gist List<Integer> experienceScoreList =
+	 * new ArrayList<>(); List<Integer> gistList =
+	 * DataInitHelper.getIntList(path + "user_gists.txt"); List<List<String>>
+	 * contrilistlist = DataInitHelper.getListList(path +
+	 * "user-contributed.txt"); for (int i = 0; i < gistList.size(); i++) {
+	 * experienceScoreList.add(gistList.get(i) + contrilistlist.get(i).size() *
+	 * 5); } this.experienceRank = rankList(experienceScoreList); }
+	 */
+
 }
