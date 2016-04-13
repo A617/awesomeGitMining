@@ -40,7 +40,7 @@
                   <TableColumn fx:id="collaboratorColumn" editable="false" prefWidth="249.0" resizable="false" text="collaborators" />
                </columns>
             </TableView>
-            <Label fx:id="stars" layoutX="37.0" layoutY="298.0" prefHeight="29.0" prefWidth="49.0">
+            <Label fx:id="stars" layoutX="37.0" layoutY="298.0" onMouseEntered="#enterStar" onMouseExited="#exitStar" prefHeight="29.0" prefWidth="49.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -55,14 +55,14 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="forks" layoutX="134.0" layoutY="298.0" prefHeight="29.0" prefWidth="50.0">
+            <Label fx:id="forks" layoutX="134.0" layoutY="298.0" onMouseEntered="#enterFork" onMouseExited="#exitFork" prefHeight="29.0" prefWidth="50.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
             <Button fx:id="btn_clone" layoutX="29.0" layoutY="194.0" mnemonicParsing="false" text="Clone" />
             <TextField fx:id="url" editable="false" layoutX="88.0" layoutY="194.0" prefHeight="26.0" prefWidth="524.0" />
-            <Label fx:id="subs" layoutX="227.0" layoutY="298.0" prefHeight="29.0" prefWidth="50.0">
+            <Label fx:id="subs" layoutX="227.0" layoutY="298.0" onMouseEntered="#enterSub" onMouseExited="#exitSub" prefHeight="29.0" prefWidth="50.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -77,7 +77,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="cons" layoutX="338.0" layoutY="298.0" prefHeight="29.0" prefWidth="20.0">
+            <Label fx:id="cons" layoutX="338.0" layoutY="298.0" onMouseEntered="#enterCon" onMouseExited="#exitCon" prefHeight="29.0" prefWidth="20.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -87,7 +87,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="collas" layoutX="432.0" layoutY="298.0" prefHeight="29.0" prefWidth="50.0">
+            <Label fx:id="collas" layoutX="432.0" layoutY="298.0" onMouseEntered="#enterColla" onMouseExited="#exitColla" prefHeight="29.0" prefWidth="50.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -102,6 +102,11 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </AreaChart>
+            <Label fx:id="starLabel" layoutX="33.0" layoutY="330.0" style="-fx-background-color: #fdffb4;" text=" stars " />
+            <Label fx:id="forkLabel" layoutX="127.0" layoutY="330.0" style="-fx-background-color: #fdffb4;" text=" forks " />
+            <Label fx:id="subLabel" layoutX="214.0" layoutY="330.0" style="-fx-background-color: #fdffb4;" text=" subscribers " />
+            <Label fx:id="conLabel" layoutX="318.0" layoutY="330.0" style="-fx-background-color: #fdffb4;" text=" contributors " />
+            <Label fx:id="collaLabel" layoutX="411.0" layoutY="330.0" style="-fx-background-color: #fdffb4;" text=" collaborators " />
          </children></AnchorPane>
       <Button fx:id="btn_back" layoutX="-34.0" layoutY="10.0" mnemonicParsing="false" text="back" />
    </children>

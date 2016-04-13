@@ -19,6 +19,12 @@ import javafx.scene.image.ImageView;
  */
 public class SingleRepositoryController implements Initializable {
 	@FXML
+	private Label conLabel;
+	@FXML
+	private Label starLabel;
+	@FXML
+	private Label forkLabel;
+	@FXML
 	private Label repositoryName;
 	@FXML
 	private Label lastUpdated;
@@ -50,8 +56,38 @@ public class SingleRepositoryController implements Initializable {
     public double hotNum;
     public double promisingNum;
 
+
+    @FXML
+    public void enterCon(){
+    	conLabel.setVisible(true);
+    }
+    @FXML
+    public void exitCon(){
+    	conLabel.setVisible(false);
+    }
+
+    @FXML
+    public void enterFork(){
+    	forkLabel.setVisible(true);
+    }
+    @FXML
+    public void exitFork(){
+    	forkLabel.setVisible(false);
+    }
+
+    @FXML
+    public void enterStar(){
+    	starLabel.setVisible(true);
+    }
+    @FXML
+    public void exitStar(){
+    	starLabel.setVisible(false);
+    }
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		conLabel.setVisible(false);
+		starLabel.setVisible(false);
+		forkLabel.setVisible(false);
 		repositoryImpl = RepositoryServiceImpl.getInstance();
 		repositoryName.setOnMouseClicked((e) -> {
 			MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");

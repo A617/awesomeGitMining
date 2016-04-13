@@ -81,7 +81,16 @@ public class ProjectController implements Initializable {
 	private Label coNum;
 	@FXML
 	private Label stars;
-
+	@FXML
+	private Label starLabel;
+	@FXML
+	private Label forkLabel;
+	@FXML
+	private Label subLabel;
+	@FXML
+	private Label conLabel;
+	@FXML
+	private Label collaLabel;
 	@FXML
 	private Label forks;
 	@FXML
@@ -119,6 +128,47 @@ public class ProjectController implements Initializable {
 	private final XYChart.Series<String, Integer> series = new XYChart.Series<>();
 	private RepositoryVO vo;
 
+
+	@FXML
+	public void enterStar(){
+		starLabel.setVisible(true);
+	}
+	@FXML
+	public void exitStar(){
+		starLabel.setVisible(false);
+	}
+	@FXML
+	public void enterFork(){
+		forkLabel.setVisible(true);
+	}
+	@FXML
+	public void exitFork(){
+		forkLabel.setVisible(false);
+	}
+	@FXML
+	public void enterCon(){
+		conLabel.setVisible(true);
+	}
+	@FXML
+	public void exitCon(){
+		conLabel.setVisible(false);
+	}
+	@FXML
+	public void enterSub(){
+		subLabel.setVisible(true);
+	}
+	@FXML
+	public void exitSub(){
+		subLabel.setVisible(false);
+	}
+	@FXML
+	public void enterColla(){
+		collaLabel.setVisible(true);
+	}
+	@FXML
+	public void exitColla(){
+		collaLabel.setVisible(false);
+	}
 	public static ProjectController getInstance() {
 		if (instance == null) {
 			instance = new ProjectController();
@@ -134,6 +184,11 @@ public class ProjectController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		instance = this;
+		starLabel.setVisible(false);
+		forkLabel.setVisible(false);
+		subLabel.setVisible(false);
+		conLabel.setVisible(false);
+		collaLabel.setVisible(false);
 		repositoryImpl = RepositoryServiceImpl.getInstance();
 		userImpl = UserServiceImpl.getInstance();
 

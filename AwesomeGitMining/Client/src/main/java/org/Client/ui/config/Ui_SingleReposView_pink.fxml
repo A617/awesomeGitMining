@@ -38,7 +38,7 @@
             <Label fx:id="lastUpdated" layoutX="167.0" layoutY="142.0" prefHeight="20.0" prefWidth="815.0" text="Last updated" />
             <VBox layoutX="678.0" layoutY="20.0" prefHeight="52.0" prefWidth="82.0">
                <children>
-                  <Label fx:id="contriNum" layoutX="555.0" layoutY="25.0" prefHeight="26.0" prefWidth="85.0" />
+                  <Label fx:id="contriNum" layoutX="555.0" layoutY="25.0" onMouseEntered="#enterCon" onMouseExited="#exitCon" prefHeight="26.0" prefWidth="85.0" />
                   <Label fx:id="contributors" layoutX="550.0" layoutY="58.0" prefHeight="27.0" prefWidth="88.0" text="contributors" />
                </children>
             </VBox>
@@ -55,13 +55,13 @@
             </Label>
             <VBox layoutX="799.0" layoutY="20.0" prefHeight="52.0" prefWidth="82.0">
                <children>
-                  <Label fx:id="forkNum" prefHeight="27.0" prefWidth="82.0" />
+                  <Label fx:id="forkNum" onMouseEntered="#enterFork" onMouseExited="#exitFork" prefHeight="27.0" prefWidth="82.0" />
                   <Label fx:id="forks" prefHeight="28.0" prefWidth="98.0" text="forks" />
                </children>
             </VBox>
             <VBox layoutX="900.0" layoutY="20.0" prefHeight="52.0" prefWidth="82.0">
                <children>
-                  <Label fx:id="starNum" prefHeight="25.0" prefWidth="84.0" />
+                  <Label fx:id="starNum" onMouseEntered="#enterStar" onMouseExited="#exitStar" prefHeight="25.0" prefWidth="84.0" />
                   <Label fx:id="stars" prefHeight="28.0" prefWidth="104.0" text="stars" />
                </children>
             </VBox>
@@ -69,5 +69,8 @@
             <Label fx:id="promising" layoutX="515.0" layoutY="32.0" prefHeight="24.0" prefWidth="24.0" />
          </children>
       </Group>
+      <Label fx:id="conLabel" layoutX="642.0" layoutY="14.0" prefHeight="15.0" prefWidth="88.0" style="-fx-background-color: #fdffb4;" text="  contributors  " />
+      <Label fx:id="forkLabel" layoutX="775.0" layoutY="14.0" prefHeight="15.0" prefWidth="41.0" style="-fx-background-color: #fdffb4;" text="  forks" />
+      <Label fx:id="starLabel" layoutX="877.0" layoutY="14.0" prefHeight="15.0" prefWidth="41.0" style="-fx-background-color: #fdffb4;" text="  stars" />
    </children>
 </AnchorPane>
