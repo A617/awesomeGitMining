@@ -16,7 +16,7 @@ public class ScoreCalculator {
 
 	/**
 	 * In case the algorithm would change
-	 * 
+	 *
 	 * @param rates{star、fork、watchers、subscribers、issues、contributors、
 	 *            collaborators}ranks
 	 * @return the repository scores{famous,hot,popular,mature,contributor}
@@ -45,10 +45,10 @@ public class ScoreCalculator {
 		return map;
 
 	}
-	public static Map<String,Integer> getUserScore(){
+	public static Map<String,Integer> getUserScore(int[]rates){
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		 //TODO
-		
+
 		return map;
 	}
 

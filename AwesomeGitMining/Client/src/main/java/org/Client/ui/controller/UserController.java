@@ -15,7 +15,9 @@ import org.Client.ui.utility.LanguageIcon;
 import org.Common.vo.Colla_ProVO;
 import org.Common.vo.Contri_ProVO;
 import org.Common.vo.Crea_ProVO;
+import org.Common.vo.RepositoryRateVO;
 import org.Common.vo.RepositoryVO;
+import org.Common.vo.UserRateVO;
 import org.Common.vo.UserVO;
 
 import javafx.beans.value.ObservableValue;
@@ -85,7 +87,7 @@ public class UserController implements Initializable {
 	@FXML
 	private Label followings;
 	@FXML
-	private StackPane user_eva;
+	private StackPane raderPane;
 	@FXML
 	private FlowPane languages;
 
@@ -116,7 +118,7 @@ public class UserController implements Initializable {
 		});
 
 	}
-	
+
 	public void setVO(UserVO vo) {
 		if (vo != null) {
 			if (vo.getHtml_url() != null) {
@@ -199,6 +201,12 @@ public class UserController implements Initializable {
 			text3.add(" ");
 			text3.add("Hasn't collaborated any projects.:)");
 		}
+		// raderchart
+					UserRateVO ratevo = userImpl.showUsers(vo.getName()+"");
+					if (ratevo != null) {
+						createRader(ratevo.getRates());
+					}
+
 
 		// 鏄剧ず澶村儚
 		showAvatar(vo.getLogin());
@@ -207,7 +215,7 @@ public class UserController implements Initializable {
 
 	// 鍦ㄥ姞杞藉ご鍍忕殑鍚屾椂鏄剧ず杩涘害鏉�
 	public void showAvatar(String login) {
-		
+
 		UserService user = UserServiceImpl.getInstance();
 		img = user.getAvatar(login);
 
@@ -241,7 +249,7 @@ public class UserController implements Initializable {
 			}
 		});
 	}
-	
+
 	private class ContributionCellFactory implements Callback<TableColumn<Contri_ProVO, String>, TableCell<Contri_ProVO, String>> {
 
 		@Override
@@ -250,7 +258,7 @@ public class UserController implements Initializable {
 		        cell.setOnMouseReleased((MouseEvent t) -> {
 		            	String temp = cell.getText();
 		            	repository = repositoryImpl.searchRepositoryInfo(temp);
-		    			
+
 		            	if(repository!=null) {
 		            		HandleBack.getInstance().setRepoBack(BackType.USER,userNameLabel.getText());
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
@@ -265,11 +273,11 @@ public class UserController implements Initializable {
 					cell.setCursor(Cursor.DEFAULT);
 					cell.setUnderline(false);
 				});
-		        
+
 		        return cell;
-		}	
+		}
 	}
-	
+
 	private class CreateCellFactory implements Callback<TableColumn<Crea_ProVO, String>, TableCell<Crea_ProVO, String>> {
 
 		@Override
@@ -278,7 +286,7 @@ public class UserController implements Initializable {
 		        cell.setOnMouseReleased((MouseEvent t) -> {
 		            	String temp = cell.getText();
 		            	repository = repositoryImpl.searchRepositoryInfo(temp);
-		    			
+
 		            	if(repository!=null) {
 		            		HandleBack.getInstance().setRepoBack(BackType.USER,userNameLabel.getText());
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
@@ -294,9 +302,9 @@ public class UserController implements Initializable {
 					cell.setUnderline(false);
 				});
 		        return cell;
-		}	
+		}
 	}
-	
+
 	private class CollaborationCellFactory implements Callback<TableColumn<Colla_ProVO, String>, TableCell<Colla_ProVO, String>> {
 
 		@Override
@@ -305,7 +313,7 @@ public class UserController implements Initializable {
 		        cell.setOnMouseReleased((MouseEvent t) -> {
 		            	String temp = cell.getText();
 		            	repository = repositoryImpl.searchRepositoryInfo(temp);
-		    			
+
 		            	if(repository!=null) {
 		            		HandleBack.getInstance().setRepoBack(BackType.USER,userNameLabel.getText());
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
@@ -321,15 +329,15 @@ public class UserController implements Initializable {
 					cell.setUnderline(false);
 				});
 		        return cell;
-		}	
+		}
 	}
-	
+
 	private void setLanguages(String login) {
 		List<String> language = userImpl.getLanguageSkills(login);
 		Label label = null;
 		for (int i = 0;i < language.size();i++) {
 			label = new Label();
-			if(language.get(i)!=null) 
+			if(language.get(i)!=null)
 				label.setGraphic(new ImageView(setIcon(language.get(i))));
 			label.setFont(Font.font("Arial", 17));
 			label.setText(language.get(i));
