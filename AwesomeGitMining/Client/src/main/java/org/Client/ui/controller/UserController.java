@@ -63,12 +63,7 @@ public class UserController implements Initializable {
 	private Button user_back;
 	@FXML
 	private Label joinTime;
-	@FXML
-	private Label Eff_num;
-	@FXML
-	private Label qua_num;
-	@FXML
-	private Label Tot_num;
+	
 	@FXML
 	private TableView<Contri_ProVO> Contri_Pro_View;
 	@FXML

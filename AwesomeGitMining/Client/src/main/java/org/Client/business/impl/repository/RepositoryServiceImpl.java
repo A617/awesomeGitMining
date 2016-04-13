@@ -484,10 +484,12 @@ public class RepositoryServiceImpl implements RepositoryService {
 				}
 			} catch (RemoteException e) {
 				e.printStackTrace();
-			} 
+			}
 		}
 
 		return vos;
 	}
+
+
 
 }

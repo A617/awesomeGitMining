@@ -38,10 +38,16 @@ public class SingleRepositoryController implements Initializable {
 	private Label starNum;
 	@FXML
 	private Label description;
+	@FXML
+	private Label hot;
+	@FXML
+	private Label promising;
 
 	private RepositoryService repositoryImpl;
 	private RepositoryVO vo;
 	private RepositoryVO fullVO;
+
+
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -51,13 +57,21 @@ public class SingleRepositoryController implements Initializable {
 			fullVO = repositoryImpl.searchRepositoryInfo(vo.getFull_name());
 			ProjectController.getInstance().setVO(fullVO);
 		});
-		
+
 		Image image = new Image(MainUI.class.getResourceAsStream("style/contributor.png"));
 		contriNum.setGraphic(new ImageView(image));
 		image = new Image(MainUI.class.getResourceAsStream("style/fork.png"));
-		forkNum.setGraphic(new ImageView(image)); 
+		forkNum.setGraphic(new ImageView(image));
 		image = new Image(MainUI.class.getResourceAsStream("style/star.png"));
-		starNum.setGraphic(new ImageView(image)); 
+		starNum.setGraphic(new ImageView(image));
+
+	}
+
+
+
+	public void labelInit(Label label, String path) {
+		Image image = new Image(MainUI.class.getResourceAsStream("style/" + path));
+		label.setGraphic(new ImageView(image));
 	}
 
 	/**
@@ -74,6 +88,15 @@ public class SingleRepositoryController implements Initializable {
 			forks.setText(" "+vo.getForks_count());
 			stars.setText(" "+vo.getSubscribers_count());
 			lastUpdated.setText(vo.getUpdated_at()+"");
+			if(vo.getHot()==0){
+				System.out.print("null");
+			}
+			if(vo.getHot()>=7){
+				labelInit(hot,"hot.png");
+			}
+			if(vo.getPromising()>=7){
+				labelInit(promising,"promising.png");
+			}
 			//set description
 			String str = vo.getDescription();
 			int size = 130;
