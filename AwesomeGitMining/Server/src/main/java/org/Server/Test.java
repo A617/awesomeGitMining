@@ -20,11 +20,7 @@ public class Test {
 		
 		try {
 			UserDaoImpl user = (UserDaoImpl) DataFactory.getUserDataInstance();
-			user.test(0);
-			user.test(10);
-			user.test(2);
-			user.test(3);
-			user.test(4);
+		
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

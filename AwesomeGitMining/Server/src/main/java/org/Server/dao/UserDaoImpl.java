@@ -127,7 +127,7 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 	}
 
 	@Override
-	public User getUser(String login) throws IOException {
+	public User getUser(String login){
 		int index = userList.indexOf(login);
 
 		if (index == -1) {
@@ -156,13 +156,15 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		scores[2] = 1.0-1.0*livenessRank.get(index)/len;
 		scores[3] = 1.0-1.0*experienceRank.get(index)/len;
 		scores[4] = 1.0-1.0*quantityRank.get(index)/len;
+		us.setScores(scores);
+		
 		
 		return us;
 
 	}
 
 	@Override
-	public String getAvatar(String login) throws IOException {
+	public String getAvatar(String login) {
 		int index = userList.indexOf(login);
 
 		if (index != -1) {
