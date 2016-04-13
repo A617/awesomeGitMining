@@ -19,7 +19,9 @@
 #headPane{
 	-fx-background-color: #f8aec4;
 }
-
+#innerBar{
+	-fx-background-color: #d4dfff;
+}
 #headLabel:hover{
 	-fx-background-color: #f46a94;
 }

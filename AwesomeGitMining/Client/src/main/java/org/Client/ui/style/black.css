@@ -23,7 +23,9 @@
 #headLabel:hover{
 	-fx-background-color: #cad2dd;
 }
-
+#innerBar{
+	-fx-background-color:  #d5d8dd;
+}
 #back{
 	-fx-background-image: url("back5.png");
 }
@@ -108,8 +110,8 @@
 .default-color0.chart-area-symbol {
 	visibility: hidden;
 }
-.default-color0.chart-series-area-line { -fx-stroke: #70CF9F; }
-.default-color0.chart-series-area-fill { -fx-fill: #70CF9F; }
+.default-color0.chart-series-area-line { -fx-stroke: #94fff9; }
+.default-color0.chart-series-area-fill { -fx-fill: #94fff9; }
 .default-color0.chart-line-symbol {
 	visibility: hidden;
 }
@@ -174,7 +176,7 @@
     -fx-opacity: 0;
 }
 
-.data0.chart-pie { -fx-pie-color: pink; }
+.data0.chart-pie { -fx-pie-color: #28c2d3; }
 .data1.chart-pie { -fx-pie-color: salmon; }
 .data2.chart-pie { -fx-pie-color: sandybrown; }
 .data3.chart-pie { -fx-pie-color: gold; }

@@ -11,7 +11,7 @@
    <children>
       <AnchorPane fx:id="listPane" layoutX="313.0" layoutY="6.0" prefHeight="702.0" prefWidth="1045.0">
          <children>
-            <AnchorPane prefHeight="40.0" prefWidth="1045.0" style="-fx-background-color: #d5d8dd;" />
+            <AnchorPane id="innerBar" prefHeight="40.0" prefWidth="1045.0" />
             <ScrollPane fx:id="scrollPane" layoutY="40.0" prefHeight="606.0" prefWidth="1045.0" />
             <Label fx:id="page" layoutX="972.0" layoutY="664.0" text="30000" textFill="#7c7c7c">
                <font>

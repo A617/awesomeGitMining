@@ -88,6 +88,9 @@ public class HomeController implements Initializable {
 			enterColor = "#c1cce7;";
 			baseColor = "#d4dfff;";
 
+		}else if(skinNum==2){
+			enterColor="#b5b8bb";
+			baseColor="#d5d8dd";
 		}
 	}
 

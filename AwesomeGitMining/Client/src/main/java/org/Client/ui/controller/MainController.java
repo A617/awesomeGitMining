@@ -72,6 +72,9 @@ public class MainController implements Initializable {
 		}else if(skinNum==1){
 			enterColor = "#ff99c7;";
 			baseColor = "#f8aec4;";
+		}else if(skinNum==2){
+			enterColor="#cad2dd";
+			baseColor="#b4b7bb";
 		}
 	}
 	public void initPanel() {
