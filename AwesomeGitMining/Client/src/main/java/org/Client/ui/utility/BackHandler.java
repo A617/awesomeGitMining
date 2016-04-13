@@ -12,7 +12,7 @@ import org.Client.ui.controller.ProjectController;
 import org.Client.ui.controller.SearchController;
 import org.Client.ui.controller.SearchUserController;
 import org.Client.ui.controller.UserController;
-import org.Client.ui.controller.UserPageController;
+import org.Client.ui.controller.UserTagController;
 import org.Common.vo.RepositoryVO;
 import org.Common.vo.SimpleUserVO;
 import org.Common.vo.UserVO;
@@ -52,21 +52,25 @@ public class BackHandler {
 		BackObject repo = repoBackList.get(length-1);
 		switch (repo.getType()) {
 		case HOME_REPO:
-			//TODO
 			MainController.getInstance().setPanel(SkinConfig.getInstance().getFxmlResoursePath("main"));
 //			repositoryList = repositoryImpl.showRepositories(repo.getPage());
-//			HomeController.getInstance().initTabPane(repositoryList);
 //			HomeController.getInstance().setPage(repo.getPage());
+//			HomeController.getInstance().initTabPane(repositoryList);
 			break;
 		case SEARCH_REPO:
 			MainController.getInstance().setPanel("Ui_SearchRepos.fxml");
 			SearchController controlP = SearchController.getInstance();
 			controlP.setSearchID(repo.getId());
 			repositoryList = repositoryImpl.searchRepository(repo.getId(), repo.getPage());
-			SearchController.getInstance().initProject(repositoryList);
 			SearchController.getInstance().setPage(repo.getPage());
+			SearchController.getInstance().initProject(repositoryList);
 			break;
-			//TODO
+//		case TAG_REPO_LAN:
+//			break;
+//		case TAG_REPO_KEY:
+//			break;
+//		case TAG_REPO_YEAR:
+//			break;
 		case USER:
 			MainController.getInstance().setGroup("Ui_UserPanel.fxml");
 			userVO = userImpl.getUser(repo.getId());
@@ -88,23 +92,28 @@ public class BackHandler {
 		case HOME_USER:
 			MainController.getInstance().setPanel("Ui_UserPagePanel.fxml");
 //			userList = userImpl.showUsers(user.getPage());
-//			UserPageController.getInstance().initUser(userList);
 //			UserPageController.getInstance().setPage(user.getPage());
+//			UserPageController.getInstance().initUser(userList);
 			break;
 		case SEARCH_USER:
 			MainController.getInstance().setPanel("Ui_SearchUser.fxml");
 			SearchUserController controlU = SearchUserController.getInstance();
 			controlU.setSearchID(user.getId());
 			userList = userImpl.searchUser(user.getId(), user.getPage());
-			SearchUserController.getInstance().initPane(userList);
 			SearchUserController.getInstance().setPage(user.getPage());
+			SearchUserController.getInstance().initPane(userList);
 			break;
-//			//TODO
 		case REPO:
 			MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
 			repositoryVO = repositoryImpl.searchRepositoryInfo(user.getId());
 			ProjectController.getInstance().setVO(repositoryVO);
 			break;
+//		case TAG_USER_LAN:
+//			MainController.getInstance().setPanel("Ui_UserPagePanel.fxml");
+//			UserTagController.getInstance().setLanguages(user.getId());
+//			break;
+//		case TAG_USER_COM:
+//			break;
 		default:
 			break;
 		}

@@ -3,7 +3,6 @@ package org.Client.ui.controller;
 import java.awt.Dimension;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -297,34 +296,10 @@ public class UserController implements Initializable {
 		});
 	}
 
-	private class ContributionCellFactory
-			implements Callback<TableColumn<Contri_ProVO, String>, TableCell<Contri_ProVO, String>> {
+	private class ContributionCellFactory implements Callback<TableColumn<Contri_ProVO, String>, TableCell<Contri_ProVO, String>> {
 
 		@Override
 		public TableCell<Contri_ProVO, String> call(TableColumn<Contri_ProVO, String> arg0) {
-
-			TextFieldTableCell<Contri_ProVO, String> cell = new TextFieldTableCell<>();
-			cell.setOnMouseReleased((MouseEvent t) -> {
-				String temp = cell.getText();
-				repository = repositoryImpl.searchRepositoryInfo(temp);
-
-				if (repository != null) {
-					BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER, userNameLabel.getText()));
-					MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
-					ProjectController.getInstance().setVO(repository);
-				}
-			});
-			cell.setOnMouseEntered((MouseEvent t) -> {
-				cell.setCursor(Cursor.HAND);
-				cell.setUnderline(true);
-			});
-			cell.setOnMouseExited((MouseEvent t) -> {
-				cell.setCursor(Cursor.DEFAULT);
-				cell.setUnderline(false);
-			});
-
-			return cell;
-
 			 TextFieldTableCell<Contri_ProVO, String> cell = new TextFieldTableCell<>();
 		        cell.setOnMouseReleased((MouseEvent t) -> {
 		            	String temp = cell.getText();
@@ -349,33 +324,10 @@ public class UserController implements Initializable {
 		}
 	}
 
-	private class CreateCellFactory
-			implements Callback<TableColumn<Crea_ProVO, String>, TableCell<Crea_ProVO, String>> {
+	private class CreateCellFactory implements Callback<TableColumn<Crea_ProVO, String>, TableCell<Crea_ProVO, String>> {
 
 		@Override
 		public TableCell<Crea_ProVO, String> call(TableColumn<Crea_ProVO, String> arg0) {
-
-			TextFieldTableCell<Crea_ProVO, String> cell = new TextFieldTableCell<>();
-			cell.setOnMouseReleased((MouseEvent t) -> {
-				String temp = cell.getText();
-				repository = repositoryImpl.searchRepositoryInfo(temp);
-
-				if (repository != null) {
-					BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER, userNameLabel.getText()));
-					MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
-					ProjectController.getInstance().setVO(repository);
-				}
-			});
-			cell.setOnMouseEntered((MouseEvent t) -> {
-				cell.setCursor(Cursor.HAND);
-				cell.setUnderline(true);
-			});
-			cell.setOnMouseExited((MouseEvent t) -> {
-				cell.setCursor(Cursor.DEFAULT);
-				cell.setUnderline(false);
-			});
-			return cell;
-
 			 TextFieldTableCell<Crea_ProVO, String> cell = new TextFieldTableCell<>();
 		        cell.setOnMouseReleased((MouseEvent t) -> {
 		            	String temp = cell.getText();
@@ -399,33 +351,10 @@ public class UserController implements Initializable {
 		}
 	}
 
-	private class CollaborationCellFactory
-			implements Callback<TableColumn<Colla_ProVO, String>, TableCell<Colla_ProVO, String>> {
+	private class CollaborationCellFactory implements Callback<TableColumn<Colla_ProVO, String>, TableCell<Colla_ProVO, String>> {
 
 		@Override
 		public TableCell<Colla_ProVO, String> call(TableColumn<Colla_ProVO, String> arg0) {
-
-			TextFieldTableCell<Colla_ProVO, String> cell = new TextFieldTableCell<>();
-			cell.setOnMouseReleased((MouseEvent t) -> {
-				String temp = cell.getText();
-				repository = repositoryImpl.searchRepositoryInfo(temp);
-
-				if (repository != null) {
-					BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER, userNameLabel.getText()));
-					MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
-					ProjectController.getInstance().setVO(repository);
-				}
-			});
-			cell.setOnMouseEntered((MouseEvent t) -> {
-				cell.setCursor(Cursor.HAND);
-				cell.setUnderline(true);
-			});
-			cell.setOnMouseExited((MouseEvent t) -> {
-				cell.setCursor(Cursor.DEFAULT);
-				cell.setUnderline(false);
-			});
-			return cell;
-
 			 TextFieldTableCell<Colla_ProVO, String> cell = new TextFieldTableCell<>();
 		        cell.setOnMouseReleased((MouseEvent t) -> {
 		            	String temp = cell.getText();
