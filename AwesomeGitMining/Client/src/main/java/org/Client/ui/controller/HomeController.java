@@ -9,8 +9,9 @@ import java.util.ResourceBundle;
 import org.Client.business.impl.repository.RepositoryServiceImpl;
 import org.Client.business.service.RepositoryService;
 import org.Client.ui.MainUI;
+import org.Client.ui.utility.BackHandler;
+import org.Client.ui.utility.BackObject;
 import org.Client.ui.utility.BackType;
-import org.Client.ui.utility.HandleBack;
 import org.Client.ui.utility.SkinConfig;
 import org.Common.vo.RepositoryVO;
 
@@ -206,7 +207,7 @@ public class HomeController implements Initializable {
 				if (i < list.size()) {
 					RepositoryVO vo = list.get(i);
 					controller.setVO(vo);
-					HandleBack.getInstance().setRepoBack(BackType.HOME_PROJECT,vo.getFull_name());
+					BackHandler.getInstance().setRepoBack(new BackObject(BackType.HOME_REPO,vo.getFull_name()));
 					box.getChildren().add(single);
 				}
 			} catch (IOException e) {

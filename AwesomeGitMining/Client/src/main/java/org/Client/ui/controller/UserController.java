@@ -9,8 +9,9 @@ import org.Client.business.impl.user.UserServiceImpl;
 import org.Client.business.service.RepositoryService;
 import org.Client.business.service.UserService;
 import org.Client.ui.MainUI;
+import org.Client.ui.utility.BackHandler;
+import org.Client.ui.utility.BackObject;
 import org.Client.ui.utility.BackType;
-import org.Client.ui.utility.HandleBack;
 import org.Client.ui.utility.LanguageIcon;
 import org.Common.vo.Colla_ProVO;
 import org.Common.vo.Contri_ProVO;
@@ -112,7 +113,7 @@ public class UserController implements Initializable {
 		userImpl = UserServiceImpl.getInstance();
 
 		user_back.setOnAction((e) -> {
-			HandleBack.getInstance().handleUserBack();
+			BackHandler.getInstance().handleUserBack();
 		});
 
 	}
@@ -252,7 +253,7 @@ public class UserController implements Initializable {
 		            	repository = repositoryImpl.searchRepositoryInfo(temp);
 		    			
 		            	if(repository!=null) {
-		            		HandleBack.getInstance().setRepoBack(BackType.USER,userNameLabel.getText());
+		            		BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER,userNameLabel.getText()));
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
 		            		ProjectController.getInstance().setVO(repository);
 		            	}
@@ -280,7 +281,7 @@ public class UserController implements Initializable {
 		            	repository = repositoryImpl.searchRepositoryInfo(temp);
 		    			
 		            	if(repository!=null) {
-		            		HandleBack.getInstance().setRepoBack(BackType.USER,userNameLabel.getText());
+		            		BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER,userNameLabel.getText()));
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
 		            		ProjectController.getInstance().setVO(repository);
 		            	}
@@ -307,7 +308,7 @@ public class UserController implements Initializable {
 		            	repository = repositoryImpl.searchRepositoryInfo(temp);
 		    			
 		            	if(repository!=null) {
-		            		HandleBack.getInstance().setRepoBack(BackType.USER,userNameLabel.getText());
+		            		BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER,userNameLabel.getText()));
 		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
 		            		ProjectController.getInstance().setVO(repository);
 		            	}

@@ -11,8 +11,9 @@ import org.Client.business.impl.user.UserServiceImpl;
 import org.Client.business.service.RepositoryService;
 import org.Client.business.service.UserService;
 import org.Client.ui.MainUI;
+import org.Client.ui.utility.BackHandler;
+import org.Client.ui.utility.BackObject;
 import org.Client.ui.utility.BackType;
-import org.Client.ui.utility.HandleBack;
 import org.Client.ui.utility.PieChartGenerator;
 import org.Client.ui.utility.RaderChartGenerator;
 import org.Common.vo.CodeFrequencyVO;
@@ -155,7 +156,7 @@ public class ProjectController implements Initializable {
 		});
 
 		btn_back.setOnAction((e) -> {
-			HandleBack.getInstance().handleRepoBack();
+			BackHandler.getInstance().handleRepoBack();
 		});
 	}
 
@@ -306,7 +307,7 @@ public class ProjectController implements Initializable {
 			cell.setOnMouseReleased((MouseEvent t) -> {
 				String temp = cell.getText();
 				if (temp != null) {
-					HandleBack.getInstance().setUserBack(BackType.PROJECT, projectNameLabel.getText());
+					BackHandler.getInstance().setUserBack(new BackObject(BackType.REPO, projectNameLabel.getText()));
 					MainController.getInstance().setGroup("Ui_UserPanel.fxml");
 					fullVO = userImpl.getUser(temp);
 					if (fullVO != null)
@@ -334,7 +335,7 @@ public class ProjectController implements Initializable {
 			cell.setOnMouseReleased((MouseEvent t) -> {
 				String temp = cell.getText();
 				if (temp != null) {
-					HandleBack.getInstance().setUserBack(BackType.PROJECT, projectNameLabel.getText());
+					BackHandler.getInstance().setUserBack(new BackObject(BackType.REPO, projectNameLabel.getText()));
 					MainController.getInstance().setGroup("Ui_UserPanel.fxml");
 					fullVO = userImpl.getUser(temp);
 					if (fullVO != null)

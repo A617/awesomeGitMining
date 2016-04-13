@@ -2,8 +2,9 @@ package org.Client.ui.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.Client.ui.utility.BackHandler;
+import org.Client.ui.utility.BackObject;
 import org.Client.ui.utility.BackType;
-import org.Client.ui.utility.HandleBack;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,12 +26,12 @@ public class SearchFieldController implements Initializable{
 		}
 		if (main.isSelectRepos()) {
 			main.setPanel("Ui_SearchRepos.fxml");
-			HandleBack.getInstance().setRepoBack(BackType.SEARCH_PROJECT,textField.getText());
+			BackHandler.getInstance().setRepoBack(new BackObject(BackType.REPO, textField.getText()));
 			SearchController control = SearchController.getInstance();
 			control.setSearchID(textField.getText());
 		} else if (main.isSelectUser()) {
 			main.setPanel("Ui_SearchUser.fxml");
-			HandleBack.getInstance().setUserBack(BackType.SEARCH_USER,textField.getText());
+			BackHandler.getInstance().setUserBack(new BackObject(BackType.USER, textField.getText()));
 			SearchUserController control = SearchUserController.getInstance();
 			control.setSearchID(textField.getText());
 		}

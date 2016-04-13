@@ -7,8 +7,9 @@ import java.util.ResourceBundle;
 import org.Client.business.impl.user.UserServiceImpl;
 import org.Client.business.service.UserService;
 import org.Client.ui.MainUI;
+import org.Client.ui.utility.BackHandler;
+import org.Client.ui.utility.BackObject;
 import org.Client.ui.utility.BackType;
-import org.Client.ui.utility.HandleBack;
 import org.Client.ui.utility.SkinConfig;
 import org.Common.vo.SimpleUserVO;
 
@@ -69,7 +70,7 @@ public class UserPageController implements Initializable {
 				SingleUserController controller = loader.getController();
 				if (i < user.size()) {
 					SimpleUserVO vo = user.get(i);
-					HandleBack.getInstance().setUserBack(BackType.HOME_USER,vo.getLogin());
+					BackHandler.getInstance().setUserBack(new BackObject(BackType.HOME_USER,vo.getLogin()));
 					controller.setVO(vo);
 
 					box.getChildren().add(single);
