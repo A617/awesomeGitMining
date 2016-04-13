@@ -79,7 +79,7 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		this.avatar_urlList = DataInitHelper.getList(path + "user_avatar_url.txt");
 		this.languageList = DataInitHelper.getListList(path + "user_languages.txt");
 
-		// experience: 5*contributed + gist
+		/*// experience: 5*contributed + gist
 		List<Integer> experienceScoreList = new ArrayList<>();
 		List<Integer> gistList = DataInitHelper.getIntList(path + "user_gists.txt");
 		List<List<String>> contrilistlist = DataInitHelper.getListList(path + "user-contributed.txt");
@@ -92,7 +92,7 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		// popularity
 		List<Integer> popularityScoreList = DataInitHelper.getIntList(path + "user_followers.txt");
 		this.popularityRank = rankList(popularityScoreList);
-
+*/
 		
 		// liveness
 		this.livenessRank = DataInitHelper.getIntList(path+"user_liveness.txt");

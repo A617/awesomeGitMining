@@ -37,27 +37,10 @@ public class DataMining {
 	// caculateUserScores();
 	//	getDataFromDtaMining("http://www.gitmining.net/api/repository/",path+"repo_size.txt", "size");
 
-	//	getDataFromGithub("api.github.com/repos/", path + "repo_staredTime.txt", "starred_at");
+	getDataFromGithub("api.github.com/repos/", path + "repo_staredTime.txt", "starred_at");
 
 		
-		
-		List<Integer> livenessRank = new ArrayList<>();
-		List<String> updatedTimeList = DataInitHelper.getList(path + "user_updatedTime.txt");
-		List<String> sortList = new ArrayList<>(updatedTimeList);
-		System.out.println(111);
-		Collections.sort(sortList, new Comparator<String>() {
-
-			@Override
-			public int compare(String o1, String o2) {
-				return o2.compareTo(o1);
-			}
-		});
-		for (String element : updatedTimeList) {
-			int rank = sortList.indexOf(element);
-			livenessRank.add(rank);
-		}
-		
-		writeToTxt(path+"user_liveness.txt", livenessRank);
+	
 		
 		long endTime = System.nanoTime();
 		System.out.println("Took " + (endTime - startTime) + " ns");
@@ -139,7 +122,7 @@ public class DataMining {
 
 			for (String repo : repos) {
 				
-				if(repo.equals("geoscript/geoscript-py"))
+				if(repo.equals("mde/timezone-js"))
 					flag = true;
 				
 				if(!flag)
