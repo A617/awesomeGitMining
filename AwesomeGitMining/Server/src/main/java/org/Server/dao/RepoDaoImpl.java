@@ -42,6 +42,8 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 	/* 项目语言列表 */
 	private List<String> languageList;
 
+	private List<String> descriptionList;
+
 	/* 所有项目jsonStr列表 */
 	private List<String> repoAll;
 
@@ -95,7 +97,6 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 			this.languageRepoCounts[languages.length - 1]++;
 		}
 
-
 		/*
 		 * size: size 在同种语言的项目中比较 scale: collaborators hot:
 		 * stargazers_count,forks_count, and watchers_count
@@ -134,16 +135,14 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 		}
 		this.participationRank = rankList(participationScoreList);
 
-
 		// promising
-		int[] starCountsIn28DaysList =DataInitHelper.getIntArray(path + "repo_forkedTime.txt", len);
+		int[] starCountsIn28DaysList = DataInitHelper.getIntArray(path + "repo_forkedTime.txt", len);
 		int[] forkCountsIn28DaysList = DataInitHelper.getIntArray(path + "repo_forkedTime.txt", len);
 		ArrayList<Integer> promisingScoreList = new ArrayList<>();
 		for (int i = 0; i < len; i++) {
 			promisingScoreList.add(starCountsIn28DaysList[i] + forkCountsIn28DaysList[i]);
 		}
 		this.promisingRank = rankList(promisingScoreList);
-
 
 		// size
 		List<Integer>[] languageRepoSize = new List[languages.length];
@@ -155,7 +154,6 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 			int languageIndex = Statistics.getLanguageIndex(languageList.get(i));
 			sizeRank.add(languageRepoSize[languageIndex].get(i));
 		}
-
 
 		System.out.println("RepoDaoImpl initialized!");
 		long endTime = System.nanoTime();
@@ -181,14 +179,13 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 			po.setOwner_name(name.split("/")[0]);
 			po.setLanguages(mapR2L.get(index));
 			double[] scores = new double[5];
-			scores[0] = 1.0-1.0*sizeRank.get(index)/languageRepoCounts[Statistics.getLanguageIndex(po.getLanguage())];
-			scores[1] = 1.0-1.0*scaleRank.get(index)/len;
-			scores[2] = 1.0-1.0*hotRank.get(index)/len;
-			scores[3] = 1.0-1.0*participationRank.get(index)/len;
-			scores[4] = 1.0-1.0*promisingRank.get(index)/len;
+			scores[0] = 1.0
+					- 1.0 * sizeRank.get(index) / languageRepoCounts[Statistics.getLanguageIndex(po.getLanguage())];
+			scores[1] = 1.0 - 1.0 * scaleRank.get(index) / len;
+			scores[2] = 1.0 - 1.0 * hotRank.get(index) / len;
+			scores[3] = 1.0 - 1.0 * participationRank.get(index) / len;
+			scores[4] = 1.0 - 1.0 * promisingRank.get(index) / len;
 			po.setScores(scores);
-
-
 
 		}
 		return po;
@@ -339,7 +336,7 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 		return sum;
 	}
 
-	//将列表中的数据由大到小排列，返回每个项目的排名
+	// 将列表中的数据由大到小排列，返回每个项目的排名
 	private List<Integer> rankList(List<Integer> srcList) {
 
 		List<Integer> rankList = new ArrayList<>();
@@ -382,24 +379,35 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 	}
 
 	@Override
-	public double getHotScore(String repo){
+	public double getHotScore(String repo) {
 		int index = repoList.indexOf(repo);
-		if(index==-1)
+		if (index == -1)
 			return -1;
-		return 1.0-1.0*hotRank.get(index)/len;
+		return 1.0 - 1.0 * hotRank.get(index) / len;
 	}
 
-
 	@Override
-	public int getCollaboratorNum(String repo){
+	public int getCollaboratorNum(String repo) {
 		int index = repoList.indexOf(repo);
-		if(index==-1)
+		if (index == -1)
 			return -1;
 		return collaNumList.get(index);
 	}
+
 	
-	public List<String> getReposByKeyword(String key){
-		
+	@Override
+	public List<String> getReposByKeyword(String key) {
+		List<String> result = new ArrayList<>();
+		for (int i = 0; i < len; i++) {
+			String fullname = repoList.get(i);
+			if (fullname.split("/")[1].contains(key)) {
+				result.add(fullname);
+				continue;
+			}
+			if (descriptionList.get(i).toLowerCase().contains(key.toLowerCase()))
+				result.add(fullname);
+		}
+		return result;
 	}
 
 }

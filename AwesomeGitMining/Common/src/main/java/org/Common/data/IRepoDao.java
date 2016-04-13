@@ -109,5 +109,5 @@ public interface IRepoDao extends Remote{
 	 * @param key
 	 * @return
 	 */
-	public List<String> getReposByKeyword(String key);
+	public List<String> getReposByKeyword(String key) throws RemoteException;
 }
