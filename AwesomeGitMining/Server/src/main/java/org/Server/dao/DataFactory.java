@@ -14,7 +14,7 @@ public class DataFactory {
 	
 	public static IUserDao getUserDataInstance() throws RemoteException{
 		if(user==null)
-			user = new UserDaoImpl();
+			user = new UserDaoImpl(getRepoDataInstance());
 		return user;
 	}
 	

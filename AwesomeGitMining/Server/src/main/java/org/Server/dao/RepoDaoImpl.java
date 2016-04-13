@@ -77,7 +77,7 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 		this.createdTimeList = DataInitHelper.getList(path + "repo-createdTime.txt");
 		this.sizeList = DataInitHelper.getIntList(path + "repo_size.txt");
 		
-	/*	String[] languages = Statistics.language;
+		String[] languages = Statistics.language;
 		this.languageRepoCounts = new int[languages.length];
 		for (int i = 0; i < languages.length; i++)
 			languageRepoCounts[i] = 0;
@@ -92,7 +92,7 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 			}
 			this.languageRepoCounts[languages.length - 1]++; 
 		}
-*/
+
 
 		/*
 		 * size: size 在同种语言的项目中比较 scale: collaborators hot:
@@ -102,7 +102,7 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 		 */
 
 		this.len = repoList.size();
-/*
+
 		// scale
 		ArrayList<Integer> collaNumList = new ArrayList<>();
 		for (int i = 0; i < repoList.size(); i++) {
@@ -154,7 +154,7 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 			sizeRank.add(languageRepoSize[languageIndex].get(i));
 		}
 
-		*/
+		
 		System.out.println("RepoDaoImpl initialized!");
 		long endTime = System.nanoTime();
 		System.out.println("Took " + (endTime - startTime) + " ns");

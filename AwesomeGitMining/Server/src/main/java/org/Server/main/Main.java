@@ -19,6 +19,7 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -38,6 +39,7 @@ public class Main extends Application {
 		firstShown = true;
 		Platform.setImplicitExit(false);
 		AnchorPane panel = loadPanel();
+		
 		stage.setTitle("AwesomeGitmining Server");
 		stage.setWidth(500);
 		stage.setHeight(250);
@@ -47,8 +49,20 @@ public class Main extends Application {
 		stage.setScene(scene);
 
 		stage.show();
-		RMIHelper.init();
-		System.out.println("server connected");
+		
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				
+				RMIHelper.init();
+				
+				System.out.println("server connected");
+			}
+		}).start();
+		
+		
 	}
 
 	public AnchorPane loadPanel() {

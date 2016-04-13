@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
+import org.Common.data.IRepoDao;
 import org.Common.data.IUserDao;
 import org.Common.po.Statistics;
 import org.Common.po.Type;
@@ -60,7 +61,7 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 	private List<Integer> livenessRank;
 	private List<Integer> contributionRank;
 
-	public UserDaoImpl() throws RemoteException {
+	public UserDaoImpl(IRepoDao repodao) throws RemoteException {
 		long startTime = System.nanoTime();
 
 		this.userList = DataInitHelper.getList(path + "user_login.txt");
@@ -79,7 +80,7 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		this.avatar_urlList = DataInitHelper.getList(path + "user_avatar_url.txt");
 		this.languageList = DataInitHelper.getListList(path + "user_languages.txt");
 
-		/*// experience: 5*contributed + gist
+		// experience: 5*contributed + gist
 		List<Integer> experienceScoreList = new ArrayList<>();
 		List<Integer> gistList = DataInitHelper.getIntList(path + "user_gists.txt");
 		List<List<String>> contrilistlist = DataInitHelper.getListList(path + "user-contributed.txt");
@@ -92,7 +93,7 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		// popularity
 		List<Integer> popularityScoreList = DataInitHelper.getIntList(path + "user_followers.txt");
 		this.popularityRank = rankList(popularityScoreList);
-*/
+
 		
 		// liveness
 		this.livenessRank = DataInitHelper.getIntList(path+"user_liveness.txt");
