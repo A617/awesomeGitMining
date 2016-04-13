@@ -43,11 +43,14 @@ public class HomeController implements Initializable {
 	private ScrollPane scrollPane;
 	@FXML
 	private Label page;
-
 	@FXML
-	private Group group_language;
+	private Group group;
 	@FXML
-	private Group group_year;
+	private Group Language;
+	@FXML
+	private Group Year;
+	@FXML
+	private Group Key;
 	@FXML
 	private AnchorPane listPane;
 	private VBox box;
@@ -76,6 +79,9 @@ public class HomeController implements Initializable {
 	private final String configPath = "file:src/main/java/org/Client/ui/config/";
 	private String[] enterColors = { "#5d9b78;", "#ff99c7;", "#cad2dd;" };
 	private String[] baseColors = { "#71af8c;", "#f8aec4;", "#b4b7bb;" };
+	private String[] tagBackColors = { "-fx-background-color:#5d9b78;", "-fx-background-color:#ff99c7;",
+			"-fx-background-color:#cad2dd;" };
+	private int skinNum;
 
 	public static HomeController getInstance() {
 		if (instance == null) {
@@ -85,6 +91,7 @@ public class HomeController implements Initializable {
 	}
 
 	public void setSkinNum(int skinNum) {
+		this.skinNum = skinNum;
 		this.enterColor = enterColors[skinNum];
 		this.baseColor = baseColors[skinNum];
 		tab_general.setStyle(styleStr + baseColor);
@@ -92,7 +99,6 @@ public class HomeController implements Initializable {
 		tab_contributor.setStyle(styleStr + baseColor);
 		tab_fork.setStyle(styleStr + baseColor);
 	}
-
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -103,7 +109,6 @@ public class HomeController implements Initializable {
 		pageNum = repositoryImpl.getPageNums();
 		selectGeneral();
 		addTagListener();
-		addTagListener2();
 	}
 
 	@FXML
@@ -205,7 +210,8 @@ public class HomeController implements Initializable {
 				if (i < list.size()) {
 					RepositoryVO vo = list.get(i);
 					controller.setVO(vo);
-					BackHandler.getInstance().setRepoBack(new BackObject(BackType.HOME_REPO,vo.getFull_name(),generalPage));
+					BackHandler.getInstance()
+							.setRepoBack(new BackObject(BackType.HOME_REPO, vo.getFull_name(), generalPage));
 
 					box.getChildren().add(single);
 				}
@@ -216,6 +222,7 @@ public class HomeController implements Initializable {
 		scrollPane.setContent(box);
 		box = null;
 	}
+
 	public void setPage(int num) {
 		generalPage = num;
 		page.setText(generalPage + 1 + " / " + pageNum);
@@ -375,81 +382,54 @@ public class HomeController implements Initializable {
 	 * jump to another page
 	 */
 	private void addTagListener() {
-		for (int i = 0; i < group_language.getChildren().size(); i++) {
-			Label label = (Label) group_language.getChildren().get(i);
-			label.setOnMouseReleased(new EventHandler<MouseEvent>() {
+		for (int j = 0; j < group.getChildren().size(); j++) {
+			Group cg = (Group) group.getChildren().get(j);
+			for (int i = 0; i < cg.getChildren().size(); i++) {
+				String methodName = "getReposBy" + cg.getId();
+				Label label = (Label) cg.getChildren().get(i);
+				label.setOnMouseReleased(new EventHandler<MouseEvent>() {
 
-				@Override
-				public void handle(MouseEvent arg0) {
-					// 把其他tag变回原来的颜色
-					for (int i = 0; i < group_language.getChildren().size(); i++) {
-						Label label = (Label) group_language.getChildren().get(i);
-						if (label.getStyle().equals("-fx-background-color:#5d9b78;")) {
-							label.setStyle("-fx-background-color:transparent;");
+					@Override
+					public void handle(MouseEvent arg0) {
+						resetTag();
+						String text = label.getText();
+						// 如果是all，返回初始界面
+						if (text.equals("All")) {
+							MainController.getInstance().setPanel("main.fxml");
+							return;
 						}
+						FXMLLoader loader = new FXMLLoader();
+						loader.setLocation(MainUI.class.getResource("config/Ui_ReposTagPane.fxml"));
+						AnchorPane result = null;
+						try {
+							result = (AnchorPane) loader.load();
+						} catch (IOException e) {
+							System.out.println("Ui_ReposTagPane加载失败");
+						}
+						ReposTagPaneController controller = loader.getController();
+						controller.setText(text, methodName);
+						listPane.getChildren().clear();
+						listPane.getChildren().add(result);
+						label.setStyle(tagBackColors[skinNum]);
 					}
-					String text = label.getText();
-					// 如果是all，返回初始界面
-					if (text.equals("All")) {
-						MainController.getInstance().setPanel("main.fxml");
-						return;
-					}
-					FXMLLoader loader = new FXMLLoader();
-					loader.setLocation(MainUI.class.getResource("config/Ui_ReposTagPane.fxml"));
-					AnchorPane result = null;
-					try {
-						result = (AnchorPane) loader.load();
-					} catch (IOException e) {
-						System.out.println("Ui_ReposTagPane加载失败");
-					}
-					ReposTagPaneController controller = loader.getController();
-					controller.setLanguage(text);
-					listPane.getChildren().clear();
-					listPane.getChildren().add(result);
-					label.setStyle("-fx-background-color:#5d9b78;");
-				}
 
-			});
+				});
+			}
 		}
 	}
 
-	private void addTagListener2() {
-		for (int i = 0; i < group_year.getChildren().size(); i++) {
-			Label label = (Label) group_year.getChildren().get(i);
-			label.setOnMouseReleased(new EventHandler<MouseEvent>() {
-
-				@Override
-				public void handle(MouseEvent arg0) {
-					for (int i = 0; i < group_year.getChildren().size(); i++) {
-						Label label = (Label) group_year.getChildren().get(i);
-						if (label.getStyle().equals("-fx-background-color:#5d9b78;")) {
-							label.setStyle("-fx-background-color:transparent;");
-						}
-					}
-					String text = label.getText();
-					// 如果是all，返回初始界面
-					if (text.equals("All")) {
-						MainController.getInstance().setPanel("main.fxml");
-						return;
-					}
-					FXMLLoader loader = new FXMLLoader();
-					loader.setLocation(MainUI.class.getResource("config/Ui_ReposTagPane.fxml"));
-					AnchorPane result = null;
-					try {
-						result = (AnchorPane) loader.load();
-					} catch (IOException e) {
-						System.out.println("Ui_ReposTagPane加载失败");
-					}
-					ReposTagPaneController controller = loader.getController();
-					controller.setYear(text);
-					listPane.getChildren().clear();
-					listPane.getChildren().add(result);
-					label.setStyle("-fx-background-color:#5d9b78;");
+	/**
+	 * 每当选中一个tag时，之前被选中的tag还原到原来的颜色
+	 */
+	private void resetTag() {
+		for (int j = 0; j < group.getChildren().size(); j++) {
+			Group cg = (Group) group.getChildren().get(j);
+			for (int i = 0; i < cg.getChildren().size(); i++) {
+				Label label = (Label) cg.getChildren().get(i);
+				if (!label.getStyle().isEmpty()) {
+					label.setStyle("-fx-background-color:transparent;");
 				}
-
-			});
+			}
 		}
-
 	}
-
 }

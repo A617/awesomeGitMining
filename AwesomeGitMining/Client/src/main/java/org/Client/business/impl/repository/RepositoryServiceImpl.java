@@ -9,7 +9,6 @@ import java.util.Map;
 
 import org.Client.business.dto.Converter;
 import org.Client.business.service.RepositoryService;
-import org.Client.business.utility.ScoreCalculator;
 import org.Client.business.utility.SortHelper;
 import org.Client.main.RMIHelper;
 import org.Common.data.IRepoDao;
@@ -264,11 +263,11 @@ public class RepositoryServiceImpl implements RepositoryService {
 			}
 			if (po != null) {
 				Map<String, Double> map = new HashMap<>();
-				map.put("size", po.getScores()[0]*8);
-				map.put("scale", po.getScores()[1]*8);
-				map.put("promising", po.getScores()[4]*8);
-				map.put("partcipation", po.getScores()[3]*8);
-				map.put("hot", po.getScores()[2]*8);
+				map.put("size", po.getScores()[0] * 8);
+				map.put("scale", po.getScores()[1] * 8);
+				map.put("promising", po.getScores()[4] * 8);
+				map.put("partcipation", po.getScores()[3] * 8);
+				map.put("hot", po.getScores()[2] * 8);
 				vo.setRates(map);
 			}
 		}
@@ -490,6 +489,33 @@ public class RepositoryServiceImpl implements RepositoryService {
 		return vos;
 	}
 
-
+	@Override
+	public List<RepositoryVO> getReposByKey(String keyword, int pageIndex) {
+		List<RepositoryVO> list = new ArrayList<>();
+		List<String> names = null;
+		try {
+			names = daoImpl.getReposByKeyword(keyword);
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
+		tagPageNum = names.size();
+		if (names != null) {
+			for (int i = pageIndex * 10; i < 10 + pageIndex * 10; i++) {
+				if (i < names.size() && i >= 0) {
+					Repository po = null;
+					try {
+						po = daoImpl.getRepository(names.get(i));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					if (po != null) {
+						RepositoryVO vo = (RepositoryVO) Converter.convert("RepositoryVO", po);
+						list.add(vo);
+					}
+				}
+			}
+		}
+		return list;
+	}
 
 }

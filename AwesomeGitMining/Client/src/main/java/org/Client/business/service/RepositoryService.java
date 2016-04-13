@@ -138,4 +138,11 @@ public interface RepositoryService {
 	 * @return
 	 */
 	public abstract List<RepositoryVO> getReposByYear(String year, int pageIndex);
+	/**
+	 * show repositories by specific keyword
+	 * @param keyword
+	 * @param pageIndex
+	 * @return
+	 */
+	public abstract List<RepositoryVO> getReposByKey(String keyword,int pageIndex);
 }

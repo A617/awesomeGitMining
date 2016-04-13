@@ -47,29 +47,74 @@
                   <Font name="Microsoft YaHei UI" size="22.0" />
                </font>
             </Label>
-            <Group fx:id="group_language">
+            <Group fx:id="group">
                <children>
-                  <Label id="tag" fx:id="emacsLisp" layoutX="9.0" layoutY="203.0" text="Ruby" />
-                  <Label id="tag" fx:id="csharp" layoutX="61.0" layoutY="203.0" text="Python" />
-                  <Label id="tag" layoutX="240.0" layoutY="113.0" text="Java" />
-                  <Label id="tag" fx:id="c" layoutX="141.0" layoutY="113.0" text="C" />
-                  <Label id="tag" fx:id="java" layoutX="186.0" layoutY="113.0" text="Perl" />
-                  <Label id="tag" fx:id="php" layoutX="241.0" layoutY="143.0" text="PHP" />
-                  <Label id="tag" fx:id="language_all" layoutX="9.0" layoutY="113.0" text="All" />
-                  <Label id="tag" fx:id="objectiveC" layoutX="54.0" layoutY="113.0" text="JavaScript" />
-                  <Label id="tag" fx:id="r" layoutX="185.0" layoutY="143.0" text="C++" />
-                  <Label id="tag" fx:id="css" layoutX="241.0" layoutY="173.0" text="HTML" />
-                  <Label id="tag" fx:id="cpp" layoutX="9.0" layoutY="143.0" text="C#" />
-                  <Label id="tag" fx:id="clojure" layoutX="185.0" layoutY="203.0" text="Scala" />
-                  <Label id="tag" fx:id="viml" layoutX="135.0" layoutY="173.0" text="CSS" />
-                  <Label id="tag" fx:id="erlang" layoutX="137.0" layoutY="143.0" text="Go" />
-                  <Label id="tag" fx:id="scala" layoutX="60.0" layoutY="173.0" text="Clojure" />
-                  <Label id="tag" fx:id="haskell" layoutX="243.0" layoutY="203.0" text="Lua" />
-                  <Label id="tag" fx:id="commonLisp" layoutX="9.0" layoutY="233.0" text="Objective-C" />
-                  <Label id="tag" fx:id="python" layoutX="49.0" layoutY="143.0" text="CoffeeScript" />
-                  <Label id="tag" fx:id="perl" layoutX="9.0" layoutY="173.0" text="Prolog" />
-                  <Label id="tag" fx:id="javaScript" layoutX="126.0" layoutY="203.0" text="Haskell" />
-                  <Label id="tag" fx:id="shell" layoutX="185.0" layoutY="173.0" text="Shell" />
+                  <Group fx:id="Language">
+                     <children>
+                        <Label id="tag" fx:id="emacsLisp" layoutX="9.0" layoutY="203.0" text="Ruby" />
+                        <Label id="tag" fx:id="csharp" layoutX="61.0" layoutY="203.0" text="Python" />
+                        <Label id="tag" layoutX="240.0" layoutY="113.0" text="Java" />
+                        <Label id="tag" fx:id="c" layoutX="141.0" layoutY="113.0" text="C" />
+                        <Label id="tag" fx:id="java" layoutX="186.0" layoutY="113.0" text="Perl" />
+                        <Label id="tag" fx:id="php" layoutX="241.0" layoutY="143.0" text="PHP" />
+                        <Label id="tag" fx:id="language_all" layoutX="9.0" layoutY="113.0" text="All" />
+                        <Label id="tag" fx:id="objectiveC" layoutX="54.0" layoutY="113.0" text="JavaScript" />
+                        <Label id="tag" fx:id="r" layoutX="185.0" layoutY="143.0" text="C++" />
+                        <Label id="tag" fx:id="css" layoutX="241.0" layoutY="173.0" text="HTML" />
+                        <Label id="tag" fx:id="cpp" layoutX="9.0" layoutY="143.0" text="C#" />
+                        <Label id="tag" fx:id="clojure" layoutX="185.0" layoutY="203.0" text="Scala" />
+                        <Label id="tag" fx:id="viml" layoutX="135.0" layoutY="173.0" text="CSS" />
+                        <Label id="tag" fx:id="erlang" layoutX="137.0" layoutY="143.0" text="Go" />
+                        <Label id="tag" fx:id="scala" layoutX="60.0" layoutY="173.0" text="Clojure" />
+                        <Label id="tag" fx:id="haskell" layoutX="243.0" layoutY="203.0" text="Lua" />
+                        <Label id="tag" fx:id="commonLisp" layoutX="9.0" layoutY="233.0" text="Objective-C" />
+                        <Label id="tag" fx:id="python" layoutX="49.0" layoutY="143.0" text="CoffeeScript" />
+                        <Label id="tag" fx:id="perl" layoutX="9.0" layoutY="173.0" text="Prolog" />
+                        <Label id="tag" fx:id="javaScript" layoutX="126.0" layoutY="203.0" text="Haskell" />
+                        <Label id="tag" fx:id="shell" layoutX="185.0" layoutY="173.0" text="Shell" />
+                     </children>
+                  </Group>
+                  <Group fx:id="Key">
+                     <children>
+                        <Label id="tag" layoutX="185.0" layoutY="367.0" text="jQuery" />
+                        <Label id="tag" layoutX="125.0" layoutY="487.0" text="Maven" />
+                        <Label id="tag" layoutX="187.0" layoutY="427.0" text="JSON" />
+                        <Label id="tag" layoutX="193.0" layoutY="397.0" text="IRC" />
+                        <Label id="tag" layoutX="183.0" layoutY="457.0" text="Android" />
+                        <Label id="tag" layoutX="9.0" layoutY="487.0" text="MVC" />
+                        <Label id="tag" layoutX="9.0" layoutY="367.0" text="API" />
+                        <Label id="tag" layoutX="244.0" layoutY="397.0" text="iOS" />
+                        <Label id="tag" layoutX="118.0" layoutY="397.0" text="database" />
+                        <Label id="tag" layoutX="57.0" layoutY="397.0" text="Plugin" />
+                        <Label id="tag" layoutX="9.0" layoutY="397.0" text="Web" />
+                        <Label id="tag" layoutX="61.0" layoutY="457.0" text=".NET" />
+                        <Label id="tag" layoutX="245.0" layoutY="427.0" text="vim" />
+                        <Label id="tag" layoutX="9.0" layoutY="427.0" text="Git" />
+                        <Label id="tag" layoutX="63.0" layoutY="487.0" text="gem" />
+                        <Label id="tag" layoutX="57.0" layoutY="427.0" text="Emacs" />
+                        <Label id="tag" layoutX="124.0" layoutY="367.0" text="MySQL" />
+                        <Label id="tag" layoutX="55.0" layoutY="367.0" text="Django" />
+                        <Label id="tag" layoutX="9.0" layoutY="457.0" text="toolkit" />
+                        <Label id="tag" layoutX="243.0" layoutY="367.0" text="XML" />
+                        <Label id="tag" layoutX="129.0" layoutY="427.0" text="Linux" />
+                        <Label id="tag" layoutX="245.0" layoutY="457.0" text="OS" />
+                        <Label id="tag" layoutX="123.0" layoutY="457.0" text="Apache" />
+                     </children>
+                  </Group>
+                  <Group fx:id="Year" layoutX="6.0" layoutY="31.0">
+                     <children>
+                        <Label id="tag" layoutX="124.0" layoutY="565.0" text="2008" />
+                        <Label id="tag" fx:id="time_all" layoutX="9.0" layoutY="565.0" text="All" />
+                        <Label id="tag" layoutX="9.0" layoutY="595.0" text="2012" />
+                        <Label id="tag" layoutX="244.0" layoutY="595.0" text="2011" />
+                        <Label id="tag" layoutX="61.0" layoutY="565.0" text="2007" />
+                        <Label id="tag" layoutX="124.0" layoutY="595.0" text="2014" />
+                        <Label id="tag" layoutX="187.0" layoutY="595.0" text="2015" />
+                        <Label id="tag" layoutX="187.0" layoutY="565.0" text="2009" />
+                        <Label id="tag" layoutX="244.0" layoutY="565.0" text="2010" />
+                        <Label id="tag" layoutX="61.0" layoutY="595.0" text="2013" />
+                     </children>
+                  </Group>
                </children>
             </Group>
             <Line endX="200.0" layoutX="100.0" layoutY="319.0" startX="-100.0" stroke="#dad8d8" />
@@ -84,47 +129,6 @@
                   <Font name="Microsoft YaHei UI" size="22.0" />
                </font>
             </Label>
-            <Group fx:id="keyword">
-               <children>
-                  <Label id="tag" layoutX="185.0" layoutY="367.0" text="jQuery" />
-                  <Label id="tag" layoutX="125.0" layoutY="487.0" text="Maven" />
-                  <Label id="tag" layoutX="187.0" layoutY="427.0" text="JSON" />
-                  <Label id="tag" layoutX="193.0" layoutY="397.0" text="IRC" />
-                  <Label id="tag" layoutX="183.0" layoutY="457.0" text="Android" />
-                  <Label id="tag" layoutX="9.0" layoutY="487.0" text="MVC" />
-                  <Label id="tag" layoutX="9.0" layoutY="367.0" text="API" />
-                  <Label id="tag" layoutX="244.0" layoutY="397.0" text="iOS" />
-                  <Label id="tag" layoutX="118.0" layoutY="397.0" text="database" />
-                  <Label id="tag" layoutX="57.0" layoutY="397.0" text="Plugin" />
-                  <Label id="tag" layoutX="9.0" layoutY="397.0" text="Web" />
-                  <Label id="tag" layoutX="61.0" layoutY="457.0" text=".NET" />
-                  <Label id="tag" layoutX="245.0" layoutY="427.0" text="vim" />
-                  <Label id="tag" layoutX="9.0" layoutY="427.0" text="Git" />
-                  <Label id="tag" layoutX="63.0" layoutY="487.0" text="gem" />
-                  <Label id="tag" layoutX="57.0" layoutY="427.0" text="Emacs" />
-                  <Label id="tag" layoutX="124.0" layoutY="367.0" text="MySQL" />
-                  <Label id="tag" layoutX="55.0" layoutY="367.0" text="Django" />
-                  <Label id="tag" layoutX="9.0" layoutY="457.0" text="toolkit" />
-                  <Label id="tag" layoutX="243.0" layoutY="367.0" text="XML" />
-                  <Label id="tag" layoutX="129.0" layoutY="427.0" text="Linux" />
-                  <Label id="tag" layoutX="245.0" layoutY="457.0" text="OS" />
-                  <Label id="tag" layoutX="123.0" layoutY="457.0" text="Apache" />
-               </children>
-            </Group>
-            <Group fx:id="group_year" layoutX="6.0" layoutY="31.0">
-               <children>
-                  <Label id="tag" layoutX="124.0" layoutY="565.0" text="2008" />
-                  <Label id="tag" fx:id="time_all" layoutX="9.0" layoutY="565.0" text="All" />
-                  <Label id="tag" layoutX="9.0" layoutY="595.0" text="2012" />
-                  <Label id="tag" layoutX="244.0" layoutY="595.0" text="2011" />
-                  <Label id="tag" layoutX="61.0" layoutY="565.0" text="2007" />
-                  <Label id="tag" layoutX="124.0" layoutY="595.0" text="2014" />
-                  <Label id="tag" layoutX="187.0" layoutY="595.0" text="2015" />
-                  <Label id="tag" layoutX="187.0" layoutY="565.0" text="2009" />
-                  <Label id="tag" layoutX="244.0" layoutY="565.0" text="2010" />
-                  <Label id="tag" layoutX="61.0" layoutY="595.0" text="2013" />
-               </children>
-            </Group>
          </children>
         </AnchorPane>
    </children>
