@@ -2,6 +2,7 @@ package org.Client.ui.controller;
 import java.awt.Dimension;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -212,15 +213,23 @@ public class UserController implements Initializable {
 		}
 		// raderchart
 					UserRateVO ratevo = userImpl.getEvaluation(vo.getName());
-
+					System.err.println(ratevo.getRates());
 					if(ratevo==null){
 						System.out.print("ratevo=null");
 					}
 					if(ratevo.getRates()==null){
 						System.out.print("ratevo get rates null");
 					}
+
 					if (ratevo != null) {
-						createRader(ratevo.getRates());
+						Map<String, Double> map = new HashMap<String,Double>();
+						map.put("1", 1.1);
+						map.put("2", 1.2);
+						map.put("3", 1.1);
+						map.put("4", 1.2);
+						map.put("5", 1.1);
+
+						createRader(map);
 						if(ratevo.getRates()==null){
 							System.out.print("ratevo null");
 						}
@@ -240,11 +249,11 @@ public class UserController implements Initializable {
 		if(map==null){
 			System.out.print("233");
 		}
-		dataset.addValue(map.get("famous"), group1, "famous");
-		dataset.addValue(map.get("mature"), group1, "mature");
-		dataset.addValue(map.get("contributor"), group1, "contributor");
-		dataset.addValue(map.get("popular"), group1, "popular");
-		dataset.addValue(map.get("hot"), group1, "hot");
+		dataset.addValue(map.get("1"), group1, "1");
+		dataset.addValue(map.get("2"), group1, "2");
+		dataset.addValue(map.get("3"), group1, "3");
+		dataset.addValue(map.get("4"), group1, "4");
+		dataset.addValue(map.get("5"), group1, "5");
 		swingNode = new SwingNode();
 
 		ProgressIndicator pin = new ProgressIndicator(-1);
