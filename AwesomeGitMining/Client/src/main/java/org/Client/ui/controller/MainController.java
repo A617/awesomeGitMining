@@ -26,8 +26,9 @@ public class MainController implements Initializable {
 	private final Delta dragDelta = new Delta();
 	private static MainController instance;
 	private TrayIcon trayIcon;
-	private static String enterColor;
-	private static String baseColor;
+	private String enterColor;
+	private String baseColor;
+
 	public static MainController getInstance() {
 		if (instance == null) {
 			instance = new MainController();
@@ -60,23 +61,33 @@ public class MainController implements Initializable {
 	private boolean selectReposSta;
 	private boolean selectUserSta;
 	private String styleStr = "-fx-background-color: ";
-	static int skinNum=SkinConfig.getInstance().getSkinNum();
+	private int skinNum;
+	private String[] enterColors = { "#5d9b78;", "#ff99c7;", "#cad2dd;" };
+	private String[] baseColors = { "#71af8c;", "#f8aec4;", "#b4b7bb;" };
+	private String[] exitPics = { "exit_normal.png", "exit_normal_pink.png", "exit_normal_dark.png" };
+	private String[] minPics = { "min_normal.png", "min_normal_pink.png", "min_normal_dark.png" };
 
 	/**
 	 * when start the app, init the homePagePanel
 	 */
-	public static void getNum(){
-		if(skinNum==0){
-			enterColor = "#5d9b78;";
-			baseColor = "#71af8c;";
-		}else if(skinNum==1){
-			enterColor = "#ff99c7;";
-			baseColor = "#f8aec4;";
-		}else if(skinNum==2){
-			enterColor="#cad2dd";
-			baseColor="#b4b7bb";
-		}
+	public void setSkinNum(int skinNum) {
+		this.skinNum = skinNum;
+		this.enterColor = enterColors[skinNum];
+		this.baseColor = baseColors[skinNum];
+		changeLabelStyle();
 	}
+
+	public void changeLabelStyle() {
+		//退出和最小化按钮
+		labelInit(exit, exitPics[skinNum]);
+		labelInit(min, minPics[skinNum]);
+		//导航栏
+		repository.setStyle(styleStr + baseColor);
+		user.setStyle(styleStr + baseColor);
+		repositorySta.setStyle(styleStr + baseColor);
+		userSta.setStyle(styleStr + baseColor);
+	}
+
 	public void initPanel() {
 		setPanel(SkinConfig.getInstance().getFxmlResoursePath("main"));
 	}
@@ -101,19 +112,6 @@ public class MainController implements Initializable {
 		field.setLayoutY(-10);
 		// otherwise the searchButton cannot use
 		common.toFront();
-		if(skinNum==1){
-			labelInit(exit, "exit_normal_pink.png");
-			labelInit(min, "min_normal_pink.png");
-		}
-		else if(skinNum==0){
-		labelInit(exit, "exit_normal.png");
-		labelInit(min, "min_normal.png");
-		}
-		else if(skinNum==2){
-			labelInit(exit, "exit_normal_dark.png");
-			labelInit(min, "min_normal_dark.png");
-		}
-		labelInit(changeStyle, "skin1.png");
 	}
 
 	public void setGroup(String name) {
@@ -126,14 +124,16 @@ public class MainController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		getNum();
 		instance = this;
+		setSkinNum(SkinConfig.getInstance().getSkinNum());
 		selectRepos = true;
 		enterRepos();
 		addDraggableNode(common);
 		infoPane = fxmlLoader.loadPanel("Ui_InfoPane.fxml");
 		infoPane.setLayoutX(changeStyle.getLayoutX());
 		infoPane.setLayoutY(changeStyle.getLayoutY() + changeStyle.getPrefHeight());
+		//换肤按钮
+		labelInit(changeStyle, "skin1.png");
 	}
 
 	public void labelInit(Label label, String path) {
@@ -161,24 +161,28 @@ public class MainController implements Initializable {
 		}
 	}
 
+	public void removeInfoPane() {
+		layout.getChildren().remove(infoPane);
+	}
+
 	@FXML
 	public void enterExit() {
-		if(skinNum==0){
+		if (skinNum == 0) {
 			labelInit(exit, "exit_move.png");
-		}else if(skinNum==1){
+		} else if (skinNum == 1) {
 			labelInit(exit, "exit_move_pink.png");
-		}else if (skinNum==2){
+		} else if (skinNum == 2) {
 			labelInit(exit, "exit_move_dark.png");
 		}
 	}
 
 	@FXML
 	public void exitExit() {
-		if(skinNum==0){
+		if (skinNum == 0) {
 			labelInit(exit, "exit_normal.png");
-		}else if(skinNum==1){
+		} else if (skinNum == 1) {
 			labelInit(exit, "exit_normal_pink.png");
-		}else if(skinNum==2){
+		} else if (skinNum == 2) {
 			labelInit(exit, "exit_normal_dark.png");
 		}
 
@@ -195,11 +199,11 @@ public class MainController implements Initializable {
 
 	@FXML
 	public void enterMin() {
-		if(skinNum==0){
+		if (skinNum == 0) {
 			labelInit(min, "min_move.png");
-		}else if(skinNum==1){
+		} else if (skinNum == 1) {
 			labelInit(min, "min_move_pink.png");
-		}else if(skinNum==2){
+		} else if (skinNum == 2) {
 			labelInit(min, "min_move_dark.png");
 		}
 
@@ -207,11 +211,11 @@ public class MainController implements Initializable {
 
 	@FXML
 	public void exitMin() {
-		if(skinNum==0){
+		if (skinNum == 0) {
 			labelInit(min, "min_normal.png");
-		}else if(skinNum==1){
+		} else if (skinNum == 1) {
 			labelInit(min, "min_normal_pink.png");
-		}else if(skinNum==2){
+		} else if (skinNum == 2) {
 			labelInit(min, "min_normal_dark.png");
 		}
 	}

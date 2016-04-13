@@ -24,6 +24,9 @@
 #headLabel:hover{
 	-fx-background-color: #5d9b78;
 }
+#headLabel{
+	-fx-background-color: #71af8c;
+}
 #innerBar{
 	-fx-background-color: #71af8c;
 }

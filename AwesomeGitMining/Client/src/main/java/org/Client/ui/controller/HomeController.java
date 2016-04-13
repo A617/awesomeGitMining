@@ -55,8 +55,8 @@ public class HomeController implements Initializable {
 	private String styleStr = "-fx-background-color: ";
 	// private String enterColor = "#5d9b78;";
 	// private String baseColor = "#71af8c;";
-	private static String enterColor;
-	private static String baseColor;
+	private String enterColor;
+	private String baseColor;
 	private boolean selectGeneral;
 	private boolean selectStar;
 	private boolean selectFork;
@@ -74,7 +74,8 @@ public class HomeController implements Initializable {
 	private List<RepositoryVO> forkList;
 	private List<RepositoryVO> contriList;
 	private final String configPath = "file:src/main/java/org/Client/ui/config/";
-	static int skinNum = SkinConfig.getInstance().getSkinNum();
+	private String[] enterColors = { "#5d9b78;", "#ff99c7;", "#cad2dd;" };
+	private String[] baseColors = { "#71af8c;", "#f8aec4;", "#b4b7bb;" };
 
 	public static HomeController getInstance() {
 		if (instance == null) {
@@ -83,23 +84,20 @@ public class HomeController implements Initializable {
 		return instance;
 	}
 
-	public static void getNum() {
-		if (skinNum == 0) {
-			enterColor = "#5d9b78;";
-			baseColor = "#71af8c;";
-		} else if (skinNum == 1) {
-			enterColor = "#c1cce7;";
-			baseColor = "#d4dfff;";
-
-		}else if(skinNum==2){
-			enterColor="#b5b8bb";
-			baseColor="#d5d8dd";
-		}
+	public void setSkinNum(int skinNum) {
+		this.enterColor = enterColors[skinNum];
+		this.baseColor = baseColors[skinNum];
+		tab_general.setStyle(styleStr + baseColor);
+		tab_star.setStyle(styleStr + baseColor);
+		tab_contributor.setStyle(styleStr + baseColor);
+		tab_fork.setStyle(styleStr + baseColor);
 	}
+
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		getNum();
+		instance = this;
+		setSkinNum(SkinConfig.getInstance().getSkinNum());
 		repositoryImpl = RepositoryServiceImpl.getInstance();
 		scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 		pageNum = repositoryImpl.getPageNums();
@@ -207,7 +205,7 @@ public class HomeController implements Initializable {
 				if (i < list.size()) {
 					RepositoryVO vo = list.get(i);
 					controller.setVO(vo);
-					BackHandler.getInstance().setRepoBack(new BackObject(BackType.HOME_REPO,vo.getFull_name()));
+					BackHandler.getInstance().setRepoBack(new BackObject(BackType.HOME_REPO, vo.getFull_name()));
 					box.getChildren().add(single);
 				}
 			} catch (IOException e) {
