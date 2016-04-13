@@ -13,4 +13,10 @@ public class UserRateVO {
 		this.rates = rates;
 	}
 
+	@Override
+	public String toString() {
+		return "UserRateVO [rates=" + rates + "]";
+	}
+
+	
 }

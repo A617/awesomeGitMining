@@ -59,7 +59,9 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 	private List<Integer> popularityRank;
 	private List<Integer> experienceRank;
 	private List<Integer> livenessRank;
-	private List<Integer> contributionRank;
+	private List<Integer> teamworkRank;
+	
+	private int len;
 
 	public UserDaoImpl(IRepoDao repodao) throws RemoteException {
 		long startTime = System.nanoTime();
@@ -79,6 +81,7 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		this.nameList = DataInitHelper.getList(path + "user_name.txt");
 		this.avatar_urlList = DataInitHelper.getList(path + "user_avatar_url.txt");
 		this.languageList = DataInitHelper.getListList(path + "user_languages.txt");
+		this.len = userList.size();
 
 		// experience: 5*contributed + gist
 		List<Integer> experienceScoreList = new ArrayList<>();
@@ -99,10 +102,23 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		this.livenessRank = DataInitHelper.getIntList(path+"user_liveness.txt");
 		
 		
-		// quantity
-		
-		
-		//contribution
+		// quantity&teamwork
+		List<Double> quantityList = new ArrayList<>();
+		List<Double> teamworkList = new ArrayList<>();
+		for(List<String> repos: collaborationsList){
+			double qsum = 0;
+			double tsum = 0;
+			for(String repo:repos){
+				qsum += repodao.getHotScore(repo);
+				tsum += repodao.getCollaboratorNum(repo);
+			}
+			qsum = qsum/repos.size();
+			quantityList.add(qsum);
+			tsum = tsum/repos.size();
+			teamworkList.add(tsum);
+		}
+		quantityRank = rankListDouble(quantityList);
+		teamworkRank = rankListDouble(teamworkList);
 		
 
 		System.out.println("UserDaoImpl initialized!");
@@ -111,7 +127,7 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 	}
 
 	@Override
-	public User getUser(String login) throws IOException {
+	public User getUser(String login){
 		int index = userList.indexOf(login);
 
 		if (index == -1) {
@@ -131,13 +147,24 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		us.setEmail(emailList.get(index));
 		us.setCreated_at(createdTimeList.get(index));
 		us.setAvatar_url(avatar_urlList.get(index));
-
+		
+		
+		//popular,teamwork,liveness,experience,quantity
+		double[] scores = new double[5];
+		scores[0] = 1.0-1.0*popularityRank.get(index)/len;
+		scores[1] = 1.0-1.0*teamworkRank.get(index)/len;
+		scores[2] = 1.0-1.0*livenessRank.get(index)/len;
+		scores[3] = 1.0-1.0*experienceRank.get(index)/len;
+		scores[4] = 1.0-1.0*quantityRank.get(index)/len;
+		us.setScores(scores);
+		
+		
 		return us;
 
 	}
 
 	@Override
-	public String getAvatar(String login) throws IOException {
+	public String getAvatar(String login) {
 		int index = userList.indexOf(login);
 
 		if (index != -1) {
@@ -341,6 +368,31 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 	}
 	
 	
+	
+	private List<Integer> rankListDouble(List<Double> srcList) {
+
+		List<Integer> rankList = new ArrayList<>();
+
+		List<Double> sortList = new ArrayList<>(srcList);
+
+		Collections.sort(sortList, new Comparator<Double>() {
+
+			@Override
+			public int compare(Double o1, Double o2) {
+				return (int) (o2 - o1);
+			}
+		});
+
+		for (double element : srcList) {
+
+			int rank = sortList.indexOf(element);
+
+			rankList.add(rank);
+
+		}
+
+		return rankList;
+	}
 	
 	
 	

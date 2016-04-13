@@ -37,7 +37,7 @@ public class Repository implements Serializable{
 	protected int forks_count;	//琚玣ork鐨勬鏁�
 	protected int subscribers_count;
 	protected double[] scores;
-	
+
 
 	public Repository() {
 		super();
@@ -51,8 +51,8 @@ public class Repository implements Serializable{
 		this.name = name;
 	}
 
-	
-	
+
+
 
 	public double[] getScores() {
 		return scores;
@@ -78,8 +78,8 @@ public class Repository implements Serializable{
 		this.language = language;
 	}
 
-	
-	
+
+
 
 
 	public String getFull_name() {
@@ -233,7 +233,7 @@ public class Repository implements Serializable{
 	public void setSize(int size) {
 		this.size = size;
 	}
-	
+
 	public int getStargazers_count(){
 		return stargazers_count;
 	}
@@ -259,7 +259,7 @@ public class Repository implements Serializable{
 		this.subscribers_count = subscribers_count;
 	}
 
-	
+
 	public List<String> getCollaborators_login() {
 		return collaborators_login;
 	}
@@ -267,8 +267,8 @@ public class Repository implements Serializable{
 	public void setCollaborators_login(List<String> collaborators_login) {
 		this.collaborators_login = collaborators_login;
 	}
-	
-	
+
+
 
 	public Map<String, Integer> getLanguages() {
 		return languages;
@@ -277,8 +277,8 @@ public class Repository implements Serializable{
 	public void setLanguages(Map<String, Integer> languages) {
 		this.languages = languages;
 	}
-	
-	
+
+
 
 	public boolean isFork() {
 		return fork;
@@ -287,6 +287,6 @@ public class Repository implements Serializable{
 	public void setFork(boolean fork) {
 		this.fork = fork;
 	}
-	
+
 }
 

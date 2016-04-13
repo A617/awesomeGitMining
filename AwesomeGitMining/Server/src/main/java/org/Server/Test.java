@@ -9,6 +9,7 @@ import java.util.List;
 import org.Server.dao.DataFactory;
 import org.Server.dao.DataInitHelper;
 import org.Server.dao.RepoDaoImpl;
+import org.Server.dao.UserDaoImpl;
 
 public class Test {
 
@@ -17,36 +18,16 @@ public class Test {
 	
 	public static void main(String[] args) {
 		
-		/*try {
-			RepoDaoImpl repo = (RepoDaoImpl) DataFactory.getRepoDataInstance();
-			repo.test(0);
-			repo.test(10);
-			repo.test(2);
-			repo.test(3);
-			repo.test(4);
+		try {
+			UserDaoImpl user = (UserDaoImpl) DataFactory.getUserDataInstance();
+		
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
 		
-		List<Integer> livenessRank = new ArrayList<>();
-		List<String> updatedTimeList = DataInitHelper.getList(path + "user_updatedTime.txt");
-		List<String> sortList = new ArrayList<>(updatedTimeList);
-		System.out.println(111);
-		Collections.sort(sortList, new Comparator<String>() {
-
-			@Override
-			public int compare(String o1, String o2) {
-				return o2.compareTo(o1);
-			}
-		});
-		for (String element : updatedTimeList) {
-			int rank = sortList.indexOf(element);
-			livenessRank.add(rank);
-		}
 		
-		System.out.println(livenessRank);
+		
 		
 		/*
 		

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,7 @@ import org.Common.vo.UserCreateReposNumVO;
 import org.Common.vo.UserRateVO;
 import org.Common.vo.UserRegisTimeVO;
 import org.Common.vo.UserVO;
+import org.jfree.date.DayOfWeekInMonthRule;
 
 import javafx.scene.image.Image;
 
@@ -54,6 +56,7 @@ public class UserServiceImpl implements UserService {
 		if (instance == null) {
 			instance = new UserServiceImpl();
 		}
+		
 		return instance;
 	}
 
@@ -81,6 +84,8 @@ public class UserServiceImpl implements UserService {
 	public UserVO getUser(String id) {
 		User po = null;
 		UserVO vo = null;
+		System.out.println("getuser");
+		System.out.println(daoImpl);
 		try {
 			po = daoImpl.getUser(id);
 		} catch (IOException e) {
@@ -219,17 +224,18 @@ public class UserServiceImpl implements UserService {
 	public UserRateVO getEvaluation(String id) {
 		UserRateVO vo = new UserRateVO();
 		User po = null;
-		try {
-			po = daoImpl.getUser(id);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			try {
+				po = daoImpl.getUser(id);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		if (po != null) {
-			int[] ranks = {1,1,1,1,1};
-			po.setRanks(ranks);
-			Map<String, Double> map = ScoreCalculator.getUserScore(po.getRanks());
-			if(map==null){
-				System.out.println("map null");
+			Map<String, Double> map = new HashMap<>();
+			int i=0;
+			for(String key:Statistics.userRader){
+				map.put(key, po.getScores()[i]*8);
+				i++;
 			}
 			vo.setRates(map);
 		}

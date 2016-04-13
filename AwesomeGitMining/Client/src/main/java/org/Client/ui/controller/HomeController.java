@@ -186,7 +186,7 @@ public class HomeController implements Initializable {
 		initTabPane(contriList);
 	}
 
-	private void initTabPane(List<RepositoryVO> list) {
+	public void initTabPane(List<RepositoryVO> list) {
 		box = new VBox();
 		VBox.setVgrow(scrollPane, Priority.ALWAYS);
 		box.setSpacing(4);
@@ -205,7 +205,8 @@ public class HomeController implements Initializable {
 				if (i < list.size()) {
 					RepositoryVO vo = list.get(i);
 					controller.setVO(vo);
-					BackHandler.getInstance().setRepoBack(new BackObject(BackType.HOME_REPO, vo.getFull_name()));
+					BackHandler.getInstance().setRepoBack(new BackObject(BackType.HOME_REPO,vo.getFull_name(),generalPage));
+
 					box.getChildren().add(single);
 				}
 			} catch (IOException e) {
@@ -214,6 +215,10 @@ public class HomeController implements Initializable {
 		}
 		scrollPane.setContent(box);
 		box = null;
+	}
+	public void setPage(int num) {
+		generalPage = num;
+		page.setText(generalPage + 1 + " / " + pageNum);
 	}
 
 	@FXML

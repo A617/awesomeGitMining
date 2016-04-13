@@ -27,7 +27,7 @@ public class MySpiderChart extends SpiderWebPlot{
 		super(categoryDataset);
 		this.setSeriesPaint(Color.PINK);
 		this.setSeriesOutlinePaint(Color.pink);
-		this.setSeriesOutlineStroke(new BasicStroke(2));
+		this.setSeriesOutlineStroke(new BasicStroke(3));
 		this.setMaxValue(8);
 		this.setBackgroundAlpha(0);
 		this.setAxisLinePaint(new Color(255, 255,255,0));
@@ -37,11 +37,12 @@ public class MySpiderChart extends SpiderWebPlot{
 	public void drawOutline(Graphics2D g2, Rectangle2D area) {
 	}
 	
-	/*@Override
+	//是否显示指标标签
+	@Override
 	public void drawLabel(final Graphics2D g2, final Rectangle2D plotArea,final double value, 
 			final int cat, final double startAngle,final double extent) {
 		
-	}*/
+	}
 	
 	@Override
 	protected void drawRadarPoly(Graphics2D g2, Rectangle2D plotArea, Point2D centre, PlotRenderingInfo info,
@@ -97,7 +98,7 @@ public class MySpiderChart extends SpiderWebPlot{
                     
                     BigDecimal bd = new BigDecimal(value);
                     bd = bd.setScale(1, BigDecimal.ROUND_HALF_UP);
-                    g2.setFont(new Font("Arail", Font.ITALIC, 14));
+                    g2.setFont(new Font("Arail", Font.ITALIC, 16));
                     g2.setColor(new Color(52,52,52));
                     g2.drawString(bd+"",(float)(point.getX()
                             - headW / 2+6),(float)( point.getY() - headH / 2+12));

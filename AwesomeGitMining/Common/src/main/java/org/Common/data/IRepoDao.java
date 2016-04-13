@@ -98,5 +98,9 @@ public interface IRepoDao extends Remote{
 	 * @param i
 	 * @return
 	 */
-	List<String> getReposByYear(int i) throws RemoteException;
+	public List<String> getReposByYear(int i) throws RemoteException;
+
+	public double getHotScore(String repo) throws RemoteException;
+
+	int getCollaboratorNum(String repo) throws RemoteException;
 }
