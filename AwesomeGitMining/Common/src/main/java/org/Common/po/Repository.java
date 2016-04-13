@@ -36,7 +36,8 @@ public class Repository implements Serializable{
 	protected int stargazers_count;
 	protected int forks_count;	//琚玣ork鐨勬鏁�
 	protected int subscribers_count;
-	protected int[] ranks; //star銆乫ork銆亀atchers銆乻ubscribers銆乮ssues銆乧ontributors銆乧ollabotators鏁扮洰鎺掑悕鎺掑悕
+	protected double[] scores;
+	
 
 	public Repository() {
 		super();
@@ -52,12 +53,13 @@ public class Repository implements Serializable{
 
 	
 	
-	public int[] getRanks() {
-		return ranks;
+
+	public double[] getScores() {
+		return scores;
 	}
 
-	public void setRanks(int[] ranks) {
-		this.ranks = ranks;
+	public void setScores(double[] scores) {
+		this.scores = scores;
 	}
 
 	public String getOwner_name() {

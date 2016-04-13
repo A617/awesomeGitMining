@@ -3,6 +3,7 @@ package org.Client.business.impl.repository;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -262,7 +263,12 @@ public class RepositoryServiceImpl implements RepositoryService {
 				e.printStackTrace();
 			}
 			if (po != null) {
-				Map<String, Double> map = ScoreCalculator.getReposScore(po.getRanks());
+				Map<String, Double> map = new HashMap<>();
+				map.put("size", po.getScores()[0]*8);
+				map.put("scale", po.getScores()[1]*8);
+				map.put("promising", po.getScores()[4]*8);
+				map.put("partcipation", po.getScores()[3]*8);
+				map.put("hot", po.getScores()[2]*8);
 				vo.setRates(map);
 			}
 		}

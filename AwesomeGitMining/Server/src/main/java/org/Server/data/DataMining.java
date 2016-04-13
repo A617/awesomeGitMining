@@ -34,12 +34,31 @@ public class DataMining {
 
 		long startTime = System.nanoTime();
 
-		// caculateUserScores();
-		// getDataFromDtaMining("http://www.gitmining.net/api/user/",
-		// path+"user_gists.txt", "public_gists");
+	// caculateUserScores();
+	//	getDataFromDtaMining("http://www.gitmining.net/api/repository/",path+"repo_size.txt", "size");
 
-		getDataFromGithub("api.github.com/repos/", path + "repo_staredTime.txt", "starred_at");
+	//	getDataFromGithub("api.github.com/repos/", path + "repo_staredTime.txt", "starred_at");
 
+		
+		
+		List<Integer> livenessRank = new ArrayList<>();
+		List<String> updatedTimeList = DataInitHelper.getList(path + "user_updatedTime.txt");
+		List<String> sortList = new ArrayList<>(updatedTimeList);
+		System.out.println(111);
+		Collections.sort(sortList, new Comparator<String>() {
+
+			@Override
+			public int compare(String o1, String o2) {
+				return o2.compareTo(o1);
+			}
+		});
+		for (String element : updatedTimeList) {
+			int rank = sortList.indexOf(element);
+			livenessRank.add(rank);
+		}
+		
+		writeToTxt(path+"user_liveness.txt", livenessRank);
+		
 		long endTime = System.nanoTime();
 		System.out.println("Took " + (endTime - startTime) + " ns");
 	}
@@ -120,24 +139,21 @@ public class DataMining {
 
 			for (String repo : repos) {
 				
-				if(repo.equals("rubyspec/mspec"))
+				if(repo.equals("geoscript/geoscript-py"))
 					flag = true;
+				
 				if(!flag)
 					continue;
+				
 				int i = 1;
 				String page="";
 				int sum = 0;
-				while (!page.equals("[]")) {
-
-					System.out.println(i);
-
+				loop:while (!page.equals("[]")) {
 					try {
-						page = HttpRequest.sendGetWithAuth(url + repo + "/stargazers", "?per_page=100&page=" + i);
+						page = HttpRequest.sendGetViaAcceptHeader(url + repo + "/stargazers", "?per_page=100&page=" + i);
 					} catch (IOException e) {
 						System.out.println(i);
 						e.printStackTrace();
-						writer.newLine();
-						writer.flush();
 						break;
 					}
 					logins = JsonUtil.getListfromJsonArray(page, key);
@@ -177,7 +193,7 @@ public class DataMining {
 	 */
 	public static void getDataFromDtaMining(String url, String path, String key) {
 
-		List<String> repositories = readFromUserTxt();
+		List<String> repositories = readFromRepoTxt();
 		System.out.println(repositories.size());
 
 		String page = "";

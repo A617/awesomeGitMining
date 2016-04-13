@@ -1,42 +1,95 @@
 package org.Server;
 
-import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
-import org.Common.data.IRepoDao;
-import org.Common.data.IUserDao;
 import org.Server.dao.DataFactory;
-import org.Server.dao.HttpRequest;
-import org.Server.dao.JsonUtil;
+import org.Server.dao.DataInitHelper;
+import org.Server.dao.RepoDaoImpl;
 
 public class Test {
+
+	private final static String path = "src/main/java/org/Server/data/gitmining-api/";
 
 	
 	public static void main(String[] args) {
 		
 		/*try {
-			IUserDao user = DataFactory.getUserDataInstance();
-			for(String list:user.getUsersByCompany(0))
-				System.out.println(list);
+			RepoDaoImpl repo = (RepoDaoImpl) DataFactory.getRepoDataInstance();
+			repo.test(0);
+			repo.test(10);
+			repo.test(2);
+			repo.test(3);
+			repo.test(4);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		*/
 		
-		
-		try {
-			String jsonStr = HttpRequest.sendGetViaAcceptHeader("api.github.com/repos/rubinius/rubinius/stargazers", "?page=87");
-			List<String> list = JsonUtil.getListfromJsonArray(jsonStr, "starred_at");
-			
-			for(String time:list){
-				if(time.compareTo("2016-04-01T00:00:00Z")>0)
-					System.out.println(time);
+		List<Integer> livenessRank = new ArrayList<>();
+		List<String> updatedTimeList = DataInitHelper.getList(path + "user_updatedTime.txt");
+		List<String> sortList = new ArrayList<>(updatedTimeList);
+		System.out.println(111);
+		Collections.sort(sortList, new Comparator<String>() {
+
+			@Override
+			public int compare(String o1, String o2) {
+				return o2.compareTo(o1);
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		});
+		for (String element : updatedTimeList) {
+			int rank = sortList.indexOf(element);
+			livenessRank.add(rank);
 		}
+		
+		System.out.println(livenessRank);
+		
+		/*
+		
+		String[] languages = Statistics.language;
+		
+		List<String> languageList = DataInitHelper.getList(path + "repo-language.txt");;
+		int len = languageList.size();
+		int[] sizeList= DataInitHelper.getIntArray(path + "repo_size.txt", len);;
+
+		
+		List<Integer> result = new ArrayList<>();
+
+		for (int k = 0; k < len; k++) {
+			if (languageList.get(k).equals(languages[0]))
+				result.add(sizeList[k]);
+			else
+				result.add(-1);
+
+		}
+		
+		System.out.println(result);
+		*/
+		
+		/*List<String> logins;
+			int i = 1;
+			String page="";
+			int sum = 0;
+			loop:while (!page.equals("[]")) {
+				try {
+					page = HttpRequest.sendGetViaAcceptHeader("api.github.com/repos/chao/RESTClient/stargazers", "?per_page=100&page=" + i);
+				} catch (IOException e) {
+					System.out.println(i);
+					e.printStackTrace();
+					break;
+				}
+				logins = JsonUtil.getListfromJsonArray(page, "starred_at");
+
+				for (String login : logins) {
+					if(login.compareTo("2016-03-15T00:00:00Z")>0)
+						System.out.println(login);
+				}
+				i++;
+			}
+		*/	
 	}
 }
