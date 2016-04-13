@@ -306,7 +306,7 @@ public class ProjectController implements Initializable {
 			cell.setOnMouseReleased((MouseEvent t) -> {
 				String temp = cell.getText();
 				if (temp != null) {
-					BackHandler.getInstance().setUserBack(new BackObject(BackType.REPO, projectNameLabel.getText()));
+					BackHandler.getInstance().setUserBack(new BackObject(BackType.REPO, projectNameLabel.getText(),0));
 					MainController.getInstance().setGroup("Ui_UserPanel.fxml");
 					fullVO = userImpl.getUser(temp);
 					if (fullVO != null)
@@ -334,7 +334,7 @@ public class ProjectController implements Initializable {
 			cell.setOnMouseReleased((MouseEvent t) -> {
 				String temp = cell.getText();
 				if (temp != null) {
-					BackHandler.getInstance().setUserBack(new BackObject(BackType.REPO, projectNameLabel.getText()));
+					BackHandler.getInstance().setUserBack(new BackObject(BackType.REPO, projectNameLabel.getText(),0));
 					MainController.getInstance().setGroup("Ui_UserPanel.fxml");
 					fullVO = userImpl.getUser(temp);
 					if (fullVO != null)
