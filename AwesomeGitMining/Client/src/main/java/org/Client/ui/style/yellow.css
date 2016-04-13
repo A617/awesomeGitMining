@@ -11,6 +11,7 @@
 }
 .button:hover {
     -fx-background-color: #3a3a3a;
+    -fx-cursor:hand
 }
 .button:pressed, .button:default:hover:pressed {
   -fx-background-color: white;
@@ -32,9 +33,11 @@
 }
 #repositoryName:hover{
 	-fx-text-fill: #77DDFF;
+	-fx-cursor:hand
 }
 #userName:hover{
 	-fx-text-fill: #77DDFF;
+	-fx-cursor:hand
 }
 #tag{
 	-fx-font-family:"Microsoft YaHei"
