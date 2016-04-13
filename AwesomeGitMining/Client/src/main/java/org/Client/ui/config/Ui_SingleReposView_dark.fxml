@@ -14,19 +14,19 @@
    <children>
       <Line endX="1300.0" endY="198.0" startY="198.0" strokeWidth="10.0" AnchorPane.bottomAnchor="-8.0">
          <stroke>
-            <LinearGradient endX="0.39805825242718446" endY="1.0" startY="0.8543689320388349">
+            <LinearGradient endX="0.0790106333795654" endY="0.9190476190476191" startY="1.0">
                <stops>
                   <Stop color="#c3d6a9" />
-                  <Stop color="#fce4a6d4" offset="1.0" />
+                  <Stop color="#4d9399ea" offset="1.0" />
                </stops>
             </LinearGradient>
          </stroke></Line>
       <Line endX="1300.0" endY="198.0" layoutY="-194.0" startY="198.0" strokeWidth="8.0">
          <stroke>
-            <LinearGradient endX="0.39805825242718446" endY="1.0" startY="0.8543689320388349">
+            <LinearGradient endX="0.08853444290337492" endY="0.7619047619047619" startY="1.0">
                <stops>
                   <Stop color="#c3d6a9" />
-                  <Stop color="#fce4a6d4" offset="1.0" />
+                  <Stop color="#529399eb" offset="1.0" />
                </stops>
             </LinearGradient>
          </stroke>

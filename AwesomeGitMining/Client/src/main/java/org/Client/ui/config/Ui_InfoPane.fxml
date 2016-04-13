@@ -1,13 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="infoPane" prefHeight="134.0" prefWidth="84.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Client.ui.controller.InfoPaneController">
+<AnchorPane fx:id="infoPane" prefHeight="134.0" prefWidth="84.0" style="-fx-background-color: #444749;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Client.ui.controller.InfoPaneController">
    <children>
-      <Label fx:id="yellow" layoutX="23.0" layoutY="14.0" onMouseEntered="#enterYellow" onMouseExited="#exitYellow" onMouseReleased="#selectYellow" />
-      <Label fx:id="pink" layoutX="23.0" layoutY="60.0" onMouseEntered="#enterPink" onMouseExited="#exitPink" onMouseReleased="#selectPink" />
-      <Label fx:id="dark" layoutX="23.0" layoutY="105.0" onMouseEntered="#enterDark" onMouseExited="#exitDark" onMouseReleased="#selectDark" />
+      <Label fx:id="yellow" layoutX="18.0" layoutY="14.0" onMouseEntered="#enterYellow" onMouseExited="#exitYellow" onMouseReleased="#selectYellow" text="Summer">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#9fd64b" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font></Label>
+      <Label fx:id="pink" layoutX="18.0" layoutY="60.0" onMouseEntered="#enterPink" onMouseExited="#exitPink" onMouseReleased="#selectPink" text="Dream">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#d996e3" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font></Label>
+      <Label fx:id="dark" layoutX="18.0" layoutY="105.0" onMouseEntered="#enterDark" onMouseExited="#exitDark" onMouseReleased="#selectDark" text="StarrySky">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#548ca4" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="System Bold" size="10.0" />
+         </font></Label>
    </children>
 </AnchorPane>

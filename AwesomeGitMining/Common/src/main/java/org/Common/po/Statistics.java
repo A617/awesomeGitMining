@@ -66,5 +66,12 @@ public class Statistics {
 		}
 		return -1;
 	}
-
+	public static int getCreateYearIndex(String name) {
+		for (int i = 0; i < year.length; i++) {
+			if(year[i].equals(name)){
+				return i;
+			}
+		}
+		return -1;
+	}
 }

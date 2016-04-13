@@ -11,6 +11,7 @@
 }
 .button:hover {
     -fx-background-color: #3a3a3a;
+    -fx-cursor:hand
 }
 .button:pressed, .button:default:hover:pressed {
   -fx-background-color: white;
@@ -23,7 +24,9 @@
 #headLabel:hover{
 	-fx-background-color: #5d9b78;
 }
-
+#innerBar{
+	-fx-background-color: #71af8c;
+}
 #back{
 	-fx-background-image: url("back5.png");
 }
@@ -32,9 +35,11 @@
 }
 #repositoryName:hover{
 	-fx-text-fill: #77DDFF;
+	-fx-cursor:hand
 }
 #userName:hover{
 	-fx-text-fill: #77DDFF;
+	-fx-cursor:hand
 }
 #tag{
 	-fx-font-family:"Microsoft YaHei"
@@ -105,7 +110,7 @@
     -fx-background-radius: 0;
     -fx-background-position: left center;
 }
-.default-color0.chart-area-symbol { 
+.default-color0.chart-area-symbol {
 	visibility: hidden;
 }
 .default-color0.chart-series-area-line { -fx-stroke: #70CF9F; }
@@ -119,7 +124,7 @@
     -fx-padding: 0;
 }
 
-.table-view *.scroll-bar *.increment-arrow, 
+.table-view *.scroll-bar *.increment-arrow,
 .table-view *.scroll-bar *.decrement-arrow {
     -fx-background-color: null;
     -fx-background-radius: 0;
@@ -153,12 +158,12 @@
 .table-row-cell:odd{
     -fx-background-color: -fx-table-cell-border-color, #70CF9F;
     -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em; /* 0 */  
+    -fx-padding: 0.0em; /* 0 */
 }
 
 .table-view > .virtual-flow > .scroll-bar:vertical,
 .table-view > .virtual-flow > .scroll-bar:vertical > .track,
-.table-view > .virtual-flow > .scroll-bar:vertical > .track-background, 
+.table-view > .virtual-flow > .scroll-bar:vertical > .track-background,
 .table-view > .virtual-flow > .scroll-bar:horizontal,
 .table-view > .virtual-flow > .scroll-bar:horizontal > .track,
 .table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
@@ -167,7 +172,7 @@
 
 
 
-.table-view > .virtual-flow > .scroll-bar > .increment-button, 
+.table-view > .virtual-flow > .scroll-bar > .increment-button,
 .table-view > .virtual-flow > .scroll-bar > .decrement-button {
     -fx-opacity: 0;
 }

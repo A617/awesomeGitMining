@@ -9,6 +9,8 @@ import java.util.ResourceBundle;
 import org.Client.business.impl.repository.RepositoryServiceImpl;
 import org.Client.business.service.RepositoryService;
 import org.Client.ui.MainUI;
+import org.Client.ui.utility.BackType;
+import org.Client.ui.utility.HandleBack;
 import org.Client.ui.utility.SkinConfig;
 import org.Common.vo.RepositoryVO;
 
@@ -50,8 +52,8 @@ public class HomeController implements Initializable {
 	private VBox box;
 
 	private String styleStr = "-fx-background-color: ";
-//	private String enterColor = "#5d9b78;";
-//	private String baseColor = "#71af8c;";
+	// private String enterColor = "#5d9b78;";
+	// private String baseColor = "#71af8c;";
 	private static String enterColor;
 	private static String baseColor;
 	private boolean selectGeneral;
@@ -71,23 +73,29 @@ public class HomeController implements Initializable {
 	private List<RepositoryVO> forkList;
 	private List<RepositoryVO> contriList;
 	private final String configPath = "file:src/main/java/org/Client/ui/config/";
-    static int skinNum=SkinConfig.getInstance().getSkinNum();
+	static int skinNum = SkinConfig.getInstance().getSkinNum();
+
 	public static HomeController getInstance() {
 		if (instance == null) {
 			instance = new HomeController();
 		}
 		return instance;
 	}
-	public static void getNum(){
-		if(skinNum==0){
+
+	public static void getNum() {
+		if (skinNum == 0) {
 			enterColor = "#5d9b78;";
 			baseColor = "#71af8c;";
-		}else if(skinNum==1){
+		} else if (skinNum == 1) {
 			enterColor = "#c1cce7;";
 			baseColor = "#d4dfff;";
 
+		}else if(skinNum==2){
+			enterColor="#b5b8bb";
+			baseColor="#d5d8dd";
 		}
 	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		getNum();
@@ -198,6 +206,7 @@ public class HomeController implements Initializable {
 				if (i < list.size()) {
 					RepositoryVO vo = list.get(i);
 					controller.setVO(vo);
+					HandleBack.getInstance().setRepoBack(BackType.HOME_PROJECT,vo.getFull_name());
 					box.getChildren().add(single);
 				}
 			} catch (IOException e) {
@@ -371,7 +380,9 @@ public class HomeController implements Initializable {
 					// 把其他tag变回原来的颜色
 					for (int i = 0; i < group_language.getChildren().size(); i++) {
 						Label label = (Label) group_language.getChildren().get(i);
-						label.setStyle("-fx-background-color:transparent;");
+						if (label.getStyle().equals("-fx-background-color:#5d9b78;")) {
+							label.setStyle("-fx-background-color:transparent;");
+						}
 					}
 					String text = label.getText();
 					// 如果是all，返回初始界面
@@ -388,7 +399,7 @@ public class HomeController implements Initializable {
 						System.out.println("Ui_ReposTagPane加载失败");
 					}
 					ReposTagPaneController controller = loader.getController();
-					controller.setText(text);
+					controller.setLanguage(text);
 					listPane.getChildren().clear();
 					listPane.getChildren().add(result);
 					label.setStyle("-fx-background-color:#5d9b78;");
@@ -407,9 +418,16 @@ public class HomeController implements Initializable {
 				public void handle(MouseEvent arg0) {
 					for (int i = 0; i < group_year.getChildren().size(); i++) {
 						Label label = (Label) group_year.getChildren().get(i);
-						label.setStyle("-fx-background-color:transparent;");
+						if (label.getStyle().equals("-fx-background-color:#5d9b78;")) {
+							label.setStyle("-fx-background-color:transparent;");
+						}
 					}
 					String text = label.getText();
+					// 如果是all，返回初始界面
+					if (text.equals("All")) {
+						MainController.getInstance().setPanel("main.fxml");
+						return;
+					}
 					FXMLLoader loader = new FXMLLoader();
 					loader.setLocation(MainUI.class.getResource("config/Ui_ReposTagPane.fxml"));
 					AnchorPane result = null;
@@ -419,23 +437,9 @@ public class HomeController implements Initializable {
 						System.out.println("Ui_ReposTagPane加载失败");
 					}
 					ReposTagPaneController controller = loader.getController();
-					controller.setText(text);
+					controller.setYear(text);
 					listPane.getChildren().clear();
 					listPane.getChildren().add(result);
-					// String text = label.getText();
-					// FXMLLoader loader = new FXMLLoader();
-					// loader.setLocation(MainUI.class.getResource("config/Ui_ReposTagPane.fxml"));
-					// AnchorPane result = null;
-					// try {
-					// result = (AnchorPane) loader.load();
-					// } catch (IOException e) {
-					// System.out.println("Ui_ReposTagPane加载失败");
-					// }
-					// ReposTagPaneController controller =
-					// loader.getController();
-					// controller.setText(text);
-					listPane.getChildren().clear();
-					// listPane.getChildren().add(result);
 					label.setStyle("-fx-background-color:#5d9b78;");
 				}
 
