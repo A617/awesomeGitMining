@@ -212,8 +212,18 @@ public class UserController implements Initializable {
 		}
 		// raderchart
 					UserRateVO ratevo = userImpl.getEvaluation(vo.getName());
+
+					if(ratevo==null){
+						System.out.print("ratevo=null");
+					}
+					if(ratevo.getRates()==null){
+						System.out.print("ratevo get rates null");
+					}
 					if (ratevo != null) {
 						createRader(ratevo.getRates());
+						if(ratevo.getRates()==null){
+							System.out.print("ratevo null");
+						}
 					}
 
 
@@ -224,16 +234,17 @@ public class UserController implements Initializable {
 
 
 
-	private void createRader(Map<String, Integer> map) {
+	private void createRader(Map<String, Double> map) {
 		dataset = new DefaultCategoryDataset();
 		String group1 = "score";
-		System.out.print("b");
-		dataset.addValue(map.get("a"), group1, "a");
-		dataset.addValue(map.get("b"), group1, "b");
-		dataset.addValue(map.get("c"), group1, "c");
-		dataset.addValue(map.get("d"), group1, "d");
-		dataset.addValue(map.get("e"), group1, "e");
-		System.out.print("c");
+		if(map==null){
+			System.out.print("233");
+		}
+		dataset.addValue(map.get("famous"), group1, "famous");
+		dataset.addValue(map.get("mature"), group1, "mature");
+		dataset.addValue(map.get("contributor"), group1, "contributor");
+		dataset.addValue(map.get("popular"), group1, "popular");
+		dataset.addValue(map.get("hot"), group1, "hot");
 		swingNode = new SwingNode();
 
 		ProgressIndicator pin = new ProgressIndicator(-1);

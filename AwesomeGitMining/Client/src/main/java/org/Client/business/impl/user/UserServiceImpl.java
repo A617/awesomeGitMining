@@ -225,7 +225,12 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 		}
 		if (po != null) {
-			Map<String, Integer> map = ScoreCalculator.getUserScore(po.getRanks());
+			int[] ranks = {1,1,1,1,1};
+			po.setRanks(ranks);
+			Map<String, Double> map = ScoreCalculator.getUserScore(po.getRanks());
+			if(map==null){
+				System.out.println("map null");
+			}
 			vo.setRates(map);
 		}
 		return vo;

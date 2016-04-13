@@ -45,19 +45,27 @@ public class ScoreCalculator {
 		return map;
 
 	}
-	public static Map<String,Integer> getUserScore(int[]rates){
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		 //TODO
-		int a=1;
-		map.put("a", 1);
-		int b=2;
-		map.put("b", 2);
-		int c=3;
-		map.put("c", 3);
-		int d=4;
-		map.put("d", 4);
-		int e=5;
-		map.put("e", 1);
+	public static Map<String,Double> getUserScore(int[]rates){
+		Map<String, Double> map = new HashMap<String,Double>();
+		double star = (REPOS_LEN - rates[0]) / (REPOS_LEN * 1.0);
+		double fork = (REPOS_LEN - rates[1]) / (REPOS_LEN * 1.0);
+		double watcher = (REPOS_LEN - rates[2]) / (REPOS_LEN * 1.0);
+		double subscriber = (REPOS_LEN - rates[3]) / (REPOS_LEN * 1.0);
+		double contributor = (REPOS_LEN - rates[5]) / (REPOS_LEN * 1.0);
+		// famous should be related to star,fork,watchers
+		double fscore = (star + fork + watcher) / 3 * 8;
+		map.put("famous",fscore);
+		// hot should be related to star,subscribers,watchers
+		double hscore = (star + subscriber + watcher) / 3 * 8;
+		map.put("hot", hscore);
+		// popular should be related to star,watcher
+		double pscore = (star + watcher) / 2 * 8;
+		map.put("popular", pscore);
+		// mature should be related to fork
+		double mscore = fork * 8;
+		map.put("mature", mscore);
+		double cscore = contributor * 8;
+		map.put("contributor", cscore);
 		return map;
 	}
 
