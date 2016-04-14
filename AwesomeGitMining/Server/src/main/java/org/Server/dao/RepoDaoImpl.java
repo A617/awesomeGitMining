@@ -339,21 +339,6 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 		return rankList(result);
 	}
 
-	@Override
-	public double getHotScore(String repo) {
-		int index = repoList.indexOf(repo);
-		if (index == -1)
-			return -1;
-		return 1.0 - 1.0 * hotRank.get(index) / len;
-	}
-
-	@Override
-	public int getCollaboratorNum(String repo) {
-		int index = repoList.indexOf(repo);
-		if (index == -1)
-			return -1;
-		return collaNumList.get(index);
-	}
 
 	
 	@Override
@@ -371,6 +356,27 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 		return result;
 	}
 	
+	
+	@Override
+	public List<Integer> getAllStar(){
+		return DataInitHelper.getIntList(path+"repo_stargazers.txt");
+	}
+	
+	
+	@Override
+	public List<Integer> getAllFork(){
+		return DataInitHelper.getIntList(path+"repo_forkrepos.txt");
+	}
+	
+	@Override
+	public List<Integer> getAllSize(){
+		return DataInitHelper.getIntList(path+"repo_size.txt");
+	}
+	
+	@Override
+	public List<String> getAllLanguage(){
+		return DataInitHelper.getList(path+"repo-language.txt");
+	}
 	
 /*
 	private void initRanks(){

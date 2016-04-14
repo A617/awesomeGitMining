@@ -100,14 +100,18 @@ public interface IRepoDao extends Remote{
 	 */
 	public List<String> getReposByYear(int i) throws RemoteException;
 
-	public double getHotScore(String repo) throws RemoteException;
-
-	public int getCollaboratorNum(String repo) throws RemoteException;
-
 	/**
 	 * 根据关键字搜索项目
 	 * @param key
 	 * @return
 	 */
 	public List<String> getReposByKeyword(String key) throws RemoteException;
+
+	List<Integer> getAllStar() throws RemoteException;
+
+	List<Integer> getAllFork() throws RemoteException;
+
+	List<Integer> getAllSize() throws RemoteException;
+
+	List<String> getAllLanguage() throws RemoteException;
 }
