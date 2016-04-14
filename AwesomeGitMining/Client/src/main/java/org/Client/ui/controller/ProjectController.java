@@ -289,7 +289,7 @@ public class ProjectController implements Initializable {
 	
 	private void setLabel() {
 		Label caption = new Label("");
-		caption.setTextFill(Color.DARKGREY);
+		caption.setTextFill(Color.BLACK);
 		caption.setStyle("-fx-font: 13 arial;");
 		for (final PieChart.Data data : piechart.getData()) {
 			Node n = data.getNode();
@@ -297,13 +297,13 @@ public class ProjectController implements Initializable {
 				@Override
 				public void handle(MouseEvent e) {
 					n.setCursor(Cursor.HAND);
-					caption.setTranslateX(e.getSceneX());
-					caption.setTranslateY(e.getSceneY());
-					caption.setText(String.valueOf(data.getPieValue()));
+//					caption.setTranslateX(e.getSceneX());
+//					caption.setTranslateY(e.getSceneY());
+//					caption.setText(String.valueOf(data.getPieValue()));
 				}
 			});
 		}
-		piePane.getChildren().add(caption);
+//		piePane.getChildren().add(caption);
 	}
 
 	private void addAreaChart() {
