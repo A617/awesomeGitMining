@@ -20,6 +20,9 @@
   -fx-background-color: white;
   -fx-text-fill: #1d1d1d;
 }
+#reposStaLeftPane{
+	-fx-background-color: #71af8c;
+}
 #headPane{
 	-fx-background-color: #67a582;
 }

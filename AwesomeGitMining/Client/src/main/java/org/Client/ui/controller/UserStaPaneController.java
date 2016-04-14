@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 public class UserStaPaneController implements Initializable {
+	private static UserStaPaneController instance;
 	@FXML
 	private Label type;
 	@FXML
@@ -31,8 +32,8 @@ public class UserStaPaneController implements Initializable {
 	private AnchorPane center;
 
 	private String styleStr = "-fx-background-color: ";
-	private static String enterColor;
-	private static String baseColor;
+	private String enterColor;
+	private String baseColor;
 	private boolean selectType;
 	private boolean selectRegisterTime;
 	private boolean selectCollaborate;
@@ -54,9 +55,14 @@ public class UserStaPaneController implements Initializable {
 		company.setStyle(styleStr + baseColor);
 		follower.setStyle(styleStr + baseColor);
 		blank.setStyle(styleStr + baseColor);
+		collaborate.setStyle(styleStr + baseColor);
+	}
+	public static UserStaPaneController getInstance(){
+		return instance;
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		instance = this;
 		//setChart("Ui_UserTypeChar.fxml");
 		setSkinNum(SkinConfig.getInstance().getSkinNum());
 		blank.setStyle(styleStr + baseColor);
