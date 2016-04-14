@@ -1,5 +1,7 @@
 package org.Client.ui.utility;
 
+import java.util.List;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -54,9 +56,9 @@ public class ScatterChartGenerator {
 		setupHover();
 	}
 	
-	public void setData(int[] x,double[] y) {
-		for(int i = 0;i<x.length;i++) {
-			series.getData().add(new XYChart.Data<Number, Number>(x[i], 0));
+	public void setData(List<Integer> x,List<Double> y) {
+		for(int i = 0;i<x.size();i++) {
+			series.getData().add(new XYChart.Data<Number, Number>(x.get(i), 0));
 		}
 		Timeline tl = new Timeline();
 		tl.getKeyFrames().add(new KeyFrame(Duration.millis(500), new EventHandler<ActionEvent>() {
@@ -64,7 +66,7 @@ public class ScatterChartGenerator {
 			public void handle(ActionEvent actionEvent) {
 				int i = 0;
 				for (Data<Number, Number> data : series.getData()) {
-					data.setYValue(y[i]);
+					data.setYValue(y.get(i));
 					i++;
 				}
 			}

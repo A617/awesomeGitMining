@@ -1,6 +1,7 @@
 package org.Client.ui.controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.Client.business.impl.user.UserServiceImpl;
@@ -23,8 +24,8 @@ public class FollowerController implements Initializable {
 		service = UserServiceImpl.getInstance();
 
 		FollowersVO vo = service.getFollowerStatistics();
-		int[] follower = vo.getFollowers();
-		double[] stars = vo.getRepoAvgStars();
+		List<Integer> follower = vo.getFollowers();
+		List<Double> stars = vo.getRepoAvgStars();
 
 		ScatterChartGenerator generator = new ScatterChartGenerator(pane, "Star and Fork");
 		generator.setData(follower, stars);
