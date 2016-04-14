@@ -118,36 +118,6 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 	}
 
 	
-
-	private static <T> void writeToTxt(String path, List<T> list) {
-		// write to txt
-		FileWriter fw = null;
-		BufferedWriter writer = null;
-		File file = new File(path);
-
-		try {
-
-			fw = new FileWriter(file);
-			writer = new BufferedWriter(fw);
-
-			for (T i : list) {
-				writer.write(i + "");
-				writer.newLine();
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				writer.flush();
-				writer.close();
-				fw.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
 	
 	@Override
 	public Repository getRepository(String name) throws IOException {
@@ -276,6 +246,8 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 			JSONArray line = it.next();
 			list.add(line.getInt(1) + line.getInt(2));
 		}
+		
+		System.out.println("code frequency");
 
 		return list;
 	}

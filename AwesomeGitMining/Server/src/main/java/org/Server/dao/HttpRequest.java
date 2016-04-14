@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -30,16 +31,16 @@ public class HttpRequest {
 
 		// 合成url
 		URL realUrl = new URL(url + param);
-		
-	//	System.out.println(url + param);
+
+		// System.out.println(url + param);
 
 		// 打开和URL之间的连接
 		URLConnection connection = realUrl.openConnection();
-		
-	/*
-	 	connection.setConnectTimeout(10000);
-		connection.setReadTimeout(10000);
-*/
+
+		/*
+		 * connection.setConnectTimeout(10000);
+		 * connection.setReadTimeout(10000);
+		 */
 		// System.out.println("Connected: "+realUrl);
 
 		// 读取URL的响应
@@ -75,37 +76,50 @@ public class HttpRequest {
 			e.printStackTrace();
 		}
 		if (myURL != null) {
-			URLConnection connection = myURL.openConnection();
-			String authString = "Basic " + Base64.encodeBase64String((token + ":x-oauth-basic").getBytes());
-			connection.setRequestProperty("Authorization", authString);
-			
-			in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-			String line;
-			while ((line = in.readLine()) != null) {
-				result += line;
+
+
+			int times = 3;
+			int responseCode = 0;
+			while (true) {
+				HttpURLConnection connection = (HttpURLConnection) myURL.openConnection();
+				String authString = "Basic " + Base64.encodeBase64String((token + ":x-oauth-basic").getBytes());
+				connection.setRequestProperty("Authorization", authString);
+				connection.setRequestProperty("Connection", "Keep-Alive");
+				connection.setConnectTimeout(2000);
+				connection.connect();
+				responseCode = connection.getResponseCode();
+				if (responseCode == 200) {
+					in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+					String line;
+					while ((line = in.readLine()) != null) {
+						result += line;
+					}
+					break;
+				}
+				times--;
+				System.out.println(responseCode);
 			}
+
 		}
 		return result;
 
 	}
 
-	
 	public static InputStream sendGetforStream(String url) throws IOException {
 
-		
-	//	System.out.println(url + param);
+		// System.out.println(url + param);
 
 		// 打开和URL之间的连接
 		URLConnection connection = new URL(url).openConnection();
-		
+
 		connection.setConnectTimeout(30000);
 		connection.setReadTimeout(30000);
-		
+
 		InputStream inStream = connection.getInputStream();
-		
-        return inStream;
-    }
-	
+
+		return inStream;
+	}
+
 	public static String sendGetViaAcceptHeader(String url, String param) throws IOException {
 		String newUrl = "https://" + url + param;
 
