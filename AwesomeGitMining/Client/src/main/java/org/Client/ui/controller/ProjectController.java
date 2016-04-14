@@ -14,7 +14,6 @@ import org.Client.ui.MainUI;
 import org.Client.ui.utility.BackHandler;
 import org.Client.ui.utility.BackObject;
 import org.Client.ui.utility.BackType;
-import org.Client.ui.utility.PieChartGenerator;
 import org.Client.ui.utility.RaderChartGenerator;
 import org.Common.po.Statistics;
 import org.Common.vo.CodeFrequencyVO;
@@ -30,10 +29,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingNode;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
@@ -54,6 +54,7 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 public class ProjectController implements Initializable {
@@ -102,6 +103,8 @@ public class ProjectController implements Initializable {
 	@FXML
 	private StackPane piePane;
 	@FXML
+	private PieChart piechart;
+	@FXML
 	private StackPane raderPane;
 	@FXML
 	private AnchorPane pane;
@@ -118,7 +121,6 @@ public class ProjectController implements Initializable {
 
 	private Clipboard clipboard;// 获取系统剪贴板
 	private ClipboardContent content;
-	private PieChart piechart;
 	private DefaultCategoryDataset dataset;
 	private SwingNode swingNode;
 	private UserVO fullVO;
@@ -126,6 +128,7 @@ public class ProjectController implements Initializable {
 	private UserService userImpl;
 	private JPanel panel;
 	private final XYChart.Series<String, Integer> series = new XYChart.Series<>();
+	private ObservableList<PieChart.Data> pieChartData;
 	private RepositoryVO vo;
 
 
@@ -238,12 +241,7 @@ public class ProjectController implements Initializable {
 			coNum.setText(String.valueOf(vo.getCollaborators_login().size()));
 
 			// piechart
-			piechart = PieChartGenerator.getInstance().generateChart(vo.getLanguages());
-			piechart.setMaxSize(240, 340);
-			piechart.setPrefSize(240, 340);
-			piechart.autosize();
-			piePane.getChildren().add(piechart);
-			piePane.setAlignment(Pos.TOP_CENTER);
+			createPieChart(vo.getLanguages());
 
 			// raderchart
 			RepositoryRateVO ratevo = repositoryImpl.showReposRate(vo.getFull_name());
@@ -276,6 +274,36 @@ public class ProjectController implements Initializable {
 			// areaChart
 			addAreaChart();
 		}
+	}
+	
+	private void createPieChart(Map<String,Integer> data) {
+		pieChartData = FXCollections.observableArrayList();
+		for (Map.Entry<String, Integer> entry : data.entrySet()) {
+			pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue()));
+		}
+		piechart.autosize();
+		piechart.setLabelsVisible(false);
+		piechart.setData(pieChartData);
+		setLabel();
+	}
+	
+	private void setLabel() {
+		Label caption = new Label("");
+		caption.setTextFill(Color.DARKGREY);
+		caption.setStyle("-fx-font: 13 arial;");
+		for (final PieChart.Data data : piechart.getData()) {
+			Node n = data.getNode();
+			n.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent e) {
+					n.setCursor(Cursor.HAND);
+					caption.setTranslateX(e.getSceneX());
+					caption.setTranslateY(e.getSceneY());
+					caption.setText(String.valueOf(data.getPieValue()));
+				}
+			});
+		}
+		piePane.getChildren().add(caption);
 	}
 
 	private void addAreaChart() {

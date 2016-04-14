@@ -34,6 +34,7 @@
 }
 #headLabel:hover{
 	-fx-background-color: #cad2dd;
+	-fx-cursor:hand
 }
 #headLabel{
 	-fx-background-color: #b4b7bb;
@@ -55,11 +56,13 @@
 	-fx-text-fill: #77DDFF;
 	-fx-cursor:hand
 }
+
 #tag{
 	-fx-font-family:"Microsoft YaHei"
 }
 #tag:hover{
 	-fx-background-color:#b9c0c9;
+	-fx-cursor:hand
 }
 .scroll-pane .scroll-bar:horizontal .thumb,
 

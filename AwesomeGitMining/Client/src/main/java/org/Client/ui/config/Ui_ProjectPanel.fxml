@@ -93,7 +93,11 @@
                </font>
             </Label>
             <StackPane fx:id="raderPane" layoutX="1006.0" layoutY="24.0" maxHeight="340.0" maxWidth="340.0" prefHeight="340.0" prefWidth="340.0" />
-            <StackPane fx:id="piePane" layoutX="653.0" layoutY="24.0" maxHeight="340.0" maxWidth="340.0" prefHeight="340.0" prefWidth="340.0" />
+            <StackPane fx:id="piePane" layoutX="641.0" layoutY="24.0" prefHeight="340.0" prefWidth="340.0">
+               <children>
+                  <PieChart fx:id="piechart" prefHeight="400.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </StackPane>
             <AreaChart id="areaChart" fx:id="areaChart" layoutX="631.0" layoutY="386.0" prefHeight="311.0" prefWidth="699.0" title="Addition">
               <xAxis>
                 <CategoryAxis label="weeks" side="BOTTOM" />

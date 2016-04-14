@@ -37,6 +37,7 @@
 }
 #headLabel:hover{
 	-fx-background-color: #f46a94;
+	-fx-cursor:hand
 }
 #headLabel{
 	-fx-background-color: #f8aec4;
@@ -60,6 +61,7 @@
 }
 #tag:hover{
 	-fx-background-color:#f8aec4;
+	-fx-cursor:hand
 }
 .scroll-pane .scroll-bar:horizontal .thumb,
 
