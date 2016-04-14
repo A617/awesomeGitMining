@@ -91,7 +91,7 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		this.popularityRank = DataInitHelper.getIntList(path + "user_popularRank.txt");
 		this.teamworkRank = DataInitHelper.getIntList(path + "user_teamworkRank.txt");
 		this.quantityRank = DataInitHelper.getIntList(path + "user_quantityRank.txt");
-		
+
 		System.out.println("UserDaoImpl initialized!");
 		long endTime = System.nanoTime();
 		System.out.println("Took " + (endTime - startTime) + " ns");
@@ -311,84 +311,30 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		return result;
 	}
 
-	private List<Integer> rankList(List<Integer> srcList) {
-
-		List<Integer> rankList = new ArrayList<>();
-
-		List<Integer> sortList = new ArrayList<>(srcList);
-
-		Collections.sort(sortList, new Comparator<Integer>() {
-
-			@Override
-			public int compare(Integer o1, Integer o2) {
-				return o2 - o1;
-			}
-		});
-
-		for (int element : srcList) {
-
-			int rank = sortList.indexOf(element);
-
-			rankList.add(rank);
-
-		}
-
-		return rankList;
+	
+	@Override
+	public List<Integer> getUserFollowers() {
+		return followersList;
 	}
 
-	private List<Integer> rankListDouble(List<Double> srcList) {
-
-		List<Integer> rankList = new ArrayList<>();
-
-		List<Double> sortList = new ArrayList<>(srcList);
-
-		Collections.sort(sortList, new Comparator<Double>() {
-
-			@Override
-			public int compare(Double o1, Double o2) {
-				return (int) (o2 - o1);
+	
+	@Override
+	public List<Double> getUserRepoAvgStars() {
+		List<Double> result = new ArrayList<>();
+		List<Integer> starsList = DataInitHelper.getIntList(path+"repo_stargazers.txt");
+		List<String> repoList = DataInitHelper.getList(path+"repo_fullname.txt");
+		for(List<String> repos:collaborationsList){
+			double sum = 0;
+			for(String repo:repos){
+				int index = repoList.indexOf(repo);
+				if(index!=-1)
+					sum += starsList.get(index);
+				else 
+					System.out.println(repo);
 			}
-		});
-
-		for (double element : srcList) {
-
-			int rank = sortList.indexOf(element);
-
-			rankList.add(rank);
-
+			result.add(sum/repos.size());
 		}
-
-		return rankList;
-	}
-
-	private static <T> void writeToTxt(String path, List<T> list) {
-		// write to txt
-		FileWriter fw = null;
-		BufferedWriter writer = null;
-		File file = new File(path);
-
-		try {
-
-			fw = new FileWriter(file);
-			writer = new BufferedWriter(fw);
-
-			for (T i : list) {
-				writer.write(i + "");
-				writer.newLine();
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				writer.flush();
-				writer.close();
-				fw.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		return result;
 	}
 
 	/*

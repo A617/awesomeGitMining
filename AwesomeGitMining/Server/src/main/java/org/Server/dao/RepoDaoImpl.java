@@ -365,7 +365,7 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 	
 	@Override
 	public List<Integer> getAllFork(){
-		return DataInitHelper.getIntList(path+"repo_forkrepos.txt");
+		return DataInitHelper.getIntList(path+"repo_forkedCount.txt");
 	}
 	
 	@Override
