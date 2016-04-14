@@ -1,24 +1,14 @@
-package org.Client.ui.controller;
-
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-
-import org.Client.business.impl.repository.RepositoryServiceImpl;
-import org.Client.business.service.RepositoryService;
-import org.Common.vo.Language_SizeVO;
+package org.Client.ui.utility;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.control.Label;
@@ -27,61 +17,54 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
-public class Language_SizeController implements Initializable{
-
-	@FXML
-	private AnchorPane pane;
+public class LineChartGenerator {
 	
-	private ScatterChart<String,Number> chart;
+	private LineChart<String, Number> lineChart;
 	private CategoryAxis xAxis = new CategoryAxis();
 	private NumberAxis yAxis = new NumberAxis();
 	private XYChart.Series<String, Number> series;
 	
-	private RepositoryService service;
+	private AnchorPane pane;
 	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		
-		chart = new ScatterChart<String,Number>(xAxis,yAxis);
-		chart.setPrefSize(1166,720);
-		chart.setTitle("Language and Size");
+	
+	public LineChartGenerator(AnchorPane pane,String name) {
+		this.pane = pane;
+		lineChart = new LineChart<String,Number>(xAxis,yAxis);
+		lineChart.setPrefSize(1166,720);
+		lineChart.setTitle(name);
 		series = new XYChart.Series<String, Number>();
-		series.setName("language and size");
+		series.setName(name);
 		
-		service = RepositoryServiceImpl.getInstance();
-		
-		Language_SizeVO vo =service.getlanguage2sizeStatistics();
-		List<String> languages = vo.getLanguages();
-		List<Integer> sizes = vo.getSizes();
-		
-		for(int i=0;i<languages.size();i++){
-			series.getData().add(new XYChart.Data<String,Number>(languages.get(i),0));
+	}
+
+	public void setData(String[] x,int[] y) {
+		for (int i = 0; i < x.length; i++) {
+			series.getData().add(new XYChart.Data<String, Number>(x[i], 0));
 		}
-		
-	
 		Timeline tl = new Timeline();
 		tl.getKeyFrames().add(new KeyFrame(Duration.millis(500), new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent actionEvent) {
 				int i = 0;
 				for (Data<String, Number> data : series.getData()) {
-					data.setYValue(sizes.get(i));
+					data.setYValue(y[i]);
 					i++;
 				}
 			}
 		}));
 		yAxis.setAnimated(false);
 		tl.play();
+		lineChart.getData().add(series);
+		lineChart.setCreateSymbols(true);
+		pane.getChildren().add(lineChart);
 		
-		chart.getData().add(series);
-		pane.getChildren().add(chart);
 		setupHover();
 	}
-	
-	public void setupHover(){
+
+	private void setupHover() {
 		Label label = new Label();
 		label.setTextFill(Color.DARKCYAN);
-		label.setStyle("-fx-font: 11 arial;" + "-fx-opacity:0.5");
+		label.setStyle("-fx-font: 18 arial;" + "-fx-opacity:0.5");
 		
 	    for (final XYChart.Data<String, Number> dt : series.getData()) {
 	        final Node n = dt.getNode();
@@ -92,11 +75,10 @@ public class Language_SizeController implements Initializable{
 	            	n.setCursor(Cursor.HAND);
 	            	label.setLayoutX(n.getLayoutX()+40);
 	            	label.setTranslateY(n.getLayoutY() + 10);
-	            	label.setText("("+dt.getXValue()+","+String.valueOf(dt.getYValue())+")");
+	            	label.setText(String.valueOf(dt.getYValue()));
 	            }
 	        });
 	    }
 	    pane.getChildren().add(label);
 	}
-
 }

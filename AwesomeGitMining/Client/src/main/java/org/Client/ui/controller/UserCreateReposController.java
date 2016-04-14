@@ -50,10 +50,10 @@ public class UserCreateReposController implements Initializable {
 		for (int i = 0; i < data.length; i++) {
 			pieChartData.add(new PieChart.Data(types[i], data[i]));
 		}
-		pieChart.setAnimated(true);
+		//pieChart.setAnimated(true);
 		pieChart.setData(pieChartData);
 		setLabel();
-		setAnimation();
+		//setAnimation();
 	}
 
 	private void setLabel() {

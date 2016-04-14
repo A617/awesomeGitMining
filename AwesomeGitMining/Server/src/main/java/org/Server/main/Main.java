@@ -6,7 +6,11 @@ import java.net.URL;
 
 import org.Server.Test;
 
+import com.sun.javafx.application.PlatformImpl;
+
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -16,6 +20,7 @@ public class Main extends Application {
 
 	private static Main instance;
 	private Stage stage;
+	private Thread th;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -35,7 +40,7 @@ public class Main extends Application {
 
 		stage.show();
 
-		new Thread(new Runnable() {
+		th = new Thread(new Runnable() {
 
 			@Override
 			public void run() {
@@ -43,11 +48,21 @@ public class Main extends Application {
 
 				RMIHelper.init();
 				
-				//MainController.getInstance().handleConnect();
 				System.out.println("server connected");
 			}
-		}).start();
+		});
+	
+		th.setDaemon(true);
+		th.start();
 
+	}
+	
+	
+	@Override
+	public void stop() throws Exception {
+		// TODO Auto-generated method stub
+		
+		System.exit(0);
 	}
 
 	public AnchorPane loadPanel() {

@@ -63,7 +63,7 @@ public class UserController implements Initializable {
 	private Button user_back;
 	@FXML
 	private Label joinTime;
-	
+
 	@FXML
 	private TableView<Contri_ProVO> Contri_Pro_View;
 	@FXML
@@ -209,7 +209,6 @@ public class UserController implements Initializable {
 		}
 		// raderchart
 		UserRateVO ratevo = userImpl.getEvaluation(vo.getLogin());
-		
 
 		if (ratevo != null) {
 
@@ -234,29 +233,14 @@ public class UserController implements Initializable {
 		raderPane.getChildren().clear();
 		raderPane.getChildren().add(pin);
 
-		Task<Void> task = new Task<Void>() {
-			@Override
-			protected Void call() throws Exception {
-				panel = RaderChartGenerator.getInstance().createPanel(dataset,"src/main/java/org/Client/ui/style/raderback_user.png");
-				panel.validate();
-				panel.setPreferredSize(new Dimension(330, 330));
+		panel = RaderChartGenerator.getInstance().createPanel(dataset,
+				"src/main/java/org/Client/ui/style/raderback_user.png");
+		panel.validate();
+		panel.setPreferredSize(new Dimension(330, 330));
 
-				updateProgress(1, 1);
-				return null;
-			}
-		};
-		pin.progressProperty().bind(task.progressProperty());
-		new Thread(task).start();
-
-		pin.progressProperty().addListener((ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
-			if (new_val.intValue() == 1) {
-				if (panel != null) {
-					swingNode.setContent(panel);
-					raderPane.getChildren().clear();
-					raderPane.getChildren().add(swingNode);
-				}
-			}
-		});
+		swingNode.setContent(panel);
+		raderPane.getChildren().clear();
+		raderPane.getChildren().add(swingNode);
 	}
 
 	// 鍦ㄥ姞杞藉ご鍍忕殑鍚屾椂鏄剧ず杩涘害鏉�
@@ -296,85 +280,88 @@ public class UserController implements Initializable {
 		});
 	}
 
-	private class ContributionCellFactory implements Callback<TableColumn<Contri_ProVO, String>, TableCell<Contri_ProVO, String>> {
+	private class ContributionCellFactory
+			implements Callback<TableColumn<Contri_ProVO, String>, TableCell<Contri_ProVO, String>> {
 
 		@Override
 		public TableCell<Contri_ProVO, String> call(TableColumn<Contri_ProVO, String> arg0) {
-			 TextFieldTableCell<Contri_ProVO, String> cell = new TextFieldTableCell<>();
-		        cell.setOnMouseReleased((MouseEvent t) -> {
-		            	String temp = cell.getText();
-		            	repository = repositoryImpl.searchRepositoryInfo(temp);
+			TextFieldTableCell<Contri_ProVO, String> cell = new TextFieldTableCell<>();
+			cell.setOnMouseReleased((MouseEvent t) -> {
+				String temp = cell.getText();
+				repository = repositoryImpl.searchRepositoryInfo(temp);
 
-		            	if(repository!=null) {
-		            		BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER,userNameLabel.getText(),0));
-		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
-		            		ProjectController.getInstance().setVO(repository);
-		            	}
-		        });
-		        cell.setOnMouseEntered((MouseEvent t) -> {
-		        	cell.setCursor(Cursor.HAND);
-					cell.setUnderline(true);
-				});
-				cell.setOnMouseExited((MouseEvent t) -> {
-					cell.setCursor(Cursor.DEFAULT);
-					cell.setUnderline(false);
-				});
+				if (repository != null) {
+					BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER, userNameLabel.getText(), 0));
+					MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
+					ProjectController.getInstance().setVO(repository);
+				}
+			});
+			cell.setOnMouseEntered((MouseEvent t) -> {
+				cell.setCursor(Cursor.HAND);
+				cell.setUnderline(true);
+			});
+			cell.setOnMouseExited((MouseEvent t) -> {
+				cell.setCursor(Cursor.DEFAULT);
+				cell.setUnderline(false);
+			});
 
-		        return cell;
+			return cell;
 		}
 	}
 
-	private class CreateCellFactory implements Callback<TableColumn<Crea_ProVO, String>, TableCell<Crea_ProVO, String>> {
+	private class CreateCellFactory
+			implements Callback<TableColumn<Crea_ProVO, String>, TableCell<Crea_ProVO, String>> {
 
 		@Override
 		public TableCell<Crea_ProVO, String> call(TableColumn<Crea_ProVO, String> arg0) {
-			 TextFieldTableCell<Crea_ProVO, String> cell = new TextFieldTableCell<>();
-		        cell.setOnMouseReleased((MouseEvent t) -> {
-		            	String temp = cell.getText();
-		            	repository = repositoryImpl.searchRepositoryInfo(temp);
+			TextFieldTableCell<Crea_ProVO, String> cell = new TextFieldTableCell<>();
+			cell.setOnMouseReleased((MouseEvent t) -> {
+				String temp = cell.getText();
+				repository = repositoryImpl.searchRepositoryInfo(temp);
 
-		            	if(repository!=null) {
-		            		BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER,userNameLabel.getText(),0));
-		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
-		            		ProjectController.getInstance().setVO(repository);
-		            	}
-		        });
-		        cell.setOnMouseEntered((MouseEvent t) -> {
-		        	cell.setCursor(Cursor.HAND);
-					cell.setUnderline(true);
-				});
-				cell.setOnMouseExited((MouseEvent t) -> {
-					cell.setCursor(Cursor.DEFAULT);
-					cell.setUnderline(false);
-				});
-		        return cell;
+				if (repository != null) {
+					BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER, userNameLabel.getText(), 0));
+					MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
+					ProjectController.getInstance().setVO(repository);
+				}
+			});
+			cell.setOnMouseEntered((MouseEvent t) -> {
+				cell.setCursor(Cursor.HAND);
+				cell.setUnderline(true);
+			});
+			cell.setOnMouseExited((MouseEvent t) -> {
+				cell.setCursor(Cursor.DEFAULT);
+				cell.setUnderline(false);
+			});
+			return cell;
 		}
 	}
 
-	private class CollaborationCellFactory implements Callback<TableColumn<Colla_ProVO, String>, TableCell<Colla_ProVO, String>> {
+	private class CollaborationCellFactory
+			implements Callback<TableColumn<Colla_ProVO, String>, TableCell<Colla_ProVO, String>> {
 
 		@Override
 		public TableCell<Colla_ProVO, String> call(TableColumn<Colla_ProVO, String> arg0) {
-			 TextFieldTableCell<Colla_ProVO, String> cell = new TextFieldTableCell<>();
-		        cell.setOnMouseReleased((MouseEvent t) -> {
-		            	String temp = cell.getText();
-		            	repository = repositoryImpl.searchRepositoryInfo(temp);
+			TextFieldTableCell<Colla_ProVO, String> cell = new TextFieldTableCell<>();
+			cell.setOnMouseReleased((MouseEvent t) -> {
+				String temp = cell.getText();
+				repository = repositoryImpl.searchRepositoryInfo(temp);
 
-		            	if(repository!=null) {
-		            		BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER,userNameLabel.getText(),0));
-		            		MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
-		            		ProjectController.getInstance().setVO(repository);
-		            	}
-		        });
-		        cell.setOnMouseEntered((MouseEvent t) -> {
-		        	cell.setCursor(Cursor.HAND);
-					cell.setUnderline(true);
-				});
-				cell.setOnMouseExited((MouseEvent t) -> {
-					cell.setCursor(Cursor.DEFAULT);
-					cell.setUnderline(false);
-				});
-		        return cell;
+				if (repository != null) {
+					BackHandler.getInstance().setRepoBack(new BackObject(BackType.USER, userNameLabel.getText(), 0));
+					MainController.getInstance().setGroup("Ui_ProjectPanel.fxml");
+					ProjectController.getInstance().setVO(repository);
+				}
+			});
+			cell.setOnMouseEntered((MouseEvent t) -> {
+				cell.setCursor(Cursor.HAND);
+				cell.setUnderline(true);
+			});
+			cell.setOnMouseExited((MouseEvent t) -> {
+				cell.setCursor(Cursor.DEFAULT);
+				cell.setUnderline(false);
+			});
+			return cell;
 		}
 	}
 

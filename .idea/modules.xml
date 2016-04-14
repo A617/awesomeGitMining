@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AwesomeGitMining/AwesomeGitMining.iml" filepath="$PROJECT_DIR$/AwesomeGitMining/AwesomeGitMining.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AwesomeGitMining/Client/Client.iml" filepath="$PROJECT_DIR$/AwesomeGitMining/Client/Client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AwesomeGitMining/Common/Common.iml" filepath="$PROJECT_DIR$/AwesomeGitMining/Common/Common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AwesomeGitMining/Server/Server.iml" filepath="$PROJECT_DIR$/AwesomeGitMining/Server/Server.iml" />
+    </modules>
+  </component>
+</project>
