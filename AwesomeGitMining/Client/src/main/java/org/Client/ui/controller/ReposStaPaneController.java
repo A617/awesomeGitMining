@@ -28,8 +28,8 @@ public class ReposStaPaneController implements Initializable {
 	private Label star;
 	@FXML
 	private Label fork;
-//	@FXML
-//	private Label scatter;
+	@FXML
+	private Label language_size;
 	@FXML
 	private Label star_fork;
 	@FXML
@@ -49,6 +49,7 @@ public class ReposStaPaneController implements Initializable {
 	private boolean selectStar;
 	private boolean selectCreateTime;
 	private boolean selectStar_Fork;
+	private boolean selectLanguage_Size;
 	private int skinNum;
 	private final String configPath = "file:src/main/java/org/Client/ui/config/";
 	private String[] enterColors = { "#5d9b78;", "#bdc9e7;", "#c9cacc;" };
@@ -63,7 +64,7 @@ public class ReposStaPaneController implements Initializable {
 		star.setStyle(styleStr + baseColor);
 		fork.setStyle(styleStr + baseColor);
 //		add.setStyle(styleStr+baseColor);
-//		scatter.setStyle(styleStr+baseColor);
+		language_size.setStyle(styleStr+baseColor);
 		star_fork.setStyle(styleStr+baseColor);
 		blank.setStyle(styleStr + baseColor);
 	}
@@ -112,11 +113,13 @@ public class ReposStaPaneController implements Initializable {
 		selectCreateTime = false;
 		selectStar = false;
 		selectStar_Fork=false;
+		selectLanguage_Size=false;
 		enterLanguage();
 		star.setStyle(styleStr + baseColor);
 		fork.setStyle(styleStr + baseColor);
 		createTime.setStyle(styleStr + baseColor);
 		star_fork.setStyle(styleStr+baseColor);
+		language_size.setStyle(styleStr+baseColor);
 		setChart("Ui_ReposSta.fxml");
 
 	}
@@ -138,11 +141,13 @@ public class ReposStaPaneController implements Initializable {
 		selectCreateTime = false;
 		selectStar = false;
 		selectStar_Fork=false;
+		selectLanguage_Size=false;
 		enterFork();
 		language.setStyle(styleStr + baseColor);
 		star.setStyle(styleStr + baseColor);
 		createTime.setStyle(styleStr + baseColor);
 		star_fork.setStyle(styleStr+baseColor);
+		language_size.setStyle(styleStr+baseColor);
 		setChart("Ui_ForkStatistics.fxml");
 	}
 
@@ -164,11 +169,13 @@ public class ReposStaPaneController implements Initializable {
 		selectCreateTime = false;
 		selectStar = true;
 		selectStar_Fork=false;
+		selectLanguage_Size=false;
 		enterStar();
 		language.setStyle(styleStr + baseColor);
 		fork.setStyle(styleStr + baseColor);
 		createTime.setStyle(styleStr + baseColor);
 		star_fork.setStyle(styleStr+baseColor);
+		language_size.setStyle(styleStr+baseColor);
 		setChart("Ui_StarStatistics.fxml");
 	}
 
@@ -189,11 +196,13 @@ public class ReposStaPaneController implements Initializable {
 		selectCreateTime = true;
 		selectStar = false;
 		selectStar_Fork=false;
+		selectLanguage_Size=false;
 		enterCreateTime();
 		language.setStyle(styleStr + baseColor);
 		fork.setStyle(styleStr + baseColor);
 		star.setStyle(styleStr + baseColor);
 		star_fork.setStyle(styleStr+baseColor);
+		language_size.setStyle(styleStr+baseColor);
 		setChart("Ui_CreateTimeChar.fxml");
 	}
 
@@ -216,11 +225,42 @@ public class ReposStaPaneController implements Initializable {
 		selectCreateTime = false;
 		selectStar = false;
 		selectStar_Fork=true;
+		selectLanguage_Size=false;
 		enterStar_Fork();
 		language.setStyle(styleStr + baseColor);
 		fork.setStyle(styleStr + baseColor);
 		star.setStyle(styleStr + baseColor);
 		createTime.setStyle(styleStr + baseColor);
+		language_size.setStyle(styleStr + baseColor);
 		setChart("Ui_star_fork.fxml");
+	}
+	
+	@FXML
+	public void enterLanguage_Size(){
+		language_size.setStyle(styleStr + enterColor);
+	}
+	
+	@FXML
+	public void exitLanguage_Size(){
+		if (!selectLanguage_Size) {
+			language_size.setStyle(styleStr + baseColor);
+		}
+	}
+	
+	@FXML
+	public void selectLanguage_Size() {
+		selectLanguage = false;
+		selectFork = false;
+		selectCreateTime = false;
+		selectStar = false;
+		selectStar_Fork=false;
+		selectLanguage_Size=true;
+		enterLanguage_Size();
+		language.setStyle(styleStr + baseColor);
+		fork.setStyle(styleStr + baseColor);
+		star.setStyle(styleStr + baseColor);
+		createTime.setStyle(styleStr + baseColor);
+		star_fork.setStyle(styleStr + baseColor);
+		setChart("Ui_language_size.fxml");
 	}
 }
