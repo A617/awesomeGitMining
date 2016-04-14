@@ -36,21 +36,25 @@ public class UserStaPaneController implements Initializable {
 	private boolean selectCollaborate;
 	private boolean selectCreate;
 	private boolean selectCompany;
-	static int skinNum=SkinConfig.getInstance().getSkinNum();
+	private final String configPath = "file:src/main/java/org/Client/ui/config/";
+	private String[] enterColors = { "#5d9b78;", "#bdc9e7;", "#c9cacc;" };
+	private String[] baseColors = { "#71af8c;", "#d4dfff;", "#d5d8dd;" };
+	private int skinNum;
 
-	public static void getNum(){
-		if(skinNum==0){
-			enterColor = "#69b589;";
-			baseColor = "#74c996;";
-		}else if(skinNum==1){
-			enterColor="#abb7d3;";
-			baseColor="#c1cce7;";
-		}
+	public void setSkinNum(int skinNum) {
+		this.skinNum = skinNum;
+		this.enterColor = enterColors[skinNum];
+		this.baseColor = baseColors[skinNum];
+		type.setStyle(styleStr + baseColor);
+		registerTime.setStyle(styleStr + baseColor);
+		create.setStyle(styleStr + baseColor);
+		company.setStyle(styleStr + baseColor);
+		blank.setStyle(styleStr + baseColor);
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		//setChart("Ui_UserTypeChar.fxml");
-		getNum();
+		setSkinNum(SkinConfig.getInstance().getSkinNum());
 		blank.setStyle(styleStr + baseColor);
 		selectCompany();
 
