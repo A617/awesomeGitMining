@@ -19,6 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class BarChartGenerator {
+	
 	private BarChart<String, Integer> barChart;
 	private CategoryAxis xAxis;
 	private NumberAxis yAxis;
