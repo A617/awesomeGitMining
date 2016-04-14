@@ -8,6 +8,7 @@ import org.Common.vo.ForksStatisticsVO;
 import org.Common.vo.LanguageStatisticsVO;
 import org.Common.vo.RepositoryRateVO;
 import org.Common.vo.RepositoryVO;
+import org.Common.vo.Star_ForkVO;
 import org.Common.vo.StarsStatisticsVO;
 
 /**
@@ -97,6 +98,8 @@ public interface RepositoryService {
 	 * @return a map{0-100,100-200......,number}
 	 */
 	public abstract StarsStatisticsVO getStarsStatistics();
+	
+	public abstract Star_ForkVO getstar_forkStatistics();
 
 	/**
 	 * show repositories by specific language

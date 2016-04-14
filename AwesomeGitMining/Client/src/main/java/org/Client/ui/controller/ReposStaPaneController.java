@@ -1,6 +1,5 @@
 package org.Client.ui.controller;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -8,14 +7,10 @@ import java.util.ResourceBundle;
 import org.Client.business.impl.repository.RepositoryServiceImpl;
 import org.Client.business.service.RepositoryService;
 import org.Client.ui.MainUI;
-import org.Client.ui.utility.BackHandler;
-import org.Client.ui.utility.BackObject;
-import org.Client.ui.utility.BackType;
 import org.Client.ui.utility.SkinConfig;
 import org.Common.vo.CreatedTimeStatisticsVO;
 import org.Common.vo.ForksStatisticsVO;
 import org.Common.vo.LanguageVO;
-import org.Common.vo.RepositoryVO;
 import org.Common.vo.StarsStatisticsVO;
 
 import javafx.fxml.FXML;
@@ -23,8 +18,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
 
 public class ReposStaPaneController implements Initializable {
 	@FXML
@@ -35,14 +28,12 @@ public class ReposStaPaneController implements Initializable {
 	private Label star;
 	@FXML
 	private Label fork;
-	@FXML
-	private Label scatter;
+//	@FXML
+//	private Label scatter;
 	@FXML
 	private Label star_fork;
 	@FXML
 	private Label blank;
-	@FXML
-	private Label add;
 	@FXML
 	private AnchorPane center;
 	private List<LanguageVO> languageList;
@@ -57,7 +48,7 @@ public class ReposStaPaneController implements Initializable {
 	private boolean selectFork;
 	private boolean selectStar;
 	private boolean selectCreateTime;
-	private boolean selectAdd;
+	private boolean selectStar_Fork;
 	private int skinNum;
 	private final String configPath = "file:src/main/java/org/Client/ui/config/";
 	private String[] enterColors = { "#5d9b78;", "#bdc9e7;", "#c9cacc;" };
@@ -71,7 +62,9 @@ public class ReposStaPaneController implements Initializable {
 		createTime.setStyle(styleStr + baseColor);
 		star.setStyle(styleStr + baseColor);
 		fork.setStyle(styleStr + baseColor);
-		add.setStyle(styleStr+baseColor);
+//		add.setStyle(styleStr+baseColor);
+//		scatter.setStyle(styleStr+baseColor);
+		star_fork.setStyle(styleStr+baseColor);
 		blank.setStyle(styleStr + baseColor);
 	}
 
@@ -102,30 +95,6 @@ public class ReposStaPaneController implements Initializable {
 	}
 
 	@FXML
-	public void enterAdd(){
-		add.setStyle(styleStr + enterColor);
-	}
-	@FXML
-	public void exitAdd(){
-		if (!selectAdd) {
-			add.setStyle(styleStr + baseColor);
-		}
-	}
-	@FXML
-	public void selectAdd(){
-		selectLanguage = false;
-		selectFork = false;
-		selectCreateTime = false;
-		selectStar = false;
-		selectAdd=true;
-		enterAdd();
-		language.setStyle(styleStr + baseColor);
-		star.setStyle(styleStr + baseColor);
-		fork.setStyle(styleStr + baseColor);
-		createTime.setStyle(styleStr + baseColor);
-	}
-
-	@FXML
 	public void enterLanguage(){
 		language.setStyle(styleStr + enterColor);
 	}
@@ -138,16 +107,16 @@ public class ReposStaPaneController implements Initializable {
 
 	@FXML
 	public void selectLanguage() {
-		selectAdd=false;
 		selectLanguage = true;
 		selectFork = false;
 		selectCreateTime = false;
 		selectStar = false;
+		selectStar_Fork=false;
 		enterLanguage();
 		star.setStyle(styleStr + baseColor);
 		fork.setStyle(styleStr + baseColor);
 		createTime.setStyle(styleStr + baseColor);
-		add.setStyle(styleStr + baseColor);
+		star_fork.setStyle(styleStr+baseColor);
 		setChart("Ui_ReposSta.fxml");
 
 	}
@@ -164,16 +133,16 @@ public class ReposStaPaneController implements Initializable {
 	}
 	@FXML
 	public void selectFork() {
-		selectAdd=false;
 		selectLanguage = false;
 		selectFork = true;
 		selectCreateTime = false;
 		selectStar = false;
+		selectStar_Fork=false;
 		enterFork();
-		add.setStyle(styleStr + baseColor);
 		language.setStyle(styleStr + baseColor);
 		star.setStyle(styleStr + baseColor);
 		createTime.setStyle(styleStr + baseColor);
+		star_fork.setStyle(styleStr+baseColor);
 		setChart("Ui_ForkStatistics.fxml");
 	}
 
@@ -190,16 +159,16 @@ public class ReposStaPaneController implements Initializable {
 
 	@FXML
 	public void selectStar() {
-		selectAdd=false;
 		selectLanguage = false;
 		selectFork = false;
 		selectCreateTime = false;
 		selectStar = true;
+		selectStar_Fork=false;
 		enterStar();
-		add.setStyle(styleStr + baseColor);
 		language.setStyle(styleStr + baseColor);
 		fork.setStyle(styleStr + baseColor);
 		createTime.setStyle(styleStr + baseColor);
+		star_fork.setStyle(styleStr+baseColor);
 		setChart("Ui_StarStatistics.fxml");
 	}
 
@@ -215,19 +184,43 @@ public class ReposStaPaneController implements Initializable {
 	}
 	@FXML
 	public void selectCreateTime() {
-		selectAdd=false;
 		selectLanguage = false;
 		selectFork = false;
 		selectCreateTime = true;
 		selectStar = false;
+		selectStar_Fork=false;
 		enterCreateTime();
-		add.setStyle(styleStr + baseColor);
 		language.setStyle(styleStr + baseColor);
 		fork.setStyle(styleStr + baseColor);
 		star.setStyle(styleStr + baseColor);
+		star_fork.setStyle(styleStr+baseColor);
 		setChart("Ui_CreateTimeChar.fxml");
 	}
 
-
-
+	@FXML
+	public void enterStar_Fork(){
+		star_fork.setStyle(styleStr + enterColor);
+	}
+	
+	@FXML
+	public void exitStar_Fork(){
+		if (!selectStar_Fork) {
+			star_fork.setStyle(styleStr + baseColor);
+		}
+	}
+	
+	@FXML
+	public void selectStar_Fork() {
+		selectLanguage = false;
+		selectFork = false;
+		selectCreateTime = false;
+		selectStar = false;
+		selectStar_Fork=true;
+		enterStar_Fork();
+		language.setStyle(styleStr + baseColor);
+		fork.setStyle(styleStr + baseColor);
+		star.setStyle(styleStr + baseColor);
+		createTime.setStyle(styleStr + baseColor);
+		setChart("Ui_star_fork.fxml");
+	}
 }

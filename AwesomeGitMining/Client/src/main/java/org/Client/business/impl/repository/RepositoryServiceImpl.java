@@ -20,6 +20,7 @@ import org.Common.vo.ForksStatisticsVO;
 import org.Common.vo.LanguageStatisticsVO;
 import org.Common.vo.RepositoryRateVO;
 import org.Common.vo.RepositoryVO;
+import org.Common.vo.Star_ForkVO;
 import org.Common.vo.StarsStatisticsVO;
 
 /**
@@ -364,6 +365,32 @@ public class RepositoryServiceImpl implements RepositoryService {
 		vo.setNums(nums);
 		vo.setTypes(types);
 		return vo;
+	}
+
+	@Override
+	public Star_ForkVO getstar_forkStatistics() {
+		Star_ForkVO result = new Star_ForkVO();
+		List<Integer> forks = null;
+		List<Integer> stars = null;
+		try {
+			forks = daoImpl.getForksStatistics();
+			stars = daoImpl.getStarsStatistics();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int[] fork = new int[forks.size()];
+		int[] star = new int[stars.size()];
+		for(int i = 0;i<forks.size()-1;i++) {
+			fork[i] = forks.get(i);
+		}
+		for(int i = 0;i<stars.size()-1;i++) {
+			star[i] = stars.get(i);
+		}
+		
+		result.setStar(star);
+		result.setFork(fork);
+		return result;
 	}
 
 	@Override
