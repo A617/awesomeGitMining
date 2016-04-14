@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.Common.data.IRepoDao;
 import org.Server.dao.DataFactory;
 import org.Server.dao.DataInitHelper;
 import org.Server.dao.RepoDaoImpl;
@@ -17,10 +18,26 @@ public class Test {
 
 	
 	public static void main(String[] args) {
-		
+		/*
 		try {
 			UserDaoImpl user = (UserDaoImpl) DataFactory.getUserDataInstance();
+			
+			System.out.println(user.getUserRepoAvgStars());
+			System.out.println(user.getUserFollowers());
 		
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+		
+		IRepoDao repo;
+		try {
+			repo = DataFactory.getRepoDataInstance();
+			System.out.println(repo.getAllFork());
+			System.out.println(repo.getAllLanguage());
+			System.out.println(repo.getAllSize());
+			System.out.println(repo.getAllStar());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

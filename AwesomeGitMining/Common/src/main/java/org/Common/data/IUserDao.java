@@ -122,4 +122,10 @@ public interface IUserDao extends Remote{
 
 
 	public List<String> getUsersByCompany(int i) throws RemoteException;
+
+
+	List<Integer> getUserFollowers() throws RemoteException;
+
+
+	List<Double> getUserRepoAvgStars() throws RemoteException;
 }
