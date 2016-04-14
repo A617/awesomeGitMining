@@ -90,7 +90,7 @@ public class BackHandler {
 		BackObject user = userBackList.get(length-1);
 		switch (user.getType()) {
 		case HOME_USER:
-			MainController.getInstance().setPanel("Ui_UserPagePanel.fxml");
+			MainController.getInstance().setPanel("userPage.fxml");
 //			userList = userImpl.showUsers(user.getPage());
 //			UserPageController.getInstance().setPage(user.getPage());
 //			UserPageController.getInstance().initUser(userList);

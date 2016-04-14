@@ -1,0 +1,18 @@
+.root {
+    -fx-background-image: url("server-running.gif");
+}
+.button {
+    -fx-background-radius: 0.0;
+    -fx-background-color: #71af8c;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11.0pt;
+    -fx-text-fill: white;
+    -fx-background-insets: 0.0 0.0 0.0 0.0, 0.0, 1.0, 2.0;
+}
+.button:hover {
+    -fx-background-color: #3a3a3a;
+}
+.button:pressed, .button:default:hover:pressed {
+  -fx-background-color: white;
+  -fx-text-fill: #1d1d1d;
+}
