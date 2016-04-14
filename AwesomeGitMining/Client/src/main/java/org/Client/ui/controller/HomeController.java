@@ -53,6 +53,8 @@ public class HomeController implements Initializable {
 	private Group Key;
 	@FXML
 	private AnchorPane listPane;
+	@FXML
+	private Label innerBar;
 	private VBox box;
 
 	private String styleStr = "-fx-background-color: ";
