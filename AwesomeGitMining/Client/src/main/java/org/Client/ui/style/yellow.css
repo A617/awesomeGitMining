@@ -1,6 +1,9 @@
 .root {
     -fx-background-image: url("back.png");
 }
+.tooltip{
+	-fx-background-color: #71af8c;
+}
 .button {
     -fx-background-radius: 0.0;
     -fx-background-color: #71af8c;
@@ -42,6 +45,9 @@
 }
 #userName:hover{
 	-fx-text-fill: #77DDFF;
+	-fx-cursor:hand
+}
+#tool:hover{
 	-fx-cursor:hand
 }
 #tag{

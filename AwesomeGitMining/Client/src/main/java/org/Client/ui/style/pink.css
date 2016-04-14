@@ -1,6 +1,9 @@
 .root {
     -fx-background-image: url("back_pink.png");
 }
+.tooltip{
+	-fx-background-color: #ff99c7;
+}
 .button {
     -fx-background-radius: 0.0;
     -fx-background-color: #ff99c7;
@@ -22,6 +25,9 @@
 }
 #innerBar{
 	-fx-background-color: #d4dfff;
+}
+#tool:hover{
+	-fx-cursor:hand
 }
 #headLabel:hover{
 	-fx-background-color: #f46a94;

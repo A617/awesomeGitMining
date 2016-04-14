@@ -9,6 +9,8 @@ import org.Server.Test;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -28,6 +30,7 @@ public class Main extends Application {
 		stage.setHeight(250);
 
 		Scene scene = new Scene(panel);
+		//stage.setBackground(new ImageView(new Image(Test.class.getResourceAsStream("ui/loading.gif"))));
 		scene.getStylesheets().add(Test.class.getResource("ui/server.css").toExternalForm());
 		stage.setScene(scene);
 

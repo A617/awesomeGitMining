@@ -1,6 +1,9 @@
 .root {
     -fx-background-image: url("back_dark.png");
 }
+.tooltip{
+	-fx-background-color: #b9c0c9;
+}
 .button {
     -fx-background-radius: 0.0;
     -fx-background-color: #b9c0c9;
@@ -20,7 +23,9 @@
 #headPane{
 	-fx-background-color: #b4b7bb;
 }
-
+#tool:hover{
+	-fx-cursor:hand
+}
 #headLabel:hover{
 	-fx-background-color: #cad2dd;
 }

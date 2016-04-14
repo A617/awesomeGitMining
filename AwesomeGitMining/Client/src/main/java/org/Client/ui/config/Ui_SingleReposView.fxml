@@ -64,8 +64,8 @@
                   <Label fx:id="stars" prefHeight="28.0" prefWidth="104.0" text="stars" />
                </children>
             </VBox>
-            <Label fx:id="hot" layoutX="467.0" layoutY="32.0" prefHeight="24.0" prefWidth="24.0" />
-            <Label fx:id="promising" layoutX="515.0" layoutY="32.0" prefHeight="24.0" prefWidth="24.0" />
+            <Label id="tool" fx:id="hot" layoutX="467.0" layoutY="32.0" prefHeight="24.0" prefWidth="24.0" />
+            <Label id="tool" fx:id="promising" layoutX="515.0" layoutY="32.0" prefHeight="24.0" prefWidth="24.0" />
          </children>
       </Group>
       <Label fx:id="conLabel" layoutX="642.0" layoutY="14.0" prefHeight="15.0" prefWidth="88.0" style="-fx-background-color: #fdffb4;" text="  contributors  " />

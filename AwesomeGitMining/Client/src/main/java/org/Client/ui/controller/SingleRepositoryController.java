@@ -10,8 +10,10 @@ import org.Common.vo.RepositoryVO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 
 /**
  * @author tj
@@ -94,6 +96,17 @@ public class SingleRepositoryController implements Initializable {
 			fullVO = repositoryImpl.searchRepositoryInfo(vo.getFull_name());
 			ProjectController.getInstance().setVO(fullVO);
 		});
+		
+		hot.setOnMouseEntered((e) -> {
+			Tooltip tooltip = new Tooltip("hot");
+			tooltip.setFont(new Font("Arial", 13));
+			hot.setTooltip(tooltip);
+		});
+		promising.setOnMouseEntered((e) -> {
+			Tooltip tooltip = new Tooltip("promising");
+			tooltip.setFont(new Font("Arial", 13));
+			promising.setTooltip(tooltip);
+		});
 
 		Image image = new Image(MainUI.class.getResourceAsStream("style/contributor.png"));
 		contriNum.setGraphic(new ImageView(image));
@@ -103,14 +116,7 @@ public class SingleRepositoryController implements Initializable {
 		starNum.setGraphic(new ImageView(image));
 
 	}
-
-
-
-	public void labelInit(Label label, String path) {
-		Image image = new Image(MainUI.class.getResourceAsStream("style/" + path));
-		label.setGraphic(new ImageView(image));
-	}
-
+	
 	/**
 	 * set text on the labels
 	 *
@@ -127,11 +133,11 @@ public class SingleRepositoryController implements Initializable {
 			lastUpdated.setText(vo.getUpdated_at()+"");
 			hotNum=vo.getScores()[4]*8;
 			if(hotNum>=7){
-				labelInit(hot,"hot.png");
+				hot.setGraphic(new ImageView(new Image(MainUI.class.getResourceAsStream("style/hot.png"))));
 			}
 			promisingNum=vo.getScores()[3]*8;
 			if(promisingNum>=7){
-				labelInit(promising,"promising.png");
+				promising.setGraphic(new ImageView(new Image(MainUI.class.getResourceAsStream("style/promising.png"))));
 			}
 			//set description
 			String str = vo.getDescription();
