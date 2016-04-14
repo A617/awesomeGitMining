@@ -39,7 +39,7 @@ public class MainController implements Initializable {
 	@FXML
 	private AnchorPane layout;
 	@FXML
-	private AnchorPane center_panel, common;
+	public AnchorPane center_panel, common;
 	@FXML
 	private Label min;
 	@FXML
@@ -91,7 +91,17 @@ public class MainController implements Initializable {
 	public void initPanel() {
 		setPanel(SkinConfig.getInstance().getFxmlResoursePath("main"));
 	}
-
+	
+	/**
+	 * handle when server doesn't connect
+	 */
+	public void setError() {
+		AnchorPane panel = fxmlLoader.loadPanel("Ui_Error.fxml");
+		AnchorPane.setTopAnchor(panel, 270.0);
+		AnchorPane.setLeftAnchor(panel, 600.0);
+		center_panel.getChildren().add(panel);
+	}
+	
 	/**
 	 * the common method to change the current panel
 	 *

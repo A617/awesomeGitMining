@@ -23,8 +23,10 @@ import javafx.concurrent.Task;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -40,6 +42,7 @@ public class MainUI extends Application {
 	private AnchorPane common;
 	public static Group test;
 	private static MainUI ui;
+	private boolean isReady;
 
 	@Override
 	/**
@@ -50,6 +53,7 @@ public class MainUI extends Application {
 		this.stage = primaryStage;
 		primaryStage.initStyle(StageStyle.TRANSPARENT);
 		ui = this;
+		isReady=true;
 
 		common = fxmlLoader.loadPanel("Ui_CommonPart.fxml");
 		stage.setTitle("awesomeGitmining");
@@ -77,8 +81,12 @@ public class MainUI extends Application {
 			protected Void call() throws Exception {
 
 				// 初始化单例
-				RMIHelper.init();
-				System.out.println("init");
+				try {
+					RMIHelper.init();
+					System.out.println("init");
+				} catch (Exception e) {
+					isReady = false;
+				}
 				RepositoryService repositoryImpl = RepositoryServiceImpl.getInstance();
 				UserService userImpl = UserServiceImpl.getInstance();
 
@@ -97,6 +105,9 @@ public class MainUI extends Application {
 			if (new_val.intValue() == 1) {
 				stage.setScene(this.scene);
 				MainController.getInstance().initPanel();
+				if(!isReady) {
+					MainController.getInstance().setError();
+				}
 			}
 		});
 
