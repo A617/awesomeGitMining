@@ -18,19 +18,20 @@ public class Test {
 
 	
 	public static void main(String[] args) {
-		/*
+		
 		try {
 			UserDaoImpl user = (UserDaoImpl) DataFactory.getUserDataInstance();
 			
-			System.out.println(user.getUserRepoAvgStars());
+		//	user.getUserRepoAvgStars();
+		//	System.out.println(user.getUserRepoAvgStars());
 			System.out.println(user.getUserFollowers());
 		
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		
-		
+	/*	
 		IRepoDao repo;
 		try {
 			repo = DataFactory.getRepoDataInstance();
@@ -42,7 +43,7 @@ public class Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		*/
 		
 		
 		

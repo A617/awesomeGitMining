@@ -339,8 +339,11 @@ public class DataInitHelper {
 				while ((line = bufferedReader.readLine()) != null) { // 读取文件每一行
 
 					users = line.split(" ");
-
-					map.add(Arrays.asList(users)); // 向mapR2U中加入一组 项目-用户
+					List<String> l = new ArrayList<>();
+					for (String s : users)
+						if (!s.equals("")&&!s.equals("\n"))
+							l.add(s);
+					map.add(l); // 向mapR2U中加入一组 项目-用户
 
 				}
 
