@@ -247,8 +247,6 @@ public class RepoDaoImpl extends UnicastRemoteObject implements IRepoDao {
 			list.add(line.getInt(1) + line.getInt(2));
 		}
 		
-		System.out.println("code frequency");
-
 		return list;
 	}
 

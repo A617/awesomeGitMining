@@ -26,7 +26,7 @@ public class HttpRequest {
 	 * @return URL 所代表远程资源的响应结果
 	 */
 	public static String sendGet(String url, String param) throws IOException {
-		String result = "";
+		StringBuilder result = new StringBuilder();
 		BufferedReader in = null;
 
 		// 合成url
@@ -47,13 +47,13 @@ public class HttpRequest {
 		in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 		String line;
 		while ((line = in.readLine()) != null) {
-			result += line;
+			result.append(line);
 		}
 
 		// System.out.println("Read: "+realUrl);
 		in.close();
 
-		return result;
+		return result.toString();
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class HttpRequest {
 	public static String sendGetWithAuth(String url, String param) throws IOException {
 
 		String newUrl = "https://" + url + param;
-		String result = "";
+		StringBuilder result = new StringBuilder();
 		BufferedReader in = null;
 
 		URL myURL = null;
@@ -92,7 +92,7 @@ public class HttpRequest {
 					in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 					String line;
 					while ((line = in.readLine()) != null) {
-						result += line;
+						result.append(line);
 					}
 					break;
 				}
@@ -101,7 +101,7 @@ public class HttpRequest {
 			}
 
 		}
-		return result;
+		return result.toString();
 
 	}
 
