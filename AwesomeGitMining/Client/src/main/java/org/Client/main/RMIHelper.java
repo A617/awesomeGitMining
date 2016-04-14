@@ -20,9 +20,7 @@ public class RMIHelper {
     
     public static void init(){
     	
-    	  try {
-    		  
-    		  
+    	  try {	  
 			repoDao = (IRepoDao) Naming.lookup("rmi://"+IP+"/repoDao");
 			userDao = (IUserDao) Naming.lookup("rmi://"+IP+"/userDao");
 			
