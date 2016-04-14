@@ -38,8 +38,9 @@ public class MainController implements Initializable {
 
 	@FXML
 	private AnchorPane layout;
+	@FXML AnchorPane center_panel;
 	@FXML
-	public AnchorPane center_panel, common;
+	private AnchorPane common;
 	@FXML
 	private Label min;
 	@FXML
@@ -54,18 +55,18 @@ public class MainController implements Initializable {
 	private Label userSta;
 	@FXML
 	private Label changeStyle;
-
+	@FXML
+	private Group headGroup;
+	private Label currentHead;
 	private AnchorPane infoPane;
-	private boolean selectRepos;
-	private boolean selectUser;
-	private boolean selectReposSta;
-	private boolean selectUserSta;
 	private String styleStr = "-fx-background-color: ";
 	private int skinNum;
 	private String[] enterColors = { "#5d9b78;", "#ff99c7;", "#cad2dd;" };
 	private String[] baseColors = { "#71af8c;", "#f8aec4;", "#b4b7bb;" };
 	private String[] exitPics = { "exit_normal.png", "exit_normal_pink.png", "exit_normal_dark.png" };
 	private String[] minPics = { "min_normal.png", "min_normal_pink.png", "min_normal_dark.png" };
+	private String[] exitEnterPics = { "exit_move.png", "exit_normal_pink.png", "exit_move_dark.png" };
+	private String[] minEnterPics = { "min_move.png", "min_move_pink.png", "min_move_dark.png" };
 
 	/**
 	 * when start the app, init the homePagePanel
@@ -78,30 +79,21 @@ public class MainController implements Initializable {
 	}
 
 	public void changeLabelStyle() {
-		//退出和最小化按钮
+		// 退出和最小化按钮
 		labelInit(exit, exitPics[skinNum]);
 		labelInit(min, minPics[skinNum]);
-		//导航栏
+		// 导航栏
 		repository.setStyle(styleStr + baseColor);
 		user.setStyle(styleStr + baseColor);
 		repositorySta.setStyle(styleStr + baseColor);
 		userSta.setStyle(styleStr + baseColor);
+		currentHead.setStyle(styleStr + enterColor);
 	}
 
 	public void initPanel() {
-		setPanel(SkinConfig.getInstance().getFxmlResoursePath("main"));
+		setPanel("repositoryPage.fxml");
 	}
-	
-	/**
-	 * handle when server doesn't connect
-	 */
-	public void setError() {
-		AnchorPane panel = fxmlLoader.loadPanel("Ui_Error.fxml");
-		AnchorPane.setTopAnchor(panel, 270.0);
-		AnchorPane.setLeftAnchor(panel, 600.0);
-		center_panel.getChildren().add(panel);
-	}
-	
+
 	/**
 	 * the common method to change the current panel
 	 *
@@ -113,7 +105,7 @@ public class MainController implements Initializable {
 		center_panel.getChildren().clear();
 		center_panel.getChildren().add(panel);
 		// if shows statistics
-		if (name.equals("Ui_ReposStaPane.fxml") || name.equals("Ui_UserSta.fxml")) {
+		if (name.equals("repositoryStaPage.fxml") || name.equals("userStaPage.fxml")) {
 			return;
 		}
 		AnchorPane field = fxmlLoader.loadPanel("Ui_TextField.fxml");
@@ -135,20 +127,52 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		instance = this;
+		// 刚开始默认显示仓库界面
+		this.currentHead = repository;
+		currentHead.setStyle(styleStr + enterColor);
+		addHeadLabelListener();
 		setSkinNum(SkinConfig.getInstance().getSkinNum());
-		selectRepos = true;
-		enterRepos();
 		addDraggableNode(common);
 		infoPane = fxmlLoader.loadPanel("Ui_InfoPane.fxml");
 		infoPane.setLayoutX(changeStyle.getLayoutX());
 		infoPane.setLayoutY(changeStyle.getLayoutY() + changeStyle.getPrefHeight());
-		//换肤按钮
+		// 换肤按钮
 		labelInit(changeStyle, "skin1.png");
 	}
 
 	public void labelInit(Label label, String path) {
 		Image image = new Image(MainUI.class.getResourceAsStream("style/" + path));
 		label.setGraphic(new ImageView(image));
+	}
+
+	public void addHeadLabelListener() {
+		for (int i = 0; i < headGroup.getChildren().size(); i++) {
+			Label label = (Label) headGroup.getChildren().get(i);
+			label.setOnMouseEntered(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					label.setStyle(styleStr + enterColor);
+				}
+
+			});
+			label.setOnMouseReleased(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					label.setStyle(styleStr + enterColor);
+					currentHead = label;
+					setPanel(label.getId() + "Page.fxml");
+				}
+
+			});
+			label.setOnMouseExited(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					label.setStyle(styleStr + baseColor);
+					
+				}
+
+			});
+		}
 	}
 
 	@FXML
@@ -177,25 +201,12 @@ public class MainController implements Initializable {
 
 	@FXML
 	public void enterExit() {
-		if (skinNum == 0) {
-			labelInit(exit, "exit_move.png");
-		} else if (skinNum == 1) {
-			labelInit(exit, "exit_move_pink.png");
-		} else if (skinNum == 2) {
-			labelInit(exit, "exit_move_dark.png");
-		}
+		labelInit(exit, exitEnterPics[skinNum]);
 	}
 
 	@FXML
 	public void exitExit() {
-		if (skinNum == 0) {
-			labelInit(exit, "exit_normal.png");
-		} else if (skinNum == 1) {
-			labelInit(exit, "exit_normal_pink.png");
-		} else if (skinNum == 2) {
-			labelInit(exit, "exit_normal_dark.png");
-		}
-
+		labelInit(exit, exitPics[skinNum]);
 	}
 
 	@FXML
@@ -209,25 +220,12 @@ public class MainController implements Initializable {
 
 	@FXML
 	public void enterMin() {
-		if (skinNum == 0) {
-			labelInit(min, "min_move.png");
-		} else if (skinNum == 1) {
-			labelInit(min, "min_move_pink.png");
-		} else if (skinNum == 2) {
-			labelInit(min, "min_move_dark.png");
-		}
-
+		labelInit(min, minEnterPics[skinNum]);
 	}
 
 	@FXML
 	public void exitMin() {
-		if (skinNum == 0) {
-			labelInit(min, "min_normal.png");
-		} else if (skinNum == 1) {
-			labelInit(min, "min_normal_pink.png");
-		} else if (skinNum == 2) {
-			labelInit(min, "min_normal_dark.png");
-		}
+		labelInit(min, minPics[skinNum]);
 	}
 
 	@FXML
@@ -237,112 +235,12 @@ public class MainController implements Initializable {
 
 	}
 
-	@FXML
-	public void enterRepos() {
-		repository.setStyle(styleStr + enterColor);
-	}
-
-	@FXML
-	public void enterUser() {
-		user.setStyle(styleStr + enterColor);
-	}
-
-	@FXML
-	public void enterReposSta() {
-		repositorySta.setStyle(styleStr + enterColor);
-	}
-
-	@FXML
-	public void enterUserSta() {
-		userSta.setStyle(styleStr + enterColor);
-	}
-
-	@FXML
-	public void releaseRepos() {
-		selectUser = false;
-		selectReposSta = false;
-		selectUserSta = false;
-		selectRepos = true;
-		enterRepos();
-		user.setStyle(styleStr + baseColor);
-		repositorySta.setStyle(styleStr + baseColor);
-		userSta.setStyle(styleStr + baseColor);
-		setPanel(SkinConfig.getInstance().getFxmlResoursePath("main"));
-	}
-
-	@FXML
-	public void releaseUser() {
-		selectUser = true;
-		selectRepos = false;
-		selectReposSta = false;
-		selectUserSta = false;
-		enterUser();
-		repository.setStyle(styleStr + baseColor);
-		repositorySta.setStyle(styleStr + baseColor);
-		userSta.setStyle(styleStr + baseColor);
-		setPanel("Ui_UserPagePanel.fxml");
-	}
-
-	@FXML
-	public void releaseReposSta() {
-		selectReposSta = true;
-		selectRepos = false;
-		selectUser = false;
-		selectUserSta = false;
-		enterReposSta();
-		user.setStyle(styleStr + baseColor);
-		repository.setStyle(styleStr + baseColor);
-		userSta.setStyle(styleStr + baseColor);
-		setPanel("Ui_ReposStaPane.fxml");
-	}
-
-	@FXML
-	public void releaseUserSta() {
-		selectUserSta = true;
-		selectRepos = false;
-		selectUser = false;
-		selectReposSta = false;
-		enterUserSta();
-		user.setStyle(styleStr + baseColor);
-		repositorySta.setStyle(styleStr + baseColor);
-		repository.setStyle(styleStr + baseColor);
-		setPanel("Ui_UserSta.fxml");
-	}
-
-	@FXML
-	public void exitRepos() {
-		if (!selectRepos) {
-			repository.setStyle(styleStr + baseColor);
-		}
-	}
-
-	@FXML
-	public void exitUser() {
-		if (!selectUser) {
-			user.setStyle(styleStr + baseColor);
-		}
-	}
-
-	@FXML
-	public void exitReposSta() {
-		if (!selectReposSta) {
-			repositorySta.setStyle(styleStr + baseColor);
-		}
-	}
-
-	@FXML
-	public void exitUserSta() {
-		if (!selectUserSta) {
-			userSta.setStyle(styleStr + baseColor);
-		}
-	}
-
 	public boolean isSelectRepos() {
-		return selectRepos;
+		return currentHead.getId().equals("repository");
 	}
 
 	public boolean isSelectUser() {
-		return selectUser;
+		return currentHead.getId().equals("user");
 	}
 
 	class Delta {

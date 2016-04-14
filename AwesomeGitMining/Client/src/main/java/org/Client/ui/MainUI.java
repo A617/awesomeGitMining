@@ -43,8 +43,7 @@ public class MainUI extends Application {
 	private AnchorPane common;
 	public static Group test;
 	private static MainUI ui;
-	private boolean isReady;
-	private String[] styleNames = { "yellow", "pink", "black" };
+	private String[] styleNames = { "yellow", "pink", "dark" };
 
 	@Override
 	/**
@@ -55,13 +54,11 @@ public class MainUI extends Application {
 		this.stage = primaryStage;
 		primaryStage.initStyle(StageStyle.TRANSPARENT);
 		ui = this;
-		isReady=true;
 
 		common = fxmlLoader.loadPanel("Ui_CommonPart.fxml");
 		stage.setTitle("awesomeGitmining");
 		stage.setWidth(1366);
 		stage.setHeight(768);
-		stage.setResizable(false);
 		scene = new Scene(common);
 
 		stage.setScene(scene);
@@ -84,12 +81,8 @@ public class MainUI extends Application {
 			protected Void call() throws Exception {
 
 				// 初始化单例
-				try {
-					RMIHelper.init();
-					System.out.println("init");
-				} catch (Exception e) {
-					isReady = false;
-				}
+				RMIHelper.init();
+				System.out.println("init");
 				RepositoryService repositoryImpl = RepositoryServiceImpl.getInstance();
 				UserService userImpl = UserServiceImpl.getInstance();
 
@@ -108,9 +101,6 @@ public class MainUI extends Application {
 			if (new_val.intValue() == 1) {
 				stage.setScene(this.scene);
 				MainController.getInstance().initPanel();
-				if(!isReady) {
-					MainController.getInstance().setError();
-				}
 			}
 		});
 

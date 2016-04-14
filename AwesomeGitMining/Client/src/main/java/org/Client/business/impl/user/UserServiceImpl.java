@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.Client.business.dto.Converter;
 import org.Client.business.service.UserService;
@@ -333,13 +334,19 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 		}
 		
-		int[] follower = new int[followers.size()];
-		double[] star = new double[avgStars.size()];
+		List<Integer>  follower = new ArrayList<>();
+		List<Double> star = new ArrayList<>();
 		
+		int j = 0;
 		for(int i = 0; i<followers.size()-1;i++) {
-			follower[i] = followers.get(i);
-			star[i] = avgStars.get(i);
+			int ran =(int)( Math.random()*10);
+			if(avgStars.get(i)!=0&&ran<1&&followers.get(i)<1500&&avgStars.get(i)<20000){
+				follower.add(followers.get(i));
+				star.add(avgStars.get(i));
+				j++;
+			}
 		}
+		System.out.println(j);
 		
 		result.setFollowers(follower);
 		result.setRepoAvgStars(star);

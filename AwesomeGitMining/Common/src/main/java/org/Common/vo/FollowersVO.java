@@ -1,24 +1,22 @@
 package org.Common.vo;
 
+import java.util.List;
+
 public class FollowersVO {
-	int[] followers;
-	double[] RepoAvgStars;
-	
-	
-	public int[] getFollowers() {
+	List<Integer> followers;
+	List<Double> RepoAvgStars;
+	public List<Integer> getFollowers() {
 		return followers;
 	}
-	
-	public void setFollowers(int[] followers) {
-		this.followers = followers;
-	}
-	
-	public double[] getRepoAvgStars() {
+	public List<Double> getRepoAvgStars() {
 		return RepoAvgStars;
 	}
-	
-	public void setRepoAvgStars(double[] repoAvgStars) {
+	public void setFollowers(List<Integer> followers) {
+		this.followers = followers;
+	}
+	public void setRepoAvgStars(List<Double> repoAvgStars) {
 		RepoAvgStars = repoAvgStars;
 	}
+	
 	
 }

@@ -4,9 +4,6 @@
 .tooltip{
 	-fx-background-color: #ff99c7;
 }
-#error{
-	-fx-background-color: #ffefd5;
-}
 .button {
     -fx-background-radius: 0.0;
     -fx-background-color: #ff99c7;
@@ -37,7 +34,6 @@
 }
 #headLabel:hover{
 	-fx-background-color: #f46a94;
-	-fx-cursor:hand
 }
 #headLabel{
 	-fx-background-color: #f8aec4;
@@ -61,7 +57,6 @@
 }
 #tag:hover{
 	-fx-background-color:#f8aec4;
-	-fx-cursor:hand
 }
 .scroll-pane .scroll-bar:horizontal .thumb,
 

@@ -28,6 +28,7 @@ public class FollowerController implements Initializable {
 
 		ScatterChartGenerator generator = new ScatterChartGenerator(pane, "Star and Fork");
 		generator.setData(follower, stars);
+	
 	}
 
 }
