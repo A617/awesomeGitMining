@@ -25,7 +25,12 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="blank" layoutY="180.0" prefHeight="540.0" prefWidth="200.0" />
+            <Label fx:id="blank" layoutY="225.0" prefHeight="474.0" prefWidth="200.0" />
+            <Label fx:id="add" layoutY="180.0" onMouseEntered="#enterAdd" onMouseExited="#exitAdd" onMouseReleased="#selectAdd" prefHeight="45.0" prefWidth="200.0" text="             Label" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="center" layoutX="200.0" prefHeight="720.0" prefWidth="1166.0" />
