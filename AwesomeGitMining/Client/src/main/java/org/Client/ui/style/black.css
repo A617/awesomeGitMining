@@ -4,6 +4,9 @@
 .tooltip{
 	-fx-background-color: #b9c0c9;
 }
+#error{
+	-fx-background-color: #ffefd5;
+}
 .button {
     -fx-background-radius: 0.0;
     -fx-background-color: #b9c0c9;

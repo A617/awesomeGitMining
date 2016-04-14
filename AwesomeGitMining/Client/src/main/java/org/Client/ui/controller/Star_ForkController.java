@@ -52,6 +52,7 @@ public class Star_ForkController implements Initializable{
 		Star_ForkVO vo = service.getstar_forkStatistics();
 		int[] stars = vo.getStar();
 		int[] forks = vo.getFork();
+	
 		for(int i = 0;i<stars.length;i++) {
 			series.getData().add(new XYChart.Data<Number, Number>(stars[i], 0));
 		}

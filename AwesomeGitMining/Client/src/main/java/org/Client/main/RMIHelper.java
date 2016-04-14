@@ -18,22 +18,11 @@ public class RMIHelper {
     private static IUserDao userDao;
     private static IRepoDao repoDao;
     
-    public static void init(){
+    public static void init() throws MalformedURLException, RemoteException, NotBoundException{
     	
-    	  try {	  
-			repoDao = (IRepoDao) Naming.lookup("rmi://"+IP+"/repoDao");
-			userDao = (IUserDao) Naming.lookup("rmi://"+IP+"/userDao");
+		repoDao = (IRepoDao) Naming.lookup("rmi://"+IP+"/repoDao");
+		userDao = (IUserDao) Naming.lookup("rmi://"+IP+"/userDao");
 			
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
     }
 
 	public static IUserDao getUserDao() {
