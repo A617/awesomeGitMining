@@ -10,13 +10,11 @@ import java.util.Map;
 
 import org.Client.business.dto.Converter;
 import org.Client.business.service.UserService;
-import org.Client.business.utility.ScoreCalculator;
 import org.Client.main.RMIHelper;
 import org.Common.data.IUserDao;
-import org.Common.po.Repository;
 import org.Common.po.Statistics;
 import org.Common.po.User;
-import org.Common.vo.RepositoryRateVO;
+import org.Common.vo.FollowersVO;
 import org.Common.vo.SimpleUserVO;
 import org.Common.vo.UserCollaReposNumVO;
 import org.Common.vo.UserCompanyVO;
@@ -24,7 +22,6 @@ import org.Common.vo.UserCreateReposNumVO;
 import org.Common.vo.UserRateVO;
 import org.Common.vo.UserRegisTimeVO;
 import org.Common.vo.UserVO;
-import org.jfree.date.DayOfWeekInMonthRule;
 
 import javafx.scene.image.Image;
 
@@ -323,6 +320,31 @@ public class UserServiceImpl implements UserService {
 		vo.setRanges(types);
 		return vo;
 	}
+	
+	@Override
+	public FollowersVO getFollowerStatistics() {
+		FollowersVO result = new FollowersVO();
+		List<Integer> followers = null;
+		List<Double> avgStars = null;
+		try {
+			followers = daoImpl.getUserFollowers();
+			avgStars = daoImpl.getUserRepoAvgStars();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		int[] follower = new int[followers.size()];
+		double[] star = new double[avgStars.size()];
+		
+		for(int i = 0; i<followers.size()-1;i++) {
+			follower[i] = followers.get(i);
+			star[i] = avgStars.get(i);
+		}
+		
+		result.setFollowers(follower);
+		result.setRepoAvgStars(star);
+		return result;
+	}
 
 	@Override
 	public UserCollaReposNumVO getUserCollaReposNum() {
@@ -474,7 +496,5 @@ public class UserServiceImpl implements UserService {
 	public int getCompanyTagPageNum() {
 		return companyPageNum / 10 + 1;
 	}
-
-
 
 }
