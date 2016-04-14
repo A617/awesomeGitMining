@@ -325,14 +325,19 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		List<String> repoList = DataInitHelper.getList(path+"repo_fullname.txt");
 		for(List<String> repos:collaborationsList){
 			double sum = 0;
+			int len = repos.size();
 			for(String repo:repos){
 				int index = repoList.indexOf(repo);
-				if(index!=-1)
+				if(index!=-1){
 					sum += starsList.get(index);
-				else 
-					System.out.println(repo);
+				}else{
+					len--;
+				}
 			}
-			result.add(sum/repos.size());
+			if(len!=0){
+				result.add(sum/len);
+			}else
+				result.add(0.0);
 		}
 		return result;
 	}
