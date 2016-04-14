@@ -6,6 +6,7 @@ import org.Common.vo.CodeFrequencyVO;
 import org.Common.vo.CreatedTimeStatisticsVO;
 import org.Common.vo.ForksStatisticsVO;
 import org.Common.vo.LanguageStatisticsVO;
+import org.Common.vo.Language_SizeVO;
 import org.Common.vo.RepositoryRateVO;
 import org.Common.vo.RepositoryVO;
 import org.Common.vo.Star_ForkVO;
@@ -148,4 +149,6 @@ public interface RepositoryService {
 	 * @return
 	 */
 	public abstract List<RepositoryVO> getReposByKey(String keyword,int pageIndex);
+
+	Language_SizeVO getlanguage2sizeStatistics();
 }

@@ -18,6 +18,7 @@ import org.Common.vo.CodeFrequencyVO;
 import org.Common.vo.CreatedTimeStatisticsVO;
 import org.Common.vo.ForksStatisticsVO;
 import org.Common.vo.LanguageStatisticsVO;
+import org.Common.vo.Language_SizeVO;
 import org.Common.vo.RepositoryRateVO;
 import org.Common.vo.RepositoryVO;
 import org.Common.vo.Star_ForkVO;
@@ -391,6 +392,23 @@ public class RepositoryServiceImpl implements RepositoryService {
 		result.setStar(star);
 		result.setFork(fork);
 		return result;
+	}
+	
+	
+	@Override
+	public Language_SizeVO getlanguage2sizeStatistics(){
+		
+		Language_SizeVO vo = new Language_SizeVO();
+		
+		try {
+			vo.setLanguages(daoImpl.getAllLanguage());
+			vo.setSizes(daoImpl.getAllSize());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return vo;
 	}
 
 	@Override

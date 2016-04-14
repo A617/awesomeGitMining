@@ -29,7 +29,12 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="blank" layoutY="225.0" prefHeight="500.0" prefWidth="200.0" />
+            <Label fx:id="blank" layoutY="269.0" prefHeight="454.0" prefWidth="200.0" />
+            <Label fx:id="follower" layoutY="225.0" onMouseEntered="#enterFollower" onMouseExited="#exitFollower" onMouseReleased="#selectFollower" prefHeight="45.0" prefWidth="200.0" text="       follower and star" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="center" layoutX="200.0" prefHeight="720.0" prefWidth="1166.0" />
