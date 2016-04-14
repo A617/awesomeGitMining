@@ -319,72 +319,80 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 
 	@Override
 	public List<Double> getUserRepoAvgStars() {
-		// List<Double> result = new ArrayList<>();
-		// List<Integer> starsList =
-		// DataInitHelper.getIntList(path+"repo_stargazers.txt");
-		// List<String> repoList =
-		// DataInitHelper.getList(path+"repo_fullname.txt");
-		// for(List<String> repos:collaborationsList){
-		// double sum = 0;
-		// int len = repos.size();
-		// for(String repo:repos){
-		// int index = repoList.indexOf(repo);
-		// if(index!=-1){
-		// sum += starsList.get(index);
-		// }else{
-		// len--;
-		// }
-		// }
-		// if(len!=0){
-		// BigDecimal bd = new BigDecimal(sum/len);
-		// bd = bd.setScale(3, BigDecimal.ROUND_HALF_UP);
-		// result.add(bd.doubleValue());
-		// }else
-		// result.add(0.0);
-		// }
-		List<Double> result = DataInitHelper.getDoubleList(path + "user_repoAvgStars.txt");
+		List<Double> result = new ArrayList<>();
+		
+		
+//		for(int rank: quantityRank){
+//			result.add(5.0 - 5.0 * quantityRank.get(rank)/len);
+//		}
+		
+		
+		List<Integer> starsList = DataInitHelper.getIntList(path + "repo_stargazers.txt");
+		List<String> repoList = DataInitHelper.getList(path + "repo_fullname.txt");
+		int i = 0;
+		for (List<String> repos : collaborationsList) {
+			double sum = 0;
+			int len = repos.size();
+			for (String repo : repos) {
+				int index = repoList.indexOf(repo);
+				if (index != -1) {
+					sum += starsList.get(index);
+				} else {
+					len--;
+				}
+			}
+			if (len != 0&&len<20) {
+				result.add(sum/len);
+			} else
+				result.add(0.0);
+			i++;
+		}
 		return result;
 	}
 
-	
-//	private void initRanks(IRepoDao repodao) {
-//		// popularity
-//		List<Integer> popularityScoreList = DataInitHelper.getIntList(path + "user_followers.txt");
-//		this.popularityRank = rankList(popularityScoreList);
-//
-//		// liveness
-//		this.livenessRank = DataInitHelper.getIntList(path + "user_livenessRank.txt");
-//
-//		// quantity&teamwork
-//		List<Double> quantityList = new ArrayList<>();
-//		List<Double> teamworkList = new ArrayList<>();
-//		for (List<String> repos : collaborationsList) {
-//			double qsum = 0;
-//			double tsum = 0;
-//			for (String repo : repos) {
-//				try {
-//					qsum += repodao.getHotScore(repo);
-//					tsum += repodao.getCollaboratorNum(repo);
-//				} catch (RemoteException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//			qsum = qsum / repos.size();
-//			quantityList.add(qsum);
-//			tsum = tsum / repos.size();
-//			teamworkList.add(tsum);
-//		}
-//		quantityRank = rankListDouble(quantityList);
-//		teamworkRank = rankListDouble(teamworkList);
-//
-//		// experience: 5contributed + gist
-//		List<Integer> experienceScoreList = new ArrayList<>();
-//		List<Integer> gistList = DataInitHelper.getIntList(path + "user_gists.txt");
-//		List<List<String>> contrilistlist = DataInitHelper.getListList(path + "user-contributed.txt");
-//		for (int i = 0; i < gistList.size(); i++) {
-//			experienceScoreList.add(gistList.get(i) + contrilistlist.get(i).size() * 5);
-//		}
-//		this.experienceRank = rankList(experienceScoreList);
-//	}
+	// private void initRanks(IRepoDao repodao) {
+	// // popularity
+	// List<Integer> popularityScoreList = DataInitHelper.getIntList(path +
+	// "user_followers.txt");
+	// this.popularityRank = rankList(popularityScoreList);
+	//
+	// // liveness
+	// this.livenessRank = DataInitHelper.getIntList(path +
+	// "user_livenessRank.txt");
+	//
+	// // quantity&teamwork
+	// List<Double> quantityList = new ArrayList<>();
+	// List<Double> teamworkList = new ArrayList<>();
+	// for (List<String> repos : collaborationsList) {
+	// double qsum = 0;
+	// double tsum = 0;
+	// for (String repo : repos) {
+	// try {
+	// qsum += repodao.getHotScore(repo);
+	// tsum += repodao.getCollaboratorNum(repo);
+	// } catch (RemoteException e) {
+	// e.printStackTrace();
+	// }
+	// }
+	// qsum = qsum / repos.size();
+	// quantityList.add(qsum);
+	// tsum = tsum / repos.size();
+	// teamworkList.add(tsum);
+	// }
+	// quantityRank = rankListDouble(quantityList);
+	// teamworkRank = rankListDouble(teamworkList);
+	//
+	// // experience: 5contributed + gist
+	// List<Integer> experienceScoreList = new ArrayList<>();
+	// List<Integer> gistList = DataInitHelper.getIntList(path +
+	// "user_gists.txt");
+	// List<List<String>> contrilistlist = DataInitHelper.getListList(path +
+	// "user-contributed.txt");
+	// for (int i = 0; i < gistList.size(); i++) {
+	// experienceScoreList.add(gistList.get(i) + contrilistlist.get(i).size() *
+	// 5);
+	// }
+	// this.experienceRank = rankList(experienceScoreList);
+	// }
 
 }

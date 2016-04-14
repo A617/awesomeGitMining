@@ -1,6 +1,7 @@
 package org.Client.ui.controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.Client.business.impl.user.UserServiceImpl;
@@ -49,10 +50,10 @@ public class FollowerController implements Initializable{
 		service = UserServiceImpl.getInstance();
 		
 		FollowersVO vo = service.getFollowerStatistics();
-		int[] follower = vo.getFollowers();
-		double[] stars = vo.getRepoAvgStars();
-		for(int i = 0;i<follower.length;i++) {
-			series.getData().add(new XYChart.Data<Number, Number>(follower[i], 0));
+		List<Integer> follower = vo.getFollowers();
+		List<Double> stars = vo.getRepoAvgStars();
+		for(int f : follower) {
+			series.getData().add(new XYChart.Data<Number, Number>(f, 0));
 		}
 		Timeline tl = new Timeline();
 		tl.getKeyFrames().add(new KeyFrame(Duration.millis(500), new EventHandler<ActionEvent>() {
@@ -60,7 +61,7 @@ public class FollowerController implements Initializable{
 			public void handle(ActionEvent actionEvent) {
 				int i = 0;
 				for (Data<Number, Number> data : series.getData()) {
-					data.setYValue(stars[i]);
+					data.setYValue(stars.get(i));
 					i++;
 				}
 			}
