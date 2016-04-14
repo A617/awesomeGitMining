@@ -355,29 +355,13 @@ public class ProjectController implements Initializable {
 		raderPane.getChildren().clear();
 		raderPane.getChildren().add(pin);
 
-		Task<Void> task = new Task<Void>() {
-			@Override
-			protected Void call() throws Exception {
-				panel = RaderChartGenerator.getInstance().createPanel(dataset,"src/main/java/org/Client/ui/style/raderback.png");
-				panel.validate();
-				panel.setPreferredSize(new Dimension(330, 330));
-
-				updateProgress(1, 1);
-				return null;
-			}
-		};
-		pin.progressProperty().bind(task.progressProperty());
-		new Thread(task).start();
-
-		pin.progressProperty().addListener((ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
-			if (new_val.intValue() == 1) {
-				if (panel != null) {
-					swingNode.setContent(panel);
-					raderPane.getChildren().clear();
-					raderPane.getChildren().add(swingNode);
-				}
-			}
-		});
+		panel = RaderChartGenerator.getInstance().createPanel(dataset,"src/main/java/org/Client/ui/style/raderback.png");
+		panel.validate();
+		panel.setPreferredSize(new Dimension(330, 330));
+		
+		swingNode.setContent(panel);
+		raderPane.getChildren().clear();
+		raderPane.getChildren().add(swingNode);
 	}
 
 	private class ContributorCellFactory
