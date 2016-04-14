@@ -25,7 +25,17 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="blank" layoutY="180.0" prefHeight="540.0" prefWidth="200.0" />
+            <Label fx:id="blank" layoutY="269.0" prefHeight="406.0" prefWidth="200.0" AnchorPane.topAnchor="269.0" />
+            <Label fx:id="scatter" layoutY="180.0" onMouseEntered="#enterLanguage" onMouseExited="#exitLanguage" onMouseReleased="#selectLanguage" prefHeight="45.0" prefWidth="200.0" text="             scatter" textFill="WHITE" AnchorPane.topAnchor="180.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="star_fork" layoutY="225.0" onMouseEntered="#enterLanguage" onMouseExited="#exitLanguage" onMouseReleased="#selectLanguage" prefHeight="45.0" prefWidth="200.0" text="             star and fork" textFill="WHITE" AnchorPane.bottomAnchor="450.0" AnchorPane.topAnchor="225.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="center" layoutX="200.0" prefHeight="720.0" prefWidth="1166.0" />

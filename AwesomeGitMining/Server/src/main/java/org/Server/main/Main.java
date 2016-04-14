@@ -43,7 +43,8 @@ public class Main extends Application {
 				// TODO Auto-generated method stub
 
 				RMIHelper.init();
-
+				
+				//MainController.getInstance().handleConnect();
 				System.out.println("server connected");
 			}
 		}).start();

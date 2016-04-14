@@ -84,7 +84,7 @@ public class CreateTimeController implements Initializable {
 	            public void handle(MouseEvent e) {
 	            	n.setCursor(Cursor.HAND);
 	            	label.setLayoutX(n.getLayoutX()+40);
-	            	label.setTranslateY(n.getLayoutY());
+	            	label.setTranslateY(n.getLayoutY() + 10);
 	            	label.setText(String.valueOf(dt.getYValue()));
 	            }
 	        });

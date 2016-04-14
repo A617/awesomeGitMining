@@ -8,9 +8,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Server.main.MainController">
    <children>
-      <Label fx:id="close" layoutX="560.0" layoutY="-2.0" onMouseEntered="#enterExit" onMouseExited="#exitExit" onMouseReleased="#releaseExit" prefHeight="32.0" prefWidth="40.0" />
-      <Label fx:id="min" layoutX="520.0" layoutY="-2.0" onMouseEntered="#enterMin" onMouseExited="#exitMin" onMouseReleased="#releaseMin" prefHeight="32.0" prefWidth="40.0" />
-      <Label layoutX="215.0" layoutY="352.0" text="Server connected~" textFill="#545353">
+      <Label fx:id="info" layoutX="217.0" layoutY="20.0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

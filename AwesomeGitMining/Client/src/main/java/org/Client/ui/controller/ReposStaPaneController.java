@@ -36,6 +36,10 @@ public class ReposStaPaneController implements Initializable {
 	@FXML
 	private Label fork;
 	@FXML
+	private Label scatter;
+	@FXML
+	private Label star_fork;
+	@FXML
 	private Label blank;
 	@FXML
 	private AnchorPane center;

@@ -123,9 +123,7 @@
 }
 .default-color0.chart-series-area-line { -fx-stroke: #94fff9; }
 .default-color0.chart-series-area-fill { -fx-fill: #94fff9; }
-.default-color0.chart-line-symbol {
-	visibility: hidden;
-}
+
 .table-view *.scroll-bar *.increment-button,
 .table-view *.scroll-bar *.decrement-button {
     -fx-background-color: null;
