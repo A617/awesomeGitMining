@@ -116,7 +116,7 @@ public class ReposStaPaneController implements Initializable {
 		star.setStyle(styleStr + baseColor);
 		fork.setStyle(styleStr + baseColor);
 		createTime.setStyle(styleStr + baseColor);
-		star_fork.setStyle(styleStr+baseColor);
+		star_fork.setStyle(styleStr + baseColor);
 		setChart("Ui_ReposSta.fxml");
 
 	}
@@ -201,14 +201,14 @@ public class ReposStaPaneController implements Initializable {
 	public void enterStar_Fork(){
 		star_fork.setStyle(styleStr + enterColor);
 	}
-	
+
 	@FXML
 	public void exitStar_Fork(){
 		if (!selectStar_Fork) {
 			star_fork.setStyle(styleStr + baseColor);
 		}
 	}
-	
+
 	@FXML
 	public void selectStar_Fork() {
 		selectLanguage = false;
