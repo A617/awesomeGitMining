@@ -172,6 +172,51 @@ public class DataInitHelper {
 		}
 		return list;
 	}
+	
+	
+	public static List<Double> getDoubleList(String path) {
+		File file = new File(path);
+		List<Double> list = null;
+
+		if (file.isFile() && file.exists()) { // 判断文件是否存在
+
+			InputStreamReader read = null;
+			BufferedReader bufferedReader = null;
+			String line;
+
+			try {
+				read = new InputStreamReader(new FileInputStream(file));
+				bufferedReader = new BufferedReader(read);
+				list = new ArrayList<>();
+
+				while ((line = bufferedReader.readLine()) != null) { // 读取文件每一行
+
+					try {
+						list.add(Double.parseDouble(line));
+					} catch (NumberFormatException e) {
+						System.out.println(path + "数据错误");
+						e.printStackTrace();
+					}
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+
+			} finally {
+
+				try {
+					read.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		} else {
+			System.out.println("找不到指定的文件" + path);
+		}
+		return list;
+	}
 
 	public static int[] getIntArray(String path, int length) {
 		File file = new File(path);

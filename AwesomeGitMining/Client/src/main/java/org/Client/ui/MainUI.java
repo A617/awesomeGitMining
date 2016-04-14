@@ -10,6 +10,10 @@ import org.Client.business.service.UserService;
 import org.Client.main.RMIHelper;
 import org.Client.ui.controller.HomeController;
 import org.Client.ui.controller.MainController;
+import org.Client.ui.controller.ReposStaPaneController;
+import org.Client.ui.controller.SearchController;
+import org.Client.ui.controller.SearchUserController;
+import org.Client.ui.controller.UserStaPaneController;
 import org.Client.ui.utility.SkinConfig;
 import org.Client.ui.utility.fxmlLoader;
 
@@ -39,6 +43,7 @@ public class MainUI extends Application {
 	private AnchorPane common;
 	public static Group test;
 	private static MainUI ui;
+	private String[] styleNames = { "yellow", "pink", "black" };
 
 	@Override
 	/**
@@ -115,36 +120,33 @@ public class MainUI extends Application {
 
 	public void changeStyle(String style) {
 		scene.getStylesheets().clear();
-		if (style.equals("black")) {
-			SkinConfig.getInstance().setSkinNum(2);
-			MainController.getInstance().setSkinNum(2);
-			HomeController.getInstance().setSkinNum(2);
-			try {
-				scene.getStylesheets().add(new URL(SkinConfig.getInstance().getCssResoursePath()).toExternalForm());
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
-		} else if (style.equals("pink")) {
-			SkinConfig.getInstance().setSkinNum(1);
-			MainController.getInstance().setSkinNum(1);
-			HomeController.getInstance().setSkinNum(1);
-			try {
-				scene.getStylesheets().add(new URL(SkinConfig.getInstance().getCssResoursePath()).toExternalForm());
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
-
-		} else if (style.equals("yellow")) {
-			SkinConfig.getInstance().setSkinNum(0);
-			MainController.getInstance().setSkinNum(0);
-			HomeController.getInstance().setSkinNum(0);
-			try {
-				scene.getStylesheets().add(new URL(SkinConfig.getInstance().getCssResoursePath()).toExternalForm());
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
+		int skinNum = 0;
+		for (int i = 0; i < styleNames.length; i++) {
+			if (style.equals(styleNames[i])) {
+				skinNum = i;
+				break;
 			}
 		}
-
+		SkinConfig.getInstance().setSkinNum(skinNum);
+		MainController.getInstance().setSkinNum(skinNum);
+		HomeController.getInstance().setSkinNum(skinNum);
+		if (ReposStaPaneController.getInstance() != null) {
+			ReposStaPaneController.getInstance().setSkinNum(skinNum);
+		}
+		if (SearchController.getInstance() != null) {
+			SearchController.getInstance().changeStyle();
+		}
+		if (SearchUserController.getInstance() != null) {
+			SearchUserController.getInstance().changeStyle();
+		}
+		if (UserStaPaneController.getInstance() != null) {
+			UserStaPaneController.getInstance().setSkinNum(skinNum);
+		}
+		try {
+			scene.getStylesheets().add(new URL(SkinConfig.getInstance().getCssResoursePath()).toExternalForm());
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private class AnimationGroup extends Group {

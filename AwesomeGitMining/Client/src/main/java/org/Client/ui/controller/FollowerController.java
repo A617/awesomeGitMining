@@ -3,9 +3,9 @@ package org.Client.ui.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import org.Client.business.impl.repository.RepositoryServiceImpl;
-import org.Client.business.service.RepositoryService;
-import org.Common.vo.Star_ForkVO;
+import org.Client.business.impl.user.UserServiceImpl;
+import org.Client.business.service.UserService;
+import org.Common.vo.FollowersVO;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -25,8 +25,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
-public class Star_ForkController implements Initializable{
-
+public class FollowerController implements Initializable{
 	@FXML
 	private AnchorPane pane;
 	
@@ -35,25 +34,25 @@ public class Star_ForkController implements Initializable{
 	private NumberAxis yAxis = new NumberAxis();
 	private XYChart.Series<Number, Number> series;
 	
-	private RepositoryService service;
+	private UserService service;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		chart = new ScatterChart<Number,Number>(xAxis,yAxis);
 		chart.setPrefSize(1166,720);
-		chart.setTitle("Star and Fork");
+		chart.setTitle("Follower and Star");
 		series = new XYChart.Series<Number, Number>();
-		xAxis.setLabel("Stars");
-		yAxis.setLabel("Forks");
-		series.setName("star and fork");
+		xAxis.setLabel("Followers");
+		yAxis.setLabel("AvgStars");
+		series.setName("Follower and Star");
 		
-		service = RepositoryServiceImpl.getInstance();
+		service = UserServiceImpl.getInstance();
 		
-		Star_ForkVO vo = service.getstar_forkStatistics();
-		int[] stars = vo.getStar();
-		int[] forks = vo.getFork();
-		for(int i = 0;i<stars.length;i++) {
-			series.getData().add(new XYChart.Data<Number, Number>(stars[i], 0));
+		FollowersVO vo = service.getFollowerStatistics();
+		int[] follower = vo.getFollowers();
+		double[] stars = vo.getRepoAvgStars();
+		for(int i = 0;i<follower.length;i++) {
+			series.getData().add(new XYChart.Data<Number, Number>(follower[i], 0));
 		}
 		Timeline tl = new Timeline();
 		tl.getKeyFrames().add(new KeyFrame(Duration.millis(500), new EventHandler<ActionEvent>() {
@@ -61,7 +60,7 @@ public class Star_ForkController implements Initializable{
 			public void handle(ActionEvent actionEvent) {
 				int i = 0;
 				for (Data<Number, Number> data : series.getData()) {
-					data.setYValue(forks[i]);
+					data.setYValue(stars[i]);
 					i++;
 				}
 			}

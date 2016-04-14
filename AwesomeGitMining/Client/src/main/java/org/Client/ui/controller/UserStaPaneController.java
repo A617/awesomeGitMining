@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 public class UserStaPaneController implements Initializable {
+	private static UserStaPaneController instance;
 	@FXML
 	private Label type;
 	@FXML
@@ -24,18 +25,21 @@ public class UserStaPaneController implements Initializable {
 	@FXML
 	private Label company;
 	@FXML
+	private Label follower;
+	@FXML
 	private Label blank;
 	@FXML
 	private AnchorPane center;
 
 	private String styleStr = "-fx-background-color: ";
-	private static String enterColor;
-	private static String baseColor;
+	private String enterColor;
+	private String baseColor;
 	private boolean selectType;
 	private boolean selectRegisterTime;
 	private boolean selectCollaborate;
 	private boolean selectCreate;
 	private boolean selectCompany;
+	private boolean selectFollower;
 	private final String configPath = "file:src/main/java/org/Client/ui/config/";
 	private String[] enterColors = { "#5d9b78;", "#bdc9e7;", "#c9cacc;" };
 	private String[] baseColors = { "#71af8c;", "#d4dfff;", "#d5d8dd;" };
@@ -49,10 +53,16 @@ public class UserStaPaneController implements Initializable {
 		registerTime.setStyle(styleStr + baseColor);
 		create.setStyle(styleStr + baseColor);
 		company.setStyle(styleStr + baseColor);
+		follower.setStyle(styleStr + baseColor);
 		blank.setStyle(styleStr + baseColor);
+		collaborate.setStyle(styleStr + baseColor);
+	}
+	public static UserStaPaneController getInstance(){
+		return instance;
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		instance = this;
 		//setChart("Ui_UserTypeChar.fxml");
 		setSkinNum(SkinConfig.getInstance().getSkinNum());
 		blank.setStyle(styleStr + baseColor);
@@ -97,8 +107,10 @@ public class UserStaPaneController implements Initializable {
 	public void enterCompany(){
 		company.setStyle(styleStr + enterColor);
 	}
-
-
+	@FXML
+	public void enterFollower(){
+		follower.setStyle(styleStr + enterColor);
+	}
 
 
 	@FXML
@@ -133,17 +145,26 @@ public class UserStaPaneController implements Initializable {
 		}
 	}
 	@FXML
+	public void exitFollower(){
+		if (!selectFollower) {
+			follower.setStyle(styleStr + baseColor);
+		}
+	}
+	
+	@FXML
 	public void selectType() {
 		selectType = true;
 		selectRegisterTime = false;
 		selectCreate = false;
 		selectCompany = false;
 		selectCollaborate=false;
+		selectFollower=false;
 		enterType();
 		registerTime.setStyle(styleStr + baseColor);
 		create.setStyle(styleStr + baseColor);
 		company.setStyle(styleStr + baseColor);
 		collaborate.setStyle(styleStr + baseColor);
+		follower.setStyle(styleStr + baseColor);
 		setChart("Ui_UserTypeChar.fxml");
 	}
 	@FXML
@@ -153,11 +174,13 @@ public class UserStaPaneController implements Initializable {
 		selectCreate = false;
 		selectCompany = false;
 		selectCollaborate=false;
+		selectFollower=false;
 		enterRegisterTime();
 		type.setStyle(styleStr + baseColor);
 		create.setStyle(styleStr + baseColor);
 		company.setStyle(styleStr + baseColor);
 		collaborate.setStyle(styleStr + baseColor);
+		follower.setStyle(styleStr + baseColor);
 		setChart("Ui_UserRegisTime.fxml");
 	}
 	@FXML
@@ -167,11 +190,13 @@ public class UserStaPaneController implements Initializable {
 		selectCreate = true;
 		selectCompany = false;
 		selectCollaborate=false;
+		selectFollower=false;
 		enterCreate();
 		registerTime.setStyle(styleStr + baseColor);
 		type.setStyle(styleStr + baseColor);
 		company.setStyle(styleStr + baseColor);
 		collaborate.setStyle(styleStr + baseColor);
+		follower.setStyle(styleStr + baseColor);
 		setChart("Ui_UserCreateChart.fxml");
 	}
 
@@ -182,11 +207,13 @@ public class UserStaPaneController implements Initializable {
 		selectCreate = false;
 		selectCompany = true;
 		selectCollaborate=false;
+		selectFollower=false;
 		enterCompany();
 		registerTime.setStyle(styleStr + baseColor);
 		create.setStyle(styleStr + baseColor);
 		type.setStyle(styleStr + baseColor);
 		collaborate.setStyle(styleStr + baseColor);
+		follower.setStyle(styleStr + baseColor);
 		setChart("Ui_UserCompanyChart.fxml");
 	}
 
@@ -197,11 +224,30 @@ public class UserStaPaneController implements Initializable {
 		selectCreate = false;
 		selectCompany = false;
 		selectCollaborate=true;
+		selectFollower=false;
 		enterCollaborate();
 		registerTime.setStyle(styleStr + baseColor);
 		create.setStyle(styleStr + baseColor);
 		company.setStyle(styleStr + baseColor);
 		type.setStyle(styleStr + baseColor);
+		follower.setStyle(styleStr + baseColor);
 		setChart("Ui_UserCollaChart.fxml");
+	}
+	
+	@FXML
+	public void selectFollower() {
+		selectType = false;
+		selectRegisterTime = false;
+		selectCreate = false;
+		selectCompany = false;
+		selectCollaborate=false;
+		selectFollower=true;
+		enterFollower();
+		registerTime.setStyle(styleStr + baseColor);
+		create.setStyle(styleStr + baseColor);
+		company.setStyle(styleStr + baseColor);
+		type.setStyle(styleStr + baseColor);
+		collaborate.setStyle(styleStr + baseColor);
+		setChart("Ui_Follower.fxml");
 	}
 }

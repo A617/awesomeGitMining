@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Client.ui.controller.ReposStaPaneController">
    <children>
-      <AnchorPane prefHeight="720.0" prefWidth="200.0">
+      <AnchorPane id="reposStaLeftPane" prefHeight="720.0" prefWidth="200.0">
          <children>
             <Label fx:id="language" layoutX="25.0" layoutY="14.0" onMouseEntered="#enterLanguage" onMouseExited="#exitLanguage" onMouseReleased="#selectLanguage" prefHeight="45.0" prefWidth="200.0" text="             language" textFill="WHITE" AnchorPane.bottomAnchor="675.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
@@ -29,9 +29,8 @@
             <font>
                   <Font size="14.0" />
                </font>
-            </Label>  
-            <Label fx:id="blank" layoutY="266.0" prefHeight="433.0" prefWidth="200.0" />
-            <Label fx:id="scatter" layoutY="180.0" onMouseEntered="#enterLanguage" onMouseExited="#exitLanguage" onMouseReleased="#selectLanguage" prefHeight="45.0" prefWidth="200.0" text="             language" textFill="WHITE">
+            </Label>
+            <Label fx:id="language_size" layoutY="180.0" onMouseEntered="#enterLanguage_Size" onMouseExited="#exitLanguage_Size" onMouseReleased="#selectLanguage_Size" prefHeight="45.0" prefWidth="200.0" text="             language and size" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>

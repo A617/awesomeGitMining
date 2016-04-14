@@ -5,7 +5,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import org.Common.po.SerializableImage;
 import org.Common.po.Type;
 import org.Common.po.User;
 

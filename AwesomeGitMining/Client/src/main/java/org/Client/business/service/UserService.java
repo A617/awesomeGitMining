@@ -3,6 +3,7 @@ package org.Client.business.service;
 
 import java.util.List;
 
+import org.Common.vo.FollowersVO;
 import org.Common.vo.SimpleUserVO;
 import org.Common.vo.UserCollaReposNumVO;
 import org.Common.vo.UserCompanyVO;
@@ -103,6 +104,8 @@ public interface UserService {
 	 * @return user collaborate repository numbers statistics
 	 */
 	public abstract UserCollaReposNumVO getUserCollaReposNum();
+	
+	public abstract FollowersVO getFollowerStatistics();
 	/**
 	 *
 	 * @param login
