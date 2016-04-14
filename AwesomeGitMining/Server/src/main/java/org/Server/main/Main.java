@@ -9,8 +9,6 @@ import org.Server.Test;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -28,6 +26,7 @@ public class Main extends Application {
 		stage.setTitle("AwesomeGitmining Server");
 		stage.setWidth(500);
 		stage.setHeight(250);
+		stage.setResizable(false);
 
 		Scene scene = new Scene(panel);
 		//stage.setBackground(new ImageView(new Image(Test.class.getResourceAsStream("ui/loading.gif"))));

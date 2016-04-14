@@ -10,5 +10,6 @@
       <Button fx:id="btn_ok" layoutX="196.0" layoutY="101.0" mnemonicParsing="false" text="   OK   " />
       <Label fx:id="error" layoutX="49.0" layoutY="33.0" prefHeight="50.0" prefWidth="50.0" />
       <Label fx:id="info" layoutX="126.0" layoutY="45.0" prefHeight="26.0" prefWidth="259.0" text="Label" />
+      <Label fx:id="close" layoutX="417.0" onMouseEntered="#enterClose" onMouseExited="#exitClose" onMouseReleased="#releaseClose" prefHeight="26.0" prefWidth="33.0" />
    </children>
 </AnchorPane>

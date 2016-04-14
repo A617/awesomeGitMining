@@ -26,10 +26,8 @@ import javafx.concurrent.Task;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -63,6 +61,7 @@ public class MainUI extends Application {
 		stage.setTitle("awesomeGitmining");
 		stage.setWidth(1366);
 		stage.setHeight(768);
+		stage.setResizable(false);
 		scene = new Scene(common);
 
 		stage.setScene(scene);
