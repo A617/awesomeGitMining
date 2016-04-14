@@ -1,6 +1,7 @@
 package org.Client.ui.controller;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -11,6 +12,7 @@ import org.Client.ui.MainUI;
 import org.Client.ui.utility.BackHandler;
 import org.Client.ui.utility.BackObject;
 import org.Client.ui.utility.BackType;
+import org.Client.ui.utility.SkinConfig;
 import org.Common.vo.RepositoryVO;
 
 import javafx.fxml.FXML;
@@ -39,7 +41,8 @@ public class SearchController implements Initializable {
 	private AnchorPane pane;
 	private int pageNums;
 	private int projectPage;
-
+	private final String configPath = "file:src/main/java/org/Client/ui/config/";
+	
 	public static SearchController getInstance() {
 		return instance;
 	}
@@ -52,14 +55,18 @@ public class SearchController implements Initializable {
 		box = new VBox();
 		for (int i = 0; i < 10; i++) {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainUI.class.getResource("config/Ui_SingleReposView.fxml"));
+			try {
+				loader.setLocation(new URL(configPath + (SkinConfig.getInstance().getFxmlResoursePath("singleReposView"))));
+			} catch (MalformedURLException e1) {
+				e1.printStackTrace();
+			}
 			try {
 				AnchorPane single = (AnchorPane) loader.load();
 				SingleRepositoryController controller = loader.getController();
 				if (i < list.size()) {
 					RepositoryVO vo = list.get(i);
 					controller.setVO(vo);
-					BackHandler.getInstance().setRepoBack(new BackObject(BackType.SEARCH_REPO,id,projectPage));
+					BackHandler.getInstance().setRepoBack(new BackObject(BackType.SEARCH_REPO, id, projectPage));
 					box.getChildren().add(single);
 				}
 			} catch (IOException e) {
@@ -69,6 +76,7 @@ public class SearchController implements Initializable {
 		projectPane.setContent(box);
 		box = null;
 	}
+
 	public void setPage(int num) {
 		projectPage = num;
 		page.setText(projectPage + 1 + " / " + pageNums);
@@ -112,15 +120,18 @@ public class SearchController implements Initializable {
 			Label infoLabel = new Label();
 			infoLabel.setLayoutX(200);
 			infoLabel.setLayoutY(200);
-			infoLabel.setGraphic(
-					new ImageView(new Image(MainUI.class.getResourceAsStream("style/404.png"))));
+			infoLabel.setGraphic(new ImageView(new Image(MainUI.class.getResourceAsStream("style/404.png"))));
 			pane.getChildren().add(infoLabel);
-		}else{
+		} else {
 			if (pageNums < 1) {
 				pageNums = 1;
 			}
 			page.setText("1 / " + pageNums);
 			initProject(repositoryVO);
 		}
+	}
+
+	public void changeStyle() {
+		initProject(repositoryVO);
 	}
 }

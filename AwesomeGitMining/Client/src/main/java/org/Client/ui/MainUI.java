@@ -10,6 +10,7 @@ import org.Client.business.service.UserService;
 import org.Client.main.RMIHelper;
 import org.Client.ui.controller.HomeController;
 import org.Client.ui.controller.MainController;
+import org.Client.ui.controller.SearchController;
 import org.Client.ui.utility.SkinConfig;
 import org.Client.ui.utility.fxmlLoader;
 
@@ -144,7 +145,7 @@ public class MainUI extends Application {
 				e.printStackTrace();
 			}
 		}
-
+		SearchController.getInstance().changeStyle();
 	}
 
 	private class AnimationGroup extends Group {

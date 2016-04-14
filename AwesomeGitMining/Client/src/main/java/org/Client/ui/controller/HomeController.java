@@ -74,10 +74,8 @@ public class HomeController implements Initializable {
 	private int forkPage = 0;
 	private int contriPage = 0;
 	private int pageNum;
-	private List<RepositoryVO> generalList;
-	private List<RepositoryVO> starList;
-	private List<RepositoryVO> forkList;
-	private List<RepositoryVO> contriList;
+
+	private List<RepositoryVO> list;
 	private final String configPath = "file:src/main/java/org/Client/ui/config/";
 	private String[] enterColors = { "#5d9b78;", "#bdc9e7;", "#c9cacc;" };
 	private String[] baseColors = { "#71af8c;", "#d4dfff;", "#d5d8dd;" };
@@ -100,17 +98,18 @@ public class HomeController implements Initializable {
 		tab_star.setStyle(styleStr + baseColor);
 		tab_contributor.setStyle(styleStr + baseColor);
 		tab_fork.setStyle(styleStr + baseColor);
+		initTabPane();
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		instance = this;
-		setSkinNum(SkinConfig.getInstance().getSkinNum());
 		repositoryImpl = RepositoryServiceImpl.getInstance();
 		scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 		pageNum = repositoryImpl.getPageNums();
-		selectGeneral();
 		addTagListener();
+		selectGeneral();
+		setSkinNum(SkinConfig.getInstance().getSkinNum());
 	}
 
 	@FXML
@@ -144,8 +143,8 @@ public class HomeController implements Initializable {
 		tab_fork.setStyle(styleStr + baseColor);
 		tab_star.setStyle(styleStr + baseColor);
 		tab_contributor.setStyle(styleStr + baseColor);
-		generalList = repositoryImpl.showRepositories(0);
-		initTabPane(generalList);
+		list = repositoryImpl.showRepositories(0);
+		initTabPane();
 	}
 
 	@FXML
@@ -159,8 +158,8 @@ public class HomeController implements Initializable {
 		tab_fork.setStyle(styleStr + baseColor);
 		tab_general.setStyle(styleStr + baseColor);
 		tab_contributor.setStyle(styleStr + baseColor);
-		starList = repositoryImpl.showReposByStar(0);
-		initTabPane(starList);
+		list = repositoryImpl.showReposByStar(0);
+		initTabPane();
 	}
 
 	@FXML
@@ -174,8 +173,8 @@ public class HomeController implements Initializable {
 		tab_general.setStyle(styleStr + baseColor);
 		tab_star.setStyle(styleStr + baseColor);
 		tab_contributor.setStyle(styleStr + baseColor);
-		forkList = repositoryImpl.showReposByFork(0);
-		initTabPane(forkList);
+		list = repositoryImpl.showReposByFork(0);
+		initTabPane();
 	}
 
 	@FXML
@@ -189,11 +188,11 @@ public class HomeController implements Initializable {
 		tab_fork.setStyle(styleStr + baseColor);
 		tab_star.setStyle(styleStr + baseColor);
 		tab_general.setStyle(styleStr + baseColor);
-		contriList = repositoryImpl.showReposByContribute(0);
-		initTabPane(contriList);
+		list = repositoryImpl.showReposByContribute(0);
+		initTabPane();
 	}
 
-	public void initTabPane(List<RepositoryVO> list) {
+	public void initTabPane() {
 		box = new VBox();
 		VBox.setVgrow(scrollPane, Priority.ALWAYS);
 		box.setSpacing(4);
@@ -277,9 +276,9 @@ public class HomeController implements Initializable {
 	private void generalNext() {
 		if (selectGeneral) {
 			generalPage++;
-			generalList = repositoryImpl.showRepositories(generalPage);
-			if (generalList.size() > 0) {
-				initTabPane(generalList);
+			list = repositoryImpl.showRepositories(generalPage);
+			if (list.size() > 0) {
+				initTabPane();
 			} else {
 				generalPage--;
 			}
@@ -291,8 +290,8 @@ public class HomeController implements Initializable {
 		if (selectGeneral) {
 			generalPage--;
 			if (generalPage >= 0) {
-				generalList = repositoryImpl.showRepositories(generalPage);
-				initTabPane(generalList);
+				list = repositoryImpl.showRepositories(generalPage);
+				initTabPane();
 			} else {
 				generalPage++;
 			}
@@ -303,9 +302,9 @@ public class HomeController implements Initializable {
 	private void starNext() {
 		if (selectStar) {
 			starPage++;
-			starList = repositoryImpl.showReposByStar(starPage);
-			if (starList.size() > 0) {
-				initTabPane(starList);
+			list = repositoryImpl.showReposByStar(starPage);
+			if (list.size() > 0) {
+				initTabPane();
 			} else {
 				starPage--;
 			}
@@ -317,8 +316,8 @@ public class HomeController implements Initializable {
 		if (selectStar) {
 			starPage--;
 			if (starPage >= 0) {
-				starList = repositoryImpl.showReposByStar(starPage);
-				initTabPane(starList);
+				list = repositoryImpl.showReposByStar(starPage);
+				initTabPane();
 			} else {
 				starPage++;
 			}
@@ -330,9 +329,9 @@ public class HomeController implements Initializable {
 	private void forkNext() {
 		if (selectFork) {
 			forkPage++;
-			forkList = repositoryImpl.showReposByFork(forkPage);
-			if (forkList.size() > 0) {
-				initTabPane(forkList);
+			list = repositoryImpl.showReposByFork(forkPage);
+			if (list.size() > 0) {
+				initTabPane();
 			} else {
 				forkPage--;
 			}
@@ -344,8 +343,8 @@ public class HomeController implements Initializable {
 		if (selectFork) {
 			forkPage--;
 			if (forkPage >= 0) {
-				forkList = repositoryImpl.showReposByFork(forkPage);
-				initTabPane(forkList);
+				list = repositoryImpl.showReposByFork(forkPage);
+				initTabPane();
 			} else {
 				forkPage++;
 			}
@@ -357,9 +356,9 @@ public class HomeController implements Initializable {
 	private void contriNext() {
 		if (selectContri) {
 			contriPage++;
-			contriList = repositoryImpl.showReposByContribute(contriPage);
-			if (contriList.size() > 0) {
-				initTabPane(contriList);
+			list = repositoryImpl.showReposByContribute(contriPage);
+			if (list.size() > 0) {
+				initTabPane();
 			} else {
 				contriPage--;
 			}
@@ -371,8 +370,8 @@ public class HomeController implements Initializable {
 		if (selectContri) {
 			contriPage--;
 			if (contriPage >= 0) {
-				contriList = repositoryImpl.showReposByContribute(contriPage);
-				initTabPane(contriList);
+				list = repositoryImpl.showReposByContribute(contriPage);
+				initTabPane();
 			} else {
 				contriPage++;
 			}
