@@ -23,6 +23,9 @@
   -fx-background-color: white;
   -fx-text-fill: #1d1d1d;
 }
+#reposStaLeftPane{
+	-fx-background-color: #d5d8dd;
+}
 #headPane{
 	-fx-background-color: #b4b7bb;
 }

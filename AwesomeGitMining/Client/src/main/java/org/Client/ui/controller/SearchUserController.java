@@ -136,4 +136,7 @@ public class SearchUserController implements Initializable {
 		}
 		page.setText(userPage + 1 + " / " + pageNums);
 	}
+	public void changeStyle() {
+		initPane(list);
+	}
 }

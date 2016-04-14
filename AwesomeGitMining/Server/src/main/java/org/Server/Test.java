@@ -23,8 +23,8 @@ public class Test {
 			UserDaoImpl user = (UserDaoImpl) DataFactory.getUserDataInstance();
 			
 		//	user.getUserRepoAvgStars();
-		//	System.out.println(user.getUserRepoAvgStars());
-			System.out.println(user.getUserFollowers());
+			System.out.println(user.getUserRepoAvgStars());
+		//	System.out.println(user.getUserFollowers());
 		
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
