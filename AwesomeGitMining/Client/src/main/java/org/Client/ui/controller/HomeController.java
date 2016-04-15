@@ -1,6 +1,8 @@
 package org.Client.ui.controller;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -32,11 +34,11 @@ public class HomeController implements Initializable {
 
 	private static HomeController instance;
 	@FXML
-	private Label tab_general;
-	@FXML
 	private Label tab_star;
 	@FXML
 	private Label tab_fork;
+	@FXML
+	private Label tab_general;
 	@FXML
 	private Label tab_contributor;
 	@FXML
@@ -57,29 +59,17 @@ public class HomeController implements Initializable {
 	private Label innerBar;
 	private VBox box;
 
-	private String styleStr = "-fx-background-color: ";
-	private String enterColor;
-	private String baseColor;
-	private boolean selectGeneral;
-	private boolean selectStar;
-	private boolean selectFork;
-	private boolean selectContri;
-
 	private RepositoryService repositoryImpl;
 	// record the pages currently,count from 0
-	private int generalPage = 0;
-	private int starPage = 0;
-	private int forkPage = 0;
-	private int contriPage = 0;
+	private int currentPage;
 	private int pageNum;
 
 	private List<RepositoryVO> list;
 	private final String configPath = "file:src/main/java/org/Client/ui/config/";
-	private String[] enterColors = { "#5d9b78;", "#bdc9e7;", "#c9cacc;" };
-	private String[] baseColors = { "#71af8c;", "#d4dfff;", "#d5d8dd;" };
 	private String[] tagBackColors = { "-fx-background-color:#5d9b78;", "-fx-background-color:#ff99c7;",
 			"-fx-background-color:#cad2dd;" };
 	private int skinNum;
+	private String currentLabel;
 
 	public static HomeController getInstance() {
 		if (instance == null) {
@@ -89,14 +79,14 @@ public class HomeController implements Initializable {
 	}
 
 	public void setSkinNum(int skinNum) {
-		this.skinNum = skinNum;
-		this.enterColor = enterColors[skinNum];
-		this.baseColor = baseColors[skinNum];
-		tab_general.setStyle(styleStr + baseColor);
-		tab_star.setStyle(styleStr + baseColor);
-		tab_contributor.setStyle(styleStr + baseColor);
-		tab_fork.setStyle(styleStr + baseColor);
-		initTabPane();
+		// this.skinNum = skinNum;
+		// this.enterColor = enterColors[skinNum];
+		// this.baseColor = baseColors[skinNum];
+		// tab_general.setStyle(styleStr + baseColor);
+		// tab_star.setStyle(styleStr + baseColor);
+		// tab_contributor.setStyle(styleStr + baseColor);
+		// tab_fork.setStyle(styleStr + baseColor);
+		// initTabPane();
 	}
 
 	@Override
@@ -106,88 +96,51 @@ public class HomeController implements Initializable {
 		scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 		pageNum = repositoryImpl.getPageNums();
 		addTagListener();
-		selectGeneral();
+		selectTab("showRepositories");
+		addLabelListener();
 		setSkinNum(SkinConfig.getInstance().getSkinNum());
 	}
 
-	@FXML
-	public void enterGeneral() {
-		tab_general.setStyle(styleStr + enterColor);
+	public void addLabelListener() {
+		tab_star.setOnMouseReleased((e) -> {
+			selectTab("showReposByStar");
+			scrollPane.setVvalue(0);
+		});
+		tab_fork.setOnMouseReleased((e) -> {
+			selectTab("showReposByFork");
+			scrollPane.setVvalue(0);
+		});
+		tab_general.setOnMouseReleased((e) -> {
+			selectTab("showRepositories");
+			scrollPane.setVvalue(0);
+		});
+		tab_contributor.setOnMouseReleased((e) -> {
+			selectTab("showReposByContribute");
+			scrollPane.setVvalue(0);
+		});
 	}
 
-	@FXML
-	public void enterFork() {
-		tab_fork.setStyle(styleStr + enterColor);
-	}
-
-	@FXML
-	public void enterStar() {
-		tab_star.setStyle(styleStr + enterColor);
-	}
-
-	@FXML
-	public void enterContributor() {
-		tab_contributor.setStyle(styleStr + enterColor);
-	}
-
-	@FXML
-	public void selectGeneral() {
+	public void selectTab(String tabName) {
+		currentLabel = tabName;
 		page.setText("1 / " + pageNum);
-		selectStar = false;
-		selectFork = false;
-		selectContri = false;
-		selectGeneral = true;
-		enterGeneral();
-		tab_fork.setStyle(styleStr + baseColor);
-		tab_star.setStyle(styleStr + baseColor);
-		tab_contributor.setStyle(styleStr + baseColor);
-		list = repositoryImpl.showRepositories(0);
+		loadList();
 		initTabPane();
 	}
 
-	@FXML
-	public void selectStar() {
-		page.setText("1 / " + pageNum);
-		selectStar = true;
-		selectFork = false;
-		selectContri = false;
-		selectGeneral = false;
-		enterStar();
-		tab_fork.setStyle(styleStr + baseColor);
-		tab_general.setStyle(styleStr + baseColor);
-		tab_contributor.setStyle(styleStr + baseColor);
-		list = repositoryImpl.showReposByStar(0);
-		initTabPane();
-	}
-
-	@FXML
-	public void selectFork() {
-		page.setText("1 / " + pageNum);
-		selectStar = false;
-		selectFork = true;
-		selectContri = false;
-		selectGeneral = false;
-		enterFork();
-		tab_general.setStyle(styleStr + baseColor);
-		tab_star.setStyle(styleStr + baseColor);
-		tab_contributor.setStyle(styleStr + baseColor);
-		list = repositoryImpl.showReposByFork(0);
-		initTabPane();
-	}
-
-	@FXML
-	public void selectContributor() {
-		page.setText("1 / " + pageNum);
-		selectStar = false;
-		selectFork = false;
-		selectContri = true;
-		selectGeneral = false;
-		enterContributor();
-		tab_fork.setStyle(styleStr + baseColor);
-		tab_star.setStyle(styleStr + baseColor);
-		tab_general.setStyle(styleStr + baseColor);
-		list = repositoryImpl.showReposByContribute(0);
-		initTabPane();
+	@SuppressWarnings("unchecked")
+	public void loadList() {
+		try {
+			Method method = repositoryImpl.getClass().getMethod(currentLabel, int.class);
+			list = (List<RepositoryVO>) method.invoke(repositoryImpl, currentPage);
+		} catch (NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void initTabPane() {
@@ -200,7 +153,6 @@ public class HomeController implements Initializable {
 				loader.setLocation(
 						new URL(configPath + (SkinConfig.getInstance().getFxmlResoursePath("singleReposView"))));
 			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			try {
@@ -210,7 +162,7 @@ public class HomeController implements Initializable {
 					RepositoryVO vo = list.get(i);
 					controller.setVO(vo);
 					BackHandler.getInstance()
-							.setRepoBack(new BackObject(BackType.HOME_REPO, vo.getFull_name(), generalPage));
+							.setRepoBack(new BackObject(BackType.HOME_REPO, vo.getFull_name(), pageNum));
 
 					box.getChildren().add(single);
 				}
@@ -222,160 +174,32 @@ public class HomeController implements Initializable {
 		box = null;
 	}
 
-	public void setPage(int num) {
-		generalPage = num;
-		page.setText(generalPage + 1 + " / " + pageNum);
-	}
-
-	@FXML
-	public void exitGeneral() {
-		if (!selectGeneral) {
-			tab_general.setStyle(styleStr + baseColor);
-		}
-	}
-
-	@FXML
-	public void exitFork() {
-		if (!selectFork) {
-			tab_fork.setStyle(styleStr + baseColor);
-		}
-	}
-
-	@FXML
-	public void exitStar() {
-		if (!selectStar) {
-			tab_star.setStyle(styleStr + baseColor);
-		}
-	}
-
-	@FXML
-	public void exitContri() {
-		if (!selectContri) {
-			tab_contributor.setStyle(styleStr + baseColor);
-		}
-	}
-
 	@FXML
 	public void handleNextButton() {
-		generalNext();
-		starNext();
-		forkNext();
-		contriNext();
+		currentPage++;
+		loadList();
+		if (list.size() > 0) {
+			initTabPane();
+		} else {
+			currentPage--;
+		}
+		page.setText(currentPage + 1 + " / " + pageNum);
+		scrollPane.setVvalue(0);
 	}
 
 	@FXML
 	public void handlePreButton() {
-		generalPre();
-		starPre();
-		forkPre();
-		contriPre();
+		currentPage--;
+		if (currentPage >= 0) {
+			loadList();
+			initTabPane();
+		} else {
+			currentPage++;
+		}
+		page.setText(currentPage + 1 + " / " + pageNum);
+		scrollPane.setVvalue(0);
 	}
 
-	private void generalNext() {
-		if (selectGeneral) {
-			generalPage++;
-			list = repositoryImpl.showRepositories(generalPage);
-			if (list.size() > 0) {
-				initTabPane();
-			} else {
-				generalPage--;
-			}
-			page.setText(generalPage + 1 + " / " + pageNum);
-		}
-	}
-
-	private void generalPre() {
-		if (selectGeneral) {
-			generalPage--;
-			if (generalPage >= 0) {
-				list = repositoryImpl.showRepositories(generalPage);
-				initTabPane();
-			} else {
-				generalPage++;
-			}
-			page.setText(generalPage + 1 + " / " + pageNum);
-		}
-	}
-
-	private void starNext() {
-		if (selectStar) {
-			starPage++;
-			list = repositoryImpl.showReposByStar(starPage);
-			if (list.size() > 0) {
-				initTabPane();
-			} else {
-				starPage--;
-			}
-			page.setText(starPage + 1 + " / " + pageNum);
-		}
-	}
-
-	private void starPre() {
-		if (selectStar) {
-			starPage--;
-			if (starPage >= 0) {
-				list = repositoryImpl.showReposByStar(starPage);
-				initTabPane();
-			} else {
-				starPage++;
-			}
-			page.setText(starPage + 1 + " / " + pageNum);
-		}
-	}
-
-	// handle the fork tab pane
-	private void forkNext() {
-		if (selectFork) {
-			forkPage++;
-			list = repositoryImpl.showReposByFork(forkPage);
-			if (list.size() > 0) {
-				initTabPane();
-			} else {
-				forkPage--;
-			}
-			page.setText(forkPage + 1 + " / " + pageNum);
-		}
-	}
-
-	private void forkPre() {
-		if (selectFork) {
-			forkPage--;
-			if (forkPage >= 0) {
-				list = repositoryImpl.showReposByFork(forkPage);
-				initTabPane();
-			} else {
-				forkPage++;
-			}
-			page.setText(forkPage + 1 + " / " + pageNum);
-		}
-	}
-
-	// handle the contributor tab pane
-	private void contriNext() {
-		if (selectContri) {
-			contriPage++;
-			list = repositoryImpl.showReposByContribute(contriPage);
-			if (list.size() > 0) {
-				initTabPane();
-			} else {
-				contriPage--;
-			}
-			page.setText(contriPage + 1 + " / " + pageNum);
-		}
-	}
-
-	private void contriPre() {
-		if (selectContri) {
-			contriPage--;
-			if (contriPage >= 0) {
-				list = repositoryImpl.showReposByContribute(contriPage);
-				initTabPane();
-			} else {
-				contriPage++;
-			}
-			page.setText(contriPage + 1 + " / " + pageNum);
-		}
-	}
 
 	/**
 	 * jump to another page
@@ -387,7 +211,6 @@ public class HomeController implements Initializable {
 				String methodName = "getReposBy" + cg.getId();
 				Label label = (Label) cg.getChildren().get(i);
 				label.setOnMouseReleased(new EventHandler<MouseEvent>() {
-
 					@Override
 					public void handle(MouseEvent arg0) {
 						resetTag();
