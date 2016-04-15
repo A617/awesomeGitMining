@@ -56,9 +56,6 @@ public class UserPageController implements Initializable {
 	private int skinNum;
 
 	public static UserPageController getInstance() {
-		if (instance == null) {
-			instance = new UserPageController();
-		}
 		return instance;
 	}
 	

@@ -132,9 +132,8 @@ public class MainUI extends Application {
 		launch(args);
 	}
 
-	public void changeStyle(String style) {
+	public void changeStyle() {
 		scene.getStylesheets().clear();
-		SkinHandler.changeStyle(style);
 		try {
 			scene.getStylesheets().add(new URL(SkinConfig.getInstance().getCssResoursePath()).toExternalForm());
 		} catch (MalformedURLException e) {

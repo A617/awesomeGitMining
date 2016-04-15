@@ -9,9 +9,22 @@
 
 <AnchorPane fx:id="infoPane" prefHeight="134.0" prefWidth="84.0" style="-fx-background-color: #444749;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Client.ui.controller.InfoPaneController">
    <children>
-      <Group fx:id="group">
+      <Group fx:id="group" layoutX="-36.0" layoutY="-28.0">
          <children>
-            <Label fx:id="dark" layoutX="18.0" layoutY="105.0" text="StarrySky">
+            <Label id="yellow" fx:id="yellow" layoutX="71.0" layoutY="42.0" prefHeight="15.0" prefWidth="15.0">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#9fd64b" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <font>
+                  <Font name="System Bold" size="10.0" />
+               </font>
+            </Label>
+            <Label id="dark" fx:id="dark" layoutX="71.0" layoutY="133.0" prefHeight="15.0" prefWidth="15.0">
                <textFill>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -24,24 +37,11 @@
                   <Font name="System Bold" size="10.0" />
                </font>
             </Label>
-            <Label fx:id="pink" layoutX="18.0" layoutY="60.0" text="Dream">
+            <Label id="pink" fx:id="pink" layoutX="71.0" layoutY="88.0" prefHeight="15.0" prefWidth="15.0">
                <textFill>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
                         <Stop color="#d996e3" />
-                        <Stop color="WHITE" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </textFill>
-               <font>
-                  <Font name="System Bold" size="10.0" />
-               </font>
-            </Label>
-            <Label fx:id="yellow" layoutX="18.0" layoutY="14.0" text="Summer">
-               <textFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#9fd64b" />
                         <Stop color="WHITE" offset="1.0" />
                      </stops>
                   </LinearGradient>

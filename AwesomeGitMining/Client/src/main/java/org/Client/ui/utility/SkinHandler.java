@@ -1,6 +1,6 @@
 package org.Client.ui.utility;
 
-import org.Client.ui.controller.HomeController;
+import org.Client.ui.MainUI;
 import org.Client.ui.controller.ReposStaPaneController;
 import org.Client.ui.controller.SearchController;
 import org.Client.ui.controller.SearchUserController;
@@ -22,11 +22,11 @@ public class SkinHandler {
 				break;
 			}
 		}
-		LabelListenerHelper.changeSkin(skinNum);
 		SkinConfig.getInstance().setSkinNum(skinNum);
-		// MainController.getInstance().setSkinNum(skinNum);
-		HomeController.getInstance().setSkinNum(skinNum);
-		UserPageController.getInstance().setSkinNum(skinNum);
+		MainUI.getUI().changeStyle();
+		if (UserPageController.getInstance() != null) {
+			UserPageController.getInstance().setSkinNum(skinNum);
+		}
 		if (ReposStaPaneController.getInstance() != null) {
 			ReposStaPaneController.getInstance().setSkinNum(skinNum);
 		}

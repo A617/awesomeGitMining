@@ -77,18 +77,6 @@ public class HomeController implements Initializable {
 		}
 		return instance;
 	}
-
-	public void setSkinNum(int skinNum) {
-		// this.skinNum = skinNum;
-		// this.enterColor = enterColors[skinNum];
-		// this.baseColor = baseColors[skinNum];
-		// tab_general.setStyle(styleStr + baseColor);
-		// tab_star.setStyle(styleStr + baseColor);
-		// tab_contributor.setStyle(styleStr + baseColor);
-		// tab_fork.setStyle(styleStr + baseColor);
-		// initTabPane();
-	}
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		instance = this;
@@ -98,7 +86,6 @@ public class HomeController implements Initializable {
 		addTagListener();
 		selectTab("showRepositories");
 		addLabelListener();
-		setSkinNum(SkinConfig.getInstance().getSkinNum());
 	}
 
 	public void addLabelListener() {

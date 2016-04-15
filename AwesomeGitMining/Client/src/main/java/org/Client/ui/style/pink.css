@@ -56,6 +56,24 @@
 #exitLabel:hover{
 	-fx-background-image: url("exit_normal_pink.png");
 }
+#yellow{
+	-fx-background-image: url("back_icon.png");
+}
+#yellow:hover{
+	-fx-background-image: url("back_icon_flash.png");
+}
+#dark{
+	-fx-background-image: url("back_dark_icon.png");
+}
+#dark:hover{
+	-fx-background-image: url("back_dark_icon_flash.png");
+}
+#pink{
+	-fx-background-image: url("back_pink_icon.png");
+}
+#pink:hover{
+	-fx-background-image: url("back_pink_icon_flash.png");
+}
 #back{
 	-fx-background-image: url("back5.png");
 }
