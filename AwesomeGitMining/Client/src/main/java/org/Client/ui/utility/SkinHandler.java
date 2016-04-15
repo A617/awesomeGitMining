@@ -26,7 +26,9 @@ public class SkinHandler {
 		SkinConfig.getInstance().setSkinNum(skinNum);
 		// MainController.getInstance().setSkinNum(skinNum);
 		HomeController.getInstance().setSkinNum(skinNum);
-		UserPageController.getInstance().setSkinNum(skinNum);
+		if(UserPageController.getInstance() != null) {
+			UserPageController.getInstance().setSkin(skinNum);
+		}
 		if (ReposStaPaneController.getInstance() != null) {
 			ReposStaPaneController.getInstance().setSkinNum(skinNum);
 		}

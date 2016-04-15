@@ -96,7 +96,7 @@ public class HomeController implements Initializable {
 		tab_star.setStyle(styleStr + baseColor);
 		tab_contributor.setStyle(styleStr + baseColor);
 		tab_fork.setStyle(styleStr + baseColor);
-		initTabPane();
+		initTabPane(list);
 	}
 
 	@Override
@@ -142,7 +142,7 @@ public class HomeController implements Initializable {
 		tab_star.setStyle(styleStr + baseColor);
 		tab_contributor.setStyle(styleStr + baseColor);
 		list = repositoryImpl.showRepositories(0);
-		initTabPane();
+		initTabPane(list);
 	}
 
 	@FXML
@@ -157,7 +157,7 @@ public class HomeController implements Initializable {
 		tab_general.setStyle(styleStr + baseColor);
 		tab_contributor.setStyle(styleStr + baseColor);
 		list = repositoryImpl.showReposByStar(0);
-		initTabPane();
+		initTabPane(list);
 	}
 
 	@FXML
@@ -172,7 +172,7 @@ public class HomeController implements Initializable {
 		tab_star.setStyle(styleStr + baseColor);
 		tab_contributor.setStyle(styleStr + baseColor);
 		list = repositoryImpl.showReposByFork(0);
-		initTabPane();
+		initTabPane(list);
 	}
 
 	@FXML
@@ -187,10 +187,10 @@ public class HomeController implements Initializable {
 		tab_star.setStyle(styleStr + baseColor);
 		tab_general.setStyle(styleStr + baseColor);
 		list = repositoryImpl.showReposByContribute(0);
-		initTabPane();
+		initTabPane(list);
 	}
 
-	public void initTabPane() {
+	public void initTabPane(List<RepositoryVO> list) {
 		box = new VBox();
 		VBox.setVgrow(scrollPane, Priority.ALWAYS);
 		box.setSpacing(4);
@@ -276,7 +276,7 @@ public class HomeController implements Initializable {
 			generalPage++;
 			list = repositoryImpl.showRepositories(generalPage);
 			if (list.size() > 0) {
-				initTabPane();
+				initTabPane(list);
 			} else {
 				generalPage--;
 			}
@@ -289,7 +289,7 @@ public class HomeController implements Initializable {
 			generalPage--;
 			if (generalPage >= 0) {
 				list = repositoryImpl.showRepositories(generalPage);
-				initTabPane();
+				initTabPane(list);
 			} else {
 				generalPage++;
 			}
@@ -302,7 +302,7 @@ public class HomeController implements Initializable {
 			starPage++;
 			list = repositoryImpl.showReposByStar(starPage);
 			if (list.size() > 0) {
-				initTabPane();
+				initTabPane(list);
 			} else {
 				starPage--;
 			}
@@ -315,7 +315,7 @@ public class HomeController implements Initializable {
 			starPage--;
 			if (starPage >= 0) {
 				list = repositoryImpl.showReposByStar(starPage);
-				initTabPane();
+				initTabPane(list);
 			} else {
 				starPage++;
 			}
@@ -329,7 +329,7 @@ public class HomeController implements Initializable {
 			forkPage++;
 			list = repositoryImpl.showReposByFork(forkPage);
 			if (list.size() > 0) {
-				initTabPane();
+				initTabPane(list);
 			} else {
 				forkPage--;
 			}
@@ -342,7 +342,7 @@ public class HomeController implements Initializable {
 			forkPage--;
 			if (forkPage >= 0) {
 				list = repositoryImpl.showReposByFork(forkPage);
-				initTabPane();
+				initTabPane(list);
 			} else {
 				forkPage++;
 			}
@@ -356,7 +356,7 @@ public class HomeController implements Initializable {
 			contriPage++;
 			list = repositoryImpl.showReposByContribute(contriPage);
 			if (list.size() > 0) {
-				initTabPane();
+				initTabPane(list);
 			} else {
 				contriPage--;
 			}
@@ -369,7 +369,7 @@ public class HomeController implements Initializable {
 			contriPage--;
 			if (contriPage >= 0) {
 				list = repositoryImpl.showReposByContribute(contriPage);
-				initTabPane();
+				initTabPane(list);
 			} else {
 				contriPage++;
 			}
