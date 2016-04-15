@@ -78,14 +78,14 @@
                      <children>
                         <Label id="tag" layoutX="124.0" layoutY="565.0" text="2008" />
                         <Label id="tag" fx:id="time_all" layoutX="9.0" layoutY="565.0" text="All" />
-                        <Label id="tag" layoutX="9.0" layoutY="595.0" text="2012" />
-                        <Label id="tag" layoutX="244.0" layoutY="595.0" text="2011" />
+                        <Label id="tag" layoutX="61.0" layoutY="595.0" text="2012" />
                         <Label id="tag" layoutX="61.0" layoutY="565.0" text="2007" />
-                        <Label id="tag" layoutX="124.0" layoutY="595.0" text="2014" />
-                        <Label id="tag" layoutX="187.0" layoutY="595.0" text="2015" />
+                        <Label id="tag" layoutX="187.0" layoutY="595.0" text="2014" />
+                        <Label id="tag" layoutX="244.0" layoutY="595.0" text="2015" />
                         <Label id="tag" layoutX="187.0" layoutY="565.0" text="2009" />
                         <Label id="tag" layoutX="244.0" layoutY="565.0" text="2010" />
-                        <Label id="tag" layoutX="61.0" layoutY="595.0" text="2013" />
+                        <Label id="tag" layoutX="124.0" layoutY="595.0" text="2013" />
+                        <Label id="tag" layoutX="6.0" layoutY="595.0" text="2011" />
                      </children>
                   </Group>
                   <Group fx:id="Key">
@@ -119,7 +119,7 @@
             </Group>
             <Line endX="200.0" layoutX="100.0" layoutY="319.0" startX="-100.0" stroke="#dad8d8" />
             <Line endX="200.0" layoutX="100.0" layoutY="540.0" startX="-100.0" stroke="#dad8d8" />
-            <Label layoutX="6.0" layoutY="552.0" text="Create Time:">
+            <Label layoutX="6.0" layoutY="552.0" text="Updated Time:">
                <font>
                   <Font name="Microsoft YaHei UI" size="22.0" />
                </font>
