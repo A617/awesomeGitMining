@@ -25,7 +25,7 @@ public class SkinHandler {
 		LabelListenerHelper.changeSkin(skinNum);
 		SkinConfig.getInstance().setSkinNum(skinNum);
 		// MainController.getInstance().setSkinNum(skinNum);
-		HomeController.getInstance().setSkinNum(skinNum);
+		//HomeController.getInstance().setSkinNum(skinNum);
 		if(UserPageController.getInstance() != null) {
 			UserPageController.getInstance().setSkin(skinNum);
 		}
