@@ -77,6 +77,10 @@ public class HomeController implements Initializable {
 		}
 		return instance;
 	}
+	public void setSkinNum(){
+		list = repositoryImpl.showRepositories(currentPage);
+		initTabPane(list);
+	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		instance = this;
@@ -86,6 +90,11 @@ public class HomeController implements Initializable {
 		addTagListener();
 		selectTab("showRepositories");
 		addLabelListener();
+	}
+	
+	public void setPage(int p) {
+		this.currentPage = p;
+		page.setText(currentPage + 1 + " / " + pageNum);
 	}
 
 	public void addLabelListener() {
@@ -111,7 +120,7 @@ public class HomeController implements Initializable {
 		currentLabel = tabName;
 		page.setText("1 / " + pageNum);
 		loadList();
-		initTabPane();
+		initTabPane(list);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -130,7 +139,7 @@ public class HomeController implements Initializable {
 		}
 	}
 
-	public void initTabPane() {
+	public void initTabPane(List<RepositoryVO> list) {
 		box = new VBox();
 		VBox.setVgrow(scrollPane, Priority.ALWAYS);
 		box.setSpacing(4);
@@ -149,7 +158,7 @@ public class HomeController implements Initializable {
 					RepositoryVO vo = list.get(i);
 					controller.setVO(vo);
 					BackHandler.getInstance()
-							.setRepoBack(new BackObject(BackType.HOME_REPO, vo.getFull_name(), pageNum));
+							.setRepoBack(new BackObject(BackType.HOME_REPO, vo.getFull_name(), currentPage));
 
 					box.getChildren().add(single);
 				}
@@ -166,7 +175,7 @@ public class HomeController implements Initializable {
 		currentPage++;
 		loadList();
 		if (list.size() > 0) {
-			initTabPane();
+			initTabPane(list);
 		} else {
 			currentPage--;
 		}
@@ -179,7 +188,7 @@ public class HomeController implements Initializable {
 		currentPage--;
 		if (currentPage >= 0) {
 			loadList();
-			initTabPane();
+			initTabPane(list);
 		} else {
 			currentPage++;
 		}

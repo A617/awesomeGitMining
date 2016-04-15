@@ -13,6 +13,7 @@ import org.Client.ui.controller.ProjectController;
 import org.Client.ui.controller.SearchController;
 import org.Client.ui.controller.SearchUserController;
 import org.Client.ui.controller.UserController;
+import org.Client.ui.controller.UserPageController;
 import org.Common.vo.RepositoryVO;
 import org.Common.vo.SimpleUserVO;
 import org.Common.vo.UserVO;
@@ -54,8 +55,8 @@ public class BackHandler {
 		case HOME_REPO:
 			MainController.getInstance().setPanel("repositoryPage.fxml");
 			repositoryList = repositoryImpl.showRepositories(repo.getPage());
-//			HomeController.getInstance().setPage(repo.getPage());
-//			HomeController.getInstance().initTabPane(repositoryList);
+			HomeController.getInstance().setPage(repo.getPage());
+			HomeController.getInstance().initTabPane(repositoryList);
 			break;
 		case SEARCH_REPO:
 			MainController.getInstance().setPanel("Ui_SearchRepos.fxml");
@@ -92,8 +93,8 @@ public class BackHandler {
 		case HOME_USER:
 			MainController.getInstance().setPanel("userPage.fxml");
 			userList = userImpl.showUsers(user.getPage());
-//			UserPageController.getInstance().setPage(user.getPage());
-//			UserPageController.getInstance().initUser(userList);
+			UserPageController.getInstance().setPage(user.getPage());
+			UserPageController.getInstance().initUser(userList);
 			break;
 		case SEARCH_USER:
 			MainController.getInstance().setPanel("Ui_SearchUser.fxml");

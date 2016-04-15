@@ -72,12 +72,17 @@ public class UserPageController implements Initializable {
 		setSkinNum(SkinConfig.getInstance().getSkinNum());
 	}
 	
+	public void setSkin(int skinNum) {
+		this.skinNum = skinNum;
+	}
+	
 	public void setSkinNum(int skinNum) {
 		this.skinNum = skinNum;
 		userVO = userImpl.showUsers(userPage);
-		initUser();
+		initUser(userVO);
 	}
-	public void initUser() {
+	
+	public void initUser(List<SimpleUserVO> userVO) {
 		VBox box = new VBox();
 		VBox.setVgrow(scrollPane, Priority.ALWAYS);
 		box.setSpacing(4);
@@ -112,7 +117,7 @@ public class UserPageController implements Initializable {
 		userPage--;
 		if (userPage >= 0) {
 			userVO = userImpl.showUsers(userPage);
-			initUser();
+			initUser(userVO);
 		} else {
 			userPage++;
 		}
@@ -124,7 +129,7 @@ public class UserPageController implements Initializable {
 		userPage++;
 		userVO = userImpl.showUsers(userPage);
 		if (userVO.size() > 0) {
-			initUser();
+			initUser(userVO);
 		} else {
 			userPage--;
 		}

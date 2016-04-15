@@ -1,6 +1,7 @@
 package org.Client.ui.utility;
 
 import org.Client.ui.MainUI;
+import org.Client.ui.controller.HomeController;
 import org.Client.ui.controller.ReposStaPaneController;
 import org.Client.ui.controller.SearchController;
 import org.Client.ui.controller.SearchUserController;
@@ -24,6 +25,7 @@ public class SkinHandler {
 		}
 		SkinConfig.getInstance().setSkinNum(skinNum);
 		MainUI.getUI().changeStyle();
+		HomeController.getInstance().setSkinNum();
 		if (UserPageController.getInstance() != null) {
 			UserPageController.getInstance().setSkinNum(skinNum);
 		}
