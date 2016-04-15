@@ -48,23 +48,24 @@ public class MainController implements Initializable {
 	private Label repository;
 	@FXML
 	private Label user;
-	private Label currentHead;
+	private String currentHead;
 	private AnchorPane infoPane;
 
 	public void initPanel() {
 		setPanel("repositoryPage.fxml");
 	}
 
-	public void setError(){
-		
+	public void setError() {
+
 		AnchorPane panel = fxmlLoader.loadPanel("Ui_Error.fxml");
-		panel.setLayoutX((center_panel.getWidth()-panel.getPrefWidth())/2);
-		panel.setLayoutY((center_panel.getHeight()-panel.getPrefHeight())/2);
+		panel.setLayoutX((center_panel.getWidth() - panel.getPrefWidth()) / 2);
+		panel.setLayoutY((center_panel.getHeight() - panel.getPrefHeight()) / 2);
 		center_panel.getChildren().clear();
 		common.setDisable(true);
 		center_panel.getChildren().add(panel);
-	
+
 	}
+
 	/**
 	 * the common method to change the current panel
 	 *
@@ -98,6 +99,7 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		instance = this;
+		this.currentHead = "repository";
 		addDraggableNode(common);
 		infoPane = fxmlLoader.loadPanel("Ui_InfoPane.fxml");
 		infoPane.setLayoutX(changeStyle.getLayoutX());
@@ -108,9 +110,11 @@ public class MainController implements Initializable {
 	public void addLabelListener() {
 		repository.setOnMouseReleased((e) -> {
 			setPanel("repositoryPage.fxml");
+			this.currentHead = "repository";
 		});
 		user.setOnMouseReleased((e) -> {
 			setPanel("userPage.fxml");
+			this.currentHead = "user";
 		});
 		repositorySta.setOnMouseReleased((e) -> {
 			setPanel("repositoryStaPage.fxml");
@@ -139,11 +143,11 @@ public class MainController implements Initializable {
 	}
 
 	public boolean isSelectRepos() {
-		return currentHead.getId().equals("repository");
+		return currentHead.equals("repository");
 	}
 
 	public boolean isSelectUser() {
-		return currentHead.getId().equals("user");
+		return currentHead.equals("user");
 	}
 
 	class Delta {
@@ -172,5 +176,5 @@ public class MainController implements Initializable {
 			}
 		});
 	}
-	
+
 }
