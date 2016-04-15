@@ -7,6 +7,7 @@ import org.Client.business.impl.repository.RepositoryServiceImpl;
 import org.Client.business.impl.user.UserServiceImpl;
 import org.Client.business.service.RepositoryService;
 import org.Client.business.service.UserService;
+import org.Client.ui.controller.HomeController;
 import org.Client.ui.controller.MainController;
 import org.Client.ui.controller.ProjectController;
 import org.Client.ui.controller.SearchController;
@@ -52,7 +53,7 @@ public class BackHandler {
 		switch (repo.getType()) {
 		case HOME_REPO:
 			MainController.getInstance().setPanel("repositoryPage.fxml");
-//			repositoryList = repositoryImpl.showRepositories(repo.getPage());
+			repositoryList = repositoryImpl.showRepositories(repo.getPage());
 //			HomeController.getInstance().setPage(repo.getPage());
 //			HomeController.getInstance().initTabPane(repositoryList);
 			break;
@@ -90,7 +91,7 @@ public class BackHandler {
 		switch (user.getType()) {
 		case HOME_USER:
 			MainController.getInstance().setPanel("userPage.fxml");
-//			userList = userImpl.showUsers(user.getPage());
+			userList = userImpl.showUsers(user.getPage());
 //			UserPageController.getInstance().setPage(user.getPage());
 //			UserPageController.getInstance().initUser(userList);
 			break;
