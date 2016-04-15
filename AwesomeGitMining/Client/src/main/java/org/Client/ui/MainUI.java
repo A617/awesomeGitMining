@@ -13,6 +13,7 @@ import org.Client.ui.controller.MainController;
 import org.Client.ui.controller.ReposStaPaneController;
 import org.Client.ui.controller.SearchController;
 import org.Client.ui.controller.SearchUserController;
+import org.Client.ui.controller.UserPageController;
 import org.Client.ui.controller.UserStaPaneController;
 import org.Client.ui.utility.SkinConfig;
 import org.Client.ui.utility.fxmlLoader;

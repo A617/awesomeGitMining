@@ -11,55 +11,59 @@
    <children>
       <AnchorPane prefHeight="720.0" prefWidth="290.0" style="-fx-background-color: #faf6f2;">
          <children>
-            <Label layoutX="7.0" layoutY="89.0" prefHeight="48.0" prefWidth="121.0" text="Languages">
+            <Group fx:id="group">
+               <children>
+                  <Group fx:id="Language" layoutX="4.0" layoutY="139.0">
+                     <children>
+                        <Label id="tag" layoutX="14.0" text="All" />
+                        <Label id="tag" layoutX="138.0" text="C" />
+                        <Label id="tag" layoutX="254.0" text="Java" />
+                        <Label id="tag" layoutX="188.0" text="Ruby" />
+                        <Label id="tag" layoutX="6.0" layoutY="33.0" text="Python" />
+                        <Label id="tag" layoutX="57.0" layoutY="33.0" text="JavaScript" />
+                        <Label id="tag" layoutX="131.0" layoutY="33.0" text="Perl" />
+                        <Label id="tag" layoutX="190.0" layoutY="34.0" text="PHP" />
+                        <Label id="tag" layoutX="250.0" layoutY="32.0" text="HTML" />
+                        <Label id="tag" layoutX="7.0" layoutY="67.0" text="Shell" />
+                        <Label id="tag" layoutX="51.0" layoutY="67.0" text="Objective-C" />
+                        <Label id="tag" layoutX="258.0" layoutY="67.0" text="C#" />
+                        <Label id="tag" layoutX="74.0" layoutY="103.0" text="C++" />
+                        <Label id="tag" layoutX="132.0" layoutY="103.0" text="Lua" />
+                        <Label id="tag" layoutX="183.0" layoutY="67.0" text="Clojure" />
+                        <Label id="tag" layoutX="126.0" layoutY="67.0" text="Haskell" />
+                        <Label id="tag" layoutX="8.0" layoutY="104.0" text="CSS" />
+                        <Label id="tag" layoutX="69.0" text="Scala" />
+                     </children>
+                  </Group>
+                  <Group fx:id="Company" layoutX="2.0" layoutY="329.0">
+                     <children>
+                        <Label id="tag" layoutX="14.0" text="All" />
+                        <Label id="tag" layoutX="157.0" text="Google" />
+                        <Label id="tag" layoutX="241.0" layoutY="1.0" text="Github" />
+                        <Label id="tag" layoutX="6.0" layoutY="33.0" text="Twitter" />
+                        <Label id="tag" layoutX="70.0" layoutY="33.0" text="Red Hat" />
+                        <Label id="tag" layoutX="158.0" layoutY="33.0" text="Mozilla" />
+                        <Label id="tag" layoutX="239.0" layoutY="34.0" text="Xamarin" />
+                        <Label id="tag" layoutX="7.0" layoutY="67.0" text="Heroku" />
+                        <Label id="tag" layoutX="66.0" layoutY="67.0" text="Facebook" />
+                        <Label id="tag" layoutX="153.0" layoutY="67.0" text="Microsoft" />
+                        <Label id="tag" layoutX="72.0" text="Shopify" />
+                     </children>
+                  </Group>
+               </children>
+            </Group>
+            <Label layoutX="9.0" layoutY="81.0" prefHeight="48.0" prefWidth="121.0" text="Languages">
                <font>
                   <Font name="Microsoft YaHei Bold" size="19.0" />
                </font>
             </Label>
-            <Line endX="200.0" layoutX="99.0" layoutY="135.0" startX="-100.0" stroke="#dad8d8" />
-            <Group fx:id="language_group" layoutY="139.0">
-               <children>
-                  <Label id="tag" layoutX="14.0" text="All" />
-                  <Label id="tag" layoutX="138.0" text="C" />
-                  <Label id="tag" layoutX="254.0" text="Java" />
-                  <Label id="tag" layoutX="188.0" text="Ruby" />
-                  <Label id="tag" layoutX="6.0" layoutY="33.0" text="Python" />
-                  <Label id="tag" layoutX="57.0" layoutY="33.0" text="JavaScript" />
-                  <Label id="tag" layoutX="131.0" layoutY="33.0" text="Perl" />
-                  <Label id="tag" layoutX="190.0" layoutY="34.0" text="PHP" />
-                  <Label id="tag" layoutX="250.0" layoutY="32.0" text="HTML" />
-                  <Label id="tag" layoutX="7.0" layoutY="67.0" text="Shell" />
-                  <Label id="tag" layoutX="51.0" layoutY="67.0" text="Objective-C" />
-                  <Label id="tag" layoutX="258.0" layoutY="67.0" text="C#" />
-                  <Label id="tag" layoutX="74.0" layoutY="103.0" text="C++" />
-                  <Label id="tag" layoutX="132.0" layoutY="103.0" text="Lua" />
-                  <Label id="tag" layoutX="183.0" layoutY="67.0" text="Clojure" />
-                  <Label id="tag" layoutX="126.0" layoutY="67.0" text="Haskell" />
-                  <Label id="tag" layoutX="8.0" layoutY="103.0" text="CSS" />
-                  <Label id="tag" layoutX="69.0" text="Scala" />
-               </children>
-            </Group>
-            <Label layoutX="7.0" layoutY="281.0" prefHeight="48.0" prefWidth="121.0" text="Companys">
+            <Line endX="200.0" layoutX="100.0" layoutY="320.0" startX="-100.0" stroke="#dad8d8" />
+            <Line endX="200.0" layoutX="100.0" layoutY="129.0" startX="-100.0" stroke="#dad8d8" />
+            <Label layoutX="9.0" layoutY="274.0" prefHeight="48.0" prefWidth="121.0" text="Companys">
                <font>
                   <Font name="Microsoft YaHei Bold" size="19.0" />
                </font>
             </Label>
-            <Line endX="200.0" layoutX="100.0" layoutY="324.0" startX="-100.0" stroke="#dad8d8" />
-            <Group fx:id="company_group" layoutY="329.0">
-               <children>
-                  <Label id="tag" layoutX="14.0" text="All" />
-                  <Label id="tag" layoutX="157.0" text="Google" />
-                  <Label id="tag" layoutX="241.0" layoutY="1.0" text="Github" />
-                  <Label id="tag" layoutX="6.0" layoutY="33.0" text="Twitter" />
-                  <Label id="tag" layoutX="70.0" layoutY="33.0" text="Red Hat" />
-                  <Label id="tag" layoutX="158.0" layoutY="33.0" text="Mozilla" />
-                  <Label id="tag" layoutX="239.0" layoutY="34.0" text="Xamarin" />
-                  <Label id="tag" layoutX="7.0" layoutY="67.0" text="Heroku" />
-                  <Label id="tag" layoutX="66.0" layoutY="67.0" text="Facebook" />
-                  <Label id="tag" layoutX="153.0" layoutY="67.0" text="Microsoft" />
-                  <Label id="tag" layoutX="72.0" text="Shopify" />
-               </children>
-            </Group>
          </children></AnchorPane>
       <AnchorPane fx:id="mainpane" layoutX="314.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="1045.0">
          <children>

@@ -1,4 +1,5 @@
 package org.Client.ui.controller;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -74,6 +75,6 @@ public class UserTypeChartController implements Initializable {
 			}
 		}));
 		tl.play();
-
 	}
+
 }
