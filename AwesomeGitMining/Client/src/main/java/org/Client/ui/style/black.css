@@ -35,6 +35,24 @@
 #headLabel{
 	-fx-background-color: #b4b7bb;
 }
+#skinLabel{
+	-fx-background-image: url("skin1.png");
+}
+#skinLabel:hover{
+	-fx-background-image: url("skin2.png");
+}
+#minLabel{
+	-fx-background-image: url("min_normal_dark.png");
+}
+#minLabel:hover{
+	-fx-background-image: url("min_move_dark.png");
+}
+#exitLabel{
+	-fx-background-image: url("exit_normal_dark.png");
+}
+#exitLabel:hover{
+	-fx-background-image: url("exit_move_dark.png");
+}
 #innerBar{
 	-fx-background-color:  #d5d8dd;
 }

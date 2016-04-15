@@ -16,33 +16,29 @@
    <children>
       <AnchorPane id="headPane" fx:id="common" prefHeight="48.0" prefWidth="1366.0">
          <children>
-            <Group fx:id="headGroup">
-               <children>
-                  <Label fx:id="repository" prefHeight="51.0" prefWidth="140.0" text="      Repository" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1246.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font name="Microsoft YaHei Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="user" layoutX="120.0" prefHeight="51.0" prefWidth="140.0" text="            User" textFill="WHITE">
-                     <font>
-                        <Font name="Microsoft YaHei Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="repositorySta" layoutX="260.0" prefHeight="51.0" prefWidth="140.0" text="RepositoryStatistics" textFill="WHITE">
-                     <font>
-                        <Font name="Microsoft YaHei Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="userSta" layoutX="400.0" prefHeight="51.0" prefWidth="140.0" text="     UserStatistics" textFill="WHITE">
-                     <font>
-                        <Font name="Microsoft YaHei Bold" size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Group>
-            <Label fx:id="changeStyle" layoutX="1246.0" onMouseEntered="#enterChange" onMouseExited="#exitChange" onMouseReleased="#releaseChange" prefHeight="27.0" prefWidth="40.0" />
-            <Label fx:id="exit" layoutX="1326.0" onMouseEntered="#enterExit" onMouseExited="#exitExit" onMouseReleased="#releaseExit" prefHeight="27.0" prefWidth="40.0" />
-            <Label fx:id="min" layoutX="1286.0" onMouseEntered="#enterMin" onMouseExited="#exitMin" onMouseReleased="#releaseMin" prefHeight="27.0" prefWidth="40.0" />
+            <Label id="headLabel" fx:id="repositorySta" layoutX="260.0" prefHeight="51.0" prefWidth="140.0" text="RepositoryStatistics" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label id="headLabel" fx:id="userSta" layoutX="400.0" prefHeight="51.0" prefWidth="140.0" text="     UserStatistics" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label id="headLabel" fx:id="repository" prefHeight="51.0" prefWidth="140.0" text="      Repository" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1246.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Microsoft YaHei Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label id="headLabel" fx:id="user" layoutX="120.0" prefHeight="51.0" prefWidth="140.0" text="            User" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft YaHei Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label id="skinLabel" fx:id="changeStyle" layoutX="1246.0" prefHeight="24.0" prefWidth="24.0" />
+            <Label id="exitLabel" fx:id="exit" layoutX="1326.0" prefHeight="27.0" prefWidth="40.0" />
+            <Label id="minLabel" fx:id="min" layoutX="1286.0" prefHeight="27.0" prefWidth="40.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="center_panel" layoutY="51.0" prefHeight="720.0" prefWidth="1366.0" />
