@@ -12,7 +12,6 @@ import org.Client.ui.controller.ProjectController;
 import org.Client.ui.controller.SearchController;
 import org.Client.ui.controller.SearchUserController;
 import org.Client.ui.controller.UserController;
-import org.Client.ui.controller.UserTagController;
 import org.Common.vo.RepositoryVO;
 import org.Common.vo.SimpleUserVO;
 import org.Common.vo.UserVO;
@@ -52,7 +51,7 @@ public class BackHandler {
 		BackObject repo = repoBackList.get(length-1);
 		switch (repo.getType()) {
 		case HOME_REPO:
-			MainController.getInstance().setPanel(SkinConfig.getInstance().getFxmlResoursePath("repositoryPage"));
+			MainController.getInstance().setPanel("repositoryPage.fxml");
 //			repositoryList = repositoryImpl.showRepositories(repo.getPage());
 //			HomeController.getInstance().setPage(repo.getPage());
 //			HomeController.getInstance().initTabPane(repositoryList);

@@ -25,7 +25,7 @@
             </Label>
             <Group layoutX="8.0" layoutY="27.0">
                <children>
-                  <Label fx:id="followers" layoutX="64.0" layoutY="324.0" text="0" textFill="WHITE">
+                  <Label fx:id="followers" layoutX="64.0" layoutY="324.0" text="0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -40,7 +40,7 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="followings" layoutX="150.0" layoutY="324.0" text="0" textFill="WHITE">
+                  <Label fx:id="followings" layoutX="150.0" layoutY="324.0" text="0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

@@ -22,26 +22,6 @@
             <Label fx:id="company" layoutX="419.0" layoutY="51.0" prefHeight="79.0" prefWidth="371.0" text="Company" />
          </children>
       </Group>
-      <Line endX="1300.0" endY="198.0" layoutY="-193.0" startY="198.0" strokeWidth="10.0">
-         <stroke>
-            <LinearGradient endX="0.39805825242718446" endY="1.0" startY="0.8543689320388349">
-               <stops>
-                  <Stop color="#c3d6a9" />
-                  <Stop color="#fce4a6d4" offset="1.0" />
-               </stops>
-            </LinearGradient>
-         </stroke>
-      </Line>
-      <Line endX="1300.0" endY="198.0" layoutY="-62.0" startY="198.0" strokeWidth="10.0">
-         <stroke>
-            <LinearGradient endX="0.39805825242718446" endY="1.0" startY="0.8543689320388349">
-               <stops>
-                  <Stop color="#c3d6a9" />
-                  <Stop color="#fce4a6d4" offset="1.0" />
-               </stops>
-            </LinearGradient>
-         </stroke>
-      </Line>
       <Label layoutX="780.0" layoutY="30.0" prefHeight="36.0" prefWidth="92.0" text="Followers">
          <font>
             <Font size="16.0" />
@@ -52,5 +32,25 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <Line endX="1300.0" endY="198.0" layoutX="1.0" layoutY="-198.0" startY="198.0" strokeWidth="8.0">
+         <stroke>
+            <LinearGradient endX="0.08853444290337492" endY="0.7619047619047619" startY="1.0">
+               <stops>
+                  <Stop color="#c3d6a9" />
+                  <Stop color="#529399eb" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </stroke>
+      </Line>
+      <Line endX="1300.0" endY="198.0" layoutX="2.0" layoutY="-61.0" startY="198.0" strokeWidth="8.0">
+         <stroke>
+            <LinearGradient endX="0.08853444290337492" endY="0.7619047619047619" startY="1.0">
+               <stops>
+                  <Stop color="#c3d6a9" />
+                  <Stop color="#529399eb" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </stroke>
+      </Line>
    </children>
 </Pane>

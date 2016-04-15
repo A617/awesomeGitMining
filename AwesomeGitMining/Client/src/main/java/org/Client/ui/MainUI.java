@@ -150,6 +150,8 @@ public class MainUI extends Application {
 		SkinConfig.getInstance().setSkinNum(skinNum);
 		MainController.getInstance().setSkinNum(skinNum);
 		HomeController.getInstance().setSkinNum(skinNum);
+		UserPageController.getInstance().setSkinNum(skinNum);
+		
 		if (ReposStaPaneController.getInstance() != null) {
 			ReposStaPaneController.getInstance().setSkinNum(skinNum);
 		}

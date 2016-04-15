@@ -409,8 +409,8 @@ public class HomeController implements Initializable {
 						controller.setText(text, methodName);
 						listPane.getChildren().clear();
 						listPane.getChildren().add(result);
+						label.setStyle(tagBackColors[skinNum]);
 					}
-
 				});
 			}
 		}

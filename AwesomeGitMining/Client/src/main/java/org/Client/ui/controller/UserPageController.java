@@ -21,6 +21,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -46,11 +47,13 @@ public class UserPageController implements Initializable {
 	private Group Company;
 	@FXML
 	private AnchorPane mainpane;
-	private int skinNum;
 	private UserService userImpl;
 	private static UserPageController instance;
 	private List<SimpleUserVO> userVO;
 	private int pageNums;
+	
+	private String[] tagBackColors = { "-fx-background-color:#5d9b78;", "-fx-background-color:#ff99c7;","-fx-background-color:#cad2dd;" };
+	private int skinNum;
 
 	public static UserPageController getInstance() {
 		if (instance == null) {
@@ -58,14 +61,26 @@ public class UserPageController implements Initializable {
 		}
 		return instance;
 	}
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		instance = this;
+		userImpl = UserServiceImpl.getInstance();
+		scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
+		userPage = 0;
+		pageNums = userImpl.getPageNums();
+		page.setText(1 + " / " + pageNums);
+
+		addTagController();
+		setSkinNum(SkinConfig.getInstance().getSkinNum());
+	}
+	
 	public void setSkinNum(int skinNum) {
 		this.skinNum = skinNum;
 		userVO = userImpl.showUsers(userPage);
-		initUser(userVO);
-		addTagController();
-		resetTag();
+		initUser();
 	}
-	public void initUser(List<SimpleUserVO> user) {
+	public void initUser() {
 		VBox box = new VBox();
 		VBox.setVgrow(scrollPane, Priority.ALWAYS);
 		box.setSpacing(4);
@@ -76,8 +91,8 @@ public class UserPageController implements Initializable {
 			try {
 				Pane single = (Pane) loader.load();
 				SingleUserController controller = loader.getController();
-				if (i < user.size()) {
-					SimpleUserVO vo = user.get(i);
+				if (i < userVO.size()) {
+					SimpleUserVO vo = userVO.get(i);
 					BackHandler.getInstance().setUserBack(new BackObject(BackType.HOME_USER,vo.getLogin(),userPage));
 					controller.setVO(vo);
 
@@ -100,7 +115,7 @@ public class UserPageController implements Initializable {
 		userPage--;
 		if (userPage >= 0) {
 			userVO = userImpl.showUsers(userPage);
-			initUser(userVO);
+			initUser();
 		} else {
 			userPage++;
 		}
@@ -112,7 +127,7 @@ public class UserPageController implements Initializable {
 		userPage++;
 		userVO = userImpl.showUsers(userPage);
 		if (userVO.size() > 0) {
-			initUser(userVO);
+			initUser();
 		} else {
 			userPage--;
 		}
@@ -144,7 +159,7 @@ public class UserPageController implements Initializable {
 						controller.setText(text, methodName);
 						mainpane.getChildren().clear();
 						mainpane.getChildren().add(result);
-						//label.setStyle("-fx-background-color:#5d9b78;");
+						label.setStyle(tagBackColors[skinNum]);
 					}
 
 				});
@@ -162,19 +177,6 @@ public class UserPageController implements Initializable {
 				}
 			}
 		}
-	}
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		userImpl = UserServiceImpl.getInstance();
-		userPage = 0;
-		userVO = userImpl.showUsers(userPage);
-		initUser(userVO);
-		pageNums = userImpl.getPageNums();
-		page.setText(1 + " / " + pageNums);
-
-		addTagController();
-		setSkinNum(SkinConfig.getInstance().getSkinNum());
 	}
 
 }

@@ -65,8 +65,7 @@ public class UserTagController implements Initializable {
 
 		for (int i = 0; i < 10; i++) {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainUI.class
-					.getResource("config/" + SkinConfig.getInstance().getFxmlResoursePath("singleUserView")));
+			loader.setLocation(MainUI.class.getResource("config/" + SkinConfig.getInstance().getFxmlResoursePath("singleUserView")));
 			try {
 				Pane single = (Pane) loader.load();
 				SingleUserController controller = loader.getController();
