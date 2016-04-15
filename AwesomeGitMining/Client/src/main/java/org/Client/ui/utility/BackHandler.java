@@ -52,7 +52,7 @@ public class BackHandler {
 		BackObject repo = repoBackList.get(length-1);
 		switch (repo.getType()) {
 		case HOME_REPO:
-			MainController.getInstance().setPanel(SkinConfig.getInstance().getFxmlResoursePath("main"));
+			MainController.getInstance().setPanel(SkinConfig.getInstance().getFxmlResoursePath("repositoryPage"));
 //			repositoryList = repositoryImpl.showRepositories(repo.getPage());
 //			HomeController.getInstance().setPage(repo.getPage());
 //			HomeController.getInstance().initTabPane(repositoryList);
