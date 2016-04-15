@@ -49,11 +49,11 @@
             </Group>
             <Group layoutX="78.0" layoutY="62.0">
                <children>
-                  <Label layoutX="-30.0" layoutY="405.0" text="Location" textFill="#00aaaa">
+                  <Label layoutX="-30.0" layoutY="407.0" text="Location" textFill="#00aaaa">
                      <font>
                         <Font size="13.0" />
                      </font></Label>
-                  <Label fx:id="location" layoutX="38.0" layoutY="405.0" prefHeight="15.0" prefWidth="170.0" text="hasn't given :)" textFill="#615c5c">
+                  <Label fx:id="location" layoutX="38.0" layoutY="399.0" prefHeight="33.0" prefWidth="170.0" text="hasn't given :)" textFill="#615c5c">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -66,7 +66,7 @@
                      <font>
                         <Font size="13.0" />
                      </font></Label>
-                  <Label layoutX="-30.0" layoutY="436.0" text="Email" textFill="#00aaaa">
+                  <Label layoutX="-30.0" layoutY="442.0" text="Email" textFill="#00aaaa">
                      <font>
                         <Font size="13.0" />
                      </font></Label>
@@ -75,7 +75,7 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="email" layoutX="38.0" layoutY="436.0" prefHeight="28.0" prefWidth="212.0" text="hasn't given :)" textFill="#615c5c">
+                  <Label fx:id="email" layoutX="38.0" layoutY="435.0" prefHeight="35.0" prefWidth="212.0" text="hasn't given :)" textFill="#615c5c">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -85,20 +85,20 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label layoutX="-30.0" layoutY="497.0" text="html url" textFill="#00aaaa">
+                  <Label layoutX="-30.0" layoutY="508.0" text="html url" textFill="#00aaaa">
                      <font>
                         <Font size="13.0" />
                      </font></Label>
-                  <Label layoutX="-30.0" layoutY="466.0" text="Blog" textFill="#00aaaa">
+                  <Label layoutX="-30.0" layoutY="475.0" text="Blog" textFill="#00aaaa">
                      <font>
                         <Font size="13.0" />
                      </font></Label>
-                  <Label fx:id="url" layoutX="38.0" layoutY="502.0" lineSpacing="1.0" prefHeight="43.0" prefWidth="212.0" text="hasn't given :)" textFill="#615c5c">
+                  <Label fx:id="url" layoutX="38.0" layoutY="506.0" lineSpacing="1.0" prefHeight="43.0" prefWidth="212.0" text="hasn't given :)" textFill="#615c5c">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="blog" layoutX="38.0" layoutY="466.0" prefHeight="32.0" prefWidth="212.0" text="hasn't given :)" textFill="#615c5c">
+                  <Label fx:id="blog" layoutX="38.0" layoutY="471.0" prefHeight="32.0" prefWidth="212.0" text="hasn't given :)" textFill="#615c5c">
                      <font>
                         <Font size="13.0" />
                      </font>
