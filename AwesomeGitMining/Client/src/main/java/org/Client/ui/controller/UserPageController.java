@@ -46,7 +46,7 @@ public class UserPageController implements Initializable {
 	private Group Company;
 	@FXML
 	private AnchorPane mainpane;
-	
+	private int skinNum;
 	private UserService userImpl;
 	private static UserPageController instance;
 	private List<SimpleUserVO> userVO;
@@ -58,7 +58,13 @@ public class UserPageController implements Initializable {
 		}
 		return instance;
 	}
-
+	public void setSkinNum(int skinNum) {
+		this.skinNum = skinNum;
+		userVO = userImpl.showUsers(userPage);
+		initUser(userVO);
+		addTagController();
+		resetTag();
+	}
 	public void initUser(List<SimpleUserVO> user) {
 		VBox box = new VBox();
 		VBox.setVgrow(scrollPane, Priority.ALWAYS);
@@ -88,7 +94,7 @@ public class UserPageController implements Initializable {
 		userPage = num;
 		page.setText(userPage+1 + " / " + pageNums);
 	}
-	
+
 	@FXML
 	public void handleUserPre() {
 		userPage--;
@@ -112,7 +118,7 @@ public class UserPageController implements Initializable {
 		}
 		page.setText(userPage+1 + " / " + pageNums);
 	}
-	
+
 	public void addTagController() {
 		for (int j = 0; j < group.getChildren().size(); j++) {
 			Group cg = (Group) group.getChildren().get(j);
@@ -125,7 +131,7 @@ public class UserPageController implements Initializable {
 					public void handle(MouseEvent arg0) {
 						resetTag();
 						String text = label.getText();
-						
+
 						FXMLLoader loader = new FXMLLoader();
 						loader.setLocation(MainUI.class.getResource("config/Ui_UserTagPane.fxml"));
 						AnchorPane result = null;
@@ -138,14 +144,14 @@ public class UserPageController implements Initializable {
 						controller.setText(text, methodName);
 						mainpane.getChildren().clear();
 						mainpane.getChildren().add(result);
-						label.setStyle("-fx-background-color:#5d9b78;");
+						//label.setStyle("-fx-background-color:#5d9b78;");
 					}
 
 				});
 			}
 		}
 	}
-	
+
 	private void resetTag() {
 		for (int j = 0; j < group.getChildren().size(); j++) {
 			Group cg = (Group) group.getChildren().get(j);
@@ -166,8 +172,9 @@ public class UserPageController implements Initializable {
 		initUser(userVO);
 		pageNums = userImpl.getPageNums();
 		page.setText(1 + " / " + pageNums);
-		
+
 		addTagController();
+		setSkinNum(SkinConfig.getInstance().getSkinNum());
 	}
 
 }
