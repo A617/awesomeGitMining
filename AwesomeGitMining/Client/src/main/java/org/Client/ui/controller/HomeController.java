@@ -58,8 +58,6 @@ public class HomeController implements Initializable {
 	private VBox box;
 
 	private String styleStr = "-fx-background-color: ";
-	// private String enterColor = "#5d9b78;";
-	// private String baseColor = "#71af8c;";
 	private String enterColor;
 	private String baseColor;
 	private boolean selectGeneral;
@@ -396,7 +394,7 @@ public class HomeController implements Initializable {
 						String text = label.getText();
 						// 如果是all，返回初始界面
 						if (text.equals("All")) {
-							MainController.getInstance().setPanel("main.fxml");
+							MainController.getInstance().setPanel("repositoryPage.fxml");
 							return;
 						}
 						FXMLLoader loader = new FXMLLoader();
