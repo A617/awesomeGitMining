@@ -1,6 +1,8 @@
 package org.Client.ui.controller;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -25,18 +27,15 @@ public class UserTagController implements Initializable {
 	private Label page;
 	@FXML
 	private ScrollPane scrollPane;
+	
 	private static UserTagController instance;
 	private UserService service;
 	private int pageNum;
 	private List<SimpleUserVO> list;
-	private int languagePage;
-	private int companyPage;
-	private String language;
-	private String company;
-	/*
-	 * if true then language selected else company selected
-	 */
-	private boolean state;
+	private int Page;
+	
+	private String methodName;
+	private String text;
 
 	public UserTagController getInstance() {
 		if (instance == null)
@@ -48,23 +47,13 @@ public class UserTagController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		service = UserServiceImpl.getInstance();
 	}
-
-	public void setLanguages(String text) {
-		languagePage = 0;
-		state = true;
-		this.language = text;
-		list = service.getUserByLanguage(text, 0);
-		pageNum = service.getLanguageTagPageNum();
-		page.setText("1 / " + pageNum);
-		init();
-	}
-
-	public void setCompanys(String text) {
-		companyPage = 0;
-		state = false;
-		this.company = text;
-		list = service.getUserByCompany(text, 0);
-		pageNum = service.getCompanyTagPageNum();
+	
+	public void setText(String text, String methodName) {
+		this.text = text;
+		this.methodName = methodName;
+		this.pageNum = 0;
+		refreshList();
+		pageNum = service.getTagPageNum();
 		page.setText("1 / " + pageNum);
 		init();
 	}
@@ -98,49 +87,45 @@ public class UserTagController implements Initializable {
 
 	@FXML
 	public void handleNextButton() {
-		if (state) {
-			languagePage++;
-			list = service.getUserByLanguage(language, languagePage);
-			if (list.size() > 0) {
-				init();
-			} else {
-				languagePage--;
-			}
-			page.setText(languagePage + 1 + " / " + pageNum);
-		}else {
-			companyPage++;
-			list = service.getUserByCompany(company, companyPage);
-			if (list.size() > 0) {
-				init();
-			} else {
-				companyPage--;
-			}
-			page.setText(companyPage + 1 + " / " + pageNum);
+		Page++;
+		refreshList();
+		if (list.size() > 0) {
+			init();
+		} else {
+			Page--;
 		}
-
+		page.setText(Page + 1 + " / " + pageNum);
 	}
 
 	@FXML
 	public void handlePreButton() {
-		if(state) {
-			languagePage--;
-			if (languagePage >= 0) {
-				list = service.getUserByLanguage(language, languagePage);
-				init();
-			} else {
-				languagePage++;
-			}
-			page.setText(languagePage + 1 + " / " + pageNum);
-		}else {
-			companyPage--;
-			if (companyPage >= 0) {
-				list = service.getUserByCompany(company, companyPage);
-				init();
-			} else {
-				companyPage++;
-			}
-			page.setText(companyPage + 1 + " / " + pageNum);
+		Page--;
+		if (Page >= 0) {
+			refreshList();
+			init();
+		} else {
+			Page++;
+		}
+		page.setText(Page + 1 + " / " + pageNum);
+	}
+	
+	/**
+	 * 通过反射更新list
+	 */
+	@SuppressWarnings("unchecked")
+	private void refreshList() {
+		try {
+			Method method = service.getClass().getMethod(methodName, String.class,int.class);
+			this.list = (List<SimpleUserVO>) method.invoke(service, text, Page);
+		} catch (NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
 		}
 	}
-
+	
 }

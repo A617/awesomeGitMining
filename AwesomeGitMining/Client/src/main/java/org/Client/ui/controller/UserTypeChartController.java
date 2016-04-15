@@ -5,11 +5,8 @@ import java.util.ResourceBundle;
 import org.Client.business.impl.user.UserServiceImpl;
 import org.Client.business.service.UserService;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,7 +17,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.util.Duration;
 
 public class UserTypeChartController implements Initializable {
 	private UserService service;
@@ -44,7 +40,6 @@ public class UserTypeChartController implements Initializable {
 		pieChart.setAnimated(true);
 		pieChart.setData(pieChartData);
 		setLabel();
-		setAnimation();
 	}
 
 	private void setLabel() {
@@ -65,15 +60,4 @@ public class UserTypeChartController implements Initializable {
 		pane.getChildren().add(caption);
 	}
 
-	private void setAnimation() {
-		Timeline tl = new Timeline();
-		tl.getKeyFrames().add(new KeyFrame(Duration.millis(1), new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent actionEvent) {
-				pieChart.getData().get(1).setPieValue(division);
-			}
-		}));
-		tl.play();
-
-	}
 }

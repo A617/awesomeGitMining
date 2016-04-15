@@ -14,6 +14,7 @@ import org.Client.ui.MainUI;
 import org.Client.ui.utility.BackHandler;
 import org.Client.ui.utility.BackObject;
 import org.Client.ui.utility.BackType;
+import org.Client.ui.utility.PieChartGenerator;
 import org.Client.ui.utility.RaderChartGenerator;
 import org.Common.po.Statistics;
 import org.Common.vo.CodeFrequencyVO;
@@ -29,11 +30,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingNode;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
@@ -54,7 +53,6 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 public class ProjectController implements Initializable {
@@ -241,8 +239,13 @@ public class ProjectController implements Initializable {
 			coNum.setText(String.valueOf(vo.getCollaborators_login().size()));
 
 			// piechart
-			createPieChart(vo.getLanguages());
-
+			pieChartData = FXCollections.observableArrayList();
+			for (Map.Entry<String, Integer> entry : vo.getLanguages().entrySet()) {
+				pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue()));
+			}
+			PieChartGenerator generator = new PieChartGenerator(piechart,pieChartData);
+			generator.setData();
+			
 			// raderchart
 			RepositoryRateVO ratevo = repositoryImpl.showReposRate(vo.getFull_name());
 			if (ratevo != null) {
@@ -276,36 +279,6 @@ public class ProjectController implements Initializable {
 		}
 	}
 	
-	private void createPieChart(Map<String,Integer> data) {
-		pieChartData = FXCollections.observableArrayList();
-		for (Map.Entry<String, Integer> entry : data.entrySet()) {
-			pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue()));
-		}
-		piechart.autosize();
-		piechart.setLabelsVisible(false);
-		piechart.setData(pieChartData);
-		setLabel();
-	}
-	
-	private void setLabel() {
-		Label caption = new Label("");
-		caption.setTextFill(Color.BLACK);
-		caption.setStyle("-fx-font: 13 arial;");
-		for (final PieChart.Data data : piechart.getData()) {
-			Node n = data.getNode();
-			n.addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent e) {
-					n.setCursor(Cursor.HAND);
-//					caption.setTranslateX(e.getSceneX());
-//					caption.setTranslateY(e.getSceneY());
-//					caption.setText(String.valueOf(data.getPieValue()));
-				}
-			});
-		}
-//		piePane.getChildren().add(caption);
-	}
-
 	private void addAreaChart() {
 		areaChart.setAnimated(false);
 		areaChart.setHorizontalGridLinesVisible(false);

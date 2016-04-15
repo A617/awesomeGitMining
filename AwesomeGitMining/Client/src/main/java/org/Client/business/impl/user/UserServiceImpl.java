@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import org.Client.business.dto.Converter;
 import org.Client.business.service.UserService;
@@ -34,9 +33,8 @@ public class UserServiceImpl implements UserService {
 	private static UserServiceImpl instance;
 	private IUserDao daoImpl;
 	private int pageNums;
-	private int languagePageNum;
-	private int companyPageNum;
-
+	private int PageNum;
+	
 	private UserServiceImpl() {
 		daoImpl = RMIHelper.getUserDao();
 		if (daoImpl != null) {
@@ -434,7 +432,7 @@ public class UserServiceImpl implements UserService {
 				}
 			}
 		}
-		languagePageNum = names.size();
+		PageNum = names.size();
 		if (names != null) {
 			for (int i = pageIndex * 10; i < 10 + pageIndex * 10; i++) {
 				if (i < names.size() && i >= 0) {
@@ -452,11 +450,6 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 		return result;
-	}
-
-	@Override
-	public int getLanguageTagPageNum() {
-		return languagePageNum / 10 + 1;
 	}
 
 	@Override
@@ -479,7 +472,7 @@ public class UserServiceImpl implements UserService {
 				}
 			}
 		}
-		companyPageNum = names.size();
+		PageNum = names.size();
 		if (names != null) {
 			for (int i = pageIndex * 10; i < 10 + pageIndex * 10; i++) {
 				if (i < names.size() && i >= 0) {
@@ -500,8 +493,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int getCompanyTagPageNum() {
-		return companyPageNum / 10 + 1;
+	public int getTagPageNum() {
+		return PageNum / 10 + 1;
 	}
 
 }
