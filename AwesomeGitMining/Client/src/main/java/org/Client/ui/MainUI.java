@@ -10,14 +10,9 @@ import org.Client.business.impl.user.UserServiceImpl;
 import org.Client.business.service.RepositoryService;
 import org.Client.business.service.UserService;
 import org.Client.main.RMIHelper;
-import org.Client.ui.controller.HomeController;
 import org.Client.ui.controller.MainController;
-import org.Client.ui.controller.ReposStaPaneController;
-import org.Client.ui.controller.SearchController;
-import org.Client.ui.controller.SearchUserController;
-import org.Client.ui.controller.UserPageController;
-import org.Client.ui.controller.UserStaPaneController;
 import org.Client.ui.utility.SkinConfig;
+import org.Client.ui.utility.SkinHandler;
 import org.Client.ui.utility.fxmlLoader;
 
 import javafx.animation.KeyFrame;
@@ -46,7 +41,6 @@ public class MainUI extends Application {
 	private AnchorPane common;
 	public static Group test;
 	private static MainUI ui;
-	private String[] styleNames = { "yellow", "pink", "dark" };
 
 	@Override
 	/**
@@ -130,8 +124,8 @@ public class MainUI extends Application {
 		return ui;
 	}
 
-	public Stage getStage() {
-		return stage;
+	public void setIconified() {
+		stage.setIconified(true);
 	}
 
 	public static void main(String[] args) {
@@ -140,30 +134,7 @@ public class MainUI extends Application {
 
 	public void changeStyle(String style) {
 		scene.getStylesheets().clear();
-		int skinNum = 0;
-		for (int i = 0; i < styleNames.length; i++) {
-			if (style.equals(styleNames[i])) {
-				skinNum = i;
-				break;
-			}
-		}
-		SkinConfig.getInstance().setSkinNum(skinNum);
-		MainController.getInstance().setSkinNum(skinNum);
-		HomeController.getInstance().setSkinNum(skinNum);
-		UserPageController.getInstance().setSkinNum(skinNum);
-		
-		if (ReposStaPaneController.getInstance() != null) {
-			ReposStaPaneController.getInstance().setSkinNum(skinNum);
-		}
-		if (SearchController.getInstance() != null) {
-			SearchController.getInstance().changeStyle();
-		}
-		if (SearchUserController.getInstance() != null) {
-			SearchUserController.getInstance().changeStyle();
-		}
-		if (UserStaPaneController.getInstance() != null) {
-			UserStaPaneController.getInstance().setSkinNum(skinNum);
-		}
+		SkinHandler.changeStyle(style);
 		try {
 			scene.getStylesheets().add(new URL(SkinConfig.getInstance().getCssResoursePath()).toExternalForm());
 		} catch (MalformedURLException e) {
