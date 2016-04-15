@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import org.Client.business.dto.Converter;
 import org.Client.business.service.UserService;
@@ -34,9 +33,8 @@ public class UserServiceImpl implements UserService {
 	private static UserServiceImpl instance;
 	private IUserDao daoImpl;
 	private int pageNums;
-	private int languagePageNum;
-	private int companyPageNum;
-
+	private int PageNum;
+	
 	private UserServiceImpl() {
 		daoImpl = RMIHelper.getUserDao();
 		if (daoImpl != null) {
@@ -44,6 +42,7 @@ public class UserServiceImpl implements UserService {
 				pageNums = (int) (daoImpl.getAllUser().size() / (1.0 * 10)) + 1;
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
+				RMIHelper.setConnectionError();
 				e.printStackTrace();
 			}
 		}
@@ -73,6 +72,7 @@ public class UserServiceImpl implements UserService {
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
+				RMIHelper.setConnectionError();
 			}
 		}
 		return vos;
@@ -82,12 +82,11 @@ public class UserServiceImpl implements UserService {
 	public UserVO getUser(String id) {
 		User po = null;
 		UserVO vo = null;
-		System.out.println("getuser");
-		System.out.println(daoImpl);
 		try {
 			po = daoImpl.getUser(id);
 		} catch (IOException e) {
 			e.printStackTrace();
+			RMIHelper.setConnectionError();
 		}
 		if (po != null) {
 			vo = (UserVO) Converter.convert("UserVO", po);
@@ -107,6 +106,7 @@ public class UserServiceImpl implements UserService {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
+			RMIHelper.setConnectionError();
 		}
 
 		return lists;
@@ -119,6 +119,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			po = daoImpl.getUser(id);
 		} catch (IOException e) {
+			RMIHelper.setConnectionError();
 			e.printStackTrace();
 		}
 		if (po != null) {
@@ -135,6 +136,7 @@ public class UserServiceImpl implements UserService {
 			try {
 				names = daoImpl.searchUser(id);
 			} catch (RemoteException e) {
+				RMIHelper.setConnectionError();
 				e.printStackTrace();
 			}
 			if (names != null) {
@@ -149,6 +151,7 @@ public class UserServiceImpl implements UserService {
 							vo.setFollowers(daoImpl.getFollowers(login));
 						} catch (RemoteException e) {
 							// TODO Auto-generated catch block
+							RMIHelper.setConnectionError();
 							e.printStackTrace();
 						}
 						vos.add(vo);
@@ -166,6 +169,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			names = daoImpl.searchUser(id);
 		} catch (RemoteException e) {
+			RMIHelper.setConnectionError();
 			e.printStackTrace();
 		}
 		List<String> result = new ArrayList<String>();
@@ -185,7 +189,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			names = daoImpl.getAllUser();
 		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
+			RMIHelper.setConnectionError();
 			e1.printStackTrace();
 		}
 		List<SimpleUserVO> vos = new ArrayList<SimpleUserVO>();
@@ -197,6 +201,7 @@ public class UserServiceImpl implements UserService {
 					try {
 						po = daoImpl.getUser(name);
 					} catch (IOException e) {
+						RMIHelper.setConnectionError();
 						e.printStackTrace();
 					}
 					if (po != null) {
@@ -208,6 +213,7 @@ public class UserServiceImpl implements UserService {
 							vo.setFollowers(daoImpl.getFollowers(name));
 						} catch (RemoteException e) {
 							// TODO Auto-generated catch block
+							RMIHelper.setConnectionError();
 							e.printStackTrace();
 						}
 						vos.add(vo);
@@ -226,6 +232,7 @@ public class UserServiceImpl implements UserService {
 				po = daoImpl.getUser(id);
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
+				RMIHelper.setConnectionError();
 				e.printStackTrace();
 			}
 		if (po != null) {
@@ -245,11 +252,10 @@ public class UserServiceImpl implements UserService {
 		Image image = null;
 		try {
 			image = new Image(daoImpl.getAvatar(id), 200, 200, false, true, true);
-		} catch (IOException e) {
-			System.out.println("获取头像超时");
+		} catch(RemoteException e){
+			RMIHelper.setConnectionError();
 			e.printStackTrace();
 		}
-		System.out.println(image);
 		return image;
 	}
 
@@ -260,6 +266,7 @@ public class UserServiceImpl implements UserService {
 			types[0] = daoImpl.getAllUser().size();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
+			RMIHelper.setConnectionError();
 			e.printStackTrace();
 		}
 		types[1] = 0;
@@ -273,6 +280,7 @@ public class UserServiceImpl implements UserService {
 			vo.setNums(daoImpl.getCreatedTimeStatistics());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
+			RMIHelper.setConnectionError();
 			e.printStackTrace();
 		}
 		return vo;
@@ -286,6 +294,7 @@ public class UserServiceImpl implements UserService {
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			RMIHelper.setConnectionError();
 		}
 		return vo;
 	}
@@ -303,6 +312,7 @@ public class UserServiceImpl implements UserService {
 			list = daoImpl.getRepoCreatedStatistics();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
+			RMIHelper.setConnectionError();
 			e.printStackTrace();
 		}
 		int[] range = { 0, 1, 4 };
@@ -331,6 +341,7 @@ public class UserServiceImpl implements UserService {
 			followers = daoImpl.getUserFollowers();
 			avgStars = daoImpl.getUserRepoAvgStars();
 		} catch (RemoteException e) {
+			RMIHelper.setConnectionError();
 			e.printStackTrace();
 		}
 		
@@ -346,7 +357,6 @@ public class UserServiceImpl implements UserService {
 				j++;
 			}
 		}
-		System.out.println(j);
 		
 		result.setFollowers(follower);
 		result.setRepoAvgStars(star);
@@ -360,6 +370,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			list = daoImpl.getRepoCollabortedStatistics();
 		} catch (RemoteException e) {
+			RMIHelper.setConnectionError();
 			e.printStackTrace();
 		}
 		ArrayList<Integer> temp = new ArrayList<>();
@@ -395,6 +406,7 @@ public class UserServiceImpl implements UserService {
 					return daoImpl.searchUser(id).size() / 5 + 1;
 				}
 			} catch (RemoteException e) {
+				RMIHelper.setConnectionError();
 				e.printStackTrace();
 			}
 		}
@@ -408,6 +420,7 @@ public class UserServiceImpl implements UserService {
 			try {
 				result = daoImpl.getLanguageSkills(login);
 			} catch (RemoteException e) {
+				RMIHelper.setConnectionError();
 				e.printStackTrace();
 			}
 		}
@@ -422,6 +435,7 @@ public class UserServiceImpl implements UserService {
 			try {
 				names = daoImpl.getAllUser();
 			} catch (RemoteException e) {
+				RMIHelper.setConnectionError();
 				e.printStackTrace();
 			}
 		} else {
@@ -430,11 +444,12 @@ public class UserServiceImpl implements UserService {
 				try {
 					names = daoImpl.getUsersByLanguage(index);
 				} catch (RemoteException e) {
+					RMIHelper.setConnectionError();
 					e.printStackTrace();
 				}
 			}
 		}
-		languagePageNum = names.size();
+		PageNum = names.size();
 		if (names != null) {
 			for (int i = pageIndex * 10; i < 10 + pageIndex * 10; i++) {
 				if (i < names.size() && i >= 0) {
@@ -446,17 +461,13 @@ public class UserServiceImpl implements UserService {
 						vo.setFollowers(daoImpl.getFollowers(names.get(i)));
 						result.add(vo);
 					} catch (RemoteException e) {
+						RMIHelper.setConnectionError();
 						e.printStackTrace();
 					}
 				}
 			}
 		}
 		return result;
-	}
-
-	@Override
-	public int getLanguageTagPageNum() {
-		return languagePageNum / 10 + 1;
 	}
 
 	@Override
@@ -467,6 +478,7 @@ public class UserServiceImpl implements UserService {
 			try {
 				names = daoImpl.getAllUser();
 			} catch (RemoteException e) {
+				RMIHelper.setConnectionError();
 				e.printStackTrace();
 			}
 		} else {
@@ -475,11 +487,12 @@ public class UserServiceImpl implements UserService {
 				try {
 					names = daoImpl.getUsersByCompany(index);
 				} catch (RemoteException e) {
+					RMIHelper.setConnectionError();
 					e.printStackTrace();
 				}
 			}
 		}
-		companyPageNum = names.size();
+		PageNum = names.size();
 		if (names != null) {
 			for (int i = pageIndex * 10; i < 10 + pageIndex * 10; i++) {
 				if (i < names.size() && i >= 0) {
@@ -491,6 +504,7 @@ public class UserServiceImpl implements UserService {
 						vo.setFollowers(daoImpl.getFollowers(names.get(i)));
 						result.add(vo);
 					} catch (RemoteException e) {
+						RMIHelper.setConnectionError();
 						e.printStackTrace();
 					}
 				}
@@ -500,8 +514,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int getCompanyTagPageNum() {
-		return companyPageNum / 10 + 1;
+	public int getTagPageNum() {
+		return PageNum / 10 + 1;
 	}
 
 }

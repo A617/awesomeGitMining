@@ -41,6 +41,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 				pageNum = (int) (daoImpl.getAllRepo().size() / (1.0 * 10)) + 1;
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
+				RMIHelper.setConnectionError();
 				e.printStackTrace();
 			}
 		}
@@ -63,6 +64,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 				names = daoImpl.searchRepository(id);
 			} catch (RemoteException e1) {
 				// TODO Auto-generated catch block
+				RMIHelper.setConnectionError();
 				e1.printStackTrace();
 			}
 			if (names != null) {
@@ -76,6 +78,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 						}
 					} catch (IOException e) {
 						e.printStackTrace();
+						RMIHelper.setConnectionError();
 					}
 
 				}
@@ -101,6 +104,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 					}
 				}
 			} catch (IOException e) {
+				RMIHelper.setConnectionError();
 				e.printStackTrace();
 			}
 
@@ -115,6 +119,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 			names = daoImpl.getReposSortedByStar();
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
+			RMIHelper.setConnectionError();
 			e1.printStackTrace();
 		}
 		List<RepositoryVO> vos = new ArrayList<RepositoryVO>();
@@ -126,6 +131,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 					try {
 						po = daoImpl.getRepository(names.get(i));
 					} catch (IOException e) {
+						RMIHelper.setConnectionError();
 						e.printStackTrace();
 					}
 					if (po != null) {
@@ -147,6 +153,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 			names = daoImpl.getReposSortedByFork();
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
+			RMIHelper.setConnectionError();
 			e1.printStackTrace();
 		}
 
@@ -160,6 +167,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 						po = daoImpl.getRepository(names.get(i));
 					} catch (IOException e) {
 						e.printStackTrace();
+						RMIHelper.setConnectionError();
 					}
 					if (po != null) {
 						RepositoryVO vo = (RepositoryVO) Converter.convert("RepositoryVO", po);
@@ -180,6 +188,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 			names = daoImpl.getReposSortedByContribute();
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
+			RMIHelper.setConnectionError();
 			e1.printStackTrace();
 		}
 		List<RepositoryVO> vos = new ArrayList<RepositoryVO>();
@@ -192,6 +201,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 						po = daoImpl.getRepository(names.get(i));
 					} catch (IOException e) {
 						e.printStackTrace();
+						RMIHelper.setConnectionError();
 					}
 					if (po != null) {
 						RepositoryVO vo = (RepositoryVO) Converter.convert("RepositoryVO", po);
@@ -214,6 +224,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 				names = daoImpl.searchRepository(id);
 			} catch (RemoteException e1) {
 				// TODO Auto-generated catch block
+				RMIHelper.setConnectionError();
 				e1.printStackTrace();
 			}
 			if (names != null) {
@@ -223,6 +234,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 						try {
 							po = daoImpl.getRepository(names.get(i));
 						} catch (IOException e) {
+							RMIHelper.setConnectionError();
 							e.printStackTrace();
 						}
 						if (po != null) {
@@ -245,6 +257,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 				po = daoImpl.getRepository(id);
 			} catch (IOException e) {
 				e.printStackTrace();
+				RMIHelper.setConnectionError();
 			}
 			if (po != null) {
 				vo = (RepositoryVO) Converter.convert("RepositoryVO", po);
@@ -262,6 +275,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 				po = daoImpl.getRepository(id);
 			} catch (IOException e) {
 				e.printStackTrace();
+				RMIHelper.setConnectionError();
 			}
 			if (po != null) {
 				Map<String, Double> map = new HashMap<>();
@@ -284,6 +298,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 			nums = daoImpl.getLanguageStatistics();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
+			RMIHelper.setConnectionError();
 			e.printStackTrace();
 		}
 		vo.setLanguageNum(nums);
@@ -300,6 +315,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			RMIHelper.setConnectionError();
 		}
 		String[] years = new String[nums.length];
 		for (int i = 0; i < nums.length; i++) {
@@ -318,6 +334,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 			list = daoImpl.getForksStatistics();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
+			RMIHelper.setConnectionError();
 			e.printStackTrace();
 		}
 		// 已经确保他们的last index不是-1
@@ -347,6 +364,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 			list = daoImpl.getForksStatistics();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
+			RMIHelper.setConnectionError();
 			e.printStackTrace();
 		}
 		// 已经确保他们的last index不是-1
@@ -378,6 +396,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 			stars = daoImpl.getStarsStatistics();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
+			RMIHelper.setConnectionError();
 			e.printStackTrace();
 		}
 		int[] fork = new int[forks.size()];
@@ -405,6 +424,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 			vo.setSizes(daoImpl.getAllSize());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
+			RMIHelper.setConnectionError();
 			e.printStackTrace();
 		}
 		
@@ -419,6 +439,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 			try {
 				names = daoImpl.getAllRepo();
 			} catch (RemoteException e) {
+				RMIHelper.setConnectionError();
 				e.printStackTrace();
 			}
 		} else {
@@ -428,6 +449,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 					names = daoImpl.getReposByLanguage(index);
 				} catch (RemoteException e) {
 					e.printStackTrace();
+					RMIHelper.setConnectionError();
 				}
 			}
 		}
@@ -440,6 +462,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 						po = daoImpl.getRepository(names.get(i));
 					} catch (IOException e) {
 						e.printStackTrace();
+						RMIHelper.setConnectionError();
 					}
 					if (po != null) {
 						RepositoryVO vo = (RepositoryVO) Converter.convert("RepositoryVO", po);
@@ -465,6 +488,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 				}
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
+				RMIHelper.setConnectionError();
 				e.printStackTrace();
 			}
 		}
@@ -479,6 +503,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 			try {
 				list = daoImpl.getCodeFrequency(id);
 			} catch (IOException e) {
+				RMIHelper.setConnectionError();
 				e.printStackTrace();
 			}
 			if (list != null) {
@@ -517,6 +542,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 							try {
 								po = daoImpl.getRepository(names.get(j));
 							} catch (IOException e) {
+								RMIHelper.setConnectionError();
 								e.printStackTrace();
 							}
 							if (po != null) {
@@ -527,6 +553,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 					}
 				}
 			} catch (RemoteException e) {
+				RMIHelper.setConnectionError();
 				e.printStackTrace();
 			}
 		}
@@ -541,6 +568,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 		try {
 			names = daoImpl.getReposByKeyword(keyword);
 		} catch (RemoteException e1) {
+			RMIHelper.setConnectionError();
 			e1.printStackTrace();
 		}
 		tagPageNum = names.size();
@@ -552,6 +580,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 						po = daoImpl.getRepository(names.get(i));
 					} catch (IOException e) {
 						e.printStackTrace();
+						RMIHelper.setConnectionError();
 					}
 					if (po != null) {
 						RepositoryVO vo = (RepositoryVO) Converter.convert("RepositoryVO", po);

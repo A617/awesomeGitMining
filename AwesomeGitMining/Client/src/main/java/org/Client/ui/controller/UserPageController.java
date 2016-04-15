@@ -39,12 +39,14 @@ public class UserPageController implements Initializable {
 	@FXML
 	private Label page;
 	@FXML
-	private Group language_group;
+	private Group group;
 	@FXML
-	private Group company_group;
+	private Group Language;
+	@FXML
+	private Group Company;
 	@FXML
 	private AnchorPane mainpane;
-	
+	private int skinNum;
 	private UserService userImpl;
 	private static UserPageController instance;
 	private List<SimpleUserVO> userVO;
@@ -56,7 +58,13 @@ public class UserPageController implements Initializable {
 		}
 		return instance;
 	}
-
+	public void setSkinNum(int skinNum) {
+		this.skinNum = skinNum;
+		userVO = userImpl.showUsers(userPage);
+		initUser(userVO);
+		addTagController();
+		resetTag();
+	}
 	public void initUser(List<SimpleUserVO> user) {
 		VBox box = new VBox();
 		VBox.setVgrow(scrollPane, Priority.ALWAYS);
@@ -86,7 +94,7 @@ public class UserPageController implements Initializable {
 		userPage = num;
 		page.setText(userPage+1 + " / " + pageNums);
 	}
-	
+
 	@FXML
 	public void handleUserPre() {
 		userPage--;
@@ -110,64 +118,49 @@ public class UserPageController implements Initializable {
 		}
 		page.setText(userPage+1 + " / " + pageNums);
 	}
-	
-	public void lanTagController() {
-		for (int i = 0; i < language_group.getChildren().size(); i++) {
-			Label label = (Label) language_group.getChildren().get(i);
-			label.setOnMouseReleased(new EventHandler<MouseEvent>() {
-				
-				@Override
-				public void handle(MouseEvent arg0) {
-					for (int i = 0; i < language_group.getChildren().size(); i++) {
-						Label label = (Label) language_group.getChildren().get(i);
-						label.setStyle("-fx-background-color:transparent;");
-					}
-					FXMLLoader loader = new FXMLLoader();
-					loader.setLocation(MainUI.class.getResource("config/Ui_UserTagPane.fxml"));
-					AnchorPane result = null;
-					try {
-						result = (AnchorPane) loader.load();
-					} catch (IOException e) {
-						System.out.println("Ui_UserTagPane加载失败");
-					}
-					UserTagController controller = loader.getController();
-					controller.setLanguages(label.getText());
-					mainpane.getChildren().clear();
-					mainpane.getChildren().add(result);
-					label.setStyle("-fx-background-color:#5d9b78;");
-				}
 
-			});
+	public void addTagController() {
+		for (int j = 0; j < group.getChildren().size(); j++) {
+			Group cg = (Group) group.getChildren().get(j);
+			for (int i = 0; i < cg.getChildren().size(); i++) {
+				String methodName = "getUserBy" + cg.getId();
+				Label label = (Label) cg.getChildren().get(i);
+				label.setOnMouseReleased(new EventHandler<MouseEvent>() {
+
+					@Override
+					public void handle(MouseEvent arg0) {
+						resetTag();
+						String text = label.getText();
+
+						FXMLLoader loader = new FXMLLoader();
+						loader.setLocation(MainUI.class.getResource("config/Ui_UserTagPane.fxml"));
+						AnchorPane result = null;
+						try {
+							result = (AnchorPane) loader.load();
+						} catch (IOException e) {
+							System.out.println("Ui_UserTagPane加载失败");
+						}
+						UserTagController controller = loader.getController();
+						controller.setText(text, methodName);
+						mainpane.getChildren().clear();
+						mainpane.getChildren().add(result);
+						//label.setStyle("-fx-background-color:#5d9b78;");
+					}
+
+				});
+			}
 		}
 	}
-	
-	public void comTagController() {
-		for (int i = 0; i < company_group.getChildren().size(); i++) {
-			Label label = (Label) company_group.getChildren().get(i);
-			label.setOnMouseReleased(new EventHandler<MouseEvent>() {
-				
-				@Override
-				public void handle(MouseEvent arg0) {
-					for (int i = 0; i < company_group.getChildren().size(); i++) {
-						Label label = (Label) company_group.getChildren().get(i);
-						label.setStyle("-fx-background-color:transparent;");
-					}
-					FXMLLoader loader = new FXMLLoader();
-					loader.setLocation(MainUI.class.getResource("config/Ui_UserTagPane.fxml"));
-					AnchorPane result = null;
-					try {
-						result = (AnchorPane) loader.load();
-					} catch (IOException e) {
-						System.out.println("Ui_UserTagPane加载失败");
-					}
-					UserTagController controller = loader.getController();
-					controller.setCompanys(label.getText());
-					mainpane.getChildren().clear();
-					mainpane.getChildren().add(result);
-					label.setStyle("-fx-background-color:#5d9b78;");
-				}
 
-			});
+	private void resetTag() {
+		for (int j = 0; j < group.getChildren().size(); j++) {
+			Group cg = (Group) group.getChildren().get(j);
+			for (int i = 0; i < cg.getChildren().size(); i++) {
+				Label label = (Label) cg.getChildren().get(i);
+				if (!label.getStyle().isEmpty()) {
+					label.setStyle("-fx-background-color:transparent;");
+				}
+			}
 		}
 	}
 
@@ -179,9 +172,9 @@ public class UserPageController implements Initializable {
 		initUser(userVO);
 		pageNums = userImpl.getPageNums();
 		page.setText(1 + " / " + pageNums);
-		
-		lanTagController();
-		comTagController();
+
+		addTagController();
+		setSkinNum(SkinConfig.getInstance().getSkinNum());
 	}
 
 }

@@ -384,7 +384,9 @@ public class UserController implements Initializable {
 		int in = LanguageIcon.getInstance().hasLanguage(name);
 		if (in == -1) {
 			result = new Image(MainUI.class.getResourceAsStream("style/other.png"));
-		} else {
+		} else if(name.equals("C#")){
+			result = new Image(MainUI.class.getResourceAsStream("style/CS.png"));
+		}else{
 			result = new Image(MainUI.class.getResourceAsStream("style/" + name + ".png"));
 		}
 		return result;

@@ -24,34 +24,16 @@ public class ErrorController implements Initializable{
 	private Label info;
 	@FXML
 	private Label error;
-	@FXML
-	private Label close;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		info.setText("Server connection failed!");
 		labelInit(error,"error.png");
-		labelInit(close, "exit_normal.png");
 		
 		btn_ok.setOnAction((e) -> {
 			System.exit(0);
 		});
 	}
 	
-	@FXML
-	public void enterClose() {
-		labelInit(close, "exit_move.png");
-	}
-
-	@FXML
-	public void exitClose() {
-		labelInit(close, "exit_normal.png");
-	}
-
-	@FXML
-	public void releaseClose() {
-		labelInit(close, "exit_active.png");
-		MainController.getInstance().center_panel.getChildren().remove(pane);
-	}
 	
 	public void labelInit(Label label, String path) {
 		Image image = new Image(MainUI.class.getResourceAsStream("style/" + path));

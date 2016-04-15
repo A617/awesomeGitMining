@@ -2,6 +2,8 @@ package org.Client.ui;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 import org.Client.business.impl.repository.RepositoryServiceImpl;
 import org.Client.business.impl.user.UserServiceImpl;
@@ -13,6 +15,7 @@ import org.Client.ui.controller.MainController;
 import org.Client.ui.controller.ReposStaPaneController;
 import org.Client.ui.controller.SearchController;
 import org.Client.ui.controller.SearchUserController;
+import org.Client.ui.controller.UserPageController;
 import org.Client.ui.controller.UserStaPaneController;
 import org.Client.ui.utility.SkinConfig;
 import org.Client.ui.utility.SkinHandler;
@@ -78,10 +81,16 @@ public class MainUI extends Application {
 		Task<Void> task = new Task<Void>() {
 
 			@Override
-			protected Void call() throws Exception {
+			protected Void call() {
 
 				// 初始化单例
-				RMIHelper.init();
+				try {
+					RMIHelper.init();
+				} catch (MalformedURLException | RemoteException | NotBoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					setError();
+				}
 				System.out.println("init");
 				RepositoryService repositoryImpl = RepositoryServiceImpl.getInstance();
 				UserService userImpl = UserServiceImpl.getInstance();
@@ -104,6 +113,17 @@ public class MainUI extends Application {
 			}
 		});
 
+	}
+
+	private void setError(){
+		
+		AnchorPane panel = fxmlLoader.loadPanel("Ui_Error.fxml");
+		panel.setLayoutX((common.getWidth()-panel.getPrefWidth())/2);
+		panel.setLayoutY((common.getHeight()-panel.getPrefHeight())/2);
+		common.getChildren().clear();
+		common.getChildren().add(panel);
+		panel.toFront();
+		
 	}
 
 	public static MainUI getUI() {

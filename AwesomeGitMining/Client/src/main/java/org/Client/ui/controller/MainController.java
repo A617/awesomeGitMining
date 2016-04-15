@@ -55,6 +55,16 @@ public class MainController implements Initializable {
 		setPanel("repositoryPage.fxml");
 	}
 
+	public void setError(){
+		
+		AnchorPane panel = fxmlLoader.loadPanel("Ui_Error.fxml");
+		panel.setLayoutX((center_panel.getWidth()-panel.getPrefWidth())/2);
+		panel.setLayoutY((center_panel.getHeight()-panel.getPrefHeight())/2);
+		center_panel.getChildren().clear();
+		common.setDisable(true);
+		center_panel.getChildren().add(panel);
+	
+	}
 	/**
 	 * the common method to change the current panel
 	 *
@@ -162,4 +172,5 @@ public class MainController implements Initializable {
 			}
 		});
 	}
+	
 }

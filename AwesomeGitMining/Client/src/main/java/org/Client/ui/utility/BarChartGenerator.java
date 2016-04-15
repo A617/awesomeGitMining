@@ -19,22 +19,22 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class BarChartGenerator {
-	
+
 	private BarChart<String, Integer> barChart;
 	private CategoryAxis xAxis;
 	private NumberAxis yAxis;
 	private AnchorPane pane;
 	private double columnWidth;
 	private XYChart.Series<String, Integer> series;
-	
+
 	public BarChartGenerator(AnchorPane pane,BarChart<String, Integer> barChart,CategoryAxis xAxis,NumberAxis yAxis) {
 		this.pane = pane;
 		this.barChart = barChart;
 		this.xAxis = xAxis;
 		this.yAxis = yAxis;
 	}
-	
-	
+
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void setData(ObservableList<String> xData ,int[] yData, String name) {
 		series = new XYChart.Series();
@@ -63,7 +63,7 @@ public class BarChartGenerator {
 		tl.play();
 		setupHover(series);
 	}
-	
+
 	public void setMaxBarWidth(double maxBarWidth, double minCategoryGap) {
 		double barWidth = 0;
 		do {
@@ -84,7 +84,7 @@ public class BarChartGenerator {
 			barChart.setCategoryGap(catSpace - avilableBarSpace - barChart.getBarGap());
 		} while (barWidth < maxBarWidth && barChart.getCategoryGap() > minCategoryGap);
 	}
-	
+
 	/**
 	 * 鼠标移进一个柱子可以显示对应的数据
 	 * @param series
@@ -94,7 +94,7 @@ public class BarChartGenerator {
 		label.setTextFill(Color.DARKCYAN);
 		label.setStyle("-fx-font: 18 arial;"
 				+ "-fx-opacity:0.5");
-		
+
 	    for (final XYChart.Data<String, Integer> dt : series.getData()) {
 	        final Node n = dt.getNode();
 	        n.setEffect(null);
@@ -102,8 +102,8 @@ public class BarChartGenerator {
 	            @Override
 	            public void handle(MouseEvent e) {
 	            	n.setCursor(Cursor.HAND);
-	            	label.setLayoutX(n.getLayoutX() +columnWidth+90);
-	            	label.setTranslateY(n.getLayoutY());
+	            	label.setLayoutX(n.getLayoutX() +columnWidth+85);
+	            	label.setTranslateY(n.getLayoutY()+20);
 	            	label.setText(String.valueOf(dt.getYValue()));
 	            }
 	        });

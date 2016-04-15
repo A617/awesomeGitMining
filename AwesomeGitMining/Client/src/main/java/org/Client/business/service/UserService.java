@@ -127,7 +127,6 @@ public interface UserService {
 	 */
 	public abstract List<SimpleUserVO> getUserByCompany(String company, int pageIndex);
 
-	public abstract int getLanguageTagPageNum();
+	public abstract int getTagPageNum();
 
-	public abstract int getCompanyTagPageNum();
 }
