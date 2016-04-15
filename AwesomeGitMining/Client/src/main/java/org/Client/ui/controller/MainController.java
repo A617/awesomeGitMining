@@ -94,6 +94,9 @@ public class MainController implements Initializable {
 		setPanel("repositoryPage.fxml");
 	}
 
+	public void setError(){
+		setPanel("Ui_Error.fxml");
+	}
 	/**
 	 * the common method to change the current panel
 	 *
@@ -269,4 +272,5 @@ public class MainController implements Initializable {
 			}
 		});
 	}
+	
 }
