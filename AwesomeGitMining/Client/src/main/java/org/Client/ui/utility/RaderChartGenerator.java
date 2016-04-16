@@ -9,6 +9,8 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import javafx.scene.Group;
+
 public class RaderChartGenerator {
 
 	private static RaderChartGenerator instance;
@@ -20,19 +22,9 @@ public class RaderChartGenerator {
 		return instance;
 	}
 
-	public JPanel createPanel(DefaultCategoryDataset dataset,String background) {
-		MySpiderChart spider = new MySpiderChart(dataset);
+	public Group createPanel(String[] labels,Double[] values,int maxValue) {
+		RadarChart chart = new RadarChart(values, labels,maxValue);
 
-		JFreeChart jfreechart = new JFreeChart(spider);
-		jfreechart.setTextAntiAlias(true);
-		jfreechart.setNotify(false);
-		jfreechart.setAntiAlias(true);
-		jfreechart.clearSubtitles();
-		jfreechart.setBackgroundPaint(new Color(247, 242, 229));
-		jfreechart.setBackgroundImage(new ImageIcon(background).getImage());
-
-		ChartPanel chart = new ChartPanel(jfreechart);
-
-		return chart;
+		return chart.build();
 	}
 }

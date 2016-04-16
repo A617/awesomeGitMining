@@ -34,6 +34,7 @@ import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
+import javafx.scene.Group;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
@@ -121,11 +122,10 @@ public class ProjectController implements Initializable {
 	private Clipboard clipboard;// 获取系统剪贴板
 	private ClipboardContent content;
 	private DefaultCategoryDataset dataset;
-	private SwingNode swingNode;
 	private UserVO fullVO;
 	private RepositoryService repositoryImpl;
 	private UserService userImpl;
-	private JPanel panel;
+	private Group group;
 	private final XYChart.Series<String, Integer> series = new XYChart.Series<>();
 	private ObservableList<PieChart.Data> pieChartData;
 	private RepositoryVO vo;
@@ -327,27 +327,16 @@ public class ProjectController implements Initializable {
 	}
 
 	private void createRader(Map<String, Double> map) {
-		dataset = new DefaultCategoryDataset();
-		String group1 = "score";
-		for (String s : Statistics.repoRader) {
-			dataset.addValue(map.get(s), group1, s);
-		}
-		swingNode = new SwingNode();
-
-		ProgressIndicator pin = new ProgressIndicator(-1);
-		pin.setMaxSize(70, 70);
-
 		raderPane.getChildren().clear();
-		raderPane.getChildren().add(pin);
 
-		panel = RaderChartGenerator.getInstance().createPanel(dataset,
-				"src/main/java/org/Client/ui/style/raderback.png");
-		panel.validate();
-		panel.setPreferredSize(new Dimension(330, 330));
-
-		swingNode.setContent(panel);
+		String[] labels = Statistics.repoRader.clone();
+		Double[] values = new Double[map.size()];
+		for(int i=0;i<map.size();i++)
+			values[i] = map.get(labels[i]);
+		group = RaderChartGenerator.getInstance().createPanel(labels,values,8);
+		
 		raderPane.getChildren().clear();
-		raderPane.getChildren().add(swingNode);
+		raderPane.getChildren().add(group);
 	}
 
 	private class ContributorCellFactory
