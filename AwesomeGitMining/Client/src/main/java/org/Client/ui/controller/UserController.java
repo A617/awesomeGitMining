@@ -3,6 +3,7 @@ package org.Client.ui.controller;
 import java.awt.Dimension;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -18,6 +19,7 @@ import org.Client.ui.utility.BackHandler;
 import org.Client.ui.utility.BackObject;
 import org.Client.ui.utility.BackType;
 import org.Client.ui.utility.LanguageIcon;
+import org.Client.ui.utility.RadarChart;
 import org.Client.ui.utility.RaderChartGenerator;
 import org.Common.po.Statistics;
 import org.Common.vo.Colla_ProVO;
@@ -37,6 +39,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
@@ -56,7 +59,7 @@ public class UserController implements Initializable {
 	private static UserController instance;
 	private DefaultCategoryDataset dataset;
 	private SwingNode swingNode;
-	private JPanel panel;
+	private Group group;
 	@FXML
 	private Label userNameLabel;
 	@FXML
@@ -221,26 +224,17 @@ public class UserController implements Initializable {
 	}
 
 	private void createRader(Map<String, Double> map) {
-		dataset = new DefaultCategoryDataset();
-		String group1 = "score";
-		for (String key : Statistics.userRader)
-			dataset.addValue(map.get(key), group1, key);
-		swingNode = new SwingNode();
-
-		ProgressIndicator pin = new ProgressIndicator(-1);
-		pin.setMaxSize(70, 70);
 
 		raderPane.getChildren().clear();
-		raderPane.getChildren().add(pin);
 
-		panel = RaderChartGenerator.getInstance().createPanel(dataset,
-				"src/main/java/org/Client/ui/style/raderback_user.png");
-		panel.validate();
-		panel.setPreferredSize(new Dimension(330, 330));
-
-		swingNode.setContent(panel);
+		String[] labels = Statistics.userRader.clone();
+		Double[] values = new Double[map.size()];
+		for(int i=0;i<map.size();i++)
+			values[i] = map.get(labels[i]);
+		group = RaderChartGenerator.getInstance().createPanel(labels,values,8);
+		
 		raderPane.getChildren().clear();
-		raderPane.getChildren().add(swingNode);
+		raderPane.getChildren().add(group);
 	}
 
 	// 鍦ㄥ姞杞藉ご鍍忕殑鍚屾椂鏄剧ず杩涘害鏉�
