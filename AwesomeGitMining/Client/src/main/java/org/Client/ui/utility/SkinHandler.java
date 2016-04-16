@@ -25,7 +25,7 @@ public class SkinHandler {
 		}
 		SkinConfig.getInstance().setSkinNum(skinNum);
 		MainUI.getUI().changeStyle();
-		HomeController.getInstance().setSkinNum();
+		HomeController.getInstance().setSkinNum(skinNum);
 		if (UserPageController.getInstance() != null) {
 			UserPageController.getInstance().setSkinNum(skinNum);
 		}

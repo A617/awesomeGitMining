@@ -77,7 +77,8 @@ public class HomeController implements Initializable {
 		}
 		return instance;
 	}
-	public void setSkinNum(){
+	public void setSkinNum(int num){
+		this.skinNum = num;
 		list = repositoryImpl.showRepositories(currentPage);
 		initTabPane(list);
 	}
@@ -89,6 +90,7 @@ public class HomeController implements Initializable {
 		pageNum = repositoryImpl.getPageNums();
 		addTagListener();
 		selectTab("showRepositories");
+		setSkinNum(SkinConfig.getInstance().getSkinNum());
 		addLabelListener();
 	}
 	
