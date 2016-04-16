@@ -32,6 +32,7 @@ public class ScatterChartGenerator {
 		chart.setPrefSize(1166,720);
 		chart.setTitle(name);
 		series = new XYChart.Series<Number, Number>();
+		series.setName(name);
 	}
 
 	public void setData(int[] x,int[] y) {
