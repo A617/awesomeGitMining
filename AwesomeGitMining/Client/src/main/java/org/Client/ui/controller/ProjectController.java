@@ -1,4 +1,5 @@
 package org.Client.ui.controller;
+
 import java.awt.Dimension;
 import java.net.URL;
 import java.util.Map;
@@ -129,47 +130,56 @@ public class ProjectController implements Initializable {
 	private ObservableList<PieChart.Data> pieChartData;
 	private RepositoryVO vo;
 
-
 	@FXML
-	public void enterStar(){
+	public void enterStar() {
 		starLabel.setVisible(true);
 	}
+
 	@FXML
-	public void exitStar(){
+	public void exitStar() {
 		starLabel.setVisible(false);
 	}
+
 	@FXML
-	public void enterFork(){
+	public void enterFork() {
 		forkLabel.setVisible(true);
 	}
+
 	@FXML
-	public void exitFork(){
+	public void exitFork() {
 		forkLabel.setVisible(false);
 	}
+
 	@FXML
-	public void enterCon(){
+	public void enterCon() {
 		conLabel.setVisible(true);
 	}
+
 	@FXML
-	public void exitCon(){
+	public void exitCon() {
 		conLabel.setVisible(false);
 	}
+
 	@FXML
-	public void enterSub(){
+	public void enterSub() {
 		subLabel.setVisible(true);
 	}
+
 	@FXML
-	public void exitSub(){
+	public void exitSub() {
 		subLabel.setVisible(false);
 	}
+
 	@FXML
-	public void enterColla(){
+	public void enterColla() {
 		collaLabel.setVisible(true);
 	}
+
 	@FXML
-	public void exitColla(){
+	public void exitColla() {
 		collaLabel.setVisible(false);
 	}
+
 	public static ProjectController getInstance() {
 		if (instance == null) {
 			instance = new ProjectController();
@@ -223,13 +233,15 @@ public class ProjectController implements Initializable {
 			// set description
 			String str = vo.getDescription();
 			int size = 90;
-			int line = str.length() / size;
-			String result = "";
-			int i = 0;
-			for (i = 0; i < line; i++) {
-				result += str.substring(i * size, i * size + size) + "\n";
+			if (str != null) {
+				int line = str.length() / size;
+				String result = "";
+				int i = 0;
+				for (i = 0; i < line; i++) {
+					result += str.substring(i * size, i * size + size) + "\n";
+				}
+				profile.setText(result + str.substring(i * size));
 			}
-			profile.setText(result + str.substring(i * size));
 			projectNameLabel.setText(vo.getFull_name());
 			url.setText(vo.getClone_url());
 			starNum.setText(String.valueOf(vo.getStargazers_count()));
@@ -243,9 +255,9 @@ public class ProjectController implements Initializable {
 			for (Map.Entry<String, Integer> entry : vo.getLanguages().entrySet()) {
 				pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue()));
 			}
-			PieChartGenerator generator = new PieChartGenerator(piechart,pieChartData);
+			PieChartGenerator generator = new PieChartGenerator(piechart, pieChartData);
 			generator.setData();
-			
+
 			// raderchart
 			RepositoryRateVO ratevo = repositoryImpl.showReposRate(vo.getFull_name());
 			if (ratevo != null) {
@@ -278,7 +290,7 @@ public class ProjectController implements Initializable {
 			addAreaChart();
 		}
 	}
-	
+
 	private void addAreaChart() {
 		areaChart.setAnimated(false);
 		areaChart.setHorizontalGridLinesVisible(false);
@@ -317,7 +329,7 @@ public class ProjectController implements Initializable {
 	private void createRader(Map<String, Double> map) {
 		dataset = new DefaultCategoryDataset();
 		String group1 = "score";
-		for(String s :Statistics.repoRader){
+		for (String s : Statistics.repoRader) {
 			dataset.addValue(map.get(s), group1, s);
 		}
 		swingNode = new SwingNode();
@@ -328,10 +340,11 @@ public class ProjectController implements Initializable {
 		raderPane.getChildren().clear();
 		raderPane.getChildren().add(pin);
 
-		panel = RaderChartGenerator.getInstance().createPanel(dataset,"src/main/java/org/Client/ui/style/raderback.png");
+		panel = RaderChartGenerator.getInstance().createPanel(dataset,
+				"src/main/java/org/Client/ui/style/raderback.png");
 		panel.validate();
 		panel.setPreferredSize(new Dimension(330, 330));
-		
+
 		swingNode.setContent(panel);
 		raderPane.getChildren().clear();
 		raderPane.getChildren().add(swingNode);
@@ -346,7 +359,7 @@ public class ProjectController implements Initializable {
 			cell.setOnMouseReleased((MouseEvent t) -> {
 				String temp = cell.getText();
 				if (temp != null) {
-					BackHandler.getInstance().setUserBack(new BackObject(BackType.REPO, projectNameLabel.getText(),0));
+					BackHandler.getInstance().setUserBack(new BackObject(BackType.REPO, projectNameLabel.getText(), 0));
 					MainController.getInstance().setGroup("Ui_UserPanel.fxml");
 					fullVO = userImpl.getUser(temp);
 					if (fullVO != null)
@@ -374,7 +387,7 @@ public class ProjectController implements Initializable {
 			cell.setOnMouseReleased((MouseEvent t) -> {
 				String temp = cell.getText();
 				if (temp != null) {
-					BackHandler.getInstance().setUserBack(new BackObject(BackType.REPO, projectNameLabel.getText(),0));
+					BackHandler.getInstance().setUserBack(new BackObject(BackType.REPO, projectNameLabel.getText(), 0));
 					MainController.getInstance().setGroup("Ui_UserPanel.fxml");
 					fullVO = userImpl.getUser(temp);
 					if (fullVO != null)

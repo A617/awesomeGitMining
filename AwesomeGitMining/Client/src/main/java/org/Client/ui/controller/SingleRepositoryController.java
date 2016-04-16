@@ -1,4 +1,5 @@
 package org.Client.ui.controller;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -55,36 +56,39 @@ public class SingleRepositoryController implements Initializable {
 	private RepositoryVO vo;
 	private RepositoryVO fullVO;
 
-    public double hotNum;
-    public double promisingNum;
+	public double hotNum;
+	public double promisingNum;
 
+	@FXML
+	public void enterCon() {
+		conLabel.setVisible(true);
+	}
 
-    @FXML
-    public void enterCon(){
-    	conLabel.setVisible(true);
-    }
-    @FXML
-    public void exitCon(){
-    	conLabel.setVisible(false);
-    }
+	@FXML
+	public void exitCon() {
+		conLabel.setVisible(false);
+	}
 
-    @FXML
-    public void enterFork(){
-    	forkLabel.setVisible(true);
-    }
-    @FXML
-    public void exitFork(){
-    	forkLabel.setVisible(false);
-    }
+	@FXML
+	public void enterFork() {
+		forkLabel.setVisible(true);
+	}
 
-    @FXML
-    public void enterStar(){
-    	starLabel.setVisible(true);
-    }
-    @FXML
-    public void exitStar(){
-    	starLabel.setVisible(false);
-    }
+	@FXML
+	public void exitFork() {
+		forkLabel.setVisible(false);
+	}
+
+	@FXML
+	public void enterStar() {
+		starLabel.setVisible(true);
+	}
+
+	@FXML
+	public void exitStar() {
+		starLabel.setVisible(false);
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		conLabel.setVisible(false);
@@ -96,7 +100,7 @@ public class SingleRepositoryController implements Initializable {
 			fullVO = repositoryImpl.searchRepositoryInfo(vo.getFull_name());
 			ProjectController.getInstance().setVO(fullVO);
 		});
-		
+
 		hot.setOnMouseEntered((e) -> {
 			Tooltip tooltip = new Tooltip("hot");
 			tooltip.setFont(new Font("Arial", 13));
@@ -116,7 +120,7 @@ public class SingleRepositoryController implements Initializable {
 		starNum.setGraphic(new ImageView(image));
 
 	}
-	
+
 	/**
 	 * set text on the labels
 	 *
@@ -127,28 +131,30 @@ public class SingleRepositoryController implements Initializable {
 		if (vo != null) {
 			repositoryName.setText(vo.getFull_name());
 			language.setText(vo.getLanguage());
-			contributors.setText("  "+vo.getContributors_login().size());
-			forks.setText(" "+vo.getForks_count());
-			stars.setText(" "+vo.getSubscribers_count());
-			lastUpdated.setText(vo.getUpdated_at()+"");
-			hotNum=vo.getScores()[4]*8;
-			if(hotNum>=7){
+			contributors.setText("  " + vo.getContributors_login().size());
+			forks.setText(" " + vo.getForks_count());
+			stars.setText(" " + vo.getSubscribers_count());
+			lastUpdated.setText(vo.getUpdated_at() + "");
+			hotNum = vo.getScores()[4] * 8;
+			if (hotNum >= 7) {
 				hot.setGraphic(new ImageView(new Image(MainUI.class.getResourceAsStream("style/hot.png"))));
 			}
-			promisingNum=vo.getScores()[3]*8;
-			if(promisingNum>=7){
+			promisingNum = vo.getScores()[3] * 8;
+			if (promisingNum >= 7) {
 				promising.setGraphic(new ImageView(new Image(MainUI.class.getResourceAsStream("style/promising.png"))));
 			}
-			//set description
+			// set description
 			String str = vo.getDescription();
 			int size = 130;
-			int line = str.length()/size;
-			String result = "";
-			int i = 0;
-			for(i = 0;i<line;i++){
-				result+=str.substring(i*size,i*size+size)+"\n";
+			if (str != null) {
+				int line = str.length() / size;
+				String result = "";
+				int i = 0;
+				for (i = 0; i < line; i++) {
+					result += str.substring(i * size, i * size + size) + "\n";
+				}
+				description.setText(result + str.substring(i * size));
 			}
-			description.setText(result+str.substring(i*size));
 		}
 	}
 

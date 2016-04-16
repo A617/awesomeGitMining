@@ -54,7 +54,7 @@
 	-fx-background-image: url("exit_normal_pink.png");
 }
 #exitLabel:hover{
-	-fx-background-image: url("exit_normal_pink.png");
+	-fx-background-image: url("exit_move_pink.png");
 }
 #yellow{
 	-fx-background-image: url("back_icon.png");
