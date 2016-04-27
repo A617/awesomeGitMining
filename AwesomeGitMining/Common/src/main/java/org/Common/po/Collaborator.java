@@ -17,7 +17,7 @@ public class Collaborator extends User{
 	@Override
 	public String toString() {
 		return "Collaborator [fn=" + fn + ", login=" + login + ", html_url=" + html_url + ", type=" + type
-				+ ", site_admin=" + site_admin + "]";
+				+ ", site_admin=" +"]";
 	}
 
 	

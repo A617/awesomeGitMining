@@ -15,7 +15,6 @@ public class User implements Serializable{
 	protected String login;	//登录名
 	protected String html_url;	//github主页
 	protected String type;
-	protected boolean site_admin;
 
 	private Image avatar;
 	private String avatar_url;
@@ -168,15 +167,6 @@ public class User implements Serializable{
 		this.type = type;
 	}
 
-	public boolean isSite_admin() {
-		return site_admin;
-	}
-
-	public void setSite_admin(boolean site_admin) {
-		this.site_admin = site_admin;
-	}
-
-	
 
 	public Image getAvatar() {
 		return avatar;
@@ -227,15 +217,18 @@ public class User implements Serializable{
 
 	@Override
 	public String toString() {
-		return "User [login=" + login + ", html_url=" + html_url + ", type=" + type + ", site_admin=" + site_admin
-				+ ", avatar=" + avatar + ", avatar_url=" + avatar_url + ", name=" + name + ", location=" + location
-				+ ", email=" + email + ", blog=" + blog + ", company=" + company + ", contributions_fullname="
-				+ contributions_fullname + ", collaboration_fullname=" + collaboration_fullname + ", followers_name="
-				+ followers_name + ", following_name=" + following_name + ", repos_fullname=" + repos_fullname
-				+ ", public_repos=" + public_repos + ", public_gists=" + public_gists + ", followers=" + followers
-				+ ", following=" + following + ", created_at=" + created_at + ", updated_at=" + updated_at + ", scores="
+		return "User [login=" + login + ", html_url=" + html_url + ", type=" + type + ", avatar=" + avatar
+				+ ", avatar_url=" + avatar_url + ", name=" + name + ", location=" + location + ", email=" + email
+				+ ", blog=" + blog + ", company=" + company + ", contributions_fullname=" + contributions_fullname
+				+ ", collaboration_fullname=" + collaboration_fullname + ", followers_name=" + followers_name
+				+ ", following_name=" + following_name + ", repos_fullname=" + repos_fullname + ", public_repos="
+				+ public_repos + ", public_gists=" + public_gists + ", followers=" + followers + ", following="
+				+ following + ", created_at=" + created_at + ", updated_at=" + updated_at + ", scores="
 				+ Arrays.toString(scores) + "]";
 	}
+
+
+
 
 
 

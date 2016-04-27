@@ -22,11 +22,6 @@ public class Contributor extends User {
 		this.fn = fn;
 	}
 
-	@Override
-	public String toString() {
-		return "Contributor [contributions=" + contributions + ", fn=" + fn + ", login=" + login + ", html_url="
-				+ html_url + ", type=" + type + ", site_admin=" + site_admin + "]";
-	}
 
 	
 	

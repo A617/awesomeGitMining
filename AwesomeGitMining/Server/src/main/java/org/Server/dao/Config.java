@@ -40,7 +40,8 @@ public class Config {
 		    "events_url",
 		    "received_events_url",
 		    "hireable",
-		    "bio"
+		    "bio",
+		    "site_admin"
 	};
 	
 	private final static String[] repoExcludes = {//只要设置这个数组，指定过滤哪些字段。    
@@ -92,7 +93,6 @@ public class Config {
     	    "permissions",
     	    "network_count",
     	    "git_url",
-    	    "html_url",
     	    "organization",
     	    
     	    //以下出现在官方api中

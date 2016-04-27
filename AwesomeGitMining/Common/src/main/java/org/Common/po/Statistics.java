@@ -10,6 +10,8 @@ public class Statistics {
 	 * public static Statistics getInstance(){ return instance==null?new
 	 * Statistics():instance; }
 	 */
+	
+	
 	public static final String[] repoRader = {"size","scale","promising","partcipation","hot"};
 	
 	public static final String[] userRader = {"popular","teamwork","liveness","experience","quantity"};

@@ -1,6 +1,7 @@
 package org.Common.po;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -8,14 +9,12 @@ import java.util.Map;
  * @author tj
  */
 public class Repository implements Serializable{
+	protected String full_name;
 	protected String name;	//椤圭洰鍚�
 	private String owner_name;	//椤圭洰涓讳汉
-	protected String full_name;
 	protected String language;	//缂栫▼璇█
 	private List<String> contributors_login;	//璇ラ」鐩墍鏈夎础鐚��
 	private List<String> collaborators_login;
-	private List<String> branches_name;	//璇ラ」鐩墍鏈夌増鏈悕
-	private List<String> forks_fullname;	//璇ラ」鐩墍鏈塮ork椤圭洰
 	private Map<String, Integer> languages;
 	protected boolean fork;
 	protected boolean has_issues;
@@ -25,7 +24,7 @@ public class Repository implements Serializable{
 	protected int open_issues_count;
 	protected int watchers_count;
 	protected String clone_url;	//git鍦板潃
-	protected String home_url;
+	protected String html_url;
 	protected String homepage;
 	protected String description;
 	protected String created_at;	//鍒涘缓鏃堕棿
@@ -138,12 +137,13 @@ public class Repository implements Serializable{
 		this.watchers_count = watchers_count;
 	}
 
-	public String getHome_url() {
-		return home_url;
+
+	public String getHtml_url() {
+		return html_url;
 	}
 
-	public void setHome_url(String home_url) {
-		this.home_url = home_url;
+	public void setHtml_url(String html_url) {
+		this.html_url = html_url;
 	}
 
 	public String getHomepage() {
@@ -170,22 +170,7 @@ public class Repository implements Serializable{
 		this.contributors_login = contributors_login;
 	}
 
-	public List<String> getBranches_name() {
-		return branches_name;
-	}
-
-	public void setBranches_name(List<String> branches_name) {
-		this.branches_name = branches_name;
-	}
-
-	public List<String> getForks_fullname() {
-		return forks_fullname;
-	}
-
-	public void setForks_fullname(List<String> forks_fullname) {
-		this.forks_fullname = forks_fullname;
-	}
-
+	
 	public String getClone_url() {
 		return clone_url;
 	}
@@ -288,5 +273,19 @@ public class Repository implements Serializable{
 		this.fork = fork;
 	}
 
+	@Override
+	public String toString() {
+		return "Repository [name=" + name + ", owner_name=" + owner_name + ", full_name=" + full_name + ", language="
+				+ language + ", contributors_login=" + contributors_login + ", collaborators_login="
+				+ collaborators_login + ", languages=" + languages + ", fork=" + fork + ", has_issues=" + has_issues + ", has_downloads="
+				+ has_downloads + ", has_wiki=" + has_wiki + ", has_pages=" + has_pages + ", open_issues_count="
+				+ open_issues_count + ", watchers_count=" + watchers_count + ", clone_url=" + clone_url + ", html_url="
+				+ html_url + ", homepage=" + homepage + ", description=" + description + ", created_at=" + created_at
+				+ ", pushed_at=" + pushed_at + ", updated_at=" + updated_at + ", size=" + size + ", default_branch="
+				+ default_branch + ", stargazers_count=" + stargazers_count + ", forks_count=" + forks_count
+				+ ", subscribers_count=" + subscribers_count + ", scores=" + Arrays.toString(scores) + "]";
+	}
+
+	
 }
 
