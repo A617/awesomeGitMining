@@ -35,3 +35,14 @@
 0:0:0:0:0:0:0:1 - - [29/Apr/2016:22:24:16 +0800] "GET /AwesomeGitmining-web/register HTTP/1.1" 200 466 http-bio-8080-exec-5 125
 0:0:0:0:0:0:0:1 - - [29/Apr/2016:22:24:20 +0800] "POST /AwesomeGitmining-web/register HTTP/1.1" 302 - http-bio-8080-exec-6 66
 0:0:0:0:0:0:0:1 - - [29/Apr/2016:22:24:20 +0800] "GET /AwesomeGitmining-web/index HTTP/1.1" 404 949 http-bio-8080-exec-7 2
+0:0:0:0:0:0:0:1 - - [29/Apr/2016:23:09:20 +0800] "GET /AwesomeGitmining-web/user/user HTTP/1.1" 200 191 http-bio-8080-exec-1 2409
+0:0:0:0:0:0:0:1 - - [29/Apr/2016:23:09:53 +0800] "GET /AwesomeGitmining-web/user/users HTTP/1.1" 200 387 http-bio-8080-exec-2 354
+0:0:0:0:0:0:0:1 - - [29/Apr/2016:23:10:42 +0800] "GET /AwesomeGitmining-web/user/users HTTP/1.1" 200 444 http-bio-8080-exec-1 1743
+0:0:0:0:0:0:0:1 - - [29/Apr/2016:23:10:50 +0800] "GET /AwesomeGitmining-web/user/a HTTP/1.1" 200 198 http-bio-8080-exec-2 39
+0:0:0:0:0:0:0:1 - - [29/Apr/2016:23:11:24 +0800] "GET /AwesomeGitmining-web/user/users HTTP/1.1" 200 390 http-bio-8080-exec-1 1854
+0:0:0:0:0:0:0:1 - - [29/Apr/2016:23:11:26 +0800] "GET /AwesomeGitmining-web/user/a HTTP/1.1" 200 198 http-bio-8080-exec-2 34
+0:0:0:0:0:0:0:1 - - [29/Apr/2016:23:11:30 +0800] "GET /AwesomeGitmining-web/user/c HTTP/1.1" 200 198 http-bio-8080-exec-3 3
+0:0:0:0:0:0:0:1 - - [29/Apr/2016:23:13:52 +0800] "GET /AwesomeGitmining-web/user/users HTTP/1.1" 200 390 http-bio-8080-exec-1 268
+0:0:0:0:0:0:0:1 - - [29/Apr/2016:23:13:57 +0800] "GET /AwesomeGitmining-web/user/add HTTP/1.1" 200 199 http-bio-8080-exec-2 1154
+0:0:0:0:0:0:0:1 - - [29/Apr/2016:23:14:00 +0800] "GET /AwesomeGitmining-web/user/b HTTP/1.1" 200 206 http-bio-8080-exec-3 7
+0:0:0:0:0:0:0:1 - - [29/Apr/2016:23:14:03 +0800] "GET /AwesomeGitmining-web/user/c HTTP/1.1" 200 206 http-bio-8080-exec-4 5
