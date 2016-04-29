@@ -11,7 +11,7 @@
     test图片
     <br>
     <div>
-        <img alt="image" src="../img/bg.jpg">
+        <img alt="image" src="<c:url value="/img/bg.jpg"/>">
     </div>
 </body>
 </html>

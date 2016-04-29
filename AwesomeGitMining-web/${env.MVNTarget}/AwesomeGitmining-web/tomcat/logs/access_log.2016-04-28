@@ -1,0 +1,2 @@
+0:0:0:0:0:0:0:1 - - [28/Apr/2016:22:00:33 +0800] "GET /AwesomeGitmining-web HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [28/Apr/2016:22:00:33 +0800] "GET /AwesomeGitmining-web/ HTTP/1.1" 404 993 http-bio-8080-exec-2 14
