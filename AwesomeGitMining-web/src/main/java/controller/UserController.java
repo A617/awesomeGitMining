@@ -1,6 +1,6 @@
 package controller;
 
-import bean.User;
+import model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +34,6 @@ public class UserController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public ModelAndView addUser() {
-
         return new ModelAndView("/user/add","user",new User());
     }
 
