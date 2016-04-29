@@ -1,0 +1,12 @@
+0:0:0:0:0:0:0:1 - - [30/Apr/2016:00:00:14 +0800] "GET /AwesomeGitmining-web/user/users HTTP/1.1" 200 360 http-bio-8080-exec-2 211
+0:0:0:0:0:0:0:1 - - [30/Apr/2016:00:00:18 +0800] "GET /AwesomeGitmining-web/login.jsp HTTP/1.1" 200 384 http-bio-8080-exec-3 12
+0:0:0:0:0:0:0:1 - - [30/Apr/2016:00:00:27 +0800] "POST /AwesomeGitmining-web/login HTTP/1.1" 500 4204 http-bio-8080-exec-4 42
+0:0:0:0:0:0:0:1 - - [30/Apr/2016:00:02:37 +0800] "GET /AwesomeGitmining-web/login.jsp HTTP/1.1" 200 384 http-bio-8080-exec-1 169
+0:0:0:0:0:0:0:1 - - [30/Apr/2016:00:02:47 +0800] "POST /AwesomeGitmining-web/login HTTP/1.1" 500 4204 http-bio-8080-exec-3 68
+0:0:0:0:0:0:0:1 - - [30/Apr/2016:00:04:54 +0800] "GET /AwesomeGitmining-web/login.jsp HTTP/1.1" 200 384 http-bio-8080-exec-2 111
+0:0:0:0:0:0:0:1 - - [30/Apr/2016:00:04:56 +0800] "POST /AwesomeGitmining-web/login HTTP/1.1" 500 4204 http-bio-8080-exec-3 65
+0:0:0:0:0:0:0:1 - - [30/Apr/2016:00:07:07 +0800] "POST /AwesomeGitmining-web/login HTTP/1.1" 500 4204 http-bio-8080-exec-2 163
+0:0:0:0:0:0:0:1 - - [30/Apr/2016:00:07:11 +0800] "GET /AwesomeGitmining-web/login.jsp HTTP/1.1" 200 384 http-bio-8080-exec-1 33
+0:0:0:0:0:0:0:1 - - [30/Apr/2016:00:07:13 +0800] "POST /AwesomeGitmining-web/login HTTP/1.1" 500 4204 http-bio-8080-exec-4 10
+0:0:0:0:0:0:0:1 - - [30/Apr/2016:00:14:06 +0800] "GET /AwesomeGitmining-web/login.jsp HTTP/1.1" 200 384 http-bio-8080-exec-1 110
+0:0:0:0:0:0:0:1 - - [30/Apr/2016:00:14:11 +0800] "POST /AwesomeGitmining-web/login HTTP/1.1" 200 183 http-bio-8080-exec-3 873

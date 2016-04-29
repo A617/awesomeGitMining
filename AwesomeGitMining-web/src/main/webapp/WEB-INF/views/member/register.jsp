@@ -10,7 +10,7 @@
 <body>
     <form:form method="post" modelAttribute="member">
         username:<form:input path="username"/><form:errors path="username"/><br>
-        password:<form:input path="password"/><form:errors path="password"/><br>
+        password:<form:input type="password" path="password"/><form:errors path="password"/><br>
 
         <input type="submit" value = "提交">
     </form:form>
