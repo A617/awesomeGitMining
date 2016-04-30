@@ -1,6 +1,6 @@
 package edu.nju.controller;
 
-import edu.nju.pojo.Repository;
+import edu.nju.model.Repository;
 import edu.nju.service.IRepoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;

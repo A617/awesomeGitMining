@@ -1,6 +1,6 @@
 package edu.nju.dao;
 
-import edu.nju.pojo.Member;
+import edu.nju.model.Member;
 
 public interface IMemberDao {
     int deleteByPrimaryKey(String userid);

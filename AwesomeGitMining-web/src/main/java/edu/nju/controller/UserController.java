@@ -18,13 +18,7 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
 
-    private Map<String, User> users = new HashMap<>();
 
-    public UserController() {
-        users.put("a", new User(1, "a", "Google"));
-        users.put("b", new User(12, "b", "Google"));
-        users.put("c", new User(19, "c", "Google"));
-    }
 
     /**
      * 所有用户列表
@@ -32,28 +26,22 @@ public class UserController {
      */
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ModelAndView listUsers() {
-        return new ModelAndView("/user/list", "users", users);
+        return new ModelAndView("/user/list", "users", null);
     }
 
-//    @RequestMapping(value = "/add", method = RequestMethod.GET)
-//    public ModelAndView addUser() {
-//        return new ModelAndView("/user/add","user",new User());
-//    }
-//
-//    @RequestMapping(value = "/add", method = RequestMethod.POST)
-//    public ModelAndView addUser(@ModelAttribute("user") User user) {
-//        users.put(user.getLogin(), user);
-//        return new ModelAndView("redirect:/user/users");
-//    }
 
     /**
      * 显示一个用户的详细信息
-     * @param login  @PathVariable是用来获得请求url中的动态参数的
+     * @param id  @PathVariable是用来获得请求url中的动态参数的
      * @return
      */
-    @RequestMapping(value = "/{login}",method = RequestMethod.GET)
-    public  ModelAndView showUser(@PathVariable String login){
-        return new ModelAndView("/user/show","user",users.get(login));
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    public  ModelAndView showUser(@PathVariable int id){
+        User user= new User();
+        user.setId(id);
+        user.setLogin("a");
+        user.setCompany("Google");
+        return new ModelAndView("/user/show","user",user);
     }
 
 }

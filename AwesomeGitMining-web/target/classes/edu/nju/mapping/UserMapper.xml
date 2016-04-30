@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.nju.dao.IUserDao" >
-  <resultMap id="BaseResultMap" type="edu.nju.pojo.User" >
+  <resultMap id="BaseResultMap" type="edu.nju.model.User" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="login" property="login" jdbcType="CHAR" />
     <result column="html_url" property="htmlUrl" jdbcType="CHAR" />
@@ -45,7 +45,7 @@
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="edu.nju.pojo.User" >
+  <insert id="insert" parameterType="edu.nju.model.User" >
     insert into user (id, login, html_url, 
       type, avatar_url, name, location, 
       email, blog, company, contributions_fullname, 
@@ -65,7 +65,7 @@
       #{livenessScore,jdbcType=DOUBLE}, #{experienceScore,jdbcType=DOUBLE}, #{quantityScore,jdbcType=DOUBLE}
       )
   </insert>
-  <insert id="insertSelective" parameterType="edu.nju.pojo.User" >
+  <insert id="insertSelective" parameterType="edu.nju.model.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -228,7 +228,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.nju.pojo.User" >
+  <update id="updateByPrimaryKeySelective" parameterType="edu.nju.model.User" >
     update user
     <set >
       <if test="login != null" >
@@ -309,7 +309,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="edu.nju.pojo.User" >
+  <update id="updateByPrimaryKey" parameterType="edu.nju.model.User" >
     update user
     set login = #{login,jdbcType=CHAR},
       html_url = #{htmlUrl,jdbcType=CHAR},

@@ -1,16 +1,13 @@
 package edu.nju.service;
 
-import edu.nju.pojo.Repository;
+import edu.nju.model.Repository;
 import org.apache.log4j.Logger;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Dora on 2016/4/30.

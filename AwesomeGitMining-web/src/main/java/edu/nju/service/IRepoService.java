@@ -1,6 +1,6 @@
 package edu.nju.service;
 
-import edu.nju.pojo.Repository;
+import edu.nju.model.Repository;
 
 import java.util.List;
 

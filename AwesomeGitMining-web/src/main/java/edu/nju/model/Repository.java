@@ -1,4 +1,4 @@
-package edu.nju.pojo;
+package edu.nju.model;
 
 import java.util.Date;
 

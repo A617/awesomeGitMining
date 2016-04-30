@@ -30,7 +30,7 @@ public class MemberController {
     public String register(@ModelAttribute("member") @Validated Member member, BindingResult br){
         if(br.hasErrors())
             return "/member/register";
-        return ("redirect:");
+        return ("redirect:/");
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
@@ -40,7 +40,7 @@ public class MemberController {
         }
         Member member = new Member();
         session.setAttribute("loginMember",member);
-        return "redirect:/user/users";
+        return "redirect:/";
     }
 
     //这个控制器中的异常映射到这里

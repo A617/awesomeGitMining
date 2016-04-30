@@ -1,6 +1,6 @@
 package edu.nju.dao;
 
-import edu.nju.pojo.Repository;
+import edu.nju.model.Repository;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;

@@ -1,6 +1,9 @@
 package edu.nju.dao;
 
-import edu.nju.pojo.User;
+import edu.nju.model.User;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 public interface IUserDao {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +17,7 @@ public interface IUserDao {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    @Select("select * from user")
+    List<User> selectAll();
 }

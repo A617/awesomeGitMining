@@ -10,8 +10,8 @@
 <body>
     用户列表
     <br>
-    <c:forEach items="${users }" var="umap">
-        ${umap.value.id }----<a href="${umap.value.login }">${umap.value.login }</a>----${umap.value.company }<br/>
+    <c:forEach items="${users }" var="u">
+        ${u.id }----<a href="${u.login }">${u.id }</a>----${u.company }<br/>
     </c:forEach>
 </body>
 </html>

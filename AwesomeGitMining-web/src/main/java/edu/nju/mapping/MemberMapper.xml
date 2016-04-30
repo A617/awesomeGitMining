@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.nju.dao.IMemberDao" >
-  <resultMap id="BaseResultMap" type="edu.nju.pojo.Member" >
+  <resultMap id="BaseResultMap" type="edu.nju.model.Member" >
     <id column="userid" property="userid" jdbcType="VARCHAR" />
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
@@ -19,13 +19,13 @@
     delete from member
     where userid = #{userid,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="edu.nju.pojo.Member" >
+  <insert id="insert" parameterType="edu.nju.model.Member" >
     insert into member (userid, username, password
       )
     values (#{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="edu.nju.pojo.Member" >
+  <insert id="insertSelective" parameterType="edu.nju.model.Member" >
     insert into member
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userid != null" >
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.nju.pojo.Member" >
+  <update id="updateByPrimaryKeySelective" parameterType="edu.nju.model.Member" >
     update member
     <set >
       <if test="username != null" >
@@ -62,7 +62,7 @@
     </set>
     where userid = #{userid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="edu.nju.pojo.Member" >
+  <update id="updateByPrimaryKey" parameterType="edu.nju.model.Member" >
     update member
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR}

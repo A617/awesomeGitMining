@@ -3,7 +3,7 @@
 <!-- 为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成包名+sql映射文件名-->
 <mapper namespace="edu.nju.dao.IRepositoryDao" >
 
-  <resultMap id="BaseResultMap" type="edu.nju.pojo.Repository" >
+  <resultMap id="BaseResultMap" type="edu.nju.model.Repository" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="full_name" property="fullName" jdbcType="CHAR" />
     <result column="name" property="name" jdbcType="CHAR" />
@@ -60,7 +60,7 @@
     delete from repository
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="edu.nju.pojo.Repository" >
+  <insert id="insert" parameterType="edu.nju.model.Repository" >
     insert into repository (id, full_name, name, 
       owner_name, language, fork, has_issues, 
       has_downloads, has_wiki, has_pages, 
@@ -84,7 +84,7 @@
       #{sizeScore,jdbcType=DOUBLE}, #{scaleScore,jdbcType=DOUBLE}, #{promisingScore,jdbcType=DOUBLE}, 
       #{participationScore,jdbcType=DOUBLE}, #{hotScore,jdbcType=DOUBLE})
   </insert>
-  <insert id="insertSelective" parameterType="edu.nju.pojo.Repository" >
+  <insert id="insertSelective" parameterType="edu.nju.model.Repository" >
     insert into repository
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -289,7 +289,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.nju.pojo.Repository" >
+  <update id="updateByPrimaryKeySelective" parameterType="edu.nju.model.Repository" >
     update repository
     <set >
       <if test="fullName != null" >
@@ -391,7 +391,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="edu.nju.pojo.Repository" >
+  <update id="updateByPrimaryKey" parameterType="edu.nju.model.Repository" >
     update repository
     set full_name = #{fullName,jdbcType=CHAR},
       name = #{name,jdbcType=CHAR},

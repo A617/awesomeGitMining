@@ -1,7 +1,7 @@
 package edu.nju.service;
 
 import edu.nju.dao.IRepositoryDao;
-import edu.nju.pojo.Repository;
+import edu.nju.model.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
