@@ -5,6 +5,7 @@ import edu.nju.pojo.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by Dora on 2016/4/30.
@@ -20,6 +21,10 @@ public class RepoServiceImpl implements IRepoService{
         return this.repoDao.selectByPrimaryKey(repoId);
     }
 
+    @Override
+    public List<Repository> getAllRepos(){
+        return this.repoDao.selectAll();
+    }
 
 
 }

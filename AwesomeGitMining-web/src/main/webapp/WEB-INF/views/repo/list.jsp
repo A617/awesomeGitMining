@@ -8,10 +8,10 @@
 <title>Hello</title>
 </head>
 <body>
-    用户列表
+    仓库列表
     <br>
-    <c:forEach items="${users }" var="umap">
-        ${umap.value.id }----<a href="${umap.value.login }">${umap.value.login }</a>----${umap.value.company }<br/>
+    <c:forEach items="${repos }" var="repo">
+        ${repo.id }----<a href="${repo.id}">repo.fullName</a><br/>
     </c:forEach>
 </body>
 </html>
