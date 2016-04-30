@@ -1,4 +1,4 @@
-package main.java.edu.nju.pojo;
+package edu.nju.pojo;
 
 public class Member {
     private String userid;
