@@ -211,6 +211,10 @@
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
+                <!--在 tomcat 发布不显示项目名称-->
+                <configuration>
+                    <path>/</path>
+                </configuration>
                 <version>2.2</version>
             </plugin>
             <plugin>

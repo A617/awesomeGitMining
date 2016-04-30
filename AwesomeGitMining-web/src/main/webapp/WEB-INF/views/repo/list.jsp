@@ -11,7 +11,7 @@
     仓库列表
     <br>
     <c:forEach items="${repos }" var="repo">
-        ${repo.id }----<a href="${repo.id}">repo.fullName</a><br/>
+        ${repo.id }----<a href="${repo.id}">repo.fullName</a>----<a href="/user/${repo.id}">relatedUser</a><br/>
     </c:forEach>
 </body>
 </html>
