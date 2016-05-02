@@ -44,8 +44,7 @@ public class UserController {
      */
     @RequestMapping(value = "/{login}",method = RequestMethod.GET)
     public  ModelAndView showUser(@PathVariable String login){
-        User user= userService.getUserByLogin(UrlEscapeHelper.unescape(login));
-        System.out.println(login + " " +UrlEscapeHelper.unescape(login)+" " +UrlEscapeHelper.escape(login));
+        User user= userService.getUserByLogin(login);
         return new ModelAndView("/user/show","user",user);
     }
 

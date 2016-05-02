@@ -122,3 +122,15 @@
 0:0:0:0:0:0:0:1 - - [02/May/2016:23:09:34 +0800] "GET /repo/repos HTTP/1.1" 200 404434 http-bio-8080-exec-3 1315
 0:0:0:0:0:0:0:1 - - [02/May/2016:23:09:36 +0800] "GET /repo/macournoyer/thin HTTP/1.1" 200 216 http-bio-8080-exec-4 49
 0:0:0:0:0:0:0:1 - - [02/May/2016:23:09:40 +0800] "GET /user/cristibalan HTTP/1.1" 200 254 http-bio-8080-exec-5 866
+0:0:0:0:0:0:0:1 - - [02/May/2016:23:11:57 +0800] "GET / HTTP/1.1" 200 253 http-bio-8080-exec-1 347
+0:0:0:0:0:0:0:1 - - [02/May/2016:23:12:01 +0800] "GET /repo/repos HTTP/1.1" 200 404434 http-bio-8080-exec-3 1433
+0:0:0:0:0:0:0:1 - - [02/May/2016:23:12:03 +0800] "GET /repo/technoweenie/attachment_fu HTTP/1.1" 200 297 http-bio-8080-exec-4 751
+0:0:0:0:0:0:0:1 - - [02/May/2016:23:12:06 +0800] "GET /user/mojombo HTTP/1.1" 200 250 http-bio-8080-exec-5 857
+0:0:0:0:0:0:0:1 - - [02/May/2016:23:12:17 +0800] "GET /user/users HTTP/1.1" 200 3659465 http-bio-8080-exec-2 3777
+0:0:0:0:0:0:0:1 - - [02/May/2016:23:12:23 +0800] "GET /user/jamesmacaulay HTTP/1.1" 200 256 http-bio-8080-exec-7 841
+0:0:0:0:0:0:0:1 - - [02/May/2016:23:13:33 +0800] "GET / HTTP/1.1" 200 253 http-bio-8080-exec-1 511
+0:0:0:0:0:0:0:1 - - [02/May/2016:23:13:41 +0800] "GET /user/users HTTP/1.1" 200 3659465 http-bio-8080-exec-3 6512
+0:0:0:0:0:0:0:1 - - [02/May/2016:23:13:43 +0800] "GET /user/benpickles HTTP/1.1" 200 253 http-bio-8080-exec-4 858
+0:0:0:0:0:0:0:1 - - [02/May/2016:23:13:46 +0800] "GET /user/zulus HTTP/1.1" 200 248 http-bio-8080-exec-5 791
+0:0:0:0:0:0:0:1 - - [02/May/2016:23:13:57 +0800] "GET /repo/repos HTTP/1.1" 200 404434 http-bio-8080-exec-7 586
+0:0:0:0:0:0:0:1 - - [02/May/2016:23:13:59 +0800] "GET /user/schacon HTTP/1.1" 200 250 http-bio-8080-exec-8 770

@@ -7,7 +7,7 @@
 <title>Hello</title>
 </head>
 <body>
-    仓库详情
+    仓库详情<br>
     id:${repo.id}<br>
     fullName:${repo.fullName}<br>
     htmlUrl:${repo.htmlUrl}
