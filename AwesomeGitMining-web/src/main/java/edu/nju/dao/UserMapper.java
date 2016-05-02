@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
-public interface IUserDao {
+public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 
     int insert(User record);
@@ -18,6 +18,7 @@ public interface IUserDao {
 
     int updateByPrimaryKey(User record);
 
-    @Select("select * from user")
     List<User> selectAll();
+
+    User selectByLogin(String login);
 }

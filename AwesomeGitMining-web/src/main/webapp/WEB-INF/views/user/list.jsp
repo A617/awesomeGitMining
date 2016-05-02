@@ -11,7 +11,7 @@
     用户列表
     <br>
     <c:forEach items="${users }" var="u">
-        ${u.id }----<a href="${u.login }">${u.id }</a>----${u.company }<br/>
+        ${u.id }----<a href="${u.login }">${u.login }</a>----${u.company }<br/>
     </c:forEach>
 </body>
 </html>

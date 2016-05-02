@@ -5,7 +5,8 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
-public interface IRepositoryDao {
+
+public interface RepositoryMapper {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Repository record);
@@ -16,8 +17,11 @@ public interface IRepositoryDao {
 
     int updateByPrimaryKeySelective(Repository record);
 
+    int updateByPrimaryKeyWithBLOBs(Repository record);
+
     int updateByPrimaryKey(Repository record);
 
-    @Select("select * from repository")
     List<Repository> selectAll();
+
+    Repository selectByFullName(String full_name);
 }

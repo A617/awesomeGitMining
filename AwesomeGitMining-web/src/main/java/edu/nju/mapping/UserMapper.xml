@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="edu.nju.dao.IUserDao" >
+<mapper namespace="edu.nju.dao.UserMapper" >
   <resultMap id="BaseResultMap" type="edu.nju.model.User" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="login" property="login" jdbcType="CHAR" />
@@ -14,11 +14,9 @@
     <result column="company" property="company" jdbcType="CHAR" />
     <result column="contributions_fullname" property="contributionsFullname" jdbcType="VARCHAR" />
     <result column="collaboration_fullname" property="collaborationFullname" jdbcType="VARCHAR" />
-    <result column="followers_name" property="followersName" jdbcType="VARCHAR" />
-    <result column="following_name" property="followingName" jdbcType="VARCHAR" />
     <result column="repos_fullname" property="reposFullname" jdbcType="VARCHAR" />
     <result column="public_repos" property="publicRepos" jdbcType="INTEGER" />
-    <result column="pubilc_gists" property="pubilcGists" jdbcType="INTEGER" />
+    <result column="public_gists" property="publicGists" jdbcType="INTEGER" />
     <result column="followers" property="followers" jdbcType="INTEGER" />
     <result column="following" property="following" jdbcType="INTEGER" />
     <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
@@ -31,9 +29,9 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, login, html_url, type, avatar_url, name, location, email, blog, company, contributions_fullname, 
-    collaboration_fullname, followers_name, following_name, repos_fullname, public_repos, 
-    pubilc_gists, followers, following, created_at, updated_at, popular_score, teamwork_score, 
-    liveness_score, experience_score, quantity_score
+    collaboration_fullname, repos_fullname, public_repos, public_gists, followers, following, 
+    created_at, updated_at, popular_score, teamwork_score, liveness_score, experience_score, 
+    quantity_score
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -49,21 +47,19 @@
     insert into user (id, login, html_url, 
       type, avatar_url, name, location, 
       email, blog, company, contributions_fullname, 
-      collaboration_fullname, followers_name, following_name, 
-      repos_fullname, public_repos, pubilc_gists, 
-      followers, following, created_at, 
-      updated_at, popular_score, teamwork_score, 
-      liveness_score, experience_score, quantity_score
-      )
+      collaboration_fullname, repos_fullname, public_repos, 
+      public_gists, followers, following, 
+      created_at, updated_at, popular_score, 
+      teamwork_score, liveness_score, experience_score, 
+      quantity_score)
     values (#{id,jdbcType=INTEGER}, #{login,jdbcType=CHAR}, #{htmlUrl,jdbcType=CHAR}, 
       #{type,jdbcType=CHAR}, #{avatarUrl,jdbcType=CHAR}, #{name,jdbcType=CHAR}, #{location,jdbcType=CHAR}, 
       #{email,jdbcType=CHAR}, #{blog,jdbcType=CHAR}, #{company,jdbcType=CHAR}, #{contributionsFullname,jdbcType=VARCHAR}, 
-      #{collaborationFullname,jdbcType=VARCHAR}, #{followersName,jdbcType=VARCHAR}, #{followingName,jdbcType=VARCHAR}, 
-      #{reposFullname,jdbcType=VARCHAR}, #{publicRepos,jdbcType=INTEGER}, #{pubilcGists,jdbcType=INTEGER}, 
-      #{followers,jdbcType=INTEGER}, #{following,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, 
-      #{updatedAt,jdbcType=TIMESTAMP}, #{popularScore,jdbcType=DOUBLE}, #{teamworkScore,jdbcType=DOUBLE}, 
-      #{livenessScore,jdbcType=DOUBLE}, #{experienceScore,jdbcType=DOUBLE}, #{quantityScore,jdbcType=DOUBLE}
-      )
+      #{collaborationFullname,jdbcType=VARCHAR}, #{reposFullname,jdbcType=VARCHAR}, #{publicRepos,jdbcType=INTEGER}, 
+      #{publicGists,jdbcType=INTEGER}, #{followers,jdbcType=INTEGER}, #{following,jdbcType=INTEGER}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{popularScore,jdbcType=DOUBLE}, 
+      #{teamworkScore,jdbcType=DOUBLE}, #{livenessScore,jdbcType=DOUBLE}, #{experienceScore,jdbcType=DOUBLE}, 
+      #{quantityScore,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="edu.nju.model.User" >
     insert into user
@@ -104,20 +100,14 @@
       <if test="collaborationFullname != null" >
         collaboration_fullname,
       </if>
-      <if test="followersName != null" >
-        followers_name,
-      </if>
-      <if test="followingName != null" >
-        following_name,
-      </if>
       <if test="reposFullname != null" >
         repos_fullname,
       </if>
       <if test="publicRepos != null" >
         public_repos,
       </if>
-      <if test="pubilcGists != null" >
-        pubilc_gists,
+      <if test="publicGists != null" >
+        public_gists,
       </if>
       <if test="followers != null" >
         followers,
@@ -184,20 +174,14 @@
       <if test="collaborationFullname != null" >
         #{collaborationFullname,jdbcType=VARCHAR},
       </if>
-      <if test="followersName != null" >
-        #{followersName,jdbcType=VARCHAR},
-      </if>
-      <if test="followingName != null" >
-        #{followingName,jdbcType=VARCHAR},
-      </if>
       <if test="reposFullname != null" >
         #{reposFullname,jdbcType=VARCHAR},
       </if>
       <if test="publicRepos != null" >
         #{publicRepos,jdbcType=INTEGER},
       </if>
-      <if test="pubilcGists != null" >
-        #{pubilcGists,jdbcType=INTEGER},
+      <if test="publicGists != null" >
+        #{publicGists,jdbcType=INTEGER},
       </if>
       <if test="followers != null" >
         #{followers,jdbcType=INTEGER},
@@ -264,20 +248,14 @@
       <if test="collaborationFullname != null" >
         collaboration_fullname = #{collaborationFullname,jdbcType=VARCHAR},
       </if>
-      <if test="followersName != null" >
-        followers_name = #{followersName,jdbcType=VARCHAR},
-      </if>
-      <if test="followingName != null" >
-        following_name = #{followingName,jdbcType=VARCHAR},
-      </if>
       <if test="reposFullname != null" >
         repos_fullname = #{reposFullname,jdbcType=VARCHAR},
       </if>
       <if test="publicRepos != null" >
         public_repos = #{publicRepos,jdbcType=INTEGER},
       </if>
-      <if test="pubilcGists != null" >
-        pubilc_gists = #{pubilcGists,jdbcType=INTEGER},
+      <if test="publicGists != null" >
+        public_gists = #{publicGists,jdbcType=INTEGER},
       </if>
       <if test="followers != null" >
         followers = #{followers,jdbcType=INTEGER},
@@ -322,11 +300,9 @@
       company = #{company,jdbcType=CHAR},
       contributions_fullname = #{contributionsFullname,jdbcType=VARCHAR},
       collaboration_fullname = #{collaborationFullname,jdbcType=VARCHAR},
-      followers_name = #{followersName,jdbcType=VARCHAR},
-      following_name = #{followingName,jdbcType=VARCHAR},
       repos_fullname = #{reposFullname,jdbcType=VARCHAR},
       public_repos = #{publicRepos,jdbcType=INTEGER},
-      pubilc_gists = #{pubilcGists,jdbcType=INTEGER},
+      public_gists = #{publicGists,jdbcType=INTEGER},
       followers = #{followers,jdbcType=INTEGER},
       following = #{following,jdbcType=INTEGER},
       created_at = #{createdAt,jdbcType=TIMESTAMP},
@@ -338,4 +314,18 @@
       quantity_score = #{quantityScore,jdbcType=DOUBLE}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <!-- 以下为自定义方法-->
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+  </select>
+  <select id="selectByLogin" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where login = #{login,jdbcType=VARCHAR}
+  </select>
 </mapper>

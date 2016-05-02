@@ -27,15 +27,11 @@ public class User {
 
     private String collaborationFullname;
 
-    private String followersName;
-
-    private String followingName;
-
     private String reposFullname;
 
     private Integer publicRepos;
 
-    private Integer pubilcGists;
+    private Integer publicGists;
 
     private Integer followers;
 
@@ -151,22 +147,6 @@ public class User {
         this.collaborationFullname = collaborationFullname == null ? null : collaborationFullname.trim();
     }
 
-    public String getFollowersName() {
-        return followersName;
-    }
-
-    public void setFollowersName(String followersName) {
-        this.followersName = followersName == null ? null : followersName.trim();
-    }
-
-    public String getFollowingName() {
-        return followingName;
-    }
-
-    public void setFollowingName(String followingName) {
-        this.followingName = followingName == null ? null : followingName.trim();
-    }
-
     public String getReposFullname() {
         return reposFullname;
     }
@@ -183,12 +163,12 @@ public class User {
         this.publicRepos = publicRepos;
     }
 
-    public Integer getPubilcGists() {
-        return pubilcGists;
+    public Integer getPublicGists() {
+        return publicGists;
     }
 
-    public void setPubilcGists(Integer pubilcGists) {
-        this.pubilcGists = pubilcGists;
+    public void setPublicGists(Integer publicGists) {
+        this.publicGists = publicGists;
     }
 
     public Integer getFollowers() {

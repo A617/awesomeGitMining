@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by Dora on 2016/4/30.
@@ -27,6 +28,22 @@ public class RepoServiceImplTest {
     public void getRepoById() {
         Repository repo = repoService.getRepoById(1);
         logger.info(repo.getFullName());
+    }
+
+    @Test
+    public void getAllRepos(){
+        List<Repository> list = repoService.getAllRepos();
+        for (Repository repo:list){
+            System.out.println(repo.getFullName());
+        }
+
+    }
+
+
+    @Test
+    public void selectByFullName(){
+        Repository repo = repoService.getRepoByFullname("jsbin/jsbin");
+        System.out.println(repo.getFullName()+" "+repo.getCloneUrl());
     }
 
 }

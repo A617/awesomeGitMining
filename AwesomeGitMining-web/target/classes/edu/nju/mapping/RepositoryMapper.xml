@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<!-- 为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成包名+sql映射文件名-->
-<mapper namespace="edu.nju.dao.IRepositoryDao" >
-
+<mapper namespace="edu.nju.dao.RepositoryMapper" >
   <resultMap id="BaseResultMap" type="edu.nju.model.Repository" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="full_name" property="fullName" jdbcType="CHAR" />
@@ -19,40 +17,44 @@
     <result column="clone_url" property="cloneUrl" jdbcType="CHAR" />
     <result column="html_url" property="htmlUrl" jdbcType="CHAR" />
     <result column="homepage" property="homepage" jdbcType="CHAR" />
-    <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
     <result column="pushed_at" property="pushedAt" jdbcType="TIMESTAMP" />
     <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
     <result column="size" property="size" jdbcType="INTEGER" />
-    <result column="default_branch" property="defaultBranch" jdbcType="CHAR" />
     <result column="stargazers_count" property="stargazersCount" jdbcType="INTEGER" />
     <result column="forks_count" property="forksCount" jdbcType="INTEGER" />
     <result column="subscribers_count" property="subscribersCount" jdbcType="INTEGER" />
     <result column="contributors_login" property="contributorsLogin" jdbcType="VARCHAR" />
     <result column="collaborators_login" property="collaboratorsLogin" jdbcType="VARCHAR" />
-    <result column="languages_names" property="languagesNames" jdbcType="VARCHAR" />
-    <result column="languages_counts" property="languagesCounts" jdbcType="VARCHAR" />
+    <result column="languages" property="languages" jdbcType="VARCHAR" />
     <result column="size_score" property="sizeScore" jdbcType="DOUBLE" />
     <result column="scale_score" property="scaleScore" jdbcType="DOUBLE" />
     <result column="promising_score" property="promisingScore" jdbcType="DOUBLE" />
     <result column="participation_score" property="participationScore" jdbcType="DOUBLE" />
     <result column="hot_score" property="hotScore" jdbcType="DOUBLE" />
+    <result column="contributors_count" property="contributorsCount" jdbcType="INTEGER" />
+    <result column="collaborators_count" property="collaboratorsCount" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.nju.model.Repository" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, full_name, name, owner_name, language, fork, has_issues, has_downloads, has_wiki, 
-    has_pages, open_issues_count, watchers_count, clone_url, html_url, homepage, description, 
-    created_at, pushed_at, updated_at, size, default_branch, stargazers_count, forks_count, 
-    subscribers_count, contributors_login, collaborators_login, languages_names, languages_counts, 
-    size_score, scale_score, promising_score, participation_score, hot_score
+    has_pages, open_issues_count, watchers_count, clone_url, html_url, homepage, created_at, 
+    pushed_at, updated_at, size, stargazers_count, forks_count, subscribers_count, contributors_login, 
+    collaborators_login, languages, size_score, scale_score, promising_score, participation_score, 
+    hot_score, contributors_count, collaborators_count
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
   </sql>
 
-  <!-- 在select标签中编写查询的SQL语句， 设置select标签的id属性为getUser，id属性值必须是唯一的，不能够重复
-      使用parameterType属性指明查询时使用的参数类型，resultType属性指明查询返回的结果集类型
-      resultType="me.gacl.domain.User"就表示将查询结果封装成一个User类的对象返回
-     User类就是users表所对应的实体类    -->
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from repository
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -65,24 +67,26 @@
       owner_name, language, fork, has_issues, 
       has_downloads, has_wiki, has_pages, 
       open_issues_count, watchers_count, clone_url, 
-      html_url, homepage, description, 
-      created_at, pushed_at, updated_at, 
-      size, default_branch, stargazers_count, 
-      forks_count, subscribers_count, contributors_login, 
-      collaborators_login, languages_names, languages_counts, 
-      size_score, scale_score, promising_score, 
-      participation_score, hot_score)
+      html_url, homepage, created_at, 
+      pushed_at, updated_at, size, 
+      stargazers_count, forks_count, subscribers_count, 
+      contributors_login, collaborators_login, 
+      languages, size_score, scale_score, 
+      promising_score, participation_score, hot_score, 
+      contributors_count, collaborators_count, 
+      description)
     values (#{id,jdbcType=INTEGER}, #{fullName,jdbcType=CHAR}, #{name,jdbcType=CHAR}, 
       #{ownerName,jdbcType=CHAR}, #{language,jdbcType=CHAR}, #{fork,jdbcType=BIT}, #{hasIssues,jdbcType=BIT}, 
       #{hasDownloads,jdbcType=BIT}, #{hasWiki,jdbcType=BIT}, #{hasPages,jdbcType=BIT}, 
       #{openIssuesCount,jdbcType=INTEGER}, #{watchersCount,jdbcType=INTEGER}, #{cloneUrl,jdbcType=CHAR}, 
-      #{htmlUrl,jdbcType=CHAR}, #{homepage,jdbcType=CHAR}, #{description,jdbcType=VARCHAR}, 
-      #{createdAt,jdbcType=TIMESTAMP}, #{pushedAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
-      #{size,jdbcType=INTEGER}, #{defaultBranch,jdbcType=CHAR}, #{stargazersCount,jdbcType=INTEGER}, 
-      #{forksCount,jdbcType=INTEGER}, #{subscribersCount,jdbcType=INTEGER}, #{contributorsLogin,jdbcType=VARCHAR}, 
-      #{collaboratorsLogin,jdbcType=VARCHAR}, #{languagesNames,jdbcType=VARCHAR}, #{languagesCounts,jdbcType=VARCHAR}, 
-      #{sizeScore,jdbcType=DOUBLE}, #{scaleScore,jdbcType=DOUBLE}, #{promisingScore,jdbcType=DOUBLE}, 
-      #{participationScore,jdbcType=DOUBLE}, #{hotScore,jdbcType=DOUBLE})
+      #{htmlUrl,jdbcType=CHAR}, #{homepage,jdbcType=CHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{pushedAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{size,jdbcType=INTEGER}, 
+      #{stargazersCount,jdbcType=INTEGER}, #{forksCount,jdbcType=INTEGER}, #{subscribersCount,jdbcType=INTEGER}, 
+      #{contributorsLogin,jdbcType=VARCHAR}, #{collaboratorsLogin,jdbcType=VARCHAR}, 
+      #{languages,jdbcType=VARCHAR}, #{sizeScore,jdbcType=DOUBLE}, #{scaleScore,jdbcType=DOUBLE}, 
+      #{promisingScore,jdbcType=DOUBLE}, #{participationScore,jdbcType=DOUBLE}, #{hotScore,jdbcType=DOUBLE}, 
+      #{contributorsCount,jdbcType=INTEGER}, #{collaboratorsCount,jdbcType=INTEGER}, 
+      #{description,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="edu.nju.model.Repository" >
     insert into repository
@@ -132,9 +136,6 @@
       <if test="homepage != null" >
         homepage,
       </if>
-      <if test="description != null" >
-        description,
-      </if>
       <if test="createdAt != null" >
         created_at,
       </if>
@@ -146,9 +147,6 @@
       </if>
       <if test="size != null" >
         size,
-      </if>
-      <if test="defaultBranch != null" >
-        default_branch,
       </if>
       <if test="stargazersCount != null" >
         stargazers_count,
@@ -165,11 +163,8 @@
       <if test="collaboratorsLogin != null" >
         collaborators_login,
       </if>
-      <if test="languagesNames != null" >
-        languages_names,
-      </if>
-      <if test="languagesCounts != null" >
-        languages_counts,
+      <if test="languages != null" >
+        languages,
       </if>
       <if test="sizeScore != null" >
         size_score,
@@ -185,6 +180,15 @@
       </if>
       <if test="hotScore != null" >
         hot_score,
+      </if>
+      <if test="contributorsCount != null" >
+        contributors_count,
+      </if>
+      <if test="collaboratorsCount != null" >
+        collaborators_count,
+      </if>
+      <if test="description != null" >
+        description,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -233,9 +237,6 @@
       <if test="homepage != null" >
         #{homepage,jdbcType=CHAR},
       </if>
-      <if test="description != null" >
-        #{description,jdbcType=VARCHAR},
-      </if>
       <if test="createdAt != null" >
         #{createdAt,jdbcType=TIMESTAMP},
       </if>
@@ -247,9 +248,6 @@
       </if>
       <if test="size != null" >
         #{size,jdbcType=INTEGER},
-      </if>
-      <if test="defaultBranch != null" >
-        #{defaultBranch,jdbcType=CHAR},
       </if>
       <if test="stargazersCount != null" >
         #{stargazersCount,jdbcType=INTEGER},
@@ -266,11 +264,8 @@
       <if test="collaboratorsLogin != null" >
         #{collaboratorsLogin,jdbcType=VARCHAR},
       </if>
-      <if test="languagesNames != null" >
-        #{languagesNames,jdbcType=VARCHAR},
-      </if>
-      <if test="languagesCounts != null" >
-        #{languagesCounts,jdbcType=VARCHAR},
+      <if test="languages != null" >
+        #{languages,jdbcType=VARCHAR},
       </if>
       <if test="sizeScore != null" >
         #{sizeScore,jdbcType=DOUBLE},
@@ -286,6 +281,15 @@
       </if>
       <if test="hotScore != null" >
         #{hotScore,jdbcType=DOUBLE},
+      </if>
+      <if test="contributorsCount != null" >
+        #{contributorsCount,jdbcType=INTEGER},
+      </if>
+      <if test="collaboratorsCount != null" >
+        #{collaboratorsCount,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -334,9 +338,6 @@
       <if test="homepage != null" >
         homepage = #{homepage,jdbcType=CHAR},
       </if>
-      <if test="description != null" >
-        description = #{description,jdbcType=VARCHAR},
-      </if>
       <if test="createdAt != null" >
         created_at = #{createdAt,jdbcType=TIMESTAMP},
       </if>
@@ -348,9 +349,6 @@
       </if>
       <if test="size != null" >
         size = #{size,jdbcType=INTEGER},
-      </if>
-      <if test="defaultBranch != null" >
-        default_branch = #{defaultBranch,jdbcType=CHAR},
       </if>
       <if test="stargazersCount != null" >
         stargazers_count = #{stargazersCount,jdbcType=INTEGER},
@@ -367,11 +365,8 @@
       <if test="collaboratorsLogin != null" >
         collaborators_login = #{collaboratorsLogin,jdbcType=VARCHAR},
       </if>
-      <if test="languagesNames != null" >
-        languages_names = #{languagesNames,jdbcType=VARCHAR},
-      </if>
-      <if test="languagesCounts != null" >
-        languages_counts = #{languagesCounts,jdbcType=VARCHAR},
+      <if test="languages != null" >
+        languages = #{languages,jdbcType=VARCHAR},
       </if>
       <if test="sizeScore != null" >
         size_score = #{sizeScore,jdbcType=DOUBLE},
@@ -388,7 +383,52 @@
       <if test="hotScore != null" >
         hot_score = #{hotScore,jdbcType=DOUBLE},
       </if>
+      <if test="contributorsCount != null" >
+        contributors_count = #{contributorsCount,jdbcType=INTEGER},
+      </if>
+      <if test="collaboratorsCount != null" >
+        collaborators_count = #{collaboratorsCount,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.nju.model.Repository" >
+    update repository
+    set full_name = #{fullName,jdbcType=CHAR},
+      name = #{name,jdbcType=CHAR},
+      owner_name = #{ownerName,jdbcType=CHAR},
+      language = #{language,jdbcType=CHAR},
+      fork = #{fork,jdbcType=BIT},
+      has_issues = #{hasIssues,jdbcType=BIT},
+      has_downloads = #{hasDownloads,jdbcType=BIT},
+      has_wiki = #{hasWiki,jdbcType=BIT},
+      has_pages = #{hasPages,jdbcType=BIT},
+      open_issues_count = #{openIssuesCount,jdbcType=INTEGER},
+      watchers_count = #{watchersCount,jdbcType=INTEGER},
+      clone_url = #{cloneUrl,jdbcType=CHAR},
+      html_url = #{htmlUrl,jdbcType=CHAR},
+      homepage = #{homepage,jdbcType=CHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      pushed_at = #{pushedAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      size = #{size,jdbcType=INTEGER},
+      stargazers_count = #{stargazersCount,jdbcType=INTEGER},
+      forks_count = #{forksCount,jdbcType=INTEGER},
+      subscribers_count = #{subscribersCount,jdbcType=INTEGER},
+      contributors_login = #{contributorsLogin,jdbcType=VARCHAR},
+      collaborators_login = #{collaboratorsLogin,jdbcType=VARCHAR},
+      languages = #{languages,jdbcType=VARCHAR},
+      size_score = #{sizeScore,jdbcType=DOUBLE},
+      scale_score = #{scaleScore,jdbcType=DOUBLE},
+      promising_score = #{promisingScore,jdbcType=DOUBLE},
+      participation_score = #{participationScore,jdbcType=DOUBLE},
+      hot_score = #{hotScore,jdbcType=DOUBLE},
+      contributors_count = #{contributorsCount,jdbcType=INTEGER},
+      collaborators_count = #{collaboratorsCount,jdbcType=INTEGER},
+      description = #{description,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.nju.model.Repository" >
@@ -407,24 +447,40 @@
       clone_url = #{cloneUrl,jdbcType=CHAR},
       html_url = #{htmlUrl,jdbcType=CHAR},
       homepage = #{homepage,jdbcType=CHAR},
-      description = #{description,jdbcType=VARCHAR},
       created_at = #{createdAt,jdbcType=TIMESTAMP},
       pushed_at = #{pushedAt,jdbcType=TIMESTAMP},
       updated_at = #{updatedAt,jdbcType=TIMESTAMP},
       size = #{size,jdbcType=INTEGER},
-      default_branch = #{defaultBranch,jdbcType=CHAR},
       stargazers_count = #{stargazersCount,jdbcType=INTEGER},
       forks_count = #{forksCount,jdbcType=INTEGER},
       subscribers_count = #{subscribersCount,jdbcType=INTEGER},
       contributors_login = #{contributorsLogin,jdbcType=VARCHAR},
       collaborators_login = #{collaboratorsLogin,jdbcType=VARCHAR},
-      languages_names = #{languagesNames,jdbcType=VARCHAR},
-      languages_counts = #{languagesCounts,jdbcType=VARCHAR},
+      languages = #{languages,jdbcType=VARCHAR},
       size_score = #{sizeScore,jdbcType=DOUBLE},
       scale_score = #{scaleScore,jdbcType=DOUBLE},
       promising_score = #{promisingScore,jdbcType=DOUBLE},
       participation_score = #{participationScore,jdbcType=DOUBLE},
-      hot_score = #{hotScore,jdbcType=DOUBLE}
+      hot_score = #{hotScore,jdbcType=DOUBLE},
+      contributors_count = #{contributorsCount,jdbcType=INTEGER},
+      collaborators_count = #{collaboratorsCount,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!-- 以下为自定义方法-->
+  <select id="selectAll" resultMap="ResultMapWithBLOBs" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from repository
+  </select>
+  <select id="selectByFullName" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from repository
+    where full_name = #{fullName,jdbcType=VARCHAR}
+  </select>
 </mapper>

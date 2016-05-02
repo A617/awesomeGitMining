@@ -33,8 +33,6 @@ public class Repository {
 
     private String homepage;
 
-    private String description;
-
     private Date createdAt;
 
     private Date pushedAt;
@@ -42,8 +40,6 @@ public class Repository {
     private Date updatedAt;
 
     private Integer size;
-
-    private String defaultBranch;
 
     private Integer stargazersCount;
 
@@ -55,9 +51,7 @@ public class Repository {
 
     private String collaboratorsLogin;
 
-    private String languagesNames;
-
-    private String languagesCounts;
+    private String languages;
 
     private Double sizeScore;
 
@@ -68,6 +62,12 @@ public class Repository {
     private Double participationScore;
 
     private Double hotScore;
+
+    private Integer contributorsCount;
+
+    private Integer collaboratorsCount;
+
+    private String description;
 
     public Integer getId() {
         return id;
@@ -189,14 +189,6 @@ public class Repository {
         this.homepage = homepage == null ? null : homepage.trim();
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
-    }
-
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -227,14 +219,6 @@ public class Repository {
 
     public void setSize(Integer size) {
         this.size = size;
-    }
-
-    public String getDefaultBranch() {
-        return defaultBranch;
-    }
-
-    public void setDefaultBranch(String defaultBranch) {
-        this.defaultBranch = defaultBranch == null ? null : defaultBranch.trim();
     }
 
     public Integer getStargazersCount() {
@@ -277,20 +261,12 @@ public class Repository {
         this.collaboratorsLogin = collaboratorsLogin == null ? null : collaboratorsLogin.trim();
     }
 
-    public String getLanguagesNames() {
-        return languagesNames;
+    public String getLanguages() {
+        return languages;
     }
 
-    public void setLanguagesNames(String languagesNames) {
-        this.languagesNames = languagesNames == null ? null : languagesNames.trim();
-    }
-
-    public String getLanguagesCounts() {
-        return languagesCounts;
-    }
-
-    public void setLanguagesCounts(String languagesCounts) {
-        this.languagesCounts = languagesCounts == null ? null : languagesCounts.trim();
+    public void setLanguages(String languages) {
+        this.languages = languages == null ? null : languages.trim();
     }
 
     public Double getSizeScore() {
@@ -331,5 +307,29 @@ public class Repository {
 
     public void setHotScore(Double hotScore) {
         this.hotScore = hotScore;
+    }
+
+    public Integer getContributorsCount() {
+        return contributorsCount;
+    }
+
+    public void setContributorsCount(Integer contributorsCount) {
+        this.contributorsCount = contributorsCount;
+    }
+
+    public Integer getCollaboratorsCount() {
+        return collaboratorsCount;
+    }
+
+    public void setCollaboratorsCount(Integer collaboratorsCount) {
+        this.collaboratorsCount = collaboratorsCount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 }

@@ -9,7 +9,9 @@ import java.util.List;
  */
 public interface IRepoService {
 
-    public Repository getRepoById(int repoId);
+    Repository getRepoById(int repoId);
 
     List<Repository> getAllRepos();
+
+    Repository getRepoByFullname(String fullName);
 }
