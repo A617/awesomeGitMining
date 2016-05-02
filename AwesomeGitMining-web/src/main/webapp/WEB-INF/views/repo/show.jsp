@@ -8,7 +8,8 @@
 </head>
 <body>
     仓库详情
-    ${repo.id}<br>
-    ${repo.fullName}<br>
+    id:${repo.id}<br>
+    fullName:${repo.fullName}<br>
+    htmlUrl:${repo.htmlUrl}
 </body>
 </html>

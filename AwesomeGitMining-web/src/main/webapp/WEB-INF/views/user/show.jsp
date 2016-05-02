@@ -11,5 +11,6 @@
 <body>
     login: ${user.login }<br>
     company: ${user.company }<br>
+    createdAt:${user.createdAt}
 </body>
 </html>

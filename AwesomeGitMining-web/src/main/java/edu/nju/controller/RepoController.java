@@ -26,17 +26,19 @@ public class RepoController {
         return new ModelAndView("/repo/list","repos",repos);
     }
 
-//    @RequestMapping(value = "/{fullName}",method = RequestMethod.GET)
-//    public ModelAndView showRepo(@PathVariable String fullName){
-//        Repository repo = repoService.getRepoByFullname(fullName);
+    @RequestMapping(value = "/{ownerName}/{repoName}",method = RequestMethod.GET)
+    public ModelAndView showRepo(@PathVariable String ownerName,@PathVariable String repoName){
+        String fullName = ownerName+"/"+repoName;
+        System.out.println(123+" "+fullName);
+        Repository repo = repoService.getRepoByFullname(UrlEscapeHelper.unescape(fullName));
+        System.out.println(UrlEscapeHelper.unescape(fullName));
+        return new ModelAndView("/repo/show","repo",repo);
+    }
+
+//    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+//    public ModelAndView showRepo2(@PathVariable int id){
+//        Repository repo = repoService.getRepoById(id);
 //        System.out.println(repo.getCloneUrl());
 //        return new ModelAndView("/repo/show","repo",repo);
 //    }
-
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public ModelAndView showRepo2(@PathVariable int id){
-        Repository repo = repoService.getRepoById(id);
-        System.out.println(repo.getCloneUrl());
-        return new ModelAndView("/repo/show","repo",repo);
-    }
 }
