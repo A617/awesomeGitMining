@@ -1,5 +1,6 @@
 package edu.nju.service;
 
+import edu.nju.dao.IRepoDao;
 import edu.nju.dao.RepositoryMapper;
 import edu.nju.model.Repository;
 import org.springframework.stereotype.Service;
@@ -14,21 +15,22 @@ import java.util.List;
 public class RepoServiceImpl implements IRepoService{
 
     @Resource
-    private RepositoryMapper repoDao;
+    private IRepoDao repoDao;
 
-    @Override
-    public Repository getRepoById(int repoId) {
-        return this.repoDao.selectByPrimaryKey(repoId);
-    }
 
     @Override
     public List<Repository> getAllRepos(){
-        return this.repoDao.selectAll();
+        return this.repoDao.getAll();
     }
 
     @Override
     public Repository getRepoByFullname(String fullName) {
-        return this.repoDao.selectByFullName(fullName);
+        return this.repoDao.getReposByFullName(fullName);
+    }
+
+    @Override
+    public List<Repository> searchRepository(String name) {
+        return repoDao.searchRepository(name);
     }
 
 
