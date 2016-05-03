@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="AwesomeGitmining-web:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="AwesomeGitmining-web.war">
-      <element id="artifact" artifact-name="AwesomeGitmining-web:war exploded" />
-    </root>
-  </artifact>
-</component>

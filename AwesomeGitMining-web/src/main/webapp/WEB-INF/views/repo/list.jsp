@@ -8,10 +8,16 @@
 <title>Hello</title>
 </head>
 <body>
+    <form action="/repo/repos/search" method="post">
+        search:<input type="text" name="name"/><br>
+
+        <input type="submit" value = "search">
+    </form>
     仓库列表
     <br>
     <c:forEach items="${repos }" var="repo">
         ${repo.id }----<a href="${repo.fullName}">${repo.fullName}</a>----<a href="/user/${repo.ownerName}">relatedUser</a><br/>
     </c:forEach>
+
 </body>
 </html>
