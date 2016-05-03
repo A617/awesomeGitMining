@@ -25,12 +25,6 @@ public class RepoServiceImplTest {
 
 
     @Test
-    public void getRepoById() {
-        Repository repo = repoService.getRepoById(1);
-        logger.info(repo.getFullName());
-    }
-
-    @Test
     public void getAllRepos(){
         List<Repository> list = repoService.getAllRepos();
         for (Repository repo:list){

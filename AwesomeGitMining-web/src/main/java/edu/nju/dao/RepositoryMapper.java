@@ -24,4 +24,6 @@ public interface RepositoryMapper {
     List<Repository> selectAll();
 
     Repository selectByFullName(String full_name);
+
+    List<Repository> searchRepository(String name);
 }
