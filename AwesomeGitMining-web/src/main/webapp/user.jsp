@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Home</title>
-    <link href="<img alt="image" src="<c:url value="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <link href="file:///D|/模板/cpts_311_nc/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
     <link href="file:///D|/模板/cpts_311_nc/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -147,7 +147,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     </div>
 
-                    <table width="471" height="106"> <tr>
+                    <table table border="1" width="471" height="106"> <tr>
 
                         <td>创建过的项目</td>
 
@@ -200,6 +200,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!--end-footer-section-->
+
 
 </div>
 </body>
