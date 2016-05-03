@@ -12,4 +12,7 @@ public interface IUserService {
     List<User> getAllUsers();
 
     User getUserByLogin(String login);
+
+    int getUserTotal();
+
 }

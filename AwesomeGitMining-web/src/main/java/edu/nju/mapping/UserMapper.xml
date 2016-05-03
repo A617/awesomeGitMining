@@ -328,4 +328,17 @@
     from user
     where login = #{login,jdbcType=VARCHAR}
   </select>
+
+  <select id="selectAllWithPager" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    limit #{pageOffset},#{pageSize}
+  </select>
+
+  <select id="countAll" resultType="java.lang.Integer">
+    select
+    count(id)
+    from user
+  </select>
 </mapper>

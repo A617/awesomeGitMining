@@ -7,6 +7,7 @@ public class SystemContext {
     private static ThreadLocal<Integer> offset = new ThreadLocal<Integer>();
     private static ThreadLocal<Integer> size = new ThreadLocal<Integer>();
 
+
     public static Integer getOffset() {
         return offset.get();
     }

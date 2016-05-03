@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -24,16 +25,18 @@ public class UserController {
     @Resource
     IUserService userService;
 
-
-
     /**
      * 所有用户列表
      * @return
      */
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public ModelAndView listUsers() {
+    public ModelAndView listUsers(@RequestParam("pager.offset") int offset) {
         List<User> list = userService.getAllUsers();
-        return new ModelAndView("/user/list", "users", list);
+        int total = userService.getUserTotal();
+        Map<String,Object> map = new HashMap<>();
+        map.put("users",list);
+        map.put("total",total);
+        return new ModelAndView("/user/list", map);
     }
 
 

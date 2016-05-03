@@ -1,9 +1,11 @@
 package edu.nju.dao;
 
+import edu.nju.model.Pager;
 import edu.nju.model.User;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
@@ -21,4 +23,8 @@ public interface UserMapper {
     List<User> selectAll();
 
     User selectByLogin(String login);
+
+    List<User> selectAllWithPager(Map<String,Integer> params);
+
+    int countAll();
 }

@@ -1,5 +1,7 @@
 package edu.nju.model;
 
+import javax.validation.constraints.Size;
+
 public class Member {
     private String userid;
 
@@ -15,6 +17,7 @@ public class Member {
         this.userid = userid == null ? null : userid.trim();
     }
 
+    @Size(min = 1,max = 20)
     public String getUsername() {
         return username;
     }
@@ -23,6 +26,7 @@ public class Member {
         this.username = username == null ? null : username.trim();
     }
 
+    @Size(min = 4,max = 20)
     public String getPassword() {
         return password;
     }
