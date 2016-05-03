@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AwesomeGitMining-web.iml" filepath="$PROJECT_DIR$/AwesomeGitMining-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AwesomeGitmining-web.iml" filepath="$PROJECT_DIR$/AwesomeGitmining-web.iml" />
     </modules>
   </component>
 </project>

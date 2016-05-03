@@ -22,11 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="AwesomeGitMining-web" />
+        <module name="AwesomeGitmining-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="AwesomeGitMining-web" target="1.7" />
+      <module name="AwesomeGitmining-web" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
