@@ -11,7 +11,7 @@
     <mvc:annotation-driven></mvc:annotation-driven>
 
     <mvc:resources location="/img/"  mapping="/img/**" />
-
+    <mvc:resources location="/css/"  mapping="/css/**" />
 
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
