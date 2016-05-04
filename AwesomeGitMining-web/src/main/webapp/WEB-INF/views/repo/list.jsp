@@ -17,6 +17,7 @@
         <input type="submit" value = "search">
     </form>
 
+<<<<<<< HEAD
     <div class="box col-md-4">
         <div class="box-inner">
             <div class="box-header well">

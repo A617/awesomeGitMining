@@ -10,18 +10,18 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Home</title>
-    <link href="file:///D|/模板/cpts_311_nc/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
-    <link href="file:///D|/模板/cpts_311_nc/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <title>User</title>
+    <link href="<c:url value="/css/repo/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/repo/style.css"/>" rel="stylesheet" type="text/css" media="all" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="My Skills Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <script src="file:///D|/模板/cpts_311_nc/js/jquery-1.11.1.min.js"></script>
+    <script src="<c:url value="/js/jquery-1.11.1.min.js"/>"></script>
     <!---- start-smoth-scrolling---->
-    <script type="text/javascript" src="file:///D|/模板/cpts_311_nc/js/move-top.js"></script>
-    <script type="text/javascript" src="file:///D|/模板/cpts_311_nc/js/easing.js"></script>
+    <script type="text/javascript" src="<c:url value="/js/move-top.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/easing.js"/>"></script>
     <script type="text/javascript">
         jQuery(document).ready(function($) {
             $(".scroll").click(function(event){
@@ -38,8 +38,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header-section">
     <div class="continer">
         <img name="imageTuxiang" src="" width="197" height="158" alt="">
-        <h1>Username<span>!</span></h1>
-        <p>profile</p>
+        <h1>${user.login}<span>!</span></h1>
+        <p>${user.blog}</p>
         <a href="#contact" class="scroll top"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></a>
     </div>
 </div>
@@ -53,12 +53,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="study1">
                     <p>Name:
                         <label></label></p>
-                    <p>Address:</p>
-                    <p>Company:</p>
-                    <p>Email:
+                    <p>Address:${user.location}</p>
+                    <p>Company:${user.company}</p>
+                    <p>Email:${user.email}
                         <label></label></p>
-                    <p>Blog:</p>
-                    <p>url:</p>
+                    <p>Blog:${user.blog}</p>
+                    <p>url:${user.htmlUrl}</p>
                 </div>
             </div>
             <div class="col-md-6 study-grid">

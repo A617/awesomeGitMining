@@ -10,7 +10,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Home</title>
+    <title>Repo</title>
     <link href="<c:url value="/css/repo/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/repo/style.css"/>" rel="stylesheet" type="text/css" media="all" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,10 +18,10 @@
     <meta name="keywords" content="My Skills Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <script src="file:///D|/模板/cpts_311_nc/js/jquery-1.11.1.min.js"></script>
+    <script src="<c:url value="/js/jquery-1.11.1.min.js"/>"></script>
     <!---- start-smoth-scrolling---->
-    <script type="text/javascript" src="file:///D|/模板/cpts_311_nc/js/move-top.js"></script>
-    <script type="text/javascript" src="file:///D|/模板/cpts_311_nc/js/easing.js"></script>
+    <script type="text/javascript" src="<c:url value="/js/move-top.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/easing.js"/>"></script>
     <script type="text/javascript">
         jQuery(document).ready(function($) {
             $(".scroll").click(function(event){
@@ -38,8 +38,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header-section">
     <div class="continer">
 
-        <h1>Projectname<span>!</span></h1>
-        <p>profile</p>
+        <h1>${repo.fullName}<span>!</span></h1>
+        <p>${repo.description}</p>
         <a href="#contact" class="scroll top"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></a>
     </div>
 </div>
@@ -53,7 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="study1">
 
                     <p>Fullname:${repo.fullName}</p>
-                    <p>Language:</p>
+                    <p>Language:${repo.language}</p>
                     <p>&nbsp;</p>
 
                 </div>
@@ -61,33 +61,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-md-6 study-grid">
                 <h3>Repository Statistics..<span>!</span></h3>
                 <div class="study2">
-                    <h4>hot</h4>
+                    <h4>hot:${repo.hotScore}</h4>
                     <div class="progress">
                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
                             <span class="sr-only">40% Complete (success)</span>
                         </div>
                     </div>
-                    <h4>Size</h4>
+                    <h4>Size:${repo.sizeScore}</h4>
                     <div class="progress">
                         <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
                             <span class="sr-only">20% Complete</span>
                         </div>
                     </div>
-                    <h4>Scale</h4>
+                    <h4>Scale:${repo.scaleScore}</h4>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
-                            <span class="sr-only">30% Complete (success)</span>
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${repo.scaleScore}/8*100" aria-valuemin="0" aria-valuemax="100" style="width: ${repo.participationScore}*100/8%">
+                            <span class="sr-only">${repo.scaleScore}/8*100% Complete (success)</span>
                         </div>
                     </div>
-                    <h4>Promising</h4>
+                    <h4>Promising:${repo.promisingScore}</h4>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="${repo.promisingScore}/8*100" aria-valuemin="0" aria-valuemax="100" style="width: ${repo.promisingScore}/8*100%">
                             <span class="sr-only">60% Complete (warning)</span>
                         </div>
                     </div>
-                    <h4>Partcipation</h4>
+                    <h4>Partcipation:${repo.participationScore}</h4>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="${repo.participationScore}/8*100" aria-valuemin="0" aria-valuemax="100" style="width: ${repo.participationScore}/8*100%">
                             <span class="sr-only">80% Complete (danger)</span>
                         </div>
                     </div>
@@ -111,23 +111,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <h3>Statistics</h3>
         <div class="container">
             <div class="col-md-3 face">
-                <p><i class="facebook"> </i> 733k</p>
+                <p><i class="facebook"> </i> ${repo.stargazersCount}</p>
                 <h4>Stars</h4>
             </div>
             <div class="col-md-3 face">
-                <p><i class="twitter"> </i> 620k</p>
+                <p><i class="twitter"> </i> ${repo.forksCount}</p>
                 <h4>Forks</h4>
             </div>
             <div class="col-md-3 face">
-                <p><i class="google"> </i> 412k</p>
+                <p><i class="google"> </i> ${repo.subscribersCount}</p>
                 <h4>subscribers</h4>
             </div>
             <div class="col-md-3 face">
-                <p><i class="beh"> </i> 322k</p>
+                <p><i class="beh"> </i> ${repo.contributorsCount}</p>
                 <h4>contributors</h4>
             </div>
             <div class="col-md-3 face">
-                <p><i class="beh"> </i> 322k</p>
+                <p><i class="beh"> </i> ${repo.collaboratorsCount}</p>
                 <h4>collabrators</h4>
             </div>
             <div class="clearfix"> </div>
