@@ -53,18 +53,23 @@ public class IRepoDaoImpl implements IRepoDao {
 
     @Override
     public Pager<Repository> getReposSortedByFork() {
-
-        return null;
+        Map<String, Object> map = createMap();
+        List<Repository> data = mapper.selectReposSortedByFork(map);
+        return createPage(data,map);
     }
 
     @Override
     public Pager<Repository> getReposSortedByContribute() {
-        return null;
+        Map<String, Object> map = createMap();
+        List<Repository> data = mapper.selectReposSortedByContribute(map);
+        return createPage(data,map);
     }
 
     @Override
     public Pager<Repository> getReposSortedByStar() {
-        return null;
+        Map<String, Object> map = createMap();
+        List<Repository> data = mapper.selectReposSortedByStar(map);
+        return createPage(data,map);
     }
 
     @Override
@@ -83,8 +88,14 @@ public class IRepoDaoImpl implements IRepoDao {
     }
 
     @Override
-    public List<Repository> getReposByYear(int i) {
-        return null;
+    public Pager<Repository> getReposByYear(int year) {
+        Map<String, Object> map = createMap();
+        map.put("year",year);
+        List<Repository> data = mapper.searchRepository(map);
+        Pager<Repository> page = createPage(data,map);
+        page.setTotal(mapper.countYear(year));
+        return page;
+
     }
 
     private Map<String, Object> createMap() {

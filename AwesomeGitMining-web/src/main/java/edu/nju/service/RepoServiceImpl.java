@@ -38,5 +38,15 @@ public class RepoServiceImpl implements IRepoService {
         return repoDao.getReposSortedByFork();
     }
 
+    @Override
+    public Pager<Repository> getReposSortedByStar() {
+        return repoDao.getReposSortedByStar();
+    }
+
+    @Override
+    public Pager<Repository> getReposSortedByContribute() {
+        return repoDao.getReposSortedByContribute();
+    }
+
 
 }

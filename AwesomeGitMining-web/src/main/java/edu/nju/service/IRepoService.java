@@ -35,4 +35,14 @@ public interface IRepoService {
      * @return
      */
     Pager<Repository> getReposSortedByFork();
+    /**
+     * 按star排序
+     * @return
+     */
+    Pager<Repository> getReposSortedByStar();
+    /**
+     * 按contributors排序
+     * @return
+     */
+    Pager<Repository> getReposSortedByContribute();
 }

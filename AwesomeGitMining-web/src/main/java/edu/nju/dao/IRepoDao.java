@@ -73,8 +73,8 @@ public interface IRepoDao {
 
     /**
      *根据创建年份获取项目
-     * @param i
+     * @param year
      * @return
      */
-    List<Repository> getReposByYear(int i);
+    Pager<Repository> getReposByYear(int year);
 }

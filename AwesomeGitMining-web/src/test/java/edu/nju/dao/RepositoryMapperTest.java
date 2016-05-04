@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  * Created by Dora on 2016/5/2.
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)		//表示继承了SpringJUnit4ClassRunner类
+@RunWith(SpringJUnit4ClassRunner.class)        //表示继承了SpringJUnit4ClassRunner类
 @ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class RepositoryMapperTest {
     @Resource
@@ -28,7 +28,7 @@ public class RepositoryMapperTest {
     @Test
     public void selectAll() throws Exception {
         List<Repository> list = dao.selectAll();
-        for(Repository u:list)
+        for (Repository u : list)
             System.out.println(u.getFullName());
     }
 
@@ -36,27 +36,31 @@ public class RepositoryMapperTest {
     public void selectByFullName() throws Exception {
 
     }
+
     @Test
-    public void testForkSort(){
-        Map<String,Object> map = new HashMap<String,Object>();
+    public void testForkSort() {
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("pageSize", 2);
         map.put("pageOffset", 20);
         List<Repository> list = dao.selectReposSortedByFork(map);
-        for(Repository u:list)
-            System.out.println(u.getFullName()+":"+u.getForksCount());
+        for (Repository u : list)
+            System.out.println(u.getFullName() + ":" + u.getForksCount());
     }
+
     @Test
-    public void testSearch(){
-        Map<String,Object> map = new HashMap<String,Object>();
+    public void testSearch() {
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("pageSize", 3000);
         map.put("pageOffset", 0);
-        map.put("fullName","tj");
+        map.put("fullName", "tj");
         List<Repository> list = dao.searchRepository(map);
-        for(Repository u:list)
-            System.out.println(u.getFullName());
+        for (Repository u : list)
+            System.out.println(u.getFullName() + ":" + u.getCreatedAt());
+        System.out.println(list.get(0).getCreatedAt().getTime());
     }
+
     @Test
-    public void testCount(){
+    public void testCount() {
         System.out.println(dao.countSearch("tj"));
     }
 }

@@ -3,6 +3,7 @@ package edu.nju.dao;
 import edu.nju.model.Repository;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -30,9 +31,18 @@ public interface RepositoryMapper {
 
     List<Repository> selectReposSortedByFork(Map<String,Object> map);
 
+    List<Repository> selectReposSortedByStar(Map<String,Object> map);
+
+    List<Repository> selectReposSortedByContribute(Map<String,Object> map);
+
     List<Repository> selectAllPaged(Map<String,Object> map);
+
+    List<Repository> selectReposByYear(Map<String,Object> map);
 
     int countAll();
 
     int countSearch(String fullName);
+
+    int countYear(Date year);
+
 }
