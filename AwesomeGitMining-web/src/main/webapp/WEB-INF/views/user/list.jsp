@@ -13,6 +13,12 @@
 <body>
 <div class="row">
     <div class="box col-md-4">
+        <div class="well">
+            <form action="/user/users/search" method="post">
+                <input type="text" class="search-query form-control col-md-10" name="name" placeholder="Search keyword..."><br>
+                <button type="submit" class="btn btn-primary btn-sm">Search</button>
+            </form>
+        </div>
         <div class="box-inner">
             <div class="box-header well">
                 <h2> Languages</h2>

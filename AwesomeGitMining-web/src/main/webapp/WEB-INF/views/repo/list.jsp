@@ -12,13 +12,15 @@
 </head>
 <body>
 <div class="row">
-    <form action="/repo/repos/search" method="post">
-        <input type="text" name="name"/><br>
-        <input type="submit" value = "search">
-    </form>
 
-<<<<<<< HEAD
     <div class="box col-md-4">
+        <div class="well">
+            <form action="/repo/repos/search" method="post">
+                <input type="text" class="search-query form-control col-md-10" name="name" placeholder="Search keyword..."><br>
+                <button type="submit" class="btn btn-primary btn-sm">Search</button>
+            </form>
+        </div>
+
         <div class="box-inner">
             <div class="box-header well">
                 <h2> Languages</h2>
@@ -149,7 +151,7 @@
         </div>
         <ul class="pagination pagination-centered">
             ${pageUrl}<br>
-            <pg:pager url="/user/users" items="${total}">
+            <pg:pager url="/repo/repos" items="${total}">
                 <li>
                     <pg:first>
                         <a href="${pageUrl}">首页</a>
