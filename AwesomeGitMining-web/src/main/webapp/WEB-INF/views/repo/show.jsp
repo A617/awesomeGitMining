@@ -10,7 +10,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Home</title>
+    <title>Repo</title>
     <link href="<c:url value="/css/repo/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/repo/style.css"/>" rel="stylesheet" type="text/css" media="all" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,10 +18,10 @@
     <meta name="keywords" content="My Skills Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <script src="file:///D|/模板/cpts_311_nc/js/jquery-1.11.1.min.js"></script>
+    <script src="<c:url value="/js/jquery-1.11.1.min.js"/>"></script>
     <!---- start-smoth-scrolling---->
-    <script type="text/javascript" src="file:///D|/模板/cpts_311_nc/js/move-top.js"></script>
-    <script type="text/javascript" src="file:///D|/模板/cpts_311_nc/js/easing.js"></script>
+    <script type="text/javascript" src="<c:url value="/js/move-top.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/easing.js"/>"></script>
     <script type="text/javascript">
         jQuery(document).ready(function($) {
             $(".scroll").click(function(event){
@@ -38,7 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header-section">
     <div class="continer">
 
-        <h1>Projectname<span>!</span></h1>
+        <h1>${repo.fullName}<span>!</span></h1>
         <p>${repo.description}</p>
         <a href="#contact" class="scroll top"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></a>
     </div>
@@ -75,19 +75,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                     <h4>Scale:${repo.scaleScore}</h4>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${repo.scaleScore}/8*100" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${repo.scaleScore}/8*100" aria-valuemin="0" aria-valuemax="100" style="width: ${repo.participationScore}*100/8%">
                             <span class="sr-only">${repo.scaleScore}/8*100% Complete (success)</span>
                         </div>
                     </div>
                     <h4>Promising:${repo.promisingScore}</h4>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="${repo.promisingScore}/8*100" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="${repo.promisingScore}/8*100" aria-valuemin="0" aria-valuemax="100" style="width: ${repo.promisingScore}/8*100%">
                             <span class="sr-only">60% Complete (warning)</span>
                         </div>
                     </div>
                     <h4>Partcipation:${repo.participationScore}</h4>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="${repo.participationScore}/8*100" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="${repo.participationScore}/8*100" aria-valuemin="0" aria-valuemax="100" style="width: ${repo.participationScore}/8*100%">
                             <span class="sr-only">80% Complete (danger)</span>
                         </div>
                     </div>

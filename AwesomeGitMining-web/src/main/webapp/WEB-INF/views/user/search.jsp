@@ -28,17 +28,12 @@
             <div class="box-content">
                 <div class="box-content">
                     <ul class="dashboard-list">
-                        <c:forEach items="${list }" var="repo">
+                        <c:forEach items="${list }" var="u">
                             <li>
-                                <h3><i class="glyphicon glyphicon-th"><strong><a href="${repo.fullName }">${repo.fullName }</a></strong></i></h3>
-                                <p><strong>${repo.language}</strong></p>
-                                <p><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <strong>Forks:</strong>&nbsp;${repo.forksCount}
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <strong>Stargazers:</strong>&nbsp;${repo.stargazersCount}</p>
-                                <p>${repo.description}</p>
-                                <strong>Last Updated:</strong>&nbsp;${repo.updatedAt}<br>
+                                <h3><i class="glyphicon glyphicon-th"><strong><a href="${u.login }">${u.login }</a></strong><br></i></h3>
+                                <strong>Followers:</strong>&nbsp;${u.followers}<br>
+                                <strong>Location:</strong>&nbsp;${u.location}<br>
+                                <strong>Company:</strong>&nbsp;${u.company}<br>
                             </li>
                         </c:forEach>
                     </ul>
@@ -47,7 +42,7 @@
         </div>
         <ul class="pagination pagination-centered">
             ${pageUrl}<br>
-            <pg:pager url="/repo/repos" items="${total}">
+            <pg:pager url="/user/users" items="${total}">
                 <li>
                     <pg:first>
                         <a href="${pageUrl}">首页</a>
