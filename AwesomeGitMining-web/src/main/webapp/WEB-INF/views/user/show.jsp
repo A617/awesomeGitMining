@@ -11,8 +11,8 @@
 <html>
 <head>
     <title>Home</title>
-    <link href="file:///D|/模板/cpts_311_nc/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
-    <link href="file:///D|/模板/cpts_311_nc/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="<c:url value="/css/repo/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/repo/style.css"/>" rel="stylesheet" type="text/css" media="all" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="My Skills Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
