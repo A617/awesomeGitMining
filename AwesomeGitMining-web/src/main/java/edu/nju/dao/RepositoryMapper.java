@@ -26,11 +26,13 @@ public interface RepositoryMapper {
 
     Repository selectByFullName(String full_name);
 
-    List<Repository> searchRepository(String name);
+    List<Repository> searchRepository(Map<String,Object> map);
 
-    List<Repository> selectReposSortedByFork();
+    List<Repository> selectReposSortedByFork(Map<String,Object> map);
 
-    List<Repository> selectAllPaged(Map<String,Integer> map);
+    List<Repository> selectAllPaged(Map<String,Object> map);
 
     int countAll();
+
+    int countSearch(String fullName);
 }

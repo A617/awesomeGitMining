@@ -4,6 +4,8 @@ package edu.nju.model;
  * Created by Dora on 2016/5/2.
  */
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.List;
 
 public class Pager<T> {

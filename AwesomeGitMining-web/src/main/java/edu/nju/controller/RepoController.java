@@ -22,7 +22,6 @@ import java.util.Map;
 public class RepoController {
     @Resource
     private IRepoService repoService;
-
     @RequestMapping(value = "/repos",method = RequestMethod.GET)
     public ModelAndView listRepos(){
         Pager<Repository> pager = repoService.getAllRepos();
@@ -39,10 +38,13 @@ public class RepoController {
         return new ModelAndView("/repo/show","repo",repo);
     }
 
-    @RequestMapping(value = "/repos/search",method = RequestMethod.POST)
-    public ModelAndView searchRepos(String name){
-        List<Repository> list = repoService.searchRepository(name);
-        return new ModelAndView("/repo/search","list",list);
+    @RequestMapping(value = "/search",method = RequestMethod.GET)
+    public ModelAndView searchRepos( String keyword){
+        Pager<Repository> list = repoService.searchRepository(keyword);
+        Map<String,Object> map = new HashMap<>();
+        map.put("repos",list.getDatas());
+        map.put("total",list.getTotal());
+        return new ModelAndView("/repo/search",map);
     }
 //    @RequestMapping(value = "/search",method = RequestMethod.GET)
 //    public ModelAndView showSearchResult(){

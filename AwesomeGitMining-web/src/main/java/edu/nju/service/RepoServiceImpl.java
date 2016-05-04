@@ -1,7 +1,6 @@
 package edu.nju.service;
 
 import edu.nju.dao.IRepoDao;
-import edu.nju.dao.RepositoryMapper;
 import edu.nju.model.Pager;
 import edu.nju.model.Repository;
 import org.springframework.stereotype.Service;
@@ -13,14 +12,14 @@ import java.util.List;
  * Created by Dora on 2016/4/30.
  */
 @Service("repoService")
-public class RepoServiceImpl implements IRepoService{
+public class RepoServiceImpl implements IRepoService {
 
     @Resource
     private IRepoDao repoDao;
 
 
     @Override
-    public Pager<Repository> getAllRepos(){
+    public Pager<Repository> getAllRepos() {
         return repoDao.getAllPaged();
     }
 
@@ -30,8 +29,13 @@ public class RepoServiceImpl implements IRepoService{
     }
 
     @Override
-    public List<Repository> searchRepository(String name) {
+    public Pager<Repository> searchRepository(String name) {
         return repoDao.searchRepository(name);
+    }
+
+    @Override
+    public Pager<Repository> getReposSortedByFork() {
+        return repoDao.getReposSortedByFork();
     }
 
 

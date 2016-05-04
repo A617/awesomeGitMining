@@ -33,25 +33,25 @@ public interface IRepoDao {
      * @param name
      * @return
      */
-    List<Repository> searchRepository(String name);
+    Pager<Repository> searchRepository(String name);
 
     /**
      *按照fork数目排序的项目列表
      * @return
      */
-    List<Repository> getReposSortedByFork();
+    Pager<Repository> getReposSortedByFork();
 
     /**
      * 按照contributors数目排序的项目列表
      * @return
      */
-    List<Repository> getReposSortedByContribute();
+    Pager<Repository> getReposSortedByContribute();
 
     /**
      *按照star数目排序的项目列表
      * @return
      */
-    List<Repository> getReposSortedByStar();
+    Pager<Repository> getReposSortedByStar();
 
     /**
      * 获取使用每种语言的项目数目

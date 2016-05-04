@@ -30,21 +30,11 @@ public class IRepoDaoImpl implements IRepoDao {
 
     @Override
     public Pager<Repository> getAllPaged() {
-        int pageSize = SystemContext.getSize();
-        int pageOffset = SystemContext.getOffset();
-        Map<String,Integer> map = new HashMap<String, Integer>();
-        map.put("pageSize",pageSize);
-        map.put("pageOffset",pageOffset);
+        Map<String, Object> map = createMap();
         List<Repository> data = mapper.selectAllPaged(map);
-
-        Pager<Repository> pages = new Pager<Repository>();
-        pages.setOffset(pageOffset);
-        pages.setSize(pageSize);
-        pages.setDatas(data);
-        int records = mapper.countAll();
-        pages.setTotal(records);
-        return pages;
+        return createPage(data,map);
     }
+
 
     @Override
     public Repository getReposByFullName(String full_name) {
@@ -52,22 +42,28 @@ public class IRepoDaoImpl implements IRepoDao {
     }
 
     @Override
-    public List<Repository> searchRepository(String name) {
-        return mapper.searchRepository(name);
+    public Pager<Repository> searchRepository(String name) {
+        Map<String, Object> map = createMap();
+        map.put("fullName",name);
+        List<Repository> data = mapper.searchRepository(map);
+        Pager<Repository> page = createPage(data,map);
+        page.setTotal(mapper.countSearch(name));
+        return page;
     }
 
     @Override
-    public List<Repository> getReposSortedByFork() {
-        return mapper.selectReposSortedByFork();
-    }
+    public Pager<Repository> getReposSortedByFork() {
 
-    @Override
-    public List<Repository> getReposSortedByContribute() {
         return null;
     }
 
     @Override
-    public List<Repository> getReposSortedByStar() {
+    public Pager<Repository> getReposSortedByContribute() {
+        return null;
+    }
+
+    @Override
+    public Pager<Repository> getReposSortedByStar() {
         return null;
     }
 
@@ -82,12 +78,27 @@ public class IRepoDaoImpl implements IRepoDao {
     }
 
     @Override
-    public Map<String,Integer> getCodeFrequency(String name) {
+    public Map<String, Integer> getCodeFrequency(String name) {
         return null;
     }
 
     @Override
     public List<Repository> getReposByYear(int i) {
         return null;
+    }
+
+    private Map<String, Object> createMap() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        int pageSize = SystemContext.getSize();
+        int pageOffset = SystemContext.getOffset();
+        map.put("pageSize", pageSize);
+        map.put("pageOffset", pageOffset);
+        return map;
+    }
+
+    private Pager<Repository> createPage(List<Repository> data, Map<String, Object> map) {
+        Pager<Repository> pages = new Pager<Repository>(data, (int)map.get("pageOffset"),
+                (int)map.get("pageSize"), mapper.countAll());
+        return pages;
     }
 }

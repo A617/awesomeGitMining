@@ -483,13 +483,14 @@
     from repository
     where full_name = #{fullName,jdbcType=VARCHAR}
   </select>
-  <select id="searchRepository" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+  <select id="searchRepository" resultMap="ResultMapWithBLOBs" parameterType="java.util.Map">
     select
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
     from repository
-    where full_name LIKE "%"#{fullName}"%";
+    where full_name LIKE "%"#{fullName}"%"
+    limit #{pageOffset},#{pageSize}
   </select>
   <select id="selectReposSortedByFork" resultMap="ResultMapWithBLOBs">
     select
@@ -497,7 +498,7 @@
     ,
     <include refid="Blob_Column_List" />
     from repository
-    ORDER BY ${fork}
+    ORDER BY forks_count desc
   </select>
   <select id="selectAllPaged" resultMap="BaseResultMap" parameterType="java.util.Map">
     select
@@ -510,5 +511,11 @@
     select
     count(id)
     from repository
+  </select>
+  <select id="countSearch" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select
+    count(id)
+    from repository
+    where full_name LIKE "%"#{fullName}"%"
   </select>
 </mapper>

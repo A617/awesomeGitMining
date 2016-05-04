@@ -28,5 +28,11 @@ public interface IRepoService {
      * @param name
      * @return
      */
-    List<Repository> searchRepository(String name);
+    Pager<Repository> searchRepository(String name);
+
+    /**
+     * 按fork排序
+     * @return
+     */
+    Pager<Repository> getReposSortedByFork();
 }
