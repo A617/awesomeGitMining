@@ -53,7 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="study1">
 
                     <p>Fullname:${repo.fullName}</p>
-                    <p>Language:</p>
+                    <p>Language:${repo.language}</p>
                     <p>&nbsp;</p>
 
                 </div>
@@ -61,31 +61,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-md-6 study-grid">
                 <h3>Repository Statistics..<span>!</span></h3>
                 <div class="study2">
-                    <h4>hot</h4>
+                    <h4>hot:${repo.hotScore}</h4>
                     <div class="progress">
                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
                             <span class="sr-only">40% Complete (success)</span>
                         </div>
                     </div>
-                    <h4>Size</h4>
+                    <h4>Size:${repo.sizeScore}</h4>
                     <div class="progress">
                         <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
                             <span class="sr-only">20% Complete</span>
                         </div>
                     </div>
-                    <h4>Scale</h4>
+                    <h4>Scale:${repo.scaleScore}</h4>
                     <div class="progress">
                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
                             <span class="sr-only">30% Complete (success)</span>
                         </div>
                     </div>
-                    <h4>Promising</h4>
+                    <h4>Promising:${repo.promisingScore}</h4>
                     <div class="progress">
                         <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
                             <span class="sr-only">60% Complete (warning)</span>
                         </div>
                     </div>
-                    <h4>Partcipation</h4>
+                    <h4>Partcipation:${repo.participationScore}</h4>
                     <div class="progress">
                         <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
                             <span class="sr-only">80% Complete (danger)</span>
