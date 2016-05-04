@@ -15,8 +15,8 @@
 
     <div class="box col-md-4">
         <div class="well">
-            <form action="/repo/repos/search" method="post">
-                <input type="text" class="search-query form-control col-md-10" name="name" placeholder="Search keyword..."><br>
+            <form action="/repo/search" method="post">
+                search: <input type="text" class="search-query form-control col-md-10" name="name" placeholder="Search keyword..."><br>
                 <button type="submit" class="btn btn-primary btn-sm">Search</button>
             </form>
         </div>

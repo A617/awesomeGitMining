@@ -38,9 +38,9 @@ public class RepoController {
         return new ModelAndView("/repo/show","repo",repo);
     }
 
-    @RequestMapping(value = "/search",method = RequestMethod.GET)
-    public ModelAndView searchRepos( String keyword){
-        Pager<Repository> list = repoService.searchRepository(keyword);
+    @RequestMapping(value = "/search",method = RequestMethod.POST)
+    public ModelAndView searchRepos( String name){
+        Pager<Repository> list = repoService.searchRepository(name);
         Map<String,Object> map = new HashMap<>();
         map.put("repos",list.getDatas());
         map.put("total",list.getTotal());

@@ -14,7 +14,7 @@
 <div class="row">
 
     <div class="well">
-        <form action="/repo/repos/search" method="post">
+        <form action="/repo/search" method="post">
             <input type="text" class="search-query form-control col-md-10" name="name" placeholder="Search keyword..."><br>
             <button type="submit" class="btn btn-primary btn-sm">Search</button>
         </form>
@@ -28,7 +28,7 @@
             <div class="box-content">
                 <div class="box-content">
                     <ul class="dashboard-list">
-                        <c:forEach items="${list }" var="repo">
+                        <c:forEach items="${repos }" var="repo">
                             <li>
                                 <h3><i class="glyphicon glyphicon-th"><strong><a href="${repo.fullName }">${repo.fullName }</a></strong></i></h3>
                                 <p><strong>${repo.language}</strong></p>
@@ -47,7 +47,7 @@
         </div>
         <ul class="pagination pagination-centered">
             ${pageUrl}<br>
-            <pg:pager url="/repo/repos" items="${total}">
+            <pg:pager url="/repo/search" items="${total}">
                 <li>
                     <pg:first>
                         <a href="${pageUrl}">首页</a>
