@@ -12,7 +12,7 @@
 
     <mvc:resources location="/img/"  mapping="/img/**" />
     <mvc:resources location="/css/"  mapping="/css/**" />
-
+    <mvc:resources location="/js/"  mapping="/js/**" />
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
         <property name="viewClass"

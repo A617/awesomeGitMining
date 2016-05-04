@@ -219,6 +219,7 @@
                 <directory>src/main/webapp</directory>
                 <includes>
                     <include>**/*.css</include>
+                    <include>**/*.js</include>
                 </includes>
                 <!-- 是否替换资源中的属性-->
                 <filtering>false</filtering>
