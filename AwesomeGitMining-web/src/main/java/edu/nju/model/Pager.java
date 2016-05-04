@@ -12,6 +12,15 @@ public class Pager<T> {
     private int size;
     private long total;
 
+    public Pager() {
+    }
+
+    public Pager(List<T> datas, int offest, int size, long total) {
+        this.datas = datas;
+        this.offset = offest;
+        this.size = size;
+        this.total = total;
+    }
 
     public List<T> getDatas() {
         return datas;

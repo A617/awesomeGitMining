@@ -4,6 +4,7 @@ import edu.nju.model.Repository;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface RepositoryMapper {
@@ -26,4 +27,10 @@ public interface RepositoryMapper {
     Repository selectByFullName(String full_name);
 
     List<Repository> searchRepository(String name);
+
+    List<Repository> selectReposSortedByFork();
+
+    List<Repository> selectAllPaged(Map<String,Integer> map);
+
+    int countAll();
 }

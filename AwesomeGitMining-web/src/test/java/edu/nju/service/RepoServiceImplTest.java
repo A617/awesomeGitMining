@@ -1,5 +1,6 @@
 package edu.nju.service;
 
+import edu.nju.model.Pager;
 import edu.nju.model.Repository;
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -26,8 +27,8 @@ public class RepoServiceImplTest {
 
     @Test
     public void getAllRepos(){
-        List<Repository> list = repoService.getAllRepos();
-        for (Repository repo:list){
+        Pager<Repository> list = repoService.getAllRepos();
+        for (Repository repo:list.getDatas()){
             System.out.println(repo.getFullName());
         }
 

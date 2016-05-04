@@ -1,5 +1,6 @@
 package edu.nju.dao;
 
+import edu.nju.model.Pager;
 import edu.nju.model.Repository;
 
 import java.util.List;
@@ -15,6 +16,11 @@ public interface IRepoDao {
      * @return
      */
     List<Repository> getAll();
+    /**
+     * 分页得到所有项目(默认排序)
+     * @return
+     */
+    Pager<Repository> getAllPaged();
     /**
      * 按照名称获取项目
      * @param full_name
@@ -64,4 +70,11 @@ public interface IRepoDao {
      * @return 从项目创建时间到即时的 week,number
      */
     public Map<String,Integer> getCodeFrequency(String name);
+
+    /**
+     *根据创建年份获取项目
+     * @param i
+     * @return
+     */
+    List<Repository> getReposByYear(int i);
 }
