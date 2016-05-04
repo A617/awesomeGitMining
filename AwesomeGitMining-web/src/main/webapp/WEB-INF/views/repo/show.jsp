@@ -75,19 +75,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                     <h4>Scale:${repo.scaleScore}</h4>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${repo.scaleScore}/8*100" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${repo.scaleScore}/8*100" aria-valuemin="0" aria-valuemax="100" style="width: ${repo.participationScore}*100/8%">
                             <span class="sr-only">${repo.scaleScore}/8*100% Complete (success)</span>
                         </div>
                     </div>
                     <h4>Promising:${repo.promisingScore}</h4>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="${repo.promisingScore}/8*100" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="${repo.promisingScore}/8*100" aria-valuemin="0" aria-valuemax="100" style="width: ${repo.promisingScore}/8*100%">
                             <span class="sr-only">60% Complete (warning)</span>
                         </div>
                     </div>
                     <h4>Partcipation:${repo.participationScore}</h4>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="${repo.participationScore}/8*100" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="${repo.participationScore}/8*100" aria-valuemin="0" aria-valuemax="100" style="width: ${repo.participationScore}/8*100%">
                             <span class="sr-only">80% Complete (danger)</span>
                         </div>
                     </div>
