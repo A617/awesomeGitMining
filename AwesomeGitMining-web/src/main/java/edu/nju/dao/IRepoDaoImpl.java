@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by tj on 2016/5/3.
@@ -32,5 +33,20 @@ public class IRepoDaoImpl implements IRepoDao {
     @Override
     public List<Repository> searchRepository(String name) {
         return mapper.searchRepository(name);
+    }
+
+    @Override
+    public Map<String, Integer> getLanguageStatistics() {
+        return null;
+    }
+
+    @Override
+    public Map<String, Integer> getCreatedTimeStatistics() {
+        return null;
+    }
+
+    @Override
+    public Map<String,Integer> getCodeFrequency(String name) {
+        return null;
     }
 }
