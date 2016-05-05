@@ -51,6 +51,8 @@ public class User {
 
     private Double quantityScore;
 
+    private String languages;
+
     public Integer getId() {
         return id;
     }
@@ -241,5 +243,13 @@ public class User {
 
     public void setQuantityScore(Double quantityScore) {
         this.quantityScore = quantityScore;
+    }
+
+    public String getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(String languages) {
+        this.languages = languages == null ? null : languages.trim();
     }
 }

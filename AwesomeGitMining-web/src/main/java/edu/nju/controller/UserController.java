@@ -36,6 +36,7 @@ public class UserController {
         Map<String,Object> map = new HashMap<>();
         map.put("users",list);
         map.put("total",total);
+        System.out.println("controller ok");
         return new ModelAndView("/user/list", map);
     }
 

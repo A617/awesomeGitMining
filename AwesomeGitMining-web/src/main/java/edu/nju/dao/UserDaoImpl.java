@@ -31,6 +31,7 @@ public class UserDaoImpl implements IUserDao{
 
     @Override
     public Pager<User> selectAllWithPager() {
+        System.out.println("dao start");
         int pageSize = SystemContext.getSize();
         int pageOffset = SystemContext.getOffset();
         Map<String,Integer> map = new HashMap<String, Integer>();
@@ -45,6 +46,7 @@ public class UserDaoImpl implements IUserDao{
         int records = mapper.countAll();
         pages.setTotal(records);
 
+        System.out.println("dao ok");
         return pages;
     }
 

@@ -119,6 +119,8 @@ public class UserDaoImpl extends UnicastRemoteObject implements IUserDao {
 		us.setEmail(emailList.get(index));
 		us.setCreated_at(createdTimeList.get(index));
 		us.setAvatar_url(avatar_urlList.get(index));
+		us.setCompany(companyList.get(index));
+		us.setLocation(companyList.get(index));
 
 		// popular,teamwork,liveness,experience,quantity
 		double[] scores = new double[5];

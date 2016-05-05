@@ -26,12 +26,13 @@
     <result column="liveness_score" property="livenessScore" jdbcType="DOUBLE" />
     <result column="experience_score" property="experienceScore" jdbcType="DOUBLE" />
     <result column="quantity_score" property="quantityScore" jdbcType="DOUBLE" />
+    <result column="languages" property="languages" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, login, html_url, type, avatar_url, name, location, email, blog, company, contributions_fullname, 
     collaboration_fullname, repos_fullname, public_repos, public_gists, followers, following, 
     created_at, updated_at, popular_score, teamwork_score, liveness_score, experience_score, 
-    quantity_score
+    quantity_score, languages
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -51,7 +52,7 @@
       public_gists, followers, following, 
       created_at, updated_at, popular_score, 
       teamwork_score, liveness_score, experience_score, 
-      quantity_score)
+      quantity_score, languages)
     values (#{id,jdbcType=INTEGER}, #{login,jdbcType=CHAR}, #{htmlUrl,jdbcType=CHAR}, 
       #{type,jdbcType=CHAR}, #{avatarUrl,jdbcType=CHAR}, #{name,jdbcType=CHAR}, #{location,jdbcType=CHAR}, 
       #{email,jdbcType=CHAR}, #{blog,jdbcType=CHAR}, #{company,jdbcType=CHAR}, #{contributionsFullname,jdbcType=VARCHAR}, 
@@ -59,7 +60,7 @@
       #{publicGists,jdbcType=INTEGER}, #{followers,jdbcType=INTEGER}, #{following,jdbcType=INTEGER}, 
       #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{popularScore,jdbcType=DOUBLE}, 
       #{teamworkScore,jdbcType=DOUBLE}, #{livenessScore,jdbcType=DOUBLE}, #{experienceScore,jdbcType=DOUBLE}, 
-      #{quantityScore,jdbcType=DOUBLE})
+      #{quantityScore,jdbcType=DOUBLE}, #{languages,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="edu.nju.model.User" >
     insert into user
@@ -136,6 +137,9 @@
       <if test="quantityScore != null" >
         quantity_score,
       </if>
+      <if test="languages != null" >
+        languages,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -209,6 +213,9 @@
       </if>
       <if test="quantityScore != null" >
         #{quantityScore,jdbcType=DOUBLE},
+      </if>
+      <if test="languages != null" >
+        #{languages,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -284,6 +291,9 @@
       <if test="quantityScore != null" >
         quantity_score = #{quantityScore,jdbcType=DOUBLE},
       </if>
+      <if test="languages != null" >
+        languages = #{languages,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -311,10 +321,10 @@
       teamwork_score = #{teamworkScore,jdbcType=DOUBLE},
       liveness_score = #{livenessScore,jdbcType=DOUBLE},
       experience_score = #{experienceScore,jdbcType=DOUBLE},
-      quantity_score = #{quantityScore,jdbcType=DOUBLE}
+      quantity_score = #{quantityScore,jdbcType=DOUBLE},
+      languages = #{languages,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
 
   <!-- 以下为自定义方法-->
   <select id="selectAll" resultMap="BaseResultMap" >
