@@ -43,6 +43,6 @@ public interface RepositoryMapper {
 
     int countSearch(String fullName);
 
-    int countYear(Date year);
+    int countYear(int year);
 
 }
