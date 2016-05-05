@@ -27,8 +27,8 @@ public class UserMapperTest {
     @Test
     public void selectAll() throws Exception {
         List<User> list = dao.selectAll();
-        for(User u:list)
-            System.out.println(u.getLogin());
+//        for(User u:list)
+//            System.out.println(u.getLogin());
     }
 
     @Test

@@ -499,6 +499,7 @@
     <include refid="Blob_Column_List" />
     from repository
     ORDER BY forks_count desc
+    limit #{pageOffset},#{pageSize}
   </select>
   <select id="selectReposSortedByStar" resultMap="BaseResultMap" parameterType="java.util.Map">
     select
@@ -507,6 +508,7 @@
     <include refid="Blob_Column_List" />
     from repository
     ORDER BY stargazers_count desc
+    limit #{pageOffset},#{pageSize}
   </select>
   <select id="selectReposSortedByContribute" resultMap="BaseResultMap" parameterType="java.util.Map">
     select
@@ -515,11 +517,19 @@
     <include refid="Blob_Column_List" />
     from repository
     ORDER BY contributors_count desc
+    limit #{pageOffset},#{pageSize}
   </select>
   <select id="selectAllPaged" resultMap="BaseResultMap" parameterType="java.util.Map">
     select
     <include refid="Base_Column_List" />
     from repository
+    limit #{pageOffset},#{pageSize}
+  </select>
+  <select id="selectReposByYear" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from repository
+    where YEAR(created_at) = #{year}
     limit #{pageOffset},#{pageSize}
   </select>
   <!-- 分页辅助方法-->
@@ -533,5 +543,11 @@
     count(id)
     from repository
     where full_name LIKE "%"#{fullName}"%"
+  </select>
+  <select id="countYear" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    select
+    count(id)
+    from repository
+    where YEAR(created_at) = #{year}
   </select>
 </mapper>

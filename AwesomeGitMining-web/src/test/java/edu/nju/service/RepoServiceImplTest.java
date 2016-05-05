@@ -28,9 +28,9 @@ public class RepoServiceImplTest {
     @Test
     public void getAllRepos(){
         Pager<Repository> list = repoService.getAllRepos();
-        for (Repository repo:list.getDatas()){
-            System.out.println(repo.getFullName());
-        }
+//        for (Repository repo:list.getDatas()){
+//            System.out.println(repo.getFullName());
+//        }
 
     }
 
@@ -38,7 +38,7 @@ public class RepoServiceImplTest {
     @Test
     public void selectByFullName(){
         Repository repo = repoService.getRepoByFullname("jsbin/jsbin");
-        System.out.println(repo.getFullName()+" "+repo.getCloneUrl());
+        //System.out.println(repo.getFullName()+" "+repo.getCloneUrl());
     }
 
 }

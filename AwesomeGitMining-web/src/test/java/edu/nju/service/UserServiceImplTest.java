@@ -24,8 +24,8 @@ public class UserServiceImplTest {
     @Test
     public void getAllUsers() throws Exception {
         List<User> list = userService.getAllUsers();
-        for(User u:list)
-            System.out.println(u.getLogin());
+//        for(User u:list)
+//            System.out.println(u.getLogin());
     }
 
     @Test

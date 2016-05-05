@@ -63,4 +63,15 @@ public class RepositoryMapperTest {
     public void testCount() {
         System.out.println(dao.countSearch("tj"));
     }
+    @Test
+    public void testYear(){
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("pageSize", 3000);
+        map.put("pageOffset", 0);
+        map.put("year",2010);
+        List<Repository> list = dao.selectReposByYear(map);
+        for (Repository u : list)
+            System.out.println(u.getFullName() + ":" + u.getCreatedAt());
+    }
+
 }
