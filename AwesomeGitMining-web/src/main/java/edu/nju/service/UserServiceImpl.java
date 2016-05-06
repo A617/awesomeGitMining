@@ -36,5 +36,10 @@ public class UserServiceImpl implements IUserService{
         return userDao.countAll();
     }
 
+    @Override
+    public Pager<User> searchUser(String name) {
+        return userDao.searchUser(name);
+    }
+
 
 }

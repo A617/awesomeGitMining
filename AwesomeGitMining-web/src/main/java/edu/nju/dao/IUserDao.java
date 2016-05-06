@@ -12,9 +12,25 @@ public interface IUserDao {
 
     List<User> selectAll();
 
+    /**
+     * 查找一个用户
+     * @param login
+     * @return
+     */
     User selectByLogin(String login);
 
+    /**
+     * 分页查看所有用户
+     * @return
+     */
     Pager<User> selectAllWithPager();
+
+    /**
+     * 模糊搜索用户
+     * @param name
+     * @return
+     */
+    Pager<User> searchUser(String name);
 
     int countAll();
 }

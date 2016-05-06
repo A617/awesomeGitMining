@@ -32,26 +32,39 @@ public class UserDaoImpl implements IUserDao{
     @Override
     public Pager<User> selectAllWithPager() {
         System.out.println("dao start");
-        int pageSize = SystemContext.getSize();
-        int pageOffset = SystemContext.getOffset();
-        Map<String,Integer> map = new HashMap<String, Integer>();
-        map.put("pageSize",pageSize);
-        map.put("pageOffset",pageOffset);
+        Map<String, Object> map = createMap();
         List<User> data = mapper.selectAllWithPager(map);
-
-        Pager<User> pages = new Pager<User>();
-        pages.setOffset(pageOffset);
-        pages.setSize(pageSize);
-        pages.setDatas(data);
-        int records = mapper.countAll();
-        pages.setTotal(records);
-
         System.out.println("dao ok");
-        return pages;
+        return createPage(data,map);
+    }
+
+    @Override
+    public Pager<User> searchUser(String name) {
+        Map<String, Object> map = createMap();
+        map.put("name",name);
+        List<User> data = mapper.searchUser(map);
+        Pager<User> page = createPage(data,map);
+        page.setTotal(mapper.countSearch(name));
+        return page;
     }
 
     @Override
     public int countAll() {
         return mapper.countAll();
+    }
+
+    private Map<String, Object> createMap() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        int pageSize = SystemContext.getSize();
+        int pageOffset = SystemContext.getOffset();
+        map.put("pageSize", pageSize);
+        map.put("pageOffset", pageOffset);
+        return map;
+    }
+
+    private Pager<User> createPage(List<User> data, Map<String, Object> map) {
+        Pager<User> pages = new Pager<User>(data, (int)map.get("pageOffset"),
+                (int)map.get("pageSize"), countAll());
+        return pages;
     }
 }

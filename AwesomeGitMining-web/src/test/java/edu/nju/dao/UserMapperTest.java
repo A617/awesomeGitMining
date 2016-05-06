@@ -7,16 +7,15 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
-
+import java.util.HashMap;
 import java.util.List;
-
-import static org.junit.Assert.*;
+import java.util.Map;
 
 /**
  * Created by Dora on 2016/5/2.
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)		//表示继承了SpringJUnit4ClassRunner类
+@RunWith(SpringJUnit4ClassRunner.class)        //表示继承了SpringJUnit4ClassRunner类
 @ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class UserMapperTest {
 
@@ -36,4 +35,14 @@ public class UserMapperTest {
 
     }
 
+    @Test
+    public void testSearch() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("pageSize", 3000);
+        map.put("pageOffset", 0);
+        map.put("name", "tj");
+        List<User> list = dao.searchUser(map);
+        for (User u : list)
+            System.out.println(u.getLogin());
+    }
 }

@@ -48,5 +48,20 @@ public class RepoServiceImpl implements IRepoService {
         return repoDao.getReposSortedByContribute();
     }
 
+    @Override
+    public Pager<Repository> getReposByYear(int year) {
+        return repoDao.getReposByYear(year);
+    }
+
+    @Override
+    public Pager<Repository> getReposByLanguage(String language) {
+        return repoDao.getReposByLanguage(language);
+    }
+
+    @Override
+    public Pager<Repository> getReposByKey(String key) {
+        return repoDao.getReposByKey(key);
+    }
+
 
 }
