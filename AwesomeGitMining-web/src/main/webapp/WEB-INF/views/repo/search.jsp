@@ -77,12 +77,12 @@
                             <pg:pager url="/repo/search" items="${total}">
                                 <li>
                                     <pg:first>
-                                        <a href="${pageUrl}">首页</a>
+                                        <a href="${pageUrl}">Begin</a>
                                     </pg:first>
                                 </li>
                                 <li>
                                     <pg:prev>
-                                        <a href="${pageUrl }">前页</a>
+                                        <a href="${pageUrl }">Pre</a>
                                     </pg:prev>
                                 </li>
                                 <li>
@@ -92,12 +92,12 @@
                                 </li>
                                 <li>
                                     <pg:next>
-                                        <a href="${pageUrl }">后页</a>
+                                        <a href="${pageUrl }">Next</a>
                                     </pg:next>
                                 </li>
                                 <li>
                                     <pg:last>
-                                        <a href="${pageUrl }">尾页</a>
+                                        <a href="${pageUrl }">End</a>
                                     </pg:last>
                                 </li>
                             </pg:pager>
