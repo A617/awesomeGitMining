@@ -57,7 +57,7 @@
                     <h2>Tags</h2><hr>
                     <!--search-->
                     <div>
-                        <form action="/repo/search" method="post">
+                        <form action="/user/search" method="post">
                             <input type="text" class="search-query form-control col-md-10" name="name" placeholder="Search keyword..."><br>
                             <div class="form-group text-right">
                                 <button type="submit" class="fa-align-center templatemo-blue-button">Search</button>

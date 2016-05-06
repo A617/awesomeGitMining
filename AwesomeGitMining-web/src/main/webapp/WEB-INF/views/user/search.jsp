@@ -44,7 +44,7 @@
 </div>
 
 <br><div class="col-md-6 center">
-    <form action="/repo/search" method="post">
+    <form action="/user/search" method="post">
         <input type="text" class="search-query form-control col-md-10" name="name" placeholder="Search keyword..."><br>
         <div class="form-group text-right">
             <button type="submit" class="fa-align-center templatemo-blue-button">Search</button>
@@ -58,23 +58,20 @@
             <div class="panel-heading"><h2>Search Result List</h2></div>
             <div class="panel-body">
                 <ul class="dashboard-list">
-                    <c:forEach items="${repos }" var="repo">
+                    <c:forEach items="${users }" var="u">
                         <li>
-                            <h3><strong><a href="${repo.fullName }">${repo.fullName }</a></strong></h3>
-                            <p style="text-align: right"><strong>${repo.language}</strong></p>
-                            <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}</span>
-                                <span><strong>Forks:</strong>&nbsp;${repo.forksCount}</span>
-                                <span><strong>Stargazers:</strong>&nbsp;${repo.stargazersCount}</span>
+                            <h3><strong><a href="${u.login }">${u.login }</a></strong></h3>
+                            <p style="text-align: right"><strong>Followers:</strong>&nbsp;${u.followers}</p>
+                            <p><span><strong>Location:</strong>&nbsp;${u.location}</span>
+                                <strong>Company:</strong>&nbsp;${u.company} </span>
                             </p>
-                            <p>${repo.description}</p>
-                            <strong>Last Updated:</strong>&nbsp;${repo.updatedAt}<br>
                         </li>
                     </c:forEach>
                 </ul>
 
                 <ul class="pagination  pagination-centered">
                     ${pageUrl}<br>
-                    <pg:pager url="/repo/search" items="${total}">
+                    <pg:pager url="/user/search" items="${total}">
                         <li>
                             <pg:first>
                                 <a href="${pageUrl}">Begin</a>

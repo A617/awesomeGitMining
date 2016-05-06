@@ -1,5 +1,6 @@
 package edu.nju.controller;
 
+import edu.nju.model.Pager;
 import edu.nju.model.User;
 import edu.nju.service.IUserService;
 import org.springframework.stereotype.Controller;
@@ -50,6 +51,15 @@ public class UserController {
     public  ModelAndView showUser(@PathVariable String login){
         User user= userService.getUserByLogin(login);
         return new ModelAndView("/user/show","user",user);
+    }
+
+    @RequestMapping(value = "/search",method = RequestMethod.POST)
+    public ModelAndView searchUser( String name){
+        Pager<User> list = userService.searchUser(name);
+        Map<String,Object> map = new HashMap<>();
+        map.put("users",list.getDatas());
+        map.put("total",list.getTotal());
+        return new ModelAndView("/user/search",map);
     }
 
 }
