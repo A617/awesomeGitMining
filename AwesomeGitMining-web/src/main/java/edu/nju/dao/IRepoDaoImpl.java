@@ -95,7 +95,26 @@ public class IRepoDaoImpl implements IRepoDao {
         Pager<Repository> page = createPage(data,map);
         page.setTotal(mapper.countYear(year));
         return page;
+    }
 
+    @Override
+    public Pager<Repository> getReposByLanguage(String language) {
+        Map<String, Object> map = createMap();
+        map.put("language",language);
+        List<Repository> data = mapper.searchRepository(map);
+        Pager<Repository> page = createPage(data,map);
+        page.setTotal(mapper.countLanguage(language));
+        return page;
+    }
+
+    @Override
+    public Pager<Repository> getReposByKey(String key) {
+        Map<String, Object> map = createMap();
+        map.put("keyword",key);
+        List<Repository> data = mapper.searchRepository(map);
+        Pager<Repository> page = createPage(data,map);
+        page.setTotal(mapper.countKey(key));
+        return page;
     }
 
     private Map<String, Object> createMap() {

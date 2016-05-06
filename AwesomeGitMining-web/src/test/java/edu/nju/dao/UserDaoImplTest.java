@@ -37,9 +37,9 @@ public class UserDaoImplTest {
         SystemContext.setOffset(0);
         SystemContext.setSize(20);
         Pager<User> page = dao.selectAllWithPager();
-        for(User user:page.getDatas()){
-            System.out.println(user.getId()+" "+user.getLogin()+" "+user.getLocation());
-        }
+//        for(User user:page.getDatas()){
+//            System.out.println(user.getId()+" "+user.getLogin()+" "+user.getLocation());
+//        }
     }
 
 }

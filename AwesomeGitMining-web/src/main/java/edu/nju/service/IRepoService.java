@@ -45,4 +45,23 @@ public interface IRepoService {
      * @return
      */
     Pager<Repository> getReposSortedByContribute();
+
+    /**
+     * 根据年份查找项目
+     * @return
+     */
+    Pager<Repository> getReposByYear(int year);
+
+    /**
+     * 根据语言查找项目
+     * @return
+     */
+    Pager<Repository> getReposByLanguage(String language);
+
+    /**
+     * 根据关键词查找项目
+     * @param key
+     * @return
+     */
+    Pager<Repository> getReposByKey(String key);
 }

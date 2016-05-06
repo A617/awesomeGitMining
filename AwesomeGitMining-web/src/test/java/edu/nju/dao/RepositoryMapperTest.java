@@ -27,9 +27,12 @@ public class RepositoryMapperTest {
 
     @Test
     public void selectAll() throws Exception {
-        List<Repository> list = dao.selectAll();
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("pageSize", 300);
+        map.put("pageOffset", 0);
+        List<Repository> list = dao.selectAllPaged(map);
         for (Repository u : list)
-            System.out.println(u.getFullName());
+            System.out.println(u.getFullName() + ":" + u.getDescription());
     }
 
     @Test
@@ -62,5 +65,35 @@ public class RepositoryMapperTest {
     @Test
     public void testCount() {
         System.out.println(dao.countSearch("tj"));
+    }
+    @Test
+    public void testYear(){
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("pageSize", 3000);
+        map.put("pageOffset", 0);
+        map.put("year",2010);
+        List<Repository> list = dao.selectReposByYear(map);
+        for (Repository u : list)
+            System.out.println(u.getFullName() + ":" + u.getCreatedAt());
+    }
+    @Test
+    public void testLanguage(){
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("pageSize", 3000);
+        map.put("pageOffset", 0);
+        map.put("language","java");
+        List<Repository> list = dao.selectReposByLanguage(map);
+        for (Repository u : list)
+            System.out.println(u.getFullName() + ":" + u.getLanguage());
+    }
+    @Test
+    public void testKey(){
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("pageSize", 3000);
+        map.put("pageOffset", 0);
+        map.put("keyword","java");
+        List<Repository> list = dao.selectReposByKey(map);
+        for (Repository u : list)
+            System.out.println(u.getFullName() + ":" + u.getDescription());
     }
 }

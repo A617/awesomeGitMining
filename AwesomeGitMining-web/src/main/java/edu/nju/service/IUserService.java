@@ -1,5 +1,6 @@
 package edu.nju.service;
 
+import edu.nju.model.Pager;
 import edu.nju.model.User;
 
 import java.util.List;
@@ -15,4 +16,5 @@ public interface IUserService {
 
     int getUserTotal();
 
+    Pager<User> searchUser(String name);
 }

@@ -77,4 +77,18 @@ public interface IRepoDao {
      * @return
      */
     Pager<Repository> getReposByYear(int year);
+
+    /**
+     * 根据语言获取项目
+     * @param language
+     * @return
+     */
+    Pager<Repository> getReposByLanguage(String language);
+
+    /**
+     * 根据关键词获取项目
+     * @param key
+     * @return
+     */
+    Pager<Repository> getReposByKey(String key);
 }

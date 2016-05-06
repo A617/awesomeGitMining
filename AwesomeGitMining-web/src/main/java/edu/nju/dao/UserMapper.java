@@ -24,7 +24,11 @@ public interface UserMapper {
 
     User selectByLogin(String login);
 
-    List<User> selectAllWithPager(Map<String,Integer> params);
+    List<User> selectAllWithPager(Map<String,Object> params);
+
+    List<User> searchUser(Map<String,Object> params);
 
     int countAll();
+
+    int countSearch(String name);
 }

@@ -39,10 +39,17 @@ public interface RepositoryMapper {
 
     List<Repository> selectReposByYear(Map<String,Object> map);
 
+    List<Repository> selectReposByLanguage(Map<String,Object> map);
+
+    List<Repository> selectReposByKey(Map<String,Object> map);
+
     int countAll();
 
     int countSearch(String fullName);
 
     int countYear(int year);
 
+    int countLanguage(String language);
+
+    int countKey(String keyword);
 }
