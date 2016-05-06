@@ -6,76 +6,113 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Search Result</title>
+    <title>Repository List</title>
     <link href="<c:url value="/css/listcss.css"/>" rel="stylesheet" type="text/css" media="all">
-    <link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/templatemo-style.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
 </head>
-<body>
-<div class="row">
+<body class="light-gray-bg">
+    <div class="templatemo-top-nav-container">
+        <div class="row">
+            <nav class="templatemo-top-nav">
+                <ul>
+                    <li><a href="/index.jsp">Home</a></li>
+                    <li><a href="/repo/repos" class="active">Repository</a></li>
+                    <li><a href="/user/users?pager.offset=0">User</a></li>
+                    <li><a href="#">Repository Statistics</a></li>
+                    <li><a href="#">User Statistics</a></li>
+                </ul>
+            </nav>
 
-    <div class="well">
+            <div class="dropdown navbar-right">
+                <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+                    Visitors <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu animated fadeInRight">
+                    <li>
+                        <a href="/login.jsp">Sign in</a>
+                    </li>
+                    <li>
+                        <a href="/register">Sign up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <br><div class="col-md-6 center">
         <form action="/repo/search" method="post">
             <input type="text" class="search-query form-control col-md-10" name="name" placeholder="Search keyword..."><br>
-            <button type="submit" class="btn btn-primary btn-sm">Search</button>
+            <div class="form-group text-right">
+                <button type="submit" class="fa-align-center templatemo-blue-button">Search</button>
+            </div>
         </form>
     </div>
 
-    <div class="box col-md-12">
-        <div class="box-inner">
-            <div class="box-header well">
-                <h2> 搜索结果列表</h2>
-            </div>
-            <div class="box-content">
-                <div class="box-content">
-                    <ul class="dashboard-list">
-                        <c:forEach items="${repos }" var="repo">
-                            <li>
-                                <h3><i class="glyphicon glyphicon-th"><strong><a href="${repo.fullName }">${repo.fullName }</a></strong></i></h3>
-                                <p><strong>${repo.language}</strong></p>
-                                <p><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <strong>Forks:</strong>&nbsp;${repo.forksCount}
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <strong>Stargazers:</strong>&nbsp;${repo.stargazersCount}</p>
-                                <p>${repo.description}</p>
-                                <strong>Last Updated:</strong>&nbsp;${repo.updatedAt}<br>
-                            </li>
-                        </c:forEach>
-                    </ul>
+    <div class="templatemo-flex-row animated fadeInRight">
+        <div class="templatemo-content col-1 light-gray-bg">
+                <div class="col-1 panel panel-default margin-10">
+                    <div class="panel-heading"><h2>Search Result List</h2></div>
+                    <div class="panel-body">
+                        <ul class="dashboard-list">
+                            <c:forEach items="${repos }" var="repo">
+                                <li>
+                                    <h3><strong><a href="${repo.fullName }">${repo.fullName }</a></strong></h3>
+                                    <p style="text-align: right"><strong>${repo.language}</strong></p>
+                                    <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}</span>
+                                        <span><strong>Forks:</strong>&nbsp;${repo.forksCount}</span>
+                                        <span><strong>Stargazers:</strong>&nbsp;${repo.stargazersCount}</span>
+                                    </p>
+                                    <p>${repo.description}</p>
+                                    <strong>Last Updated:</strong>&nbsp;${repo.updatedAt}<br>
+                                </li>
+                            </c:forEach>
+                        </ul>
+
+                        <ul class="pagination  pagination-centered">
+                            ${pageUrl}<br>
+                            <pg:pager url="/repo/search" items="${total}">
+                                <li>
+                                    <pg:first>
+                                        <a href="${pageUrl}">首页</a>
+                                    </pg:first>
+                                </li>
+                                <li>
+                                    <pg:prev>
+                                        <a href="${pageUrl }">前页</a>
+                                    </pg:prev>
+                                </li>
+                                <li>
+                                    <pg:pages>
+                                        <a href="${pageUrl }">${pageNumber}</a>
+                                    </pg:pages>
+                                </li>
+                                <li>
+                                    <pg:next>
+                                        <a href="${pageUrl }">后页</a>
+                                    </pg:next>
+                                </li>
+                                <li>
+                                    <pg:last>
+                                        <a href="${pageUrl }">尾页</a>
+                                    </pg:last>
+                                </li>
+                            </pg:pager>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-        <ul class="pagination pagination-centered">
-            ${pageUrl}<br>
-            <pg:pager url="/repo/search" items="${total}">
-                <li>
-                    <pg:first>
-                        <a href="${pageUrl}">首页</a>
-                    </pg:first>
-                </li>
-                <li>
-                    <pg:prev>
-                        <a href="${pageUrl }">前页</a>
-                    </pg:prev>
-                </li>
-                <li>
-                    <pg:pages>
-                        <a href="${pageUrl }">${pageNumber }</a>
-                    </pg:pages>
-                </li>
-                <li>
-                    <pg:next>
-                        <a href="${pageUrl }">后页</a>
-                    </pg:next>
-                </li>
-                <li>
-                    <pg:last>
-                        <a href="${pageUrl }">尾页</a>
-                    </pg:last>
-                </li>
-            </pg:pager>
-        </ul>
     </div>
-</div>
+
+    <footer class="text-right">
+        <p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>
+    </footer>
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

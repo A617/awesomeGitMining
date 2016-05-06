@@ -6,12 +6,223 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Hello</title>
+    <title>Repository List</title>
     <link href="<c:url value="/css/listcss.css"/>" rel="stylesheet" type="text/css" media="all">
-    <link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/templatemo-style.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
+    <style type="text/css">
+        span {
+            width: 30%;
+            display:inline-block;
+        }
+    </style>
 </head>
 <body>
-<div class="row">
+    <div class="templatemo-top-nav-container">
+        <div class="row">
+            <nav class="templatemo-top-nav">
+                <ul>
+                    <li><a href="/index.jsp">Home</a></li>
+                    <li><a href="#" class="active">Repository</a></li>
+                    <li><a href="/user/users?pager.offset=0">User</a></li>
+                    <li><a href="#">Repository Statistics</a></li>
+                    <li><a href="#">User Statistics</a></li>
+                </ul>
+            </nav>
+
+            <div class="dropdown navbar-right">
+                <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+                    Visitors <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu animated fadeInRight">
+                    <li>
+                        <a href="/login.jsp">Sign in</a>
+                    </li>
+                    <li>
+                        <a href="/register">Sign up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="templatemo-flex-row">
+        <div class="templatemo-content col-1 light-gray-bg">
+            <div class="templatemo-flex-row flex-content-row">
+                <!--tag-->
+                <div class="templatemo-content-widget white-bg col-1 animated fadeInUp">
+                    <h2>Tags</h2><hr>
+                    <!--search-->
+                    <div>
+                        <form action="/repo/search" method="post">
+                            <input type="text" class="search-query form-control col-md-10" name="name" placeholder="Search keyword..."><br>
+                            <div class="form-group text-right">
+                                <button type="submit" class="fa-align-center templatemo-blue-button">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!--tag-->
+                <div>
+                    <h3 class="text-uppercase"> Languages</h3>
+                    <div class="box-content buttons">
+                        </p>
+                            <a href="#" class="btn btn-s-md btn-warning"> All</a>
+                            <a href="#" class="btn btn-s-md btn-warning"> Scala</a>
+                            <a href="#" class="btn btn-s-md btn-warning"> C</a>
+                            <a href="#" class="btn btn-s-md btn-warning"> Ruby</a>
+                            <a href="#" class="btn btn-s-md btn-warning"> Java</a>
+                            <a href="#" class="btn btn-s-md btn-warning"> Python</a>
+                        </p>
+                        <p>
+                            <a href="#" class="btn btn-s-md btn-warning"> JavaScript</a>
+                            <a href="#" class="btn btn-s-md btn-warning"> Perl</a>
+                            <a href="#" class="btn btn-s-md btn-warning"> PHP</a>
+                            <a href="#" class="btn btn-s-md btn-warning"> HTML</a>
+                            <a href="#" class="btn btn-s-md btn-warning"> Shell</a>
+
+                        </p>
+                        <p>
+                            <a href="#" class="btn btn-s-md btn-warning"> Objective-C</a>
+                            <a href="#" class="btn btn-s-md btn-warning"> Haskell</a>
+                            <a href="#" class="btn btn-s-md btn-warning"> Clojure</a>
+                            <a href="#" class="btn btn-s-md btn-warning"> C#</a>
+                        </p>
+                        <p>
+                            <a href="#" class="btn btn-s-md btn-warning"> CSS</a>
+                            <a href="#" class="btn btn-s-md btn-warning"> C++</a>
+                            <a href="#" class="btn btn-s-md btn-warning"> Go</a>
+                            <a href="#" class="btn btn-s-md btn-warning"> Lua</a>
+                            <a href="#" class="btn btn-s-md btn-warning"> Prolog</a>
+                        </p>
+                        <p>
+                            <a href="#" class="btn btn-s-md btn-warning"> CoffeeScript</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-uppercase">  Keywords</h3>
+                    <div class="box-content buttons">
+                        <p>
+                            <a href="#" class="btn btn-s-md btn-primary"> API</a>
+                            <a href="#" class="btn btn-s-md btn-primary"> Django</a>
+                            <a href="#" class="btn btn-s-md btn-primary"> MySQL</a>
+                            <a href="#" class="btn btn-s-md btn-primary"> jQuery</a>
+                            <a href="#" class="btn btn-s-md btn-primary"> XML</a>
+                        </p>
+                        <p>
+                            <a href="#" class="btn btn-s-md btn-primary"> Web</a>
+                            <a href="#" class="btn btn-s-md btn-primary"> Plugin</a>
+                            <a href="#" class="btn btn-s-md btn-primary"> database</a>
+                            <a href="#" class="btn btn-s-md btn-primary"> IRC</a>
+                            <a href="#" class="btn btn-s-md btn-primary"> iOS</a>
+                        </p>
+                        <p>
+                            <a href="#" class="btn btn-s-md btn-primary"> Git</a>
+                            <a href="#" class="btn btn-s-md btn-primary"> Emacs</a>
+                            <a href="#" class="btn btn-s-md btn-primary"> JSON</a>
+                            <a href="#" class="btn btn-s-md btn-primary"> Linux</a>
+                            <a href="#" class="btn btn-s-md btn-primary"> vim</a>
+                        </p>
+                        <p>
+                            <a href="#" class="btn btn-s-md btn-primary"> toolkit</a>
+                            <a href="#" class="btn btn-s-md btn-primary"> .NET</a>
+                            <a href="#" class="btn btn-s-md btn-primary"> Apache</a>
+                            <a href="#" class="btn btn-s-md btn-primary"> Android</a>
+                            <a href="#" class="btn btn-s-md btn-primary"> OS</a>
+                        </p>
+                        <p>
+                            <a href="#" class="btn btn-s-md btn-primary"> Maven</a>
+                            <a href="#" class="btn btn-s-md btn-primary"> gem</a>
+                            <a href="#" class="btn btn-s-md btn-primary"> MVC</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-uppercase"> Updated Time</h3>
+                    <div class="box-content buttons">
+                        <p>
+                            <a href="#" class="btn btn-s-md btn-success"> All</a>
+                            <a href="#" class="btn btn-s-md btn-success"> 2007</a>
+                            <a href="#" class="btn btn-s-md btn-success"> 2008</a>
+                            <a href="#" class="btn btn-s-md btn-success"> 2009</a>
+                            <a href="#" class="btn btn-s-md btn-success"> 2010</a>
+                        </p>
+                        <p>
+                            <a href="#" class="btn btn-s-md btn-success"> 2011</a>
+                            <a href="#" class="btn btn-s-md btn-success"> 2012</a>
+                            <a href="#" class="btn btn-s-md btn-success"> 2013</a>
+                            <a href="#" class="btn btn-s-md btn-success"> 2014</a>
+                            <a href="#" class="btn btn-s-md btn-success"> 2015</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+                <!--list-->
+                <div class="col-2 panel panel-default margin-10">
+                    <div class="panel-heading"><h2>Repository List</h2></div>
+                    <div class="panel-body">
+                        <ul class="dashboard-list">
+                            <c:forEach items="${repos }" var="repo">
+                                <li>
+                                    <h3><strong>${repo.id}&nbsp;<a href="${repo.fullName }">${repo.fullName }</a></strong></h3>
+                                    <p style="text-align: right"><strong>${repo.language}</strong></p>
+                                    <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}</span>
+                                        <span><strong>Forks:</strong>&nbsp;${repo.forksCount}</span>
+                                        <span><strong>Stargazers:</strong>&nbsp;${repo.stargazersCount}</span>
+                                    </p>
+                                    <p>${repo.description}</p>
+                                    <strong>Last Updated:</strong>&nbsp;${repo.updatedAt}<br>
+                                </li>
+                            </c:forEach>
+                        </ul>
+
+                        <ul class="pagination  pagination-centered">
+                            ${pageUrl}<br>
+                            <pg:pager url="/repo/search" items="${total}">
+                                <li>
+                                    <pg:first>
+                                        <a href="${pageUrl}">Begin</a>
+                                    </pg:first>
+                                </li>
+                                <li>
+                                    <pg:prev>
+                                        <a href="${pageUrl }">Pre</a>
+                                    </pg:prev>
+                                </li>
+                                <li>
+                                    <pg:pages>
+                                        <a href="${pageUrl }">${pageNumber}</a>
+                                    </pg:pages>
+                                </li>
+                                <li>
+                                    <pg:next>
+                                        <a href="${pageUrl }">Next</a>
+                                    </pg:next>
+                                </li>
+                                <li>
+                                    <pg:last>
+                                        <a href="${pageUrl }">End</a>
+                                    </pg:last>
+                                </li>
+                            </pg:pager>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-right">
+        <p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>
+    </footer>
+
+    <!--分割线
+    <div class="row">
 
     <div class="box col-md-4">
         <div class="well">
@@ -26,37 +237,7 @@
                 <h2> Languages</h2>
             </div>
             <div class="box-content buttons">
-                <p>
-                    <button class="btn btn-default btn-sm"> All</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> JavaScript</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> C</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Perl</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Java</button>
-                </p>
-                <p>
-                    <button class="btn btn-default btn-sm"> C#</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> CoffeeScript</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Go</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> PHP</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> C++</button>
-                </p>
-                <p>
-                        <button class="btn btn-default btn-sm"> Prolog</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Clojure</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> CSS</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Shell</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> HTML</button>
-                </p>
-                <p>
-                    <button class="btn btn-default btn-sm"> Ruby</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Python</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Haskell</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Scala</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Lua</button>
-                </p>
-                <p>
-                    <button class="btn btn-default btn-sm"> Objective-C</button>
-                </p>
+
             </div>
         </div>
 
@@ -123,64 +304,9 @@
             </div>
         </div>
     </div>
-
-    <div class="box col-md-8">
-        <div class="box-inner">
-            <div class="box-header well">
-                <h2> 仓库列表</h2>
-            </div>
-            <div class="box-content">
-                <div class="box-content">
-                    <ul class="dashboard-list">
-                        <c:forEach items="${repos }" var="repo">
-                            <li>
-                                <h3><i class="glyphicon glyphicon-th"><strong>${repo.id }&nbsp;<a href="${repo.fullName }">${repo.fullName }</a></strong></i></h3>
-                                <p><strong>${repo.language}</strong></p>
-                                <p><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <strong>Forks:</strong>&nbsp;${repo.forksCount}
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <strong>Stargazers:</strong>&nbsp;${repo.stargazersCount}</p>
-                                <p>${repo.description}</p>
-                                <strong>Last Updated:</strong>&nbsp;${repo.updatedAt}<br>
-                            </li>
-                        </c:forEach>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <ul class="pagination pagination-centered">
-            ${pageUrl}<br>
-            <pg:pager url="/repo/repos" items="${total}">
-                <li>
-                    <pg:first>
-                        <a href="${pageUrl}">首页</a>
-                    </pg:first>
-                </li>
-                <li>
-                    <pg:prev>
-                        <a href="${pageUrl }">前页</a>
-                    </pg:prev>
-                </li>
-                <li>
-                    <pg:pages>
-                        <a href="${pageUrl }">${pageNumber }</a>
-                    </pg:pages>
-                </li>
-                <li>
-                    <pg:next>
-                        <a href="${pageUrl }">后页</a>
-                    </pg:next>
-                </li>
-                <li>
-                    <pg:last>
-                        <a href="${pageUrl }">尾页</a>
-                    </pg:last>
-                </li>
-            </pg:pager>
-        </ul>
-    </div>
-</div>
+-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
 

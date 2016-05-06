@@ -6,130 +6,182 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Hello</title>
+    <title>User List</title>
     <link href="<c:url value="/css/listcss.css"/>" rel="stylesheet" type="text/css" media="all">
-    <link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/templatemo-style.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
+    <style type="text/css">
+        span {
+            width: 50%;
+            display:inline-block;
+        }
+    </style>
 </head>
 <body>
-<div class="row">
-    <div class="box col-md-4">
-        <div class="well">
-            <form action="/user/users/search" method="post">
-                <input type="text" class="search-query form-control col-md-10" name="name" placeholder="Search keyword..."><br>
-                <button type="submit" class="btn btn-primary btn-sm">Search</button>
-            </form>
-        </div>
-        <div class="box-inner">
-            <div class="box-header well">
-                <h2> Languages</h2>
-            </div>
-            <div class="box-content buttons">
-                <p>
-                    <button class="btn btn-default btn-sm"> All</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Scala</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> C</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Ruby</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Java</button>
-                </p>
-                <p>
-                    <button class="btn btn-default btn-sm"> Python</button>&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> JavaScript</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Perl</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> PHP</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> HTML</button>
-                </p>
-                <p>
-                    <button class="btn btn-default btn-sm"> Shell</button>&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Objective-C</button>&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Haskell</button>&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Clojure</button>&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> C#</button>
-                </p>
-                <p>
-                    <button class="btn btn-default btn-sm"> CSS</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> C++</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Lua</button>
-                </p>
-            </div>
-        </div>
+    <div class="templatemo-top-nav-container">
+        <div class="row">
+            <nav class="templatemo-top-nav">
+                <ul>
+                    <li><a href="/index.jsp">Home</a></li>
+                    <li><a href="/repo/repos">Repository</a></li>
+                    <li><a href="#" class="active">User</a></li>
+                    <li><a href="#">Repository Statistics</a></li>
+                    <li><a href="#">User Statistics</a></li>
+                </ul>
+            </nav>
 
-        <div class="box-inner">
-            <div class="box-header well">
-                <h2> Companys</h2>
-            </div>
-            <div class="box-content buttons">
-                <p>
-                    <button class="btn btn-default btn-sm"> All</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Shopify</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Google</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Github</button>
-                </p>
-                <p>
-                    <button class="btn btn-default btn-sm"> Twitter</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Red Hat</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Mozilla</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Xamarin</button>
-                </p>
-                <p>
-                    <button class="btn btn-default btn-sm"> Heroku</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Facebook</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-default btn-sm"> Microsoft</button>
-                </p>
+            <div class="dropdown navbar-right">
+                <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+                    Visitors <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu animated fadeInRight">
+                    <li>
+                        <a href="/login.jsp">Sign in</a>
+                    </li>
+                    <li>
+                        <a href="/register">Sign up</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 
-    <div class="box col-md-8">
-        <div class="box-inner">
-            <div class="box-header well">
-                <h2> 用户列表</h2>
-            </div>
-            <div class="box-content">
-                <div class="box-content">
-                    <ul class="dashboard-list">
-                        <c:forEach items="${users }" var="u">
-                            <li>
-                                <h3><i class="glyphicon glyphicon-th"><strong>${u.id }&nbsp;<a href="${u.login }">${u.login }</a></strong><br></i></h3>
-                                <strong>Followers:</strong>&nbsp;${u.followers}<br>
-                                <strong>Location:</strong>&nbsp;${u.location}<br>
-                                <strong>Company:</strong>&nbsp;${u.company}<br>
-                            </li>
-                        </c:forEach>
-                    </ul>
+    <div class="templatemo-flex-row">
+        <div class="templatemo-content col-1 light-gray-bg">
+            <div class="templatemo-flex-row flex-content-row">
+                <!--tag-->
+                <div class="templatemo-content-widget white-bg col-1 animated fadeInUp">
+                    <h2>Tags</h2><hr>
+                    <!--search-->
+                    <div>
+                        <form action="/repo/search" method="post">
+                            <input type="text" class="search-query form-control col-md-10" name="name" placeholder="Search keyword..."><br>
+                            <div class="form-group text-right">
+                                <button type="submit" class="fa-align-center templatemo-blue-button">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!--tag-->
+                    <div>
+                        <h3 class="text-uppercase"> Languages</h3>
+                        <div class="box-content buttons">
+                            <p>
+                                <a href="#" class="btn btn-s-md btn-warning"> All</a>
+                                <a href="#" class="btn btn-s-md btn-warning"> Scala</a>
+                                <a href="#" class="btn btn-s-md btn-warning"> C</a>
+                                <a href="#" class="btn btn-s-md btn-warning"> Ruby</a>
+                                <a href="#" class="btn btn-s-md btn-warning"> Java</a>
+                                <a href="#" class="btn btn-s-md btn-warning"> Python</a>
+                            </p>
+                            <p>
+                                <a href="#" class="btn btn-s-md btn-warning"> JavaScript</a>
+                                <a href="#" class="btn btn-s-md btn-warning"> Perl</a>
+                                <a href="#" class="btn btn-s-md btn-warning"> PHP</a>
+                                <a href="#" class="btn btn-s-md btn-warning"> HTML</a>
+                                <a href="#" class="btn btn-s-md btn-warning"> Shell</a>
+
+                            </p>
+                            <p>
+                                <a href="#" class="btn btn-s-md btn-warning"> Objective-C</a>
+                                <a href="#" class="btn btn-s-md btn-warning"> Haskell</a>
+                                <a href="#" class="btn btn-s-md btn-warning"> Clojure</a>
+                                <a href="#" class="btn btn-s-md btn-warning"> C#</a>
+                            </p>
+                            <p>
+                                <a href="#" class="btn btn-s-md btn-warning"> CSS</a>
+                                <a href="#" class="btn btn-s-md btn-warning"> C++</a>
+                                <a href="#" class="btn btn-s-md btn-warning"> Lua</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-uppercase"> Companys</h3>
+                        <div class="box-content buttons">
+                            <p>
+                                <a href="#" class="btn btn-s-md btn-primary"> All</a>
+                                <a href="#" class="btn btn-s-md btn-primary"> Shopify</a>
+                                <a href="#" class="btn btn-s-md btn-primary"> Google</a>
+                                <a href="#" class="btn btn-s-md btn-primary"> Github</a>
+                            </p>
+                            <p>
+                                <a href="#" class="btn btn-s-md btn-primary"> Twitter</a>
+                                <a href="#" class="btn btn-s-md btn-primary"> Red Hat</a>
+                                <a href="#" class="btn btn-s-md btn-primary"> Mozilla</a>
+                                <a href="#" class="btn btn-s-md btn-primary"> Xamarin</a>
+                            </p>
+                            <p>
+                                <a href="#" class="btn btn-s-md btn-primary"> Heroku</a>
+                                <a href="#" class="btn btn-s-md btn-primary"> Facebook</a>
+                                <a href="#" class="btn btn-s-md btn-primary"> Microsoft</a>
+                            </p>
+                            <p>
+                                <a href="#" class="btn btn-s-md btn-primary"> C++</a>
+                                <a href="#" class="btn btn-s-md btn-primary"> Lua</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--list-->
+                <div class="col-2 panel panel-default margin-10">
+                    <div class="panel-heading"><h2>User List</h2></div>
+                    <div class="panel-body">
+                        <ul class="dashboard-list">
+                            <c:forEach items="${users }" var="u">
+                                <li>
+                                    <h3><strong>${u.id}&nbsp;<a href="${u.login }">${u.login }</a></strong></h3>
+                                    <p style="text-align: right"><strong>Followers:</strong>&nbsp;${u.followers}</p>
+                                    <p><span><strong>Location:</strong>&nbsp;${u.location}</span>
+                                        <strong>Company:</strong>&nbsp;${u.company} </span>
+                                    </p>
+                                </li>
+                            </c:forEach>
+                        </ul>
+
+                        <ul class="pagination pagination-centered">
+                            ${pageUrl}<br>
+                            <pg:pager url="/user/users" items="${total}">
+                                <li>
+                                    <pg:first>
+                                        <a href="${pageUrl}">Begin</a>
+                                    </pg:first>
+                                </li>
+                                <li>
+                                    <pg:prev>
+                                        <a href="${pageUrl }">Pre</a>
+                                    </pg:prev>
+                                </li>
+                                <li>
+                                    <pg:pages>
+                                        <a href="${pageUrl }">${pageNumber}</a>
+                                    </pg:pages>
+                                </li>
+                                <li>
+                                    <pg:next>
+                                        <a href="${pageUrl }">Next</a>
+                                    </pg:next>
+                                </li>
+                                <li>
+                                    <pg:last>
+                                        <a href="${pageUrl }">End</a>
+                                    </pg:last>
+                                </li>
+                            </pg:pager>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-        <ul class="pagination pagination-centered">
-            ${pageUrl}<br>
-            <pg:pager url="/user/users" items="${total}">
-                <li>
-                    <pg:first>
-                        <a href="${pageUrl}">首页</a>
-                    </pg:first>
-                </li>
-                <li>
-                    <pg:prev>
-                        <a href="${pageUrl }">前页</a>
-                    </pg:prev>
-                </li>
-               <li>
-                   <pg:pages>
-                       <a href="${pageUrl }">${pageNumber }</a>
-                   </pg:pages>
-               </li>
-                <li>
-                    <pg:next>
-                        <a href="${pageUrl }">后页</a>
-                    </pg:next>
-                </li>
-                <li>
-                    <pg:last>
-                        <a href="${pageUrl }">尾页</a>
-                    </pg:last>
-                </li>
-            </pg:pager>
-        </ul>
     </div>
-</div>
+
+    <footer class="text-right">
+        <p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>
+    </footer>
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
