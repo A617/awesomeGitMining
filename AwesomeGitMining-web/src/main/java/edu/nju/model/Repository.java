@@ -13,16 +13,6 @@ public class Repository {
 
     private String language;
 
-    private Boolean fork;
-
-    private Boolean hasIssues;
-
-    private Boolean hasDownloads;
-
-    private Boolean hasWiki;
-
-    private Boolean hasPages;
-
     private Integer openIssuesCount;
 
     private Integer watchersCount;
@@ -107,46 +97,6 @@ public class Repository {
 
     public void setLanguage(String language) {
         this.language = language == null ? null : language.trim();
-    }
-
-    public Boolean getFork() {
-        return fork;
-    }
-
-    public void setFork(Boolean fork) {
-        this.fork = fork;
-    }
-
-    public Boolean getHasIssues() {
-        return hasIssues;
-    }
-
-    public void setHasIssues(Boolean hasIssues) {
-        this.hasIssues = hasIssues;
-    }
-
-    public Boolean getHasDownloads() {
-        return hasDownloads;
-    }
-
-    public void setHasDownloads(Boolean hasDownloads) {
-        this.hasDownloads = hasDownloads;
-    }
-
-    public Boolean getHasWiki() {
-        return hasWiki;
-    }
-
-    public void setHasWiki(Boolean hasWiki) {
-        this.hasWiki = hasWiki;
-    }
-
-    public Boolean getHasPages() {
-        return hasPages;
-    }
-
-    public void setHasPages(Boolean hasPages) {
-        this.hasPages = hasPages;
     }
 
     public Integer getOpenIssuesCount() {

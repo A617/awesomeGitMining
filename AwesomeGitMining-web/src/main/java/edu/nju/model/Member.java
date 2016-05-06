@@ -1,23 +1,22 @@
 package edu.nju.model;
 
-import javax.validation.constraints.Size;
-
 public class Member {
-    private String userid;
+    private Integer userid;
 
     private String username;
 
     private String password;
 
-    public String getUserid() {
+    private String memberEmail;
+
+    public Integer getUserid() {
         return userid;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid == null ? null : userid.trim();
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 
-    @Size(min = 1,max = 20)
     public String getUsername() {
         return username;
     }
@@ -26,12 +25,19 @@ public class Member {
         this.username = username == null ? null : username.trim();
     }
 
-    @Size(min = 4,max = 20)
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public String getMemberEmail() {
+        return memberEmail;
+    }
+
+    public void setMemberEmail(String memberEmail) {
+        this.memberEmail = memberEmail == null ? null : memberEmail.trim();
     }
 }

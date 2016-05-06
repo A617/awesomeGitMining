@@ -7,11 +7,6 @@
     <result column="name" property="name" jdbcType="CHAR" />
     <result column="owner_name" property="ownerName" jdbcType="CHAR" />
     <result column="language" property="language" jdbcType="CHAR" />
-    <result column="fork" property="fork" jdbcType="BIT" />
-    <result column="has_issues" property="hasIssues" jdbcType="BIT" />
-    <result column="has_downloads" property="hasDownloads" jdbcType="BIT" />
-    <result column="has_wiki" property="hasWiki" jdbcType="BIT" />
-    <result column="has_pages" property="hasPages" jdbcType="BIT" />
     <result column="open_issues_count" property="openIssuesCount" jdbcType="INTEGER" />
     <result column="watchers_count" property="watchersCount" jdbcType="INTEGER" />
     <result column="clone_url" property="cloneUrl" jdbcType="CHAR" />
@@ -39,17 +34,15 @@
     <result column="description" property="description" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, full_name, name, owner_name, language, fork, has_issues, has_downloads, has_wiki, 
-    has_pages, open_issues_count, watchers_count, clone_url, html_url, homepage, created_at, 
-    pushed_at, updated_at, size, stargazers_count, forks_count, subscribers_count, contributors_login, 
-    collaborators_login, languages, size_score, scale_score, promising_score, participation_score, 
-    hot_score, contributors_count, collaborators_count
+    id, full_name, name, owner_name, language, open_issues_count, watchers_count, clone_url, 
+    html_url, homepage, created_at, pushed_at, updated_at, size, stargazers_count, forks_count, 
+    subscribers_count, contributors_login, collaborators_login, languages, size_score, 
+    scale_score, promising_score, participation_score, hot_score, contributors_count, 
+    collaborators_count
   </sql>
   <sql id="Blob_Column_List" >
     description
   </sql>
-
-
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -64,28 +57,24 @@
   </delete>
   <insert id="insert" parameterType="edu.nju.model.Repository" >
     insert into repository (id, full_name, name, 
-      owner_name, language, fork, has_issues, 
-      has_downloads, has_wiki, has_pages, 
-      open_issues_count, watchers_count, clone_url, 
-      html_url, homepage, created_at, 
-      pushed_at, updated_at, size, 
-      stargazers_count, forks_count, subscribers_count, 
-      contributors_login, collaborators_login, 
-      languages, size_score, scale_score, 
-      promising_score, participation_score, hot_score, 
-      contributors_count, collaborators_count, 
+      owner_name, language, open_issues_count, 
+      watchers_count, clone_url, html_url, 
+      homepage, created_at, pushed_at, 
+      updated_at, size, stargazers_count, 
+      forks_count, subscribers_count, contributors_login, 
+      collaborators_login, languages, size_score, 
+      scale_score, promising_score, participation_score, 
+      hot_score, contributors_count, collaborators_count, 
       description)
     values (#{id,jdbcType=INTEGER}, #{fullName,jdbcType=CHAR}, #{name,jdbcType=CHAR}, 
-      #{ownerName,jdbcType=CHAR}, #{language,jdbcType=CHAR}, #{fork,jdbcType=BIT}, #{hasIssues,jdbcType=BIT}, 
-      #{hasDownloads,jdbcType=BIT}, #{hasWiki,jdbcType=BIT}, #{hasPages,jdbcType=BIT}, 
-      #{openIssuesCount,jdbcType=INTEGER}, #{watchersCount,jdbcType=INTEGER}, #{cloneUrl,jdbcType=CHAR}, 
-      #{htmlUrl,jdbcType=CHAR}, #{homepage,jdbcType=CHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
-      #{pushedAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{size,jdbcType=INTEGER}, 
-      #{stargazersCount,jdbcType=INTEGER}, #{forksCount,jdbcType=INTEGER}, #{subscribersCount,jdbcType=INTEGER}, 
-      #{contributorsLogin,jdbcType=VARCHAR}, #{collaboratorsLogin,jdbcType=VARCHAR}, 
-      #{languages,jdbcType=VARCHAR}, #{sizeScore,jdbcType=DOUBLE}, #{scaleScore,jdbcType=DOUBLE}, 
-      #{promisingScore,jdbcType=DOUBLE}, #{participationScore,jdbcType=DOUBLE}, #{hotScore,jdbcType=DOUBLE}, 
-      #{contributorsCount,jdbcType=INTEGER}, #{collaboratorsCount,jdbcType=INTEGER}, 
+      #{ownerName,jdbcType=CHAR}, #{language,jdbcType=CHAR}, #{openIssuesCount,jdbcType=INTEGER}, 
+      #{watchersCount,jdbcType=INTEGER}, #{cloneUrl,jdbcType=CHAR}, #{htmlUrl,jdbcType=CHAR}, 
+      #{homepage,jdbcType=CHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{pushedAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{size,jdbcType=INTEGER}, #{stargazersCount,jdbcType=INTEGER}, 
+      #{forksCount,jdbcType=INTEGER}, #{subscribersCount,jdbcType=INTEGER}, #{contributorsLogin,jdbcType=VARCHAR}, 
+      #{collaboratorsLogin,jdbcType=VARCHAR}, #{languages,jdbcType=VARCHAR}, #{sizeScore,jdbcType=DOUBLE}, 
+      #{scaleScore,jdbcType=DOUBLE}, #{promisingScore,jdbcType=DOUBLE}, #{participationScore,jdbcType=DOUBLE}, 
+      #{hotScore,jdbcType=DOUBLE}, #{contributorsCount,jdbcType=INTEGER}, #{collaboratorsCount,jdbcType=INTEGER}, 
       #{description,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="edu.nju.model.Repository" >
@@ -105,21 +94,6 @@
       </if>
       <if test="language != null" >
         language,
-      </if>
-      <if test="fork != null" >
-        fork,
-      </if>
-      <if test="hasIssues != null" >
-        has_issues,
-      </if>
-      <if test="hasDownloads != null" >
-        has_downloads,
-      </if>
-      <if test="hasWiki != null" >
-        has_wiki,
-      </if>
-      <if test="hasPages != null" >
-        has_pages,
       </if>
       <if test="openIssuesCount != null" >
         open_issues_count,
@@ -207,21 +181,6 @@
       <if test="language != null" >
         #{language,jdbcType=CHAR},
       </if>
-      <if test="fork != null" >
-        #{fork,jdbcType=BIT},
-      </if>
-      <if test="hasIssues != null" >
-        #{hasIssues,jdbcType=BIT},
-      </if>
-      <if test="hasDownloads != null" >
-        #{hasDownloads,jdbcType=BIT},
-      </if>
-      <if test="hasWiki != null" >
-        #{hasWiki,jdbcType=BIT},
-      </if>
-      <if test="hasPages != null" >
-        #{hasPages,jdbcType=BIT},
-      </if>
       <if test="openIssuesCount != null" >
         #{openIssuesCount,jdbcType=INTEGER},
       </if>
@@ -308,21 +267,6 @@
       <if test="language != null" >
         language = #{language,jdbcType=CHAR},
       </if>
-      <if test="fork != null" >
-        fork = #{fork,jdbcType=BIT},
-      </if>
-      <if test="hasIssues != null" >
-        has_issues = #{hasIssues,jdbcType=BIT},
-      </if>
-      <if test="hasDownloads != null" >
-        has_downloads = #{hasDownloads,jdbcType=BIT},
-      </if>
-      <if test="hasWiki != null" >
-        has_wiki = #{hasWiki,jdbcType=BIT},
-      </if>
-      <if test="hasPages != null" >
-        has_pages = #{hasPages,jdbcType=BIT},
-      </if>
       <if test="openIssuesCount != null" >
         open_issues_count = #{openIssuesCount,jdbcType=INTEGER},
       </if>
@@ -401,11 +345,6 @@
       name = #{name,jdbcType=CHAR},
       owner_name = #{ownerName,jdbcType=CHAR},
       language = #{language,jdbcType=CHAR},
-      fork = #{fork,jdbcType=BIT},
-      has_issues = #{hasIssues,jdbcType=BIT},
-      has_downloads = #{hasDownloads,jdbcType=BIT},
-      has_wiki = #{hasWiki,jdbcType=BIT},
-      has_pages = #{hasPages,jdbcType=BIT},
       open_issues_count = #{openIssuesCount,jdbcType=INTEGER},
       watchers_count = #{watchersCount,jdbcType=INTEGER},
       clone_url = #{cloneUrl,jdbcType=CHAR},
@@ -437,11 +376,6 @@
       name = #{name,jdbcType=CHAR},
       owner_name = #{ownerName,jdbcType=CHAR},
       language = #{language,jdbcType=CHAR},
-      fork = #{fork,jdbcType=BIT},
-      has_issues = #{hasIssues,jdbcType=BIT},
-      has_downloads = #{hasDownloads,jdbcType=BIT},
-      has_wiki = #{hasWiki,jdbcType=BIT},
-      has_pages = #{hasPages,jdbcType=BIT},
       open_issues_count = #{openIssuesCount,jdbcType=INTEGER},
       watchers_count = #{watchersCount,jdbcType=INTEGER},
       clone_url = #{cloneUrl,jdbcType=CHAR},
@@ -584,4 +518,5 @@
     from repository
     where description like "%"#{keyword}"%"
   </select>
+
 </mapper>
