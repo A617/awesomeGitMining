@@ -9,6 +9,15 @@ public class Member {
 
     private String memberEmail;
 
+    public Member(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public Member() {
+
+    }
+
     public Integer getUserid() {
         return userid;
     }
