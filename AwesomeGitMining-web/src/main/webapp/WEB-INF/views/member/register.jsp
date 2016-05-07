@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Login</title>
+    <title>sign up</title>
     <link href="<c:url value="/css/listcss.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/templatemo-style.css"/>" rel="stylesheet" type="text/css" media="all">
@@ -20,7 +20,7 @@
             <nav class="templatemo-top-nav">
                 <ul>
                     <li><a href="/index.jsp">Home</a></li>
-                    <li><a href="/repo/repos">Repository</a></li>
+                    <li><a href="/repo/repos?pager.offset=0">Repository</a></li>
                     <li><a href="/user/users?pager.offset=0">User</a></li>
                     <li><a href="#">Repository Statistics</a></li>
                     <li><a href="#">User Statistics</a></li>
@@ -64,7 +64,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-addon"><i class="fa fa-key fa-fw"></i></div>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="email">
+                    <input type="email" name="memberEmail" class="form-control" id="inputEmail" placeholder="email">
                 </div>
             </div>
             <div class="form-group">
@@ -72,10 +72,6 @@
             </div>
         </form>
     </div>
-    <!--<form:form method="post" modelAttribute="member">
-        username:<form:input path="username"/><form:errors path="username"/><br>
-        password:<form:input type="password" path="password"/><form:errors path="password"/><br>
-    </form:form>-->
 
     <footer class="text-right">
         <p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>
