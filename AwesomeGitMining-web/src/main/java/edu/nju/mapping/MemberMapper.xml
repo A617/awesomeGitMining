@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.nju.dao.MemberMapper">
-  <select id="searchMember" parameterType="edu.nju.model.Member" resultType="edu.nju.model.Member">
-    select * from member where username=#{username} and password=#{password}
+  <resultMap id="BaseResultMap" type="edu.nju.model.Member" >
+    <id column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="member_email" property="member_email" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userid, username,password, member_email
+  </sql>
+  <select id="searchMember" parameterType="java.lang.String" resultType="edu.nju.model.Member">
+    select * from member where username=#{username}
   </select>
   <insert id="addMember" parameterType="edu.nju.model.Member" flushCache="true">
     insert into member(username,password,member_email) values(#{username},#{password},#{member_email})

@@ -15,14 +15,14 @@ public interface IMemberDao {
      * @param member
      * @return
      */
-    Member searchMember(Member member);
+    String searchMember(Member member);
 
     /**
      * 增加member
      * @param member
      * @return
      */
-    int addMember(Member member);
+    String addMember(Member member);
 
     /**
      * 根据搜索记录(包括点击过的tag）获取该会员的推荐repository名单

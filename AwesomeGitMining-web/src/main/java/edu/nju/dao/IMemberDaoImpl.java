@@ -17,18 +17,42 @@ public class IMemberDaoImpl implements IMemberDao{
     private MemberMapper mapper;
 
     @Override
-    public Member searchMember(Member member) {
-        Map<String, Object> map = createMap();
-        map.put("username",member.getUsername());
-        Member data = mapper.searchMember(member);
-        return data;
+    public String searchMember(Member member) {
+        String name=member.getUsername();
+        String result="";
+        Member data = mapper.searchMember(name);
+        if(data==null){
+            result="用户名不存在";
+            return result;
+        }else{
+            if(data.getPassword()!=member.getPassword()){
+                result="密码错误";
+                return result;
+            }else{
+                return null;
+            }
 
+        }
     }
 
     @Override
-    public int addMember(Member member) {
-        int result=mapper.addMember(member);
-        return result;
+    public String addMember(Member member) {
+        String result="";
+        String name=member.getUsername();
+        Member data = mapper.searchMember(name);
+        if(data!=null){
+            result="用户名重复";
+            return result;
+        }else{
+            if(member.getPassword().length()<6){
+                result="密码长度要大于等于6";
+                return result;
+            }else{
+                int a=mapper.addMember(member);
+                return null;
+            }
+
+        }
     }
 
     @Override
