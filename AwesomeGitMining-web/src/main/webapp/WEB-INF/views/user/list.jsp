@@ -26,7 +26,7 @@
             <nav class="templatemo-top-nav">
                 <ul>
                     <li><a href="/index.jsp">Home</a></li>
-                    <li><a href="/repo/repos">Repository</a></li>
+                    <li><a href="/repo/repos?pager.offset=0">Repository</a></li>
                     <li><a href="#" class="active">User</a></li>
                     <li><a href="#">Repository Statistics</a></li>
                     <li><a href="#">User Statistics</a></li>
@@ -57,7 +57,7 @@
                     <h2>Tags</h2><hr>
                     <!--search-->
                     <div>
-                        <form action="/user/search" method="post">
+                        <form action="/user/users/search" method="get">
                             <input type="text" class="search-query form-control col-md-10" name="name" placeholder="Search keyword..."><br>
                             <div class="form-group text-right">
                                 <button type="submit" class="fa-align-center templatemo-blue-button">Search</button>

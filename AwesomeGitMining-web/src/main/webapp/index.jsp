@@ -18,7 +18,7 @@
             <nav class="templatemo-top-nav">
                 <ul>
                     <li><a href="#" class="active">Home</a></li>
-                    <li><a href="/repo/repos">Repository</a></li>
+                    <li><a href="/repo/repos?pager.offset=0">Repository</a></li>
                     <li><a href="/user/users?pager.offset=0">User</a></li>
                     <li><a href="#">Repository Statistics</a></li>
                     <li><a href="#">User Statistics</a></li>
@@ -51,7 +51,7 @@
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
                             <li>
-                                <a href="/repo/repos" class="btn btn-default btn-lg"><strong>Get Started</strong>
+                                <a href="/repo/repos?pager.offset=0" class="btn btn-default btn-lg"><strong>Get Started</strong>
                                     <i class="glyphicon glyphicon-chevron-right"></i></a>
                             </li>
                         </ul>
