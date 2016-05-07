@@ -34,6 +34,7 @@ public class MemberController {
     public String register(@ModelAttribute("member") @Validated Member member, BindingResult br) {
         if (br.hasErrors())
             return "/member/register";
+        System.out.println(member.getMember_email());
         String error = memberService.register(member);
         if (error != null) {
             throw new MemberException(error);

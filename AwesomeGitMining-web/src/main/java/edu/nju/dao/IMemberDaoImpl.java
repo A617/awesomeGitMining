@@ -25,7 +25,7 @@ public class IMemberDaoImpl implements IMemberDao{
             result="用户名不存在";
             return result;
         }else{
-            if(data.getPassword()!=member.getPassword()){
+            if(!data.getPassword().equals(member.getPassword())){
                 result="密码错误";
                 return result;
             }else{

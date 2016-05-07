@@ -28,7 +28,7 @@ public class MemberMapperTest {
         String name="miku";
         Member list = dao.searchMember(name);
         if(list!=null) {
-            System.out.println("This:" + list.getUserid()+list.getUsername()+list.getMember_email());
+            System.out.println("This:" + list.getUserid()+list.getUsername()+list.getPassword()+list.getMember_email());
         }
     }
 

@@ -13,6 +13,11 @@ public class Member {
         this.username = username;
         this.password = password;
     }
+    public Member(String username, String password,String member_email) {
+        this.username = username;
+        this.password = password;
+        this.member_email = member_email;
+    }
 
     public Member() {
 

@@ -16,18 +16,11 @@ public class IMemberServiceImpl implements IMemberService {
 
     @Override
     public String register(Member member) {
-//        if (memberdao.addMember(member) == -1) {
-//            return "注册失败！";
-//        }
-        return null;
+        return memberdao.addMember(member);
     }
 
     @Override
     public String login(Member member) {
-//        Member mem = memberdao.searchMember(member);
-//        if (mem == null) {
-//            return "用户不存在！";
-//        }
-        return null;
+        return memberdao.searchMember(member);
     }
 }
