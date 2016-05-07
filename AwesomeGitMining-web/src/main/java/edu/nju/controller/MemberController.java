@@ -34,19 +34,19 @@ public class MemberController {
     public String register(@ModelAttribute("member") @Validated Member member, BindingResult br) {
         if (br.hasErrors())
             return "/member/register";
-        String error = memberService.register(member);
-        if(error!=null) {
-            throw new MemberException(error);
+        int error = memberService.addMember(member);
+        if(error!=-1) {
+            throw new MemberException(error+"");
         }
         return ("redirect:/");
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(String username, String password, HttpSession session) {
-        Member member = new Member(username,password);
-        String error = memberService.login(member);
-        if(error!=null){
-            throw new MemberException(error);
+    public String login(String username, String password, String member_email, HttpSession session) {
+        Member member = new Member(username,password,member_email);
+        int error = memberService.addMember(member);
+        if(error!=-1){
+            throw new MemberException(error+"");
         }
         session.setAttribute("loginMember", username);
         return ("redirect:/");
@@ -58,4 +58,8 @@ public class MemberController {
         req.setAttribute("e", e);
         return new ModelAndView("/error", "e", e);
     }
+
+
+
+
 }

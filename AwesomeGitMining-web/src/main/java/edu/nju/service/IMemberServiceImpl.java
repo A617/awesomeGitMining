@@ -1,5 +1,6 @@
 package edu.nju.service;
 
+import edu.nju.dao.IMemberDao;
 import edu.nju.model.Member;
 import org.springframework.stereotype.Service;
 
@@ -8,13 +9,20 @@ import org.springframework.stereotype.Service;
  */
 @Service("memberService")
 public class IMemberServiceImpl implements IMemberService {
+    private IMemberDao memberdao;
     @Override
-    public String register(Member member) {
-        return null;
+    public int addMember(Member member) {
+        return this.memberdao.addMember(member);
+
     }
 
     @Override
-    public String login(Member member) {
-        return null;
+    public Member searchMember(Member member) {
+        return this.memberdao.searchMember(member);
+
+    }
+
+    public IMemberDao getMemberdao() {
+        return memberdao;
     }
 }
