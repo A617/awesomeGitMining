@@ -1,5 +1,6 @@
 package edu.nju.service;
 
+import edu.nju.dao.MemberMapper;
 import edu.nju.model.Member;
 
 /**

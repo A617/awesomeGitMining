@@ -12,17 +12,17 @@ import java.util.List;
 public interface IMemberDao {
     /**
      * 查找member
-     * @param username
+     * @param member
      * @return
      */
-    Member searchMember(String username);
+    Member searchMember(Member member);
 
     /**
      * 增加member
      * @param member
      * @return
      */
-    boolean addMember(Member member);
+    int addMember(Member member);
 
     /**
      * 根据搜索记录(包括点击过的tag）获取该会员的推荐repository名单

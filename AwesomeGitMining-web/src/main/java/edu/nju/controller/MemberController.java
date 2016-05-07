@@ -49,13 +49,14 @@ public class MemberController {
             throw new MemberException(error);
         }
         session.setAttribute("loginMember", username);
-        return ("redirect:"+session.getAttribute("backuri"));
+        return ("redirect:" + session.getAttribute("backuri"));
     }
+        //这个控制器中的异常映射到这里
+        @ExceptionHandler(value = {MemberException.class})
+        public ModelAndView handlerException (MemberException e, HttpServletRequest req){
+            req.setAttribute("e", e);
+            return new ModelAndView("/error", "e", e);
+        }
 
-    //这个控制器中的异常映射到这里
-    @ExceptionHandler(value = {MemberException.class})
-    public ModelAndView handlerException(MemberException e, HttpServletRequest req) {
-        req.setAttribute("e", e);
-        return new ModelAndView("/error", "e", e);
+
     }
-}

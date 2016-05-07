@@ -7,7 +7,7 @@ public class Member {
 
     private String password;
 
-    private String memberEmail;
+    private String member_email;
 
     public Member(String username, String password) {
         this.username = username;
@@ -42,11 +42,11 @@ public class Member {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getMemberEmail() {
-        return memberEmail;
+    public String getMember_email() {
+        return member_email;
     }
 
-    public void setMemberEmail(String memberEmail) {
-        this.memberEmail = memberEmail == null ? null : memberEmail.trim();
+    public void setMember_email(String member_email) {
+        this.member_email = member_email == null ? null : member_email.trim();
     }
 }
