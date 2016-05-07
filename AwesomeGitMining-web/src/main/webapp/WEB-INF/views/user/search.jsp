@@ -43,7 +43,7 @@
                     <a href="/register">Sign up</a>
                 </li>
             </ul>
-            <%session.setAttribute("backuri","/user/users?pager.offset=0");%>
+            <%session.setAttribute("backuri","/user/users/search");%>
             <%
             }else{
             %>
