@@ -48,7 +48,7 @@ public class IMemberDaoImpl implements IMemberDao{
                 result="密码长度要大于等于6";
                 return result;
             }else{
-                int a=mapper.addMember(member);
+                mapper.addMember(member);
                 return null;
             }
 

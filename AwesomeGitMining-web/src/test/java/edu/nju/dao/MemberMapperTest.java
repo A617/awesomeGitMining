@@ -34,12 +34,12 @@ public class MemberMapperTest {
 
     @Test
     public void addMemberTest() throws Exception {
-        Member m=new Member();
-        m.setUsername("miku");
-        m.setPassword("123456");
-        m.setMember_email("mikumiku");
-        int a=dao.addMember(m);
-        System.out.print(a);
+//        Member m=new Member();
+//        m.setUsername("sa");
+//        m.setPassword("123456");
+//        m.setMember_email("mikumiku");
+//        dao.addMember(m);
+//        System.out.print(m.getUsername());
 
     }
 

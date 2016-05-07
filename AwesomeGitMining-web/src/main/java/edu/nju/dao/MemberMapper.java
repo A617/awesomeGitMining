@@ -16,5 +16,5 @@ public interface MemberMapper {
 //    int updateByPrimaryKey(Member record);
 //
     Member searchMember(String userName);
-    int addMember(Member member);
+    void addMember(Member member);
 }
