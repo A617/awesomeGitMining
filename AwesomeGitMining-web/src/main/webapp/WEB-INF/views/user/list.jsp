@@ -34,6 +34,9 @@
             </nav>
 
             <div class="dropdown navbar-right">
+                <%
+                    if(session.getAttribute("loginMember")==null){
+                %>
                 <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
                     Visitors <b class="caret"></b>
                 </a>
@@ -45,6 +48,16 @@
                         <a href="/register">Sign up</a>
                     </li>
                 </ul>
+                <%session.setAttribute("backuri","/user/users?pager.offset=0");%>
+                <%
+                }else{
+                %>
+                <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+                    <%=session.getAttribute("loginMember")%>
+                </a>
+                <%
+                    }
+                %>
             </div>
         </div>
     </div>

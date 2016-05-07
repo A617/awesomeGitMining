@@ -2,6 +2,8 @@ package edu.nju.dao;
 
 import edu.nju.model.*;
 import org.springframework.stereotype.Service;
+import edu.nju.model.Member;
+import edu.nju.model.Recommender;
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +11,7 @@ import java.util.HashMap;
 /**
  * Created by fw on 2016/5/7.
  */
-@Service("memberDao")
+@Service("memberdao")
 public class IMemberDaoImpl implements IMemberDao{
     @Resource
     private MemberMapper mapper;

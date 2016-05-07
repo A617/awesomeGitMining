@@ -40,6 +40,7 @@
                         <a href="/register">Sign up</a>
                     </li>
                 </ul>
+                <%session.setAttribute("backuri","/");%>
                 <%
                     }else{
                 %>

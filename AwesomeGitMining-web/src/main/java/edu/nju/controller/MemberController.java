@@ -34,32 +34,29 @@ public class MemberController {
     public String register(@ModelAttribute("member") @Validated Member member, BindingResult br) {
         if (br.hasErrors())
             return "/member/register";
-        int error = memberService.addMember(member);
-        if(error!=-1) {
-            throw new MemberException(error+"");
+        String error = memberService.register(member);
+        if (error != null) {
+            throw new MemberException(error);
         }
         return ("redirect:/");
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(String username, String password, String member_email, HttpSession session) {
-        Member member = new Member(username,password,member_email);
-        int error = memberService.addMember(member);
-        if(error!=-1){
-            throw new MemberException(error+"");
+    public String login(String username, String password, HttpSession session, HttpServletRequest request) {
+        Member member = new Member(username, password);
+        String error = memberService.login(member);
+        if (error != null) {
+            throw new MemberException(error);
         }
         session.setAttribute("loginMember", username);
-        return ("redirect:/");
+        return ("redirect:" + session.getAttribute("backuri"));
     }
+        //这个控制器中的异常映射到这里
+        @ExceptionHandler(value = {MemberException.class})
+        public ModelAndView handlerException (MemberException e, HttpServletRequest req){
+            req.setAttribute("e", e);
+            return new ModelAndView("/error", "e", e);
+        }
 
-    //这个控制器中的异常映射到这里
-    @ExceptionHandler(value = {MemberException.class})
-    public ModelAndView handlerException(MemberException e, HttpServletRequest req) {
-        req.setAttribute("e", e);
-        return new ModelAndView("/error", "e", e);
+
     }
-
-
-
-
-}

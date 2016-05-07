@@ -9,16 +9,14 @@ public class Member {
 
     private String member_email;
 
-    public Member(String username, String password, String member_email) {
-        super();
+    public Member(String username, String password) {
         this.username = username;
         this.password = password;
-        this.member_email=member_email;
     }
 
-public Member(){
+    public Member() {
 
-}
+    }
 
     public Integer getUserid() {
         return userid;

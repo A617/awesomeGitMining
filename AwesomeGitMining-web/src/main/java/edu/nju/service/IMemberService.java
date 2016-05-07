@@ -12,12 +12,12 @@ public interface IMemberService {
      * @param member
      * @return 注册失败返回错误信息 成功返回null
      */
-    public int addMember(Member member);
+    String register(Member member);
 
     /**
      * 用户登录
      * @param member
      * @return 登陆失败返回错误信息 成功返回null
      */
-    Member searchMember(Member member);
+    String login(Member member);
 }
