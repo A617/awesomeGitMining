@@ -35,21 +35,21 @@ public class MemberController {
         if (br.hasErrors())
             return "/member/register";
         String error = memberService.register(member);
-        if(error!=null) {
+        if (error != null) {
             throw new MemberException(error);
         }
         return ("redirect:/");
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(String username, String password, HttpSession session) {
-        Member member = new Member(username,password);
+    public String login(String username, String password, HttpSession session, HttpServletRequest request) {
+        Member member = new Member(username, password);
         String error = memberService.login(member);
-        if(error!=null){
+        if (error != null) {
             throw new MemberException(error);
         }
         session.setAttribute("loginMember", username);
-        return ("redirect:/");
+        return ("redirect:"+session.getAttribute("backuri"));
     }
 
     //这个控制器中的异常映射到这里
