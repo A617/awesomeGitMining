@@ -61,12 +61,6 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-addon"><i class="fa fa-key fa-fw"></i></div>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="email">
-                </div>
-            </div>
-            <div class="form-group">
                 <button type="submit" class="templatemo-blue-button width-100">Sign in</button>
             </div>
         </form>

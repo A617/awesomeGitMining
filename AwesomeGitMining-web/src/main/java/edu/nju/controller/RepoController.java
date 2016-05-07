@@ -36,6 +36,33 @@ public class RepoController {
         return new ModelAndView("/repo/list", map);
     }
 
+    @RequestMapping(value = "/forks", method = RequestMethod.GET)
+    public ModelAndView listForks(@RequestParam("pager.offset") int offset) {
+        Pager<Repository> pager = repoService.getReposSortedByFork();
+        Map<String, Object> map = new HashMap<>();
+        map.put("forks", pager.getDatas());
+        map.put("total", pager.getTotal());
+        return new ModelAndView("/repo/forks",map);
+    }
+
+    @RequestMapping(value = "/stars", method = RequestMethod.GET)
+    public ModelAndView listStars(@RequestParam("pager.offset") int offset) {
+        Pager<Repository> pager = repoService.getReposSortedByStar();
+        Map<String, Object> map = new HashMap<>();
+        map.put("stars", pager.getDatas());
+        map.put("total", pager.getTotal());
+        return new ModelAndView("/repo/stars",map);
+    }
+
+    @RequestMapping(value = "/cons", method = RequestMethod.GET)
+    public ModelAndView listContributers(@RequestParam("pager.offset") int offset) {
+        Pager<Repository> pager = repoService.getReposSortedByContribute();
+        Map<String, Object> map = new HashMap<>();
+        map.put("cons", pager.getDatas());
+        map.put("total", pager.getTotal());
+        return new ModelAndView("/repo/cons",map);
+    }
+
     @RequestMapping(value = "/{ownerName}/{repoName}", method = RequestMethod.GET)
     public ModelAndView showRepo(@PathVariable String ownerName, @PathVariable String repoName) {
         String fullName = ownerName + "/" + repoName;

@@ -72,12 +72,10 @@
             </div>
         </form>
     </div>
-    <!--
-    <form:form method="post" modelAttribute="member">
+    <!--<form:form method="post" modelAttribute="member">
         username:<form:input path="username"/><form:errors path="username"/><br>
         password:<form:input type="password" path="password"/><form:errors path="password"/><br>
-    </form:form>
-    -->
+    </form:form>-->
 
     <footer class="text-right">
         <p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>
