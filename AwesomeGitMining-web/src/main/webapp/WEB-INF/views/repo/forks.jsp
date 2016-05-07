@@ -30,10 +30,14 @@
                 <li><a href="/user/users?pager.offset=0">User</a></li>
                 <li><a href="#">Repository Statistics</a></li>
                 <li><a href="#">User Statistics</a></li>
+                <li><a href="#">Recommended</a> </li>
             </ul>
         </nav>
 
         <div class="dropdown navbar-right">
+            <%
+                if(session.getAttribute("loginMember")==null){
+            %>
             <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
                 Visitors <b class="caret"></b>
             </a>
@@ -45,6 +49,27 @@
                     <a href="/register">Sign up</a>
                 </li>
             </ul>
+            <%session.setAttribute("backuri","/repo/repos?pager.offset=0");%>
+            <%
+            }else{
+            %>
+            <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+                <%=session.getAttribute("loginMember")%><b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu animated fadeInRight">
+                <li>
+                    <a href="#">Favorite Repositories</a>
+                </li>
+                <li>
+                    <a href="#">Favorite Users</a>
+                </li>
+                <li>
+                    <a href="#">Log out</a>
+                </li>
+            </ul>
+            <%
+                }
+            %>
         </div>
     </div>
 </div>
@@ -57,7 +82,7 @@
                 <h2>Tags</h2><hr>
                 <!--search-->
                 <div>
-                    <form action="/repo/search" method="post">
+                    <form action="/repo/search" method="get">
                         <input type="text" class="search-query form-control col-md-10" name="name" placeholder="Search keyword..."><br>
                         <div class="form-group text-right">
                             <button type="submit" class="fa-align-center templatemo-blue-button">Search</button>
@@ -165,37 +190,43 @@
             <!--list-->
             <div class="col-2 panel panel-default margin-10">
                 <div class="panel-heading">
-                    <ul id="myTab" class="nav nav-tabs">
+                    <ul class="nav nav-tabs" id="maintab">
                         <li>
-                            <a href="/repo/repos?pager.offset=0" data-toggle="tab">
+                            <a href="#general" onclick='showPage("repos")'>
                                 <h3>General</h3>
                             </a>
                         </li>
                         <li class="active">
-                            <a href="#" data-toggle="tab">
+                            <a href="#forks" onclick='showPage("forks")'>
                                 <h3>Fork</h3>
-                            </a></li>
-                        <li><a href="#" data-toggle="tab">
-                            <h3>Star</h3>
-                        </a></li>
-                        <li><a href="#" data-toggle="tab">
-                            <h3>Contributer</h3>
-                        </a></li>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#stars" onclick='showPage("stars")'>
+                                <h3>Star</h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#contributers" onclick='showPage("cons")'>
+                                <h3>Contributer</h3>
+                            </a>
+                        </li>
                     </ul>
                 </div>
-                <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade in active">
+                <div class="tab-content">
+                    <div class="tab-pane fade" id="general"></div>
+                    <div class="tab-pane fade in active" id="forks">
                         <div class="panel-body">
                             <ul class="dashboard-list">
                                 <c:forEach items="${forks }" var="repo">
                                     <li>
-                                        <h3><strong>${repo.id}&nbsp;<a href="${repo.fullName}">${repo.fullName }</a></strong></h3>
+                                        <h3><strong><a href="${repo.fullName }">${repo.fullName }</a></strong></h3>
                                         <p style="text-align: right"><strong>${repo.language}</strong></p>
                                         <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}</span>
                                             <span><strong>Forks:</strong>&nbsp;${repo.forksCount}</span>
                                             <span><strong>Stargazers:</strong>&nbsp;${repo.stargazersCount}</span>
                                         </p>
-                                        <p>${repo.description}</p>
+                                        <p class="blue-text">${repo.description}</p>
                                         <strong>Last Updated:</strong>&nbsp;${repo.updatedAt}<br>
                                     </li>
                                 </c:forEach>
@@ -233,6 +264,8 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="tab-pane fade" id="stars"></div>
+                    <div class="tab-pane fade" id="contributers"></div>
                 </div>
             </div>
         </div>
@@ -245,6 +278,14 @@
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<script language="javascript">
+
+    function showPage(tabId){
+        newurl = "/repo/"+tabId+"?pager.offset=0";
+        window.location.href=newurl;
+    }
+
+</script>
 </body>
 </html>
 

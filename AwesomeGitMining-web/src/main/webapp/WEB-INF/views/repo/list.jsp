@@ -30,6 +30,7 @@
                     <li><a href="/user/users?pager.offset=0">User</a></li>
                     <li><a href="#">Repository Statistics</a></li>
                     <li><a href="#">User Statistics</a></li>
+                    <li><a href="#">Recommended</a> </li>
                 </ul>
             </nav>
 
@@ -53,8 +54,19 @@
                 }else{
                 %>
                 <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
-                    <%=session.getAttribute("loginMember")%>
+                    <%=session.getAttribute("loginMember")%><b class="caret"></b>
                 </a>
+                <ul class="dropdown-menu animated fadeInRight">
+                    <li>
+                        <a href="#">Favorite Repositories</a>
+                    </li>
+                    <li>
+                        <a href="#">Favorite Users</a>
+                    </li>
+                    <li>
+                        <a href="#">Log out</a>
+                    </li>
+                </ul>
                 <%
                     }
                 %>
@@ -177,53 +189,83 @@
             </div>
                 <!--list-->
                 <div class="col-2 panel panel-default margin-10">
-                    <div class="panel-heading"><h2>Repository List</h2></div>
-                    <div class="panel-body">
-                        <ul class="dashboard-list">
-                            <c:forEach items="${repos }" var="repo">
-                                <li>
-                                    <h3><strong>${repo.id}&nbsp;<a href="${repo.fullName }">${repo.fullName }</a></strong></h3>
-                                    <p style="text-align: right"><strong>${repo.language}</strong></p>
-                                    <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}</span>
-                                        <span><strong>Forks:</strong>&nbsp;${repo.forksCount}</span>
-                                        <span><strong>Stargazers:</strong>&nbsp;${repo.stargazersCount}</span>
-                                    </p>
-                                    <p>${repo.description}</p>
-                                    <strong>Last Updated:</strong>&nbsp;${repo.updatedAt}<br>
-                                </li>
-                            </c:forEach>
+                    <div class="panel-heading">
+                        <ul class="nav nav-tabs" id="maintab">
+                            <li class="active">
+                                <a href="#general" onclick='showPage("repos")'>
+                                    <h3>General</h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#forks" onclick='showPage("forks")'>
+                                    <h3>Fork</h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#stars" onclick='showPage("stars")'>
+                                    <h3>Star</h3>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#contributers" onclick='showPage("cons")'>
+                                    <h3>Contributer</h3>
+                                </a>
+                            </li>
                         </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="general">
+                            <div class="panel-body">
+                                <ul class="dashboard-list">
+                                    <c:forEach items="${repos }" var="repo">
+                                        <li>
+                                            <h3><strong><a href="${repo.fullName }">${repo.fullName }</a></strong></h3>
+                                            <p style="text-align: right"><strong>${repo.language}</strong></p>
+                                            <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}</span>
+                                                <span><strong>Forks:</strong>&nbsp;${repo.forksCount}</span>
+                                                <span><strong>Stargazers:</strong>&nbsp;${repo.stargazersCount}</span>
+                                            </p>
+                                            <p class="blue-text">${repo.description}</p>
+                                            <strong>Last Updated:</strong>&nbsp;${repo.updatedAt}<br>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
 
-                        <ul class="pagination  pagination-centered">
-                            ${pageUrl}<br>
-                            <pg:pager url="/repo/repos" items="${total}">
-                                <li>
-                                    <pg:first>
-                                        <a href="${pageUrl}">Begin</a>
-                                    </pg:first>
-                                </li>
-                                <li>
-                                    <pg:prev>
-                                        <a href="${pageUrl }">Pre</a>
-                                    </pg:prev>
-                                </li>
-                                <li>
-                                    <pg:pages>
-                                        <a href="${pageUrl }">${pageNumber}</a>
-                                    </pg:pages>
-                                </li>
-                                <li>
-                                    <pg:next>
-                                        <a href="${pageUrl }">Next</a>
-                                    </pg:next>
-                                </li>
-                                <li>
-                                    <pg:last>
-                                        <a href="${pageUrl }">End</a>
-                                    </pg:last>
-                                </li>
-                            </pg:pager>
-                        </ul>
+                                <ul class="pagination  pagination-centered">
+                                    ${pageUrl}<br>
+                                    <pg:pager url="/repo/repos" items="${total}">
+                                        <li>
+                                            <pg:first>
+                                                <a href="${pageUrl}">Begin</a>
+                                            </pg:first>
+                                        </li>
+                                        <li>
+                                            <pg:prev>
+                                                <a href="${pageUrl }">Pre</a>
+                                            </pg:prev>
+                                        </li>
+                                        <li>
+                                            <pg:pages>
+                                                <a href="${pageUrl }">${pageNumber}</a>
+                                            </pg:pages>
+                                        </li>
+                                        <li>
+                                            <pg:next>
+                                                <a href="${pageUrl }">Next</a>
+                                            </pg:next>
+                                        </li>
+                                        <li>
+                                            <pg:last>
+                                                <a href="${pageUrl }">End</a>
+                                            </pg:last>
+                                        </li>
+                                    </pg:pager>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="forks"></div>
+                        <div class="tab-pane" id="stars"></div>
+                        <div class="tab-pane" id="contributers"></div>
                     </div>
                 </div>
             </div>
@@ -236,6 +278,14 @@
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script language="javascript">
+
+        function showPage(tabId){
+            newurl = "/repo/"+tabId+"?pager.offset=0";
+            window.location.href=newurl;
+        }
+
+    </script>
 </body>
 </html>
 

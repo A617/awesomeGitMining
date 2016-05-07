@@ -22,6 +22,7 @@
                     <li><a href="/user/users?pager.offset=0">User</a></li>
                     <li><a href="#">Repository Statistics</a></li>
                     <li><a href="#">User Statistics</a></li>
+                    <li><a href="#">Recommended</a> </li>
                 </ul>
             </nav>
 
@@ -45,8 +46,19 @@
                     }else{
                 %>
                 <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
-                   <%=session.getAttribute("loginMember")%>
+                   <%=session.getAttribute("loginMember")%><b class="caret"></b>
                 </a>
+                <ul class="dropdown-menu animated fadeInRight">
+                    <li>
+                        <a href="#">Favorite Repositories</a>
+                    </li>
+                    <li>
+                        <a href="#">Favorite Users</a>
+                    </li>
+                    <li>
+                        <a href="#">Log out</a>
+                    </li>
+                </ul>
                 <%
                     }
                 %>
