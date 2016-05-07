@@ -42,7 +42,7 @@
                         <a href="/register">Sign up</a>
                     </li>
                 </ul>
-                <%session.setAttribute("backuri","/repo/repos?pager.offset=0");%>
+                <%session.setAttribute("backuri","/repo/search");%>
                 <%
                 }else{
                 %>
