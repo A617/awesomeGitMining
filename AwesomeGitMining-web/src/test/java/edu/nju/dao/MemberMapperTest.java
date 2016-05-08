@@ -1,15 +1,16 @@
 package edu.nju.dao;
 
 import edu.nju.model.Member;
+import edu.nju.model.Word;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
+import javax.validation.constraints.AssertFalse;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Dora on 2016/5/2.
@@ -40,6 +41,33 @@ public class MemberMapperTest {
 //        m.setMember_email("mikumiku");
 //        dao.addMember(m);
 //        System.out.print(m.getUsername());
+
+    }
+
+    @Test
+    public void addWordTest() throws Exception{
+        java.sql.Date sd;
+        java.util.Date ud;
+
+         ud = new java.util.Date();
+        sd = new java.sql.Date(ud.getTime());
+        Word w=new Word("miku","hhhh",sd);
+        dao.addWord(w);
+        System.out.println("2333");
+
+
+    }
+
+    @Test
+    public void getWordTest() throws Exception{
+       String name="miku";
+        List<String> w=new ArrayList<String>();
+        w=dao.getWord(name);
+        int length=w.size();
+        for(int i=0;i<length;i++) {
+            System.out.print(w.get(i)+" ");
+        }
+
 
     }
 

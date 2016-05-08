@@ -16,6 +16,7 @@ public class IMemberDaoImpl implements IMemberDao{
     @Resource
     private MemberMapper mapper;
 
+
     @Override
     public String searchMember(Member member) {
         String name=member.getUsername();

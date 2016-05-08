@@ -7,6 +7,9 @@
     <result column="password" property="password" jdbcType="CHAR" />
     <result column="member_email" property="member_email" jdbcType="CHAR" />
   </resultMap>
+  <sql id="Base_Column_List_Word" >
+    watch_word_id, username,word, watch_word_time
+  </sql>
   <sql id="Base_Column_List" >
     userid, username,password, member_email
   </sql>
@@ -16,5 +19,12 @@
   <insert id="addMember" parameterType="edu.nju.model.Member" flushCache="true">
     insert into member(username,password,member_email) values(#{username},#{password},#{member_email})
   </insert>
-
+  <select id="getWord" parameterType="java.lang.String" resultType="java.lang.String">
+    select word
+    from watch_word
+    where username = #{username}
+  </select>
+  <insert id="addWord" parameterType="edu.nju.model.Word" flushCache="true">
+    insert into watch_word(username,word,watch_word_time) values(#{username},#{word},#{watch_word_time})
+  </insert>
 </mapper>
