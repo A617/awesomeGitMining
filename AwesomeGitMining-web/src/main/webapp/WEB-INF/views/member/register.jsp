@@ -73,7 +73,6 @@
             </div>
         </form>
     </div>
-
     <footer class="text-right">
         <p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>
     </footer>

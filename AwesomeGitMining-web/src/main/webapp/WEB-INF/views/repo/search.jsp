@@ -29,6 +29,7 @@
             </nav>
 
             <div class="dropdown navbar-right">
+                <%session.setAttribute("backuri","/repo/search");%>
                 <%
                     if(session.getAttribute("loginMember")==null){
                 %>
@@ -43,7 +44,6 @@
                         <a href="/register">Sign up</a>
                     </li>
                 </ul>
-                <%session.setAttribute("backuri","/repo/search");%>
                 <%
                 }else{
                 %>
@@ -58,7 +58,7 @@
                         <a href="#">Favorite Users</a>
                     </li>
                     <li>
-                        <a href="#">Log out</a>
+                        <a href="/logout">Log out</a>
                     </li>
                 </ul>
                 <%
