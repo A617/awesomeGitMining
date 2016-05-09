@@ -96,15 +96,16 @@ public class IMemberDaoImpl implements IMemberDao{
             System.out.println(wordList_fin.get(t));
         }
         }
-        Recommender re=new Recommender();
+        
         for(int m=0;m<keyword.size();m++){
-            List<String>repo_name=new ArrayList<String>();
-          re.setKeyword(keyword.get(m));
-            repo_name=mapper.findWord(keyword.get(m));
+            List<String>repo_name=mapper.findWord(keyword.get(m));
+            System.out.println("Len:"+repo_name.size());
             for(int u=0;u<repo_name.size();u++){
+                Recommender re=new Recommender();
+                re.setKeyword(keyword.get(m));
                 re.setRepository(repo_name.get(u));
                 recommenders.add(re);
-            }
+           }
 
         }
 
