@@ -12,6 +12,9 @@ public class Recommender {
      * 搜索的记录
      */
     private String keyword;
+    public Recommender(){
+
+    }
 
     public Recommender(String repository, String keyword) {
         this.repository = repository;

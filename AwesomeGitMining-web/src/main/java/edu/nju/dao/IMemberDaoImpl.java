@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import edu.nju.model.Member;
 import edu.nju.model.Recommender;
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
@@ -15,7 +16,6 @@ import java.util.HashMap;
 public class IMemberDaoImpl implements IMemberDao{
     @Resource
     private MemberMapper mapper;
-
 
     @Override
     public String searchMember(Member member) {
@@ -58,7 +58,57 @@ public class IMemberDaoImpl implements IMemberDao{
 
     @Override
     public List<Recommender> getRecommendBySearched(String userName) {
-        return null;
+        List<String> wordList=mapper.getWord(userName);//wordList中包含该用户搜索的所有关键词
+        List<String> wordList_fin=new ArrayList<String>();//转换为小写后的
+        List<String> keyword=new ArrayList<String>();//筛选后的关键词，直接用
+        List<Recommender> recommenders=new ArrayList<Recommender>();//放入推荐的东西，包括项目名和关键词
+        for(int i=0;i<wordList.size();i++){
+            wordList_fin.add(wordList.get(i).toLowerCase());
+        }
+        List<String> tag=new ArrayList<String>();
+        tag.add("api");
+        tag.add("django");
+        tag.add("mysql");
+        tag.add("jquery");
+        tag.add("xml");
+        tag.add("web");
+        tag.add("plugin");
+        tag.add("database");
+        tag.add("irc");
+        tag.add("ios");
+        tag.add("git");
+        tag.add("emacs");
+        tag.add("linux");
+        tag.add("json");
+        tag.add("vim");
+        tag.add("toolkit");
+        tag.add("net");
+        tag.add("apache");
+        tag.add("android");
+        tag.add("os");
+        tag.add("mvc");
+        tag.add("gem");
+        tag.add("maven");
+
+        for(int t=0;t<wordList_fin.size();t++){
+        if(tag.contains(wordList_fin.get(t))&&(!keyword.contains(wordList_fin.get(t)))){    //搜索词去重
+            keyword.add(wordList_fin.get(t));
+            System.out.println(wordList_fin.get(t));
+        }
+        }
+        Recommender re=new Recommender();
+        for(int m=0;m<keyword.size();m++){
+            List<String>repo_name=new ArrayList<String>();
+          re.setKeyword(keyword.get(m));
+            repo_name=mapper.findWord(keyword.get(m));
+            for(int u=0;u<repo_name.size();u++){
+                re.setRepository(repo_name.get(u));
+                recommenders.add(re);
+            }
+
+        }
+
+        return recommenders;
     }
 
     @Override

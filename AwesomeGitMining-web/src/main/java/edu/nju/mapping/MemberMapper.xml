@@ -27,4 +27,9 @@
   <insert id="addWord" parameterType="edu.nju.model.Word" flushCache="true">
     insert into watch_word(username,word,watch_word_time) values(#{username},#{word},#{watch_word_time})
   </insert>
+  <select id="findWord" resultType="java.lang.String" parameterType="java.lang.String">
+    select full_name
+    from repository
+    where description like "%"#{keyword}"%"
+  </select>
 </mapper>

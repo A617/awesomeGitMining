@@ -51,7 +51,7 @@ public class MemberMapperTest {
 
          ud = new java.util.Date();
         sd = new java.sql.Date(ud.getTime());
-        Word w=new Word("miku","hhhh",sd);
+        Word w=new Word("miku","xml",sd);
         dao.addWord(w);
         System.out.println("2333");
 
@@ -71,5 +71,16 @@ public class MemberMapperTest {
 
     }
 
+
+    @Test
+    public void findWordTest() throws Exception{
+        String word="maven";
+        List<String> p=new ArrayList<String>();
+        p=dao.findWord(word);
+        int length=p.size();
+        for(int i=0;i<length;i++) {
+            System.out.println(p.get(i)+" ");
+        }
+    }
 
 }

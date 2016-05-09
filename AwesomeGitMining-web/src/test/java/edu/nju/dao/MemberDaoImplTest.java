@@ -1,6 +1,7 @@
 package edu.nju.dao;
 
 import edu.nju.model.Pager;
+import edu.nju.model.Recommender;
 import edu.nju.model.SystemContext;
 import edu.nju.model.Member;
 import org.junit.Test;
@@ -9,6 +10,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Dora on 2016/5/3.
@@ -33,7 +36,7 @@ public class MemberDaoImplTest {
     }
 
     @Test
-    public void addMemberTeat() throws Exception {
+    public void addMemberTest() throws Exception {
     Member m=new Member();
         m.setUsername("miku");
         m.setPassword("123456");
@@ -41,7 +44,16 @@ public class MemberDaoImplTest {
         String re=dao.addMember(m);
         System.out.print("测试2："+re);
     }
+    @Test
+    public void getRecommendBySearchedTest() throws Exception{
+        String username="miku";
 
+        List<Recommender> recommender =dao.getRecommendBySearched(username);
+        for(int i=0;i<recommender.size();i++){
+            System.out.println(recommender.get(i).getRepository()+"   "+recommender.get(i).getKeyword());
+        }
+
+    }
 
 
 }

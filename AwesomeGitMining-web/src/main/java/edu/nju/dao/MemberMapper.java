@@ -26,5 +26,6 @@ public interface MemberMapper {
 
     List<String> getWord(String username);
     void addWord(Word word);
+    List<String> findWord(String keyword);//根据关键词从项目的描述里模糊搜索出相关的项目名
 
 }
