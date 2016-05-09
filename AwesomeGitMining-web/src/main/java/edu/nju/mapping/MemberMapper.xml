@@ -32,4 +32,12 @@
     from repository
     where description like "%"#{keyword}"%"
   </select>
+  <select id="findStarRepo" resultType="java.lang.String" parameterType="java.lang.String">
+    select repo_fullname
+    from watch_repo
+    where username = #{username}
+  </select>
+  <insert id="addStarRepo" parameterType="edu.nju.model.StarRepo" flushCache="true">
+    insert into watch_repo(username,repo_fullname,watch_repo_time) values(#{username},#{repo_fullname},#{watch_repo_time})
+  </insert>
 </mapper>

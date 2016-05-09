@@ -96,7 +96,7 @@ public class IMemberDaoImpl implements IMemberDao{
             System.out.println(wordList_fin.get(t));
         }
         }
-        
+
         for(int m=0;m<keyword.size();m++){
             List<String>repo_name=mapper.findWord(keyword.get(m));
             System.out.println("Len:"+repo_name.size());

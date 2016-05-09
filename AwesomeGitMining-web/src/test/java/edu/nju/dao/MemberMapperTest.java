@@ -1,6 +1,7 @@
 package edu.nju.dao;
 
 import edu.nju.model.Member;
+import edu.nju.model.StarRepo;
 import edu.nju.model.Word;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -82,5 +83,31 @@ public class MemberMapperTest {
             System.out.println(p.get(i)+" ");
         }
     }
+
+    @Test
+    public void addStarRepoTest() throws Exception{
+        java.sql.Date sd;
+        java.util.Date ud;
+
+        ud = new java.util.Date();
+        sd = new java.sql.Date(ud.getTime());
+        StarRepo w=new StarRepo("miku","tcurdt/jdeb",sd);
+        dao.addStarRepo(w);
+       System.out.println("2333");
+
+    }
+    @Test
+    public void findStarRepoTest() throws Exception{
+        String name="miku";
+        List<String> w=new ArrayList<String>();
+        w=dao.findStarRepo(name);
+        int length=w.size();
+        for(int i=0;i<length;i++) {
+            System.out.print(w.get(i)+" ");
+        }
+
+
+    }
+
 
 }
