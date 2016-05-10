@@ -1,9 +1,6 @@
 package edu.nju.dao;
 
-import edu.nju.model.Pager;
-import edu.nju.model.Recommender;
-import edu.nju.model.SystemContext;
-import edu.nju.model.Member;
+import edu.nju.model.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -38,9 +35,9 @@ public class MemberDaoImplTest {
     @Test
     public void addMemberTest() throws Exception {
     Member m=new Member();
-        m.setUsername("miku");
+        m.setUsername("Sa");
         m.setPassword("123456");
-        m.setMember_email("ttttt");
+        m.setMember_email("llllll");
         String re=dao.addMember(m);
         System.out.print("测试2："+re);
     }
@@ -54,6 +51,50 @@ public class MemberDaoImplTest {
         }
 
     }
+    @Test
+    public void findStarRepoTest() throws Exception{
+        String username="miku";
+
+        List<String> share =dao.getStaredRepos(username);
+        for(int i=0;i<share.size();i++){
+            System.out.println(share.get(i));
+        }
+
+    }
+
+    @Test
+    public void addShareRepoTest() throws Exception{
+        java.sql.Date sd;
+        java.util.Date ud;
+
+        ud = new java.util.Date();
+        sd = new java.sql.Date(ud.getTime());
+        StarRepo w=new StarRepo("Lukawa","tcurdt/jdeb",sd);
+        StarRepo x=new StarRepo("Lukawa","jdoklovic/maven-cli-plugin",sd);
+        StarRepo y=new StarRepo("Lukawa","davidB/yuicompressor-maven-plugin",sd);
+        StarRepo z=new StarRepo("Sa","tcurdt/jdeb",sd);
+        StarRepo r=new StarRepo("Sa","jlong/radius",sd);
+        dao.addShareRepo(w);
+        dao.addShareRepo(x);
+        dao.addShareRepo(y);
+        dao.addShareRepo(z);
+        dao.addShareRepo(r);
+    }
+
+
+
+    @Test
+    public void getRecommendByOtherTest() throws Exception{
+        String uaername="miku";
+        List<String>list=dao.getRecommendByOther(uaername);
+        for(int i=0;i<list.size();i++){
+            System.out.println(list.get(i));
+        }
+
+
+    }
+
+
 
 
 }

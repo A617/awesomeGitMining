@@ -16,7 +16,9 @@ public class StarRepo {
         this.repo_fullname = repo_fullname;
         this.watch_repo_time = watch_repo_time;
     }
+    public StarRepo(){
 
+    }
     public Integer getWatch_id() {
         return watch_id;
     }

@@ -40,4 +40,9 @@
   <insert id="addStarRepo" parameterType="edu.nju.model.StarRepo" flushCache="true">
     insert into watch_repo(username,repo_fullname,watch_repo_time) values(#{username},#{repo_fullname},#{watch_repo_time})
   </insert>
+  <select id="findMemberByRepo" resultType="java.lang.String" parameterType="java.lang.String">
+    select username
+    from watch_repo
+    where repo_fullname = #{repo_fullname}
+  </select>
 </mapper>

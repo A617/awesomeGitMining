@@ -105,9 +105,20 @@ public class MemberMapperTest {
         for(int i=0;i<length;i++) {
             System.out.print(w.get(i)+" ");
         }
+    }
 
+    @Test
+    public void findMemberByRepoTest() throws Exception{
+        String reponame="tcurdt/jdeb";
+        List<String>username=new ArrayList<String>();
+        username=dao.findMemberByRepo(reponame);
+        for(int i=0;i<username.size();i++){
+            System.out.println(username.get(i));
+        }
 
     }
+
+
 
 
 }
