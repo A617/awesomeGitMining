@@ -18,8 +18,8 @@
     <div class="row">
         <nav class="templatemo-top-nav">
             <ul>
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="/repo/repos?pager.offset=0">Repository</a></li>
+                <li><a href="/index.jsp">Home</a></li>
+                <li><a href="/repo/repos?pager.offset=0" class="active">Repository</a></li>
                 <li><a href="/user/users?pager.offset=0">User</a></li>
                 <li><a href="#">Repository Statistics</a></li>
                 <li><a href="#">User Statistics</a></li>
@@ -71,9 +71,19 @@
         <div class="templatemo-flex-row flex-content-row">
             <div class="templatemo-content-widget white-bg col-1 animated fadeInUp">
                 <h1>${repo.fullName}</h1><hr>
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-7 col-md-6">
                     <p><strong>${repo.description}</strong></p><br>
-                    <p><strong class="text-purple">Project URL:</strong>&nbsp;<a href=${repo.cloneUrl}>${repo.cloneUrl}</a></p><br>
+                    <p><strong class="text-purple">Project URL:</strong>&nbsp;<a href=${repo.cloneUrl}>${repo.cloneUrl}</a></p>
+                    <div class="m-top-sm text-centers">
+                        <%session.setAttribute("backuri","/");%>
+                        <%
+                            if(session.getAttribute("loginMember")!=null){
+                        %>
+                        <a class="btn btn-success">Follow</a>
+                        <%
+                            }
+                        %>
+                    </div>
 
                     <h4 class="m-top-md m-bottom-sm">Repository Statistics</h4>
                     <div>
@@ -95,7 +105,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-5 col-md-6">
 
                 </div>
             </div>
