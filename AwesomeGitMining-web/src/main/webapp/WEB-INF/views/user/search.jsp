@@ -9,7 +9,7 @@
     <title>Repository List</title>
     <link href="<c:url value="/css/listcss.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" media="all">
-    <link href="<c:url value="/css/templatemo-style.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
@@ -20,8 +20,8 @@
         <nav class="templatemo-top-nav">
             <ul>
                 <li><a href="/index.jsp">Home</a></li>
-                <li><a href="/repo/repos?pager.offset=0" class="active">Repository</a></li>
-                <li><a href="/user/users?pager.offset=0">User</a></li>
+                <li><a href="/repo/repos?pager.offset=0">Repository</a></li>
+                <li><a href="/user/users?pager.offset=0" class="active">User</a></li>
                 <li><a href="#">Repository Statistics</a></li>
                 <li><a href="#">User Statistics</a></li>
                 <li><a href="#">Recommended</a> </li>
@@ -29,7 +29,7 @@
         </nav>
 
         <div class="dropdown navbar-right">
-            <%session.setAttribute("backuri","/user/users/search");%>
+            <%session.setAttribute("backuri","/user/search");%>
             <%
                 if(session.getAttribute("loginMember")==null){
             %>
@@ -96,7 +96,7 @@
 
                 <ul class="pagination  pagination-centered">
                     ${pageUrl}<br>
-                    <pg:pager url="/user/users/search" items="${total}">
+                    <pg:pager url="/user/search" items="${total}">
                         <li>
                             <pg:first>
                                 <a href="${pageUrl}">Begin</a>

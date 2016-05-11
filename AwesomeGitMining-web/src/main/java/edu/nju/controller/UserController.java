@@ -56,7 +56,7 @@ public class UserController {
         return new ModelAndView("/user/show","user",user);
     }
 
-    @RequestMapping(value = "/users/search",method = RequestMethod.GET)
+    @RequestMapping(value = "/search",method = RequestMethod.GET)
     public ModelAndView searchUser(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
         String param = request.getParameter("name");
@@ -67,7 +67,7 @@ public class UserController {
             session.setAttribute("condition", condition);
             //如果Session中的condition为空，再判断传入的参数是否为空，如果为空就跳转到搜索结果页面
             if (param == null || "".equals(param)) {
-                return null;
+                return new ModelAndView("/user/search");
             }
         }
         //如果SESSION不为空，且传入的搜索条件param不为空，那么将param赋值给condition
