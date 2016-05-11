@@ -22,7 +22,7 @@
                     <li><a href="/user/users?pager.offset=0">User</a></li>
                     <li><a href="#">Repository Statistics</a></li>
                     <li><a href="#">User Statistics</a></li>
-                    <li><a href="#">Recommended</a> </li>
+                    <li><a href="/recommend">Recommended</a> </li>
                 </ul>
             </nav>
 
@@ -50,7 +50,7 @@
                 </a>
                 <ul class="dropdown-menu animated fadeInRight">
                     <li>
-                        <a href="#">Favorite Repositories</a>
+                        <a href="/favouriteRepos">Favorite Repositories</a>
                     </li>
                     <li>
                         <a href="#">Favorite Users</a>
