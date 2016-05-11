@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,7 +68,20 @@ public class RepoController {
     public ModelAndView showRepo(@PathVariable String ownerName, @PathVariable String repoName) {
         String fullName = ownerName + "/" + repoName;
         Repository repo = repoService.getRepoByFullname(fullName);
-        return new ModelAndView("/repo/show", "repo", repo);
+
+        String s1=repo.getContributorsLogin();
+        String[] arr1 = s1.substring(1,s1.length()-1).split(",");
+        List<String> contributors = Arrays.asList(arr1);
+
+        String s2=repo.getCollaboratorsLogin();
+        String[] arr2 = s2.substring(1,s2.length()-1).split(",");
+        List<String> collaborators = Arrays.asList(arr2);
+
+        Map<String,Object> result = new HashMap<>();
+        result.put("repo",repo);
+        result.put("collaborators",collaborators);
+        result.put("contributors",contributors);
+        return new ModelAndView("/repo/show", result);
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)

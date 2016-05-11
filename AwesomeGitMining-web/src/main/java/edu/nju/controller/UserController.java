@@ -1,5 +1,6 @@
 package edu.nju.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.nju.model.Pager;
 import edu.nju.model.User;
 import edu.nju.service.IUserService;
@@ -14,9 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.util.*;
 
 /**
  * Created by Dora on 2016/4/29.
@@ -53,7 +53,23 @@ public class UserController {
     @RequestMapping(value = "/{login}",method = RequestMethod.GET)
     public  ModelAndView showUser(@PathVariable String login){
         User user= userService.getUserByLogin(login);
-        return new ModelAndView("/user/show","user",user);
+        List<String> contributions = null;
+        List<String> collaborations = null;
+        ObjectMapper mapper = new ObjectMapper();
+
+        String s1=user.getContributionsFullname();
+        String[] arr1 = s1.substring(1,s1.length()-1).split(",");
+        contributions = Arrays.asList(arr1);
+
+        String s2=user.getCollaborationFullname();
+        String[] arr2 = s2.substring(1,s2.length()-1).split(",");
+        collaborations = Arrays.asList(arr2);
+
+        Map<String,Object> result = new HashMap<>();
+        result.put("user",user);
+        result.put("contributions",contributions);
+        result.put("collaborations",collaborations);
+        return new ModelAndView("/user/show",result);
     }
 
     @RequestMapping(value = "/search",method = RequestMethod.GET)
