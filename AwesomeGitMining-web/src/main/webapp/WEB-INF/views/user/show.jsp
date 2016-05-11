@@ -1,207 +1,138 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: fwtgm
-  Date: 2016/5/3
-  Time: 20:44
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>User</title>
-    <link href="<c:url value="/css/repo/bootstrap.css"/>" rel="stylesheet" type="text/css" media="all">
-    <link href="<c:url value="/css/repo/style.css"/>" rel="stylesheet" type="text/css" media="all" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="My Skills Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <script src="<c:url value="/js/jquery-1.11.1.min.js"/>"></script>
-    <!---- start-smoth-scrolling---->
-    <script type="text/javascript" src="<c:url value="/js/move-top.js"/>"></script>
-    <script type="text/javascript" src="<c:url value="/js/easing.js"/>"></script>
-    <script type="text/javascript">
-        jQuery(document).ready(function($) {
-            $(".scroll").click(function(event){
-                event.preventDefault();
-                $('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
-            });
-        });
-    </script>
-    <!---End-smoth-scrolling---->
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>User Detail</title>
+    <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/simplify.min.css"/>" rel="stylesheet" type="text/css" media="all">
 </head>
-<body>
-<!--start-header-section-->
-<div class="header-section">
-    <div class="continer">
-        <img name="imageTuxiang" src="" width="197" height="158" alt="">
-        <h1>${user.login}<span>!</span></h1>
-        <p>${user.blog}</p>
-        <a href="#contact" class="scroll top"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></a>
+<body class="light-gray-bg">
+<div class="templatemo-top-nav-container">
+    <div class="row">
+        <nav class="templatemo-top-nav">
+            <ul>
+                <li><a href="/index.jsp">Home</a></li>
+                <li><a href="/repo/repos?pager.offset=0">Repository</a></li>
+                <li><a href="/user/users?pager.offset=0" class="active">User</a></li>
+                <li><a href="#">Repository Statistics</a></li>
+                <li><a href="#">User Statistics</a></li>
+                <li><a href="#">Recommended</a> </li>
+            </ul>
+        </nav>
+
+        <div class="dropdown navbar-right">
+            <%session.setAttribute("backuri","/");%>
+            <%
+                if(session.getAttribute("loginMember")==null){
+            %>
+            <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+                Visitors <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu animated fadeInRight">
+                <li>
+                    <a href="/login.jsp">Sign in</a>
+                </li>
+                <li>
+                    <a href="/register">Sign up</a>
+                </li>
+            </ul>
+            <%
+            }else{
+            %>
+            <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+                <%=session.getAttribute("loginMember")%><b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu animated fadeInRight">
+                <li>
+                    <a href="#">Favorite Repositories</a>
+                </li>
+                <li>
+                    <a href="#">Favorite Users</a>
+                </li>
+                <li>
+                    <a href="/logout">Log out</a>
+                </li>
+            </ul>
+            <%
+                }
+            %>
+        </div>
     </div>
 </div>
-<!--end header-section-->
-<!--start-study-section-->
-<div class="study-section">
-    <div class="container">
-        <div class="study-grids">
-            <div class="col-md-6 study-grid">
-                <h3>Infomation..<span>!</span></h3>
-                <div class="study1">
-                    <p>Name:
-                        <label></label></p>
-                    <p>Address:${user.location}</p>
-                    <p>Company:${user.company}</p>
-                    <p>Email:${user.email}
-                        <label></label></p>
-                    <p>Blog:${user.blog}</p>
-                    <p>url:${user.htmlUrl}</p>
+<div class="templatemo-flex-row">
+    <div class="templatemo-content col-1 light-gray-bg">
+        <div class="templatemo-flex-row flex-content-row">
+            <div class="templatemo-content-widget white-bg col-1 animated fadeInUp">
+                <h1>${user.login}</h1><hr>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="user-profile-pic col-sm-10">
+                        <img src=${user.avatarUrl} alt="">
+                    </div>
+
+                    <div class="col-sm-6 col-md-12">
+                        <div class="user-name m-top-sm"><h3 class="blue-text">${user.name}</h3></div>
+                        <div class="m-top-sm">
+                            <p><strong class="text-purple">Followers:</strong>&nbsp;${user.followers}</p>
+                            <p><strong class="text-purple">Followings:</strong>&nbsp;${user.following}</p>
+                        </div>
+
+                        <div class="m-top-sm text-centers">
+                            <%session.setAttribute("backuri","/");%>
+                            <%
+                                if(session.getAttribute("loginMember")!=null){
+                            %>
+                            <a class="btn btn-success">Follow</a>
+                            <%
+                            }
+                            %>
+                        </div>
+
+                        <h4 class="m-top-md m-bottom-sm">Basic info</h4>
+                        <div class="m-top-sm">
+                            <p><strong class="text-purple">Location:</strong>&nbsp;${user.location}</p>
+                            <p><strong class="text-purple">Join Time:</strong>&nbsp;${user.createdAt}</p>
+                        </div>
+
+                        <h4 class="m-top-md m-bottom-sm">Links</h4>
+                        <p><strong class="text-purple">Email:</strong>&nbsp;${user.email}</p>
+                        <p><strong class="text-purple">Blog:</strong>&nbsp;<a href=${user.blog}>${user.blog}</a></p>
+                        <p><strong class="text-purple">HTML:</strong>&nbsp;<a href=${user.htmlUrl}>${user.htmlUrl}</a></p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <h4 class="header-text m-bottom-md">Languages</h4>
+
+                    <div class="panel panel-default no-border">
+                        <div class="panel-heading border-radius-10">
+                            <h2>Evaluation</h2>
+                        </div>
+                        <div class="panel-body">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+
                 </div>
             </div>
-            <div class="col-md-6 study-grid">
-                <h3>skills..<span>!</span></h3>
-                <div class="study2">
-                    <h4>hot</h4>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                            <span class="sr-only">40% Complete (success)</span>
-                        </div>
-                    </div>
-                    <h4>xxx</h4>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                            <span class="sr-only">20% Complete</span>
-                        </div>
-                    </div>
-                    <h4>hot</h4>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
-                            <span class="sr-only">30% Complete (success)</span>
-                        </div>
-                    </div>
-                    <h4>xxx</h4>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                            <span class="sr-only">60% Complete (warning)</span>
-                        </div>
-                    </div>
-                    <h4>yyy</h4>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                            <span class="sr-only">80% Complete (danger)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
         </div>
     </div>
 </div>
-<!--end study-section--><!--start-services-section-->
-<div class="service-section" id="service">
-    <div class="container">
 
-        <div class="service-grids">
+<footer class="text-right">
+    <p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>
+</footer>
 
-        </div>
-    </div>
-    <!--end services-section-->
-    <!--start-social-section-->
-    <div class="social-icons">
-        <h3>Social Network</h3>
-        <div class="container">
-            <div class="col-md-3 face">
-                <p><i class="facebook"> </i> 733k</p>
-                <h4>followings</h4>
-            </div>
-            <div class="col-md-3 face">
-                <p><i class="twitter"> </i> 620k</p>
-                <h4>Followers</h4>
-            </div>
-            <div class="col-md-3 face">
-                <p><i class="google"> </i> 412k</p>
-                <h4>subscributors</h4>
-            </div>
-            <div class="col-md-3 face">
-                <p><i class="beh"> </i> 322k</p>
-                <h4>contributors</h4>
-            </div>
-            <div class="col-md-3 face">
-                <p><i class="beh"> </i> 322k</p>
-                <h4>collabrators</h4>
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-    </div>
-    <!--end-social-section-->
-    <!--start-contact-section-->
-    <div class="contact-section" id="contact">
-        <div class="container">
-            <h3>projects</h3>
-            <div class="contact-details">
-                <form>
-                    <div class="col-md-6 contact-left">
-
-                    </div>
-
-                    <table table border="1" width="471" height="106"> <tr>
-
-                        <td>创建过的项目</td>
-
-                        <td>贡献过的项目</td>
-
-                    </tr>
-
-                        <tr>
-
-                            <td>XXX</td>
-
-                            <td>XXX</td>
-
-                        </tr>
-                    </table>
-
-                    <div class="clearfix">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114829.39166857985!2d-80.19154352520549!3d25.92148032545394!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b2eec0a4b145%3A0x6fb7ea318103f481!2sCollins+Ave%2C+Sunny+Isles+Beach%2C+FL+33160%2C+USA!5e0!3m2!1sen!2sin!4v1436081255308"></iframe>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!--end-contact-section-->
-    <!--start-map-section-->
-    <div class="google-map"></div>
-    <!--end-map-section-->
-    <!--start-footer-section-->
-    <div class="footer-section">
-        <div class="container">
-            <div class="footer-top">
-                <p>Copyright &copy; 2016.Company name All rights reserved 2A617<a href="http://www.cssmoban.com/" title="网页模板" target="_blank"></a></p>
-            </div>
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    /*
-                     var defaults = {
-                     containerID: 'toTop', // fading element id
-                     containerHoverID: 'toTopHover', // fading element hover id
-                     scrollSpeed: 1200,
-                     easingType: 'linear'
-                     };
-                     */
-
-                    $().UItoTop({ easingType: 'easeOutQuart' });
-
-                });
-            </script>
-            <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-        </div>
-    </div>
-    <!--end-footer-section-->
-
-
-</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

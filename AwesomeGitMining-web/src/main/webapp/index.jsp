@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Awesome gitmining</title>
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" media="all">
-    <link href="<c:url value="/css/templatemo-style.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">

@@ -9,7 +9,7 @@
     <title>User List</title>
     <link href="<c:url value="/css/listcss.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" media="all">
-    <link href="<c:url value="/css/templatemo-style.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
@@ -82,7 +82,7 @@
                     <h2>Tags</h2><hr>
                     <!--search-->
                     <div>
-                        <form action="/user/users/search" method="get">
+                        <form action="/user/search" method="get">
                             <input type="text" class="search-query form-control col-md-10" name="name" placeholder="Search keyword..."><br>
                             <div class="form-group text-right">
                                 <button type="submit" class="fa-align-center templatemo-blue-button">Search</button>
