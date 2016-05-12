@@ -23,7 +23,7 @@
                 <li><a href="/user/users?pager.offset=0" class="active">User</a></li>
                 <li><a href="#">Repository Statistics</a></li>
                 <li><a href="#">User Statistics</a></li>
-                <li><a href="#">Recommended</a> </li>
+                <li><a href="/recommend">Recommended</a> </li>
             </ul>
         </nav>
 
@@ -52,9 +52,6 @@
             <ul class="dropdown-menu animated fadeInRight">
                 <li>
                     <a href="#">Favorite Repositories</a>
-                </li>
-                <li>
-                    <a href="#">Favorite Users</a>
                 </li>
                 <li>
                     <a href="/logout">Log out</a>
@@ -98,7 +95,7 @@
                 </div>
 
                 <div class="col-lg-6 col-md-6 row">
-                    <div class="row">
+                    <div style="height: 160px" class="row">
                         <h4 class="header-text m-bottom-md">Languages</h4>
                         <div>
                             <c:forEach items="${languages }" var="u">

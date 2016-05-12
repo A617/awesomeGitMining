@@ -1,6 +1,7 @@
 package edu.nju.controller;
 
 import edu.nju.model.Member;
+import edu.nju.model.Recommend_key;
 import edu.nju.model.Recommender;
 import edu.nju.model.Repository;
 import edu.nju.service.IMemberService;
@@ -17,7 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Dora on 2016/4/29.
@@ -85,8 +89,16 @@ public class MemberController {
     public ModelAndView showRecommend(HttpSession session) {
         String name = (String) session.getAttribute("loginMember");
         if(name!=null){
-            List<Recommender> list = memberService.getRecommendBySearched(name);
-            return new ModelAndView("/member/recommend","repos",list);
+            Map<String,Object> result = new HashMap<>();
+            List<Recommend_key> keys = memberService.getRecommendBySearched(name);
+            List<Repository> search = new ArrayList<>();
+            for(Recommend_key key : keys) {
+                search.add(key.getRepo());
+            }
+            result.put("search",search);
+            List<Repository> star = memberService.getStaredRepos(name);
+            result.put("star",star);
+            return new ModelAndView("/member/recommend",result);
         }else{
             return null;
         }

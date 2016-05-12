@@ -53,9 +53,6 @@
                         <a href="/favouriteRepos">Favorite Repositories</a>
                     </li>
                     <li>
-                        <a href="#">Favorite Users</a>
-                    </li>
-                    <li>
                         <a href="/logout">Log out</a>
                     </li>
                 </ul>
