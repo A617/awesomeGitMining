@@ -38,4 +38,21 @@ public interface IMemberService {
      * @return
      */
     List<Recommender> getRecommendBySearched(String userName);
+
+    /**
+     *添加关注项目
+     * @param full_name,useName
+     *
+     */
+    void addShareRepo(String full_name,String userName);
+
+    /**
+     * 找到与自己关注同个项目的别人也关注的项目
+     * @param userName
+     * @return
+     */
+    List<Repository> getRecommendByOther(String userName);
+
+
+
 }
