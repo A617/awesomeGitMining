@@ -2,10 +2,7 @@ package edu.nju.service;
 
 import edu.nju.dao.IMemberDao;
 import edu.nju.dao.IRepoDao;
-import edu.nju.model.Member;
-import edu.nju.model.Recommender;
-import edu.nju.model.Repository;
-import edu.nju.model.StarRepo;
+import edu.nju.model.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -44,9 +41,21 @@ public class IMemberServiceImpl implements IMemberService {
     }
 
     @Override
-    public List<Recommender> getRecommendBySearched(String userName) {
-        List<Recommender> list=memberdao.getRecommendBySearched(userName);
-        return list;
+    public List<Recommend_key> getRecommendBySearched(String userName) {
+        List<Recommender> list=memberdao.getRecommendBySearched(userName);//得到所有的项目名字和对应的关键字
+        List<Recommend_key> list_key=new ArrayList<Recommend_key>();
+        if(list.size()!=0) {
+            for (int i = 0; i < list.size(); i++) {
+                Recommend_key r=new Recommend_key();
+                Repository repo=repoDao.getReposByFullName(list.get(i).getRepository());
+                r.setRepo(repo);
+                r.setKeyword(list.get(i).getKeyword());
+                list_key.add(r);
+            }
+
+
+        }
+        return list_key;
     }
 
     @Override
