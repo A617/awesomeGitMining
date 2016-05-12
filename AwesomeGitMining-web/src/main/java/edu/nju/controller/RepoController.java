@@ -85,7 +85,6 @@ public class RepoController {
         Map<String,Integer> languages = null;
         try {
             languages = mapper.readValue(repo.getLanguages(), Map.class);
-            System.out.println(languages);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -95,8 +94,6 @@ public class RepoController {
         result.put("collaborators",collaborators);
         result.put("contributors",contributors);
         result.put("languages",languages);
-        System.out.println(repo.getLanguages());
-        System.out.println(languages);
 
         return new ModelAndView("/repo/show", result);
     }
