@@ -6,6 +6,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>User Detail</title>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/Chart.bundle.js"></script>
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
@@ -107,10 +110,10 @@
                     </div>
                     <br><br><br>
                     <div class="panel panel-default no-border">
-                        <div class="panel-heading border-radius-10">
+                        <div class="panel-heading border-radius-10" ">
                             <h2>Evaluation</h2>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" >                             <canvas id="canvas"></canvas>
                         </div>
                     </div>
                 </div>
@@ -160,11 +163,48 @@
     </div>
 </div>
 
+<script>
+
+    var sc = function(factor) {
+        return Math.round(factor * 10);
+    };
+
+    var config = {
+        type: 'radar',
+        data: {
+            labels: ["popular","teamwork","liveness","experience","quantity"],
+            datasets: [{
+                label: "${user.login}",
+                backgroundColor: "rgba(220,220,220,0.2)",
+                pointBackgroundColor: "rgba(220,220,220,1)",
+                data: [sc(${user.popularScore}),sc(${user.teamworkScore}),sc(${user.livenessScore}),
+                sc(${user.experienceScore}),sc(${user.quantityScore})]
+            }]
+        },
+        options: {
+            title: {
+                display: false
+            },
+            scale: {
+              reverse: false,
+              ticks: {
+                beginAtZero: true
+              }
+            }
+        }
+    };
+
+    window.onload = function() {
+        window.myRadar = new Chart(document.getElementById("canvas"), config);
+    };
+
+
+    </script>
+
 <footer class="text-right">
     <p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>
 </footer>
 
-<script src="/js/jquery.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+
 </body>
 </html>
