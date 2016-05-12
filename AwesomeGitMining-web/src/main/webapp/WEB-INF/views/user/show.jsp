@@ -113,7 +113,8 @@
                         <div class="panel-heading border-radius-10" ">
                             <h2>Evaluation</h2>
                         </div>
-                        <div class="panel-body" >                             <canvas id="canvas"></canvas>
+                        <div class="panel-body" >
+                            <canvas id="canvas"></canvas>
                         </div>
                     </div>
                 </div>
