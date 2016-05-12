@@ -13,6 +13,7 @@
     <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/simplify.min.css"/>" rel="stylesheet" type="text/css" media="all">
     <style type="text/css">
         span {
             width: 50%;
@@ -30,7 +31,7 @@
                     <li><a href="#" class="active">User</a></li>
                     <li><a href="#">Repository Statistics</a></li>
                     <li><a href="#">User Statistics</a></li>
-                    <li><a href="#">Recommended</a> </li>
+                    <li><a href="/recommend">Recommended</a> </li>
                 </ul>
             </nav>
 
@@ -59,9 +60,6 @@
                 <ul class="dropdown-menu animated fadeInRight">
                     <li>
                         <a href="/favouriteRepos">Favorite Repositories</a>
-                    </li>
-                    <li>
-                        <a href="#">Favorite Users</a>
                     </li>
                     <li>
                         <a href="/logout">Log out</a>
@@ -93,33 +91,24 @@
                     <div>
                         <h3 class="text-uppercase"> Languages</h3>
                         <div class="box-content buttons">
-                            <p>
-                                <a href="#" class="btn btn-s-md btn-warning"> All</a>
-                                <a href="#" class="btn btn-s-md btn-warning"> Scala</a>
-                                <a href="#" class="btn btn-s-md btn-warning"> C</a>
-                                <a href="#" class="btn btn-s-md btn-warning"> Ruby</a>
-                                <a href="#" class="btn btn-s-md btn-warning"> Java</a>
-                                <a href="#" class="btn btn-s-md btn-warning"> Python</a>
-                            </p>
-                            <p>
-                                <a href="#" class="btn btn-s-md btn-warning"> JavaScript</a>
-                                <a href="#" class="btn btn-s-md btn-warning"> Perl</a>
-                                <a href="#" class="btn btn-s-md btn-warning"> PHP</a>
-                                <a href="#" class="btn btn-s-md btn-warning"> HTML</a>
-                                <a href="#" class="btn btn-s-md btn-warning"> Shell</a>
-
-                            </p>
-                            <p>
-                                <a href="#" class="btn btn-s-md btn-warning"> Objective-C</a>
-                                <a href="#" class="btn btn-s-md btn-warning"> Haskell</a>
-                                <a href="#" class="btn btn-s-md btn-warning"> Clojure</a>
-                                <a href="#" class="btn btn-s-md btn-warning"> C#</a>
-                            </p>
-                            <p>
-                                <a href="#" class="btn btn-s-md btn-warning"> CSS</a>
-                                <a href="#" class="btn btn-s-md btn-warning"> C++</a>
-                                <a href="#" class="btn btn-s-md btn-warning"> Lua</a>
-                            </p>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> All</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Scala</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> C</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Ruby</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Java</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Python</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> JavaScript</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Perl</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> PHP</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> HTML</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Shell</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> C#</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Lua</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Haskell</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Clojure</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> CSS</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> C++</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Objective-C</a></div>
                         </div>
                     </div>
 
@@ -127,25 +116,25 @@
                         <h3 class="text-uppercase"> Companys</h3>
                         <div class="box-content buttons">
                             <p>
-                                <a href="#" class="btn btn-s-md btn-primary"> All</a>
-                                <a href="#" class="btn btn-s-md btn-primary"> Shopify</a>
-                                <a href="#" class="btn btn-s-md btn-primary"> Google</a>
-                                <a href="#" class="btn btn-s-md btn-primary"> Github</a>
+                                <a href="#" class="blog-tag"> All</a>
+                                <a href="#" class="blog-tag"> Shopify</a>
+                                <a href="#" class="blog-tag"> Google</a>
+                                <a href="#" class="blog-tag"> Github</a>
                             </p>
                             <p>
-                                <a href="#" class="btn btn-s-md btn-primary"> Twitter</a>
-                                <a href="#" class="btn btn-s-md btn-primary"> Red Hat</a>
-                                <a href="#" class="btn btn-s-md btn-primary"> Mozilla</a>
-                                <a href="#" class="btn btn-s-md btn-primary"> Xamarin</a>
+                                <a href="#" class="blog-tag"> Twitter</a>
+                                <a href="#" class="blog-tag"> Red Hat</a>
+                                <a href="#" class="blog-tag"> Mozilla</a>
+                                <a href="#" class="blog-tag"> Xamarin</a>
                             </p>
                             <p>
-                                <a href="#" class="btn btn-s-md btn-primary"> Heroku</a>
-                                <a href="#" class="btn btn-s-md btn-primary"> Facebook</a>
-                                <a href="#" class="btn btn-s-md btn-primary"> Microsoft</a>
+                                <a href="#" class="blog-tag"> Heroku</a>
+                                <a href="#" class="blog-tag"> Facebook</a>
+                                <a href="#" class="blog-tag"> Microsoft</a>
                             </p>
                             <p>
-                                <a href="#" class="btn btn-s-md btn-primary"> C++</a>
-                                <a href="#" class="btn btn-s-md btn-primary"> Lua</a>
+                                <a href="#" class="blog-tag"> C++</a>
+                                <a href="#" class="blog-tag"> Lua</a>
                             </p>
                         </div>
                     </div>
