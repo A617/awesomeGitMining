@@ -71,7 +71,7 @@
         <div class="templatemo-flex-row flex-content-row">
             <div class="templatemo-content-widget white-bg col-1 animated fadeInUp">
                 <h1>${repo.fullName}</h1><hr>
-                <div class="col-lg-7 col-md-6">
+                <div class="col-lg-6 col-md-6">
                     <p><strong>${repo.description}</strong></p><br>
                     <p><strong class="text-purple">Project URL:</strong>&nbsp;<a href=${repo.cloneUrl}>${repo.cloneUrl}</a></p>
                     <div class="m-top-sm text-centers">
@@ -79,7 +79,7 @@
                         <%
                             if(session.getAttribute("loginMember")!=null){
                         %>
-                        <a class="btn btn-success">Follow</a>
+                        <a class="btn btn-success">Star</a>
                         <%
                             }
                         %>
@@ -104,8 +104,48 @@
                             <h3 class="no-margin">${repo.subscribersCount}</h3>
                         </div>
                     </div>
+                    <br><br><br><br>
+                    <h4 class="m-top-md m-bottom-sm">Related Users</h4>
+                    <div>
+                        <div class="col-lg-6 col-md-6" style="height:300px; overflow:auto">
+                            <table style="overflow-y: auto" class="table table-striped table-bordered templatemo-user-table">
+                                <thead>
+                                <tr>
+                                    <td>Contributers</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${contributors }" var="u">
+                                    <tr>
+                                        <td>
+                                            <a href="/user/${u}">${u}</a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-lg-6 col-md-6" style="height:300px; overflow:auto">
+                            <table style="overflow-y: auto" class="table table-striped table-bordered templatemo-user-table">
+                                <thead>
+                                <tr>
+                                    <td>Collaborators</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${collaborators }" var="u">
+                                    <tr>
+                                        <td>
+                                            <a href="/user/${u}">${u}</a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-5 col-md-6">
+                <div class="col-lg-6 col-md-6">
 
                 </div>
             </div>

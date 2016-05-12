@@ -84,17 +84,6 @@
                             <p><strong class="text-purple">Followings:</strong>&nbsp;${user.following}</p>
                         </div>
 
-                        <div class="m-top-sm text-centers">
-                            <%session.setAttribute("backuri","/");%>
-                            <%
-                                if(session.getAttribute("loginMember")!=null){
-                            %>
-                            <a class="btn btn-success">Follow</a>
-                            <%
-                            }
-                            %>
-                        </div>
-
                         <h4 class="m-top-md m-bottom-sm">Basic info</h4>
                         <div class="m-top-sm">
                             <p><strong class="text-purple">Location:</strong>&nbsp;${user.location}</p>
@@ -108,9 +97,18 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-md-6">
-                    <h4 class="header-text m-bottom-md">Languages</h4>
-
+                <div class="col-lg-6 col-md-6 row">
+                    <div class="row">
+                        <h4 class="header-text m-bottom-md">Languages</h4>
+                        <div>
+                            <c:forEach items="${languages }" var="u">
+                                <div class="col-lg-3 col-md-6">
+                                    <h3 class="no-margin text-purple">${u}</h3>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                    <br><br><br>
                     <div class="panel panel-default no-border">
                         <div class="panel-heading border-radius-10">
                             <h2>Evaluation</h2>
@@ -121,7 +119,44 @@
                 </div>
 
                 <div class="col-lg-3 col-md-6">
-
+                    <h4 class="m-top-md m-bottom-sm">Related Repositories</h4>
+                    <div style="height:400px; overflow-y: auto">
+                        <table class="table table-striped table-bordered templatemo-user-table">
+                            <thead>
+                            <tr>
+                                <td>Contributed Projects</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${contributions}" var="u">
+                               <tr>
+                                   <td>
+                                       <a href="/repo/${u}">${u}</a>
+                                   </td>
+                               </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <div style="height:400px; overflow:auto">
+                        <table style="overflow-y: auto" class="table table-striped table-bordered templatemo-user-table">
+                            <thead>
+                            <tr>
+                                <td>Collaborated Projects</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${collaborations }" var="u">
+                                <tr>
+                                    <td>
+                                        <a href="/repo/${u}">${u}</a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

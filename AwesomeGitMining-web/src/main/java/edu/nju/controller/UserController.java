@@ -55,6 +55,7 @@ public class UserController {
         User user= userService.getUserByLogin(login);
         List<String> contributions = null;
         List<String> collaborations = null;
+        List<String> languages = null;
         ObjectMapper mapper = new ObjectMapper();
 
         String s1=user.getContributionsFullname();
@@ -65,10 +66,15 @@ public class UserController {
         String[] arr2 = s2.substring(1,s2.length()-1).split(",");
         collaborations = Arrays.asList(arr2);
 
+        String s3=user.getLanguages();
+        String[] arr3 = s3.substring(1,s3.length()-1).split(",");
+        languages = Arrays.asList(arr3);
+
         Map<String,Object> result = new HashMap<>();
         result.put("user",user);
         result.put("contributions",contributions);
         result.put("collaborations",collaborations);
+        result.put("languages",languages);
         return new ModelAndView("/user/show",result);
     }
 
