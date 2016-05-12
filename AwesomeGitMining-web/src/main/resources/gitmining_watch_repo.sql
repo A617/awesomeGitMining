@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS `watch_repo`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `watch_repo` (
   `watch_id` int(11) NOT NULL AUTO_INCREMENT,
-  `member_id` int(11) NOT NULL,
-  `repo_id` varchar(45) NOT NULL,
+  `username` varchar(16) NOT NULL,
+  `repo_fullname` varchar(64) NOT NULL,
   `watch_repo_time` date NOT NULL,
   PRIMARY KEY (`watch_id`),
   UNIQUE KEY `watch_id_UNIQUE` (`watch_id`)
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-06 15:36:57
+-- Dump completed on 2016-05-12  8:55:12

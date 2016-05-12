@@ -23,10 +23,13 @@ DROP TABLE IF EXISTS `member`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `member` (
-  `userid` varchar(30) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `password` varchar(32) NOT NULL,
-  PRIMARY KEY (`userid`)
+  `userid` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(16) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `member_email` varchar(30) NOT NULL,
+  PRIMARY KEY (`userid`),
+  UNIQUE KEY `member_id_UNIQUE` (`userid`),
+  UNIQUE KEY `member_name_UNIQUE` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -36,7 +39,6 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES ('admin','administrator','admin');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-02 22:22:34
+-- Dump completed on 2016-05-12  8:55:11
