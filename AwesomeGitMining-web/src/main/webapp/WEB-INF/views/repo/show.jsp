@@ -79,7 +79,7 @@
                         <%
                             if(session.getAttribute("loginMember")!=null){
                         %>
-                        <a class="btn btn-success">Star</a>
+                        <button class="btn btn-success" action=${repo.fullName} method="post" onclick="star">Star</button>
                         <%
                             }
                         %>
