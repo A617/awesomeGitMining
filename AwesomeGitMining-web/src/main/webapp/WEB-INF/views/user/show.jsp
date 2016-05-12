@@ -167,11 +167,9 @@
 </div>
 
 <script>
-
     var sc = function(factor) {
         return Math.round(factor * 10);
     };
-
     var config = {
         type: 'radar',
         data: {
@@ -179,9 +177,10 @@
             datasets: [{
                 label: "${user.login}",
                 backgroundColor: "rgba(220,220,220,0.2)",
-                pointBackgroundColor: "rgba(220,220,220,1)",
+                pointBackgroundColor: "#99CCFF",
+                pointBorderColor: "#6699CC",
                 data: [sc(${user.popularScore}),sc(${user.teamworkScore}),sc(${user.livenessScore}),
-                sc(${user.experienceScore}),sc(${user.quantityScore})]
+                sc(${user.experienceScore}),sc(${user.quantityScore})],
             }]
         },
         options: {
@@ -200,8 +199,6 @@
     window.onload = function() {
         window.myRadar = new Chart(document.getElementById("canvas"), config);
     };
-
-
     </script>
 
 <footer class="text-right">
