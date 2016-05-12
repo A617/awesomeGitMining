@@ -95,6 +95,8 @@ public class RepoController {
         result.put("collaborators",collaborators);
         result.put("contributors",contributors);
         result.put("languages",languages);
+        System.out.println(repo.getLanguages());
+        System.out.println(languages);
 
         return new ModelAndView("/repo/show", result);
     }

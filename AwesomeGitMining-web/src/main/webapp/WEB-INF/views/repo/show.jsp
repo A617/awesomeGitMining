@@ -171,7 +171,7 @@
     var sc = function(factor) {
         return Math.round(factor * 10);
     };
-    var config = {
+    var config1 = {
         type: 'radar',
         data: {
             labels: ["size","scale","promising","participation","hot"],
@@ -196,9 +196,46 @@
             }
         }
     };
-    window.onload = function() {
-        window.myRadar = new Chart(document.getElementById("radar-chart"), config);
+
+
+    var labels = new Array();
+    var datas = new Array();
+    <c:forEach items="${languages}" var="mm">
+        labels.push("${mm.key}");
+        datas.push("${mm.value}");
+    </c:forEach>
+
+
+    var data = {
+    labels: labels,
+    datasets: [{
+            data:datas,
+            backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ]
+        }]
     };
+
+    var config2 = {
+        type: 'pie',
+        data: data,
+        options: {
+            responsive: true
+        }
+    };
+
+    window.onload = function() {
+            window.myRadar = new Chart(document.getElementById("radar-chart"), config1);
+            var ctx = document.getElementById("pie-chart").getContext("2d");
+                    window.myPie = new Chart(ctx, config2);
+        };
 </script>
 
 
