@@ -72,7 +72,7 @@
                 <ul class="dashboard-list"> 
                     <c:forEach items="${search}" var="repo">
                         <li>
-                            <h3><strong><a href="${repo.fullName }">${repo.fullName }</a></strong></h3>
+                            <h3><strong><a href="/repo/${repo.fullName }">${repo.fullName }</a></strong></h3>
                             <p style="text-align: right"><strong>${repo.language}</strong></p>
                             <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}</span>
                                 <span><strong>Forks:</strong>&nbsp;${repo.forksCount}</span>
@@ -92,7 +92,7 @@
                 <ul class="dashboard-list"> 
                     <c:forEach items="${star}" var="repo">
                         <li>
-                            <h3><strong><a href="${repo.fullName }">${repo.fullName }</a></strong></h3>
+                            <h3><strong><a href="/repo/${repo.fullName }">${repo.fullName }</a></strong></h3>
                             <p style="text-align: right"><strong>${repo.language}</strong></p>
                             <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}</span>
                                 <span><strong>Forks:</strong>&nbsp;${repo.forksCount}</span>
