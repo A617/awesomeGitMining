@@ -1,5 +1,7 @@
 package edu.nju.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import edu.nju.model.Pager;
 import edu.nju.model.Repository;
 import edu.nju.service.IRepoService;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -69,6 +72,8 @@ public class RepoController {
         String fullName = ownerName + "/" + repoName;
         Repository repo = repoService.getRepoByFullname(fullName);
 
+        ObjectMapper mapper = new ObjectMapper();
+
         String s1=repo.getContributorsLogin();
         String[] arr1 = s1.substring(1,s1.length()-1).split(",");
         List<String> contributors = Arrays.asList(arr1);
@@ -77,10 +82,20 @@ public class RepoController {
         String[] arr2 = s2.substring(1,s2.length()-1).split(",");
         List<String> collaborators = Arrays.asList(arr2);
 
+        Map<String,Integer> languages = null;
+        try {
+            languages = mapper.readValue(repo.getLanguages(), Map.class);
+            System.out.println(languages);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Map<String,Object> result = new HashMap<>();
         result.put("repo",repo);
         result.put("collaborators",collaborators);
         result.put("contributors",contributors);
+        result.put("languages",languages);
+
         return new ModelAndView("/repo/show", result);
     }
 

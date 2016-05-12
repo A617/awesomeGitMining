@@ -2,6 +2,7 @@ package edu.nju.service;
 
 import edu.nju.dao.MemberMapper;
 import edu.nju.model.Member;
+import edu.nju.model.Recommend_key;
 import edu.nju.model.Recommender;
 import edu.nju.model.Repository;
 
@@ -37,7 +38,7 @@ public interface IMemberService {
      * @param userName
      * @return
      */
-    List<Recommender> getRecommendBySearched(String userName);
+    List<Recommend_key> getRecommendBySearched(String userName);
 
     /**
      *添加关注项目

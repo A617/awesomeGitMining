@@ -6,6 +6,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>User Detail</title>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/Chart.bundle.js"></script>
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
@@ -23,7 +26,7 @@
                 <li><a href="/user/users?pager.offset=0" class="active">User</a></li>
                 <li><a href="#">Repository Statistics</a></li>
                 <li><a href="#">User Statistics</a></li>
-                <li><a href="#">Recommended</a> </li>
+                <li><a href="/recommend">Recommended</a> </li>
             </ul>
         </nav>
 
@@ -52,9 +55,6 @@
             <ul class="dropdown-menu animated fadeInRight">
                 <li>
                     <a href="#">Favorite Repositories</a>
-                </li>
-                <li>
-                    <a href="#">Favorite Users</a>
                 </li>
                 <li>
                     <a href="/logout">Log out</a>
@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="col-lg-6 col-md-6 row">
-                    <div class="row">
+                    <div style="height: 160px" class="row">
                         <h4 class="header-text m-bottom-md">Languages</h4>
                         <div>
                             <c:forEach items="${languages }" var="u">
@@ -110,10 +110,11 @@
                     </div>
                     <br><br><br>
                     <div class="panel panel-default no-border">
-                        <div class="panel-heading border-radius-10">
+                        <div class="panel-heading border-radius-10" ">
                             <h2>Evaluation</h2>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" >
+                            <canvas id="canvas"></canvas>
                         </div>
                     </div>
                 </div>
@@ -163,11 +164,45 @@
     </div>
 </div>
 
+<script>
+    var sc = function(factor) {
+        return Math.round(factor * 10);
+    };
+    var config = {
+        type: 'radar',
+        data: {
+            labels: ["popular","teamwork","liveness","experience","quantity"],
+            datasets: [{
+                label: "${user.login}",
+                backgroundColor: "rgba(220,220,220,0.2)",
+                pointBackgroundColor: "#99CCFF",
+                pointBorderColor: "#6699CC",
+                data: [sc(${user.popularScore}),sc(${user.teamworkScore}),sc(${user.livenessScore}),
+                sc(${user.experienceScore}),sc(${user.quantityScore})],
+            }]
+        },
+        options: {
+            title: {
+                display: false
+            },
+            scale: {
+              reverse: false,
+              ticks: {
+                beginAtZero: true
+              }
+            }
+        }
+    };
+
+    window.onload = function() {
+        window.myRadar = new Chart(document.getElementById("canvas"), config);
+    };
+    </script>
+
 <footer class="text-right">
     <p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>
 </footer>
 
-<script src="/js/jquery.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+
 </body>
 </html>

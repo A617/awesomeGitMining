@@ -6,6 +6,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Repository Detail</title>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/Chart.bundle.js"></script>
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
@@ -23,7 +26,7 @@
                 <li><a href="/user/users?pager.offset=0">User</a></li>
                 <li><a href="#">Repository Statistics</a></li>
                 <li><a href="#">User Statistics</a></li>
-                <li><a href="#">Recommended</a> </li>
+                <li><a href="/recommend">Recommended</a> </li>
             </ul>
         </nav>
 
@@ -52,9 +55,6 @@
             <ul class="dropdown-menu animated fadeInRight">
                 <li>
                     <a href="#">Favorite Repositories</a>
-                </li>
-                <li>
-                    <a href="#">Favorite Users</a>
                 </li>
                 <li>
                     <a href="/logout">Log out</a>
@@ -145,9 +145,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6">
-
+                <div class="col-lg-6 col-md-6" style="height:300px; overflow:auto">
+                        <h4 class="m-top-md m-bottom-sm">Evaluation</h4>
+                        <div style="width:50%; margin:0 auto">
+                            <canvas id="radar-chart" height=200px />
+                        </div>
                 </div>
+                <div class="col-lg-6 col-md-6" style="height:300px; overflow:auto">
+                        <h4 class="m-top-md m-bottom-sm">Languages</h4>
+                        <div style="width:50%; margin:0 auto">
+                            <canvas id="pie-chart" height=200px />
+                        </div>
+                </div>
+
+
             </div>
         </div>
     </div>
@@ -156,7 +167,40 @@
     <p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>
 </footer>
 
-<script src="/js/jquery.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+<script>
+    var sc = function(factor) {
+        return Math.round(factor * 10);
+    };
+    var config = {
+        type: 'radar',
+        data: {
+            labels: ["size","scale","promising","participation","hot"],
+            datasets: [{
+                label: "${repo.fullName}",
+                backgroundColor: "rgba(220,220,220,0.2)",
+                pointBackgroundColor: "#99CCFF",
+                pointBorderColor: "#6699CC",
+                data: [sc(${repo.sizeScore}),sc(${repo.scaleScore}),sc(${repo.promisingScore}),
+                sc(${repo.participationScore}),sc(${repo.hotScore})]
+            }]
+        },
+        options: {
+            title: {
+                display: false
+            },
+            scale: {
+              reverse: false,
+              ticks: {
+                beginAtZero: true
+              }
+            }
+        }
+    };
+    window.onload = function() {
+        window.myRadar = new Chart(document.getElementById("radar-chart"), config);
+    };
+</script>
+
+
 </body>
 </html>
