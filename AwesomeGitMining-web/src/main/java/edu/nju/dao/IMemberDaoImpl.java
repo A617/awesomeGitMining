@@ -12,7 +12,7 @@ import java.util.HashMap;
 /**
  * Created by fw on 2016/5/7.
  */
-@Service("memberdao")
+@Service("memberDao")
 public class IMemberDaoImpl implements IMemberDao{
     @Resource
     private MemberMapper mapper;

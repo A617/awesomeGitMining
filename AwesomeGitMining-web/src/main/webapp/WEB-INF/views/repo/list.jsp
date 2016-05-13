@@ -28,8 +28,8 @@
                     <li><a href="/index.jsp">Home</a></li>
                     <li><a href="#" class="active">Repository</a></li>
                     <li><a href="/user/users?pager.offset=0">User</a></li>
-                    <li><a href="#">Repository Statistics</a></li>
-                    <li><a href="#">User Statistics</a></li>
+                    <li><a href="/sta/repoStatistics">Repository Statistics</a></li>
+                    <li><a href="/sta/userStatistics">User Statistics</a></li>
                     <li><a href="/recommend">Recommended</a> </li>
                 </ul>
             </nav>

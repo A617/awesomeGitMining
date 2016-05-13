@@ -26,13 +26,13 @@ public class UserMapperTest {
     @Test
     public void selectAll() throws Exception {
         List<User> list = dao.selectAll();
-//        for(User u:list)
-//            System.out.println(u.getLogin());
+        for(User u:list)
+            System.out.println(u.getLogin());
     }
 
     @Test
     public void selectByLogin() throws Exception {
-
+        System.out.println(dao.selectByLogin("jhoblitt").getCollaborationFullname());
     }
 
     @Test
@@ -44,5 +44,11 @@ public class UserMapperTest {
         List<User> list = dao.searchUser(map);
         for (User u : list)
             System.out.println(u.getLogin());
+    }
+
+    @Test
+    public void countFirst30Companys(){
+        Map<String,Integer> map = dao.countFirst30Companys();
+        System.out.println(map);
     }
 }
