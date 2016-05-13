@@ -88,7 +88,7 @@
                         </form>
                     </div>
                     <!--tag-->
-                    <div>
+                    <div class="col-lg-12">
                         <h3 class="text-uppercase"> Languages</h3>
                         <div class="box-content buttons">
                             <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> All</a></div>
@@ -108,34 +108,24 @@
                             <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Clojure</a></div>
                             <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> CSS</a></div>
                             <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> C++</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Objective-C</a></div>
+                            <div class="col-lg-6 col-md-6"><a href="#" class="blog-tag"> Objective-C</a></div>
                         </div>
                     </div>
 
-                    <div>
+                    <div class="col-lg-12">
                         <h3 class="text-uppercase"> Companys</h3>
                         <div class="box-content buttons">
-                            <p>
-                                <a href="#" class="blog-tag"> All</a>
-                                <a href="#" class="blog-tag"> Shopify</a>
-                                <a href="#" class="blog-tag"> Google</a>
-                                <a href="#" class="blog-tag"> Github</a>
-                            </p>
-                            <p>
-                                <a href="#" class="blog-tag"> Twitter</a>
-                                <a href="#" class="blog-tag"> Red Hat</a>
-                                <a href="#" class="blog-tag"> Mozilla</a>
-                                <a href="#" class="blog-tag"> Xamarin</a>
-                            </p>
-                            <p>
-                                <a href="#" class="blog-tag"> Heroku</a>
-                                <a href="#" class="blog-tag"> Facebook</a>
-                                <a href="#" class="blog-tag"> Microsoft</a>
-                            </p>
-                            <p>
-                                <a href="#" class="blog-tag"> C++</a>
-                                <a href="#" class="blog-tag"> Lua</a>
-                            </p>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> All</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Shopify</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Google</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Github</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Twitter</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Microsoft</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Mozilla</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Xamarin</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Heroku</a></div>
+                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Facebook</a></div>
+                            <div class="col-lg-6 col-md-6"><a href="#" class="blog-tag"> Red Hat</a></div>
                         </div>
                     </div>
                 </div>

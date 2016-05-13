@@ -225,14 +225,16 @@
     datasets: [{
             data:datas,
             backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
+                "#FFFFCC","#CCFFFF","#FFCCCC",
+                "#99CCCC","#FFCC99","#FFCCCC",
+                "#FF9999","#996699","#FFFF99",
+                "#0099CC","#FF6666","#99CC66"
             ],
             hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
+                "#FFFFCC","#CCFFFF","#FFCCCC",
+                "#99CCCC","#FFCC99","#FFCCCC",
+                "#FF9999","#996699","#FFFF99",
+                "#0099CC","#FF6666","#99CC66"
             ]
         }]
     };

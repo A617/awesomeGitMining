@@ -87,21 +87,22 @@ public class MemberController {
     @RequestMapping(value = "/recommend", method = RequestMethod.GET)
     public ModelAndView showRecommend(HttpSession session) {
         String name = (String) session.getAttribute("loginMember");
-        if (name != null) {
-            Map<String, Object> result = new HashMap<>();
+        Map<String,Object> result = new HashMap<>();
+        if(name!=null){
             List<Recommend_key> keys = memberService.getRecommendBySearched(name);
             List<Repository> search = new ArrayList<>();
-            for (Recommend_key key : keys) {
+            for(Recommend_key key : keys) {
                 search.add(key.getRepo());
             }
-            result.put("search", search);
+            result.put("search",search);
             List<Repository> star = memberService.getStaredRepos(name);
-            result.put("star", star);
-            return new ModelAndView("/member/recommend", result);
-        } else {
-            return null;
+            result.put("star",star);
+            return new ModelAndView("/member/recommend",result);
+        }else{
+            return new ModelAndView("/member/recommend",result);
         }
     }
+
 
     @RequestMapping(value = "/starRepos", method = RequestMethod.POST)
     public

@@ -11,7 +11,6 @@
     <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
-    <link href="<c:url value="/css/simplify.min.css"/>" rel="stylesheet" type="text/css" media="all">
 </head>
 <body class="light-gray-bg">
 <div class="templatemo-top-nav-container">
@@ -65,11 +64,11 @@
 </div>
 
 <div class="templatemo-flex-row"> 
-    <div class="templatemo-content col-1 light-gray-bg"> 
-        <div class="templatemo-content-widget white-bg col-1 animated fadeInUp"> 
-            <h3 class="m-top-md m-bottom-sm">Recommendation from your search records</h3> 
-            <div class="panel-body panel-default margin-10"> 
-                <ul class="dashboard-list"> 
+    <div class="templatemo-content col-1 light-gray-bg templatemo-flex-row"> 
+        <div class="col-2 panel panel-default margin-10 animated fadeInUp">
+            <div class="panel-heading"><h2>Recommendation from your search records</h2></div>
+            <div class="panel-body">
+                <ul class="dashboard-list">
                     <c:forEach items="${search}" var="repo">
                         <li>
                             <h3><strong><a href="/repo/${repo.fullName }">${repo.fullName }</a></strong></h3>
@@ -81,15 +80,16 @@
                             <p class="blue-text">${repo.description}</p>
                             <strong>Last Updated:</strong>&nbsp;${repo.updatedAt}<br>
                         </li>
+                        <hr size="2"/>
                     </c:forEach>
                 </ul> 
             </div>  
-        </div> 
+        </div>
 
-        <div class="templatemo-content-widget white-bg col-1 animated fadeInUp"> 
-            <h3 class="m-top-md m-bottom-sm">Recommendation from your favorite records</h3> 
-            <div class="panel-body panel-default margin-10"> 
-                <ul class="dashboard-list"> 
+        <div class="col-2 panel panel-default margin-10 animated fadeInUp">
+            <div class="panel-heading"><h2>Recommendation from your favorite records</h2></div>
+            <div class="panel-body">
+                <ul class="dashboard-list">
                     <c:forEach items="${star}" var="repo">
                         <li>
                             <h3><strong><a href="/repo/${repo.fullName }">${repo.fullName }</a></strong></h3>
@@ -101,10 +101,11 @@
                             <p class="blue-text">${repo.description}</p>
                             <strong>Last Updated:</strong>&nbsp;${repo.updatedAt}<br>
                         </li>
+                        <hr size="2"/>
                     </c:forEach>
                 </ul> 
             </div>  
-        </div> 
+        </div>
     </div>
 </div> 
 
