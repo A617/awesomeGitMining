@@ -11,6 +11,20 @@
     <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
+    <script src="/js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#repoName").onmouseover(function(){
+                var repoName = $("#repoName").text();
+                $("#p1").html("").hide(3000);
+                $.ajax({
+                    type: "POST",
+                    url: "/getSearch",
+                    data:{"repoName":fullName}
+                });
+            });
+        });
+    </script>
 </head>
 <body class="light-gray-bg">
 <div class="templatemo-top-nav-container">
@@ -71,7 +85,8 @@
                 <ul class="dashboard-list">
                     <c:forEach items="${search}" var="repo">
                         <li>
-                            <h3><strong><a href="/repo/${repo.fullName }">${repo.fullName }</a></strong></h3>
+                            <h3 id="repoName"><strong><a href="/repo/${repo.fullName }">${repo.fullName }</a></strong></h3>
+                            <p id="p1"></p>
                             <p style="text-align: right"><strong>${repo.language}</strong></p>
                             <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}</span>
                                 <span><strong>Forks:</strong>&nbsp;${repo.forksCount}</span>

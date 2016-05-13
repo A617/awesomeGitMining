@@ -119,6 +119,21 @@ public class MemberController {
         req.setAttribute("e", e);
         return new ModelAndView("/error", "e", e);
     }
-
+//    @RequestMapping("/getSearch")
+//    @ResponseBody
+//    public Map<String,String> getBeanBySpringMethod(){
+//
+//        //创建一个Map，用来封装数据
+//        Map<String,String> responseToAjax = new HashMap<String,String>();
+//
+//        responseToAjax.put("message", "ajax请求数据接收成功...");
+//
+//        responseToAjax.put("msg", "@ResponseBody");
+//
+//        //测试输出
+//        System.out.println("测试...，打印这段文字，说明Ajax Asynchronous request 发送成功...");
+//
+//        return responseToAjax;
+//    }
 
 }
