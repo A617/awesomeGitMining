@@ -1,7 +1,9 @@
 package edu.nju.service;
 
 import edu.nju.dao.IMemberDao;
+import edu.nju.dao.IMemberDaoImpl;
 import edu.nju.dao.IRepoDao;
+import edu.nju.dao.IRepoDaoImpl;
 import edu.nju.model.*;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +17,9 @@ import java.util.List;
 @Service("memberService")
 public class IMemberServiceImpl implements IMemberService {
     @Resource
-    private IMemberDao memberdao;
+    private IMemberDaoImpl memberdao;
     @Resource
-    private IRepoDao repoDao;
+    private IRepoDaoImpl repoDao;
 
     @Override
     public String register(Member member) {
