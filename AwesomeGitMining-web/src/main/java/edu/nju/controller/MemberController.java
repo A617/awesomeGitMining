@@ -88,8 +88,8 @@ public class MemberController {
     @RequestMapping(value = "/recommend", method = RequestMethod.GET)
     public ModelAndView showRecommend(HttpSession session) {
         String name = (String) session.getAttribute("loginMember");
+        Map<String,Object> result = new HashMap<>();
         if(name!=null){
-            Map<String,Object> result = new HashMap<>();
             List<Recommend_key> keys = memberService.getRecommendBySearched(name);
             List<Repository> search = new ArrayList<>();
             for(Recommend_key key : keys) {
@@ -100,7 +100,7 @@ public class MemberController {
             result.put("star",star);
             return new ModelAndView("/member/recommend",result);
         }else{
-            return null;
+            return new ModelAndView("/member/recommend",result);
         }
     }
 
