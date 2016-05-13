@@ -9,14 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -102,6 +101,16 @@ public class MemberController {
         }else{
             return new ModelAndView("/member/recommend",result);
         }
+    }
+
+
+    @RequestMapping(value = "/starRepos", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    void starRepo(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+        String repoName = WebUtils.findParameterValue(request,"repoName");
+        String userName = (String) session.getAttribute("loginMember");
+        memberService.addShareRepo(repoName,userName);
     }
 
     //这个控制器中的异常映射到这里

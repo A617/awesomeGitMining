@@ -15,6 +15,19 @@
     <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/simplify.min.css"/>" rel="stylesheet" type="text/css" media="all">
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("button").click(function(){
+                var fullName = $("#fullName").text();
+                $("#p1").html("stared!").hide(3000);
+                $.ajax({
+                    type: "POST",
+                    url: "/starRepos",
+                    data:{"repoName":fullName}
+                });
+            });
+        });
+    </script>
 </head>
 <body class="light-gray-bg">
 <div class="templatemo-top-nav-container">
@@ -70,7 +83,7 @@
     <div class="templatemo-content col-1 light-gray-bg">
         <div class="templatemo-flex-row flex-content-row">
             <div class="templatemo-content-widget white-bg col-1 animated fadeInUp">
-                <h1>${repo.fullName}</h1><hr>
+                <h1 id="fullName">${repo.fullName}</h1><hr>
                 <div class="col-lg-6 col-md-6">
                     <p><strong>${repo.description}</strong></p><br>
                     <p><strong class="text-purple">Project URL:</strong>&nbsp;<a href=${repo.cloneUrl}>${repo.cloneUrl}</a></p>
@@ -79,7 +92,8 @@
                         <%
                             if(session.getAttribute("loginMember")!=null){
                         %>
-                        <button class="btn btn-success" action=${repo.fullName} method="post" onclick="star">Star</button>
+                        <button class="btn btn-success" method="post">Star</button>
+                        <p id="p1"></p>
                         <%
                             }
                         %>
