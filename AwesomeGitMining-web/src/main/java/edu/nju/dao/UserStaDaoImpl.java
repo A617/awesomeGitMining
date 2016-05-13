@@ -19,11 +19,10 @@ public class UserStaDaoImpl implements IUserStaDao {
 
     @Override
     public Map<String, Integer> countFirst30Companys() {
-        List<Map<String,Integer>> list = mapper.countFirst30Companys();
+        List<Map<String,Object>> list = mapper.countFirst30Companys();
         Map<String,Integer> result = new HashMap<>();
-        for(Map<String,Integer> m:list) {
-            System.out.println(m.keySet()+" "+m);
-            result.putAll(m);
+        for(Map<String,Object> m:list) {
+            result.put((String)m.get("company"),Integer.valueOf(m.get("c").toString()));
         }
         return result;
     }

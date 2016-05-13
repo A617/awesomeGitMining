@@ -24,6 +24,6 @@ public interface UserMapper {
 
     int countSearch(String name);
 
-    List<Map<String,Integer>> countFirst30Companys();
+    List<Map<String,Object>> countFirst30Companys();
 
 }

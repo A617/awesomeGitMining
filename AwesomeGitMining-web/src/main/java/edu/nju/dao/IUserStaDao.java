@@ -7,5 +7,5 @@ import java.util.Map;
  */
 public interface IUserStaDao {
 
-    Map<String,Integer> countFirst30Companys();
+    Map<String, Integer> countFirst30Companys();
 }
