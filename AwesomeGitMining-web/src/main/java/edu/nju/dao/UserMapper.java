@@ -2,6 +2,7 @@ package edu.nju.dao;
 
 import edu.nju.model.Pager;
 import edu.nju.model.User;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -23,6 +24,6 @@ public interface UserMapper {
 
     int countSearch(String name);
 
-    Map<String,Integer> countFirst30Companys();
+    List<Map<String,Integer>> countFirst30Companys();
 
 }

@@ -65,18 +65,13 @@
     where login LIKE "%"#{name}"%"
     limit #{pageOffset},#{pageSize}
   </select>
-  <!--<resultMap id="CompanyResultMap" type="java.util.HashMap">-->
-    <!--<id column="company" property="company" jdbcType="CHAR" />-->
-    <!--&lt;!&ndash;<result column="company" property="company" jdbcType="CHAR" />&ndash;&gt;-->
-    <!--<result column="c" property="c" />-->
-  <!--</resultMap>-->
-  <!--<select id="countFirst30Companys" resultType="CompanyResultMap">-->
-    <!--select company,count(id) as c-->
-    <!--from user-->
-    <!--group by company-->
-    <!--order by c desc-->
-    <!--limit 30;-->
-  <!--</select>-->
+  <select id="countFirst30Companys" resultType="hashmap">
+    select company,count(id) as c
+    from user
+    group by company
+    order by c desc
+    limit 30;
+  </select>
   <!-- 分页辅助方法-->
   <select id="countAll" resultType="java.lang.Integer">
     select

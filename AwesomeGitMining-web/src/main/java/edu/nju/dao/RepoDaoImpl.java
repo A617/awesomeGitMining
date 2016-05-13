@@ -14,7 +14,7 @@ import java.util.Map;
  * Created by tj on 2016/5/3.
  */
 @Service("repoDao")
-public class IRepoDaoImpl implements IRepoDao {
+public class RepoDaoImpl implements IRepoDao {
     @Resource
     private RepositoryMapper mapper;
 
