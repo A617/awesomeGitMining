@@ -93,13 +93,12 @@ public class IMemberDaoImpl implements IMemberDao{
         for(int t=0;t<wordList_fin.size();t++){
         if(tag.contains(wordList_fin.get(t))&&(!keyword.contains(wordList_fin.get(t)))){    //搜索词去重
             keyword.add(wordList_fin.get(t));
-            System.out.println(wordList_fin.get(t));
         }
         }
 
         for(int m=0;m<keyword.size();m++){
             List<String>repo_name=mapper.findWord(keyword.get(m));
-            System.out.println("Len:"+repo_name.size());
+           // System.out.println("Len:"+repo_name.size());
             for(int u=0;u<repo_name.size();u++){
                 Recommender re=new Recommender();
                 re.setKeyword(keyword.get(m));

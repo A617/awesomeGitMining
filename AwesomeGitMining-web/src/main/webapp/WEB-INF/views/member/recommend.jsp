@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,15 +13,22 @@
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
     <script src="/js/jquery.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $("#repoName").onmouseover(function(){
-                var repoName = $("#repoName").text();
-                $("#p1").html("").hide(3000);
+        $(document).ready(function () {
+            $(".intro").mouseenter(function () {
+                var repoName =$(this).children(".head").text();
+                var child = $(this).children(".blue-bg");
                 $.ajax({
-                    type: "POST",
+                    type: "GET",
                     url: "/getSearch",
-                    data:{"repoName":fullName}
+                    data: {"repoName": repoName},
+                    success: function (data,status) {
+                        child.html("Recommend from "+data.result).show();
+                   }
                 });
+
+            });
+            $(".intro").mouseleave(function () {
+                $(this).children(".blue-bg").hide();
             });
         });
     </script>
@@ -36,14 +43,14 @@
                 <li><a href="/user/users?pager.offset=0">User</a></li>
                 <li><a href="#">Repository Statistics</a></li>
                 <li><a href="#">User Statistics</a></li>
-                <li><a href="#" class="active">Recommended</a> </li>
+                <li><a href="#" class="active">Recommended</a></li>
             </ul>
         </nav>
 
         <div class="dropdown navbar-right">
-            <%session.setAttribute("backuri","/");%>
+            <%session.setAttribute("backuri", "/");%>
             <%
-                if(session.getAttribute("loginMember")==null){
+                if (session.getAttribute("loginMember") == null) {
             %>
             <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
                 Visitors <b class="caret"></b>
@@ -57,7 +64,7 @@
                 </li>
             </ul>
             <%
-            }else{
+            } else {
             %>
             <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
                 <%=session.getAttribute("loginMember")%><b class="caret"></b>
@@ -84,9 +91,10 @@
             <div class="panel-body">
                 <ul class="dashboard-list">
                     <c:forEach items="${search}" var="repo">
-                        <li>
-                            <h3 id="repoName"><strong><a href="/repo/${repo.fullName }">${repo.fullName }</a></strong></h3>
-                            <p id="p1"></p>
+                        <li class="intro">
+                            <h3 class="head"><strong><a href="/repo/${repo.fullName }">${repo.fullName }</a></strong>
+                            </h3>
+                            <p class="blue-bg"></p>
                             <p style="text-align: right"><strong>${repo.language}</strong></p>
                             <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}</span>
                                 <span><strong>Forks:</strong>&nbsp;${repo.forksCount}</span>
@@ -97,8 +105,10 @@
                         </li>
                         <hr size="2"/>
                     </c:forEach>
-                </ul> 
-            </div>  
+                </ul>
+                 
+            </div>
+              
         </div>
 
         <div class="col-2 panel panel-default margin-10 animated fadeInUp">
@@ -107,7 +117,7 @@
                 <ul class="dashboard-list">
                     <c:forEach items="${star}" var="repo">
                         <li>
-                            <h3><strong><a href="/repo/${repo.fullName }">${repo.fullName }</a></strong></h3>
+                            <h3><strong><button href="/repo/${repo.fullName }">${repo.fullName }</button></strong></h3>
                             <p style="text-align: right"><strong>${repo.language}</strong></p>
                             <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}</span>
                                 <span><strong>Forks:</strong>&nbsp;${repo.forksCount}</span>
@@ -118,11 +128,14 @@
                         </li>
                         <hr size="2"/>
                     </c:forEach>
-                </ul> 
-            </div>  
+                </ul>
+                 
+            </div>
+              
         </div>
     </div>
-</div> 
+</div>
+ 
 
 <footer class="text-right">
     <p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>

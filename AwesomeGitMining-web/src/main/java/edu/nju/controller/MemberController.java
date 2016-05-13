@@ -87,19 +87,19 @@ public class MemberController {
     @RequestMapping(value = "/recommend", method = RequestMethod.GET)
     public ModelAndView showRecommend(HttpSession session) {
         String name = (String) session.getAttribute("loginMember");
-        Map<String,Object> result = new HashMap<>();
-        if(name!=null){
+        Map<String, Object> result = new HashMap<>();
+        if (name != null) {
             List<Recommend_key> keys = memberService.getRecommendBySearched(name);
             List<Repository> search = new ArrayList<>();
-            for(Recommend_key key : keys) {
+            for (Recommend_key key : keys) {
                 search.add(key.getRepo());
             }
-            result.put("search",search);
+            result.put("search", search);
             List<Repository> star = memberService.getStaredRepos(name);
-            result.put("star",star);
-            return new ModelAndView("/member/recommend",result);
-        }else{
-            return new ModelAndView("/member/recommend",result);
+            result.put("star", star);
+            return new ModelAndView("/member/recommend", result);
+        } else {
+            return new ModelAndView("/member/recommend", result);
         }
     }
 
@@ -107,10 +107,10 @@ public class MemberController {
     @RequestMapping(value = "/starRepos", method = RequestMethod.POST)
     public
     @ResponseBody
-    void starRepo(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-        String repoName = WebUtils.findParameterValue(request,"repoName");
+    void starRepo(HttpSession session, HttpServletRequest request) {
+        String repoName = WebUtils.findParameterValue(request, "repoName");
         String userName = (String) session.getAttribute("loginMember");
-        memberService.addShareRepo(repoName,userName);
+        memberService.addShareRepo(repoName, userName);
     }
 
     //这个控制器中的异常映射到这里
@@ -119,21 +119,24 @@ public class MemberController {
         req.setAttribute("e", e);
         return new ModelAndView("/error", "e", e);
     }
-//    @RequestMapping("/getSearch")
-//    @ResponseBody
-//    public Map<String,String> getBeanBySpringMethod(){
-//
-//        //创建一个Map，用来封装数据
-//        Map<String,String> responseToAjax = new HashMap<String,String>();
-//
-//        responseToAjax.put("message", "ajax请求数据接收成功...");
-//
-//        responseToAjax.put("msg", "@ResponseBody");
-//
-//        //测试输出
-//        System.out.println("测试...，打印这段文字，说明Ajax Asynchronous request 发送成功...");
-//
-//        return responseToAjax;
-//    }
+
+    @RequestMapping(value = "/getSearch", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Map<String, Object> getSearch(HttpServletRequest request, HttpSession session, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<String, Object>();
+//        String repoName = WebUtils.findParameterValue(request, "repoName");
+//        String name = (String) session.getAttribute("loginMember");
+//        List<Recommend_key> keys = memberService.getRecommendBySearched(name);
+//        for (Recommend_key key : keys) {
+//            if (key.getRepo().getFullName().equals(repoName)) {
+//                String result = key.getKeyword();
+//                map.put("result", result);
+//                break;
+//            }
+//        }
+        map.put("result","test");
+        return map;
+    }
 
 }
