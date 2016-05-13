@@ -1,7 +1,9 @@
 package edu.nju.service;
 
+import edu.nju.dao.UserStaDaoImpl;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
 /**
@@ -10,8 +12,13 @@ import java.util.Map;
 @Service("userStaService")
 public class UserStaServiceImpl implements IUserStaService{
 
+    @Resource
+    UserStaDaoImpl dao;
+
     @Override
     public Map<String, Integer> getCompanyCounts() {
-        return null;
+        Map<String,Integer> map = dao.countFirst30Companys();
+        map.remove("");
+        return map;
     }
 }

@@ -7,7 +7,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +17,7 @@ import java.util.List;
 public class MemberDaoImplTest {
 
     @Resource
-    IMemberDaoImpl dao;
+    MemberDaoImpl dao;
 
     @Test
     public void searchMemberTest() throws Exception {

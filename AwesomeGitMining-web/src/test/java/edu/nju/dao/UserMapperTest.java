@@ -48,7 +48,8 @@ public class UserMapperTest {
 
     @Test
     public void countFirst30Companys(){
-        Map<String,Integer> map = dao.countFirst30Companys();
-        System.out.println(map);
+        List<Map<String,Object>> map = dao.countFirst30Companys();
+        for(Map<String,Object> m:map)
+            System.out.println(m.keySet()+" "+m.values());
     }
 }

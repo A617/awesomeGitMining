@@ -70,7 +70,8 @@
                 <h2>Local</h2><hr>
             </div>
             <div class="templatemo-content-widget white-bg col-1 animated fadeInRight">
-                <h2>BigQuery</h2><hr>
+                <h2>Test</h2><hr>
+
             </div>
         </div>
     </div>
