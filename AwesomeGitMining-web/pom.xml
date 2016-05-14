@@ -295,20 +295,20 @@
 
 
     </build>
-	<reporting>
-		<plugins>
-		<plugin>
-		<groupId>org.codehaus.mojo</groupId>
-		<artifactId>cobertura-maven-plugin</artifactId>
-		<version>2.5.2</version>
-		<configuration>
-                <formats>   
-                		<!-- 这里很重要,一定要有xml -->                    
-                    <format>xml</format>
-                    <format>html</format>
-                </formats>
-            </configuration>
-		</plugin>
-		</plugins>
-	</reporting>
+	<!--<reporting>-->
+		<!--<plugins>-->
+		<!--<plugin>-->
+		<!--<groupId>org.codehaus.mojo</groupId>-->
+		<!--<artifactId>cobertura-maven-plugin</artifactId>-->
+		<!--<version>2.5.2</version>-->
+		<!--<configuration>-->
+                <!--<formats>   -->
+                		<!--&lt;!&ndash; 这里很重要,一定要有xml &ndash;&gt;                    -->
+                    <!--<format>xml</format>-->
+                    <!--<format>html</format>-->
+                <!--</formats>-->
+            <!--</configuration>-->
+		<!--</plugin>-->
+		<!--</plugins>-->
+	<!--</reporting>-->
 </project>
