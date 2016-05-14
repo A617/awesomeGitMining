@@ -27,7 +27,7 @@ public class RepoServiceImplTest {
 
     @Test
     public void getAllRepos(){
-        Pager<Repository> list = repoService.getAllRepos();
+//       Pager<Repository> list = repoService.getAllRepos();
 //        for (Repository repo:list.getDatas()){
 //            System.out.println(repo.getFullName());
 //        }

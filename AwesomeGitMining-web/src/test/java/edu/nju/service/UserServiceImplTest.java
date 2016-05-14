@@ -24,7 +24,7 @@ public class UserServiceImplTest {
 
     @Test
     public void getAllUsers() throws Exception {
-        List<User> list = userService.getAllUsers();
+ //       List<User> list = userService.getAllUsers();
 //        for(User u:list)
 //            System.out.println(u.getLogin());
     }
@@ -39,10 +39,10 @@ public class UserServiceImplTest {
 
     @Test
     public void testSearch() {
-        Pager<User> list = userService.searchUser("tj");
-        for (User user : list.getDatas()) {
-            System.out.println(user.getLogin());
-        }
+//        Pager<User> list = userService.searchUser("tj");
+//        for (User user : list.getDatas()) {
+//            System.out.println(user.getLogin());
+//        }
     }
 
     public static String unescape(String src) {

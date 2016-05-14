@@ -29,20 +29,20 @@ public class UserControllerTest {
     public void init(){
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
-
-    @Test
-    public void listUsers() throws Exception {
-
-    }
-
-    @Test
-    public void showUser() throws Exception {
-        System.out.println(mockMvc.perform(get("/gregwinn")).toString());
-    }
-
-    @Test
-    public void searchUser() throws Exception {
-
-    }
+//
+//    @Test
+//    public void listUsers() throws Exception {
+//
+//    }
+//
+//    @Test
+//    public void showUser() throws Exception {
+//        System.out.println(mockMvc.perform(get("/gregwinn")).toString());
+//    }
+//
+//    @Test
+//    public void searchUser() throws Exception {
+//
+//    }
 
 }
