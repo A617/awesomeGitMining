@@ -72,6 +72,20 @@
     order by c desc
     limit 30;
   </select>
+  <select id="selectUserByLanguage" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where languages REGEXP #{language}"[^S]"
+    limit #{pageOffset},#{pageSize}
+  </select>
+  <select id="selectUserByCompany" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where company = #{company}
+    limit #{pageOffset},#{pageSize}
+  </select>
   <!-- 分页辅助方法-->
   <select id="countAll" resultType="java.lang.Integer">
     select
@@ -83,5 +97,17 @@
     count(id)
     from user
     where login LIKE "%"#{name}"%"
+  </select>
+  <select id="countLanguage" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select
+    count(id)
+    from user
+    where languages REGEXP #{language}"[^S]"
+  </select>
+  <select id="countCompany" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select
+    count(id)
+    from user
+    where company = #{company}
   </select>
 </mapper>

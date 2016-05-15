@@ -26,4 +26,12 @@ public interface UserMapper {
 
     List<Map<String,Object>> countFirst30Companys();
 
+    List<User> selectUserByLanguage(Map<String,Object> params);
+
+    List<User> selectUserByCompany(Map<String,Object> params);
+
+    int countLanguage(String language);
+
+    int countCompany(String company);
+
 }

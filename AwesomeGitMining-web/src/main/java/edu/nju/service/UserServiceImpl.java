@@ -14,7 +14,7 @@ import java.util.List;
  * Created by Dora on 2016/5/2.
  */
 @Service("userService")
-public class UserServiceImpl implements IUserService{
+public class UserServiceImpl implements IUserService {
 
     @Resource
     private UserDaoImpl userDao;
@@ -39,6 +39,16 @@ public class UserServiceImpl implements IUserService{
     @Override
     public Pager<User> searchUser(String name) {
         return userDao.searchUser(name);
+    }
+
+    @Override
+    public Pager<User> getUserByLanguage(String language) {
+        return userDao.getUserByLanguage(language);
+    }
+
+    @Override
+    public Pager<User> getUserByCompany(String company) {
+        return userDao.getUserByCompany(company);
     }
 
 

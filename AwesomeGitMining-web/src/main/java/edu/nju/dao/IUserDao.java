@@ -33,4 +33,18 @@ public interface IUserDao {
     Pager<User> searchUser(String name);
 
     int countAll();
+
+    /**
+     * 根据语言筛选用户
+     * @param language
+     * @return
+     */
+    Pager<User> getUserByLanguage(String language);
+
+    /**
+     * 根据公司筛选用户
+     * @param company
+     * @return
+     */
+    Pager<User> getUserByCompany(String company);
 }

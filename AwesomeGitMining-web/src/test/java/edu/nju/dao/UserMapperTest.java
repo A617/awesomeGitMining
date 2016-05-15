@@ -26,7 +26,7 @@ public class UserMapperTest {
     @Test
     public void selectAll() throws Exception {
         List<User> list = dao.selectAll();
-        for(User u:list)
+        for (User u : list)
             System.out.println(u.getLogin());
     }
 
@@ -47,9 +47,39 @@ public class UserMapperTest {
     }
 
     @Test
-    public void countFirst30Companys(){
-        List<Map<String,Object>> map = dao.countFirst30Companys();
-        for(Map<String,Object> m:map)
-            System.out.println(m.keySet()+" "+m.values());
+    public void countFirst30Companys() {
+        List<Map<String, Object>> map = dao.countFirst30Companys();
+        for (Map<String, Object> m : map)
+            System.out.println(m.keySet() + " " + m.values());
+    }
+
+    @Test
+    public void testCountLanguage() {
+        System.out.println(dao.countLanguage("java"));
+    }
+
+    @Test
+    public void testLanguage() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("pageSize", 3000);
+        map.put("pageOffset", 0);
+        map.put("language", "java");
+        List<User> list = dao.selectUserByLanguage(map);
+        for (User u : list)
+            System.out.println(u.getLogin() + u.getLanguages());
+    }
+    @Test
+    public void testCountCompany(){
+        System.out.println(dao.countCompany("facebook"));
+    }
+    @Test
+    public void testCompany(){
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("pageSize", 3000);
+        map.put("pageOffset", 0);
+        map.put("company", "facebook");
+        List<User> list = dao.selectUserByCompany(map);
+        for (User u : list)
+            System.out.println(u.getLogin() + u.getCompany());
     }
 }

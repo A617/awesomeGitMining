@@ -53,6 +53,26 @@ public class UserDaoImpl implements IUserDao{
         return mapper.countAll();
     }
 
+    @Override
+    public Pager<User> getUserByLanguage(String language) {
+        Map<String, Object> map = createMap();
+        map.put("language",language);
+        List<User> data = mapper.selectUserByLanguage(map);
+        Pager<User> page = createPage(data,map);
+        page.setTotal(mapper.countLanguage(language));
+        return page;
+    }
+
+    @Override
+    public Pager<User> getUserByCompany(String company) {
+        Map<String, Object> map = createMap();
+        map.put("company",company);
+        List<User> data = mapper.selectUserByCompany(map);
+        Pager<User> page = createPage(data,map);
+        page.setTotal(mapper.countCompany(company));
+        return page;
+    }
+
     private Map<String, Object> createMap() {
         Map<String, Object> map = new HashMap<String, Object>();
         int pageSize = SystemContext.getSize();

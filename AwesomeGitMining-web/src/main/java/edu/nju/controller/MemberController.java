@@ -125,17 +125,17 @@ public class MemberController {
     @ResponseBody
     Map<String, Object> getSearch(HttpServletRequest request, HttpSession session, HttpServletResponse response) {
         Map<String, Object> map = new HashMap<String, Object>();
-//        String repoName = WebUtils.findParameterValue(request, "repoName");
-//        String name = (String) session.getAttribute("loginMember");
-//        List<Recommend_key> keys = memberService.getRecommendBySearched(name);
-//        for (Recommend_key key : keys) {
-//            if (key.getRepo().getFullName().equals(repoName)) {
-//                String result = key.getKeyword();
-//                map.put("result", result);
-//                break;
-//            }
-//        }
-        map.put("result","test");
+        String repoName = WebUtils.findParameterValue(request, "repoName");
+        String name = (String) session.getAttribute("loginMember");
+        List<Recommend_key> keys = memberService.getRecommendBySearched(name);
+        for (Recommend_key key : keys) {
+            if (key.getRepo().getFullName().equals(repoName)) {
+                String result = key.getKeyword();
+                map.put("result", result);
+                break;
+            }
+        }
+      //  map.put("result","test");
         return map;
     }
 
