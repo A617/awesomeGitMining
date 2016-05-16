@@ -168,7 +168,7 @@
             </div>
             <!--list-->
             <div class="col-2 panel panel-default margin-10">
-                <div class="panel-heading"><h2>User List</h2></div>
+                <div class="panel-heading"><h2>Repository List</h2></div>
                 <div class="panel-body">
                     <ul class="dashboard-list">
                         <c:forEach items="${repos }" var="repo">
