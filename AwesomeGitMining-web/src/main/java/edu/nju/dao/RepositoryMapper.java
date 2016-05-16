@@ -44,6 +44,7 @@ public interface RepositoryMapper {
 
     List<Repository> selectReposByKey(Map<String,Object> map);
 
+    List<Repository> selectReposByLan_Key_Year(String language,String keyword,String year,int pageSize,int pageOffset);
 
     int countAll();
 

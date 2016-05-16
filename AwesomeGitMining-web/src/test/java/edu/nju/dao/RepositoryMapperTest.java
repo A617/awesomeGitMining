@@ -105,6 +105,18 @@ public class RepositoryMapperTest {
             System.out.println(dao.countLan_Key_Year(lan,key,year));
     }
 
+    @Test
+    public void selectReposByLan_Key_Year(){
+        String lan="Ruby";
+        String key="Ruby";
+        String year="2008";
+        int pageSize=3000;
+        int pageOffset=0;
+        List<Repository> list = dao.selectReposByLan_Key_Year(lan,key,year,pageSize,pageOffset);
+//        for (Repository u : list)
+//            System.out.println(u.getFullName() + ":" + u.getDescription());
+        System.out.println(list.size());
+    }
 
 
 }

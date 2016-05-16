@@ -106,7 +106,18 @@ public class RepoDaoImpl implements IRepoDao {
         page.setTotal(mapper.countLanguage(language));
         return page;
     }
+    @Override
+    public Pager<Repository> getReposByLan_Key_Year(String language, String keyword, String year) {
+        String lan=language;
+        String key=keyword;
+        String ye=year;
+        Map<String, Object> map = createMap();
+        List<Repository> data = mapper.selectReposByLan_Key_Year(lan,key,ye,(int)map.get("pageSize"),(int)map.get("pageOffset"));
+        Pager<Repository> page = createPage(data,map);
+        page.setTotal(mapper.countLan_Key_Year(lan,key,ye));
 
+        return page;
+    }
     @Override
     public Pager<Repository> getReposByKey(String key) {
         Map<String, Object> map = createMap();
@@ -116,6 +127,8 @@ public class RepoDaoImpl implements IRepoDao {
         page.setTotal(mapper.countKey(key));
         return page;
     }
+
+
 
     private Map<String, Object> createMap() {
         Map<String, Object> map = new HashMap<String, Object>();
