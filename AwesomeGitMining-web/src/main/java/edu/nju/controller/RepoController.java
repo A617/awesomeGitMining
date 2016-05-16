@@ -17,10 +17,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Dora on 2016/4/30.
@@ -31,12 +28,34 @@ public class RepoController {
     @Resource
     private IRepoService repoService;
 
+//    @RequestMapping(value = "/repos", method = RequestMethod.GET)
+//    public ModelAndView listRepos(@RequestParam("pager.offset") int offset) {
+//        Pager<Repository> pager = repoService.getAllRepos();
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("repos", pager.getDatas());
+//        map.put("total", pager.getTotal());
+//        return new ModelAndView("/repo/list", map);
+//    }
+
     @RequestMapping(value = "/repos", method = RequestMethod.GET)
-    public ModelAndView listRepos(@RequestParam("pager.offset") int offset) {
-        Pager<Repository> pager = repoService.getAllRepos();
+    public ModelAndView listRepos(@RequestParam(value="pager.offset",required = false) Integer offset,
+                                  @RequestParam(value="lan",required = false)String lan,
+                                  @RequestParam(value="key",required = false) String key,
+                                  @RequestParam(value="year",required = false)String year) {
+        Set<Repository> set= new HashSet<>();
+        Pager<Repository> total;
+//        if(lan==null){
+            total = repoService.getAllRepos();
+//        }else {
+//            set.addAll(repoService.getReposByLanguage(lan).getDatas());
+//            set.addAll(repoService.getReposByKey(key).getDatas());
+//            set.addAll(repoService.getReposByYear(year).getDatas());
+//            total.addAll(set);
+//        }
+
         Map<String, Object> map = new HashMap<>();
-        map.put("repos", pager.getDatas());
-        map.put("total", pager.getTotal());
+        map.put("repos", total.getDatas());
+        map.put("total", total.getSize());
         return new ModelAndView("/repo/list", map);
     }
 
@@ -126,51 +145,51 @@ public class RepoController {
         return new ModelAndView("/repo/search", map);
     }
 
-    @RequestMapping(value = "/tag", method = RequestMethod.GET)
-    public ModelAndView tagUser(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        String lan = request.getParameter("lan");
-        String key = request.getParameter("key");
-        String year = request.getParameter("year");
-        String condition = (String) session.getAttribute("tag");
-        if (condition == null) {
-            condition = new String();
-            session.setAttribute("tag", condition);
-            if (lan == null || "".equals(lan)) {
-                return new ModelAndView("/repo/tag");
-            }
-            if (key == null || "".equals(key)) {
-                return new ModelAndView("/repo/tag");
-            }
-            if (year == null || "".equals(year)) {
-                return new ModelAndView("/repo/tag");
-            }
-        }
-        if (lan != null && !("".equals(lan))) {
-            condition = lan;
-            session.setAttribute("tag", condition);
-        }
-        if (key != null && !("".equals(key))) {
-            condition = key;
-            session.setAttribute("tag", condition);
-        }
-        if (year != null && !("".equals(year))) {
-            condition = year;
-            session.setAttribute("tag", condition);
-        }
-
-        Pager<Repository> list;
-        if(lan != null){
-            list = repoService.getReposByLanguage(condition);
-        } else if(key != null) {
-            list = repoService.getReposByKey(condition);
-        } else{
-            list = repoService.getReposByYear(Integer.parseInt(condition));
-        }
-        Map<String,Object> map = new HashMap<>();
-        map.put("repos",list.getDatas());
-        map.put("total",list.getTotal());
-        return new ModelAndView("/repo/tag",map);
-    }
+//    @RequestMapping(value = "/tag", method = RequestMethod.GET)
+//    public ModelAndView tagUser(HttpServletRequest request){
+//        HttpSession session = request.getSession();
+//        String lan = request.getParameter("lan");
+//        String key = request.getParameter("key");
+//        String year = request.getParameter("year");
+//        String condition = (String) session.getAttribute("tag");
+//        if (condition == null) {
+//            condition = new String();
+//            session.setAttribute("tag", condition);
+//            if (lan == null || "".equals(lan)) {
+//                return new ModelAndView("/repo/tag");
+//            }
+//            if (key == null || "".equals(key)) {
+//                return new ModelAndView("/repo/tag");
+//            }
+//            if (year == null || "".equals(year)) {
+//                return new ModelAndView("/repo/tag");
+//            }
+//        }
+//        if (lan != null && !("".equals(lan))) {
+//            condition = lan;
+//            session.setAttribute("tag", condition);
+//        }
+//        if (key != null && !("".equals(key))) {
+//            condition = key;
+//            session.setAttribute("tag", condition);
+//        }
+//        if (year != null && !("".equals(year))) {
+//            condition = year;
+//            session.setAttribute("tag", condition);
+//        }
+//
+//        Pager<Repository> list;
+//        if(lan != null){
+//            list = repoService.getReposByLanguage(condition);
+//        } else if(key != null) {
+//            list = repoService.getReposByKey(condition);
+//        } else{
+//            list = repoService.getReposByYear(Integer.parseInt(condition));
+//        }
+//        Map<String,Object> map = new HashMap<>();
+//        map.put("repos",list.getDatas());
+//        map.put("total",list.getTotal());
+//        return new ModelAndView("/repo/tag",map);
+//    }
 
 }

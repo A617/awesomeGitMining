@@ -91,8 +91,9 @@
                 <div class="col-lg-12">
                     <h3 class="text-uppercase"> Languages</h3>
                     <div class="box-content buttons">
-                        <form action="/repo/tag" method="get" name="lan">
-                            <div class="col-lg-3 col-md-6"><a href="/repo/repos?pager.offset=0" class="blog-tag"> All</a></div>
+                        <%--<form action="/repo/tag" method="get" name="lan">--%>
+
+                            <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="all" id="chooseLan">All</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Scala">Scala</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="C">C</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Ruby">Ruby</button></div>
@@ -113,14 +114,15 @@
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Prolog">Prolog</button></div>
                             <div class="col-lg-6 col-md-6"><button type="submit" class="blog-tag" name="lan" value="CoffeeScript">CoffeeScript</button></div>
                             <div class="col-lg-6 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Objective-C">Objective-C</button></div>
-                        </form>
+                        <%--</form>--%>
                     </div>
                 </div>
 
                 <div class="col-lg-12">
                     <h3 class="text-uppercase">  Keywords</h3>
                     <div class="box-content buttons">
-                        <form action="/repo/tag" method="get" name="key">
+                        <%--<form action="/repo/tag" method="get" name="key">--%>
+                            <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="all" id="chooseKey">All</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="API">API</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="Django">Django</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="MySQL">MySQL</button></div>
@@ -144,15 +146,15 @@
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="Maven">Maven</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="gem">gem</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="MVC">MVC</button></div>
-                        </form>
+                        <%--</form>--%>
                     </div>
                 </div>
 
                 <div class="col-lg-12">
                     <h3 class="text-uppercase"> Updated Time</h3>
                     <div class="box-content buttons">
-                        <form action="/repo/tag" method="get" name="year">
-                            <div class="col-lg-3 col-md-6"><a href="/repo/repos?pager.offset=0" class="blog-tag"> All</a></div>
+                        <%--<form action="/repo/tag" method="get" name="year">--%>
+                            <div class="col-lg-3 col-md-6"><button id="chooseYear" type="submit" class="blog-tag" name="year" value="all" >All</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2007">2007</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2008">2008</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2009">2009</button></div>
@@ -162,9 +164,10 @@
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2013">2013</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2014">2014</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2015">2015</button></div>
-                        </form>
+                        <%--</form>--%>
                     </div>
                 </div>
+
             </div>
             <!--list-->
             <div class="col-2 panel panel-default margin-10">
@@ -227,6 +230,9 @@
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+
 </body>
+
+<script src="/js/repotag.js"></script>
 </html>
 
