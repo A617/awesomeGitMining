@@ -196,7 +196,7 @@
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="general">
                             <div class="panel-body">
-                                <ul class="dashboard-list">
+                                <ul class="dashboard-list" id="repolist">
                                     <c:forEach items="${repos }" var="repo">
                                         <li>
                                             <h3><strong><a href="${repo.fullName }">${repo.fullName }</a></strong></h3>
