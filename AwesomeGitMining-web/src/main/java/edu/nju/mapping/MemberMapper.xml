@@ -50,4 +50,11 @@
     FROM watch_repo
     WHERE username = #{userName} AND repo_fullname=#{repository}
   </delete>
+  <select id="countFirst20Keywords" resultType="java.util.LinkedHashMap">
+    select word,count(username) as c
+    from watch_word
+    group by word
+    order by c desc
+    limit 20;
+  </select>
 </mapper>

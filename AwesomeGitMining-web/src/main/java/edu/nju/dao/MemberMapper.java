@@ -6,6 +6,7 @@ import edu.nju.model.StarRepo;
 import edu.nju.model.Word;
 
 import java.sql.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,4 +34,5 @@ public interface MemberMapper {
     void addStarRepo(StarRepo repo_fullname);
     List<String> findMemberByRepo(String repo_fullname);//根据一个项目名找到收藏过它的人的用户名
     void unStarRepo(Map<String,String> params);
+    public List<LinkedHashMap> countFirst20Keywords();
 }
