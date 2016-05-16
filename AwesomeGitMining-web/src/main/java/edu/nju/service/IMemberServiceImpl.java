@@ -2,7 +2,9 @@ package edu.nju.service;
 
 import edu.nju.dao.MemberDaoImpl;
 import edu.nju.dao.RepoDaoImpl;
-import edu.nju.model.*;
+import edu.nju.model.Member;
+import edu.nju.model.Repository;
+import edu.nju.model.StarRepo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -41,21 +43,21 @@ public class IMemberServiceImpl implements IMemberService {
     }
 
     @Override
-    public List<Recommend_key> getRecommendBySearched(String userName) {
-        List<Recommender> list=memberdao.getRecommendBySearched(userName);//得到所有的项目名字和对应的关键字
-        List<Recommend_key> list_key=new ArrayList<Recommend_key>();
-        if(list.size()!=0) {
+    public List<Repository> getRecommendBySearched(String userName) {
+        List<String> list = memberdao.getRecommendBySearched(userName);//得到所有的项目名字和对应的关键字
+        List<Repository> list_key = new ArrayList<>();
+        if (list.size() != 0) {
             for (int i = 0; i < list.size(); i++) {
-                Recommend_key r=new Recommend_key();
-                Repository repo=repoDao.getReposByFullName(list.get(i).getRepository());
-                r.setRepo(repo);
-                r.setKeyword(list.get(i).getKeyword());
-                list_key.add(r);
+                Repository repo = repoDao.getReposByFullName(list.get(i));
+                list_key.add(repo);
             }
-
-
         }
         return list_key;
+    }
+
+    @Override
+    public String getRecommendTag(String userName, String repository) {
+        return memberdao.getSearchTag(userName, repository);
     }
 
     @Override
@@ -66,7 +68,6 @@ public class IMemberServiceImpl implements IMemberService {
         sd = new java.sql.Date(ud.getTime());
         StarRepo w = new StarRepo(userName, full_name, sd);
         memberdao.addShareRepo(w);
-
     }
 
 

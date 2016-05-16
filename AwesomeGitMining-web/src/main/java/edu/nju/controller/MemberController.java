@@ -89,11 +89,7 @@ public class MemberController {
         String name = (String) session.getAttribute("loginMember");
         Map<String, Object> result = new HashMap<>();
         if (name != null) {
-            List<Recommend_key> keys = memberService.getRecommendBySearched(name);
-            List<Repository> search = new ArrayList<>();
-            for (Recommend_key key : keys) {
-                search.add(key.getRepo());
-            }
+            List<Repository> search = memberService.getRecommendBySearched(name);
             result.put("search", search);
             List<Repository> star = memberService.getStaredRepos(name);
             result.put("star", star);
@@ -109,6 +105,7 @@ public class MemberController {
     @ResponseBody
     void starRepo(HttpSession session, HttpServletRequest request) {
         String repoName = WebUtils.findParameterValue(request, "repoName");
+        repoName = repoName.trim();
         String userName = (String) session.getAttribute("loginMember");
         memberService.addShareRepo(repoName, userName);
     }
@@ -126,16 +123,10 @@ public class MemberController {
     Map<String, Object> getSearch(HttpServletRequest request, HttpSession session, HttpServletResponse response) {
         Map<String, Object> map = new HashMap<String, Object>();
         String repoName = WebUtils.findParameterValue(request, "repoName");
+        repoName = repoName.trim();
         String name = (String) session.getAttribute("loginMember");
-        List<Recommend_key> keys = memberService.getRecommendBySearched(name);
-        for (Recommend_key key : keys) {
-            if (key.getRepo().getFullName().equals(repoName)) {
-                String result = key.getKeyword();
-                map.put("result", result);
-                break;
-            }
-        }
-      //  map.put("result","test");
+        String result = memberService.getRecommendTag(name,repoName);
+        map.put("result",result);
         return map;
     }
 

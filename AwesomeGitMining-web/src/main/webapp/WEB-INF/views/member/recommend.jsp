@@ -18,6 +18,7 @@
                 var repoName =$(this).children(".head").text();
                 var child = $(this).children(".blue-bg");
                 $.ajax({
+                    async:false,
                     type: "GET",
                     url: "/getSearch",
                     data: {"repoName": repoName},
@@ -92,7 +93,7 @@
                 <ul class="dashboard-list">
                     <c:forEach items="${search}" var="repo">
                         <li class="intro">
-                            <h3 class="head"><strong><a href="/repo/${repo.fullName }">${repo.fullName }</a></strong>
+                            <h3 class="head"><strong><a href="/repo/${repo.fullName }">${repo.fullName}</a></strong>
                             </h3>
                             <p class="blue-bg"></p>
                             <p style="text-align: right"><strong>${repo.language}</strong></p>
