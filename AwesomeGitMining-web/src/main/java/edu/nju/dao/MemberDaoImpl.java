@@ -62,13 +62,6 @@ public class MemberDaoImpl implements IMemberDao {
         for (int m = 0; m < wordList.size(); m++) {
             List<String> repo_name = mapper.findWord(wordList.get(m));
             recommenders.addAll(repo_name);
-//            for (int u = 0; u < repo_name.size(); u++) {
-//                Recommender re = new Recommender();
-//                re.setKeyword(keyword.get(m));
-//                re.setRepository(repo_name.get(u));
-//                recommenders.add(re);
-//            }
-
         }
 
         return recommenders;
@@ -150,10 +143,22 @@ public class MemberDaoImpl implements IMemberDao {
 
     @Override
     public void addShareRepo(StarRepo repo) {
-        if (repo != null) {
-            mapper.addStarRepo(repo);
+        if (repo != null && !repo.getRepo_fullname().isEmpty()) {
+            String user = repo.getUsername();
+            List<String> repos = mapper.findStarRepo(user);
+            if(!repos.contains(repo.getRepo_fullname())) {
+                mapper.addStarRepo(repo);
+            }
         }
 
+    }
+
+    @Override
+    public void unStarRepo(String userName, String repository) {
+        Map<String,String> map = new HashMap<>();
+        map.put("userName",userName);
+        map.put("repository",repository);
+        mapper.unStarRepo(map);
     }
 
     private Map<String, Object> createMap() {

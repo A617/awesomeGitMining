@@ -16,7 +16,7 @@
     <title>Favourite Repository</title>
     <link href="<c:url value="/css/listcss.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" media="all">
-    <link href="<c:url value="/css/templatemo-style.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
@@ -26,6 +26,22 @@
             display:inline-block;
         }
     </style>
+    <script src="/js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("button").click(function(){
+                var fullName = $(this).prev().text();
+                $.ajax({
+                    type: "POST",
+                    url: "/UnStarRepos",
+                    data:{"repoName":fullName},
+                    success: function (data,status) {
+                        location.reload();
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 <div class="templatemo-top-nav-container">
@@ -95,7 +111,8 @@
                             <ul class="dashboard-list">
                                 <c:forEach items="${repos }" var="repo">
                                     <li>
-                                        <h3><strong><a href="${repo.fullName }">${repo.fullName }</a></strong></h3>
+                                        <h3 class="fullName"><strong><a href="${repo.fullName }">${repo.fullName}</a></strong></h3>
+                                        <button class="btn btn-success" method="post">UnStar</button>
                                         <p style="text-align: right"><strong>${repo.language}</strong></p>
                                         <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}</span>
                                             <span><strong>Forks:</strong>&nbsp;${repo.forksCount}</span>

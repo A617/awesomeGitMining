@@ -54,5 +54,17 @@ public interface IMemberDao {
      */
     List<String> getRecommendByOther(String userName);
 
+    /**
+     * 收藏项目
+     * @param repo
+     */
     void addShareRepo(StarRepo repo);
+
+    /**
+     * 取消收藏
+     * @param repository
+     * @param userName
+     * @return
+     */
+    void unStarRepo(String userName,String repository);
 }

@@ -45,4 +45,9 @@
     from watch_repo
     where repo_fullname = #{repo_fullname}
   </select>
+  <delete id="unStarRepo" parameterType="java.util.Map">
+    DELETE
+    FROM watch_repo
+    WHERE username = #{userName} AND repo_fullname=#{repository}
+  </delete>
 </mapper>

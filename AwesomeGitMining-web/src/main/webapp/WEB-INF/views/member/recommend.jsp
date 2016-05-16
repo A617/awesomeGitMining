@@ -72,7 +72,7 @@
             </a>
             <ul class="dropdown-menu animated fadeInRight">
                 <li>
-                    <a href="#">Favorite Repositories</a>
+                    <a href="/favouriteRepos">Favorite Repositories</a>
                 </li>
                 <li>
                     <a href="/logout">Log out</a>

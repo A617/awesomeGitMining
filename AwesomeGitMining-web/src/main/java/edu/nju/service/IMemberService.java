@@ -58,6 +58,13 @@ public interface IMemberService {
      */
     List<Repository> getRecommendByOther(String userName);
 
+    /**
+     * 取消收藏
+     * @param userName
+     * @param repository
+     */
+    void unStarRepo(String userName,String repository);
+
 
 
 }

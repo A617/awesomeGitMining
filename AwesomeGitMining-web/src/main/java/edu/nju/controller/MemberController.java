@@ -129,5 +129,13 @@ public class MemberController {
         map.put("result",result);
         return map;
     }
-
+    @RequestMapping(value = "/UnStarRepos", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    void UnStarRepo(HttpSession session, HttpServletRequest request) {
+        String repoName = WebUtils.findParameterValue(request, "repoName");
+        repoName = repoName.trim();
+        String userName = (String) session.getAttribute("loginMember");
+        memberService.unStarRepo(userName,repoName);
+    }
 }

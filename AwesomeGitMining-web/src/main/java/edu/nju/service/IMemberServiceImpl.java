@@ -83,5 +83,10 @@ public class IMemberServiceImpl implements IMemberService {
 
     }
 
+    @Override
+    public void unStarRepo(String userName, String repository) {
+        memberdao.unStarRepo(userName,repository);
+    }
+
 
 }

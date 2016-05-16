@@ -7,7 +7,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Dora on 2016/5/3.
@@ -96,8 +98,13 @@ public class MemberDaoImplTest {
 
     @Test
     public void testGetSearchTag() {
-        System.out.println(dao.getSearchTag("miku","davidB/scala-maven-plugin"));
+        System.out.println(dao.getSearchTag("miku", "davidB/scala-maven-plugin"));
     }
 
-
+    @Test
+    public void testUnStar() {
+        System.out.println(dao.getStaredRepos("miku").size());
+        dao.unStarRepo("miku","mojombo/grit");
+        System.out.println(dao.getStaredRepos("miku").size());
+    }
 }
