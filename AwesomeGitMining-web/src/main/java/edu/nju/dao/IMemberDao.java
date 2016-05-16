@@ -30,7 +30,15 @@ public interface IMemberDao {
      * @param userName
      * @return
      */
-    List<Recommender> getRecommendBySearched(String userName);
+    List<String> getRecommendBySearched(String userName);
+
+    /**
+     * 根据该用户的哪条搜索记录推荐的项目
+     * @param userName
+     * @param repository
+     * @return
+     */
+    String getSearchTag(String userName,String repository);
 
     /**
      *
