@@ -24,6 +24,18 @@ public class RepoStaDaoImplTest {
     public void countFirst20LanguagesTest() throws Exception {
         System.out.println(dao.countFirst20Languages());
     }
+    @Test
+    public void getLanguageAndSizeTest() throws  Exception{
+
+        System.out.println(dao.getLanguageAndSize());
+
+    }
 
 
+    @Test
+    public void countCreatedYearTest() throws  Exception{
+        System.out.println(dao.countCreatedYear());
+
+
+    }
 }

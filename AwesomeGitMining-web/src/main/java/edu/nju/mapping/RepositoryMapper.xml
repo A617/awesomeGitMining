@@ -525,4 +525,16 @@
     order by c desc
     limit 20;
   </select>
+  <select id="getLanguageAndSize" resultType="java.util.LinkedHashMap">
+    select language,sum(size) as s
+    from repository
+    group by language
+    order by s desc
+  </select>
+  <select id="countCreatedYear" resultType="java.util.LinkedHashMap">
+    select YEAR(created_at)as year ,count(id) as c
+    from repository
+    group by year
+    order by year desc
+  </select>
 </mapper>

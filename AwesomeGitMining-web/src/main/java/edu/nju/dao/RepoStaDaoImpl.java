@@ -7,7 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
- * Created by Dora on 2016/5/13.
+ * Created by fw on 2016/5/16.
  */
 
 @Service("repoStaDao")
@@ -21,12 +21,16 @@ public class RepoStaDaoImpl implements IRepoStaDao {
 
     @Override
     public List<LinkedHashMap> getLanguageAndSize() {
-        return null;
+        List<LinkedHashMap> list = mapper.getLanguageAndSize();
+
+        return list;
+
     }
 
     @Override
     public List<LinkedHashMap> countCreatedYear() {
-        return null;
+        List<LinkedHashMap> list = mapper.countCreatedYear();
+        return list;
     }
 
 

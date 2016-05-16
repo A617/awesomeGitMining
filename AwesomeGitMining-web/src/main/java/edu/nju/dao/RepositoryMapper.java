@@ -55,4 +55,8 @@ public interface RepositoryMapper {
     int countKey(String keyword);
 
     List<LinkedHashMap> countFirst20Languages();
+
+    List<LinkedHashMap> getLanguageAndSize();
+
+    List<LinkedHashMap> countCreatedYear();
 }
