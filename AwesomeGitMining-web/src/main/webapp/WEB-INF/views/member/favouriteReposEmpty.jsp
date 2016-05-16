@@ -27,13 +27,13 @@
         }
     </style>
 </head>
-<body>
+<body class="light-gray-bg">
 <div class="templatemo-top-nav-container">
     <div class="row">
         <nav class="templatemo-top-nav">
             <ul>
                 <li><a href="/index.jsp">Home</a></li>
-                <li><a href="/repo/repos?pager.offset=0" class="active">Repository</a></li>
+                <li><a href="/repo/repos?pager.offset=0">Repository</a></li>
                 <li><a href="/user/users?pager.offset=0">User</a></li>
                 <li><a href="#">Repository Statistics</a></li>
                 <li><a href="#">User Statistics</a></li>

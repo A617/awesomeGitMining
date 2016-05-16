@@ -46,12 +46,15 @@ public class UserMapperTest {
             System.out.println(u.getLogin());
     }
 
-//    @Test
-//    public void countFirst30Companys() {
+
+
+    @Test
+    public void countFirst30Companys() {
 //        List<Map<String, Object>> map = dao.countFirst30Companys();
 //        for (Map<String, Object> m : map)
 //            System.out.println(m.keySet() + " " + m.values());
-//    }
+    }
+
 
     @Test
     public void testCountLanguage() {

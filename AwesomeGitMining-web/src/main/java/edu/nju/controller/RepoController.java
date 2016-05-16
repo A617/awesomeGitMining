@@ -132,11 +132,10 @@ public class RepoController {
         String lan = request.getParameter("lan");
         String key = request.getParameter("key");
         String year = request.getParameter("year");
-
-        String condition = (String) session.getAttribute("condition");
+        String condition = (String) session.getAttribute("tag");
         if (condition == null) {
             condition = new String();
-            session.setAttribute("condition", condition);
+            session.setAttribute("tag", condition);
             if (lan == null || "".equals(lan)) {
                 return new ModelAndView("/repo/tag");
             }
@@ -149,15 +148,15 @@ public class RepoController {
         }
         if (lan != null && !("".equals(lan))) {
             condition = lan;
-            session.setAttribute("condition", condition);
+            session.setAttribute("tag", condition);
         }
         if (key != null && !("".equals(key))) {
             condition = key;
-            session.setAttribute("condition", condition);
+            session.setAttribute("tag", condition);
         }
         if (year != null && !("".equals(year))) {
             condition = year;
-            session.setAttribute("condition", condition);
+            session.setAttribute("tag", condition);
         }
 
         Pager<Repository> list;
