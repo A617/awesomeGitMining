@@ -91,4 +91,13 @@ public interface IRepoDao {
      * @return
      */
     Pager<Repository> getReposByKey(String key);
+
+
+
+    /**
+     *根据语言、关键词、创建年份获取项目
+     * @param language,keyword,year
+     * @return
+     */
+    Pager<Repository> getReposByLan_Key_Year(String language,String keyword,String year);
 }

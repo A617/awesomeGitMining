@@ -488,6 +488,15 @@
     where description like "%"#{keyword}"%"
     limit #{pageOffset},#{pageSize}
   </select>
+  <select id="selectReposByLan_Key_Year" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from repository
+    where language = #{0} and YEAR(created_at)= #{2} and description like "%"#{1}"%"
+    limit #{4},#{3}
+  </select>
   <!-- 分页辅助方法-->
   <select id="countAll" resultType="java.lang.Integer">
     select
