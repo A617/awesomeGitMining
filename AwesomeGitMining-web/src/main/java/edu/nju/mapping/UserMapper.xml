@@ -65,7 +65,7 @@
     where login LIKE "%"#{name}"%"
     limit #{pageOffset},#{pageSize}
   </select>
-  <select id="countFirst30Companys" resultType="hashmap">
+  <select id="countFirst30Companys" resultType="java.util.LinkedHashMap">
     select company,count(id) as c
     from user
     group by company

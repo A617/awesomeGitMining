@@ -34,10 +34,17 @@ public class UserStaController {
 
     @RequestMapping(value="/statistics/user/companyLocal",method = RequestMethod.GET)
     public @ResponseBody Map<String, Object> getCompanyLocal() {
-        Map<String,Integer> companys = service.getCompanyCounts();
+        List<LinkedHashMap> companys = service.getCompanyCounts();
         Map<String,Object> result = new HashMap<>();
-        result.put("companyCount",companys.values());
-        result.put("companyName",companys.keySet());
+        List<Object> companyCount = new ArrayList<>();
+        List<Object> companyName = new ArrayList<>();
+
+        for(LinkedHashMap line:companys){
+            companyCount.add(line.get("c"));
+            companyName.add(line.get("company"));
+        }
+        result.put("companyCount",companyCount);
+        result.put("companyName",companyName);
         return result;
     }
 
