@@ -27,6 +27,8 @@ public interface UserMapper {
 
     List<LinkedHashMap> countFirst30Companys();
 
+    List<LinkedHashMap> countTypes();
+
     List<User> selectUserByLanguage(Map<String,Object> params);
 
     List<User> selectUserByCompany(Map<String,Object> params);

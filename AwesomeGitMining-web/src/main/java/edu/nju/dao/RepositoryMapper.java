@@ -4,6 +4,7 @@ import edu.nju.model.Repository;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -53,4 +54,5 @@ public interface RepositoryMapper {
 
     int countKey(String keyword);
 
+    List<LinkedHashMap> countFirst20Languages();
 }

@@ -25,6 +25,7 @@ public class UserStaDaoImpl implements IUserStaDao {
 
     @Override
     public List<LinkedHashMap> countTypes() {
-        return null;
+        List<LinkedHashMap> list = mapper.countTypes();
+        return list;
     }
 }

@@ -518,5 +518,11 @@
     from repository
     where description like "%"#{keyword}"%"
   </select>
-
+  <select id="countFirst20Languages" resultType="java.util.LinkedHashMap">
+    select language,count(id) as c
+    from repository
+    group by language
+    order by c desc
+    limit 20;
+  </select>
 </mapper>

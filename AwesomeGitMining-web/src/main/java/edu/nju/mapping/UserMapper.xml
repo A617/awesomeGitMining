@@ -72,6 +72,12 @@
     order by c desc
     limit 30;
   </select>
+  <select id="countTypes" resultType="java.util.LinkedHashMap">
+  select type,count(id) as c
+  from user
+  group by type
+  order by c desc
+</select>
   <select id="selectUserByLanguage" resultMap="BaseResultMap" parameterType="java.util.Map">
     select
     <include refid="Base_Column_List" />
