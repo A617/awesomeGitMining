@@ -5,6 +5,7 @@ import edu.nju.model.User;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ public interface UserMapper {
 
     int countSearch(String name);
 
-    List<Map<String,Object>> countFirst30Companys();
+    List<LinkedHashMap> countFirst30Companys();
 
     List<User> selectUserByLanguage(Map<String,Object> params);
 

@@ -4,6 +4,8 @@ import edu.nju.dao.UserStaDaoImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,8 +18,8 @@ public class UserStaServiceImpl implements IUserStaService{
     UserStaDaoImpl dao;
 
     @Override
-    public Map<String, Integer> getCompanyCounts() {
-        Map<String,Integer> map = dao.countFirst30Companys();
+    public List<LinkedHashMap> getCompanyCounts() {
+        List<LinkedHashMap> map = dao.countFirst30Companys();
         map.remove("");
         return map;
     }

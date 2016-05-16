@@ -69,15 +69,15 @@
             <div class="templatemo-content-widget white-bg col-1 animated fadeInLeft">
                 <h2>Local</h2><hr>
 
-                <canvas id="company-pie"></canvas>
+                <canvas id="company-pie-local"></canvas>
 
 
 
             </div>
             <div class="templatemo-content-widget white-bg col-1 animated fadeInRight">
-                <h2>BigQuery</h2><hr>
+                <h2>Query</h2><hr>
 
-                <canvas id="company-pie1"></canvas>
+                <canvas id="company-pie-bq"></canvas>
 
             </div>
         </div>
@@ -88,49 +88,12 @@
     <p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>
 </footer>
 
-<script>
-    var labels = new Array();
-    var datas = new Array();
-    <c:forEach items="${companys}" var="mm">
-        labels.push("${mm.key}");
-        datas.push("${mm.value}");
-    </c:forEach>
-    var data = {
-    labels: labels,
-    datasets: [{
-            data:datas,
-            backgroundColor: [
-                "#FFFFCC","#CCFFFF","#FFCCCC",
-                "#99CCCC","#FFCC99","#FFCCCC",
-                "#FF9999","#996699","#FFFF99",
-                "#0099CC","#FF6666","#99CC66"
-            ],
-            hoverBackgroundColor: [
-                "#FFFFCC","#CCFFFF","#FFCCCC",
-                "#99CCCC","#FFCC99","#FFCCCC",
-                "#FF9999","#996699","#FFFF99",
-                "#0099CC","#FF6666","#99CC66"
-            ]
-        }]
-    };
 
-    var pieConfig = {
-        type: 'pie',
-        data: data,
-        options: {
-            responsive: true
-        }
-    };
-
-    window.onload = function() {
-            var ctx = document.getElementById("company-pie").getContext("2d");
-                    window.myPie = new Chart(ctx, pieConfig);
-        };
-</script>
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/Chart.bundle.js"></script>
+<script src="/js/userStatistics.js"></script>
 
 </body>
 </html>
