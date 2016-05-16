@@ -91,7 +91,7 @@ public class RepoDaoImpl implements IRepoDao {
     public Pager<Repository> getReposByYear(int year) {
         Map<String, Object> map = createMap();
         map.put("year",year);
-        List<Repository> data = mapper.searchRepository(map);
+        List<Repository> data = mapper.selectReposByYear(map);
         Pager<Repository> page = createPage(data,map);
         page.setTotal(mapper.countYear(year));
         return page;
@@ -101,7 +101,7 @@ public class RepoDaoImpl implements IRepoDao {
     public Pager<Repository> getReposByLanguage(String language) {
         Map<String, Object> map = createMap();
         map.put("language",language);
-        List<Repository> data = mapper.searchRepository(map);
+        List<Repository> data = mapper.selectReposByLanguage(map);
         Pager<Repository> page = createPage(data,map);
         page.setTotal(mapper.countLanguage(language));
         return page;

@@ -91,7 +91,7 @@
                 <div class="col-lg-12">
                     <h3 class="text-uppercase"> Languages</h3>
                     <div class="box-content buttons">
-                        <form action="/repo/tag" method="get">
+                        <form action="/repo/tag" method="get" name="lan">
                             <div class="col-lg-3 col-md-6"><a href="/repo/repos?pager.offset=0" class="blog-tag"> All</a></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Scala">Scala</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="C">C</button></div>
@@ -120,7 +120,7 @@
                 <div class="col-lg-12">
                     <h3 class="text-uppercase">  Keywords</h3>
                     <div class="box-content buttons">
-                        <form action="/repo/tag" method="get">
+                        <form action="/repo/tag" method="get" name="key">
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="API">API</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="Django">Django</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="MySQL">MySQL</button></div>
@@ -151,7 +151,7 @@
                 <div class="col-lg-12">
                     <h3 class="text-uppercase"> Updated Time</h3>
                     <div class="box-content buttons">
-                        <form action="/repo/tag" method="get">
+                        <form action="/repo/tag" method="get" name="year">
                             <div class="col-lg-3 col-md-6"><a href="/repo/repos?pager.offset=0" class="blog-tag"> All</a></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2007">2007</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2008">2008</button></div>
