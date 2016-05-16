@@ -96,4 +96,15 @@ public class RepositoryMapperTest {
         for (Repository u : list)
             System.out.println(u.getFullName() + ":" + u.getDescription());
     }
+
+    @Test
+    public void testLan_Key_Year(){
+        String lan="Ruby";
+        String key="Ruby";
+        String year="2008";
+            System.out.println(dao.countLan_Key_Year(lan,key,year));
+    }
+
+
+
 }

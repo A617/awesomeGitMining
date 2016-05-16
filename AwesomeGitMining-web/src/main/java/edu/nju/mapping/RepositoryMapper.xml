@@ -518,6 +518,11 @@
     from repository
     where description like "%"#{keyword}"%"
   </select>
+  <select id="countLan_Key_Year" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select  count(id)
+    from repository
+    where language = #{0} and YEAR(created_at)=#{2} and description like "%"#{1}"%"
+  </select>
   <select id="countFirst20Languages" resultType="java.util.LinkedHashMap">
     select language,count(id) as c
     from repository

@@ -44,6 +44,7 @@ public interface RepositoryMapper {
 
     List<Repository> selectReposByKey(Map<String,Object> map);
 
+
     int countAll();
 
     int countSearch(String fullName);
@@ -53,6 +54,8 @@ public interface RepositoryMapper {
     int countLanguage(String language);
 
     int countKey(String keyword);
+
+    int countLan_Key_Year(String language,String keyword,String year);
 
     List<LinkedHashMap> countFirst20Languages();
 
