@@ -22,4 +22,9 @@ public class UserStaDaoImpl implements IUserStaDao {
 
         return list;
     }
+
+    @Override
+    public List<LinkedHashMap> countTypes() {
+        return null;
+    }
 }
