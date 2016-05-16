@@ -91,41 +91,45 @@
                     <div class="col-lg-12">
                         <h3 class="text-uppercase"> Languages</h3>
                         <div class="box-content buttons">
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> All</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Scala</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> C</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Ruby</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Java</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Python</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> JavaScript</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Perl</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> PHP</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> HTML</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Shell</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> C#</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Lua</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Haskell</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Clojure</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> CSS</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> C++</a></div>
-                            <div class="col-lg-6 col-md-6"><a href="#" class="blog-tag"> Objective-C</a></div>
+                            <form action="/user/tag" method="get">
+                                <div class="col-lg-3 col-md-6"><a href="/user/users?pager.offset=0" class="blog-tag"> All</a></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Scala">Scala</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="C">C</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Ruby">Ruby</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Java">Java</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Python">Python</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="JavaScript">JavaScript</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Perl">Perl</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="PHP">PHP</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="HTML">HTML</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Shell">Shell</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="C#">C#</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Lua">Lua</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Haskell">Haskell</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Clojure">Clojure</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="CSS">CSS</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="C++">C++</button></div>
+                                <div class="col-lg-6 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Objective-C">Objective-C</button></div>
+                            </form>
                         </div>
                     </div>
 
                     <div class="col-lg-12">
                         <h3 class="text-uppercase"> Companys</h3>
                         <div class="box-content buttons">
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> All</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Shopify</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Google</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Github</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Twitter</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Microsoft</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Mozilla</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Xamarin</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Heroku</a></div>
-                            <div class="col-lg-3 col-md-6"><a href="#" class="blog-tag"> Facebook</a></div>
-                            <div class="col-lg-6 col-md-6"><a href="#" class="blog-tag"> Red Hat</a></div>
+                            <form action="/user/tag" method="get">
+                                <div class="col-lg-3 col-md-6"><a href="/user/users?pager.offset=0" class="blog-tag"> All</a></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="com" value="Shopify">Shopify</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="com" value="Google">Google</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="com" value="Github">Github</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="com" value="Twitter">Twitter</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="com" value="Microsoft">Microsoft</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="com" value="Mozilla">Mozilla</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="com" value="Xamarin">Xamarin</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="com" value="Heroku">Heroku</button></div>
+                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="com" value="Facebook">Facebook</button></div>
+                                <div class="col-lg-6 col-md-6"><button type="submit" class="blog-tag" name="com" value="Red Hat">Red Hat</button></div>
+                            </form>
                         </div>
                     </div>
                 </div>
