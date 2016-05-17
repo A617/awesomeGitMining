@@ -26,6 +26,26 @@ public interface IRepoStaDao {
      */
     List<LinkedHashMap> countCreatedYear();
 
+    /**
+     * 参加分析的所有语言（跟下一个方法有关）
+     * @return
+     */
+    List<String> getStaLanguages();
+
+    /**
+     * 不同语言之间的协作情况
+     * @return 一个二维数组 如下图
+     * ------------------
+     *      java   c
+     * ------------------
+     *java  0      100
+     * ------------------
+     * c    100    0
+     * ------------------
+     * a[i][j]=第i个语言和第j个语言一起写过的项目数
+     * 参与分析的语言和语言的顺序见上一个方法
+     */
+    int[][] getLanguageRelation();
 
 
 }

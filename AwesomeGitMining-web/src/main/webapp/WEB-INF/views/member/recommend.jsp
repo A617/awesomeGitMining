@@ -42,8 +42,8 @@
                 <li><a href="/index.jsp">Home</a></li>
                 <li><a href="/repo/repos?pager.offset=0">Repository</a></li>
                 <li><a href="/user/users?pager.offset=0">User</a></li>
-                <li><a href="#">Repository Statistics</a></li>
-                <li><a href="#">User Statistics</a></li>
+                <li><a href="/repoStatistics.jsp">Repository Statistics</a></li>
+                <li><a href="/statistics/user">User Statistics</a></li>
                 <li><a href="#" class="active">Recommended</a></li>
             </ul>
         </nav>
@@ -118,7 +118,7 @@
                 <ul class="dashboard-list">
                     <c:forEach items="${star}" var="repo">
                         <li>
-                            <h3><strong><button href="/repo/${repo.fullName }">${repo.fullName }</button></strong></h3>
+                            <h3><strong><a href="/repo/${repo.fullName }">${repo.fullName}</a></strong></h3>
                             <p style="text-align: right"><strong>${repo.language}</strong></p>
                             <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}</span>
                                 <span><strong>Forks:</strong>&nbsp;${repo.forksCount}</span>

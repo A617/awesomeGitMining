@@ -409,6 +409,10 @@
     <include refid="Blob_Column_List" />
     from repository
   </select>
+  <select id="selectFullName" resultType="java.lang.String" >
+    select full_name
+    from repository
+  </select>
   <select id="selectByFullName" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
     select
     <include refid="Base_Column_List" />

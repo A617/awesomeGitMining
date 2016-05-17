@@ -38,4 +38,15 @@ public class RepoStaDaoImplTest {
 
 
     }
+
+
+    @Test
+    public void getStaLanguagesTest() throws  Exception{
+        List<String> list=dao.getStaLanguages();
+
+
+
+    }
+
+
 }

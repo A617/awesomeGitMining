@@ -26,6 +26,8 @@ public interface RepositoryMapper {
 
     List<Repository> selectAll();
 
+    List<String> selectFullName();
+
     Repository selectByFullName(String full_name);
 
     List<Repository> searchRepository(Map<String,Object> map);
@@ -63,4 +65,7 @@ public interface RepositoryMapper {
     List<LinkedHashMap> getLanguageAndSize();
 
     List<LinkedHashMap> countCreatedYear();
+
+
+
 }

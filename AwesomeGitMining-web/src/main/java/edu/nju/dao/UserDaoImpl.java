@@ -1,6 +1,7 @@
 package edu.nju.dao;
 
 import edu.nju.model.Pager;
+import edu.nju.model.Repository;
 import edu.nju.model.SystemContext;
 import edu.nju.model.User;
 import org.springframework.stereotype.Service;
@@ -70,6 +71,19 @@ public class UserDaoImpl implements IUserDao{
         List<User> data = mapper.selectUserByCompany(map);
         Pager<User> page = createPage(data,map);
         page.setTotal(mapper.countCompany(company));
+        return page;
+    }
+
+    @Override
+    public Pager<User> getUserByLan_Com(String language, String company) {
+        String lan=language;
+        String com=company;
+
+        Map<String, Object> map = createMap();
+        List<User> data = mapper.selectLan_Com(lan,com,(int)map.get("pageSize"),(int)map.get("pageOffset"));
+        Pager<User> page = createPage(data,map);
+        page.setTotal(mapper.countLan_Com(lan,com));
+
         return page;
     }
 

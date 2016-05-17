@@ -33,8 +33,12 @@ public interface UserMapper {
 
     List<User> selectUserByCompany(Map<String,Object> params);
 
+    List<User> selectLan_Com(String language, String company, int pageSize, int pageOffset);
+
     int countLanguage(String language);
 
     int countCompany(String company);
+
+    int countLan_Com(String language,String company);
 
 }
