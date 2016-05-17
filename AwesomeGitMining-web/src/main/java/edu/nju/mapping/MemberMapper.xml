@@ -51,10 +51,10 @@
     WHERE username = #{userName} AND repo_fullname=#{repository}
   </delete>
   <select id="countFirst20Keywords" resultType="java.util.LinkedHashMap">
-    select word,count(username) as c
+    select word,count(username) as weight
     from watch_word
     group by word
-    order by c desc
+    order by weight desc
     limit 20;
   </select>
 </mapper>

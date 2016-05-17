@@ -11,20 +11,6 @@
     <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
-    <style>
-        .bubble circle {
-            stroke: black;
-            stroke-width: 2px;
-        }
-
-        .bubble text {
-            fill: black;
-            font-size: 14px;
-            font-family: arial;
-            text-anchor: middle;
-        }
-
-    </style>
 </head>
 <body>
 
@@ -35,7 +21,7 @@
                 <li><a href="/index.jsp">Home</a></li>
                 <li><a href="/repo/repos?pager.offset=0">Repository</a></li>
                 <li><a href="/user/users?pager.offset=0">User</a></li>
-                <li><a href="#">Repository Statistics</a></li>
+                <li><a href="/repoStatistics.jsp">Repository Statistics</a></li>
                 <li><a href="#" class="active">User Statistics</a></li>
                 <li><a href="/recommend">Recommended</a></li>
             </ul>
@@ -82,7 +68,7 @@
 <div class="templatemo-flex-row">
     <div class="templatemo-content col-1 light-gray-bg">
         <div class="templatemo-flex-row flex-content-row">
-            <div id="local" class="templatemo-content-widget white-bg col-1 animated fadeInLeft">
+            <div class="templatemo-content-widget white-bg col-1 animated fadeInLeft">
                 <h2>Local</h2>
                 <hr>
 
@@ -110,9 +96,6 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/Chart.bundle.js"></script>
 <script src="/js/userStatistics.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
-<script src="/js/bubbleTest.js"></script>
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
 </body>
 </html>
