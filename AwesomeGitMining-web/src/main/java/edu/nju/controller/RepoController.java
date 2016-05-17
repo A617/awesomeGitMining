@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import edu.nju.model.Pager;
 import edu.nju.model.Repository;
+import edu.nju.service.IMemberService;
 import edu.nju.service.IRepoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +28,8 @@ import java.util.*;
 public class RepoController {
     @Resource
     private IRepoService repoService;
-
+    @Resource
+    private IMemberService memberService;
 
     @RequestMapping(value = "/repos", method = RequestMethod.GET)
     public ModelAndView listRepos(@RequestParam(value="pager.offset",required = false) Integer offset,
@@ -111,6 +113,7 @@ public class RepoController {
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ModelAndView searchRepos(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("loginMember");
         String param = request.getParameter("name");
         String condition = (String) session.getAttribute("condition");
         //先判断SESSION中的condition是否为空
@@ -133,6 +136,9 @@ public class RepoController {
         Map<String, Object> map = new HashMap<>();
         map.put("repos", list.getDatas());
         map.put("total", list.getTotal());
+        if(userName!=null){
+            memberService.addSearchRecord(condition,userName);
+        }
         return new ModelAndView("/repo/search", map);
     }
 

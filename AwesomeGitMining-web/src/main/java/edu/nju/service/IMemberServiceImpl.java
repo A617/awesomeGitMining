@@ -5,6 +5,7 @@ import edu.nju.dao.RepoDaoImpl;
 import edu.nju.model.Member;
 import edu.nju.model.Repository;
 import edu.nju.model.StarRepo;
+import edu.nju.model.Word;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -86,6 +87,16 @@ public class IMemberServiceImpl implements IMemberService {
     @Override
     public void unStarRepo(String userName, String repository) {
         memberdao.unStarRepo(userName,repository);
+    }
+
+    @Override
+    public void addSearchRecord(String content,String userName) {
+        java.sql.Date sd;
+        java.util.Date ud;
+        ud = new java.util.Date();
+        sd = new java.sql.Date(ud.getTime());
+        Word word = new Word(userName,content,sd);
+        memberdao.addWord(word);
     }
 
 
