@@ -65,6 +65,10 @@ public interface IMemberService {
      */
     void unStarRepo(String userName,String repository);
 
-
+    /**
+     * 每搜索一次记录一次搜索的内容
+     * @param content
+     */
+    void addSearchRecord(String content,String userName);
 
 }

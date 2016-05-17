@@ -35,7 +35,7 @@
                 <li><a href="/repo/repos?pager.offset=0">Repository</a></li>
                 <li><a href="/user/users?pager.offset=0">User</a></li>
                 <li><a href="#" class="active">Repository Statistics</a></li>
-                <li><a href="#">User Statistics</a></li>
+                <li><a href="/statistics/user">User Statistics</a></li>
                 <li><a href="/recommend">Recommended</a> </li>
             </ul>
         </nav>
@@ -80,8 +80,9 @@
 <div class="templatemo-flex-row">
     <div class="templatemo-content col-1 light-gray-bg">
         <div class="templatemo-flex-row flex-content-row">
-            <div class="templatemo-content-widget white-bg col-1 animated fadeInLeft">
+            <div id="local" class="templatemo-content-widget white-bg col-1 animated fadeInLeft">
                 <h2>Local</h2><hr>
+
             </div>
             <div class="templatemo-content-widget white-bg col-1 animated fadeInRight">
                 <h2>Test</h2><hr>
@@ -90,16 +91,7 @@
         </div>
     </div>
 </div>
-<div class="templatemo-flex-row">
-    <div class="templatemo-content col-1 light-gray-bg">
-        <div class="templatemo-flex-row flex-content-row">
-            <div id="local" class="templatemo-content-widget white-bg col-1 animated fadeInLeft">
 
-            </div>
-
-        </div>
-    </div>
-</div>
 <footer class="text-right">
     <p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>
 </footer>

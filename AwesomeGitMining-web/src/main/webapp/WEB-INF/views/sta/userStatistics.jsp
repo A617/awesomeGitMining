@@ -21,7 +21,7 @@
                 <li><a href="/index.jsp">Home</a></li>
                 <li><a href="/repo/repos?pager.offset=0">Repository</a></li>
                 <li><a href="/user/users?pager.offset=0">User</a></li>
-                <li><a href="/repoStatistics.jsp">Repository Statistics</a></li>
+                <li><a href="/statistics/repository">Repository Statistics</a></li>
                 <li><a href="#" class="active">User Statistics</a></li>
                 <li><a href="/recommend">Recommended</a></li>
             </ul>
