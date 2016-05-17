@@ -13,6 +13,7 @@
     <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
+    <link href="<c:url value="/css/simplify.min.css"/>" rel="stylesheet" type="text/css" media="all">
     <style type="text/css">
         span {
             width: 30%;
@@ -87,100 +88,81 @@
                     </form>
                 </div>
                 <!--tag-->
-                <div>
+                <div class="col-lg-12">
                     <h3 class="text-uppercase"> Languages</h3>
                     <div class="box-content buttons">
-                        </p>
-                        <a href="#" class="btn btn-s-md btn-warning"> All</a>
-                        <a href="#" class="btn btn-s-md btn-warning"> Scala</a>
-                        <a href="#" class="btn btn-s-md btn-warning"> C</a>
-                        <a href="#" class="btn btn-s-md btn-warning"> Ruby</a>
-                        <a href="#" class="btn btn-s-md btn-warning"> Java</a>
-                        <a href="#" class="btn btn-s-md btn-warning"> Python</a>
-                        </p>
-                        <p>
-                            <a href="#" class="btn btn-s-md btn-warning"> JavaScript</a>
-                            <a href="#" class="btn btn-s-md btn-warning"> Perl</a>
-                            <a href="#" class="btn btn-s-md btn-warning"> PHP</a>
-                            <a href="#" class="btn btn-s-md btn-warning"> HTML</a>
-                            <a href="#" class="btn btn-s-md btn-warning"> Shell</a>
-
-                        </p>
-                        <p>
-                            <a href="#" class="btn btn-s-md btn-warning"> Objective-C</a>
-                            <a href="#" class="btn btn-s-md btn-warning"> Haskell</a>
-                            <a href="#" class="btn btn-s-md btn-warning"> Clojure</a>
-                            <a href="#" class="btn btn-s-md btn-warning"> C#</a>
-                        </p>
-                        <p>
-                            <a href="#" class="btn btn-s-md btn-warning"> CSS</a>
-                            <a href="#" class="btn btn-s-md btn-warning"> C++</a>
-                            <a href="#" class="btn btn-s-md btn-warning"> Go</a>
-                            <a href="#" class="btn btn-s-md btn-warning"> Lua</a>
-                            <a href="#" class="btn btn-s-md btn-warning"> Prolog</a>
-                        </p>
-                        <p>
-                            <a href="#" class="btn btn-s-md btn-warning"> CoffeeScript</a>
-                        </p>
+                        <%--<form action="/repo/tag" method="get">--%>
+                        <div class="col-lg-3 col-md-6"><button id="onLan" type="submit" class="blog-tag" name="lan" value="all">All</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Scala">Scala</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="C">C</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Ruby">Ruby</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Java">Java</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Python">Python</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="JavaScript">JavaScript</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Perl">Perl</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="PHP">PHP</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="HTML">HTML</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Shell">Shell</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Haskell">Haskell</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Clojure">Clojure</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="CSS">CSS</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="C++">C++</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Go">Go</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Lua">Lua</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Prolog">Prolog</button></div>
+                        <div class="col-lg-6 col-md-6"><button type="submit" class="blog-tag" name="lan" value="CoffeeScript">CoffeeScript</button></div>
+                        <div class="col-lg-6 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Objective-C">Objective-C</button></div>
+                        <%--</form>--%>
                     </div>
                 </div>
 
-                <div>
+                <div class="col-lg-12">
                     <h3 class="text-uppercase">  Keywords</h3>
                     <div class="box-content buttons">
-                        <p>
-                            <a href="#" class="btn btn-s-md btn-primary"> API</a>
-                            <a href="#" class="btn btn-s-md btn-primary"> Django</a>
-                            <a href="#" class="btn btn-s-md btn-primary"> MySQL</a>
-                            <a href="#" class="btn btn-s-md btn-primary"> jQuery</a>
-                            <a href="#" class="btn btn-s-md btn-primary"> XML</a>
-                        </p>
-                        <p>
-                            <a href="#" class="btn btn-s-md btn-primary"> Web</a>
-                            <a href="#" class="btn btn-s-md btn-primary"> Plugin</a>
-                            <a href="#" class="btn btn-s-md btn-primary"> database</a>
-                            <a href="#" class="btn btn-s-md btn-primary"> IRC</a>
-                            <a href="#" class="btn btn-s-md btn-primary"> iOS</a>
-                        </p>
-                        <p>
-                            <a href="#" class="btn btn-s-md btn-primary"> Git</a>
-                            <a href="#" class="btn btn-s-md btn-primary"> Emacs</a>
-                            <a href="#" class="btn btn-s-md btn-primary"> JSON</a>
-                            <a href="#" class="btn btn-s-md btn-primary"> Linux</a>
-                            <a href="#" class="btn btn-s-md btn-primary"> vim</a>
-                        </p>
-                        <p>
-                            <a href="#" class="btn btn-s-md btn-primary"> toolkit</a>
-                            <a href="#" class="btn btn-s-md btn-primary"> .NET</a>
-                            <a href="#" class="btn btn-s-md btn-primary"> Apache</a>
-                            <a href="#" class="btn btn-s-md btn-primary"> Android</a>
-                            <a href="#" class="btn btn-s-md btn-primary"> OS</a>
-                        </p>
-                        <p>
-                            <a href="#" class="btn btn-s-md btn-primary"> Maven</a>
-                            <a href="#" class="btn btn-s-md btn-primary"> gem</a>
-                            <a href="#" class="btn btn-s-md btn-primary"> MVC</a>
-                        </p>
+                        <%--<form action="/repo/tag" method="get">--%>
+                        <div class="col-lg-3 col-md-6"><button id="onKey" type="submit" class="blog-tag" name="key" value="all">All</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="API">API</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="Django">Django</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="MySQL">MySQL</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="jQuery">jQuery</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="XML">XML</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="Web">Web</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="Plugin">Plugin</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="database">database</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="IRC">IRC</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="iOS">iOS</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="Git">Git</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="Emacs">Emacs</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="JSON">JSON</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="Linux">Linux</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="vim">vim</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="toolkit">toolkit</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value=".NET">.NET</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="Apache">Apache</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="Android">Android</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="OS">OS</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="Maven">Maven</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="gem">gem</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="MVC">MVC</button></div>
+                        <%--</form>--%>
                     </div>
                 </div>
 
-                <div>
+                <div class="col-lg-12">
                     <h3 class="text-uppercase"> Updated Time</h3>
                     <div class="box-content buttons">
-                        <p>
-                            <a href="#" class="btn btn-s-md btn-success"> All</a>
-                            <a href="#" class="btn btn-s-md btn-success"> 2007</a>
-                            <a href="#" class="btn btn-s-md btn-success"> 2008</a>
-                            <a href="#" class="btn btn-s-md btn-success"> 2009</a>
-                            <a href="#" class="btn btn-s-md btn-success"> 2010</a>
-                        </p>
-                        <p>
-                            <a href="#" class="btn btn-s-md btn-success"> 2011</a>
-                            <a href="#" class="btn btn-s-md btn-success"> 2012</a>
-                            <a href="#" class="btn btn-s-md btn-success"> 2013</a>
-                            <a href="#" class="btn btn-s-md btn-success"> 2014</a>
-                            <a href="#" class="btn btn-s-md btn-success"> 2015</a>
-                        </p>
+                        <%--<form action="/repo/tag" method="get">--%>
+                        <div class="col-lg-3 col-md-6"><button id="onYear" type="submit" class="blog-tag" name="year" value="all">All</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2007">2007</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2008">2008</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2009">2009</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2010">2010</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2011">2011</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2012">2012</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2013">2013</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2014">2014</button></div>
+                        <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2015">2015</button></div>
+                        <%--</form>--%>
                     </div>
                 </div>
             </div>
@@ -199,7 +181,7 @@
                             </a>
                         </li>
                         <li class="active">
-                            <a href="#stars" onclick='showPage("stars")'>
+                            <a href="#current" onclick='showPage("stars")'>
                                 <h3>Star</h3>
                             </a>
                         </li>
@@ -213,7 +195,7 @@
                 <div class="tab-content">
                     <div class="tab-pane fade" id="general"></div>
                     <div class="tab-pane fade" id="forks"></div>
-                    <div class="tab-pane fade in active" id="stars">
+                    <div class="tab-pane fade in active" id="current">
                         <div class="panel-body">
                             <ul class="dashboard-list">
                                 <c:forEach items="${stars }" var="repo">
@@ -275,6 +257,7 @@
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<script src="/js/repotag.js"></script>
 <script language="javascript">
 
     function showPage(tabId){

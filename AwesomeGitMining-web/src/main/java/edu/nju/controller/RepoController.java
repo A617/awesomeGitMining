@@ -35,10 +35,9 @@ public class RepoController {
                                   @RequestParam(value="key",required = false) String key,
                                   @RequestParam(value="year",required = false)String year) {
         Pager<Repository> total;
-        if(lan==null){
+        if(lan==null&&key==null&&year==null || lan.equals("All")&&year.equals("All")&&year.equals("All")){
             total = repoService.getAllRepos();
         }else {
-            System.out.println(lan+" "+key+" "+year);
             lan=lan.equals("All")?"":lan;
             key=key.equals("All")?"":key;
             year=year.equals("All")?"":year;
@@ -47,7 +46,8 @@ public class RepoController {
 
         Map<String, Object> map = new HashMap<>();
         map.put("repos", total.getDatas());
-        map.put("total", total.getSize());
+        map.put("total", total.getTotal());
+        System.out.println(total.getTotal());
         return new ModelAndView("/repo/list", map);
     }
 
@@ -136,52 +136,5 @@ public class RepoController {
         map.put("total", list.getTotal());
         return new ModelAndView("/repo/search", map);
     }
-
-//    @RequestMapping(value = "/tag", method = RequestMethod.GET)
-//    public ModelAndView tagUser(HttpServletRequest request){
-//        HttpSession session = request.getSession();
-//        String lan = request.getParameter("lan");
-//        String key = request.getParameter("key");
-//        String year = request.getParameter("year");
-//        String condition = (String) session.getAttribute("tag");
-//        if (condition == null) {
-//            condition = new String();
-//            session.setAttribute("tag", condition);
-//            if (lan == null || "".equals(lan)) {
-//                return new ModelAndView("/repo/tag");
-//            }
-//            if (key == null || "".equals(key)) {
-//                return new ModelAndView("/repo/tag");
-//            }
-//            if (year == null || "".equals(year)) {
-//                return new ModelAndView("/repo/tag");
-//            }
-//        }
-//        if (lan != null && !("".equals(lan))) {
-//            condition = lan;
-//            session.setAttribute("tag", condition);
-//        }
-//        if (key != null && !("".equals(key))) {
-//            condition = key;
-//            session.setAttribute("tag", condition);
-//        }
-//        if (year != null && !("".equals(year))) {
-//            condition = year;
-//            session.setAttribute("tag", condition);
-//        }
-//
-//        Pager<Repository> list;
-//        if(lan != null){
-//            list = repoService.getReposByLanguage(condition);
-//        } else if(key != null) {
-//            list = repoService.getReposByKey(condition);
-//        } else{
-//            list = repoService.getReposByYear(Integer.parseInt(condition));
-//        }
-//        Map<String,Object> map = new HashMap<>();
-//        map.put("repos",list.getDatas());
-//        map.put("total",list.getTotal());
-//        return new ModelAndView("/repo/tag",map);
-//    }
 
 }

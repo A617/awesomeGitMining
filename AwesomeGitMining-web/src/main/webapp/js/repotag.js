@@ -1,3 +1,5 @@
+document.write("<script language='javascript' src='/js/jquery.pagination.js'></script>");
+document.write("<script language='javascript' src='/js/jquery.min.js'></script>");
 $(document).ready(function() {
 
     var lan = $("#onLan").text();
@@ -13,7 +15,7 @@ $(document).ready(function() {
             $("[name='lan']").css("color","#666");
             $(this).css("background-color","#2baab1");
             $(this).css("color","#fff");
-            $("#general").load("/repo/repos?pager.offset=0&lan=" + lan+"&key="+key+"&year="+year+" #general");
+            $("#current").load("/repo/repos?pager.offset=0&lan=" + lan+"&key="+key+"&year="+year+" #current");
         });
 
     });
@@ -27,7 +29,7 @@ $(document).ready(function() {
             $("[name='key']").css("color","#666");
             $(this).css("background-color","#2baab1");
             $(this).css("color","#fff");
-            $("#general").load("/repo/repos?pager.offset=0&lan=" + lan+"&key="+key+"&year="+year+" #general");
+            $("#current").load("/repo/repos?pager.offset=0&lan=" + lan+"&key="+key+"&year="+year+" #current");
         });
     });
 
@@ -39,7 +41,9 @@ $(document).ready(function() {
             $("[name='year']").css("color","#666");
             $(this).css("background-color","#2baab1");
             $(this).css("color","#fff");
-            $("#general").load("/repo/repos?pager.offset=0&lan=" + lan+"&key="+key+"&year="+year+" #general");
+            $("#current").load("/repo/repos?pager.offset=0&lan=" + lan+"&key="+key+"&year="+year+" #current");
         });
     });
+    
+
 });
