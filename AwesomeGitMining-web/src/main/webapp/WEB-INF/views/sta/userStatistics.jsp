@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +11,23 @@
     <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
+    <style>
+        .bubble circle {
+            stroke: black;
+            stroke-width: 2px;
+        }
+
+        .bubble text {
+            fill: black;
+            font-size: 14px;
+            font-family: arial;
+            text-anchor: middle;
+        }
+
+    </style>
 </head>
 <body>
+
 <div class="templatemo-top-nav-container">
     <div class="row">
         <nav class="templatemo-top-nav">
@@ -22,14 +37,14 @@
                 <li><a href="/user/users?pager.offset=0">User</a></li>
                 <li><a href="#">Repository Statistics</a></li>
                 <li><a href="#" class="active">User Statistics</a></li>
-                <li><a href="/recommend">Recommended</a> </li>
+                <li><a href="/recommend">Recommended</a></li>
             </ul>
         </nav>
 
         <div class="dropdown navbar-right">
-            <%session.setAttribute("backuri","/");%>
+            <%session.setAttribute("backuri", "/");%>
             <%
-                if(session.getAttribute("loginMember")==null){
+                if (session.getAttribute("loginMember") == null) {
             %>
             <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
                 Visitors <b class="caret"></b>
@@ -43,7 +58,7 @@
                 </li>
             </ul>
             <%
-            }else{
+            } else {
             %>
             <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
                 <%=session.getAttribute("loginMember")%><b class="caret"></b>
@@ -63,19 +78,21 @@
     </div>
 </div>
 
+
 <div class="templatemo-flex-row">
     <div class="templatemo-content col-1 light-gray-bg">
         <div class="templatemo-flex-row flex-content-row">
-            <div class="templatemo-content-widget white-bg col-1 animated fadeInLeft">
-                <h2>Local</h2><hr>
+            <div id="local" class="templatemo-content-widget white-bg col-1 animated fadeInLeft">
+                <h2>Local</h2>
+                <hr>
 
                 <canvas id="company-pie-local"></canvas>
 
 
-
             </div>
             <div class="templatemo-content-widget white-bg col-1 animated fadeInRight">
-                <h2>Query</h2><hr>
+                <h2>Query</h2>
+                <hr>
 
                 <canvas id="company-pie-bq"></canvas>
 
@@ -89,11 +106,13 @@
 </footer>
 
 
-
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/Chart.bundle.js"></script>
 <script src="/js/userStatistics.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+<script src="/js/bubbleTest.js"></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
 </body>
 </html>

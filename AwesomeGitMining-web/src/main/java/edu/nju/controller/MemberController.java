@@ -91,7 +91,7 @@ public class MemberController {
         if (name != null) {
             List<Repository> search = memberService.getRecommendBySearched(name);
             result.put("search", search);
-            List<Repository> star = memberService.getStaredRepos(name);
+            List<Repository> star = memberService.getRecommendByOther(name);
             result.put("star", star);
             return new ModelAndView("/member/recommend", result);
         } else {
