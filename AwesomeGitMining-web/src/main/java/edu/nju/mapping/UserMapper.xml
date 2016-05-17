@@ -121,11 +121,9 @@
     from user
     where languages REGEXP #{0}"[^S]" and company like "%"#{1}"%"
   </select>
-  <select id="selectLan_Com" resultMap="ResultMapWithBLOBs">
+  <select id="selectLan_Com" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from user
     where languages REGEXP #{0}"[^S]" and company like "%"#{1}"%"
     limit #{3},#{2}
