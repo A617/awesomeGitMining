@@ -63,5 +63,9 @@ public class RepoServiceImpl implements IRepoService {
         return repoDao.getReposByKey(key);
     }
 
+    @Override
+    public Pager<Repository> getReposByLan_Key_Year(String language,String keyword,String year){
+      return repoDao.getReposByLan_Key_Year(language,keyword,year);
+    };
 
 }

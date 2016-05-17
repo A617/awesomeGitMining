@@ -28,30 +28,22 @@ public class RepoController {
     @Resource
     private IRepoService repoService;
 
-//    @RequestMapping(value = "/repos", method = RequestMethod.GET)
-//    public ModelAndView listRepos(@RequestParam("pager.offset") int offset) {
-//        Pager<Repository> pager = repoService.getAllRepos();
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("repos", pager.getDatas());
-//        map.put("total", pager.getTotal());
-//        return new ModelAndView("/repo/list", map);
-//    }
 
     @RequestMapping(value = "/repos", method = RequestMethod.GET)
     public ModelAndView listRepos(@RequestParam(value="pager.offset",required = false) Integer offset,
                                   @RequestParam(value="lan",required = false)String lan,
                                   @RequestParam(value="key",required = false) String key,
                                   @RequestParam(value="year",required = false)String year) {
-        Set<Repository> set= new HashSet<>();
         Pager<Repository> total;
-//        if(lan==null){
+        if(lan==null){
             total = repoService.getAllRepos();
-//        }else {
-//            set.addAll(repoService.getReposByLanguage(lan).getDatas());
-//            set.addAll(repoService.getReposByKey(key).getDatas());
-//            set.addAll(repoService.getReposByYear(year).getDatas());
-//            total.addAll(set);
-//        }
+        }else {
+            System.out.println(lan+" "+key+" "+year);
+            lan=lan.equals("All")?"":lan;
+            key=key.equals("All")?"":key;
+            year=year.equals("All")?"":year;
+            total = repoService.getReposByLan_Key_Year(lan,key,year);
+        }
 
         Map<String, Object> map = new HashMap<>();
         map.put("repos", total.getDatas());
