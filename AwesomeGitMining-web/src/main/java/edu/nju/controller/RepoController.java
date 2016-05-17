@@ -38,7 +38,6 @@ public class RepoController {
         if(lan==null){
             total = repoService.getAllRepos();
         }else {
-            System.out.println(lan+" "+key+" "+year);
             lan=lan.equals("All")?"":lan;
             key=key.equals("All")?"":key;
             year=year.equals("All")?"":year;
