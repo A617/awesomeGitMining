@@ -85,4 +85,14 @@ public class UserMapperTest {
         for (User u : list)
             System.out.println(u.getLogin() + u.getCompany());
     }
+
+    @Test
+    public void countLan_ComTest(){
+        String company="facebook";
+        String language="java";
+        System.out.println(dao.countLan_Com(language,company));
+
+
+    }
+
 }

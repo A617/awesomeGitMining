@@ -161,6 +161,11 @@ public class MemberDaoImpl implements IMemberDao {
         mapper.unStarRepo(map);
     }
 
+    @Override
+    public void addWord(Word word) {
+        mapper.addWord(word);
+    }
+
     private Map<String, Object> createMap() {
         Map<String, Object> map = new HashMap<String, Object>();
         int pageSize = SystemContext.getSize();

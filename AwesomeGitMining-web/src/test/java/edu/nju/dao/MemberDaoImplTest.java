@@ -83,7 +83,17 @@ public class MemberDaoImplTest {
         dao.addShareRepo(z);
         dao.addShareRepo(r);
     }
+    @Test
+    public void addWordTest() throws Exception {
+        java.sql.Date sd;
+        java.util.Date ud;
 
+        ud = new java.util.Date();
+        sd = new java.sql.Date(ud.getTime());
+        Word word=new Word("miku","xml",sd);
+
+
+    }
 
     @Test
     public void getRecommendByOtherTest() throws Exception {

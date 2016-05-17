@@ -1,9 +1,6 @@
 package edu.nju.dao;
 
-import edu.nju.model.Member;
-import edu.nju.model.Recommender;
-import edu.nju.model.Repository;
-import edu.nju.model.StarRepo;
+import edu.nju.model.*;
 
 import java.util.List;
 
@@ -67,4 +64,10 @@ public interface IMemberDao {
      * @return
      */
     void unStarRepo(String userName,String repository);
+    /**
+     * 增加关键词
+     * @param word
+     * @return
+     */
+    void addWord(Word word);
 }

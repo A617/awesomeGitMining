@@ -117,6 +117,11 @@ public class RepositoryMapperTest {
 //            System.out.println(u.getFullName() + ":" + u.getDescription());
         System.out.println(list.size());
     }
-
+    @Test
+    public void selectFullNameTest() throws Exception{
+        List<String>list =dao.selectFullName();
+        for (String u : list)
+            System.out.println(u);
+    }
 
 }
