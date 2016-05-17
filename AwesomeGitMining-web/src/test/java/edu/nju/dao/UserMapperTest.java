@@ -20,7 +20,7 @@ import java.util.Map;
 public class UserMapperTest {
 
     @Resource
-    UserMapper dao = null;
+    UserMapper dao ;
 
 
     @Test
