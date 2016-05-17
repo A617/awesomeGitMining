@@ -116,4 +116,18 @@
     from user
     where company = #{company}
   </select>
+  <select id="countLan_Com" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select  count(id)
+    from user
+    where languages REGEXP #{0}"[^S]" and company like "%"#{1}"%"
+  </select>
+  <select id="selectLan_Com" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user
+    where languages REGEXP #{0}"[^S]" and company like "%"#{1}"%"
+    limit #{3},#{2}
+  </select>
 </mapper>
