@@ -35,7 +35,7 @@
                 <li><a href="/repo/repos?pager.offset=0">Repository</a></li>
                 <li><a href="/user/users?pager.offset=0">User</a></li>
                 <li><a href="#" class="active">Repository Statistics</a></li>
-                <li><a href="#">User Statistics</a></li>
+                <li><a href="/statistics/user">User Statistics</a></li>
                 <li><a href="/recommend">Recommended</a> </li>
             </ul>
         </nav>

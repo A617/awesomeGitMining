@@ -26,7 +26,6 @@ public class RepoStaController {
     @RequestMapping(value="/statistics/repository/searchRecord",method = RequestMethod.GET)
     public @ResponseBody
     List<LinkedHashMap> getSearchRecord() {
-        System.out.println(memberStaService.countFirst20Keywords());
         return memberStaService.countFirst20Keywords();
     }
 }
