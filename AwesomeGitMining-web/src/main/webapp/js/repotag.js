@@ -13,7 +13,7 @@ $(document).ready(function() {
             $("[name='lan']").css("color","#666");
             $(this).css("background-color","#2baab1");
             $(this).css("color","#fff");
-            $("#repolist").load("/repo/repos?pager.offset=0&lan=" + lan+"&key="+key+"&year="+year+" #repolist");
+            $("#general").load("/repo/repos?pager.offset=0&lan=" + lan+"&key="+key+"&year="+year+" #general");
         });
 
     });
@@ -27,7 +27,7 @@ $(document).ready(function() {
             $("[name='key']").css("color","#666");
             $(this).css("background-color","#2baab1");
             $(this).css("color","#fff");
-            $("#repolist").load("/repo/repos?pager.offset=0&lan=" + lan+"&key="+key+"&year="+year+" #repolist");
+            $("#general").load("/repo/repos?pager.offset=0&lan=" + lan+"&key="+key+"&year="+year+" #general");
         });
     });
 
@@ -39,7 +39,7 @@ $(document).ready(function() {
             $("[name='year']").css("color","#666");
             $(this).css("background-color","#2baab1");
             $(this).css("color","#fff");
-            $("#repolist").load("/repo/repos?pager.offset=0&lan=" + lan+"&key="+key+"&year="+year+" #repolist");
+            $("#general").load("/repo/repos?pager.offset=0&lan=" + lan+"&key="+key+"&year="+year+" #general");
         });
     });
 });

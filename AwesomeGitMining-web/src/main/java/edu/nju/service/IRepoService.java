@@ -64,4 +64,7 @@ public interface IRepoService {
      * @return
      */
     Pager<Repository> getReposByKey(String key);
+
+
+    Pager<Repository> getReposByLan_Key_Year(String language,String keyword,String year);
 }
