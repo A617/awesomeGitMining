@@ -1,6 +1,7 @@
 package edu.nju.dao;
 
 import edu.nju.model.Pager;
+import edu.nju.model.Repository;
 import edu.nju.model.User;
 
 import java.util.List;
@@ -47,4 +48,13 @@ public interface IUserDao {
      * @return
      */
     Pager<User> getUserByCompany(String company);
+
+
+    /**
+     * 根据语言和公司筛选用户
+     * @param language,company
+     * @return
+     */
+
+    Pager<User> getUserByLan_Com(String language, String company);
 }

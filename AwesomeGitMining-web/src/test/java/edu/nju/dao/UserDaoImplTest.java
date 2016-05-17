@@ -1,6 +1,7 @@
 package edu.nju.dao;
 
 import edu.nju.model.Pager;
+import edu.nju.model.Repository;
 import edu.nju.model.SystemContext;
 import edu.nju.model.User;
 import org.junit.Test;
@@ -9,6 +10,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -41,5 +44,13 @@ public class UserDaoImplTest {
 //            System.out.println(user.getId()+" "+user.getLogin()+" "+user.getLocation());
 //        }
     }
+    @Test
+    public  void getUserByLan_ComTest() throws  Exception{
+
+
+
+    }
+
+
 
 }

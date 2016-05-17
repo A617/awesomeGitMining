@@ -105,42 +105,42 @@ public class UserController {
         return new ModelAndView("/user/search",map);
     }
 
-    @RequestMapping(value = "/tag", method = RequestMethod.GET)
-    public ModelAndView tagUser(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        String lan = request.getParameter("lan");
-        String com = request.getParameter("com");
-
-        String condition = (String) session.getAttribute("condition");
-        if (condition == null) {
-            condition = new String();
-            session.setAttribute("condition", condition);
-            if (lan == null || "".equals(lan)) {
-                return new ModelAndView("/user/tag");
-            }
-            if (com == null || "".equals(com)) {
-                return new ModelAndView("/user/tag");
-            }
-        }
-        if (lan != null && !("".equals(lan))) {
-            condition = lan;
-            session.setAttribute("condition", condition);
-        }
-        if (com != null && !("".equals(com))) {
-            condition = com;
-            session.setAttribute("condition", condition);
-        }
-
-        Pager<User> list;
-        if(lan != null){
-            list = userService.getUserByLanguage(condition);
-        }  else {
-            list = userService.getUserByCompany(condition);
-        }
-        Map<String,Object> map = new HashMap<>();
-        map.put("users",list.getDatas());
-        map.put("total",list.getTotal());
-        return new ModelAndView("/user/tag",map);
-    }
+//    @RequestMapping(value = "/tag", method = RequestMethod.GET)
+//    public ModelAndView tagUser(HttpServletRequest request){
+//        HttpSession session = request.getSession();
+//        String lan = request.getParameter("lan");
+//        String com = request.getParameter("com");
+//
+//        String condition = (String) session.getAttribute("condition");
+//        if (condition == null) {
+//            condition = new String();
+//            session.setAttribute("condition", condition);
+//            if (lan == null || "".equals(lan)) {
+//                return new ModelAndView("/user/tag");
+//            }
+//            if (com == null || "".equals(com)) {
+//                return new ModelAndView("/user/tag");
+//            }
+//        }
+//        if (lan != null && !("".equals(lan))) {
+//            condition = lan;
+//            session.setAttribute("condition", condition);
+//        }
+//        if (com != null && !("".equals(com))) {
+//            condition = com;
+//            session.setAttribute("condition", condition);
+//        }
+//
+//        Pager<User> list;
+//        if(lan != null){
+//            list = userService.getUserByLanguage(condition);
+//        }  else {
+//            list = userService.getUserByCompany(condition);
+//        }
+//        Map<String,Object> map = new HashMap<>();
+//        map.put("users",list.getDatas());
+//        map.put("total",list.getTotal());
+//        return new ModelAndView("/user/tag",map);
+//    }
 
 }

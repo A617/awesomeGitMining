@@ -105,7 +105,6 @@
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Shell">Shell</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Haskell">Haskell</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Clojure">Clojure</button></div>
-                            <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="C#">C#</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="CSS">CSS</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="C++">C++</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Go">Go</button></div>
@@ -172,7 +171,7 @@
                     <div class="panel-heading">
                         <ul class="nav nav-tabs" id="maintab">
                             <li class="active">
-                                <a href="#general" onclick='showPage("repos")'>
+                                <a href="#current" onclick='showPage("repos")'>
                                     <h3>General</h3>
                                 </a>
                             </li>
@@ -194,7 +193,7 @@
                         </ul>
                     </div>
                     <div class="tab-content">
-                        <div class="tab-pane fade in active" id="general">
+                        <div class="tab-pane fade in active" id="current">
                             <div class="panel-body">
                                 <ul class="dashboard-list">
                                     <c:forEach items="${repos }" var="repo">

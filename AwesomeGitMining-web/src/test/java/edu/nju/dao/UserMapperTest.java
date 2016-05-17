@@ -20,7 +20,7 @@ import java.util.Map;
 public class UserMapperTest {
 
     @Resource
-    UserMapper dao = null;
+    UserMapper dao ;
 
 
     @Test
@@ -88,10 +88,14 @@ public class UserMapperTest {
 
     @Test
     public void countLan_ComTest(){
-        String company="facebook";
-        String language="java";
-        System.out.println(dao.countLan_Com(language,company));
-
+        String lan="java";
+        String com="facebook";
+        int pageSize=3000;
+        int pageOffset=0;
+        List<User> list = dao.selectLan_Com(lan,com,pageSize,pageOffset);
+        for (User u : list)
+            System.out.println(u.getName() + ":" );
+        System.out.println(list.size());
 
     }
 
