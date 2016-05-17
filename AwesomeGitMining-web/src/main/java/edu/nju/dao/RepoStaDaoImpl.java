@@ -33,6 +33,16 @@ public class RepoStaDaoImpl implements IRepoStaDao {
         return list;
     }
 
+    @Override
+    public List<String> getStaLanguages() {
+        return null;
+    }
+
+    @Override
+    public int[][] getLanguageRelation() {
+        return new int[0][];
+    }
+
 
     @Override
     public List<LinkedHashMap> countFirst20Languages() {
