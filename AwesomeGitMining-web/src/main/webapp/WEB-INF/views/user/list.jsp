@@ -91,8 +91,7 @@
                     <div class="col-lg-12">
                         <h3 class="text-uppercase"> Languages</h3>
                         <div class="box-content buttons">
-                            <form action="/user/tag" method="get">
-                                <div class="col-lg-3 col-md-6"><a href="/user/users?pager.offset=0" class="blog-tag"> All</a></div>
+                                <div class="col-lg-3 col-md-6"><button id="onLan" type="submit" class="blog-tag" name="lan" value="All">All</button></div>
                                 <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Scala">Scala</button></div>
                                 <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="C">C</button></div>
                                 <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Ruby">Ruby</button></div>
@@ -103,22 +102,19 @@
                                 <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="PHP">PHP</button></div>
                                 <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="HTML">HTML</button></div>
                                 <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Shell">Shell</button></div>
-                                <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="C#">C#</button></div>
                                 <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Lua">Lua</button></div>
                                 <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Haskell">Haskell</button></div>
                                 <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Clojure">Clojure</button></div>
                                 <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="CSS">CSS</button></div>
                                 <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="C++">C++</button></div>
                                 <div class="col-lg-6 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Objective-C">Objective-C</button></div>
-                            </form>
                         </div>
                     </div>
 
                     <div class="col-lg-12">
                         <h3 class="text-uppercase"> Companys</h3>
                         <div class="box-content buttons">
-                            <form action="/user/tag" method="get">
-                                <div class="col-lg-3 col-md-6"><a href="/user/users?pager.offset=0" class="blog-tag"> All</a></div>
+                                <div class="col-lg-3 col-md-6"><button id="onCom" type="submit" class="blog-tag" name="com" value="All">All</button></div>
                                 <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="com" value="Shopify">Shopify</button></div>
                                 <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="com" value="Google">Google</button></div>
                                 <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="com" value="Github">Github</button></div>
@@ -129,57 +125,56 @@
                                 <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="com" value="Heroku">Heroku</button></div>
                                 <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="com" value="Facebook">Facebook</button></div>
                                 <div class="col-lg-6 col-md-6"><button type="submit" class="blog-tag" name="com" value="Red Hat">Red Hat</button></div>
-                            </form>
                         </div>
                     </div>
                 </div>
                 <!--list-->
                 <div class="col-2 panel panel-default margin-10">
                     <div class="panel-heading"><h2>User List</h2></div>
-                    <div class="panel-body">
-                        <ul class="dashboard-list">
-                            <c:forEach items="${users }" var="u">
-                                <li>
-                                    <h3><strong>${u.id}&nbsp;<a href="${u.login }">${u.login }</a></strong></h3>
-                                    <p style="text-align: right"><strong>Followers:</strong>&nbsp;${u.followers}</p>
-                                    <p><span><strong>Location:</strong>&nbsp;${u.location}</span>
-                                        <strong>Company:</strong>&nbsp;${u.company} </span>
-                                    </p>
-                                </li>
-                            </c:forEach>
-                        </ul>
+                        <div class="panel-body" id="current">
+                            <ul class="dashboard-list">
+                                <c:forEach items="${users }" var="u">
+                                    <li>
+                                        <h3><strong>${u.id}&nbsp;<a href="${u.login }">${u.login }</a></strong></h3>
+                                        <p style="text-align: right"><strong>Followers:</strong>&nbsp;${u.followers}</p>
+                                        <p><span><strong>Location:</strong>&nbsp;${u.location}</span>
+                                            <strong>Company:</strong>&nbsp;${u.company} </span>
+                                        </p>
+                                    </li>
+                                </c:forEach>
+                            </ul>
 
-                        <ul class="pagination pagination-centered">
-                            ${pageUrl}<br>
-                            <pg:pager url="/user/users" items="${total}">
-                                <li>
-                                    <pg:first>
-                                        <a href="${pageUrl}">Begin</a>
-                                    </pg:first>
-                                </li>
-                                <li>
-                                    <pg:prev>
-                                        <a href="${pageUrl }">Pre</a>
-                                    </pg:prev>
-                                </li>
-                                <li>
-                                    <pg:pages>
-                                        <a href="${pageUrl }">${pageNumber}</a>
-                                    </pg:pages>
-                                </li>
-                                <li>
-                                    <pg:next>
-                                        <a href="${pageUrl }">Next</a>
-                                    </pg:next>
-                                </li>
-                                <li>
-                                    <pg:last>
-                                        <a href="${pageUrl }">End</a>
-                                    </pg:last>
-                                </li>
-                            </pg:pager>
-                        </ul>
-                    </div>
+                            <ul class="pagination pagination-centered">
+                                ${pageUrl}<br>
+                                <pg:pager url="/user/users" items="${total}">
+                                    <li>
+                                        <pg:first>
+                                            <a href="${pageUrl}">Begin</a>
+                                        </pg:first>
+                                    </li>
+                                    <li>
+                                        <pg:prev>
+                                            <a href="${pageUrl }">Pre</a>
+                                        </pg:prev>
+                                    </li>
+                                    <li>
+                                        <pg:pages>
+                                            <a href="${pageUrl }">${pageNumber}</a>
+                                        </pg:pages>
+                                    </li>
+                                    <li>
+                                        <pg:next>
+                                            <a href="${pageUrl }">Next</a>
+                                        </pg:next>
+                                    </li>
+                                    <li>
+                                        <pg:last>
+                                            <a href="${pageUrl }">End</a>
+                                        </pg:last>
+                                    </li>
+                                </pg:pager>
+                            </ul>
+                        </div>
                 </div>
             </div>
         </div>
@@ -191,5 +186,6 @@
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/usertag.js"></script>
 </body>
 </html>

@@ -13,7 +13,7 @@ public interface IUserService {
      * 分页得到所有的user
      * @return
      */
-    List<User> getAllUsers();
+    Pager<User> getAllUsers();
 
     /**
      * 根据登录名得到唯一的user
@@ -48,4 +48,6 @@ public interface IUserService {
      * @return
      */
     Pager<User> getUserByCompany(String company);
+
+    Pager<User> getUserByLan_Com(String language,String company);
 }
