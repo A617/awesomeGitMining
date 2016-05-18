@@ -1,61 +1,64 @@
 package edu.nju.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.Date;
 
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class Repository {
     private Integer id;
 
-    private String fullName;
+    private String full_name;
 
     private String name;
 
-    private String ownerName;
+    @JsonProperty("login")
+    @JsonUnwrapped(prefix = "owner")
+    private String owner_name;
 
     private String language;
 
-    private Integer openIssuesCount;
+    private Integer open_issues_count;
 
-    private Integer watchersCount;
+    private Integer watchers_count;
 
-    private String cloneUrl;
+    private String clone_url;
 
-    private String htmlUrl;
+    private String html_url;
 
     private String homepage;
 
-    private Date createdAt;
+    @JsonDeserialize(using = MyDateDeserializer.class)
+    private Date created_at;
 
-    private Date pushedAt;
+    @JsonDeserialize(using = MyDateDeserializer.class)
+    private Date pushed_at;
 
-    private Date updatedAt;
+    @JsonDeserialize(using = MyDateDeserializer.class)
+    private Date updated_at;
 
     private Integer size;
 
-    private Integer stargazersCount;
+    private Integer stargazers_count;
 
-    private Integer forksCount;
+    private Integer forks_count;
 
-    private Integer subscribersCount;
-
-    private String contributorsLogin;
-
-    private String collaboratorsLogin;
+    private Integer subscribers_count;
 
     private String languages;
 
-    private Double sizeScore;
+    private Double size_score;
 
-    private Double scaleScore;
+    private Double scale_score;
 
-    private Double promisingScore;
+    private Double promising_score;
 
-    private Double participationScore;
+    private Double participation_score;
 
-    private Double hotScore;
-
-    private Integer contributorsCount;
-
-    private Integer collaboratorsCount;
+    private Double hot_score;
 
     private String description;
 
@@ -67,12 +70,12 @@ public class Repository {
         this.id = id;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFull_name() {
+        return full_name;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName == null ? null : fullName.trim();
+    public void setFull_name(String full_name) {
+        this.full_name = full_name;
     }
 
     public String getName() {
@@ -80,15 +83,15 @@ public class Repository {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
-    public String getOwnerName() {
-        return ownerName;
+    public String getOwner_name() {
+        return owner_name;
     }
 
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName == null ? null : ownerName.trim();
+    public void setOwner_name(String owner_name) {
+        this.owner_name = owner_name;
     }
 
     public String getLanguage() {
@@ -96,39 +99,39 @@ public class Repository {
     }
 
     public void setLanguage(String language) {
-        this.language = language == null ? null : language.trim();
+        this.language = language;
     }
 
-    public Integer getOpenIssuesCount() {
-        return openIssuesCount;
+    public Integer getOpen_issues_count() {
+        return open_issues_count;
     }
 
-    public void setOpenIssuesCount(Integer openIssuesCount) {
-        this.openIssuesCount = openIssuesCount;
+    public void setOpen_issues_count(Integer open_issues_count) {
+        this.open_issues_count = open_issues_count;
     }
 
-    public Integer getWatchersCount() {
-        return watchersCount;
+    public Integer getWatchers_count() {
+        return watchers_count;
     }
 
-    public void setWatchersCount(Integer watchersCount) {
-        this.watchersCount = watchersCount;
+    public void setWatchers_count(Integer watchers_count) {
+        this.watchers_count = watchers_count;
     }
 
-    public String getCloneUrl() {
-        return cloneUrl;
+    public String getClone_url() {
+        return clone_url;
     }
 
-    public void setCloneUrl(String cloneUrl) {
-        this.cloneUrl = cloneUrl == null ? null : cloneUrl.trim();
+    public void setClone_url(String clone_url) {
+        this.clone_url = clone_url;
     }
 
-    public String getHtmlUrl() {
-        return htmlUrl;
+    public String getHtml_url() {
+        return html_url;
     }
 
-    public void setHtmlUrl(String htmlUrl) {
-        this.htmlUrl = htmlUrl == null ? null : htmlUrl.trim();
+    public void setHtml_url(String html_url) {
+        this.html_url = html_url;
     }
 
     public String getHomepage() {
@@ -136,31 +139,31 @@ public class Repository {
     }
 
     public void setHomepage(String homepage) {
-        this.homepage = homepage == null ? null : homepage.trim();
+        this.homepage = homepage;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Date getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
     }
 
-    public Date getPushedAt() {
-        return pushedAt;
+    public Date getPushed_at() {
+        return pushed_at;
     }
 
-    public void setPushedAt(Date pushedAt) {
-        this.pushedAt = pushedAt;
+    public void setPushed_at(Date pushed_at) {
+        this.pushed_at = pushed_at;
     }
 
-    public Date getUpdatedAt() {
-        return updatedAt;
+    public Date getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdated_at(Date updated_at) {
+        this.updated_at = updated_at;
     }
 
     public Integer getSize() {
@@ -171,44 +174,28 @@ public class Repository {
         this.size = size;
     }
 
-    public Integer getStargazersCount() {
-        return stargazersCount;
+    public Integer getStargazers_count() {
+        return stargazers_count;
     }
 
-    public void setStargazersCount(Integer stargazersCount) {
-        this.stargazersCount = stargazersCount;
+    public void setStargazers_count(Integer stargazers_count) {
+        this.stargazers_count = stargazers_count;
     }
 
-    public Integer getForksCount() {
-        return forksCount;
+    public Integer getForks_count() {
+        return forks_count;
     }
 
-    public void setForksCount(Integer forksCount) {
-        this.forksCount = forksCount;
+    public void setForks_count(Integer forks_count) {
+        this.forks_count = forks_count;
     }
 
-    public Integer getSubscribersCount() {
-        return subscribersCount;
+    public Integer getSubscribers_count() {
+        return subscribers_count;
     }
 
-    public void setSubscribersCount(Integer subscribersCount) {
-        this.subscribersCount = subscribersCount;
-    }
-
-    public String getContributorsLogin() {
-        return contributorsLogin;
-    }
-
-    public void setContributorsLogin(String contributorsLogin) {
-        this.contributorsLogin = contributorsLogin == null ? null : contributorsLogin.trim();
-    }
-
-    public String getCollaboratorsLogin() {
-        return collaboratorsLogin;
-    }
-
-    public void setCollaboratorsLogin(String collaboratorsLogin) {
-        this.collaboratorsLogin = collaboratorsLogin == null ? null : collaboratorsLogin.trim();
+    public void setSubscribers_count(Integer subscribers_count) {
+        this.subscribers_count = subscribers_count;
     }
 
     public String getLanguages() {
@@ -216,63 +203,47 @@ public class Repository {
     }
 
     public void setLanguages(String languages) {
-        this.languages = languages == null ? null : languages.trim();
+        this.languages = languages;
     }
 
-    public Double getSizeScore() {
-        return sizeScore;
+    public Double getSize_score() {
+        return size_score;
     }
 
-    public void setSizeScore(Double sizeScore) {
-        this.sizeScore = sizeScore;
+    public void setSize_score(Double size_score) {
+        this.size_score = size_score;
     }
 
-    public Double getScaleScore() {
-        return scaleScore;
+    public Double getScale_score() {
+        return scale_score;
     }
 
-    public void setScaleScore(Double scaleScore) {
-        this.scaleScore = scaleScore;
+    public void setScale_score(Double scale_score) {
+        this.scale_score = scale_score;
     }
 
-    public Double getPromisingScore() {
-        return promisingScore;
+    public Double getPromising_score() {
+        return promising_score;
     }
 
-    public void setPromisingScore(Double promisingScore) {
-        this.promisingScore = promisingScore;
+    public void setPromising_score(Double promising_score) {
+        this.promising_score = promising_score;
     }
 
-    public Double getParticipationScore() {
-        return participationScore;
+    public Double getParticipation_score() {
+        return participation_score;
     }
 
-    public void setParticipationScore(Double participationScore) {
-        this.participationScore = participationScore;
+    public void setParticipation_score(Double participation_score) {
+        this.participation_score = participation_score;
     }
 
-    public Double getHotScore() {
-        return hotScore;
+    public Double getHot_score() {
+        return hot_score;
     }
 
-    public void setHotScore(Double hotScore) {
-        this.hotScore = hotScore;
-    }
-
-    public Integer getContributorsCount() {
-        return contributorsCount;
-    }
-
-    public void setContributorsCount(Integer contributorsCount) {
-        this.contributorsCount = contributorsCount;
-    }
-
-    public Integer getCollaboratorsCount() {
-        return collaboratorsCount;
-    }
-
-    public void setCollaboratorsCount(Integer collaboratorsCount) {
-        this.collaboratorsCount = collaboratorsCount;
+    public void setHot_score(Double hot_score) {
+        this.hot_score = hot_score;
     }
 
     public String getDescription() {
@@ -280,40 +251,6 @@ public class Repository {
     }
 
     public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "Repository{" +
-                "id=" + id +
-                ", fullName='" + fullName + '\'' +
-                ", name='" + name + '\'' +
-                ", ownerName='" + ownerName + '\'' +
-                ", language='" + language + '\'' +
-                ", openIssuesCount=" + openIssuesCount +
-                ", watchersCount=" + watchersCount +
-                ", cloneUrl='" + cloneUrl + '\'' +
-                ", htmlUrl='" + htmlUrl + '\'' +
-                ", homepage='" + homepage + '\'' +
-                ", createdAt=" + createdAt +
-                ", pushedAt=" + pushedAt +
-                ", updatedAt=" + updatedAt +
-                ", size=" + size +
-                ", stargazersCount=" + stargazersCount +
-                ", forksCount=" + forksCount +
-                ", subscribersCount=" + subscribersCount +
-                ", contributorsLogin='" + contributorsLogin + '\'' +
-                ", collaboratorsLogin='" + collaboratorsLogin + '\'' +
-                ", languages='" + languages + '\'' +
-                ", sizeScore=" + sizeScore +
-                ", scaleScore=" + scaleScore +
-                ", promisingScore=" + promisingScore +
-                ", participationScore=" + participationScore +
-                ", hotScore=" + hotScore +
-                ", contributorsCount=" + contributorsCount +
-                ", collaboratorsCount=" + collaboratorsCount +
-                ", description='" + description + '\'' +
-                '}';
+        this.description = description;
     }
 }
