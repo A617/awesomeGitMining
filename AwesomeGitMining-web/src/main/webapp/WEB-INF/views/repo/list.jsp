@@ -198,14 +198,14 @@
                                 <ul class="dashboard-list">
                                     <c:forEach items="${repos }" var="repo">
                                         <li>
-                                            <h3><strong><a href="${repo.fullName }">${repo.fullName }</a></strong></h3>
+                                            <h3><strong><a href="${repo.full_name }">${repo.full_name }</a></strong></h3>
                                             <p style="text-align: right"><strong>${repo.language}</strong></p>
-                                            <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}</span>
-                                                <span><strong>Forks:</strong>&nbsp;${repo.forksCount}</span>
-                                                <span><strong>Stargazers:</strong>&nbsp;${repo.stargazersCount}</span>
+                                            <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribers_count}</span>
+                                                <span><strong>Forks:</strong>&nbsp;${repo.forks_count}</span>
+                                                <span><strong>Stargazers:</strong>&nbsp;${repo.stargazers_count}</span>
                                             </p>
                                             <p class="blue-text">${repo.description}</p>
-                                            <strong>Last Updated:</strong>&nbsp;${repo.updatedAt}<br>
+                                            <strong>Last Updated:</strong>&nbsp;${repo.updated_at}<br>
                                         </li>
                                     </c:forEach>
                                 </ul>
