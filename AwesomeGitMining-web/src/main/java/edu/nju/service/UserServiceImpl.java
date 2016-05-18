@@ -20,10 +20,9 @@ public class UserServiceImpl implements IUserService {
     private UserDaoImpl userDao;
 
     @Override
-    public List<User> getAllUsers() {
+    public Pager<User> getAllUsers() {
 
-        Pager<User> page = userDao.selectAllWithPager();
-        return page.getDatas();
+        return userDao.selectAllWithPager();
     }
 
     @Override
@@ -51,5 +50,9 @@ public class UserServiceImpl implements IUserService {
         return userDao.getUserByCompany(company);
     }
 
+    @Override
+    public Pager<User> getUserByLan_Com(String language,String company) {
+        return userDao.getUserByLan_Com(language, company);
+    }
 
 }

@@ -1,5 +1,3 @@
-document.write("<script language='javascript' src='/js/jquery.pagination.js'></script>");
-document.write("<script language='javascript' src='/js/jquery.min.js'></script>");
 $(document).ready(function() {
 
     var lan = $("#onLan").text();

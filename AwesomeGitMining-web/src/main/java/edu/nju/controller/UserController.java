@@ -33,14 +33,25 @@ public class UserController {
      * 所有用户列表
      * @return
      */
+
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public ModelAndView listUsers(@RequestParam("pager.offset") int offset) {
-        List<User> list = userService.getAllUsers();
-        int total = userService.getUserTotal();
-        Map<String,Object> map = new HashMap<>();
-        map.put("users",list);
-        map.put("total",total);
-        System.out.println("controller ok");
+    public ModelAndView listUsers(@RequestParam(value="pager.offset",required = false) Integer offset,
+                                  @RequestParam(value="lan",required = false)String lan,
+                                  @RequestParam(value="com",required = false) String com) {
+
+        Pager<User> total;
+        if(lan==null&&com==null|| lan.equals("All")&&com.equals("All")){
+            total = userService.getAllUsers();
+        }else {
+            lan=lan.equals("All")?"":lan;
+            com=com.equals("All")?"":com;
+            total = userService.getUserByLan_Com(lan,com);
+        }
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("users", total.getDatas());
+        map.put("total", total.getTotal());
+        System.out.println(total.getTotal());
         return new ModelAndView("/user/list", map);
     }
 

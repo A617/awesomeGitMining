@@ -14,7 +14,8 @@ public class UpdateDBTask {
     //每分钟的10秒执行
     @Scheduled(cron = "10 * * * * ?")
     public void job(){
-        LOG.info("hello。。。。");
+
+       // LOG.info("hello。。。。");
     }
 
 
