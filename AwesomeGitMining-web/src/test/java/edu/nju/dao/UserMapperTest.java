@@ -32,7 +32,7 @@ public class UserMapperTest {
 
     @Test
     public void selectByLogin() throws Exception {
-        System.out.println(dao.selectByLogin("jhoblitt").getCollaborationFullname());
+       // System.out.println(dao.selectByLogin("jhoblitt").getCollaborationFullname());
     }
 
     @Test

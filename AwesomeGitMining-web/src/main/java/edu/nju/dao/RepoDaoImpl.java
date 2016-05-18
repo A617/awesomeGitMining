@@ -118,6 +118,17 @@ public class RepoDaoImpl implements IRepoDao {
 
         return page;
     }
+
+    @Override
+    public List<String> getContributors(String repo_fullname) {
+        return null;
+    }
+
+    @Override
+    public List<String> getCollaborators(String repo_fullname) {
+        return null;
+    }
+
     @Override
     public Pager<Repository> getReposByKey(String key) {
         Map<String, Object> map = createMap();

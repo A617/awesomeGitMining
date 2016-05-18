@@ -31,7 +31,7 @@ public class UserServiceImplTest {
 
     @Test
     public void getUserByLogin() throws Exception {
-        System.out.println(userService.getUserByLogin("ml8mr").getAvatarUrl());
+      //  System.out.println(userService.getUserByLogin("ml8mr").getAvatarUrl());
 
         System.out.println(unescape("http://localhost:8080/user/mojombo/grit"));
         System.out.println(escape("http://localhost:8080/user/mojombo/grit"));

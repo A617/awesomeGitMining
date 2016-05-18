@@ -63,4 +63,8 @@ public interface RepositoryMapper {
 
     List<LinkedHashMap> countCreatedYear();
 
+    List<String> getContributors(String full_name);
+
+    List<String> getCollaborators(String repo_fullname);
+
 }

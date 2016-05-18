@@ -100,4 +100,21 @@ public interface IRepoDao {
      * @return
      */
     Pager<Repository> getReposByLan_Key_Year(String language,String keyword,String year);
+
+    /**
+     *根据项目名，获得贡献者名单
+     * @param repo_fullname
+     * @return
+     */
+    List<String> getContributors(String repo_fullname);
+
+
+    /**
+     *根据项目名，获得和作者名单
+     * @param repo_fullname
+     * @return
+     */
+    List<String> getCollaborators(String repo_fullname);
+
+
 }
