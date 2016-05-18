@@ -124,4 +124,24 @@ public class RepositoryMapperTest {
             System.out.println(u);
     }
 
+    @Test
+    public void getContributorsTest() throws Exception{
+        String name="technomancy/leiningen";
+        List<String> list=dao.getContributors(name);
+        for (String u : list)
+            System.out.println(u);
+
+    }
+
+
+    @Test
+    public void getCollaTest() throws Exception{
+        String name="technomancy/leiningen";
+        List<String> list=dao.getCollaborators(name);
+        for (String u : list)
+            System.out.println(u);
+
+
+    }
+
 }
