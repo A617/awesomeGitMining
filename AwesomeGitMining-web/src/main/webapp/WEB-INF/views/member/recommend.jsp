@@ -12,6 +12,7 @@
     <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
     <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.pagination.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $(".intro").mouseenter(function () {
@@ -32,6 +33,17 @@
                 $(this).children(".blue-bg").hide();
             });
         });
+    </script>
+
+    <script type="text/javascript">
+        //公共配置
+        var pageOpt = {
+            prev_text:'Prev',
+            next_text:'Next',
+            items_per_page:10,//因为第一次获取的数据,并没有传这个每页的记录数过去,所以这里应从后台获取.
+            num_display_entries:5,
+            num_edge_entries:1
+        };
     </script>
 </head>
 <body class="light-gray-bg">
@@ -90,23 +102,25 @@
         <div class="col-2 panel panel-default margin-10 animated fadeInUp">
             <div class="panel-heading"><h2>Recommendation from your search records</h2></div>
             <div class="panel-body">
-                <ul class="dashboard-list">
+                <div class="dashboard-list">
                     <c:forEach items="${search}" var="repo">
                         <li class="intro">
-                            <h3 class="head"><strong><a href="/repo/${repo.fullName }">${repo.fullName}</a></strong>
+                            <h3 class="head"><strong><a href="/repo/${repo.full_name }">${repo.full_name}</a></strong>
                             </h3>
                             <p class="blue-bg"></p>
                             <p style="text-align: right"><strong>${repo.language}</strong></p>
-                            <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}</span>
-                                <span><strong>Forks:</strong>&nbsp;${repo.forksCount}</span>
-                                <span><strong>Stargazers:</strong>&nbsp;${repo.stargazersCount}</span>
+                            <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribers_count}</span>
+                                <span><strong>Forks:</strong>&nbsp;${repo.forks_count}</span>
+                                <span><strong>Stargazers:</strong>&nbsp;${repo.stargazers_count}</span>
                             </p>
                             <p class="blue-text">${repo.description}</p>
-                            <strong>Last Updated:</strong>&nbsp;${repo.updatedAt}<br>
+                            <strong>Last Updated:</strong>&nbsp;${repo.updated_at}<br>
                         </li>
                         <hr size="2"/>
                     </c:forEach>
-                </ul>
+                </div>
+
+                <div id="Pagination"></div>
                  
             </div>
               
@@ -118,14 +132,14 @@
                 <ul class="dashboard-list">
                     <c:forEach items="${star}" var="repo">
                         <li>
-                            <h3><strong><a href="/repo/${repo.fullName }">${repo.fullName}</a></strong></h3>
+                            <h3><strong><a href="/repo/${repo.full_name }">${repo.full_name}</a></strong></h3>
                             <p style="text-align: right"><strong>${repo.language}</strong></p>
-                            <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}</span>
-                                <span><strong>Forks:</strong>&nbsp;${repo.forksCount}</span>
-                                <span><strong>Stargazers:</strong>&nbsp;${repo.stargazersCount}</span>
+                            <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribers_count}</span>
+                                <span><strong>Forks:</strong>&nbsp;${repo.forks_count}</span>
+                                <span><strong>Stargazers:</strong>&nbsp;${repo.stargazers_count}</span>
                             </p>
                             <p class="blue-text">${repo.description}</p>
-                            <strong>Last Updated:</strong>&nbsp;${repo.updatedAt}<br>
+                            <strong>Last Updated:</strong>&nbsp;${repo.updated_at}<br>
                         </li>
                         <hr size="2"/>
                     </c:forEach>
@@ -142,7 +156,6 @@
     <p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>
 </footer>
 
-<script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
