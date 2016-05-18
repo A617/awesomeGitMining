@@ -1,14 +1,20 @@
 package edu.nju.task;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.nju.model.Repository;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
+import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -16,6 +22,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
 import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.zip.GZIPInputStream;
 
@@ -23,6 +31,7 @@ import java.util.zip.GZIPInputStream;
  * Created by Dora on 2016/5/17.
  */
 public class test {
+
 
     public static void main(String[] args) {
 
@@ -42,6 +51,7 @@ public class test {
             List<String> list = analyzeTop50Repos(path);
             for(String repo:list) {
                 String s = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo);
+
 
                 Repository po = mapper.readValue(s,Repository.class);
                 System.out.println(po);
@@ -123,6 +133,7 @@ public class test {
     }
 
 
+
 }
 
 class MapValueComparator implements Comparator<Map.Entry<String, Integer>> {
@@ -133,3 +144,4 @@ class MapValueComparator implements Comparator<Map.Entry<String, Integer>> {
         return me2.getValue().compareTo(me1.getValue());
     }
 }
+

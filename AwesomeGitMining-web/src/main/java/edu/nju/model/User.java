@@ -7,11 +7,11 @@ public class User {
 
     private String login;
 
-    private String htmlUrl;
+    private String html_url;
 
     private String type;
 
-    private String avatarUrl;
+    private String avatar_url;
 
     private String name;
 
@@ -23,33 +23,27 @@ public class User {
 
     private String company;
 
-    private String contributionsFullname;
+    private Integer public_repos;
 
-    private String collaborationFullname;
-
-    private String reposFullname;
-
-    private Integer publicRepos;
-
-    private Integer publicGists;
+    private Integer public_gists;
 
     private Integer followers;
 
     private Integer following;
 
-    private Date createdAt;
+    private Date created_at;
 
-    private Date updatedAt;
+    private Date updated_at;
 
-    private Double popularScore;
+    private Double popular_score;
 
-    private Double teamworkScore;
+    private Double teamwork_score;
 
-    private Double livenessScore;
+    private Double liveness_score;
 
-    private Double experienceScore;
+    private Double experience_score;
 
-    private Double quantityScore;
+    private Double quantity_score;
 
     private String languages;
 
@@ -66,15 +60,15 @@ public class User {
     }
 
     public void setLogin(String login) {
-        this.login = login == null ? null : login.trim();
+        this.login = login;
     }
 
-    public String getHtmlUrl() {
-        return htmlUrl;
+    public String getHtml_url() {
+        return html_url;
     }
 
-    public void setHtmlUrl(String htmlUrl) {
-        this.htmlUrl = htmlUrl == null ? null : htmlUrl.trim();
+    public void setHtml_url(String html_url) {
+        this.html_url = html_url;
     }
 
     public String getType() {
@@ -82,15 +76,15 @@ public class User {
     }
 
     public void setType(String type) {
-        this.type = type == null ? null : type.trim();
+        this.type = type;
     }
 
-    public String getAvatarUrl() {
-        return avatarUrl;
+    public String getAvatar_url() {
+        return avatar_url;
     }
 
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl == null ? null : avatarUrl.trim();
+    public void setAvatar_url(String avatar_url) {
+        this.avatar_url = avatar_url;
     }
 
     public String getName() {
@@ -98,7 +92,7 @@ public class User {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getLocation() {
@@ -106,7 +100,7 @@ public class User {
     }
 
     public void setLocation(String location) {
-        this.location = location == null ? null : location.trim();
+        this.location = location;
     }
 
     public String getEmail() {
@@ -114,7 +108,7 @@ public class User {
     }
 
     public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+        this.email = email;
     }
 
     public String getBlog() {
@@ -122,7 +116,7 @@ public class User {
     }
 
     public void setBlog(String blog) {
-        this.blog = blog == null ? null : blog.trim();
+        this.blog = blog;
     }
 
     public String getCompany() {
@@ -130,47 +124,23 @@ public class User {
     }
 
     public void setCompany(String company) {
-        this.company = company == null ? null : company.trim();
+        this.company = company;
     }
 
-    public String getContributionsFullname() {
-        return contributionsFullname;
+    public Integer getPublic_repos() {
+        return public_repos;
     }
 
-    public void setContributionsFullname(String contributionsFullname) {
-        this.contributionsFullname = contributionsFullname == null ? null : contributionsFullname.trim();
+    public void setPublic_repos(Integer public_repos) {
+        this.public_repos = public_repos;
     }
 
-    public String getCollaborationFullname() {
-        return collaborationFullname;
+    public Integer getPublic_gists() {
+        return public_gists;
     }
 
-    public void setCollaborationFullname(String collaborationFullname) {
-        this.collaborationFullname = collaborationFullname == null ? null : collaborationFullname.trim();
-    }
-
-    public String getReposFullname() {
-        return reposFullname;
-    }
-
-    public void setReposFullname(String reposFullname) {
-        this.reposFullname = reposFullname == null ? null : reposFullname.trim();
-    }
-
-    public Integer getPublicRepos() {
-        return publicRepos;
-    }
-
-    public void setPublicRepos(Integer publicRepos) {
-        this.publicRepos = publicRepos;
-    }
-
-    public Integer getPublicGists() {
-        return publicGists;
-    }
-
-    public void setPublicGists(Integer publicGists) {
-        this.publicGists = publicGists;
+    public void setPublic_gists(Integer public_gists) {
+        this.public_gists = public_gists;
     }
 
     public Integer getFollowers() {
@@ -189,60 +159,60 @@ public class User {
         this.following = following;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Date getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
     }
 
-    public Date getUpdatedAt() {
-        return updatedAt;
+    public Date getUpdated_at() {
+        return updated_at;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdated_at(Date updated_at) {
+        this.updated_at = updated_at;
     }
 
-    public Double getPopularScore() {
-        return popularScore;
+    public Double getPopular_score() {
+        return popular_score;
     }
 
-    public void setPopularScore(Double popularScore) {
-        this.popularScore = popularScore;
+    public void setPopular_score(Double popular_score) {
+        this.popular_score = popular_score;
     }
 
-    public Double getTeamworkScore() {
-        return teamworkScore;
+    public Double getTeamwork_score() {
+        return teamwork_score;
     }
 
-    public void setTeamworkScore(Double teamworkScore) {
-        this.teamworkScore = teamworkScore;
+    public void setTeamwork_score(Double teamwork_score) {
+        this.teamwork_score = teamwork_score;
     }
 
-    public Double getLivenessScore() {
-        return livenessScore;
+    public Double getLiveness_score() {
+        return liveness_score;
     }
 
-    public void setLivenessScore(Double livenessScore) {
-        this.livenessScore = livenessScore;
+    public void setLiveness_score(Double liveness_score) {
+        this.liveness_score = liveness_score;
     }
 
-    public Double getExperienceScore() {
-        return experienceScore;
+    public Double getExperience_score() {
+        return experience_score;
     }
 
-    public void setExperienceScore(Double experienceScore) {
-        this.experienceScore = experienceScore;
+    public void setExperience_score(Double experience_score) {
+        this.experience_score = experience_score;
     }
 
-    public Double getQuantityScore() {
-        return quantityScore;
+    public Double getQuantity_score() {
+        return quantity_score;
     }
 
-    public void setQuantityScore(Double quantityScore) {
-        this.quantityScore = quantityScore;
+    public void setQuantity_score(Double quantity_score) {
+        this.quantity_score = quantity_score;
     }
 
     public String getLanguages() {
@@ -250,6 +220,6 @@ public class User {
     }
 
     public void setLanguages(String languages) {
-        this.languages = languages == null ? null : languages.trim();
+        this.languages = languages;
     }
 }

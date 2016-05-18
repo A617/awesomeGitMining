@@ -83,10 +83,10 @@
     <div class="templatemo-content col-1 light-gray-bg">
         <div class="templatemo-flex-row flex-content-row">
             <div class="templatemo-content-widget white-bg col-1 animated fadeInUp">
-                <h1 id="fullName">${repo.fullName}</h1><hr>
+                <h1 id="fullName">${repo.full_name}</h1><hr>
                 <div class="col-lg-6 col-md-6">
                     <p><strong>${repo.description}</strong></p><br>
-                    <p><strong class="text-purple">Project URL:</strong>&nbsp;<a href=${repo.cloneUrl}>${repo.cloneUrl}</a></p>
+                    <p><strong class="text-purple">Project URL:</strong>&nbsp;<a href=${repo.clone_url}>${repo.clone_url}</a></p>
                     <div class="m-top-sm text-centers">
                         <%session.setAttribute("backuri","/");%>
                         <%
@@ -103,19 +103,19 @@
                     <div>
                         <div class="col-lg-3 col-md-6">
                             <big class="text-upper">Fork</big><br>
-                            <h3 class="no-margin">${repo.forksCount}</h3>
+                            <h3 class="no-margin">${repo.forks_count}</h3>
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <big class="text-upper">Star</big>
-                            <h3 class="no-margin">${repo.stargazersCount}</h3>
+                            <h3 class="no-margin">${repo.stargazers_count}</h3>
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <big class="text-upper text-center">Watch</big>
-                            <h3 class="no-margin">${repo.watchersCount}</h3>
+                            <h3 class="no-margin">${repo.watchers_count}</h3>
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <big class="text-upper text-center">Followers</big>
-                            <h3 class="no-margin">${repo.subscribersCount}</h3>
+                            <h3 class="no-margin">${repo.subscribers_count}</h3>
                         </div>
                     </div>
                     <br><br><br><br>
@@ -190,12 +190,12 @@
         data: {
             labels: ["size","scale","promising","participation","hot"],
             datasets: [{
-                label: "${repo.fullName}",
+                label: "${repo.full_name}",
                 backgroundColor: "rgba(220,220,220,0.2)",
                 pointBackgroundColor: "#99CCFF",
                 pointBorderColor: "#6699CC",
-                data: [sc(${repo.sizeScore}),sc(${repo.scaleScore}),sc(${repo.promisingScore}),
-                sc(${repo.participationScore}),sc(${repo.hotScore})]
+                data: [sc(${repo.size_score}),sc(${repo.scale_score}),sc(${repo.promising_score}),
+                sc(${repo.participation_score}),sc(${repo.hot_score})]
             }]
         },
         options: {

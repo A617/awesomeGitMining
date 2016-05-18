@@ -74,7 +74,7 @@
 
                 <div class="col-lg-3 col-md-6">
                     <div class="user-profile-pic col-sm-10">
-                        <img src=${user.avatarUrl} alt="">
+                        <img src=${user.avatar_url} alt="">
                     </div>
 
                     <div class="col-sm-6 col-md-12">
@@ -87,13 +87,13 @@
                         <h4 class="m-top-md m-bottom-sm">Basic info</h4>
                         <div class="m-top-sm">
                             <p><strong class="text-purple">Location:</strong>&nbsp;${user.location}</p>
-                            <p><strong class="text-purple">Join Time:</strong>&nbsp;${user.createdAt}</p>
+                            <p><strong class="text-purple">Join Time:</strong>&nbsp;${user.created_at}</p>
                         </div>
 
                         <h4 class="m-top-md m-bottom-sm">Links</h4>
                         <p><strong class="text-purple">Email:</strong>&nbsp;${user.email}</p>
                         <p><strong class="text-purple">Blog:</strong>&nbsp;<a href=${user.blog}>${user.blog}</a></p>
-                        <p><strong class="text-purple">HTML:</strong>&nbsp;<a href=${user.htmlUrl}>${user.htmlUrl}</a></p>
+                        <p><strong class="text-purple">HTML:</strong>&nbsp;<a href=${user.html_url}>${user.html_url}</a></p>
                     </div>
                 </div>
 
@@ -177,8 +177,8 @@
                 backgroundColor: "rgba(220,220,220,0.2)",
                 pointBackgroundColor: "#99CCFF",
                 pointBorderColor: "#6699CC",
-                data: [sc(${user.popularScore}),sc(${user.teamworkScore}),sc(${user.livenessScore}),
-                sc(${user.experienceScore}),sc(${user.quantityScore})],
+                data: [sc(${user.popular_score}),sc(${user.teamwork_score}),sc(${user.liveness_score}),
+                sc(${user.experience_score}),sc(${user.quantity_score})],
             }]
         },
         options: {

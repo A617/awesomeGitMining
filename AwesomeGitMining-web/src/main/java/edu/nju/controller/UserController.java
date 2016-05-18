@@ -69,13 +69,13 @@ public class UserController {
         List<String> languages = null;
         ObjectMapper mapper = new ObjectMapper();
 
-        String s1=user.getContributionsFullname();
-        String[] arr1 = s1.substring(1,s1.length()-1).split(",");
-        contributions = Arrays.asList(arr1);
-
-        String s2=user.getCollaborationFullname();
-        String[] arr2 = s2.substring(1,s2.length()-1).split(",");
-        collaborations = Arrays.asList(arr2);
+//        String s1=user.getContributionsFullname();
+//        String[] arr1 = s1.substring(1,s1.length()-1).split(",");
+//        contributions = Arrays.asList(arr1);
+//
+//        String s2=user.getCollaborationFullname();
+//        String[] arr2 = s2.substring(1,s2.length()-1).split(",");
+//        collaborations = Arrays.asList(arr2);
 
         String s3=user.getLanguages();
         String[] arr3 = s3.substring(1,s3.length()-1).split(",");
