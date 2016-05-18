@@ -47,7 +47,7 @@ $(document).ready(function () {
                 .attr("r", 0)
                 .transition()
                 .duration(2000)
-                .ease("bounce")
+                .ease("sin")
                 .style("opacity", function (d, i) {
                     return "0.5";
                 })
@@ -59,8 +59,18 @@ $(document).ready(function () {
                 })
                 .attr("r", function (d) {
                     return d.r;
+                })
+                .on("mouseover", function (d, i) {
+                    d3.select(this)
+                        .attr("fill", "yellow");
+                })
+                .on("mouseout", function (d, i) {
+                    d3.select(this)
+                        .transition()
+                        .duration(500)
+                        .attr("fill", "steelblue");
                 });
-                
+
 
             bubbles.append("text")
                 .attr("x", function (d) {
@@ -81,7 +91,6 @@ $(document).ready(function () {
                     return d.word;
 
                 });
-
         }
     })
 
