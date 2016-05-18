@@ -13,8 +13,8 @@
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
     <style>
         .bubble circle {
-            stroke: black;
-            stroke-width: 2px;
+            stroke:black;
+            stroke-width: 1px;
         }
 
         .bubble text {

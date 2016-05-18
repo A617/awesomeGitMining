@@ -5,15 +5,16 @@ $(document).ready(function () {
         url: "/statistics/repository/searchRecord",
         //请求成功完成后要执行的方法
         success: function (obj) {
-            var data = { "children" : obj };
+            var data = {"children": obj};
             // snippet.log(data.obj.name);
             var width = 800;	//SVG绘制区域的宽度
             var height = 800;	//SVG绘制区域的高度
             var svg = d3.select("#local")			//选择<body>
                 .append("svg")			//在<body>中添加<svg>
                 .attr("width", width)	//设定<svg>的宽度属性
-                .attr("height", height);
-            
+                .attr("height", height)
+                ;
+
             var pack = d3.layout.pack()
                 .size([width, height])
                 .sort(null)
@@ -21,13 +22,13 @@ $(document).ready(function () {
                     return d.weight;
                 })
                 .padding(2);
-            
-            
+
+
             var nodes = pack.nodes(data);
             console.log(nodes);
-            
+
             var color = d3.scale.category20c();
-            
+
             var bubbles = svg.selectAll(".bubble")
                 .data(nodes.filter(function (d) {
                     return !d.children;
@@ -35,10 +36,20 @@ $(document).ready(function () {
                 .enter()
                 .append("g")
                 .attr("class", "bubble");
-            
+
             bubbles.append("circle")
                 .style("fill", function (d, i) {
                     return color(i);
+                })
+                .style("opacity", function (d, i) {
+                    return "0.0";
+                })
+                .attr("r", 0)
+                .transition()
+                .duration(2000)
+                .ease("bounce")
+                .style("opacity", function (d, i) {
+                    return "0.5";
                 })
                 .attr("cx", function (d) {
                     return d.x;
@@ -49,7 +60,8 @@ $(document).ready(function () {
                 .attr("r", function (d) {
                     return d.r;
                 });
-            
+                
+
             bubbles.append("text")
                 .attr("x", function (d) {
                     return d.x;
@@ -57,12 +69,20 @@ $(document).ready(function () {
                 .attr("y", function (d) {
                     return d.y;
                 })
+                .style("opacity", function (d, i) {
+                    return "0.0";
+                })
+                .transition()
+                .duration(2000)
+                .style("opacity", function (d, i) {
+                    return "0.8";
+                })
                 .text(function (d) {
                     return d.word;
-            
+
                 });
-            
+
         }
     })
-    
+
 });
