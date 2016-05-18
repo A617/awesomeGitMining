@@ -67,4 +67,8 @@ public interface IRepoService {
 
 
     Pager<Repository> getReposByLan_Key_Year(String language,String keyword,String year);
+
+    List<String> getContributors(String repo_fullname);
+
+    List<String> getCollaborators(String repo_fullname);
 }

@@ -68,4 +68,14 @@ public class RepoServiceImpl implements IRepoService {
       return repoDao.getReposByLan_Key_Year(language,keyword,year);
     };
 
+    @Override
+    public List<String> getContributors(String repo_fullname) {
+        return repoDao.getContributors(repo_fullname);
+    }
+
+    @Override
+    public List<String> getCollaborators(String repo_fullname) {
+        return repoDao.getCollaborators(repo_fullname);
+    }
+
 }

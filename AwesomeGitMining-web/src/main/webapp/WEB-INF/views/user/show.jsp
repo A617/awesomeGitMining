@@ -121,7 +121,7 @@
 
                 <div class="col-lg-3 col-md-6">
                     <h4 class="m-top-md m-bottom-sm">Related Repositories</h4>
-                    <div style="height:400px; overflow-y: auto">
+                    <div style="height:300px; overflow-y: auto">
                         <table class="table table-striped table-bordered templatemo-user-table">
                             <thead>
                             <tr>
@@ -140,7 +140,7 @@
                         </table>
                     </div>
                     <br>
-                    <div style="height:400px; overflow:auto">
+                    <div style="height:300px; overflow:auto">
                         <table style="overflow-y: auto" class="table table-striped table-bordered templatemo-user-table">
                             <thead>
                             <tr>
@@ -149,6 +149,25 @@
                             </thead>
                             <tbody>
                             <c:forEach items="${collaborations }" var="u">
+                                <tr>
+                                    <td>
+                                        <a href="/repo/${u}">${u}</a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <div style="height:300px; overflow:auto">
+                        <table style="overflow-y: auto" class="table table-striped table-bordered templatemo-user-table">
+                            <thead>
+                            <tr>
+                                <td>Owned Projects</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${owners }" var="u">
                                 <tr>
                                     <td>
                                         <a href="/repo/${u}">${u}</a>

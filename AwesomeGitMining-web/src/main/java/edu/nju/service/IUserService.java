@@ -50,4 +50,10 @@ public interface IUserService {
     Pager<User> getUserByCompany(String company);
 
     Pager<User> getUserByLan_Com(String language,String company);
+
+    List<String> getContriRepo(String login);
+
+    List<String> getCollaRepo(String login);
+
+    List<String> getOwn(String login);
 }

@@ -55,4 +55,19 @@ public class UserServiceImpl implements IUserService {
         return userDao.getUserByLan_Com(language, company);
     }
 
+    @Override
+    public List<String> getContriRepo(String login) {
+        return userDao.getContriRepo(login);
+    }
+
+    @Override
+    public List<String> getCollaRepo(String login) {
+        return userDao.getCollaRepo(login);
+    }
+
+    @Override
+    public List<String> getOwn(String login) {
+        return userDao.getOwn(login);
+    }
+
 }
