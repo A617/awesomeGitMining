@@ -45,12 +45,29 @@ public class UserDaoImplTest {
 //        }
     }
     @Test
-    public  void getUserByLan_ComTest() throws  Exception{
-
-
+    public  void getCollaTest() throws  Exception{
+        String name="tobias";
+        List<String>list=dao.getCollaRepo(name);
+        for (String u : list)
+            System.out.println(u);
 
     }
+    @Test
+    public  void getContriTest() throws  Exception{
+        String name="tobias";
+        List<String>list=dao.getContriRepo(name);
+        for (String u : list)
+            System.out.println(u);
 
+    }
+    @Test
+    public  void getOwnTest() throws  Exception{
+        String name="tobias";
+        List<String>list=dao.getOwn(name);
+        for (String u : list)
+            System.out.println(u);
+
+    }
 
 
 }

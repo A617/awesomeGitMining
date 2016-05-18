@@ -47,4 +47,13 @@ public interface UserMapper {
 
     int countLan_Com(String language,String company);
 
+
+    List<String> selectContriRepo(String login);
+
+    List<String> selectCollaRepo(String login);
+
+    List<String> selectOwn(String login);
+
+
+
 }

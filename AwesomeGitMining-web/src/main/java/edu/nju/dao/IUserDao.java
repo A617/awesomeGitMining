@@ -57,4 +57,22 @@ public interface IUserDao {
      */
 
     Pager<User> getUserByLan_Com(String language, String company);
+    /**
+     * 根据用户名筛选贡献过的项目
+     * @param login
+     * @return
+     */
+    List<String> getContriRepo(String login);
+    /**
+     * 根据用户名筛选合作过的项目
+     * @param login
+     * @return
+     */
+    List<String> getCollaRepo(String login);
+    /**
+     * 根据用户名筛选创建过的项目
+     * @param login
+     * @return
+     */
+    List<String> getOwn(String login);
 }

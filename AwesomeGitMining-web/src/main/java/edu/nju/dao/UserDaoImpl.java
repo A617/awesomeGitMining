@@ -87,6 +87,24 @@ public class UserDaoImpl implements IUserDao{
         return page;
     }
 
+    @Override
+    public List<String> getContriRepo(String login) {
+        List<String>list=mapper.selectContriRepo(login);
+        return list;
+    }
+
+    @Override
+    public List<String> getCollaRepo(String login) {
+        List<String>list=mapper.selectCollaRepo(login);
+        return list;
+    }
+
+    @Override
+    public List<String> getOwn(String login) {
+        List<String>list=mapper.selectOwn(login);
+        return list;
+    }
+
     private Map<String, Object> createMap() {
         Map<String, Object> map = new HashMap<String, Object>();
         int pageSize = SystemContext.getSize();

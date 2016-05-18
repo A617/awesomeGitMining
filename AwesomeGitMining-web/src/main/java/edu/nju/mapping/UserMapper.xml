@@ -378,4 +378,19 @@
     where languages REGEXP #{0}"[^S]" and company like "%"#{1}"%"
     limit #{3},#{2}
   </select>
+  <select id="selectContriRepo" resultType="java.lang.String" parameterType="java.lang.String">
+    select full_name
+    from contribute
+    where login = #{login}
+  </select>
+  <select id="selectCollaRepo" resultType="java.lang.String" parameterType="java.lang.String">
+    select full_name
+    from collaborate
+    where login = #{login}
+  </select>
+  <select id="selectOwn" resultType="java.lang.String" parameterType="java.lang.String">
+    select full_name
+    from own
+    where login = #{login}
+  </select>
 </mapper>

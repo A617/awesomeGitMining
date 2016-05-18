@@ -121,12 +121,14 @@ public class RepoDaoImpl implements IRepoDao {
 
     @Override
     public List<String> getContributors(String repo_fullname) {
-        return null;
+        List<String>list=mapper.getContributors(repo_fullname);
+        return list;
     }
 
     @Override
     public List<String> getCollaborators(String repo_fullname) {
-        return null;
+        List<String>list=mapper.getCollaborators(repo_fullname);
+        return list;
     }
 
     @Override
