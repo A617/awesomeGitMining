@@ -11,5 +11,5 @@ public interface IUserStaService {
 
     public List<LinkedHashMap> getCompanyCounts();
 
-
+    public List<LinkedHashMap> getTypeCounts();
 }

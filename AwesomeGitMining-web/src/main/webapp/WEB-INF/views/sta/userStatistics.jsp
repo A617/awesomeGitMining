@@ -73,7 +73,8 @@
                 <hr>
 
                 <canvas id="company-pie-local"></canvas>
-
+                <hr size="2">
+                <canvas id="type-pie-local"></canvas>
 
             </div>
             <div class="templatemo-content-widget white-bg col-1 animated fadeInRight">

@@ -23,4 +23,11 @@ public class UserStaServiceImpl implements IUserStaService{
         map.remove("");
         return map;
     }
+
+    @Override
+    public List<LinkedHashMap> getTypeCounts() {
+        List<LinkedHashMap> map = dao.countTypes();
+        map.remove("");
+        return map;
+    }
 }
