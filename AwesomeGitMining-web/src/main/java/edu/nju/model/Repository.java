@@ -282,4 +282,38 @@ public class Repository {
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Repository{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", name='" + name + '\'' +
+                ", ownerName='" + ownerName + '\'' +
+                ", language='" + language + '\'' +
+                ", openIssuesCount=" + openIssuesCount +
+                ", watchersCount=" + watchersCount +
+                ", cloneUrl='" + cloneUrl + '\'' +
+                ", htmlUrl='" + htmlUrl + '\'' +
+                ", homepage='" + homepage + '\'' +
+                ", createdAt=" + createdAt +
+                ", pushedAt=" + pushedAt +
+                ", updatedAt=" + updatedAt +
+                ", size=" + size +
+                ", stargazersCount=" + stargazersCount +
+                ", forksCount=" + forksCount +
+                ", subscribersCount=" + subscribersCount +
+                ", contributorsLogin='" + contributorsLogin + '\'' +
+                ", collaboratorsLogin='" + collaboratorsLogin + '\'' +
+                ", languages='" + languages + '\'' +
+                ", sizeScore=" + sizeScore +
+                ", scaleScore=" + scaleScore +
+                ", promisingScore=" + promisingScore +
+                ", participationScore=" + participationScore +
+                ", hotScore=" + hotScore +
+                ", contributorsCount=" + contributorsCount +
+                ", collaboratorsCount=" + collaboratorsCount +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

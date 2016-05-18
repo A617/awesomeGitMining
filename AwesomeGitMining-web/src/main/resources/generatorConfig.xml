@@ -23,19 +23,19 @@
         <!-- 生成模型的包名和位置-->
         <javaModelGenerator targetPackage="edu.nju.model" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
-            <property name="trimStrings" value="true"/>
+            <!--<property name="trimStrings" value="true"/>-->
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置-->
-        <sqlMapGenerator targetPackage="edu.nju.mapping" targetProject="src/main/java">
-            <property name="enableSubPackages" value="true"/>
-        </sqlMapGenerator>
+        <!--<sqlMapGenerator targetPackage="edu.nju.mapping" targetProject="src/main/java">-->
+            <!--<property name="enableSubPackages" value="true"/>-->
+        <!--</sqlMapGenerator>-->
         <!--&lt;!&ndash; 生成DAO的包名和位置&ndash;&gt;-->
         <!--<javaClientGenerator type="XMLMAPPER" targetPackage="edu.nju.dao" targetProject="src/main/java">-->
             <!--<property name="enableSubPackages" value="true"/>-->
         <!--</javaClientGenerator>-->
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
         <table tableName="repository" domainObjectName="Repository" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-        <!--<table tableName="user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <table tableName="user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
         <table tableName="member" domainObjectName="Member" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>
 </generatorConfiguration>

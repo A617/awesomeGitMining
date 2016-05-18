@@ -1,7 +1,11 @@
 package edu.nju.task;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.nju.model.Repository;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -12,11 +16,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
 import java.io.*;
-import java.net.URLEncoder;
 import java.util.*;
 import java.util.zip.GZIPInputStream;
-
-import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 /**
  * Created by Dora on 2016/5/17.
@@ -25,29 +26,41 @@ public class test {
 
     public static void main(String[] args) {
 
+
+
+        String path = "src/main/resources/2016-05-16-15.json.gz";
+        String url = "http://data.githubarchive.org/2016-05-16-15.json.gz";
+
+
         ObjectMapper mapper = new ObjectMapper();
 
-        String path = "src/main/resources/2015-04-11-15.json.gz";
-        String url = "http://data.githubarchive.org/2015-04-11-15.json.gz";
+        JsonFactory f = new JsonFactory();
 
 
-
-        Map<String,Integer> map = new HashMap<>();
         try {
-            downloadFile(path,url);
+    //        HttpRequest.downloadFile(path,url);
+            List<String> list = analyzeTop50Repos(path);
+            for(String repo:list) {
+                String s = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo);
+
+                Repository po = mapper.readValue(s,Repository.class);
+                System.out.println(po);
 
 
-            BufferedReader br=new BufferedReader(new InputStreamReader(new GZIPInputStream(new FileInputStream(path))));
-            String json;
-            while((json=br.readLine())!=null){
-                JsonNode node = mapper.readTree(json);
-                if(node.get("type").toString().equals("\"ForkEvent\"")){
-                    String name = node.get("repo").get("name").toString().replace("\"","");
-                    if(map.containsKey(name))
-                     map.put(name,map.get(name)+1);
-                    else
-                        map.put(name,1);
+                String contri = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/contributors");
+                JsonParser jp = f.createJsonParser(contri);
+                jp.nextToken();
+                while (jp.nextToken() == JsonToken.START_OBJECT) {
+                    System.out.println(mapper.readValue(jp, Map.class).get("login"));
                 }
+
+                String colla = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/collaborators");
+                JsonParser jp2 = f.createJsonParser(contri);
+                jp2.nextToken();
+                while (jp2.nextToken() == JsonToken.START_OBJECT) {
+                    System.out.println(mapper.readValue(jp2, Map.class).get("login"));
+                }
+
 
             }
         } catch (IOException e) {
@@ -55,87 +68,30 @@ public class test {
 
         }
 
-        System.out.println(sortMapByValue(map));
+
 
     }
 
 
-    /**
-     * 下载文件保存到本地
-     *
-     * @param path
-     *            文件保存位置
-     * @param url
-     *            文件地址
-     * @throws IOException
-     */
-    public static void downloadFile(String path, String url) throws IOException {
-//        log.debug("path:" + path);
-//        log.debug("url:" + url);
-        HttpClient client = null;
-        try {
-            // 创建HttpClient对象
-            client = new DefaultHttpClient();
-            // 获得HttpGet对象
-            HttpGet httpGet = new HttpGet(url);
-            // 发送请求获得返回结果
-            HttpResponse response = client.execute(httpGet);
-            // 如果成功
-            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                byte[] result = EntityUtils.toByteArray(response.getEntity());
-                BufferedOutputStream bw = null;
-                try {
-                    // 创建文件对象
-                    File f = new File(path);
-                    // 创建文件路径
-                    if (!f.getParentFile().exists())
-                        f.getParentFile().mkdirs();
-                    // 写入文件
-                    bw = new BufferedOutputStream(new FileOutputStream(path));
-                    bw.write(result);
-                } catch (Exception e) {
-//                    log.error("保存文件错误,path=" + path + ",url=" + url, e);
-                } finally {
-                    try {
-                        if (bw != null)
-                            bw.close();
-                    } catch (Exception e) {
-//                        log.error(
-//                                "finally BufferedOutputStream shutdown close",
-//                                e);
-                    }
-                }
-                System.out.println(111);
+    public static List<String> analyzeTop50Repos(String path) throws IOException{
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String,Integer> map = new HashMap<>();
+        BufferedReader br=new BufferedReader(new InputStreamReader(new GZIPInputStream(new FileInputStream(path))));
+        String json;
+        while((json=br.readLine())!=null){
+            JsonNode node = mapper.readTree(json);
+            if(node.get("type").toString().equals("\"ForkEvent\"")){
+                String name = node.get("repo").get("name").toString().replace("\"","");
+                if(map.containsKey(name))
+                    map.put(name,map.get(name)+1);
+                else
+                    map.put(name,1);
             }
-            // 如果失败
-            else {
-                StringBuffer errorMsg = new StringBuffer();
-                errorMsg.append("httpStatus:");
-                errorMsg.append(response.getStatusLine().getStatusCode());
-                errorMsg.append(response.getStatusLine().getReasonPhrase());
-                errorMsg.append(", Header: ");
-                Header[] headers = response.getAllHeaders();
-                for (Header header : headers) {
-                    errorMsg.append(header.getName());
-                    errorMsg.append(":");
-                    errorMsg.append(header.getValue());
-                }
-//                log.error("HttpResonse Error:" + errorMsg);
-            }
-        } catch (ClientProtocolException e) {
-//            log.error("下载文件保存到本地,http连接异常,path=" + path + ",url=" + url, e);
-            throw e;
-        } catch (IOException e) {
-//            log.error("下载文件保存到本地,文件操作异常,path=" + path + ",url=" + url, e);
-            throw e;
-        } finally {
-            try {
-                client.getConnectionManager().shutdown();
-            } catch (Exception e) {
-//                log.error("finally HttpClient shutdown error", e);
-            }
+
         }
+        return new ArrayList<String>(sortMapByValue(map).keySet()).subList(0,50);
     }
+
 
 
 
