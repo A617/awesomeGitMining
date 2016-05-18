@@ -87,13 +87,13 @@ public class RepoController {
 
         ObjectMapper mapper = new ObjectMapper();
 
-        String s1=repo.getContributorsLogin();
-        String[] arr1 = s1.substring(1,s1.length()-1).split(",");
-        List<String> contributors = Arrays.asList(arr1);
-
-        String s2=repo.getCollaboratorsLogin();
-        String[] arr2 = s2.substring(1,s2.length()-1).split(",");
-        List<String> collaborators = Arrays.asList(arr2);
+//        String s1=repo.getContributorsLogin();
+//        String[] arr1 = s1.substring(1,s1.length()-1).split(",");
+//        List<String> contributors = Arrays.asList(arr1);
+//
+//        String s2=repo.getCollaboratorsLogin();
+//        String[] arr2 = s2.substring(1,s2.length()-1).split(",");
+//        List<String> collaborators = Arrays.asList(arr2);
 
         Map<String,Integer> languages = null;
         try {
@@ -104,8 +104,8 @@ public class RepoController {
 
         Map<String,Object> result = new HashMap<>();
         result.put("repo",repo);
-        result.put("collaborators",collaborators);
-        result.put("contributors",contributors);
+        result.put("collaborators",null);
+        result.put("contributors",null);
         result.put("languages",languages);
 
         return new ModelAndView("/repo/show", result);
