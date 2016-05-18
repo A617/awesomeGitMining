@@ -1,0 +1,25 @@
+@charset "utf-8";
+.page a {
+    text-decoration: none;
+    border: 1px solid #AAE;
+    color: #15B;
+}
+
+.page a, .page span {
+    display: inline-block;
+    padding: 0.1em 0.4em;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.page .current {
+    background: #26B;
+    color: #fff;
+    border: 1px solid #AAE;
+}
+
+.page .current.prev, .page .current.next{
+    color:#999;
+    border-color:#999;
+    background:#fff;
+}

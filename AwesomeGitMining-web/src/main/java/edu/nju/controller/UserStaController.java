@@ -49,6 +49,23 @@ public class UserStaController {
         return result;
     }
 
+    @RequestMapping(value="/statistics/user/typeLocal",method = RequestMethod.GET)
+    public @ResponseBody Map<String, Object> getTypeLocal() {
+        List<LinkedHashMap> type = service.getTypeCounts();
+        Map<String,Object> result = new HashMap<>();
+        List<Object> typeCount = new ArrayList<>();
+        List<Object> typeName = new ArrayList<>();
+
+        for(LinkedHashMap l : type){
+            typeCount.add(l.get("c"));
+            typeName.add(l.get("t"));
+
+        }
+        result.put("typeCount",typeCount);
+        result.put("typeName",typeName);
+        return result;
+    }
+
     @RequestMapping(value="/statistics/user/companyBQ",method = RequestMethod.GET)
     public @ResponseBody Map<String, Object> getCompanyBQByJson() {
         List<LinkedHashMap> json = null;
