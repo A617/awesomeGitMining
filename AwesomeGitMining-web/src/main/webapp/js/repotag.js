@@ -4,14 +4,27 @@ $(document).ready(function() {
     var year = $("#onYear").text();
     var key = $("#onKey").text();
 
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+    // alert("123"+GetQueryString("key"));
+
+
 
     $("[name='lan']").each(function() {
         var text = $(this).text();
+        if(text==GetQueryString("lan")){
+            $(this).css("background-color","#2baab1");              //为被选中的tag设置颜色
+            $(this).css("color","#fff");
+        }
         $(this).click(function() {
             lan = text;
-            $("[name='lan']").css("background-color","#fff");
+            $("[name='lan']").css("background-color","#fff");       //其他设置为默认颜色
             $("[name='lan']").css("color","#666");
-            $(this).css("background-color","#2baab1");
+            $(this).css("background-color","#2baab1");              //为被选中的tag设置颜色
             $(this).css("color","#fff");
             $("#current").load("/repo/repos?pager.offset=0&lan=" + lan+"&key="+key+"&year="+year+" #current");
         });
@@ -21,6 +34,10 @@ $(document).ready(function() {
 
     $("[name='key']").each(function() {
         var text = $(this).text();
+        if(text==GetQueryString("key")){
+            $(this).css("background-color","#2baab1");              //为被选中的tag设置颜色
+            $(this).css("color","#fff");
+        }
         $(this).click(function() {
             key = text;
             $("[name='key']").css("background-color","#fff");
@@ -33,6 +50,10 @@ $(document).ready(function() {
 
     $("[name='year']").each(function() {
         var text = $(this).text();
+        if(text==GetQueryString("year")){
+            $(this).css("background-color","#2baab1");              //为被选中的tag设置颜色
+            $(this).css("color","#fff");
+        }
         $(this).click(function() {
             year = text;
             $("[name='year']").css("background-color","#fff");

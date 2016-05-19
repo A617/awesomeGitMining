@@ -54,6 +54,7 @@ public class test {
 
 
                 Repository po = mapper.readValue(s,Repository.class);
+                po.setOwner_name(po.getFull_name().split("/")[0]);
                 System.out.println(po);
 
 
@@ -64,11 +65,18 @@ public class test {
                     System.out.println(mapper.readValue(jp, Map.class).get("login"));
                 }
 
-                String colla = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/collaborators");
-                JsonParser jp2 = f.createJsonParser(contri);
-                jp2.nextToken();
-                while (jp2.nextToken() == JsonToken.START_OBJECT) {
-                    System.out.println(mapper.readValue(jp2, Map.class).get("login"));
+//                String colla = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/collaborators");
+//                JsonParser jp2 = f.createJsonParser(contri);
+//                jp2.nextToken();
+//                while (jp2.nextToken() == JsonToken.START_OBJECT) {
+//                    System.out.println(mapper.readValue(jp2, Map.class).get("login"));
+//                }
+
+                String subs = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/subscribers");
+                JsonParser jp3 = f.createJsonParser(subs);
+                jp3.nextToken();
+                while (jp3.nextToken() == JsonToken.START_OBJECT) {
+                    System.out.println(mapper.readValue(jp3, Map.class).get("login"));
                 }
 
 
@@ -83,7 +91,7 @@ public class test {
     }
 
 
-    public static List<String> analyzeTop50Repos(String path) throws IOException{
+    private static List<String> analyzeTop50Repos(String path) throws IOException{
         ObjectMapper mapper = new ObjectMapper();
         Map<String,Integer> map = new HashMap<>();
         BufferedReader br=new BufferedReader(new InputStreamReader(new GZIPInputStream(new FileInputStream(path))));
@@ -132,16 +140,17 @@ public class test {
 
     }
 
+    static class MapValueComparator implements Comparator<Map.Entry<String, Integer>> {
 
+        @Override
+        public int compare(Map.Entry<String, Integer> me1, Map.Entry<String, Integer> me2) {
 
-}
-
-class MapValueComparator implements Comparator<Map.Entry<String, Integer>> {
-
-    @Override
-    public int compare(Map.Entry<String, Integer> me1, Map.Entry<String, Integer> me2) {
-
-        return me2.getValue().compareTo(me1.getValue());
+            return me2.getValue().compareTo(me1.getValue());
+        }
     }
+
+
 }
+
+
 

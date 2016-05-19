@@ -195,7 +195,7 @@
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="current">
                             <div class="panel-body">
-                                <ul class="dashboard-list">
+                                <ul class="dashboard-list" >
                                     <c:forEach items="${repos }" var="repo">
                                         <li>
                                             <h3><strong><a href="${repo.full_name }">${repo.full_name }</a></strong></h3>
@@ -213,6 +213,9 @@
                                 <ul class="pagination  pagination-centered">
                                     ${pageUrl}<br>
                                     <pg:pager url="/repo/repos" items="${total}">
+                                        <pg:param name="lan"/>
+                                        <pg:param name="key"/>
+                                        <pg:param name="year"/>
                                         <li>
                                             <pg:first>
                                                 <a href="${pageUrl}">Begin</a>

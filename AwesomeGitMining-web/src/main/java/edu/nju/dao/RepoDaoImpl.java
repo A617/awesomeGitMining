@@ -24,6 +24,11 @@ public class RepoDaoImpl implements IRepoDao {
     }
 
     @Override
+    public List<String> getAllFullname() {
+        return mapper.selectFullName();
+    }
+
+    @Override
     public List<Repository> getAll() {
         return mapper.selectAll();
     }
