@@ -73,8 +73,10 @@ public class Test {
 //			}
 //		}
 		List<String> repoList = DataInitHelper.getList(path + "repo_fullname.txt");
+		List<String> userList = DataInitHelper.getList(path + "user_login.txt");
 		List<List<String>> collaboratorsList = DataInitHelper.getListList(path + "repo-collaborators.txt");
 		List<List<String>> contributionsList = DataInitHelper.getListList(path + "repo-contributors.txt");
+		List<List<String>> reposList = DataInitHelper.getListList(path + "user-repos.txt");
 
 		final String url = "jdbc:mysql://115.159.29.19:3306/gitmining";
 		final String name = "com.mysql.jdbc.Driver";
@@ -87,13 +89,13 @@ public class Test {
 		try {
 			Class.forName(name);// 指定连接类型
 			conn = DriverManager.getConnection(url, user, password);// 获取连接
-			String sql = "insert into collaborate(full_name,login) values(?,?);";
+			String sql = "insert into own(full_name,login) values(?,?);";
 			pst = conn.prepareStatement(sql);// 准备执行语句
-			for(int i =0 ;i<repoList.size();i++){
+			for(int i =0 ;i<userList.size();i++){
 				try{
-				List<String> list = collaboratorsList.get(i);
+				List<String> list = reposList.get(i);
 				for(String lg:list){
-					pst.setString(1, repoList.get(i));
+					pst.setString(1, userList.get(i));
 					pst.setString(2, lg);
 					pst.executeUpdate();
 				}

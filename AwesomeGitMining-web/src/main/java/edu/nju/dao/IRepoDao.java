@@ -11,6 +11,7 @@ import java.util.Map;
  */
 public interface IRepoDao {
     Repository selectByPrimaryKey(Integer id);
+    List<String> getAllFullname();
     /**
      * 获取所有项目
      * @return
