@@ -35,6 +35,8 @@ public interface UserMapper {
 
     List<LinkedHashMap> countTypes();
 
+    List<LinkedHashMap> countCreate_Year();
+
     List<User> selectUserByLanguage(Map<String,Object> params);
 
     List<User> selectUserByCompany(Map<String,Object> params);

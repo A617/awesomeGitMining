@@ -328,6 +328,12 @@
     group by type
     order by c desc
   </select>
+  <select id="countCreate_Year" resultType="java.util.LinkedHashMap">
+    select YEAR(created_at),count(id) as c
+    from user
+    group by YEAR(created_at)
+    order by YEAR(created_at) asc
+  </select>
   <select id="selectUserByLanguage" resultMap="BaseResultMap" parameterType="java.util.Map">
     select
     <include refid="Base_Column_List" />

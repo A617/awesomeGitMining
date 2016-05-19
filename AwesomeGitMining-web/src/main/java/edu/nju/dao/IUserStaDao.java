@@ -20,4 +20,10 @@ public interface IUserStaDao {
      */
     List<LinkedHashMap> countTypes();
 
+    /**
+     * 每种类型的用户的人数
+     * @return
+     */
+    List<LinkedHashMap> countCreate_Year();
+
 }

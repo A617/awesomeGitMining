@@ -98,4 +98,16 @@ public class RepoStaDaoImpl implements IRepoStaDao {
         return list;
     }
 
+    @Override
+    public List<Integer> countStars() {
+        List<Integer>list=mapper.countStars();
+        return list;
+    }
+
+    @Override
+    public List<Integer> countSubscribers() {
+        List<Integer>list=mapper.countSubscribers();
+        return list;
+    }
+
 }

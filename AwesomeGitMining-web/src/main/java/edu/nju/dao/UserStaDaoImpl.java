@@ -28,4 +28,10 @@ public class UserStaDaoImpl implements IUserStaDao {
         List<LinkedHashMap> list = mapper.countTypes();
         return list;
     }
+
+    @Override
+    public List<LinkedHashMap> countCreate_Year() {
+        List<LinkedHashMap> list = mapper.countCreate_Year();
+        return list;
+    }
 }

@@ -62,6 +62,22 @@ public class RepoStaDaoImplTest {
 
     }
     @Test
+    public void countStarsTest() throws Exception {
+
+        List<Integer>list=dao.countStars();
+        for (Integer u : list)
+            System.out.println(u);
+
+    }
+    @Test
+    public void countSubsTest() throws Exception {
+
+        List<Integer>list=dao.countSubscribers();
+        for (Integer u : list)
+            System.out.println(u);
+
+    }
+    @Test
     public void getLanByYearTest() throws Exception {
         Map<String, Object> map=dao.getLanByYear();
         for(Map.Entry<String, Object> entry:map.entrySet()){

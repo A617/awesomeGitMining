@@ -29,4 +29,11 @@ public class UserStaDaoImplTest {
 
 
     }
+
+    @Test
+    public void countCreate_Year() throws Exception {
+        System.out.println(dao.countCreate_Year());
+
+
+    }
 }

@@ -69,5 +69,15 @@ public interface IRepoStaDao {
      * @return fork数分布
      */
     List<Integer>countForks();
+    /**
+     *
+     * @return star数分布
+     */
+    List<Integer>countStars();
+    /**
+     *
+     * @return Subscribers数分布
+     */
+    List<Integer>countSubscribers();
 
 }
