@@ -42,8 +42,10 @@ public class UserStaController {
         List<Object> companyName = new ArrayList<>();
 
         for(LinkedHashMap line:companys){
-            companyCount.add(line.get("c"));
-            companyName.add(line.get("company"));
+            if(!line.get("company").equals("")){
+                companyCount.add(line.get("c"));
+                companyName.add(line.get("company"));
+            }
         }
         result.put("companyCount",companyCount);
         result.put("companyName",companyName);
