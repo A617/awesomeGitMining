@@ -6,60 +6,135 @@ $(function() {
 
     $(document).ready(function() {
 
+        var myChart1 = echarts.init(document.getElementById('company-pie-local'));
+        myChart1.setOption({
+            title : {
+                text: 'Company',
+                x:'center',
+                y:'bottom'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{b} : {c} ({d}%)"
+            },
+
+            series : [
+                {
+                    name:'test',
+                    type: 'pie',
+                    radius : '50%',
+                    center: ['80%', '60%'],
+                    data:[],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        });
         var url = "/statistics/user/companyLocal";
         $.ajax(url, {
             type: 'GET',
-            // async : false,
-            // contentType : 'application/json',
-            // dataType : 'json',
             success: function (data, textStatus) {
-                var data = {
-                    labels: data.companyName,
-                    datasets: [{
-                        data: data.companyCount,
-                        backgroundColor: backgroundColor,
-                        hoverBackgroundColor: backgroundColor
+
+                myChart1.setOption({
+                    legend:{
+                        orient: 'vertical',
+                        left: 'left',
+                        data: data.companyName
+                    },
+                    series:[{
+                        name: 'test',
+                        data: [
+                            {name:data.companyName[0],value:data.companyCount[0]},
+                            {name:data.companyName[1],value:data.companyCount[1]},
+                            {name:data.companyName[2],value:data.companyCount[2]},
+                            {name:data.companyName[3],value:data.companyCount[3]},
+                            {name:data.companyName[4],value:data.companyCount[4]},
+                            {name:data.companyName[5],value:data.companyCount[5]},
+                            {name:data.companyName[6],value:data.companyCount[6]},
+                            {name:data.companyName[7],value:data.companyCount[7]},
+                            {name:data.companyName[8],value:data.companyCount[8]},
+                            {name:data.companyName[9],value:data.companyCount[9]},
+                            {name:data.companyName[10],value:data.companyCount[10]},
+                            {name:data.companyName[11],value:data.companyCount[11]},
+                            {name:data.companyName[12],value:data.companyCount[12]},
+                            {name:data.companyName[13],value:data.companyCount[13]},
+                            {name:data.companyName[14],value:data.companyCount[14]},
+                            {name:data.companyName[15],value:data.companyCount[15]},
+                            {name:data.companyName[16],value:data.companyCount[16]},
+                            {name:data.companyName[17],value:data.companyCount[17]},
+                            {name:data.companyName[18],value:data.companyCount[18]},
+                            {name:data.companyName[19],value:data.companyCount[19]},
+                            {name:data.companyName[20],value:data.companyCount[20]},
+                            {name:data.companyName[21],value:data.companyCount[21]},
+                            {name:data.companyName[22],value:data.companyCount[22]},
+                            {name:data.companyName[23],value:data.companyCount[23]},
+                            {name:data.companyName[24],value:data.companyCount[24]},
+                            {name:data.companyName[25],value:data.companyCount[25]},
+                            {name:data.companyName[26],value:data.companyCount[26]},
+                            {name:data.companyName[27],value:data.companyCount[27]},
+                            {name:data.companyName[28],value:data.companyCount[28]},
+                            {name:data.companyName[29],value:data.companyCount[29]}
+                        ]
                     }]
-                };
-
-                var pieConfig = {
-                    type: 'pie',
-                    data: data,
-                    options: {
-                        responsive: true
-                    }
-                };
-
-                var ctx = document.getElementById("company-pie-local").getContext("2d");
-                chart = new Chart(ctx, pieConfig);
+                });
             }
         });
 
+        var myChart2 = echarts.init(document.getElementById('type-pie-local'));
+        myChart2.setOption({
+            title : {
+                text: 'User Type',
+                x:'center',
+                y:'bottom'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{b} : {c} ({d}%)"
+            },
+
+            series : [
+                {
+                    name:'test',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:[],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        });
         var url = "/statistics/user/typeLocal";
         $.ajax(url, {
             type: 'GET',
             success: function (data, textStatus) {
-                var data = {
-                    labels: data.typeName,
-                    datasets: [{
-                        data: data.typeCount,
-                        backgroundColor: backgroundColor,
-                        hoverBackgroundColor: backgroundColor
+
+                myChart2.setOption({
+                    legend:{
+                        orient: 'vertical',
+                        left: 'left',
+                        data:data.typeName
+                    },
+                    series:[{
+                        name:'test',
+                        data:[
+                            {name:data.typeName[0],value:data.typeCount[0]}
+                        ]
                     }]
-                };
-
-                var pieConfig = {
-                    type: 'pie',
-                    data: data,
-                    options: {
-                        responsive: true
-                    }
-                };
-
-                var ctx = document.getElementById("type-pie-local").getContext("2d");
-                chart = new Chart(ctx, pieConfig);
+                });
             }
         });
+
 
         var url = "/statistics/user/companyBQ";
         $.ajax(url, {
@@ -89,7 +164,7 @@ $(function() {
 
 
     });
-        
+
 
 });
 

@@ -323,9 +323,9 @@
     limit 30;
   </select>
   <select id="countTypes" resultType="java.util.LinkedHashMap">
-    select t,count(id) as c
+    select type,count(id) as c
     from user
-    group by t
+    group by type
     order by c desc
   </select>
   <select id="selectUserByLanguage" resultMap="BaseResultMap" parameterType="java.util.Map">

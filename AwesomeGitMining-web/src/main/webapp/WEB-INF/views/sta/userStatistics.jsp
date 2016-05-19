@@ -72,9 +72,9 @@
                 <h2>Local</h2>
                 <hr>
 
-                <canvas id="company-pie-local"></canvas>
+                <div id="company-pie-local" style="width: 100%;height:400px;"></div>
                 <hr size="2">
-                <canvas id="type-pie-local"></canvas>
+                <div id="type-pie-local" style="width: 100%;height:400px;"></div>
 
             </div>
             <div class="templatemo-content-widget white-bg col-1 animated fadeInRight">
@@ -96,6 +96,7 @@
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/Chart.bundle.js"></script>
+<script src="/js/echarts.min.js"></script>
 <script src="/js/userStatistics.js"></script>
 
 </body>

@@ -58,7 +58,7 @@ public class UserStaController {
 
         for(LinkedHashMap l : type){
             typeCount.add(l.get("c"));
-            typeName.add(l.get("t"));
+            typeName.add(l.get("type"));
 
         }
         result.put("typeCount",typeCount);

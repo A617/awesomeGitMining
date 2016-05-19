@@ -14,6 +14,7 @@
     <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/simplify.min.css"/>" rel="stylesheet" type="text/css" media="all">
+
     <style type="text/css">
         span {
             width: 50%;
