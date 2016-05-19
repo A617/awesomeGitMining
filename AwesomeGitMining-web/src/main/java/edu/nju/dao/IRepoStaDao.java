@@ -58,6 +58,10 @@ public interface IRepoStaDao {
      */
     Map<String,List<Object>> getLanByYear();
 
+    /**
+     *
+     * @return fork数分布
+     */
     List<Integer>countForks();
 
 }

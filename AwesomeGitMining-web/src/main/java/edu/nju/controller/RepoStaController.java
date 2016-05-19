@@ -1,6 +1,7 @@
 package edu.nju.controller;
 
 import edu.nju.service.IMemberStaService;
+import edu.nju.service.IRepoStaService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,8 @@ import java.util.*;
 public class RepoStaController {
     @Resource
     IMemberStaService memberStaService;
+    @Resource
+    IRepoStaService repoStaService;
 
     @RequestMapping(value = "/statistics/repository", method = RequestMethod.GET)
     public ModelAndView showStatistics() {
@@ -35,7 +38,7 @@ public class RepoStaController {
     @RequestMapping(value = "/statistics/repository/languageTrend", method = RequestMethod.GET)
     public
     @ResponseBody
-    Map<String, Object> getCompanyBQByJson() {
+    Map<String, Object> getLanguageTrend() {
         Map<String, Object> result = new HashMap<>();
         List<Object> languageCount = new ArrayList<>();
         List<Object> languageName = new ArrayList<>();
@@ -50,5 +53,13 @@ public class RepoStaController {
         result.put("language2", otherCount);
 
         return result;
+    }
+
+    @RequestMapping(value = "/statistics/repository/forkDistribute", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Integer> getForkDistribute() {
+        List<Integer> dataset = repoStaService.getForkDistribute();
+        return dataset;
     }
 }

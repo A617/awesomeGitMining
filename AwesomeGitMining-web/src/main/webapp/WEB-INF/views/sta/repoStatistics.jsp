@@ -14,7 +14,7 @@
     <style>
         .bubble circle {
             stroke:black;
-            stroke-width: 1px;
+            stroke-width: 0px;
         }
 
         .bubble text {
@@ -103,6 +103,7 @@
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src ="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.js"></script>
 <script src="/js/languageTrend.js"></script>
-
+<script src="/js/histogram.js"></script>
+<script src="/js/points.js"></script>
 </body>
 </html>

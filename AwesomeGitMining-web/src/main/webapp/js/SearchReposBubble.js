@@ -72,21 +72,21 @@ $(document).ready(function () {
 
 
             bubbles.append("text")
-                .on("mouseover", function (d) {
-                    d3.select(this)
-                        .text(function () {
-                            return d.weight;
-                        });
-                })
-                .on("mouseout", function (d) {
-                    d3.select(this)
-                        .transition()
-                        .duration(500)
-                        .text(function () {
-                            return d.word;
-                        });
-
-                })
+                // .on("mouseover", function (d) {
+                //     d3.select(this)
+                //         .text(function () {
+                //             return d.weight;
+                //         });
+                // })
+                // .on("mouseout", function (d) {
+                //     d3.select(this)
+                //         .transition()
+                //         .duration(500)
+                //         .text(function () {
+                //             return d.word;
+                //         });
+                //
+                // })
                 .attr("x", function (d) {
                     return d.x;
                 })
@@ -102,8 +102,9 @@ $(document).ready(function () {
                     return "0.8";
                 })
                 .text(function (d) {
-                    return d.word;
+                    return d.word+":"+d.weight;
                 });
+           
         }
     })
 
