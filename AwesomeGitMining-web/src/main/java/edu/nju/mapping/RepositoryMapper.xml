@@ -531,6 +531,10 @@ select login
     from repository
   </select>
   <select id="countSubscribers" resultType="java.lang.Integer">
+    select subscribers_count
+    from repository
+  </select>
+  <select id="countStars" resultType="java.lang.Integer">
     select stargazers_count
     from repository
   </select>
