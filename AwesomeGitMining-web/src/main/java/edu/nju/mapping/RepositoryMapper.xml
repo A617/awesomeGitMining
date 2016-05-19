@@ -514,4 +514,15 @@ select login
     from collaborate
     where full_name = #{full_name}
   </select>
+  <select id="countFirst10Languages" resultType="java.lang.String">
+    select language
+    from repository
+    group by language
+    order by count(id) desc
+    limit 10;
+  </select>
+  <select id="countForks" resultType="java.lang.Integer">
+    select forks_count
+    from repository
+  </select>
 </mapper>

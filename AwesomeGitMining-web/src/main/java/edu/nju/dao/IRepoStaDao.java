@@ -2,6 +2,7 @@ package edu.nju.dao;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Dora on 2016/5/16.
@@ -46,6 +47,17 @@ public interface IRepoStaDao {
      * 参与分析的语言和语言的顺序见上一个方法
      */
     int[][] getLanguageRelation();
+    /**
+     * 前10热门语言及使用它的项目的个数
+     * @return
+     */
+    List<String> countFirst10Languages();
+    /**
+     * 统计每年的创建项目的语言的项目个数
+     * @return
+     */
+    Map<String,List<Object>> getLanByYear();
 
+    List<Integer>countForks();
 
 }

@@ -13,6 +13,7 @@ public class Statistics {
     public static final String[] userCompany = {"Shopify","Google","Github","Twitter","Microsoft","Mozilla","Xamarin","Heroku",
             "Facebook","Red Hat"};
 
+    public static String[] year = {"2007","2008","2009","2010","2011","2012","2013","2014","2015","2016"};
     public static List<String> tag = Arrays.asList(categories);
 
 }

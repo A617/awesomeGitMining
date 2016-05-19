@@ -6,10 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by fw on 2016/5/16.
@@ -68,6 +65,23 @@ public class RepoStaDaoImpl implements IRepoStaDao {
 
         return list;
     }
+    @Override
+    public List<String> countFirst10Languages() {
+        List<String> list = mapper.countFirst10Languages();
 
+        return list;
+    }
+
+    @Override
+    public Map<String, List<Object>> getLanByYear() {
+
+        return null;
+    }
+
+    @Override
+    public List<Integer> countForks() {
+        List<Integer>list=mapper.countForks();
+        return list;
+    }
 
 }

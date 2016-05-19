@@ -67,4 +67,8 @@ public interface RepositoryMapper {
 
     List<String> getCollaborators(String repo_fullname);
 
+    List<String> countFirst10Languages();
+
+    List<Integer>countForks();
+
 }

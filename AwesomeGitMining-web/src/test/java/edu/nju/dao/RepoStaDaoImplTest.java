@@ -44,9 +44,20 @@ public class RepoStaDaoImplTest {
     public void getStaLanguagesTest() throws  Exception{
         List<String> list=dao.getStaLanguages();
 
-
-
+    }
+    @Test
+    public void countFirst10LanguagesTest() throws Exception {
+       List<String>list=dao.countFirst10Languages();
+        for (String u : list)
+            System.out.println(u);
     }
 
+    @Test
+    public void countForksTest() throws Exception {
 
+        List<Integer>list=dao.countForks();
+        for (Integer u : list)
+            System.out.println(u);
+
+    }
 }
