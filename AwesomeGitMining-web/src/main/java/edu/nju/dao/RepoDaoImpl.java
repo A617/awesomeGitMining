@@ -113,10 +113,7 @@ public class RepoDaoImpl implements IRepoDao {
     }
     @Override
     public Pager<Repository> getReposByLan_Key_Year(String language, String keyword, String year) {
-        if(language!=null) {
-            language = "^" + language + "$";
-        }
-        System.out.println("keyword="+keyword);
+
         Map<String, Object> map = createMap();
         List<Repository> data = mapper.selectReposByLan_Key_Year(language,keyword,year,(int)map.get("pageSize"),(int)map.get("pageOffset"));
         Pager<Repository> page = createPage(data,map);

@@ -9,8 +9,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.Common.po.Repository;
 import org.Server.dao.DataInitHelper;
+import org.Server.dao.HttpRequest;
+
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Test {
 
@@ -85,38 +90,45 @@ public class Test {
 
 		Connection conn = null;
 		PreparedStatement pst = null;
+		JsonFactory f = new JsonFactory();
+        ObjectMapper om = new ObjectMapper();
 
 		try {
-			Class.forName(name);// 指定连接类型
-			conn = DriverManager.getConnection(url, user, password);// 获取连接
-			String sql = "insert into own(full_name,login) values(?,?);";
-			pst = conn.prepareStatement(sql);// 准备执行语句
-			for(int i =0 ;i<userList.size();i++){
-				try{
-				List<String> list = reposList.get(i);
-				for(String lg:list){
-					pst.setString(1, userList.get(i));
-					pst.setString(2, lg);
-					pst.executeUpdate();
-				}
-				System.out.println(i);
-			} catch (Exception e) {
-				e.printStackTrace();
-				continue;
-			}
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally{
-			try {
-				pst.close();
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+            Class.forName(name);// 指定连接类型
+            conn = DriverManager.getConnection(url, user, password);// 获取连接
+            String sql = "insert into subscribe(full_name,login) values(?,?);";
+            pst = conn.prepareStatement(sql);// 准备执行语句
+            for(int i =0 ;i<repoList.size();i++){
+                try{
+                    pst.setString(1, repoList.get(i));
+
+                    String subs = HttpRequest.sendGetWithAuth("api.github.com/repos/",repoList.get(i) + "/subscribers");
+                    JsonParser jp = f.createJsonParser(subs);
+                    jp.nextToken();
+                    while (jp.nextToken() == JsonToken.START_OBJECT) {
+                        pst.setString(2,(String)om.readValue(jp, Map.class).get("login"));
+                        pst.executeUpdate();
+                    }
+
+
+                    System.out.println(i);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    continue;
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            try {
+                pst.close();
+                conn.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
 
 	}
 	

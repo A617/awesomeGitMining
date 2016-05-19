@@ -59,6 +59,8 @@ public interface RepositoryMapper {
 
     List<LinkedHashMap> countFirst20Languages();
 
+    LinkedHashMap countLanguagesCreated(String year,String name);
+
     List<LinkedHashMap> getLanguageAndSize();
 
     List<LinkedHashMap> countCreatedYear();
@@ -70,5 +72,7 @@ public interface RepositoryMapper {
     List<String> countFirst10Languages();
 
     List<Integer>countForks();
+
+    List<String> getYear();
 
 }

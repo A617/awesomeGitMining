@@ -447,7 +447,7 @@
     ,
     <include refid="Blob_Column_List" />
     from repository
-    where language REGEXP #{0} and YEAR(created_at) like "%"#{2}"%" and description like "%"#{1}"%"
+    where (#{0}="" or language =#{0}) and YEAR(created_at) like "%"#{2}"%" and description like "%"#{1}"%"
     limit #{4},#{3}
   </select>
   <!-- 分页辅助方法-->
@@ -483,7 +483,7 @@
   <select id="countLan_Key_Year" resultType="java.lang.Integer" parameterType="java.lang.String">
     select  count(id)
     from repository
-    where language like "%"#{0}"%" and YEAR(created_at)like "%"#{2}"%" and description like "%"#{1}"%"
+    where (#{0}="" or language =#{0}) and YEAR(created_at)like "%"#{2}"%" and description like "%"#{1}"%"
   </select>
   <select id="countFirst20Languages" resultType="java.util.LinkedHashMap">
     select language,count(id) as c
@@ -497,6 +497,12 @@
     from repository
     group by language
     order by s desc
+  </select>
+  <select id="countLanguagesCreated" resultType="java.util.LinkedHashMap" parameterType="java.lang.String">
+    select language,count(id) as c
+    from repository
+    where language = #{1} and YEAR(created_at) = #{0}
+    group by language
   </select>
   <select id="countCreatedYear" resultType="java.util.LinkedHashMap">
     select YEAR(created_at)as year ,count(id) as c
@@ -524,5 +530,10 @@ select login
   <select id="countForks" resultType="java.lang.Integer">
     select forks_count
     from repository
+  </select>
+  <select id="getYear" resultType="java.lang.String">
+    select DISTINCT YEAR(created_at)
+    from repository
+    order by YEAR(created_at) asc
   </select>
 </mapper>
