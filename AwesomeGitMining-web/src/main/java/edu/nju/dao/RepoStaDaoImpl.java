@@ -73,14 +73,26 @@ public class RepoStaDaoImpl implements IRepoStaDao {
     }
 
     @Override
-    public Map<String, List<Object>> getLanByYear() {
+    public Map<String, Object> getLanByYear() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<String> lan=mapper.countFirst10Languages();
+        List<String>year=mapper.getYear();
+        for (String y : year){
+            List<LinkedHashMap>result=new  ArrayList<LinkedHashMap>();
+            for(int i=0;i<lan.size();i++){
 
-        return null;
+                result.add(mapper.countLanguagesCreated(y,lan.get(i)));
+
+            }map.put(y,result);
+        }
+
+        return map;
     }
 
     @Override
     public List<Integer> countForks() {
         List<Integer>list=mapper.countForks();
+
         return list;
     }
 
