@@ -448,7 +448,8 @@
     <include refid="Blob_Column_List" />
     from repository
     where (#{0}="" or language =#{0}) and YEAR(created_at) like "%"#{2}"%" and description like "%"#{1}"%"
-    limit #{4},#{3}
+    order BY ${3}
+    limit #{5},#{4}
   </select>
   <!-- 分页辅助方法-->
   <select id="countAll" resultType="java.lang.Integer">

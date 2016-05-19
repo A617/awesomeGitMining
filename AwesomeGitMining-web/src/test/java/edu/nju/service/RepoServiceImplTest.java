@@ -18,6 +18,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)		//表示继承了SpringJUnit4ClassRunner类
 @ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class RepoServiceImplTest {
+
     private static Logger logger = Logger.getLogger(RepoServiceImplTest.class);
     //	private ApplicationContext ac = null;
     @Resource
@@ -39,6 +40,11 @@ public class RepoServiceImplTest {
     public void selectByFullName(){
         Repository repo = repoService.getRepoByFullname("jsbin/jsbin");
         //System.out.println(repo.getFullName()+" "+repo.getCloneUrl());
+    }
+
+    @Test
+    public void getReposByLan_Key_Year() throws Exception {
+        System.out.println(repoService.getReposByLan_Key_Year("","","","Star").getDatas());
     }
 
 }

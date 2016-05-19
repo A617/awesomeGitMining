@@ -64,8 +64,15 @@ public class RepoServiceImpl implements IRepoService {
     }
 
     @Override
-    public Pager<Repository> getReposByLan_Key_Year(String language,String keyword,String year){
-      return repoDao.getReposByLan_Key_Year(language,keyword,year);
+    public Pager<Repository> getReposByLan_Key_Year(String language, String keyword, String year, String sort){
+        switch (sort){
+            case "General":sort = "id";break;
+            case "Fork":sort="forks_count";break;
+            case "Star":sort="stargazers_count";break;
+            case "Contributor":sort="subscribers_count";break;
+        }
+        System.out.println(sort);
+      return repoDao.getReposByLan_Key_Year(language,keyword,year,sort);
     };
 
     @Override

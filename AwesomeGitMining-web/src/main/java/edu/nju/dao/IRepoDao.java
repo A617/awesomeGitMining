@@ -100,7 +100,7 @@ public interface IRepoDao {
      * @param language,keyword,year
      * @return
      */
-    Pager<Repository> getReposByLan_Key_Year(String language,String keyword,String year);
+    Pager<Repository> getReposByLan_Key_Year(String language, String keyword, String year, String sort);
 
     /**
      *根据项目名，获得贡献者名单
