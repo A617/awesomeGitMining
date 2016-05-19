@@ -2,9 +2,10 @@ $(document).ready(function () {
     $.ajax({
         //请求方式为get
         type: "GET",
-        url: "/statistics/repository/forkDistribute",
+       // url: "/statistics/repository/forkDistribute",
         //请求成功完成后要执行的方法
         success: function (data) {
+            
             var body = d3.select("#local");
 
             var width = 400;
@@ -13,7 +14,7 @@ $(document).ready(function () {
             var svg = body.append("svg")
                 .attr("width", 400)
                 .attr("height", 400);
-            var dataset = data;
+            var dataset = data.dataset;
 
             
 

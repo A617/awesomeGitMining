@@ -1,15 +1,14 @@
-package edu.nju.dao;
+package edu.nju.task;
 
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.nju.task.HttpRequest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
+import edu.nju.dao.RepoDaoImpl;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import javax.annotation.Resource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -20,9 +19,10 @@ import java.util.Map;
 /**
  * Created by Dora on 2016/5/19.
  */
+
 public class DBHelper {
 
-    @Autowired
+
     RepoDaoImpl mapper;
 
     List<String> repoList;
@@ -32,6 +32,8 @@ public class DBHelper {
     final String password = "2a617";
 
     public DBHelper(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring-mybatis.xml");
+        mapper =(RepoDaoImpl) context.getBean("repoDao");
         repoList = mapper.getAllFullname();
     }
 
@@ -81,7 +83,5 @@ public class DBHelper {
 
     public static void main(String[] args) {
         new DBHelper().run();
-
-
     }
 }

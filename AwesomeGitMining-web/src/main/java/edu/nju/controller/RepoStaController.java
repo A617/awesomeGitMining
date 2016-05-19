@@ -39,27 +39,30 @@ public class RepoStaController {
     public
     @ResponseBody
     Map<String, Object> getLanguageTrend() {
-        Map<String, Object> result = new HashMap<>();
-        List<Object> languageCount = new ArrayList<>();
-        List<Object> languageName = new ArrayList<>();
-        List<Object> otherCount = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            languageCount.add(i);
-            languageName.add(i);
-            otherCount.add(3);
+        Map<String,Object> result = repoStaService.getLanguageTrend();
+        result.put("year", repoStaService.getYearRange());
+        List<String> languages = repoStaService.getTop10Language();
+        result.put("name",languages);
+        for(String str:languages){
+            System.out.println(str);
         }
-        result.put("language1", languageCount);
-        result.put("languageName", languageName);
-        result.put("language2", otherCount);
-
         return result;
     }
 
     @RequestMapping(value = "/statistics/repository/forkDistribute", method = RequestMethod.GET)
     public
     @ResponseBody
-    List<Integer> getForkDistribute() {
+    Map<String, Object> getForkDistribute() {
+        Map<String, Object> result = new HashMap<>();
         List<Integer> dataset = repoStaService.getForkDistribute();
-        return dataset;
+        int max = 0;
+        for (int i = 0; i < dataset.size(); i++) {
+            if (dataset.get(i) > max) {
+                max = dataset.get(i);
+            }
+        }
+        result.put("dataset", dataset);
+        result.put("max", max);
+        return result;
     }
 }

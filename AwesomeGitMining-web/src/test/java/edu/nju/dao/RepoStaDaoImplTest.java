@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by fw on 2016/5/3.
@@ -60,4 +61,16 @@ public class RepoStaDaoImplTest {
             System.out.println(u);
 
     }
-}
+    @Test
+    public void getLanByYearTest() throws Exception {
+        Map<String, Object> map=dao.getLanByYear();
+        for(Map.Entry<String, Object> entry:map.entrySet()){
+                   System.out.println("key-->"+entry.getKey());
+                   System.out.println("value-->"+entry.getValue());
+                 }
+
+    }
+
+
+
+    }

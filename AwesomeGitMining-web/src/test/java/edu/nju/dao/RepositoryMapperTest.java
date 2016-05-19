@@ -144,4 +144,17 @@ public class RepositoryMapperTest {
 
     }
 
+    @Test
+    public void getYearTest() throws Exception{
+        List<String> list=dao.getYear();
+        for (String u : list)
+            System.out.println(u);
+
+
+    }
+    @Test
+    public void countLanguagesCreatedTest() throws Exception{
+        System.out.println(dao.countLanguagesCreated("2008","Ruby"));
+    }
+
 }
