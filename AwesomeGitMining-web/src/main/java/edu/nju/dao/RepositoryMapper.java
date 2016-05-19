@@ -73,6 +73,10 @@ public interface RepositoryMapper {
 
     List<Integer>countForks();
 
+    List<Integer>countSubscribers();
+
+    List<Integer>countStars();
+
     List<String> getYear();
 
 }

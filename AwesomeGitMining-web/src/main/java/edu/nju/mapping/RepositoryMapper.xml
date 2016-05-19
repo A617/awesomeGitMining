@@ -530,6 +530,10 @@ select login
     select forks_count
     from repository
   </select>
+  <select id="countSubscribers" resultType="java.lang.Integer">
+    select stargazers_count
+    from repository
+  </select>
   <select id="getYear" resultType="java.lang.String">
     select DISTINCT YEAR(created_at)
     from repository
