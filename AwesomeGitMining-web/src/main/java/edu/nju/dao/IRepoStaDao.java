@@ -60,6 +60,11 @@ public interface IRepoStaDao {
     Map<String,Object> getLanByYear();
 
     /**
+     * 得到分析数据的年份
+     * @return
+     */
+    List<String> getYearRange();
+    /**
      *
      * @return fork数分布
      */

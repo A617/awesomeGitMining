@@ -38,7 +38,6 @@ public class RepoStaDaoImpl implements IRepoStaDao {
     @Override
     public List<String> getStaLanguages() {
         ObjectMapper mapper2 = new ObjectMapper();
-        List<String >result=new ArrayList<String>();
         List<Repository> repo_list=mapper.selectAll();
 
         Map<String,Integer> languages = null;
@@ -76,17 +75,20 @@ public class RepoStaDaoImpl implements IRepoStaDao {
     public Map<String, Object> getLanByYear() {
         Map<String, Object> map = new HashMap<String, Object>();
         List<String> lan=mapper.countFirst10Languages();
-        List<String>year=mapper.getYear();
-        for (String y : year){
-            List<LinkedHashMap>result=new  ArrayList<LinkedHashMap>();
-            for(int i=0;i<lan.size();i++){
-
-                result.add(mapper.countLanguagesCreated(y,lan.get(i)));
-
-            }map.put(y,result);
+        List<String> year=mapper.getYear();
+        for(String language:lan){
+            List<Integer> list = new ArrayList<>();
+            for(String y:year){
+                list.add(mapper.countLanguagesCreated(y,language));
+            }
+            map.put(language,list);
         }
-
         return map;
+    }
+
+    @Override
+    public List<String> getYearRange() {
+        return mapper.getYear();
     }
 
     @Override

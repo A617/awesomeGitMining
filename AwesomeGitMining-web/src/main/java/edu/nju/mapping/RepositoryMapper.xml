@@ -498,11 +498,10 @@
     group by language
     order by s desc
   </select>
-  <select id="countLanguagesCreated" resultType="java.util.LinkedHashMap" parameterType="java.lang.String">
-    select language,count(id) as c
+  <select id="countLanguagesCreated" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select count(id)
     from repository
     where language = #{1} and YEAR(created_at) = #{0}
-    group by language
   </select>
   <select id="countCreatedYear" resultType="java.util.LinkedHashMap">
     select YEAR(created_at)as year ,count(id) as c
