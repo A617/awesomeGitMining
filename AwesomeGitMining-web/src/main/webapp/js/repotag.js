@@ -10,9 +10,15 @@ $(document).ready(function() {
         var r = window.location.search.substr(1).match(reg);
         if(r!=null)return  unescape(r[2]); return null;
     }
-    // alert("123"+GetQueryString("key"));
 
 
+    $("#maintab").children().each(function() {
+        var tabId = $(this).text().trim();
+        $(this).click(function() {
+            alert("/repo/repos?pager.offset=0&sort=" + tabId + "");
+            $("#current").load("/repo/repos?pager.offset=0&sort=" + tabId + " #current");
+        });
+    });
 
     $("[name='lan']").each(function() {
         var text = $(this).text();

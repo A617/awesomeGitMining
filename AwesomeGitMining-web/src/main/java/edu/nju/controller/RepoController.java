@@ -33,18 +33,18 @@ public class RepoController {
 
     @RequestMapping(value = "/repos", method = RequestMethod.GET)
     public ModelAndView listRepos(@RequestParam(value="pager.offset",required = false) Integer offset,
-                                  @RequestParam(value="lan",required = false)String lan,
-                                  @RequestParam(value="key",required = false) String key,
-                                  @RequestParam(value="year",required = false)String year) {
+                                  @RequestParam(value="lan",required = false, defaultValue = "All")String lan,
+                                  @RequestParam(value="key",required = false, defaultValue = "All") String key,
+                                  @RequestParam(value="year",required = false, defaultValue = "All")String year,
+                                  @RequestParam(value="sort",required = false,defaultValue = "General") String sort) {
         Pager<Repository> total;
-        if(lan==null&&key==null&&year==null || lan.equals("All")&&year.equals("All")&&year.equals("All")){
-            total = repoService.getAllRepos();
-        }else {
+        System.out.println("sss"+sort);
+
             lan=lan.equals("All")?"":lan;
             key=key.equals("All")?"":key;
             year=year.equals("All")?"":year;
-            total = repoService.getReposByLan_Key_Year(lan,key,year);
-        }
+            total = repoService.getReposByLan_Key_Year(lan,key.toLowerCase(),year,sort);
+        System.out.println(total.getDatas());
 
         Map<String, Object> map = new HashMap<>();
         map.put("repos", total.getDatas());

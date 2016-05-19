@@ -171,23 +171,23 @@
                     <div class="panel-heading">
                         <ul class="nav nav-tabs" id="maintab">
                             <li class="active">
-                                <a href="#current" onclick='showPage("repos")'>
+                                <a>
                                     <h3>General</h3>
                                 </a>
                             </li>
                             <li>
-                                <a href="#forks" onclick='showPage("forks")'>
+                                <a>
                                     <h3>Fork</h3>
                                 </a>
                             </li>
                             <li>
-                                <a href="#stars" onclick='showPage("stars")'>
+                                <a>
                                     <h3>Star</h3>
                                 </a>
                             </li>
                             <li>
-                                <a href="#contributers" onclick='showPage("cons")'>
-                                    <h3>Contributer</h3>
+                                <a>
+                                    <h3>Contributor</h3>
                                 </a>
                             </li>
                         </ul>
@@ -245,9 +245,9 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="tab-pane" id="forks"></div>
-                        <div class="tab-pane" id="stars"></div>
-                        <div class="tab-pane" id="contributers"></div>
+                        <%--<div class="tab-pane" id="forks"></div>--%>
+                        <%--<div class="tab-pane" id="stars"></div>--%>
+                        <%--<div class="tab-pane" id="contributors"></div>--%>
                     </div>
                 </div>
             </div>
@@ -260,14 +260,14 @@
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script language="javascript">
+    <%--<script language="javascript">--%>
 
-        function showPage(tabId){
-            newurl = "/repo/"+tabId+"?pager.offset=0";
-            window.location.href=newurl;
-        }
+        <%--function showPage(tabId){--%>
+            <%--newurl = "/repo/repos?pager.offset=0&sort="+tabId;--%>
+            <%--window.location=newurl;--%>
+        <%--}--%>
 
-    </script>
+    <%--</script>--%>
     <script src="/js/repotag.js"></script>
 </body>
 </html>
