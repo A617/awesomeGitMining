@@ -3,9 +3,19 @@ $(document).ready(function() {
     var lan = $("#onLan").text();
     var com = $("#onCom").text();
 
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
 
     $("[name='lan']").each(function() {
         var text = $(this).text();
+        if(text==GetQueryString("lan")){
+            $(this).css("background-color","#2baab1");              //为被选中的tag设置颜色
+            $(this).css("color","#fff");
+        }
         $(this).click(function() {
             lan = text;
             $("[name='lan']").css("background-color","#fff");
@@ -20,6 +30,10 @@ $(document).ready(function() {
 
     $("[name='com']").each(function() {
         var text = $(this).text();
+        if(text==GetQueryString("com")){
+            $(this).css("background-color","#2baab1");              //为被选中的tag设置颜色
+            $(this).css("color","#fff");
+        }
         $(this).click(function() {
             com = text;
             $("[name='com']").css("background-color","#fff");

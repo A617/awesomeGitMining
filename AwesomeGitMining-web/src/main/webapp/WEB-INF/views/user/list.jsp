@@ -136,7 +136,7 @@
                             <ul class="dashboard-list">
                                 <c:forEach items="${users }" var="u">
                                     <li>
-                                        <h3><strong>${u.id}&nbsp;<a href="${u.login }">${u.login }</a></strong></h3>
+                                        <h3><strong><a href="${u.login }">${u.login }</a></strong></h3>
                                         <p style="text-align: right"><strong>Followers:</strong>&nbsp;${u.followers}</p>
                                         <p><span><strong>Location:</strong>&nbsp;${u.location}</span>
                                             <strong>Company:</strong>&nbsp;${u.company} </span>
@@ -148,6 +148,8 @@
                             <ul class="pagination pagination-centered">
                                 ${pageUrl}<br>
                                 <pg:pager url="/user/users" items="${total}">
+                                    <pg:param name="lan"/>
+                                    <pg:param name="com"/>
                                     <li>
                                         <pg:first>
                                             <a href="${pageUrl}">Begin</a>
