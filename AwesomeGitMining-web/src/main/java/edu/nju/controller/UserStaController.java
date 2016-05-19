@@ -2,6 +2,7 @@ package edu.nju.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.nju.service.IUserService;
+import edu.nju.service.RepoStaServiceImpl;
 import edu.nju.service.UserStaServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,6 +64,23 @@ public class UserStaController {
         }
         result.put("typeCount",typeCount);
         result.put("typeName",typeName);
+        return result;
+    }
+
+    @RequestMapping(value="/statistics/user/createYear",method = RequestMethod.GET)
+    public @ResponseBody Map<String, Object> getCreateYear() {
+        List<LinkedHashMap> type = service.getCreateYear();
+        Map<String,Object> result = new HashMap<>();
+        List<Object> Count = new ArrayList<>();
+        List<Object> year = new ArrayList<>();
+
+        for(LinkedHashMap l : type){
+            Count.add(l.get("c"));
+            year.add(l.get("YEAR(created_at)"));
+
+        }
+        result.put("Count",Count);
+        result.put("year",year);
         return result;
     }
 

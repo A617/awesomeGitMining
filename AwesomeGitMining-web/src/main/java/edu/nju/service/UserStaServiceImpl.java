@@ -30,4 +30,11 @@ public class UserStaServiceImpl implements IUserStaService{
         map.remove("");
         return map;
     }
+
+    @Override
+    public List<LinkedHashMap> getCreateYear() {
+        List<LinkedHashMap> map = dao.countCreate_Year();
+        map.remove("");
+        return map;
+    }
 }

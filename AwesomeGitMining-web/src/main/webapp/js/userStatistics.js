@@ -9,7 +9,7 @@ $(function() {
         var myChart1 = echarts.init(document.getElementById('company-pie-local'));
         myChart1.setOption({
             title : {
-                text: 'Company',
+                text: 'Number of users of each company',
                 x:'center',
                 y:'bottom'
             },
@@ -135,6 +135,49 @@ $(function() {
             }
         });
 
+        var myChart3 = echarts.init(document.getElementById('create_year'));
+        myChart3.setOption({
+            title : {
+                text: 'User Create Year',
+                x:'center',
+                y:'bottom'
+            },
+            tooltip : {},
+            legend: {
+                data:['user']
+            },
+            xAxis: {
+                data: []
+            },
+            yAxis: {},
+            series: [{
+                name: 'user',
+                type: 'bar',
+                data: []
+            }]
+        });
+        var url = "/statistics/user/createYear";
+        $.ajax(url, {
+            type: 'GET',
+            success: function (data, textStatus) {
+
+                myChart3.setOption({
+                    xAxis: {
+                        data: data.year
+                    },
+                    series: [{
+                        name: 'user',
+                        data: data.Count,
+                        itemStyle:{
+                            normal: {
+                               color:'#4682B4'
+                            }
+                        }
+                    }]
+                });
+            }
+        });
+
 
         var url = "/statistics/user/companyBQ";
         $.ajax(url, {
@@ -161,11 +204,7 @@ $(function() {
                 chart = new Chart(ctx, pieConfig);
             }
         });
-
-
     });
-
-
 });
 
 var backgroundColor = [
