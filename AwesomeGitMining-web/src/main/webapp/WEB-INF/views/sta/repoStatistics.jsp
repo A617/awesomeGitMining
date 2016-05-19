@@ -82,7 +82,7 @@
         <div class="templatemo-flex-row flex-content-row">
             <div id="local" class="templatemo-content-widget white-bg col-1 animated fadeInLeft">
                 <h2>Local</h2><hr>
-
+                <canvas id="lineChart" width="400" height="450"></canvas>
             </div>
             <div class="templatemo-content-widget white-bg col-1 animated fadeInRight">
                 <h2>Test</h2><hr>
@@ -101,7 +101,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
 <script src="/js/SearchReposBubble.js"></script>
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<script src ="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.min.js"></script>
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.js"></script>
 <script src="/js/languageTrend.js"></script>
+
 </body>
 </html>

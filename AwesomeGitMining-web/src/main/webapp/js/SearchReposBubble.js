@@ -38,19 +38,28 @@ $(document).ready(function () {
                 .attr("class", "bubble");
 
             bubbles.append("circle")
+                .on("mouseover", function (d, i) {
+                    d3.select(this)
+                        .style("fill", "yellow");
+                })
+                .on("mouseout", function (d, i) {
+                    d3.select(this)
+                        .transition()
+                        .duration(500)
+                        .style("fill", function () {
+                            return color(i);
+                        });
+                    
+                })
                 .style("fill", function (d, i) {
                     return color(i);
                 })
-                .style("opacity", function (d, i) {
-                    return "0.0";
-                })
+                .style("opacity", "0.0")
                 .attr("r", 0)
                 .transition()
                 .duration(2000)
                 .ease("sin")
-                .style("opacity", function (d, i) {
-                    return "0.5";
-                })
+                .style("opacity","0.5")
                 .attr("cx", function (d) {
                     return d.x;
                 })
@@ -59,20 +68,25 @@ $(document).ready(function () {
                 })
                 .attr("r", function (d) {
                     return d.r;
-                })
-                .on("mouseover", function (d, i) {
-                    d3.select(this)
-                        .attr("fill", "yellow");
-                })
-                .on("mouseout", function (d, i) {
-                    d3.select(this)
-                        .transition()
-                        .duration(500)
-                        .attr("fill", "steelblue");
                 });
 
 
             bubbles.append("text")
+                .on("mouseover", function (d) {
+                    d3.select(this)
+                        .text(function () {
+                            return d.weight;
+                        });
+                })
+                .on("mouseout", function (d) {
+                    d3.select(this)
+                        .transition()
+                        .duration(500)
+                        .text(function () {
+                            return d.word;
+                        });
+
+                })
                 .attr("x", function (d) {
                     return d.x;
                 })
@@ -89,7 +103,6 @@ $(document).ready(function () {
                 })
                 .text(function (d) {
                     return d.word;
-
                 });
         }
     })
