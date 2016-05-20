@@ -92,7 +92,7 @@
                     <h3 class="text-uppercase"> Languages</h3>
                     <div class="box-content buttons">
                         <%--<form action="/repo/tag" method="get">--%>
-                            <div class="col-lg-3 col-md-6"><button id="onLan" type="submit" class="blog-tag" name="lan" value="all">All</button></div>
+                            <div class="col-lg-3 col-md-6"><button id="onLan" type="submit" class="blog-tag" name="lan" value="All">All</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Scala">Scala</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="C">C</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="lan" value="Ruby">Ruby</button></div>
@@ -120,7 +120,7 @@
                     <h3 class="text-uppercase">  Keywords</h3>
                     <div class="box-content buttons">
                         <%--<form action="/repo/tag" method="get">--%>
-                            <div class="col-lg-3 col-md-6"><button id="onKey" type="submit" class="blog-tag" name="key" value="all">All</button></div>
+                            <div class="col-lg-3 col-md-6"><button id="onKey" type="submit" class="blog-tag" name="key" value="All">All</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="API">API</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="Django">Django</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="key" value="MySQL">MySQL</button></div>
@@ -152,7 +152,7 @@
                     <h3 class="text-uppercase"> Updated Time</h3>
                     <div class="box-content buttons">
                         <%--<form action="/repo/tag" method="get">--%>
-                            <div class="col-lg-3 col-md-6"><button id="onYear" type="submit" class="blog-tag" name="year" value="all">All</button></div>
+                            <div class="col-lg-3 col-md-6"><button id="onYear" type="submit" class="blog-tag" name="year" value="All">All</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2007">2007</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2008">2008</button></div>
                             <div class="col-lg-3 col-md-6"><button type="submit" class="blog-tag" name="year" value="2009">2009</button></div>
@@ -194,7 +194,7 @@
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane fade in active" id="current">
-                            <div class="panel-body">
+                            <div class="panel-body" id="posts">
                                 <ul class="dashboard-list" >
                                     <c:forEach items="${repos }" var="repo">
                                         <li>
@@ -210,44 +210,47 @@
                                     </c:forEach>
                                 </ul>
 
-                                <ul class="pagination  pagination-centered">
-                                    ${pageUrl}<br>
-                                    <pg:pager url="/repo/repos" items="${total}">
-                                        <pg:param name="lan"/>
-                                        <pg:param name="key"/>
-                                        <pg:param name="year"/>
-                                        <li>
-                                            <pg:first>
-                                                <a href="${pageUrl}">Begin</a>
-                                            </pg:first>
-                                        </li>
-                                        <li>
-                                            <pg:prev>
-                                                <a href="${pageUrl }">Pre</a>
-                                            </pg:prev>
-                                        </li>
-                                        <li>
-                                            <pg:pages>
-                                                <a href="${pageUrl }">${pageNumber}</a>
-                                            </pg:pages>
-                                        </li>
-                                        <li>
-                                            <pg:next>
-                                                <a href="${pageUrl }">Next</a>
-                                            </pg:next>
-                                        </li>
-                                        <li>
-                                            <pg:last>
-                                                <a href="${pageUrl }">End</a>
-                                            </pg:last>
-                                        </li>
-                                    </pg:pager>
-                                </ul>
+                                <%--<ul class="pagination">--%>
+                                    <%--&lt;%&ndash;${pageUrl}<br>&ndash;%&gt;--%>
+                                    <%--<pg:pager url="/repo/repos" items="${total}">--%>
+                                        <%--<pg:param name="lan"/>--%>
+                                        <%--<pg:param name="key"/>--%>
+                                        <%--<pg:param name="year"/>--%>
+                                        <%--<pg:param name="sort"/>--%>
+                                        <%--<li>--%>
+                                            <%--<pg:first>--%>
+                                                <%--<a href="${pageUrl}">Begin</a>--%>
+                                            <%--</pg:first>--%>
+                                        <%--</li>--%>
+                                        <%--<li>--%>
+                                            <%--<pg:prev>--%>
+                                                <%--<a href="${pageUrl }">Pre</a>--%>
+                                            <%--</pg:prev>--%>
+                                        <%--</li>--%>
+                                        <%--<li>--%>
+                                            <%--<pg:pages>--%>
+                                                <%--<a href="${pageUrl }">${pageNumber}</a>--%>
+                                            <%--</pg:pages>--%>
+                                        <%--</li>--%>
+                                        <%--<li>--%>
+                                            <%--<pg:next>--%>
+                                                <%--<a href="${pageUrl }">Next</a>--%>
+                                            <%--</pg:next>--%>
+                                        <%--</li>--%>
+                                        <%--<li>--%>
+                                            <%--<pg:last>--%>
+                                                <%--<a href="${pageUrl }">End</a>--%>
+                                            <%--</pg:last>--%>
+                                        <%--</li>--%>
+                                    <%--</pg:pager>--%>
+                                <%--</ul>--%>
+                                <p hidden>${total}</p>
                             </div>
                         </div>
-                        <%--<div class="tab-pane" id="forks"></div>--%>
-                        <%--<div class="tab-pane" id="stars"></div>--%>
-                        <%--<div class="tab-pane" id="contributors"></div>--%>
+                        <div id="pagination">
+
+                                <%--<a href="/repo/repos" class="next">next</a>--%>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -260,15 +263,10 @@
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <%--<script language="javascript">--%>
-
-        <%--function showPage(tabId){--%>
-            <%--newurl = "/repo/repos?pager.offset=0&sort="+tabId;--%>
-            <%--window.location=newurl;--%>
-        <%--}--%>
-
-    <%--</script>--%>
     <script src="/js/repotag.js"></script>
+        <script src="/js/library/jquery-ias.min.js"></script>
+
+
 </body>
 </html>
 

@@ -5576,10 +5576,10 @@ label.parsley-error {
     -o-transition: all .2s ease
 }
 
-/*.blog-tag:focus, .blog-tag:hover {*/
-    /*background-color: #2baab1;*/
-    /*color: #fff*/
-/*}*/
+.blog-tag:focus, .blog-tag:hover {
+    background-color: #2baab1;
+    color: #fff
+}
 
 .blog-author .author-profile-pic {
     float: left;
