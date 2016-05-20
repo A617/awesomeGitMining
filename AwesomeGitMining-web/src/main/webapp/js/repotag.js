@@ -1,13 +1,5 @@
 $(document).ready(function() {
 
-    // function GetQueryString(name)
-    // {
-    //     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-    //     var r = window.location.search.substr(1).match(reg);
-    //     if(r!=null)return  unescape(r[2]); return null;
-    // }
-
-
     var lan = $("#onLan").text();
     var year = $("#onYear").text();
     var key = $("#onKey").text();
@@ -22,6 +14,7 @@ $(document).ready(function() {
         item:       '.panel-body',
         pagination: '#pagination',
         next:       '<a href="/repo/repos" class="next">next</a>',
+        // loader:"<img src='/img/loading.gif' /><font size='5'>正在拼命的为您加载</font>",
         // beforePageChange:function(curScrOffset, nextPageUrl){
         //     alert("AA");
         //     pageCount++;
@@ -38,38 +31,23 @@ $(document).ready(function() {
     // }));
 
     ias.extension(new IASNoneLeftExtension({text: "You reached the end"}));
-
     ias.on('noneLeft', function() {
         console.log('We hit the bottom!');
     })
 
-    // ias.on('next', function(url) {
-    //     alert(url);
-    //     // if (url.indexOf("/website/home/2") > -1 && pageNum > 2) {
-    //     return false;
-    //     // }
-    // });
+    // Add a loader image which is displayed during loading
+    ias.extension(new IASSpinnerExtension());
+    ias.extension(new IASSpinnerExtension({
+        src: '/img/loading.gif', // optionally
+        html: '<div class="ias-spinner" style="text-align: center;"><img src="{src}"/></div>',
+    }));
 
     
 
     ias.on('load', function(event) {
         pageCount++;
-        // console.log(
-        //     "~~~~?sort="+sort+"&lan=" + lan+"&key="+key+"&year="+year+"&pager.offset="+(pageCount-1)*10
-        //         );
         event.url = event.url + "?sort="+sort+"&lan=" + lan+"&key="+key+"&year="+year+"&pager.offset="+(pageCount-1)*10;
     })
-
-
-    // jQuery.ias().extension(new IASPagingExtension());
-    // jQuery.ias().on('pageChange', function(pageNum, scrollOffset, url) {
-    //     pageCount = pageNum;
-    //     console.log(
-    //         "Welcome at page " + pageNum + ", " +scrollOffset+" "+
-    //         "the original url of this page would be: " + url
-    //     );
-    // });
-
 
 
     $("#maintab").children().each(function() {
@@ -78,7 +56,8 @@ $(document).ready(function() {
         $(this).click(function() {
             sort=tabId;
             pageCount = 1;
-            // jQuery.ias().reinitialize();
+            $(".active").attr("class","");
+            $(this).attr("class","active");
             $("#current").load("/repo/repos?pager.offset=0&sort="+sort+"&lan=" + lan+"&key="+key+"&year="+year+" #current");
         });
     });
@@ -91,10 +70,8 @@ $(document).ready(function() {
         $(this).click(function() {
             lan = text;
             pageCount = 1;
-            // jQuery.ias().reinitialize();
             $("#onLan").attr("id","");
             $(this).attr("id","onLan");
-
             $("#current").load("/repo/repos?pager.offset=0&sort="+sort+"&lan=" + lan+"&key="+key+"&year="+year+" #current");
         });
 

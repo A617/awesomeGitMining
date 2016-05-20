@@ -99,7 +99,7 @@ div.center, p.center, img.center {
 
 .blog-tag:focus, .blog-tag:hover {
     background-color: #2baab1;
-    color: #fff
+    color: #fff;
 }
 
 #onLan, #onKey, #onYear{
@@ -107,3 +107,7 @@ div.center, p.center, img.center {
     color: #fff
 }
 
+.nav-tabs > li > a:hover {
+    border-color: #eee #eee #ddd;
+    cursor:pointer;
+}
