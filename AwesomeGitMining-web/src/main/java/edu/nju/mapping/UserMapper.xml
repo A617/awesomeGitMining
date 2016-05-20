@@ -424,4 +424,14 @@
     select following
     from user
   </select>
+  <select id="countFans" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    select count(id)
+    from user
+    where #{1}>followers and followers>=#{0}
+  </select>
+  <select id="countFollow" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+     select count(id)
+    from user
+    where #{1}>following and following>=#{0}
+  </select>
 </mapper>

@@ -37,12 +37,12 @@ public interface IUserStaDao {
      */
     List<Integer> countBlog();
     /**
-     * 统计粉丝数
+     * 统计粉丝数 {0,10,20,30,40,50,60,70,80,90,100,18727};
      * @return
      */
     List<Integer>countFollowers();
     /**
-     * 统计关注数
+     * 统计关注数 {0,10,20,30,40,50,60,70,80,90,100,114999}
      * @return
      */
     List<Integer>countFollowings();

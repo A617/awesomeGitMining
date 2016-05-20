@@ -54,11 +54,25 @@ public class UserStaDaoImplTest {
     }
     @Test
     public void countFollowingTest() throws Exception {
-        List<Integer> list=dao.countFollowings();
-        for (Integer u:list) {
+        List<Integer> list = dao.countFollowings();
+        for (Integer u : list) {
             System.out.println(u);
         }
-
+    }
+        @Test
+        public  void countFollowersTest() throws  Exception{
+            List<Integer>list=dao.countFollowers();
+            for (Integer u : list)
+                System.out.println(u);
 
     }
+    @Test
+    public  void countFollowingsTest() throws  Exception{
+        List<Integer>list=dao.countFollowings();
+        for (Integer u : list)
+            System.out.println(u);
+
+    }
+
+
 }

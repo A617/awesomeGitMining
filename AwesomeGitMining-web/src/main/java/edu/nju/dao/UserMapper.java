@@ -67,5 +67,9 @@ public interface UserMapper {
 
     List<Integer>countFollowings();
 
+    int countFans(int first,int last);
+
+    int countFollow(int first,int last);
+
 
 }
