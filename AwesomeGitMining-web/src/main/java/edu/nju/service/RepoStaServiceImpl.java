@@ -4,6 +4,7 @@ import edu.nju.dao.IRepoStaDao;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,5 +33,10 @@ public class RepoStaServiceImpl implements IRepoStaService {
     @Override
     public List<String> getTop10Language() {
         return repoStaDao.countFirst10Languages();
+    }
+
+    @Override
+    public List<LinkedHashMap> countCreatedYear() {
+        return repoStaDao.countCreatedYear();
     }
 }

@@ -508,7 +508,7 @@
     select YEAR(created_at)as year ,count(id) as c
     from repository
     group by year
-    order by year desc
+    order by year asc
   </select>
 <select id="getContributors" resultType="java.lang.String" parameterType="java.lang.String">
 select login

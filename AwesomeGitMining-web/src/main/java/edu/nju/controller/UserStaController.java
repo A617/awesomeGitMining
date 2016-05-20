@@ -26,6 +26,8 @@ public class UserStaController {
 
     @Resource
     UserStaServiceImpl service;
+    @Resource
+    RepoStaServiceImpl repo;
 
     ObjectMapper mapper = new ObjectMapper();
 
@@ -71,18 +73,24 @@ public class UserStaController {
 
     @RequestMapping(value="/statistics/user/createYear",method = RequestMethod.GET)
     public @ResponseBody Map<String, Object> getCreateYear() {
-        List<LinkedHashMap> type = service.getCreateYear();
+        List<LinkedHashMap> user = service.getCreateYear();
+        List<LinkedHashMap> com = repo.countCreatedYear();
+
         Map<String,Object> result = new HashMap<>();
         List<Object> Count = new ArrayList<>();
         List<Object> year = new ArrayList<>();
+        List<Object> repos = new ArrayList<>();
 
-        for(LinkedHashMap l : type){
+        for(LinkedHashMap l : user){
             Count.add(l.get("c"));
             year.add(l.get("YEAR(created_at)"));
-
+        }
+        for(LinkedHashMap l : com){
+            repos.add(l.get("c"));
         }
         result.put("Count",Count);
         result.put("year",year);
+        result.put("repos",repos);
         return result;
     }
 
