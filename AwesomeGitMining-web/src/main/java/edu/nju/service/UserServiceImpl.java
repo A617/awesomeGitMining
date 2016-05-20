@@ -30,10 +30,10 @@ public class UserServiceImpl implements IUserService {
         return userDao.selectByLogin(login);
     }
 
-    @Override
-    public int getUserTotal() {
-        return userDao.countAll();
-    }
+//    @Override
+//    public int getUserTotal() {
+//        return userDao.countAll();
+//    }
 
     @Override
     public Pager<User> searchUser(String name) {

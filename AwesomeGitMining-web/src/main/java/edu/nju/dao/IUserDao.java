@@ -33,7 +33,7 @@ public interface IUserDao {
      */
     Pager<User> searchUser(String name);
 
-    int countAll();
+   // int countAll();
 
     /**
      * 根据语言筛选用户

@@ -48,15 +48,15 @@ public interface RepositoryMapper {
 
     List<Repository> selectReposByLan_Key_Year(String language,String keyword,String year,@Param(value="sort") String sort,int pageSize,int pageOffset);
 
-    int countAll();
-
-    int countSearch(String fullName);
-
-    int countYear(int year);
-
-    int countLanguage(String language);
-
-    int countKey(String keyword);
+//    int countAll();
+//
+//    int countSearch(String fullName);
+//
+//    int countYear(int year);
+//
+//    int countLanguage(String language);
+//
+//    int countKey(String keyword);
 
     int countLan_Key_Year(String language,String keyword,String year);
 

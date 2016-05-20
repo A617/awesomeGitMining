@@ -28,7 +28,7 @@ public interface UserMapper {
 
     List<User> searchUser(Map<String,Object> params);
 
-    int countAll();
+    //int countAll();
 
     int countSearch(String name);
 

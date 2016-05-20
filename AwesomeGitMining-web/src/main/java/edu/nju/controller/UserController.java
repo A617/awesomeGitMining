@@ -50,7 +50,6 @@ public class UserController {
 
         Map<String, Object> map = new HashMap<>();
         map.put("users", total.getDatas());
-        System.out.println(total.getTotal());
         return new ModelAndView("/user/list", map);
     }
 
