@@ -1378,6 +1378,16 @@ a:focus, a:hover {
     text-decoration: underline
 }
 
+#drop_a {
+    color: #FFFFFF;
+    text-decoration: none
+}
+
+#drop_a:focus, #drop_a:hover {
+    color: #7FFFD4;
+    text-decoration: underline
+}
+
 a:focus {
     outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;

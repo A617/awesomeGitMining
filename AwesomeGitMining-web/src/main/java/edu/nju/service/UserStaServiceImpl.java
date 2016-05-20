@@ -44,4 +44,11 @@ public class UserStaServiceImpl implements IUserStaService{
         map.remove("");
         return map;
     }
+
+    @Override
+    public List<Integer> countBlog() {
+        List<Integer> map = dao.countBlog();
+        map.remove("");
+        return map;
+    }
 }

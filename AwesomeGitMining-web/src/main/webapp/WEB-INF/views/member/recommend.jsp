@@ -35,16 +35,6 @@
         });
     </script>
 
-    <script type="text/javascript">
-        //公共配置
-        var pageOpt = {
-            prev_text:'Prev',
-            next_text:'Next',
-            items_per_page:10,//因为第一次获取的数据,并没有传这个每页的记录数过去,所以这里应从后台获取.
-            num_display_entries:5,
-            num_edge_entries:1
-        };
-    </script>
 </head>
 <body class="light-gray-bg">
 <div class="templatemo-top-nav-container">
@@ -56,6 +46,7 @@
                 <li><a href="/user/users?pager.offset=0">User</a></li>
                 <li><a href="/statistics/repository">Repository Statistics</a></li>
                 <li><a href="/statistics/user">User Statistics</a></li>
+                <li><a href="/statistics/bigQuery">Big Query</a></li>
                 <li><a href="#" class="active">Recommended</a></li>
             </ul>
         </nav>
@@ -65,7 +56,7 @@
             <%
                 if (session.getAttribute("loginMember") == null) {
             %>
-            <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+            <a href="#" id="drop_a" data-toggle="dropdown">
                 Visitors <b class="caret"></b>
             </a>
             <ul class="dropdown-menu animated fadeInRight">
@@ -79,7 +70,7 @@
             <%
             } else {
             %>
-            <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+            <a href="#" id="drop_a" data-toggle="dropdown">
                 <%=session.getAttribute("loginMember")%><b class="caret"></b>
             </a>
             <ul class="dropdown-menu animated fadeInRight">

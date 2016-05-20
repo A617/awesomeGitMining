@@ -7,6 +7,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -42,4 +44,35 @@ public class UserStaDaoImplTest {
         System.out.println(dao.countEmail());
 
     }
+
+    @Test
+    public void countBlogTest() throws Exception {
+        List<Integer> list=dao.countBlog();
+        for (Integer u:list) {
+            System.out.println(u);
+        }
+    }
+    @Test
+    public void countFollowingTest() throws Exception {
+        List<Integer> list = dao.countFollowings();
+        for (Integer u : list) {
+            System.out.println(u);
+        }
+    }
+        @Test
+        public  void countFollowersTest() throws  Exception{
+            List<Integer>list=dao.countFollowers();
+            for (Integer u : list)
+                System.out.println(u);
+
+    }
+    @Test
+    public  void countFollowingsTest() throws  Exception{
+        List<Integer>list=dao.countFollowings();
+        for (Integer u : list)
+            System.out.println(u);
+
+    }
+
+
 }

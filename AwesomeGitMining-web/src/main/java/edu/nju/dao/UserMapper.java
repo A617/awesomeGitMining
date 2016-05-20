@@ -61,5 +61,15 @@ public interface UserMapper {
 
     List<LinkedHashMap> countEmail();
 
+    int countBlog(String blog);
+
+    List<Integer>countFollowers();
+
+    List<Integer>countFollowings();
+
+    int countFans(int first,int last);
+
+    int countFollow(int first,int last);
+
 
 }

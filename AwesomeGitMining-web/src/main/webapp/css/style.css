@@ -171,7 +171,7 @@ footer { padding: 15px; }
 /* 3. Right Column
 ------------------------------*/
 .templatemo-top-nav-container {
-	background-color: white;
+	background-color: #263B56;
 	padding: 28px 30px;
  	box-shadow: 0px 0px 2px 2px rgba(161, 159, 159, 0.18);
 }
@@ -180,15 +180,15 @@ footer { padding: 15px; }
     list-style: none;
 }
 .templatemo-top-nav a {
-	color: #7f7f7f;
+	color: #FFFFFF;
     display: block;
-    padding: 0 37px;
+    padding: 0 30px;
     border-left: 2px solid #c5c5c5;
 }
 .templatemo-top-nav li:last-child a { border-right: 2px solid #c5c5c5; }
 .templatemo-top-nav a:hover,
 .templatemo-top-nav a.active {
-	color: #39ADB4;
+	color: #7FFFD4;
 }
 
 /* Main Content Area */
@@ -480,6 +480,67 @@ footer { padding: 15px; }
 .templatemo-view-img-btn:hover {
 	background-color: #39ADB4;
 	color: white;
+}
+
+.top-nav .user-block .user-profile-pic {
+	width: 35px;
+	height: 35px
+}
+.social-widget1 {
+	margin-bottom: 20px
+}
+
+.social-widget1 .user-profile-pic {
+	position: relative;
+	margin-top: -45px
+}
+
+.social-widget1 .user-profile-pic img {
+	float: left;
+	width: 60px;
+	height: 60px;
+	border: 5px solid #fff;
+	border-radius: 50em;
+	-moz-border-radius: 50em;
+	-webkit-border-radius: 50em
+}
+
+.social-widget2 {
+	margin-bottom: 20px
+}
+
+.social-widget2 .user-profile-pic {
+	float: left
+}
+
+.social-widget2 .user-profile-pic img {
+	width: 55px;
+	height: 55px;
+	border-radius: 50em;
+	-moz-border-radius: 50em;
+	-webkit-border-radius: 50em
+}
+
+.social-widget2 .user-name {
+	margin-left: 65px
+}
+.user-profile-wrapper, .user-profile-wrapper .user-profile-sidebar .user-profile-pic {
+	position: relative
+}
+
+.user-profile-wrapper .user-profile-sidebar .user-profile-pic img {
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	display: block;
+	border: 4px solid #fff;
+	box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+	-moz-box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+	-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .15)
+}
+.user-list li .user-name {
+	font-size: 13px;
+	font-weight: 400
 }
 
 /* 7. Preferences

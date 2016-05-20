@@ -29,7 +29,6 @@ public class UserStaController {
     @Resource
     RepoStaServiceImpl repo;
 
-    ObjectMapper mapper = new ObjectMapper();
 
     @RequestMapping(value = "/statistics/user", method = RequestMethod.GET)
     public ModelAndView showStatistics() {
@@ -111,24 +110,23 @@ public class UserStaController {
         return result;
     }
 
-    @RequestMapping(value="/statistics/user/companyBQ",method = RequestMethod.GET)
-    public @ResponseBody Map<String, Object> getCompanyBQByJson() {
-        List<LinkedHashMap> json = null;
+    @RequestMapping(value="/statistics/user/blog",method = RequestMethod.GET)
+    public @ResponseBody Map<String, Object> getBlog() {
+        List<Integer> blog = service.countBlog();
+        String[] list={"twitter","github","blogspot","linkedin","wordpress","about","google","tumblr","hatenablog","koverflow"};
         Map<String,Object> result = new HashMap<>();
-        List<Object> companyCount = new ArrayList<>();
-        List<Object> companyName = new ArrayList<>();
-        try {
-            json = mapper.readValue(new File("src/main/resources/company2014.json"),List.class);
-            for(LinkedHashMap line:json){
-                companyCount.add(line.get("c"));
-                companyName.add(line.get("company"));
-            }
+        List<Object> Count = new ArrayList<>();
+        List<Object> Name = new ArrayList<>();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        for(String s : list){
+            Name.add(s);
         }
-        result.put("companyCount",companyCount);
-        result.put("companyName",companyName);
+        for(Integer i : blog){
+            Count.add(String.valueOf(i));
+        }
+        result.put("Count",Count);
+        result.put("Name",Name);
         return result;
     }
+
 }

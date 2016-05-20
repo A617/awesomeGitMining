@@ -100,8 +100,9 @@ public class UserMapperTest {
 
     }
     @Test
-    public void countEmailTest() throws Exception {
-
+    public void countFanTest() throws Exception {
+        int a=dao.countFollow(10,20);
+        System.out.println(a);
 
     }
 

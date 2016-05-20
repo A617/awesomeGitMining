@@ -107,6 +107,27 @@ div.center, p.center, img.center {
     color: #fff
 }
 
+.blog-tag {
+    display: inline-block;
+    padding: 5px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    background-color: #fff;
+    color: #666;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .05);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .05);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .05);
+    margin: 2px;
+    transition: all .2s ease;
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -ms-transition: all .2s ease;
+    -o-transition: all .2s ease
+}
+
 .nav-tabs > li > a:hover {
     border-color: #eee #eee #ddd;
     cursor:pointer;
