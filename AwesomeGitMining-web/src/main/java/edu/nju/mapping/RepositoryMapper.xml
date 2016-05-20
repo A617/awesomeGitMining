@@ -554,4 +554,7 @@ select login
     from repository
     force index (primary)
   </select>
+  <select id="countAverageSize_year" resultType="java.util.LinkedHashMap">
+    SELECT YEAR(created_at),AVG(size) FROM `repository` GROUP BY 1;
+  </select>
 </mapper>

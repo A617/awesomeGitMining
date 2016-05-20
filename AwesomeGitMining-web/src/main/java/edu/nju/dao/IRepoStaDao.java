@@ -1,5 +1,6 @@
 package edu.nju.dao;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,5 +91,10 @@ public interface IRepoStaDao {
      * @return Subscribers数分布
      */
     List<Integer> eachSize();
+    /**
+     *
+     * @return 每年平均的项目size大小
+     */
+    List<LinkedHashMap> countAverageSize_year();
 
 }

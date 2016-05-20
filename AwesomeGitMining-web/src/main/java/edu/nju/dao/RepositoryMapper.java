@@ -86,4 +86,6 @@ public interface RepositoryMapper {
 
     List<Integer> eachSize();
 
+    List<LinkedHashMap> countAverageSize_year();
+
 }
