@@ -50,7 +50,6 @@ public class UserController {
 
         Map<String, Object> map = new HashMap<>();
         map.put("users", total.getDatas());
-        map.put("total", total.getTotal());
         System.out.println(total.getTotal());
         return new ModelAndView("/user/list", map);
     }
@@ -110,7 +109,6 @@ public class UserController {
         Pager<User> list = userService.searchUser(condition);
         Map<String,Object> map = new HashMap<>();
         map.put("users",list.getDatas());
-        map.put("total",list.getTotal());
         return new ModelAndView("/user/search",map);
     }
 

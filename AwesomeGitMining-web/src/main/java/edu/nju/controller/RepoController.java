@@ -47,8 +47,6 @@ public class RepoController {
 
         Map<String, Object> map = new HashMap<>();
         map.put("repos", total.getDatas());
-        map.put("total", total.getTotal());
-        System.out.println(total.getTotal());
 
         if(total.getDatas()==null||total.getDatas().isEmpty()){
             return null;
@@ -61,7 +59,6 @@ public class RepoController {
         Pager<Repository> pager = repoService.getReposSortedByFork();
         Map<String, Object> map = new HashMap<>();
         map.put("forks", pager.getDatas());
-        map.put("total", pager.getTotal());
         return new ModelAndView("/repo/forks",map);
     }
 
@@ -70,7 +67,6 @@ public class RepoController {
         Pager<Repository> pager = repoService.getReposSortedByStar();
         Map<String, Object> map = new HashMap<>();
         map.put("stars", pager.getDatas());
-        map.put("total", pager.getTotal());
         return new ModelAndView("/repo/stars",map);
     }
 
@@ -79,7 +75,6 @@ public class RepoController {
         Pager<Repository> pager = repoService.getReposSortedByContribute();
         Map<String, Object> map = new HashMap<>();
         map.put("cons", pager.getDatas());
-        map.put("total", pager.getTotal());
         return new ModelAndView("/repo/cons",map);
     }
 
@@ -135,7 +130,6 @@ public class RepoController {
         Pager<Repository> list = repoService.searchRepository(condition);
         Map<String, Object> map = new HashMap<>();
         map.put("repos", list.getDatas());
-        map.put("total", list.getTotal());
         if(userName!=null){
             memberService.addSearchRecord(condition,userName);
         }
