@@ -22,7 +22,8 @@
                     <li><a href="/user/users?pager.offset=0">User</a></li>
                     <li><a href="/statistics/repository">Repository Statistics</a></li>
                     <li><a href="/statistics/user">User Statistics</a></li>
-                    <li><a href="/recommend">Recommended</a> </li>
+                    <li><a href="/statistics/bigQuery">Big Query</a></li>
+                    <li><a href="/recommend">Recommended</a></li>
                 </ul>
             </nav>
 
@@ -31,7 +32,7 @@
                 <%
                     if(session.getAttribute("loginMember")==null){
                 %>
-                <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+                <a href="#" id="drop_a" data-toggle="dropdown">
                     Visitors <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu animated fadeInRight">
@@ -45,7 +46,7 @@
                 <%
                     }else{
                 %>
-                <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+                <a href="#" id="drop_a" data-toggle="dropdown">
                    <%=session.getAttribute("loginMember")%><b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu animated fadeInRight">

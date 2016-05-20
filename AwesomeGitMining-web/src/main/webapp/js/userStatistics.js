@@ -46,7 +46,6 @@ $(function() {
         $.ajax(url, {
             type: 'GET',
             success: function (data, textStatus) {
-
                 myChart2.setOption({
                     title : {
                         text: 'User Type',
@@ -68,9 +67,17 @@ $(function() {
                             type: 'pie',
                             radius : '55%',
                             center: ['50%', '50%'],
-                            data:[
-                                {name:data.typeName[0],value:data.typeCount[0]}
-                            ],
+                            data: (function(){
+                                var result = [];
+                                var len = data.typeName.length;
+                                while (len--) {
+                                    result.push({
+                                        name: data.typeName[len],
+                                        value: data.typeCount[len]
+                                    });
+                                }
+                                return result;
+                            })(),
                             itemStyle: {
                                 normal:{
                                     color:'#FFDEAD'
@@ -164,32 +171,6 @@ $(function() {
                         }
                     }]
                 });
-            }
-        });
-
-        var url = "/statistics/user/companyBQ";
-        $.ajax(url, {
-            type: 'GET',
-            success: function (data, textStatus) {
-                var data = {
-                    labels: data.companyName,
-                    datasets: [{
-                        data: data.companyCount,
-                        backgroundColor: backgroundColor,
-                        hoverBackgroundColor: backgroundColor
-                    }]
-                };
-
-                var pieConfig = {
-                    type: 'pie',
-                    data: data,
-                    options: {
-                        responsive: true
-                    }
-                };
-
-                var ctx = document.getElementById("company-pie-bq").getContext("2d");
-                chart = new Chart(ctx, pieConfig);
             }
         });
     });

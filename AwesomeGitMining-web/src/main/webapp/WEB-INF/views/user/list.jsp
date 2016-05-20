@@ -13,7 +13,6 @@
     <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
-    <link href="<c:url value="/css/simplify.min.css"/>" rel="stylesheet" type="text/css" media="all">
 
     <style type="text/css">
         span {
@@ -32,6 +31,7 @@
                     <li><a href="#" class="active">User</a></li>
                     <li><a href="/statistics/repository">Repository Statistics</a></li>
                     <li><a href="/statistics/user">User Statistics</a></li>
+                    <li><a href="/statistics/bigQuery">Big Query</a></li>
                     <li><a href="/recommend">Recommended</a> </li>
                 </ul>
             </nav>
@@ -41,7 +41,7 @@
                 <%
                     if(session.getAttribute("loginMember")==null){
                 %>
-                <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+                <a href="#" id="drop_a" data-toggle="dropdown">
                     Visitors <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu animated fadeInRight">
@@ -55,7 +55,7 @@
                 <%
                 }else{
                 %>
-                <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+                <a href="#" id="drop_a" data-toggle="dropdown">
                     <%=session.getAttribute("loginMember")%><b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu animated fadeInRight">

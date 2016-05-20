@@ -1239,7 +1239,7 @@ body.container {
 .btn-default:active,
 .btn-default.active,
 .open .dropdown-toggle.btn-default {
-  color: #788188 !important;
+  color: #FFFFFF !important;
   background-color: #f2f2f2;
   border-color: #c2ced6;
 }

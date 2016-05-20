@@ -29,7 +29,6 @@ public class UserStaController {
     @Resource
     RepoStaServiceImpl repo;
 
-    ObjectMapper mapper = new ObjectMapper();
 
     @RequestMapping(value = "/statistics/user", method = RequestMethod.GET)
     public ModelAndView showStatistics() {
@@ -111,24 +110,4 @@ public class UserStaController {
         return result;
     }
 
-    @RequestMapping(value="/statistics/user/companyBQ",method = RequestMethod.GET)
-    public @ResponseBody Map<String, Object> getCompanyBQByJson() {
-        List<LinkedHashMap> json = null;
-        Map<String,Object> result = new HashMap<>();
-        List<Object> companyCount = new ArrayList<>();
-        List<Object> companyName = new ArrayList<>();
-        try {
-            json = mapper.readValue(new File("src/main/resources/company2014.json"),List.class);
-            for(LinkedHashMap line:json){
-                companyCount.add(line.get("c"));
-                companyName.add(line.get("company"));
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        result.put("companyCount",companyCount);
-        result.put("companyName",companyName);
-        return result;
-    }
 }

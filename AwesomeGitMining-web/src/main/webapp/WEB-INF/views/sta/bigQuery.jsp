@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>User Statistics</title>
+    <title>Big Query Statistics</title>
     <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css" media="all">
@@ -22,8 +22,8 @@
                 <li><a href="/repo/repos?pager.offset=0">Repository</a></li>
                 <li><a href="/user/users?pager.offset=0">User</a></li>
                 <li><a href="/statistics/repository">Repository Statistics</a></li>
-                <li><a href="#" class="active">User Statistics</a></li>
-                <li><a href="/statistics/bigQuery">Big Query</a></li>
+                <li><a href="/statistics/user">User Statistics</a></li>
+                <li><a href="#" class="active">Big Query</a></li>
                 <li><a href="/recommend">Recommended</a></li>
             </ul>
         </nav>
@@ -47,7 +47,7 @@
             <%
             } else {
             %>
-            <a href="#" id="drop_a" data-toggle="dropdown" >
+            <a href="#" id="drop_a" data-toggle="dropdown">
                 <%=session.getAttribute("loginMember")%><b class="caret"></b>
             </a>
             <ul class="dropdown-menu animated fadeInRight">
@@ -69,26 +69,13 @@
 <div class="templatemo-flex-row">
     <div class="templatemo-content col-1 light-gray-bg">
         <div class="templatemo-flex-row flex-content-row">
-            <div class="templatemo-content-widget white-bg col-1 animated fadeInLeft">
-                <h2>Local</h2>
-                <hr>
-
-                <div id="company-pie-local" style="width: 100%;height:400px;"></div>
-                <hr size="2">
-                <div id="type-pie-local" style="width: 100%;height:400px;"></div>
-                <hr size="2">
-                <div id="create_year" style="width: 100%;height:400px;"></div>
-                <hr size="2">
-                <div id="email" style="width: 100%;height:400px;"></div>
-
-            </div>
-            <!--<div class="templatemo-content-widget white-bg col-1 animated fadeInRight">
+            <div class="templatemo-content-widget white-bg col-1 animated fadeInRight">
                 <h2>Query</h2>
                 <hr>
 
-                <canvas id="company-pie-bq"></canvas>
+                <canvas id="company-pie-bq" style="width: 100%;height:400px;"></canvas>
 
-            </div>-->
+            </div>
         </div>
     </div>
 </div>
@@ -102,7 +89,7 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/Chart.bundle.js"></script>
 <script src="/js/echarts.min.js"></script>
-<script src="/js/userStatistics.js"></script>
+<script src="/js/bigQuery.js"></script>
 
 </body>
 </html>
