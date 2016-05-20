@@ -110,4 +110,16 @@ public class RepoStaDaoImpl implements IRepoStaDao {
         return list;
     }
 
+    @Override
+    public List<String> eachYear() {
+        List<String>list=mapper.eachYear();
+        return list;
+    }
+
+    @Override
+    public List<Integer> eachSize() {
+        List<Integer>list=mapper.eachSize();
+        return list;
+    }
+
 }

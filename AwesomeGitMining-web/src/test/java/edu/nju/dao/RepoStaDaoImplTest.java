@@ -86,7 +86,14 @@ public class RepoStaDaoImplTest {
                  }
 
     }
+    @Test
+    public void eachSizeTest() throws Exception {
 
+        List<Integer>list=dao.eachSize();
+        for (Integer u : list)
+            System.out.println(u);
+
+    }
 
 
     }
