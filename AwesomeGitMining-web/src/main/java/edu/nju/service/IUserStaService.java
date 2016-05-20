@@ -16,4 +16,6 @@ public interface IUserStaService {
     public List<LinkedHashMap> getCreateYear();
 
     public List<LinkedHashMap> countEmail();
+
+    public List<Integer> countBlog();
 }

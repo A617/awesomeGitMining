@@ -70,10 +70,10 @@
     <div class="templatemo-content col-1 light-gray-bg">
         <div class="templatemo-flex-row flex-content-row">
             <div class="templatemo-content-widget white-bg col-1 animated fadeInRight">
-                <h2>Query</h2>
+                <h2>Big Query Statistics</h2>
                 <hr>
 
-                <canvas id="company-pie-bq" style="width: 100%;height:400px;"></canvas>
+                <div id="company-pie-bq" style="width: 100%;height:400px;"></div>
 
             </div>
         </div>

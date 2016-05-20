@@ -34,8 +34,10 @@ public class BQController {
         try {
             json = mapper.readValue(new File("src/main/resources/company2014.json"),List.class);
             for(LinkedHashMap line:json){
-                companyCount.add(line.get("c"));
-                companyName.add(line.get("company"));
+                if(line.get("company") != null && line.get("company") != "") {
+                    companyCount.add(line.get("c"));
+                    companyName.add(line.get("company"));
+                }
             }
 
         } catch (IOException e) {

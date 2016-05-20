@@ -65,7 +65,7 @@ $(function() {
                         {
                             name:'test',
                             type: 'pie',
-                            radius : '55%',
+                            radius : '70%',
                             center: ['50%', '50%'],
                             data: (function(){
                                 var result = [];
@@ -166,7 +166,41 @@ $(function() {
                         data: data.Count,
                         itemStyle:{
                             normal: {
-                                color:'#4682B4'
+                                color:'#43CD80'
+                            }
+                        }
+                    }]
+                });
+            }
+        });
+
+        var myChart5 = echarts.init(document.getElementById('blog'));
+        var url = "/statistics/user/blog";
+        $.ajax(url, {
+            type: 'GET',
+            success: function (data, textStatus) {
+
+                myChart5.setOption({
+                    title : {
+                        text: 'Blog Counts',
+                        x:'center',
+                        y:'bottom'
+                    },
+                    tooltip : {},
+                    legend: {
+                        data:['user']
+                    },
+                    xAxis: {
+                        data: data.Name
+                    },
+                    yAxis: {},
+                    series: [{
+                        name: 'user',
+                        type: 'bar',
+                        data: data.Count,
+                        itemStyle:{
+                            normal: {
+                                color:'#7EC0EE'
                             }
                         }
                     }]

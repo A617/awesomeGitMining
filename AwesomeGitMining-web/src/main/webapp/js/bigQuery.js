@@ -3,29 +3,53 @@ $(function() {
 
     $(document).ready(function() {
 
+        var myChart1 = echarts.init(document.getElementById('company-pie-bq'));
         var url = "/statistics/bq/companyBQ";
         $.ajax(url, {
             type: 'GET',
             success: function (data, textStatus) {
-                var data = {
-                    labels: data.companyName,
-                    datasets: [{
-                        data: data.companyCount,
-                        backgroundColor: backgroundColor,
-                        hoverBackgroundColor: backgroundColor
-                    }]
-                };
-
-                var pieConfig = {
-                    type: 'pie',
-                    data: data,
-                    options: {
-                        responsive: true
-                    }
-                };
-
-                var ctx = document.getElementById("company-pie-bq").getContext("2d");
-                chart = new Chart(ctx, pieConfig);
+                myChart1.setOption({
+                    title : {
+                        text: 'Number of user in each company',
+                        x:'center',
+                        y:'bottom'
+                    },
+                    tooltip : {
+                        trigger: 'item',
+                        formatter: "{b} : {c} ({d}%)"
+                    },
+                    legend:{
+                        orient: 'vertical',
+                        left: 'left',
+                        data:data.companyName
+                    },
+                    series : [
+                        {
+                            name:'user',
+                            type: 'pie',
+                            radius : '80%',
+                            center: ['60%', '44%'],
+                            data: (function(){
+                                var result = [];
+                                var len = data.companyName.length;
+                                while (len--) {
+                                    result.push({
+                                        name: data.companyName[len],
+                                        value: data.companyCount[len]
+                                    });
+                                }
+                                return result;
+                            })(),
+                            itemStyle: {
+                                emphasis: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        }
+                    ]
+                });
             }
         });
     });

@@ -110,4 +110,23 @@ public class UserStaController {
         return result;
     }
 
+    @RequestMapping(value="/statistics/user/blog",method = RequestMethod.GET)
+    public @ResponseBody Map<String, Object> getBlog() {
+        List<Integer> blog = service.countBlog();
+        String[] list={"twitter","github","blogspot","linkedin","wordpress","about","google","tumblr","hatenablog","koverflow"};
+        Map<String,Object> result = new HashMap<>();
+        List<Object> Count = new ArrayList<>();
+        List<Object> Name = new ArrayList<>();
+
+        for(String s : list){
+            Name.add(s);
+        }
+        for(Integer i : blog){
+            Count.add(String.valueOf(i));
+        }
+        result.put("Count",Count);
+        result.put("Name",Name);
+        return result;
+    }
+
 }

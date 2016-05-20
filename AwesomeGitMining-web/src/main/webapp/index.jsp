@@ -17,7 +17,7 @@
         <div class="row">
             <nav class="templatemo-top-nav">
                 <ul>
-                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#" class="active"><img src="/img/test.png"></a></li>
                     <li><a href="/repo/repos?pager.offset=0">Repository</a></li>
                     <li><a href="/user/users?pager.offset=0">User</a></li>
                     <li><a href="/statistics/repository">Repository Statistics</a></li>
