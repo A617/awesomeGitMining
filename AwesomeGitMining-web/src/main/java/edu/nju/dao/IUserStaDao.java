@@ -32,9 +32,9 @@ public interface IUserStaDao {
      */
     List<LinkedHashMap> countEmail();
     /**
-     * 统计博客情况。顺序按照写的顺序。
+     * 统计博客情况。顺序按照写的顺序。顺序："twitter","github","blogspot","linkedin","wordpress","about","google","tumblr","hatenablog","koverflow"
      * @return
      */
-    List<String> countBlog();
+    List<Integer> countBlog();
 
 }

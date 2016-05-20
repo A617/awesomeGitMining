@@ -43,8 +43,12 @@ public class UserStaDaoImpl implements IUserStaDao {
     }
 
     @Override
-    public List<String> countBlog() {
-        String[]list={"twitter","github","co","blogspot","linkedin","wordpress","com","about","google","tumblr","ne","hatenablog","koverflow"};
-        return null;
+    public List<Integer> countBlog() {
+        String[]list={"twitter","github","blogspot","linkedin","wordpress","about","google","tumblr","hatenablog","koverflow"};
+        List<Integer> result=new ArrayList<Integer>();
+        for (String u:list) {
+            result.add(mapper.countBlog(u));
+        }
+        return result;
     }
 }

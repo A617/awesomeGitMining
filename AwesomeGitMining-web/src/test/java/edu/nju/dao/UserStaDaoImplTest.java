@@ -7,6 +7,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -40,6 +42,16 @@ public class UserStaDaoImplTest {
     @Test
     public void countEmailTest() throws Exception {
         System.out.println(dao.countEmail());
+
+    }
+
+    @Test
+    public void countBlogTest() throws Exception {
+        List<Integer> list=dao.countBlog();
+        for (Integer u:list) {
+            System.out.println(u);
+        }
+
 
     }
 }
