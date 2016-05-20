@@ -136,7 +136,6 @@ public class RepoController {
         Map<String, Object> map = new HashMap<>();
         map.put("repos", list.getDatas());
         map.put("total", list.getTotal());
-        map.put("param",param);
         if(userName!=null){
             memberService.addSearchRecord(condition,userName);
         }
