@@ -91,7 +91,9 @@
                     Language usage<br />
                     <canvas id="lineChart" width="1000" height="700"></canvas>
                 </label>
-                <div id="test" style="width: 100%;height:800px;"></div>
+                <div id="forkStarRelation" style="width: 100%;height:800px;"></div>
+                <hr size="2">
+                <div id="yearSizeRelation" style="width: 100%;height:800px;"></div>
                 <hr size="2">
             </div>
             <div class="templatemo-content-widget white-bg col-1 animated fadeInRight">

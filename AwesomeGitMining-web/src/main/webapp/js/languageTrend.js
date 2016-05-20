@@ -13,8 +13,12 @@ $(document).ready(function () {
                     labels: obj.year,
                     datasets: [
                         {
-                            data: obj.Ruby,
-                            label: names[0]
+                            label: names[0],
+                            fillColor : "rgba(151,187,205,0.5)",
+                            strokeColor : "rgba(151,187,205,1)",
+                            pointColor : "rgba(151,187,205,1)",
+                            pointStrokeColor : "#fff",
+                            data: obj.Ruby
                         },
                         {
                             data: obj.Python,

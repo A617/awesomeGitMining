@@ -65,5 +65,9 @@ public interface IRepoStaService {
      * @return fork和star分布关系
      */
     Map<String, Object> getForkStarRelation();
-
+    /**
+     *
+     * @return 创建年份和项目大小分布关系
+     */
+    Map<String, Object> getYearSizeRelation();
 }
