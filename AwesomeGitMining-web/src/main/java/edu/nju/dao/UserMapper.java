@@ -63,5 +63,9 @@ public interface UserMapper {
 
     int countBlog(String blog);
 
+    List<Integer>countFollowers();
+
+    List<Integer>countFollowings();
+
 
 }

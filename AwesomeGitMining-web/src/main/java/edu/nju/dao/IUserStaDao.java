@@ -36,5 +36,15 @@ public interface IUserStaDao {
      * @return
      */
     List<Integer> countBlog();
+    /**
+     * 统计粉丝数
+     * @return
+     */
+    List<Integer>countFollowers();
+    /**
+     * 统计关注数
+     * @return
+     */
+    List<Integer>countFollowings();
 
 }

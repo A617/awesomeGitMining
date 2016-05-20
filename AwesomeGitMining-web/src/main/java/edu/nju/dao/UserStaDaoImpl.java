@@ -51,4 +51,16 @@ public class UserStaDaoImpl implements IUserStaDao {
         }
         return result;
     }
+
+    @Override
+    public List<Integer> countFollowers() {
+        List<Integer>list=mapper.countFollowers();
+        return list;
+    }
+
+    @Override
+    public List<Integer> countFollowings() {
+        List<Integer>list=mapper.countFollowings();
+        return list;
+    }
 }

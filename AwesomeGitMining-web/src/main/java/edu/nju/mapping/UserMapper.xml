@@ -416,4 +416,12 @@
     from user
     where blog like "%"#{blog}"%"
   </select>
+  <select id="countFollowers" resultType="java.lang.Integer">
+    select followers
+    from user
+  </select>
+  <select id="countFollowings" resultType="java.lang.Integer">
+    select following
+    from user
+  </select>
 </mapper>
