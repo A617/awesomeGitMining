@@ -94,6 +94,23 @@ public class UserStaController {
         return result;
     }
 
+    @RequestMapping(value="/statistics/user/email",method = RequestMethod.GET)
+    public @ResponseBody Map<String, Object> getEmail() {
+        List<LinkedHashMap> email = service.countEmail();
+        Map<String,Object> result = new HashMap<>();
+        List<Object> Count = new ArrayList<>();
+        List<Object> Name = new ArrayList<>();
+
+        for(LinkedHashMap l : email){
+            Count.add(l.get("count"));
+            Name.add(l.get("domain"));
+
+        }
+        result.put("Count",Count);
+        result.put("Name",Name);
+        return result;
+    }
+
     @RequestMapping(value="/statistics/user/companyBQ",method = RequestMethod.GET)
     public @ResponseBody Map<String, Object> getCompanyBQByJson() {
         List<LinkedHashMap> json = null;

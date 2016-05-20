@@ -73,7 +73,7 @@ $(function() {
                             ],
                             itemStyle: {
                                 normal:{
-                                    color:'#388E8E'
+                                    color:'#FFDEAD'
                                 },
                                 emphasis: {
                                     shadowBlur: 10,
@@ -95,7 +95,7 @@ $(function() {
 
                 myChart3.setOption({
                     title : {
-                        text: 'Create Year',
+                        text: 'Distribution Of Create Time',
                         x:'center',
                         y:'bottom'
                     },
@@ -133,6 +133,39 @@ $(function() {
             }
         });
 
+        var myChart4 = echarts.init(document.getElementById('email'));
+        var url = "/statistics/user/email";
+        $.ajax(url, {
+            type: 'GET',
+            success: function (data, textStatus) {
+
+                myChart4.setOption({
+                    title : {
+                        text: 'Email Counts',
+                        x:'center',
+                        y:'bottom'
+                    },
+                    tooltip : {},
+                    legend: {
+                        data:['user']
+                    },
+                    xAxis: {
+                        data: data.Name
+                    },
+                    yAxis: {},
+                    series: [{
+                        name: 'user',
+                        type: 'bar',
+                        data: data.Count,
+                        itemStyle:{
+                            normal: {
+                                color:'#4682B4'
+                            }
+                        }
+                    }]
+                });
+            }
+        });
 
         var url = "/statistics/user/companyBQ";
         $.ajax(url, {

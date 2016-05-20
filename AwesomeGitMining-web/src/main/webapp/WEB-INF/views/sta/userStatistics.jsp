@@ -77,6 +77,9 @@
                 <div id="type-pie-local" style="width: 100%;height:400px;"></div>
                 <hr size="2">
                 <div id="create_year" style="width: 100%;height:400px;"></div>
+                <hr size="2">
+                <div id="email" style="width: 100%;height:400px;"></div>
+
             </div>
             <div class="templatemo-content-widget white-bg col-1 animated fadeInRight">
                 <h2>Query</h2>
