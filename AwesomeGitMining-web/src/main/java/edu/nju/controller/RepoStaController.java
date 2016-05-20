@@ -39,13 +39,10 @@ public class RepoStaController {
     public
     @ResponseBody
     Map<String, Object> getLanguageTrend() {
-        Map<String,Object> result = repoStaService.getLanguageTrend();
+        Map<String, Object> result = repoStaService.getLanguageTrend();
         result.put("year", repoStaService.getYearRange());
         List<String> languages = repoStaService.getTop10Language();
-        result.put("name",languages);
-        for(String str:languages){
-            System.out.println(str);
-        }
+        result.put("name", languages);
         return result;
     }
 
@@ -53,16 +50,32 @@ public class RepoStaController {
     public
     @ResponseBody
     Map<String, Object> getForkDistribute() {
-        Map<String, Object> result = new HashMap<>();
-        List<Integer> dataset = repoStaService.getForkDistribute();
-        int max = 0;
-        for (int i = 0; i < dataset.size(); i++) {
-            if (dataset.get(i) > max) {
-                max = dataset.get(i);
-            }
-        }
-        result.put("dataset", dataset);
-        result.put("max", max);
-        return result;
+        return repoStaService.getForkDistribute();
+    }
+
+    @RequestMapping(value = "/statistics/repository/starDistribute", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Map<String, Object> getStarDistribute() {
+        return repoStaService.getStarDistribute();
+    }
+
+    @RequestMapping(value = "/statistics/repository/subscribeDistribute", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Map<String, Object> getSubscribeDistribute() {
+        return repoStaService.getSubscribeDistribute();
+    }
+
+    @RequestMapping(value = "/statistics/repository/forkVSstar", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Map<String, Object> starForkRelation() {
+        Map<String, Object> map = new HashMap<>();
+        List<Integer> x = repoStaService.getForks();
+        List<Integer> y = repoStaService.getStars();
+        map.put("xList",x);
+        map.put("yList",y);
+        return map;
     }
 }

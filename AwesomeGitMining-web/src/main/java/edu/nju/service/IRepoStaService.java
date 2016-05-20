@@ -11,7 +11,7 @@ public interface IRepoStaService {
      *
      * @return fork分布数
      */
-    List<Integer> getForkDistribute();
+    Map<String, Object> getForkDistribute();
 
     /**
      *
@@ -30,4 +30,25 @@ public interface IRepoStaService {
      * @return 使用最多的前十种语言
      */
     List<String> getTop10Language();
+    /**
+     *
+     * @return star分布数
+     */
+    Map<String, Object> getStarDistribute();
+    /**
+     *
+     * @return subscribers分布数
+     */
+    Map<String, Object> getSubscribeDistribute();
+
+    /**
+     * 得到所有项目的fork
+     * @return
+     */
+    List<Integer> getForks();
+    /**
+     * 得到所有项目的star
+     * @return
+     */
+    List<Integer> getStars();
 }

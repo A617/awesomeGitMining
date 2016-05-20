@@ -5,6 +5,7 @@ $(document).ready(function () {
         url: "/statistics/repository/searchRecord",
         //请求成功完成后要执行的方法
         success: function (obj) {
+            var title="Search Record";
             var data = {"children": obj};
             // snippet.log(data.obj.name);
             var width = 800;	//SVG绘制区域的宽度
@@ -14,6 +15,13 @@ $(document).ready(function () {
                 .attr("width", width)	//设定<svg>的宽度属性
                 .attr("height", height)
                 ;
+            //添加标题
+            svg.append("g")
+                .append("text")
+                .text(title)
+                .attr("class","title")
+                .attr("x",width/2+100)
+                .attr("y",40);
 
             var pack = d3.layout.pack()
                 .size([width, height])

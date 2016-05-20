@@ -23,7 +23,12 @@
             font-family: arial;
             text-anchor: middle;
         }
-
+        .title{
+            font-family:Arial,微软雅黑;
+            font-size:18px;
+            text-anchor:middle;
+            text-align:center;
+        }
     </style>
 </head>
 <body>
@@ -82,7 +87,12 @@
         <div class="templatemo-flex-row flex-content-row">
             <div id="local" class="templatemo-content-widget white-bg col-1 animated fadeInLeft">
                 <h2>Local</h2><hr>
-                <canvas id="lineChart" width="400" height="450"></canvas>
+                <label for = "lineChart" class="title">
+                    Language usage<br />
+                    <canvas id="lineChart" width="1000" height="700"></canvas>
+                </label>
+                <div id="test" style="width: 100%;height:400px;"></div>
+                <hr size="2">
             </div>
             <div class="templatemo-content-widget white-bg col-1 animated fadeInRight">
                 <h2>Test</h2><hr>
@@ -102,8 +112,9 @@
 <script src="/js/SearchReposBubble.js"></script>
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src ="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.js"></script>
-<script src="/js/languageTrend.js"></script>
 <script src="/js/histogram.js"></script>
-<script src="/js/points.js"></script>
+<script src="/js/languageTrend.js"></script>
+<script src="/js/echarts.min.js"></script>
+<script src="/js/EchartPoint.js"></script>
 </body>
 </html>
