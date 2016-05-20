@@ -31,5 +31,10 @@ public interface IUserStaDao {
      * @return
      */
     List<LinkedHashMap> countEmail();
+    /**
+     * 统计博客情况。顺序按照写的顺序。
+     * @return
+     */
+    List<String> countBlog();
 
 }

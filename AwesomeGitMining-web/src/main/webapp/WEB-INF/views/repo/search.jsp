@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="pg"  uri="http://jsptags.com/tags/navigation/pager" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,7 +66,7 @@
 
     <br><div class="col-md-6 center">
         <form action="/repo/search" method="get">
-            <input type="text" class="search-query form-control col-md-10" name="name" placeholder="Search keyword..."><br>
+            <input type="text" class="search-query form-control col-md-10" name="name" placeholder="${param.name}"><br>
             <div class="form-group text-right">
                 <button type="submit" class="fa-align-center templatemo-blue-button">Search</button>
             </div>
@@ -82,48 +81,20 @@
                         <ul class="dashboard-list">
                             <c:forEach items="${repos }" var="repo">
                                 <li>
-                                    <h3><strong><a href="${repo.fullName }">${repo.fullName }</a></strong></h3>
+                                    <h3><strong><a href="${repo.full_name }">${repo.full_name }</a></strong></h3>
                                     <p style="text-align: right"><strong>${repo.language}</strong></p>
-                                    <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribersCount}</span>
-                                        <span><strong>Forks:</strong>&nbsp;${repo.forksCount}</span>
-                                        <span><strong>Stargazers:</strong>&nbsp;${repo.stargazersCount}</span>
+                                    <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribers_count}</span>
+                                        <span><strong>Forks:</strong>&nbsp;${repo.forks_count}</span>
+                                        <span><strong>Stargazers:</strong>&nbsp;${repo.stargazers_count}</span>
                                     </p>
                                     <p>${repo.description}</p>
-                                    <strong>Last Updated:</strong>&nbsp;${repo.updatedAt}<br>
+                                    <strong>Last Updated:</strong>&nbsp;${repo.updated_at}<br>
                                 </li>
                             </c:forEach>
                         </ul>
-
-                        <ul class="pagination  pagination-centered">
-                            ${pageUrl}<br>
-                            <pg:pager url="/repo/search" items="${total}">
-                                <li>
-                                    <pg:first>
-                                        <a href="${pageUrl}">Begin</a>
-                                    </pg:first>
-                                </li>
-                                <li>
-                                    <pg:prev>
-                                        <a href="${pageUrl }">Pre</a>
-                                    </pg:prev>
-                                </li>
-                                <li>
-                                    <pg:pages>
-                                        <a href="${pageUrl }">${pageNumber}</a>
-                                    </pg:pages>
-                                </li>
-                                <li>
-                                    <pg:next>
-                                        <a href="${pageUrl }">Next</a>
-                                    </pg:next>
-                                </li>
-                                <li>
-                                    <pg:last>
-                                        <a href="${pageUrl }">End</a>
-                                    </pg:last>
-                                </li>
-                            </pg:pager>
-                        </ul>
+                        <div id="pagination">
+                        <%--<a href="/user/users" class="next">next</a>--%>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -136,5 +107,28 @@
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/library/jquery-ias.min.js"></script>
+
+    <script>
+        var ias = jQuery.ias({
+            container:  '.panel-body',
+            item:       '.dashboard-list',
+            pagination: '#pagination',
+            next:       '<a href="/repo/search" class="next">next</a>',
+            delay:      0,
+        });
+        var pageCount=1;
+
+        ias.on('load', function(event) {
+            pageCount++;
+            event.url = event.url + "?pager.offset="+(pageCount-1)*10+"&name="+'${param.name}';
+        })
+
+        // Add a loader image which is displayed during loading
+        ias.extension(new IASSpinnerExtension({
+        // src: '/img/loading.gif', // optionally
+        // html: '<div class="ias-spinner" style="text-align: center;"><img src="{src}"/></div>',
+        }));
+    </script>
 </body>
 </html>

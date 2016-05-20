@@ -26,7 +26,7 @@ public interface IUserService {
      * 得到user的总数
      * @return
      */
-    int getUserTotal();
+    //int getUserTotal();
 
     /**
      * 分页模糊搜索用户

@@ -242,6 +242,9 @@
                 <includes>
                     <include>**/*.css</include>
                     <include>**/*.js</include>
+                    <include>**/*.gif</include>
+                    <include>**/*.jpg</include>
+                    <include>**/*.png</include>
                 </includes>
                 <!-- 是否替换资源中的属性-->
                 <filtering>false</filtering>

@@ -52,7 +52,7 @@ public class RepoDaoImpl implements IRepoDao {
         map.put("fullName",name);
         List<Repository> data = mapper.searchRepository(map);
         Pager<Repository> page = createPage(data,map);
-        page.setTotal(mapper.countSearch(name));
+       // page.setTotal(mapper.countSearch(name));
         return page;
     }
 
@@ -98,7 +98,7 @@ public class RepoDaoImpl implements IRepoDao {
         map.put("year",year);
         List<Repository> data = mapper.selectReposByYear(map);
         Pager<Repository> page = createPage(data,map);
-        page.setTotal(mapper.countYear(year));
+       // page.setTotal(mapper.countYear(year));
         return page;
     }
 
@@ -108,7 +108,7 @@ public class RepoDaoImpl implements IRepoDao {
         map.put("language",language);
         List<Repository> data = mapper.selectReposByLanguage(map);
         Pager<Repository> page = createPage(data,map);
-        page.setTotal(mapper.countLanguage(language));
+       // page.setTotal(mapper.countLanguage(language));
         return page;
     }
     @Override
@@ -117,7 +117,7 @@ public class RepoDaoImpl implements IRepoDao {
         Map<String, Object> map = createMap();
         List<Repository> data = mapper.selectReposByLan_Key_Year(language,keyword,year,sort,(int)map.get("pageSize"),(int)map.get("pageOffset"));
         Pager<Repository> page = createPage(data,map);
-        page.setTotal(mapper.countLan_Key_Year(language,keyword,year));
+        //page.setTotal(mapper.countLan_Key_Year(language,keyword,year));
 
         return page;
     }
@@ -140,7 +140,7 @@ public class RepoDaoImpl implements IRepoDao {
         map.put("keyword",key);
         List<Repository> data = mapper.searchRepository(map);
         Pager<Repository> page = createPage(data,map);
-        page.setTotal(mapper.countKey(key));
+       // page.setTotal(mapper.countKey(key));
         return page;
     }
 
@@ -156,7 +156,7 @@ public class RepoDaoImpl implements IRepoDao {
 
     private Pager<Repository> createPage(List<Repository> data, Map<String, Object> map) {
         Pager<Repository> pages = new Pager<Repository>(data, (int)map.get("pageOffset"),
-                (int)map.get("pageSize"), mapper.countAll());
+                (int)map.get("pageSize"));
         return pages;
     }
 }

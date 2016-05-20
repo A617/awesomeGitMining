@@ -349,11 +349,11 @@
     limit #{pageOffset},#{pageSize}
   </select>
   <!-- 分页辅助方法-->
-  <select id="countAll" resultType="java.lang.Integer">
-    select
-    count(id)
-    from user
-  </select>
+  <!--<select id="countAll" resultType="java.lang.Integer">-->
+    <!--select-->
+    <!--count(id)-->
+    <!--from user-->
+  <!--</select>-->
   <select id="countSearch" resultType="java.lang.Integer" parameterType="java.lang.String">
     select
     count(id)
