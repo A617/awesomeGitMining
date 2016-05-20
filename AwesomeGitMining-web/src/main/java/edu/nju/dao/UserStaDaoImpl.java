@@ -3,6 +3,7 @@ package edu.nju.dao;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -32,6 +33,12 @@ public class UserStaDaoImpl implements IUserStaDao {
     @Override
     public List<LinkedHashMap> countCreate_Year() {
         List<LinkedHashMap> list = mapper.countCreate_Year();
+        return list;
+    }
+
+    @Override
+    public List<LinkedHashMap> countEmail() {
+        List<LinkedHashMap> list = mapper.countEmail();
         return list;
     }
 }

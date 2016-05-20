@@ -1,5 +1,6 @@
 package edu.nju.dao;
 
+import edu.nju.model.EmailSta;
 import edu.nju.model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -96,6 +97,11 @@ public class UserMapperTest {
         for (User u : list)
             System.out.println(u.getName() + ":" );
         System.out.println(list.size());
+
+    }
+    @Test
+    public void countEmailTest() throws Exception {
+
 
     }
 
