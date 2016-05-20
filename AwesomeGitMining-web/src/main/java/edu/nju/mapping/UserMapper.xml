@@ -399,4 +399,16 @@
     from own
     where login = #{login}
   </select>
+  <select id="selectEmail" resultType="java.lang.String">
+    select email
+    from user
+  </select>
+  <select id="countEmail" resultType="java.util.LinkedHashMap" >
+   SELECT SUBSTRING_INDEX( email, '@' , -1 ) AS domain, COUNT( DISTINCT email ) AS count
+    FROM user
+    WHERE email LIKE '%@%'
+    GROUP BY 1
+    ORDER BY 2 DESC
+    LIMIT 10
+  </select>
 </mapper>

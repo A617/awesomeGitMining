@@ -37,4 +37,11 @@ public class UserStaServiceImpl implements IUserStaService{
         map.remove("");
         return map;
     }
+
+    @Override
+    public List<LinkedHashMap> countEmail() {
+        List<LinkedHashMap> map = dao.countEmail();
+        map.remove("");
+        return map;
+    }
 }

@@ -1,5 +1,6 @@
 package edu.nju.dao;
 
+import edu.nju.model.EmailSta;
 import edu.nju.model.User;
 
 import java.util.LinkedHashMap;
@@ -56,6 +57,9 @@ public interface UserMapper {
 
     List<String> selectOwn(String login);
 
+    List<String> selectEmail();
+
+    List<LinkedHashMap> countEmail();
 
 
 }

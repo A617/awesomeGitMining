@@ -36,4 +36,10 @@ public class UserStaDaoImplTest {
 
 
     }
+
+    @Test
+    public void countEmailTest() throws Exception {
+        System.out.println(dao.countEmail());
+
+    }
 }

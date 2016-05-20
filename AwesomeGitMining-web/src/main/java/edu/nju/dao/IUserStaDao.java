@@ -26,4 +26,10 @@ public interface IUserStaDao {
      */
     List<LinkedHashMap> countCreate_Year();
 
+    /**
+     * 统计邮件情况
+     * @return
+     */
+    List<LinkedHashMap> countEmail();
+
 }

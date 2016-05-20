@@ -4,7 +4,9 @@ import edu.nju.dao.IRepoStaDao;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +39,7 @@ public class RepoStaServiceImpl implements IRepoStaService {
     }
 
     @Override
+
     public Map<String, Object> getStarDistribute() {
         List<Integer> dataset = repoStaDao.countStars();
         return getRange(dataset);
@@ -58,7 +61,7 @@ public class RepoStaServiceImpl implements IRepoStaService {
         return repoStaDao.countStars();
     }
 
-    private Map<String,Object>  getRange(List<Integer> dataset){
+    private Map<String,Object>  getRange(List<Integer> dataset) {
         Map<String, Object> result = new HashMap<>();
         int max = 0;
         for (int i = 0; i < dataset.size(); i++) {
@@ -69,5 +72,8 @@ public class RepoStaServiceImpl implements IRepoStaService {
         result.put("dataset", dataset);
         result.put("max", max);
         return result;
+    }
+    public List<LinkedHashMap> countCreatedYear() {
+        return repoStaDao.countCreatedYear();
     }
 }

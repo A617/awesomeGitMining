@@ -7,37 +7,28 @@ $(function() {
     $(document).ready(function() {
 
         var myChart1 = echarts.init(document.getElementById('company-pie-local'));
-        myChart1.setOption({
-            title : {
-                text: 'Number of user in each company',
-                x:'center',
-                y:'bottom'
-            },
-            tooltip : {},
-            legend: {
-                data:['user']
-            },
-            xAxis: {
-                data: []
-            },
-            yAxis: {},
-            series: [{
-                name: 'user',
-                type: 'bar',
-                data: []
-            }]
-        });
         var url = "/statistics/user/companyLocal";
         $.ajax(url, {
             type: 'GET',
             success: function (data, textStatus) {
 
                 myChart1.setOption({
+                    title : {
+                        text: 'Number of user in each company',
+                        x:'center',
+                        y:'bottom'
+                    },
+                    tooltip : {},
+                    legend: {
+                        data:['user']
+                    },
                     xAxis: {
                         data: data.companyName
                     },
+                    yAxis: {},
                     series: [{
                         name: 'user',
+                        type: 'bar',
                         data: data.companyCount,
                         itemStyle:{
                             normal: {
@@ -51,101 +42,130 @@ $(function() {
 
 
         var myChart2 = echarts.init(document.getElementById('type-pie-local'));
-        myChart2.setOption({
-            title : {
-                text: 'User Type',
-                x:'center',
-                y:'bottom'
-            },
-            tooltip : {
-                trigger: 'item',
-                formatter: "{b} : {c} ({d}%)"
-            },
-
-            series : [
-                {
-                    name:'test',
-                    type: 'pie',
-                    radius : '55%',
-                    center: ['50%', '50%'],
-                    data:[],
-                    itemStyle: {
-                        normal:{
-                            color:'#388E8E'
-                        },
-                        emphasis: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
-                    }
-                }
-            ]
-        });
         var url = "/statistics/user/typeLocal";
         $.ajax(url, {
             type: 'GET',
             success: function (data, textStatus) {
 
                 myChart2.setOption({
+                    title : {
+                        text: 'User Type',
+                        x:'center',
+                        y:'bottom'
+                    },
+                    tooltip : {
+                        trigger: 'item',
+                        formatter: "{b} : {c} ({d}%)"
+                    },
                     legend:{
                         orient: 'vertical',
                         center: 'center',
                         data:data.typeName
                     },
-                    series:[{
-                        name:'test',
-                        data:[
-                            {name:data.typeName[0],value:data.typeCount[0]}
-                        ]
-                    }]
+                    series : [
+                        {
+                            name:'test',
+                            type: 'pie',
+                            radius : '55%',
+                            center: ['50%', '50%'],
+                            data:[
+                                {name:data.typeName[0],value:data.typeCount[0]}
+                            ],
+                            itemStyle: {
+                                normal:{
+                                    color:'#FFDEAD'
+                                },
+                                emphasis: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        }
+                    ]
                 });
             }
         });
 
         var myChart3 = echarts.init(document.getElementById('create_year'));
-        myChart3.setOption({
-            title : {
-                text: 'User Create Year',
-                x:'center',
-                y:'bottom'
-            },
-            tooltip : {},
-            legend: {
-                data:['user']
-            },
-            xAxis: {
-                data: []
-            },
-            yAxis: {},
-            series: [{
-                name: 'user',
-                type: 'bar',
-                data: []
-            }]
-        });
         var url = "/statistics/user/createYear";
         $.ajax(url, {
             type: 'GET',
             success: function (data, textStatus) {
 
                 myChart3.setOption({
+                    title : {
+                        text: 'Distribution Of Create Time',
+                        x:'center',
+                        y:'bottom'
+                    },
+                    tooltip : {},
+                    legend: {
+                        data:['user','repository']
+                    },
                     xAxis: {
                         data: data.year
                     },
+                    yAxis: {},
+                    series: [
+                        {
+                            name: 'user',
+                            type: 'bar',
+                            data: data.Count,
+                            itemStyle:{
+                                normal: {
+                                    color:'#CD919E'
+                                }
+                            }
+                        },
+                        {
+                            name: 'repository',
+                            type: 'bar',
+                            data: data.repos,
+                            itemStyle:{
+                                normal: {
+                                    color:'#6495ED'
+                                }
+                            }
+                        }
+                    ]
+                });
+            }
+        });
+
+        var myChart4 = echarts.init(document.getElementById('email'));
+        var url = "/statistics/user/email";
+        $.ajax(url, {
+            type: 'GET',
+            success: function (data, textStatus) {
+
+                myChart4.setOption({
+                    title : {
+                        text: 'Email Counts',
+                        x:'center',
+                        y:'bottom'
+                    },
+                    tooltip : {},
+                    legend: {
+                        data:['user']
+                    },
+                    xAxis: {
+                        data: data.Name
+                    },
+                    yAxis: {},
                     series: [{
                         name: 'user',
+                        type: 'bar',
                         data: data.Count,
                         itemStyle:{
                             normal: {
-                               color:'#CD919E'
+                                color:'#4682B4'
                             }
                         }
                     }]
                 });
             }
         });
-
 
         var url = "/statistics/user/companyBQ";
         $.ajax(url, {

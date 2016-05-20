@@ -1,5 +1,6 @@
 package edu.nju.service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +31,7 @@ public interface IRepoStaService {
      * @return 使用最多的前十种语言
      */
     List<String> getTop10Language();
+
     /**
      *
      * @return star分布数
@@ -51,4 +53,8 @@ public interface IRepoStaService {
      * @return
      */
     List<Integer> getStars();
+
+
+    List<LinkedHashMap> countCreatedYear();
+
 }
