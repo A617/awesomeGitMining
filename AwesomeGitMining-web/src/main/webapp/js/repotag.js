@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
-    function GetQueryString(name)
-    {
-        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-        var r = window.location.search.substr(1).match(reg);
-        if(r!=null)return  unescape(r[2]); return null;
-    }
+    // function GetQueryString(name)
+    // {
+    //     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    //     var r = window.location.search.substr(1).match(reg);
+    //     if(r!=null)return  unescape(r[2]); return null;
+    // }
 
 
     var lan = $("#onLan").text();
@@ -13,7 +13,6 @@ $(document).ready(function() {
     var key = $("#onKey").text();
     var sort = $(".active").children()[0].text.trim();
 
-    // alert(lan+"+"+year+"+"+key+"+"+sort);
 
     //页码计数器
     var pageCount=1;
@@ -34,20 +33,30 @@ $(document).ready(function() {
         // }
     });
 
-    ias.extension(new IASTriggerExtension({
-        text: 'Load more items', // optionally
-    }));
+    // ias.extension(new IASTriggerExtension({
+    //     text: 'Load more items', // optionally
+    // }));
 
-    ias.extension(new IASNoneLeftExtension({
-        text: 'You reached the end.', // optionally
-    }));
+    ias.extension(new IASNoneLeftExtension({text: "You reached the end"}));
+
+    ias.on('noneLeft', function() {
+        console.log('We hit the bottom!');
+    })
+
+    // ias.on('next', function(url) {
+    //     alert(url);
+    //     // if (url.indexOf("/website/home/2") > -1 && pageNum > 2) {
+    //     return false;
+    //     // }
+    // });
+
     
 
     ias.on('load', function(event) {
         pageCount++;
-        console.log(
-            "~~~~?sort="+sort+"&lan=" + lan+"&key="+key+"&year="+year+"&pager.offset="+(pageCount-1)*10
-                );
+        // console.log(
+        //     "~~~~?sort="+sort+"&lan=" + lan+"&key="+key+"&year="+year+"&pager.offset="+(pageCount-1)*10
+        //         );
         event.url = event.url + "?sort="+sort+"&lan=" + lan+"&key="+key+"&year="+year+"&pager.offset="+(pageCount-1)*10;
     })
 
@@ -69,7 +78,7 @@ $(document).ready(function() {
         $(this).click(function() {
             sort=tabId;
             pageCount = 1;
-            jQuery.ias().reinitialize();
+            // jQuery.ias().reinitialize();
             $("#current").load("/repo/repos?pager.offset=0&sort="+sort+"&lan=" + lan+"&key="+key+"&year="+year+" #current");
         });
     });
@@ -79,20 +88,13 @@ $(document).ready(function() {
 
     $("[name='lan']").each(function() {
         var text = $(this).text();
-        // if(text==GetQueryString("lan")){
-        //     $(this).css("background-color","#2baab1");              //为被选中的tag设置颜色
-        //     $(this).css("color","#fff");
-        // }
         $(this).click(function() {
             lan = text;
             pageCount = 1;
-            jQuery.ias().reinitialize();
+            // jQuery.ias().reinitialize();
             $("#onLan").attr("id","");
             $(this).attr("id","onLan");
-            // $("[name='lan']").css("background-color","#fff");       //其他设置为默认颜色
-            // $("[name='lan']").css("color","#666");
-            // $(this).css("background-color","#2baab1");              //为被选中的tag设置颜色
-            // $(this).css("color","#fff");
+
             $("#current").load("/repo/repos?pager.offset=0&sort="+sort+"&lan=" + lan+"&key="+key+"&year="+year+" #current");
         });
 
@@ -101,10 +103,10 @@ $(document).ready(function() {
 
     $("[name='key']").each(function() {
         var text = $(this).text();
-        if(text==GetQueryString("key")){
-            $(this).css("background-color","#2baab1");              //为被选中的tag设置颜色
-            $(this).css("color","#fff");
-        }
+        // if(text==GetQueryString("key")){
+        //     $(this).css("background-color","#2baab1");              //为被选中的tag设置颜色
+        //     $(this).css("color","#fff");
+        // }
         $(this).click(function() {
             key = text;
             pageCount = 1;
@@ -118,10 +120,10 @@ $(document).ready(function() {
 
     $("[name='year']").each(function() {
         var text = $(this).text();
-        if(text==GetQueryString("year")){
-            $(this).css("background-color","#2baab1");              //为被选中的tag设置颜色
-            $(this).css("color","#fff");
-        }
+        // if(text==GetQueryString("year")){
+        //     $(this).css("background-color","#2baab1");              //为被选中的tag设置颜色
+        //     $(this).css("color","#fff");
+        // }
         $(this).click(function() {
             year = text;
             pageCount = 1;

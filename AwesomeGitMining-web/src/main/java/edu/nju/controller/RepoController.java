@@ -38,7 +38,6 @@ public class RepoController {
                                   @RequestParam(value="year",required = false, defaultValue = "All")String year,
                                   @RequestParam(value="sort",required = false,defaultValue = "General") String sort) {
         Pager<Repository> total;
-        System.out.println("sss"+sort);
 
             lan=lan.equals("All")?"":lan;
             key=key.equals("All")?"":key;
@@ -46,10 +45,16 @@ public class RepoController {
             total = repoService.getReposByLan_Key_Year(lan,key.toLowerCase(),year,sort);
         System.out.println(total.getDatas());
 
+
+
         Map<String, Object> map = new HashMap<>();
         map.put("repos", total.getDatas());
         map.put("total", total.getTotal());
         System.out.println(total.getTotal());
+
+        if(total.getDatas()==null||total.getDatas().isEmpty()){
+            return null;
+        }
         return new ModelAndView("/repo/list", map);
     }
 
