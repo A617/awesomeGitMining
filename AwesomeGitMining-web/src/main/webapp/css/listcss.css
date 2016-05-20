@@ -96,3 +96,14 @@ div.center, p.center, img.center {
     display: block;
     text-align: center;
 }
+
+.blog-tag:focus, .blog-tag:hover {
+    background-color: #2baab1;
+    color: #fff
+}
+
+#onLan, #onKey, #onYear{
+    background-color: #2baab1;
+    color: #fff
+}
+

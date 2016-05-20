@@ -63,17 +63,34 @@ public class RepoStaServiceImpl implements IRepoStaService {
 
     private Map<String,Object>  getRange(List<Integer> dataset) {
         Map<String, Object> result = new HashMap<>();
-        int max = 0;
-        for (int i = 0; i < dataset.size(); i++) {
-            if (dataset.get(i) > max) {
-                max = dataset.get(i);
-            }
-        }
+        int max = getMax(dataset);
         result.put("dataset", dataset);
         result.put("max", max);
         return result;
     }
     public List<LinkedHashMap> countCreatedYear() {
         return repoStaDao.countCreatedYear();
+    }
+
+    @Override
+    public Map<String, Object> getForkStarRelation() {
+        Map<String, Object> map = new HashMap<>();
+        List<Integer> xList = repoStaDao.countForks();
+        List<Integer> yList = repoStaDao.countStars();
+        map.put("xList",xList);
+        map.put("yList",yList);
+        map.put("Xmax",getMax(xList));
+        map.put("Ymax",getMax(yList));
+        return map;
+    }
+
+    private int getMax(List<Integer> dataset){
+        int max = 0;
+        for (int i = 0; i < dataset.size(); i++) {
+            if (dataset.get(i) > max) {
+                max = dataset.get(i);
+            }
+        }
+        return max;
     }
 }

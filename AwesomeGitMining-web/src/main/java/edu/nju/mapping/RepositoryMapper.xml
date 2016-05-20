@@ -441,14 +441,14 @@
     where description like "%"#{keyword}"%"
     limit #{pageOffset},#{pageSize}
   </select>
-  <select id="selectReposByLan_Key_Year" resultMap="ResultMapWithBLOBs">
+  <select id="selectReposByLan_Key_Year" resultMap="ResultMapWithBLOBs" >
     select
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
     from repository
     where (#{0}="" or language =#{0}) and YEAR(created_at) like "%"#{2}"%" and description like "%"#{1}"%"
-    order BY ${3}
+    order BY ${sort} DESC
     limit #{5},#{4}
   </select>
   <!-- 分页辅助方法-->
@@ -529,7 +529,7 @@ select login
   </select>
   <select id="countForks" resultType="java.lang.Integer">
     select forks_count
-    from repository
+    from repository force index (primary)
   </select>
   <select id="countSubscribers" resultType="java.lang.Integer">
     select subscribers_count
@@ -537,7 +537,7 @@ select login
   </select>
   <select id="countStars" resultType="java.lang.Integer">
     select stargazers_count
-    from repository
+    from repository force index (primary)
   </select>
   <select id="getYear" resultType="java.lang.String">
     select DISTINCT YEAR(created_at)

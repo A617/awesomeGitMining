@@ -54,7 +54,16 @@ public interface IRepoStaService {
      */
     List<Integer> getStars();
 
-
+    /**
+     *
+     * @return 项目创建时间分布
+     */
     List<LinkedHashMap> countCreatedYear();
+
+    /**
+     *
+     * @return fork和star分布关系
+     */
+    Map<String, Object> getForkStarRelation();
 
 }
