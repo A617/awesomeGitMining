@@ -156,4 +156,21 @@ public class RepositoryMapperTest {
         System.out.println(dao.countLanguagesCreated("2008","Ruby"));
     }
 
+
+
+    @Test
+    public void eachYearTest() throws Exception{
+        List<String> list=dao.eachYear();
+        for (String u : list)
+            System.out.println(u);
+
+    }
+    @Test
+    public void eachSizeTest() throws Exception{
+        List<Integer> list=dao.eachSize();
+        for (Integer u : list)
+            System.out.println(u);
+
+    }
+
 }

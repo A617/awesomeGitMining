@@ -80,4 +80,15 @@ public interface IRepoStaDao {
      */
     List<Integer>countSubscribers();
 
+    /**
+     *
+     * @return Subscribers数分布
+     */
+    List<String> eachYear();
+    /**
+     *
+     * @return Subscribers数分布
+     */
+    List<Integer> eachSize();
+
 }

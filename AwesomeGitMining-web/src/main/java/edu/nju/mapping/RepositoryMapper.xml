@@ -544,4 +544,14 @@ select login
     from repository
     order by YEAR(created_at) asc
   </select>
+  <select id="eachYear" resultType="java.lang.String">
+    select  YEAR(created_at)
+    from repository
+    force index (primary)
+  </select>
+  <select id="eachSize" resultType="java.lang.Integer">
+    select size
+    from repository
+    force index (primary)
+  </select>
 </mapper>

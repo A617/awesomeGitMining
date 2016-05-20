@@ -80,4 +80,8 @@ public interface RepositoryMapper {
 
     List<String> getYear();
 
+    List<String> eachYear();
+
+    List<Integer> eachSize();
+
 }
