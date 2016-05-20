@@ -91,9 +91,13 @@
                     Language usage<br />
                     <canvas id="lineChart" width="1000" height="700"></canvas>
                 </label>
+                <label for = "barChart" class="title">
+                    Year and Size relation<br />
+                    <canvas id="barChart" width="800" height="700"></canvas>
+                </label>
                 <div id="forkStarRelation" style="width: 100%;height:800px;"></div>
                 <hr size="2">
-                <div id="yearSizeRelation" style="width: 100%;height:800px;"></div>
+                <div id="languageTrend" style="width: 100%;height:800px;"></div>
                 <hr size="2">
             </div>
             <div class="templatemo-content-widget white-bg col-1 animated fadeInRight">
@@ -118,5 +122,6 @@
 <script src="/js/languageTrend.js"></script>
 <script src="/js/echarts.min.js"></script>
 <script src="/js/EchartPoint.js"></script>
+<script src="/js/barChart.js"></script>
 </body>
 </html>

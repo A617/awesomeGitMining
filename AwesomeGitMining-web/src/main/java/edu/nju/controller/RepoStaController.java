@@ -45,7 +45,21 @@ public class RepoStaController {
         result.put("name", languages);
         return result;
     }
-
+    @RequestMapping(value = "/statistics/repository/languageTrendDynamic", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Map<String, Object> getLanguageTrendDynamic() {
+        Map<String, Object> result = new HashMap<>();
+        List<String> languages = repoStaService.getTop10Language();
+        result.put("name", languages);
+        result.put("year", repoStaService.getYearRange());
+        int[] test = {1,2,3,4,5,6,7,8,9};
+        result.put("year1", test);
+        result.put("year2", test);
+        result.put("year3", test);
+        result.put("year4", test);
+        return result;
+    }
     @RequestMapping(value = "/statistics/repository/forkDistribute", method = RequestMethod.GET)
     public
     @ResponseBody

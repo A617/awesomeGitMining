@@ -5,10 +5,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by tj on 2016/5/19.
@@ -17,6 +14,7 @@ import java.util.Map;
 public class RepoStaServiceImpl implements IRepoStaService {
     @Resource
     IRepoStaDao repoStaDao;
+
     @Override
     public Map<String, Object> getForkDistribute() {
         List<Integer> dataset = repoStaDao.countForks();
@@ -61,13 +59,14 @@ public class RepoStaServiceImpl implements IRepoStaService {
         return repoStaDao.countStars();
     }
 
-    private Map<String,Object>  getRange(List<Integer> dataset) {
+    private Map<String, Object> getRange(List<Integer> dataset) {
         Map<String, Object> result = new HashMap<>();
         int max = getMax(dataset);
         result.put("dataset", dataset);
         result.put("max", max);
         return result;
     }
+
     public List<LinkedHashMap> countCreatedYear() {
         return repoStaDao.countCreatedYear();
     }
@@ -77,26 +76,30 @@ public class RepoStaServiceImpl implements IRepoStaService {
         Map<String, Object> map = new HashMap<>();
         List<Integer> xList = repoStaDao.countForks();
         List<Integer> yList = repoStaDao.countStars();
-        map.put("xList",xList);
-        map.put("yList",yList);
-        map.put("Xmax",getMax(xList));
-        map.put("Ymax",getMax(yList));
+        map.put("xList", xList);
+        map.put("yList", yList);
+        map.put("Xmax", getMax(xList));
+        map.put("Ymax", getMax(yList));
         return map;
     }
+
 
     @Override
     public Map<String, Object> getYearSizeRelation() {
-        Map<String, Object> map = new HashMap<>();
-        List<String> xList = repoStaDao.eachYear();
-        List<Integer> yList = repoStaDao.eachSize();
-        map.put("xList",xList);
-        map.put("yList",yList);
-        map.put("Xmax",2010);
-        map.put("Ymax",getMax(yList));
-        return map;
+        Map<String, Object> result = new HashMap<>();
+        List<LinkedHashMap> list = repoStaDao.countAverageSize_year();
+        List<Object> size = new ArrayList<>();
+        List<Object> year = new ArrayList<>();
+        for (LinkedHashMap single : list) {
+            size.add(single.get("size"));
+            year.add(single.get("year"));
+        }
+        result.put("year", year);
+        result.put("size", size);
+        return result;
     }
 
-    private int getMax(List<Integer> dataset){
+    private int getMax(List<Integer> dataset) {
         int max = 0;
         for (int i = 0; i < dataset.size(); i++) {
             if (dataset.get(i) > max) {

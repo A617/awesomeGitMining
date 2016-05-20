@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -94,6 +95,10 @@ public class RepoStaDaoImplTest {
             System.out.println(u);
 
     }
-
+    @Test
+   public void testverageSize(){
+       List<LinkedHashMap> list = dao.countAverageSize_year();
+        System.out.println(list);
+   }
 
     }
