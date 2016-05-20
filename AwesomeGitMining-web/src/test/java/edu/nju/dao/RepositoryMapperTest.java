@@ -173,4 +173,10 @@ public class RepositoryMapperTest {
 
     }
 
+    @Test
+    public void countAverageSize_year() throws Exception{
+        System.out.println(dao.countAverageSize_year());
+
+    }
+
 }
