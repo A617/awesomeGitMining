@@ -39,12 +39,10 @@ public class RepoController {
                                   @RequestParam(value="sort",required = false,defaultValue = "General") String sort) {
         Pager<Repository> total;
 
-            lan=lan.equals("All")?"":lan;
-            key=key.equals("All")?"":key;
-            year=year.equals("All")?"":year;
-            total = repoService.getReposByLan_Key_Year(lan,key.toLowerCase(),year,sort);
-        System.out.println(total.getDatas());
-
+        lan = lan.equals("All") ? "" : lan;
+        key = key.equals("All") ? "" : key;
+        year = year.equals("All") ? "" : year;
+        total = repoService.getReposByLan_Key_Year(lan, key.toLowerCase(), year, sort);
 
 
         Map<String, Object> map = new HashMap<>();
@@ -110,6 +108,8 @@ public class RepoController {
         return new ModelAndView("/repo/show", result);
     }
 
+
+
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ModelAndView searchRepos(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
@@ -136,6 +136,7 @@ public class RepoController {
         Map<String, Object> map = new HashMap<>();
         map.put("repos", list.getDatas());
         map.put("total", list.getTotal());
+        map.put("param",param);
         if(userName!=null){
             memberService.addSearchRecord(condition,userName);
         }

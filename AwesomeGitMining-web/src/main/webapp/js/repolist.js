@@ -14,35 +14,23 @@ $(document).ready(function() {
         item:       '.panel-body',
         pagination: '#pagination',
         next:       '<a href="/repo/repos" class="next">next</a>',
-        // loader:"<img src='/img/loading.gif' /><font size='5'>正在拼命的为您加载</font>",
-        // beforePageChange:function(curScrOffset, nextPageUrl){
-        //     alert("AA");
-        //     pageCount++;
-        //     //总页数
-        //     var pages = parseInt('<%$total%>', 10);
-        //     if(pageCount <= pages) return true;
-        //     // jQuery(".artList").css({'padding-bottom':'91px'});
-        //     return false;
-        // }
+        delay:      0,
     });
 
-    // ias.extension(new IASTriggerExtension({
-    //     text: 'Load more items', // optionally
-    // }));
 
     ias.extension(new IASNoneLeftExtension({text: "You reached the end"}));
-    ias.on('noneLeft', function() {
-        console.log('We hit the bottom!');
-    })
+    // ias.on('noneLeft', function() {
+    //     console.log('We hit the bottom!');
+    //     alert(111);
+    // })
 
     // Add a loader image which is displayed during loading
-    ias.extension(new IASSpinnerExtension());
     ias.extension(new IASSpinnerExtension({
-        src: '/img/loading.gif', // optionally
-        html: '<div class="ias-spinner" style="text-align: center;"><img src="{src}"/></div>',
+        // src: '/img/loading.gif', // optionally
+        // html: '<div class="ias-spinner" style="text-align: center;"><img src="{src}"/></div>',
     }));
 
-    
+
 
     ias.on('load', function(event) {
         pageCount++;
@@ -52,7 +40,6 @@ $(document).ready(function() {
 
     $("#maintab").children().each(function() {
         var tabId = $(this).text().trim();
-
         $(this).click(function() {
             sort=tabId;
             pageCount = 1;
@@ -62,8 +49,6 @@ $(document).ready(function() {
         });
     });
 
-
-    
 
     $("[name='lan']").each(function() {
         var text = $(this).text();
@@ -80,34 +65,22 @@ $(document).ready(function() {
 
     $("[name='key']").each(function() {
         var text = $(this).text();
-        // if(text==GetQueryString("key")){
-        //     $(this).css("background-color","#2baab1");              //为被选中的tag设置颜色
-        //     $(this).css("color","#fff");
-        // }
         $(this).click(function() {
             key = text;
             pageCount = 1;
-            $("[name='key']").css("background-color","#fff");
-            $("[name='key']").css("color","#666");
-            $(this).css("background-color","#2baab1");
-            $(this).css("color","#fff");
+            $("#onKey").attr("id","");
+            $(this).attr("id","onKey");
             $("#current").load("/repo/repos?pager.offset=0&sort="+sort+"&lan=" + lan+"&key="+key+"&year="+year+" #current");
         });
     });
 
     $("[name='year']").each(function() {
         var text = $(this).text();
-        // if(text==GetQueryString("year")){
-        //     $(this).css("background-color","#2baab1");              //为被选中的tag设置颜色
-        //     $(this).css("color","#fff");
-        // }
         $(this).click(function() {
             year = text;
             pageCount = 1;
-            $("[name='year']").css("background-color","#fff");
-            $("[name='year']").css("color","#666");
-            $(this).css("background-color","#2baab1");
-            $(this).css("color","#fff");
+            $("#onYear").attr("id","");
+            $(this).attr("id","onYear");
             $("#current").load("/repo/repos?pager.offset=0&sort="+sort+"&lan=" + lan+"&key="+key+"&year="+year+" #current");
         });
     });

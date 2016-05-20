@@ -111,6 +111,7 @@ public class UserController {
         Map<String,Object> map = new HashMap<>();
         map.put("users",list.getDatas());
         map.put("total",list.getTotal());
+        map.put("param",param);
         return new ModelAndView("/user/search",map);
     }
 
