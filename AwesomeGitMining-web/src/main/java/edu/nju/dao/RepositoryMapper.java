@@ -1,6 +1,7 @@
 package edu.nju.dao;
 
 import edu.nju.model.Repository;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.LinkedHashMap;
@@ -44,7 +45,8 @@ public interface RepositoryMapper {
 
     List<Repository> selectReposByKey(Map<String,Object> map);
 
-    List<Repository> selectReposByLan_Key_Year(String language,String keyword,String year,String sort,int pageSize,int pageOffset);
+
+    List<Repository> selectReposByLan_Key_Year(String language,String keyword,String year,@Param(value="sort") String sort,int pageSize,int pageOffset);
 
     int countAll();
 

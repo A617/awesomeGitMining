@@ -71,7 +71,6 @@ public class RepoServiceImpl implements IRepoService {
             case "Star":sort="stargazers_count";break;
             case "Contributor":sort="subscribers_count";break;
         }
-        System.out.println(sort);
       return repoDao.getReposByLan_Key_Year(language,keyword,year,sort);
     };
 

@@ -108,7 +108,7 @@ public class RepositoryMapperTest {
     @Test
     public void selectReposByLan_Key_Year(){
 
-        List<Repository> list = dao.selectReposByLan_Key_Year("","","","stargazers_count",10,0);
+        List<Repository> list = dao.selectReposByLan_Key_Year("","","","forks_count",10,0);
         for (Repository u : list)
             System.out.println(u.getFull_name() + ":" + u.getDescription());
         System.out.println(list.size());
