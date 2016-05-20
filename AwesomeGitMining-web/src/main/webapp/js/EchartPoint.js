@@ -7,34 +7,27 @@ $(document).ready(function () {
             var d = [];
             var xList = data.xList;
             var yList = data.yList;
-            for(var i = 0;i<data.xList.length;i++){
-                d.push([xList[i],yList[i]]);
+            for (var i = 0; i < data.xList.length; i++) {
+                d.push([xList[i], yList[i]]);
             }
-            // var markLineOpt = {
-            //     label: {
-            //         normal: {
-            //             formatter: 'y = 0.5 * x + 3',
-            //             textStyle: {
-            //                 align: 'right'
-            //             }
-            //         }
-            //     },
-            //     lineStyle: {
-            //         normal: {
-            //             type: 'solid'
-            //         }
-            //     },
-            //     tooltip: {
-            //         formatter: 'y = 0.5 * x + 3'
-            //     },
-            //     data: [[{
-            //         coord: [0, 3],
-            //         symbol: 'none'
-            //     }, {
-            //         coord: [20, 13],
-            //         symbol: 'none'
-            //     }]]
-            // };
+            var markLineOpt = {
+                lineStyle: {
+                    normal: {
+                        type: 'solid'
+                      //  color:'#6495ED'
+                    }
+                },
+                tooltip: {
+                    formatter: 'fork vs star'
+                },
+                data: [[{
+                    coord: [0, 0],
+                    symbol: 'none'
+                }, {
+                    coord: [9609, 36996],
+                    symbol: 'none'
+                }]]
+            };
 
             option = {
                 title: {
@@ -42,25 +35,25 @@ $(document).ready(function () {
                     x: 'center',
                     y: 0
                 },
-                
+
                 tooltip: {
-                    formatter: 'Group {a}: ({c})'
+                    formatter: '({c})'
                 },
                 xAxis: [
-                    {gridIndex: 0, min: 0, max: 20}
+                    {gridIndex: 0, min: 0, max: data.Xmax, name: "fork"}
                 ],
                 yAxis: [
-                    {gridIndex: 0, min: 0, max: 15}
+                    {gridIndex: 0, min: 0, max: data.Ymax, name: "star"}
                 ],
-                
+
                 series: [
                     {
                         name: 'I',
                         type: 'scatter',
                         xAxisIndex: [0],
                         yAxisIndex: [0],
-                        data: d
-                      //  markLine: markLineOpt
+                        data: d,
+                        markLine: markLineOpt
                     }
                 ]
             };

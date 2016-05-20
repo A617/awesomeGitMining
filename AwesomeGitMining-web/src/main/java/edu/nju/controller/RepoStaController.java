@@ -71,11 +71,6 @@ public class RepoStaController {
     public
     @ResponseBody
     Map<String, Object> starForkRelation() {
-        Map<String, Object> map = new HashMap<>();
-        List<Integer> x = repoStaService.getForks();
-        List<Integer> y = repoStaService.getStars();
-        map.put("xList",x);
-        map.put("yList",y);
-        return map;
+        return repoStaService.getForkStarRelation();
     }
 }

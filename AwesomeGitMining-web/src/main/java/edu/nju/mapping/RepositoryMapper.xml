@@ -529,7 +529,7 @@ select login
   </select>
   <select id="countForks" resultType="java.lang.Integer">
     select forks_count
-    from repository
+    from repository force index (primary)
   </select>
   <select id="countSubscribers" resultType="java.lang.Integer">
     select subscribers_count
@@ -537,7 +537,7 @@ select login
   </select>
   <select id="countStars" resultType="java.lang.Integer">
     select stargazers_count
-    from repository
+    from repository force index (primary)
   </select>
   <select id="getYear" resultType="java.lang.String">
     select DISTINCT YEAR(created_at)
