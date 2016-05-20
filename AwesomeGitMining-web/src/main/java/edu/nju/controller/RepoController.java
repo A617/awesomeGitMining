@@ -38,18 +38,19 @@ public class RepoController {
                                   @RequestParam(value="year",required = false, defaultValue = "All")String year,
                                   @RequestParam(value="sort",required = false,defaultValue = "General") String sort) {
         Pager<Repository> total;
-        System.out.println("sss"+sort);
 
-            lan=lan.equals("All")?"":lan;
-            key=key.equals("All")?"":key;
-            year=year.equals("All")?"":year;
-            total = repoService.getReposByLan_Key_Year(lan,key.toLowerCase(),year,sort);
-        System.out.println(total.getDatas());
+        lan = lan.equals("All") ? "" : lan;
+        key = key.equals("All") ? "" : key;
+        year = year.equals("All") ? "" : year;
+        total = repoService.getReposByLan_Key_Year(lan, key.toLowerCase(), year, sort);
+
 
         Map<String, Object> map = new HashMap<>();
         map.put("repos", total.getDatas());
-        map.put("total", total.getTotal());
-        System.out.println(total.getTotal());
+
+        if(total.getDatas()==null||total.getDatas().isEmpty()){
+            return null;
+        }
         return new ModelAndView("/repo/list", map);
     }
 
@@ -58,7 +59,6 @@ public class RepoController {
         Pager<Repository> pager = repoService.getReposSortedByFork();
         Map<String, Object> map = new HashMap<>();
         map.put("forks", pager.getDatas());
-        map.put("total", pager.getTotal());
         return new ModelAndView("/repo/forks",map);
     }
 
@@ -67,7 +67,6 @@ public class RepoController {
         Pager<Repository> pager = repoService.getReposSortedByStar();
         Map<String, Object> map = new HashMap<>();
         map.put("stars", pager.getDatas());
-        map.put("total", pager.getTotal());
         return new ModelAndView("/repo/stars",map);
     }
 
@@ -76,7 +75,6 @@ public class RepoController {
         Pager<Repository> pager = repoService.getReposSortedByContribute();
         Map<String, Object> map = new HashMap<>();
         map.put("cons", pager.getDatas());
-        map.put("total", pager.getTotal());
         return new ModelAndView("/repo/cons",map);
     }
 
@@ -105,6 +103,8 @@ public class RepoController {
         return new ModelAndView("/repo/show", result);
     }
 
+
+
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ModelAndView searchRepos(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
@@ -130,7 +130,6 @@ public class RepoController {
         Pager<Repository> list = repoService.searchRepository(condition);
         Map<String, Object> map = new HashMap<>();
         map.put("repos", list.getDatas());
-        map.put("total", list.getTotal());
         if(userName!=null){
             memberService.addSearchRecord(condition,userName);
         }

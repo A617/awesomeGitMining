@@ -122,4 +122,11 @@ public class RepoStaDaoImpl implements IRepoStaDao {
         return list;
     }
 
+    @Override
+    public List<LinkedHashMap> countAverageSize_year() {
+        List<LinkedHashMap> list = mapper.countAverageSize_year();
+
+        return list;
+    }
+
 }

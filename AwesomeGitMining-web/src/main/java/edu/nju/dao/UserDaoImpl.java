@@ -32,10 +32,8 @@ public class UserDaoImpl implements IUserDao{
 
     @Override
     public Pager<User> selectAllWithPager() {
-        System.out.println("dao start");
         Map<String, Object> map = createMap();
         List<User> data = mapper.selectAllWithPager(map);
-        System.out.println("dao ok");
         return createPage(data,map);
     }
 
@@ -45,14 +43,11 @@ public class UserDaoImpl implements IUserDao{
         map.put("name",name);
         List<User> data = mapper.searchUser(map);
         Pager<User> page = createPage(data,map);
-        page.setTotal(mapper.countSearch(name));
+        //page.setTotal(mapper.countSearch(name));
         return page;
     }
 
-    @Override
-    public int countAll() {
-        return mapper.countAll();
-    }
+
 
     @Override
     public Pager<User> getUserByLanguage(String language) {
@@ -60,7 +55,7 @@ public class UserDaoImpl implements IUserDao{
         map.put("language",language);
         List<User> data = mapper.selectUserByLanguage(map);
         Pager<User> page = createPage(data,map);
-        page.setTotal(mapper.countLanguage(language));
+        //page.setTotal(mapper.countLanguage(language));
         return page;
     }
 
@@ -70,7 +65,7 @@ public class UserDaoImpl implements IUserDao{
         map.put("company",company);
         List<User> data = mapper.selectUserByCompany(map);
         Pager<User> page = createPage(data,map);
-        page.setTotal(mapper.countCompany(company));
+        //page.setTotal(mapper.countCompany(company));
         return page;
     }
 
@@ -82,7 +77,7 @@ public class UserDaoImpl implements IUserDao{
         Map<String, Object> map = createMap();
         List<User> data = mapper.selectLan_Com(lan,com,(int)map.get("pageSize"),(int)map.get("pageOffset"));
         Pager<User> page = createPage(data,map);
-        page.setTotal(mapper.countLan_Com(lan,com));
+       // page.setTotal(mapper.countLan_Com(lan,com));
 
         return page;
     }
@@ -116,7 +111,7 @@ public class UserDaoImpl implements IUserDao{
 
     private Pager<User> createPage(List<User> data, Map<String, Object> map) {
         Pager<User> pages = new Pager<User>(data, (int)map.get("pageOffset"),
-                (int)map.get("pageSize"), countAll());
+                (int)map.get("pageSize"));
         return pages;
     }
 }

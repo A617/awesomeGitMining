@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="pg"  uri="http://jsptags.com/tags/navigation/pager" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -209,46 +208,9 @@
                                         </li>
                                     </c:forEach>
                                 </ul>
-
-                                <%--<ul class="pagination">--%>
-                                    <%--&lt;%&ndash;${pageUrl}<br>&ndash;%&gt;--%>
-                                    <%--<pg:pager url="/repo/repos" items="${total}">--%>
-                                        <%--<pg:param name="lan"/>--%>
-                                        <%--<pg:param name="key"/>--%>
-                                        <%--<pg:param name="year"/>--%>
-                                        <%--<pg:param name="sort"/>--%>
-                                        <%--<li>--%>
-                                            <%--<pg:first>--%>
-                                                <%--<a href="${pageUrl}">Begin</a>--%>
-                                            <%--</pg:first>--%>
-                                        <%--</li>--%>
-                                        <%--<li>--%>
-                                            <%--<pg:prev>--%>
-                                                <%--<a href="${pageUrl }">Pre</a>--%>
-                                            <%--</pg:prev>--%>
-                                        <%--</li>--%>
-                                        <%--<li>--%>
-                                            <%--<pg:pages>--%>
-                                                <%--<a href="${pageUrl }">${pageNumber}</a>--%>
-                                            <%--</pg:pages>--%>
-                                        <%--</li>--%>
-                                        <%--<li>--%>
-                                            <%--<pg:next>--%>
-                                                <%--<a href="${pageUrl }">Next</a>--%>
-                                            <%--</pg:next>--%>
-                                        <%--</li>--%>
-                                        <%--<li>--%>
-                                            <%--<pg:last>--%>
-                                                <%--<a href="${pageUrl }">End</a>--%>
-                                            <%--</pg:last>--%>
-                                        <%--</li>--%>
-                                    <%--</pg:pager>--%>
-                                <%--</ul>--%>
-                                <p hidden>${total}</p>
                             </div>
                         </div>
                         <div id="pagination">
-
                                 <%--<a href="/repo/repos" class="next">next</a>--%>
                         </div>
                     </div>
@@ -263,8 +225,8 @@
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/repotag.js"></script>
-        <script src="/js/library/jquery-ias.min.js"></script>
+    <script src="/js/repolist.js"></script>
+    <script src="/js/library/jquery-ias.min.js"></script>
 
 
 </body>

@@ -84,6 +84,18 @@ public class RepoStaServiceImpl implements IRepoStaService {
         return map;
     }
 
+    @Override
+    public Map<String, Object> getYearSizeRelation() {
+        Map<String, Object> map = new HashMap<>();
+        List<String> xList = repoStaDao.eachYear();
+        List<Integer> yList = repoStaDao.eachSize();
+        map.put("xList",xList);
+        map.put("yList",yList);
+        map.put("Xmax",2010);
+        map.put("Ymax",getMax(yList));
+        return map;
+    }
+
     private int getMax(List<Integer> dataset){
         int max = 0;
         for (int i = 0; i < dataset.size(); i++) {

@@ -41,4 +41,10 @@ public class UserStaDaoImpl implements IUserStaDao {
         List<LinkedHashMap> list = mapper.countEmail();
         return list;
     }
+
+    @Override
+    public List<String> countBlog() {
+        String[]list={"twitter","github","co","blogspot","linkedin","wordpress","com","about","google","tumblr","ne","hatenablog","koverflow"};
+        return null;
+    }
 }

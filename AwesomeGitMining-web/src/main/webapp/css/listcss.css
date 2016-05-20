@@ -99,10 +99,10 @@ div.center, p.center, img.center {
 
 .blog-tag:focus, .blog-tag:hover {
     background-color: #2baab1;
-    color: #fff
+    color: #fff;
 }
 
-#onLan, #onKey, #onYear{
+#onLan, #onKey, #onYear, #onCom{
     background-color: #2baab1;
     color: #fff
 }
@@ -128,3 +128,7 @@ div.center, p.center, img.center {
     -o-transition: all .2s ease
 }
 
+.nav-tabs > li > a:hover {
+    border-color: #eee #eee #ddd;
+    cursor:pointer;
+}

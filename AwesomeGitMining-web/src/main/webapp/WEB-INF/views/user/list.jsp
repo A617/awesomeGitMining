@@ -133,7 +133,7 @@
                 <div class="col-2 panel panel-default margin-10">
                     <div class="panel-heading"><h2>User List</h2></div>
                         <div class="panel-body" id="current">
-                            <ul class="dashboard-list">
+                            <ul class="dashboard-list" id="posts">
                                 <c:forEach items="${users }" var="u">
                                     <li>
                                         <h3><strong><a href="${u.login }">${u.login }</a></strong></h3>
@@ -145,38 +145,9 @@
                                 </c:forEach>
                             </ul>
 
-                            <ul class="pagination pagination-centered">
-                                ${pageUrl}<br>
-                                <pg:pager url="/user/users" items="${total}">
-                                    <pg:param name="lan"/>
-                                    <pg:param name="com"/>
-                                    <li>
-                                        <pg:first>
-                                            <a href="${pageUrl}">Begin</a>
-                                        </pg:first>
-                                    </li>
-                                    <li>
-                                        <pg:prev>
-                                            <a href="${pageUrl }">Pre</a>
-                                        </pg:prev>
-                                    </li>
-                                    <li>
-                                        <pg:pages>
-                                            <a href="${pageUrl }">${pageNumber}</a>
-                                        </pg:pages>
-                                    </li>
-                                    <li>
-                                        <pg:next>
-                                            <a href="${pageUrl }">Next</a>
-                                        </pg:next>
-                                    </li>
-                                    <li>
-                                        <pg:last>
-                                            <a href="${pageUrl }">End</a>
-                                        </pg:last>
-                                    </li>
-                                </pg:pager>
-                            </ul>
+                            <div id="pagination">
+                            <%--<a href="/user/users" class="next">next</a>--%>
+                            </div>
                         </div>
                 </div>
             </div>
@@ -189,6 +160,7 @@
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/usertag.js"></script>
+    <script src="/js/userlist.js"></script>
+    <script src="/js/library/jquery-ias.min.js"></script>
 </body>
 </html>

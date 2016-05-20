@@ -53,10 +53,10 @@
         <param-value>classpath:spring-mybatis.xml</param-value>
     </context-param>
 
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>default</servlet-name>-->
-        <!--<url-pattern>*.jpg</url-pattern>-->
-    <!--</servlet-mapping>-->
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.gif</url-pattern>
+    </servlet-mapping>
 
 
 

@@ -73,4 +73,10 @@ public class RepoStaController {
     Map<String, Object> starForkRelation() {
         return repoStaService.getForkStarRelation();
     }
+    @RequestMapping(value = "/statistics/repository/yearSizeRelation", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Map<String, Object> yearSizeRelation() {
+        return repoStaService.getYearSizeRelation();
+    }
 }
