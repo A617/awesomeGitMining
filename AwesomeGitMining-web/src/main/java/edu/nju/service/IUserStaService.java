@@ -9,17 +9,23 @@ import java.util.Map;
  */
 public interface IUserStaService {
 
-    public List<LinkedHashMap> getCompanyCounts();
+    List<LinkedHashMap> getCompanyCounts();
 
-    public List<LinkedHashMap> getTypeCounts();
+    List<LinkedHashMap> getTypeCounts();
 
-    public List<LinkedHashMap> getCreateYear();
+    List<LinkedHashMap> getCreateYear();
 
-    public List<LinkedHashMap> countEmail();
+    List<LinkedHashMap> countEmail();
 
-    public List<Integer> countBlog();
+    List<Integer> countBlog();
 
-    public List<Integer> countFollowers();
+    List<Integer> countFollowers();
 
-    public List<Integer> countFollowings();
+    List<Integer> countFollowings();
+
+    /**
+     *
+     * @return 用户位置分布信息
+     */
+    List<LinkedHashMap> getUserLocationDistribute();
 }

@@ -12,8 +12,25 @@ public class Statistics {
             "emacs", "linux", "json", "toolkit", ".net", "os", "xml", "ios", "mvc", "vim", "apache", "maven", "mysql"};
     public static final String[] userCompany = {"Shopify","Google","Github","Twitter","Microsoft","Mozilla","Xamarin","Heroku",
             "Facebook","Red Hat"};
-
+    public static String[] countries = {"Afghanistan","Angola","Albania","United Arab Emirates","Argentina","Armenia",
+            "French Southern and Antarctic Lands","Australia","Austria","Azerbaijan", "Burundi","Belgium","Benin","Burkina Faso",
+            "Bangladesh","Bulgaria","The Bahamas","Bosnia and Herzegovina","Belarus","Belize","Bermuda","Bolivia","Brazil","Brunei",
+            "Bhutan","Botswana","Central African Republic","Canada","Switzerland","Chile","China","Ivory Coast","Cameroon","Democratic Republic of the Congo",
+            "Republic of the Congo","Colombia","Costa Rica","Cuba","Northern Cyprus","Cyprus","Czech Republic","Germany","Djibouti","Denmark",
+            "Dominican Republic","Algeria","Ecuador","Egypt","Eritrea","Spain","Estonia","Ethiopia","Finland","Fiji","Falkland Islands",
+            "France","Gabon","United Kingdom","Georgia","Ghana","Guinea","Gambia","Guinea Bissau","Equatorial Guinea","Greece","Greenland",
+            "Guatemala","French Guiana","Guyana","Honduras","Croatia","Haiti","Hungary","Indonesia","India","Ireland","Iran","Iraq","Iceland",
+            "Israel","Italy","Jamaica","Jordan","Japan","Kazakhstan","Kenya","Kyrgyzstan","Cambodia","South Korea","Kosovo","Kuwait",
+            "Laos","Lebanon","Liberia","Libya","Sri Lanka","Lesotho","Lithuania","Luxembourg","Latvia","Morocco","Moldova","Madagascar",
+            "Mexico","Macedonia","Mali","Myanmar","Montenegro","Mongolia","Mozambique","Mauritania","Malawi","Malaysia","Namibia",
+            "New Caledonia","Niger","Nigeria","Nicaragua","Netherlands","Norway","Nepal","New Zealand","Oman","Pakistan","Panama",
+            "Peru","Philippines","Papua New Guinea","Poland","Puerto Rico","North Korea","Portugal","Paraguay","Qatar","Romania","Russia",
+            "Rwanda","Western Sahara","Saudi Arabia","Sudan","South Sudan","Senegal","Solomon Islands","Sierra Leone","El Salvador","Somaliland",
+            "Somalia","Republic of Serbia","Suriname","Slovakia","Slovenia","Sweden","Swaziland","Syria","Chad","Togo","Thailand","Tajikistan",
+            "Turkmenistan","East Timor","Trinidad and Tobago","Tunisia","Turkey","United Republic of Tanzania","Uganda","Ukraine","Uruguay",
+            "United States of America","Uzbekistan","Venezuela","Vietnam","Vanuatu","West Bank","Yemen","South Africa","Zambia","Zimbabwe"
+    };
     public static String[] year = {"2007","2008","2009","2010","2011","2012","2013","2014","2015","2016"};
     public static List<String> tag = Arrays.asList(categories);
-
+    public static List<String> country = Arrays.asList(countries);
 }

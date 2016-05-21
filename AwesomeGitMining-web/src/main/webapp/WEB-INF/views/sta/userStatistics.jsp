@@ -83,6 +83,8 @@
                 <div id="email" style="width: 100%;height:400px;"></div>
                 <hr size="2">
                 <div id="follow" style="width: 100%;height:400px;"></div>
+                <div id="worldMap" style="width: 100%;height:800px;"></div>
+                <hr size="2">
             </div>
         </div>
     </div>
@@ -99,6 +101,7 @@
 <script src="/js/echarts.min.js"></script>
 <script src="/js/macarons.js"></script>
 <script src="/js/userStatistics.js"></script>
-
+<script src="/js/worldMap.js"></script>
+<script src="/js/world.js"></script>
 </body>
 </html>

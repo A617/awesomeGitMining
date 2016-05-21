@@ -120,5 +120,7 @@
 <script src="/js/echarts.min.js"></script>
 <script src="/js/EchartPoint.js"></script>
 <script src="/js/barChart.js"></script>
+
+
 </body>
 </html>

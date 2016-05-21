@@ -71,5 +71,6 @@ public interface UserMapper {
 
     int countFollow(int first,int last);
 
+    List<String> getUserLocation();
 
 }

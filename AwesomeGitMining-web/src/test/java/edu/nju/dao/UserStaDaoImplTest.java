@@ -7,7 +7,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -74,5 +76,9 @@ public class UserStaDaoImplTest {
 
     }
 
-
+    @Test
+    public void testLocationDistribute(){
+        List<LinkedHashMap> map = dao.getUserLocationDistribute();
+        System.out.println(map.size());
+    }
 }

@@ -434,4 +434,8 @@
     from user
     where #{1}>following and following>=#{0}
   </select>
+  <select id="getUserLocation" resultType="java.lang.String">
+    select location
+    from user
+  </select>
 </mapper>

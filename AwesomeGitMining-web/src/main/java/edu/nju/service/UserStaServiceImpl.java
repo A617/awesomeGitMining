@@ -66,4 +66,9 @@ public class UserStaServiceImpl implements IUserStaService{
     public List<Integer> countFollowings() {
         return dao.countFollowings();
     }
+
+    @Override
+    public List<LinkedHashMap> getUserLocationDistribute() {
+        return dao.getUserLocationDistribute();
+    }
 }

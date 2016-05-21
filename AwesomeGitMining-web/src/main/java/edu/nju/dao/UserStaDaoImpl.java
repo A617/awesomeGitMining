@@ -3,9 +3,7 @@ package edu.nju.dao;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Dora on 2016/5/13.
@@ -44,9 +42,9 @@ public class UserStaDaoImpl implements IUserStaDao {
 
     @Override
     public List<Integer> countBlog() {
-        String[]list={"twitter","github","blogspot","linkedin","wordpress","about","google","tumblr","hatenablog","koverflow"};
-        List<Integer> result=new ArrayList<Integer>();
-        for (String u:list) {
+        String[] list = {"twitter", "github", "blogspot", "linkedin", "wordpress", "about", "google", "tumblr", "hatenablog", "koverflow"};
+        List<Integer> result = new ArrayList<Integer>();
+        for (String u : list) {
             result.add(mapper.countBlog(u));
         }
         return result;
@@ -55,22 +53,43 @@ public class UserStaDaoImpl implements IUserStaDao {
     @Override
     public List<Integer> countFollowers() {
         //List<Integer>list=mapper.countFollowers();
-        int sta[]={0,10,20,30,40,50,60,70,80,90,100,18727};
-        List<Integer>count=new ArrayList<Integer>();
-        for(int i=0;i<sta.length-1;i++){
-            count.add(mapper.countFans(sta[i],sta[i+1]));
+        int sta[] = {0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 18727};
+        List<Integer> count = new ArrayList<Integer>();
+        for (int i = 0; i < sta.length - 1; i++) {
+            count.add(mapper.countFans(sta[i], sta[i + 1]));
         }
         return count;
     }
 
     @Override
     public List<Integer> countFollowings() {
-        int sta[]={0,10,20,30,40,50,60,70,80,90,100,114999};
-        List<Integer>count=new ArrayList<Integer>();
-        for(int i=0;i<sta.length-1;i++){
-            count.add(mapper.countFollow(sta[i],sta[i+1]));
+        int sta[] = {0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 114999};
+        List<Integer> count = new ArrayList<Integer>();
+        for (int i = 0; i < sta.length - 1; i++) {
+            count.add(mapper.countFollow(sta[i], sta[i + 1]));
 
         }
         return count;
+    }
+
+    @Override
+    public List<LinkedHashMap> getUserLocationDistribute() {
+        List<String> all = mapper.getUserLocation();
+        List<LinkedHashMap> result = new ArrayList<>();
+        for (String country : Statistics.country) {
+            int num = 0;
+            LinkedHashMap<String,Object> map = new LinkedHashMap<>();
+            for (String str : all) {
+                if (str != null && !str.isEmpty()) {
+                    if (str.contains(country)) {
+                        num++;
+                    }
+                }
+            }
+            map.put("name", country);
+            map.put("value", num);
+            result.add(map);
+        }
+        return result;
     }
 }

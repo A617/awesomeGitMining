@@ -92,10 +92,10 @@ $(document).ready(function () {
 
             dataMap.dataGDP = dataFormatter({
                 //max : 60000,
-                2010: data.year1,
-                2009: data.year2,
-                2008: data.year3,
-                2007: data.year4
+                2007: data.year1,
+                2008: data.year2,
+                2009: data.year3,
+                2010: data.year4
             });
 
 

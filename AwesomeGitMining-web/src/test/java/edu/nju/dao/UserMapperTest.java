@@ -21,7 +21,7 @@ import java.util.Map;
 public class UserMapperTest {
 
     @Resource
-    UserMapper dao ;
+    UserMapper dao;
 
 
     @Test
@@ -33,7 +33,7 @@ public class UserMapperTest {
 
     @Test
     public void selectByLogin() throws Exception {
-       // System.out.println(dao.selectByLogin("jhoblitt").getCollaborationFullname());
+        // System.out.println(dao.selectByLogin("jhoblitt").getCollaborationFullname());
     }
 
     @Test
@@ -46,7 +46,6 @@ public class UserMapperTest {
         for (User u : list)
             System.out.println(u.getLogin());
     }
-
 
 
     @Test
@@ -72,12 +71,14 @@ public class UserMapperTest {
         for (User u : list)
             System.out.println(u.getLogin() + u.getLanguages());
     }
+
     @Test
-    public void testCountCompany(){
+    public void testCountCompany() {
         System.out.println(dao.countCompany("facebook"));
     }
+
     @Test
-    public void testCompany(){
+    public void testCompany() {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("pageSize", 3000);
         map.put("pageOffset", 0);
@@ -88,22 +89,30 @@ public class UserMapperTest {
     }
 
     @Test
-    public void countLan_ComTest(){
-        String lan="java";
-        String com="facebook";
-        int pageSize=3000;
-        int pageOffset=0;
-        List<User> list = dao.selectLan_Com(lan,com,pageSize,pageOffset);
+    public void countLan_ComTest() {
+        String lan = "java";
+        String com = "facebook";
+        int pageSize = 3000;
+        int pageOffset = 0;
+        List<User> list = dao.selectLan_Com(lan, com, pageSize, pageOffset);
         for (User u : list)
-            System.out.println(u.getName() + ":" );
+            System.out.println(u.getName() + ":");
         System.out.println(list.size());
 
     }
+
     @Test
     public void countFanTest() throws Exception {
-        int a=dao.countFollow(10,20);
+        int a = dao.countFollow(10, 20);
         System.out.println(a);
 
     }
 
+    @Test
+    public void testUserLocation() {
+        List<String> list = dao.getUserLocation();
+        for (String str : list) {
+            System.out.println(str);
+        }
+    }
 }

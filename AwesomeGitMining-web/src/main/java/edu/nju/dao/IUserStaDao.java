@@ -2,6 +2,7 @@ package edu.nju.dao;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Dora on 2016/5/13.
@@ -47,4 +48,9 @@ public interface IUserStaDao {
      */
     List<Integer>countFollowings();
 
+    /**
+     * 得到user的位置国家分布情况
+     * @return
+     */
+    List<LinkedHashMap> getUserLocationDistribute();
 }
