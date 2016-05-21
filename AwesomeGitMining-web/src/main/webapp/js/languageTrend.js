@@ -71,32 +71,32 @@ $(document).ready(function () {
         url: "/statistics/repository/languageTrendDynamic",
         success: function (data) {
             var dataMap = {};
+
             function dataFormatter(obj) {
                 var pList = data.name;
                 var temp;
                 for (var year = 2007; year <= 2010; year++) {
-                   
+
                     temp = obj[year];
                     for (var i = 0, l = temp.length; i < l; i++) {
-                       
+
                         obj[year][i] = {
-                            name : pList[i],
-                            value : temp[i]
+                            name: pList[i],
+                            value: temp[i]
                         }
                     }
-                    
+
                 }
                 return obj;
             }
 
             dataMap.dataGDP = dataFormatter({
                 //max : 60000,
-                2010:data.year1,
-                2009:data.year2,
-                2008:data.year3,
-                2007:data.year4
+                2010: data.year1,
+                2009: data.year2,
+                2008: data.year3,
+                2007: data.year4
             });
-
 
 
             option = {
@@ -113,30 +113,30 @@ $(document).ready(function () {
                         //     position: 'left'
                         // },
                         data: [
-                            '2007','2008','2009','2010'
+                            '2007', '2008', '2009', '2010'
                         ],
                         label: {
-                            formatter : function(s) {
+                            formatter: function (s) {
                                 return (new Date(s)).getFullYear();
                             }
                         }
                     },
-                    
+
                     tooltip: {},
                     legend: {
                         x: 'right',
                         data: ['GDP'],
                     },
-                    calculable : true,
+                    calculable: true,
                     grid: {
                         top: 80,
                         bottom: 100
                     },
                     xAxis: [
                         {
-                            'type':'category',
-                            'axisLabel':{'interval':0},
-                            'data':data.name,
+                            'type': 'category',
+                            'axisLabel': {'interval': 0},
+                            'data': data.name,
                             splitLine: {show: false}
                         }
                     ],
@@ -145,41 +145,73 @@ $(document).ready(function () {
                             type: 'value',
                             name: 'repository number',
                             // max: 53500
-                            max: 10
+                            max: 400
                         }
                     ],
                     series: [
                         {name: 'GDP', type: 'bar'},
-                       
+
                     ]
                 },
                 options: [
                     {
-                        title : {text: '2007 language usage'},
-                        series : [
-                            {data: dataMap.dataGDP['2007']},
-                           
+                        title: {text: '2007 language usage'},
+                        series: [
+                            {
+                                data: dataMap.dataGDP['2007'],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#7EC0EE',
+                                        opacity:0.5
+                                    }
+                                }
+                            }
+
                         ]
                     },
                     {
-                        title : {text: '2008 language usage'},
-                        series : [
-                            {data: dataMap.dataGDP['2008']},
-                            
+                        title: {text: '2008 language usage'},
+                        series: [
+                            {
+                                data: dataMap.dataGDP['2008'],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#7EC0EE',
+                                        opacity:0.5
+                                    }
+                                }
+                            }
+
                         ]
                     },
                     {
-                        title : {text: '2009 language usage'},
-                        series : [
-                            {data: dataMap.dataGDP['2009']},
-                           
+                        title: {text: '2009 language usage'},
+                        series: [
+                            {
+                                data: dataMap.dataGDP['2009'],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#7EC0EE',
+                                        opacity:0.5
+                                    }
+                                }
+                            }
+
                         ]
                     },
                     {
-                        title : {text: '2010 language usage'},
-                        series : [
-                            {data: dataMap.dataGDP['2010']},
-                           
+                        title: {text: '2010 language usage'},
+                        series: [
+                            {
+                                data: dataMap.dataGDP['2010']
+                                , itemStyle: {
+                                normal: {
+                                    color: '#7EC0EE',
+                                    opacity:0.5
+                                }
+                            }
+                            }
+
                         ]
                     }
                 ]

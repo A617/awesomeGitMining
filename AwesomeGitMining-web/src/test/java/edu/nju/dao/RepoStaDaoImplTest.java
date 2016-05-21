@@ -26,8 +26,9 @@ public class RepoStaDaoImplTest {
     public void countFirst20LanguagesTest() throws Exception {
         System.out.println(dao.countFirst20Languages());
     }
+
     @Test
-    public void getLanguageAndSizeTest() throws  Exception{
+    public void getLanguageAndSizeTest() throws Exception {
 
         System.out.println(dao.getLanguageAndSize());
 
@@ -35,7 +36,7 @@ public class RepoStaDaoImplTest {
 
 
     @Test
-    public void countCreatedYearTest() throws  Exception{
+    public void countCreatedYearTest() throws Exception {
         System.out.println(dao.countCreatedYear());
 
 
@@ -43,13 +44,14 @@ public class RepoStaDaoImplTest {
 
 
     @Test
-    public void getStaLanguagesTest() throws  Exception{
-        List<String> list=dao.getStaLanguages();
+    public void getStaLanguagesTest() throws Exception {
+        List<String> list = dao.getStaLanguages();
 
     }
+
     @Test
     public void countFirst10LanguagesTest() throws Exception {
-       List<String>list=dao.countFirst10Languages();
+        List<String> list = dao.countFirst10Languages();
         for (String u : list)
             System.out.println(u);
     }
@@ -57,48 +59,57 @@ public class RepoStaDaoImplTest {
     @Test
     public void countForksTest() throws Exception {
 
-        List<Integer>list=dao.countForks();
+        List<Integer> list = dao.countForks();
         for (Integer u : list)
             System.out.println(u);
 
     }
+
     @Test
     public void countStarsTest() throws Exception {
 
-        List<Integer>list=dao.countStars();
+        List<Integer> list = dao.countStars();
         for (Integer u : list)
             System.out.println(u);
 
     }
+
     @Test
     public void countSubsTest() throws Exception {
 
-        List<Integer>list=dao.countSubscribers();
+        List<Integer> list = dao.countSubscribers();
         for (Integer u : list)
             System.out.println(u);
 
     }
+
     @Test
     public void getLanByYearTest() throws Exception {
-        Map<String, Object> map=dao.getLanByYear();
-        for(Map.Entry<String, Object> entry:map.entrySet()){
-                   System.out.println("key-->"+entry.getKey());
-                   System.out.println("value-->"+entry.getValue());
-                 }
+        Map<String, Object> map = dao.getLanByYear();
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            System.out.println("key-->" + entry.getKey());
+            System.out.println("value-->" + entry.getValue());
+        }
 
     }
+
     @Test
     public void eachSizeTest() throws Exception {
 
-        List<Integer>list=dao.eachSize();
+        List<Integer> list = dao.eachSize();
         for (Integer u : list)
             System.out.println(u);
 
     }
-    @Test
-   public void testverageSize(){
-       List<LinkedHashMap> list = dao.countAverageSize_year();
-        System.out.println(list);
-   }
 
+    @Test
+    public void testverageSize() {
+        List<LinkedHashMap> list = dao.countAverageSize_year();
+        System.out.println(list);
     }
+
+    @Test
+    public void testLanguageTrend() {
+        System.out.println(dao.getLanguageUsageByYear("2008"));
+    }
+}

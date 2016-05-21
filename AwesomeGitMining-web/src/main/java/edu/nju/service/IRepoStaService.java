@@ -70,4 +70,10 @@ public interface IRepoStaService {
      * @return 创建年份和项目大小分布关系
      */
     Map<String, Object> getYearSizeRelation();
+
+    /**
+     * 横向根据年份得到语言使用情况
+     * @return
+     */
+    Map<String,Object> getLanguageTrendDynamic();
 }

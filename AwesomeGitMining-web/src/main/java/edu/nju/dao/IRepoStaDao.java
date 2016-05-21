@@ -97,4 +97,11 @@ public interface IRepoStaDao {
      */
     List<LinkedHashMap> countAverageSize_year();
 
+    /**
+     *
+     * @param year
+     * @return 当年的语言使用情况
+     */
+    List<Integer> getLanguageUsageByYear(String year);
+
 }
