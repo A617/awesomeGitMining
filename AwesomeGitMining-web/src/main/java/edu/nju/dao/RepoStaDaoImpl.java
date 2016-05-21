@@ -129,4 +129,14 @@ public class RepoStaDaoImpl implements IRepoStaDao {
         return list;
     }
 
+    @Override
+    public List<Integer> getLanguageUsageByYear(String year) {
+        List<String> lan=mapper.countFirst10Languages();
+        List<Integer> list = new ArrayList<>();
+        for(String language:lan){
+            list.add(mapper.countLanguagesCreated(year,language));
+        }
+        return list;
+    }
+
 }

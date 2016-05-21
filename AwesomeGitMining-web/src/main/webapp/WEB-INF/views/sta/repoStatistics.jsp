@@ -113,7 +113,7 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
 <script src="/js/SearchReposBubble.js"></script>
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="/js/library/d3.min.js" charset="utf-8"></script>
 <script src ="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.js"></script>
 <script src="/js/histogram.js"></script>
 <script src="/js/languageTrend.js"></script>

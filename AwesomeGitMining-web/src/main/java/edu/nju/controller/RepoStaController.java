@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by tj on 2016/5/17.
@@ -49,16 +50,7 @@ public class RepoStaController {
     public
     @ResponseBody
     Map<String, Object> getLanguageTrendDynamic() {
-        Map<String, Object> result = new HashMap<>();
-        List<String> languages = repoStaService.getTop10Language();
-        result.put("name", languages);
-        result.put("year", repoStaService.getYearRange());
-        int[] test = {1,2,3,4,5,6,7,8,9};
-        result.put("year1", test);
-        result.put("year2", test);
-        result.put("year3", test);
-        result.put("year4", test);
-        return result;
+        return repoStaService.getLanguageTrendDynamic();
     }
     @RequestMapping(value = "/statistics/repository/forkDistribute", method = RequestMethod.GET)
     public
