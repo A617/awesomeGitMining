@@ -5,9 +5,17 @@ $(function() {
 
         var myChart1 = echarts.init(document.getElementById('company-pie-bq'),'macarons');
         var url = "/statistics/bq/companyBQ";
+        myChart1 .showLoading({
+            text : 'Loading...',
+            effect : 'spin',
+            textStyle : {
+                fontSize : 25
+            }
+        });
         $.ajax(url, {
             type: 'GET',
             success: function (data, textStatus) {
+                myChart1.hideLoading();
                 myChart1.setOption({
                     title : {
                         text: 'Number of user in each company',

@@ -72,16 +72,15 @@
             <div class="templatemo-content-widget white-bg col-1 animated fadeInLeft">
                 <h2>User Statistics</h2>
                 <hr>
-
-                <div id="company-pie-local" style="width: 100%;height:400px;"></div>
-                <hr size="2">
                 <div id="type-pie-local" style="width: 100%;height:400px;"></div>
                 <hr size="2">
                 <div id="create_year" style="width: 100%;height:400px;"></div>
                 <hr size="2">
-                <div id="email" style="width: 100%;height:400px;"></div>
+                <div id="company-pie-local" style="width: 100%;height:400px;"></div>
                 <hr size="2">
                 <div id="blog" style="width: 100%;height:400px;"></div>
+                <hr size="2">
+                <div id="email" style="width: 100%;height:400px;"></div>
                 <hr size="2">
                 <div id="follow" style="width: 100%;height:400px;"></div>
             </div>

@@ -8,10 +8,17 @@ $(function() {
 
         var myChart1 = echarts.init(document.getElementById('company-pie-local'),'macarons');
         var url = "/statistics/user/companyLocal";
+        myChart1 .showLoading({
+            text : 'Loading...',
+            effect : 'spin',
+            textStyle : {
+                fontSize : 25
+            }
+        });
         $.ajax(url, {
             type: 'GET',
             success: function (data, textStatus) {
-
+                myChart1.hideLoading();
                 myChart1.setOption({
                     title : {
                         text: 'Number of user in each company',
@@ -32,7 +39,7 @@ $(function() {
                         data: data.companyCount,
                         itemStyle:{
                             normal: {
-                                color:'#4682B4'
+                                color:'#CD919E'
                             }
                         }
                     }]
@@ -43,9 +50,17 @@ $(function() {
 
         var myChart2 = echarts.init(document.getElementById('type-pie-local'),'macarons');
         var url = "/statistics/user/typeLocal";
+        myChart2 .showLoading({
+            text : 'Loading...',
+            effect : 'spin',
+            textStyle : {
+                fontSize : 25
+            }
+        });
         $.ajax(url, {
             type: 'GET',
             success: function (data, textStatus) {
+                myChart2.hideLoading();
                 myChart2.setOption({
                     title : {
                         text: 'User Type',
@@ -96,10 +111,17 @@ $(function() {
 
         var myChart3 = echarts.init(document.getElementById('create_year'),'macarons');
         var url = "/statistics/user/createYear";
+        myChart3 .showLoading({
+            text : 'Loading...',
+            effect : 'spin',
+            textStyle : {
+                fontSize : 25
+            }
+        });
         $.ajax(url, {
             type: 'GET',
             success: function (data, textStatus) {
-
+                myChart3.hideLoading();
                 myChart3.setOption({
                     title : {
                         text: 'Distribution Of Create Time',
@@ -119,21 +141,11 @@ $(function() {
                             name: 'user',
                             type: 'bar',
                             data: data.Count,
-                            itemStyle:{
-                                normal: {
-                                    color:'#CD919E'
-                                }
-                            }
                         },
                         {
                             name: 'repository',
                             type: 'bar',
-                            data: data.repos,
-                            itemStyle:{
-                                normal: {
-                                    color:'#6495ED'
-                                }
-                            }
+                            data: data.repos
                         }
                     ]
                 });
@@ -142,10 +154,17 @@ $(function() {
 
         var myChart4 = echarts.init(document.getElementById('email'),'macarons');
         var url = "/statistics/user/email";
+        myChart4 .showLoading({
+            text : 'Loading...',
+            effect : 'spin',
+            textStyle : {
+                fontSize : 25
+            }
+        });
         $.ajax(url, {
             type: 'GET',
             success: function (data, textStatus) {
-
+                myChart4.hideLoading();
                 myChart4.setOption({
                     title : {
                         text: 'Email Counts',
@@ -166,7 +185,7 @@ $(function() {
                         data: data.Count,
                         itemStyle:{
                             normal: {
-                                color:'#43CD80'
+                                color:'#ffb980'
                             }
                         }
                     }]
@@ -176,10 +195,17 @@ $(function() {
 
         var myChart5 = echarts.init(document.getElementById('blog'),'macarons');
         var url = "/statistics/user/blog";
+        myChart5 .showLoading({
+            text : 'Loading...',
+            effect : 'spin',
+            textStyle : {
+                fontSize : 25
+            }
+        });
         $.ajax(url, {
             type: 'GET',
             success: function (data, textStatus) {
-
+                myChart5.hideLoading();
                 myChart5.setOption({
                     title : {
                         text: 'Blog Counts',
@@ -209,9 +235,18 @@ $(function() {
         });
 
         var myChart6 = echarts.init(document.getElementById('follow'),'macarons');
-         var url = "/statistics/user/follow"; 
-        $.ajax(url, {     type: 'GET',     
-            success: function (data, textStatus) {  
+         var url = "/statistics/user/follow";
+        myChart6 .showLoading({
+            text : 'Loading...',
+            effect : 'spin',
+            textStyle : {
+                fontSize : 25
+            }
+        });
+        $.ajax(url, {
+            type: 'GET', 
+            success: function (data, textStatus) {
+            myChart6.hideLoading();
             myChart6.setOption({             
                 title : {                 
                     text: 'Followers and Followings Per User',                 
