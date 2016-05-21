@@ -248,7 +248,7 @@ footer { padding: 15px; }
 .fa-heart:hover { color: #39ADB4; }
 .progress {	display: block; }
 .panel-default>.panel-heading {
-	background-color: #39ADB4;
+	background-color: #4682B4;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 	color: white;

@@ -129,4 +129,26 @@ public class UserStaController {
         return result;
     }
 
+    @RequestMapping(value="/statistics/user/follow",method = RequestMethod.GET)
+    public @ResponseBody Map<String, Object> getFollows() {
+        List<Integer> follower = service.countFollowers();
+        List<Integer> following = service.countFollowings();
+        String[] list = {"0~10","10~20","20~30","30~40","40~50","50~60","60~70","70~80","80~90","90~100","100+"};
+        Map<String,Object> result = new HashMap<>();
+        List<Object> Count1 = new ArrayList<>();
+        List<Object> Count2 = new ArrayList<>();
+        List<Object> Name = new ArrayList<>();
+
+        int len = list.length;
+        for(int i = 0;i<len;i++){
+            Name.add(list[i]);
+            Count1.add(follower.get(i));
+            Count2.add(following.get(i));
+        }
+        result.put("Count1",Count1);
+        result.put("Count2",Count2);
+        result.put("Name",Name);
+        return result;
+    }
+
 }

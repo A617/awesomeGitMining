@@ -5750,7 +5750,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:focus, a.list-g
 }
 
 .panel-heading > .dropdown .dropdown-toggle {
-    color: inherit
+    color: inherit;
 }
 
 .panel-title {
@@ -5761,7 +5761,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:focus, a.list-g
 }
 
 .panel-title > .small, .panel-title > .small > a, .panel-title > a, .panel-title > small, .panel-title > small > a {
-    color: inherit
+    color: inherit;
 }
 
 .panel-footer {

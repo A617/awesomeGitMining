@@ -89,6 +89,7 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/Chart.bundle.js"></script>
 <script src="/js/echarts.min.js"></script>
+<script src="/js/macarons.js"></script>
 <script src="/js/bigQuery.js"></script>
 
 </body>

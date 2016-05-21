@@ -18,4 +18,8 @@ public interface IUserStaService {
     public List<LinkedHashMap> countEmail();
 
     public List<Integer> countBlog();
+
+    public List<Integer> countFollowers();
+
+    public List<Integer> countFollowings();
 }

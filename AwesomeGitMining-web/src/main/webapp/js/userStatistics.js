@@ -6,7 +6,7 @@ $(function() {
 
     $(document).ready(function() {
 
-        var myChart1 = echarts.init(document.getElementById('company-pie-local'));
+        var myChart1 = echarts.init(document.getElementById('company-pie-local'),'macarons');
         var url = "/statistics/user/companyLocal";
         $.ajax(url, {
             type: 'GET',
@@ -41,7 +41,7 @@ $(function() {
         });
 
 
-        var myChart2 = echarts.init(document.getElementById('type-pie-local'));
+        var myChart2 = echarts.init(document.getElementById('type-pie-local'),'macarons');
         var url = "/statistics/user/typeLocal";
         $.ajax(url, {
             type: 'GET',
@@ -94,7 +94,7 @@ $(function() {
             }
         });
 
-        var myChart3 = echarts.init(document.getElementById('create_year'));
+        var myChart3 = echarts.init(document.getElementById('create_year'),'macarons');
         var url = "/statistics/user/createYear";
         $.ajax(url, {
             type: 'GET',
@@ -140,7 +140,7 @@ $(function() {
             }
         });
 
-        var myChart4 = echarts.init(document.getElementById('email'));
+        var myChart4 = echarts.init(document.getElementById('email'),'macarons');
         var url = "/statistics/user/email";
         $.ajax(url, {
             type: 'GET',
@@ -174,7 +174,7 @@ $(function() {
             }
         });
 
-        var myChart5 = echarts.init(document.getElementById('blog'));
+        var myChart5 = echarts.init(document.getElementById('blog'),'macarons');
         var url = "/statistics/user/blog";
         $.ajax(url, {
             type: 'GET',
@@ -207,6 +207,45 @@ $(function() {
                 });
             }
         });
+
+        var myChart6 = echarts.init(document.getElementById('follow'),'macarons');
+         var url = "/statistics/user/follow"; 
+        $.ajax(url, {     type: 'GET',     
+            success: function (data, textStatus) {  
+            myChart6.setOption({             
+                title : {                 
+                    text: 'Followers and Followings Per User',                 
+                    x:'center',                 
+                    y:'bottom'             
+                },             
+                tooltip: {                 
+                    trigger: 'axis'             
+                },             
+                legend: {                 
+                    data:['Followers','Followings']             
+                },             
+                xAxis: {                 
+                    type: 'category',                 
+                    splitLine: {show: false},                 
+                    data: data.Name             
+                },             
+                yAxis: {                 
+                    type: 'value'             
+                },             
+                series: [                 
+                    {                     
+                        name: 'Followers',                     
+                        type: 'line',                     
+                        data: data.Count1,                 
+                    },                 
+                    {                     
+                        name: 'Followings',                    
+                        type: 'line',                    
+                        data: data.Count2,                 
+                    }             
+                ]         
+            }); 
+        } });
     });
 });
 

@@ -4,9 +4,7 @@ import edu.nju.dao.UserStaDaoImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Dora on 2016/5/13.
@@ -48,7 +46,24 @@ public class UserStaServiceImpl implements IUserStaService{
     @Override
     public List<Integer> countBlog() {
         List<Integer> map = dao.countBlog();
-        map.remove("");
         return map;
+    }
+
+    /**
+     * 统计粉丝数 {0,10,20,30,40,50,60,70,80,90,100,18727};
+     * @return
+     */
+    @Override
+    public List<Integer> countFollowers() {
+        return dao.countFollowers();
+    }
+
+    /**
+     * 统计关注数 {0,10,20,30,40,50,60,70,80,90,100,114999}
+     * @return
+     */
+    @Override
+    public List<Integer> countFollowings() {
+        return dao.countFollowings();
     }
 }

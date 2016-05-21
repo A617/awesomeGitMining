@@ -3,7 +3,7 @@ $(function() {
 
     $(document).ready(function() {
 
-        var myChart1 = echarts.init(document.getElementById('company-pie-bq'));
+        var myChart1 = echarts.init(document.getElementById('company-pie-bq'),'macarons');
         var url = "/statistics/bq/companyBQ";
         $.ajax(url, {
             type: 'GET',

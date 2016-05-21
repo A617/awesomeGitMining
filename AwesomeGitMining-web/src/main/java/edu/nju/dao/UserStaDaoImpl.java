@@ -59,7 +59,6 @@ public class UserStaDaoImpl implements IUserStaDao {
         List<Integer>count=new ArrayList<Integer>();
         for(int i=0;i<sta.length-1;i++){
             count.add(mapper.countFans(sta[i],sta[i+1]));
-
         }
         return count;
     }

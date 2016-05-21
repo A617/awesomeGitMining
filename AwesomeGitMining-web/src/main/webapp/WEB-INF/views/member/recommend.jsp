@@ -90,7 +90,7 @@
 
 <div class="templatemo-flex-row"> 
     <div class="templatemo-content col-1 light-gray-bg templatemo-flex-row"> 
-        <div class="col-2 panel panel-default margin-10 animated fadeInUp">
+        <div class="col-2 panel panel-default margin-10 animated fadeInLeft">
             <div class="panel-heading"><h2>Recommendation from your search records</h2></div>
             <div class="panel-body">
                 <div class="dashboard-list">
@@ -117,7 +117,7 @@
               
         </div>
 
-        <div class="col-2 panel panel-default margin-10 animated fadeInUp">
+        <div class="col-2 panel panel-default margin-10 animated fadeInRight">
             <div class="panel-heading"><h2>Recommendation from your favorite records</h2></div>
             <div class="panel-body">
                 <ul class="dashboard-list">

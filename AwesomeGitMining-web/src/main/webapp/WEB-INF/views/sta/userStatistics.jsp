@@ -82,6 +82,8 @@
                 <div id="email" style="width: 100%;height:400px;"></div>
                 <hr size="2">
                 <div id="blog" style="width: 100%;height:400px;"></div>
+                <hr size="2">
+                <div id="follow" style="width: 100%;height:400px;"></div>
             </div>
         </div>
     </div>
@@ -96,6 +98,7 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/Chart.bundle.js"></script>
 <script src="/js/echarts.min.js"></script>
+<script src="/js/macarons.js"></script>
 <script src="/js/userStatistics.js"></script>
 
 </body>
