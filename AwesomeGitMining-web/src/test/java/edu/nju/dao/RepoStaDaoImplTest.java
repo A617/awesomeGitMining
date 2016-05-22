@@ -142,6 +142,16 @@ public class RepoStaDaoImplTest {
         }
 
     }
+    @Test
+    public void getLanByYearTest_forecast() throws Exception {
+        Map<String, Object> map = dao.getLanByYear_forecast();
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            System.out.println("key-->" + entry.getKey());
+            System.out.println("value-->" + entry.getValue());
+        }
+       
+    }
+
 
 
 }

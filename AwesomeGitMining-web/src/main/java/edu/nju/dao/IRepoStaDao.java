@@ -54,8 +54,6 @@ public interface IRepoStaDao {
      */
     List<String> countFirst10Languages();
     /**
-     * 统计每年的创建项目的语言的项目个数 map中key是年份，值是[{language=Ruby, c=280}, {language=Python, c=49}, ……]之类。年份不是写死的。
-     * 还有注意一下2007年只有一个项目，所以map中值有九个是null。
      * @return
      */
     Map<String,Object> getLanByYear();
@@ -115,5 +113,7 @@ public interface IRepoStaDao {
      * @return 返回每个项目的语言与fork，用于散点图
      */
     Map<String,Object> getLanAndFork_EachRepo();
+
+    Map<String,Object> getLanByYear_forecast();
 
 }
