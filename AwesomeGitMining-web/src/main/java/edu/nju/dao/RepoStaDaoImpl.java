@@ -161,5 +161,27 @@ public class RepoStaDaoImpl implements IRepoStaDao {
         return list;
     }
 
+    @Override
+    public Map<String, Object> getLanAndSize_EachRepo() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<String> lan = mapper.countFirst10Languages();
+        for (String language : lan) {
+            List<Integer> list = mapper.getSizeByLan(language);
+            map.put(language, list);
+        }
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> getLanAndFork_EachRepo() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<String> lan = mapper.countFirst10Languages();
+        for (String language : lan) {
+            List<Integer> list = mapper.countForks();
+            map.put(language, list);
+        }
+        return map;
+    }
+
 
 }

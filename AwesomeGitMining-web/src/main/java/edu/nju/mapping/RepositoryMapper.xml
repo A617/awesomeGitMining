@@ -596,4 +596,10 @@ select login
     SELECT languages
     from repository;
   </select>
+  <select id="getSizeByLan" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select size
+    from repository
+    force index (primary)
+    where language= #{language}
+  </select>
 </mapper>

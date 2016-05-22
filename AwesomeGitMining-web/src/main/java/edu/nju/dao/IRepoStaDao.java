@@ -103,5 +103,17 @@ public interface IRepoStaDao {
      * @return 当年的语言使用情况
      */
     List<Integer> getLanguageUsageByYear(String year);
+    /**
+     *
+     * @param
+     * @return 返回每个项目的语言与大小，用于散点图
+     */
+    Map<String,Object> getLanAndSize_EachRepo();
+    /**
+     *
+     * @param
+     * @return 返回每个项目的语言与fork，用于散点图
+     */
+    Map<String,Object> getLanAndFork_EachRepo();
 
 }
