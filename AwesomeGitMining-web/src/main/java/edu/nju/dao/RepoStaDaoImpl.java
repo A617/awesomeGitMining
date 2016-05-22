@@ -188,9 +188,6 @@ public class RepoStaDaoImpl implements IRepoStaDao {
         Map<String, Object> map = new HashMap<String, Object>();
         List<String> lan = mapper.countFirst10Languages();
         List<String> year = mapper.getYear();
-        String nextYear=Integer.parseInt(year.get(year.size()-1))+1+"";//得到下一年
-        List<String>year_addFore= mapper.getYear();
-        year_addFore.add(nextYear);
         int size=year.size();
         double []x=new double[size];
         for(int i=0;i<size;i++){
