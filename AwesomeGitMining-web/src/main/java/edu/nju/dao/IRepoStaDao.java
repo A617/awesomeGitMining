@@ -113,7 +113,11 @@ public interface IRepoStaDao {
      * @return 返回每个项目的语言与fork，用于散点图
      */
     Map<String,Object> getLanAndFork_EachRepo();
-
+    /**
+     *
+     * @param
+     * @return 预测每年的语言使用情况（根据创建项目数目）
+     */
     Map<String,Object> getLanByYear_forecast();
 
 }
