@@ -24,6 +24,21 @@ public class RepoDaoImpl implements IRepoDao {
     }
 
     @Override
+    public int insert(Repository record) {
+        return mapper.insert(record);
+    }
+
+    @Override
+    public int insertContribute(String full_name, String login) {
+        return mapper.insertContribute(full_name,login);
+    }
+
+    @Override
+    public int insertSubscribe(String full_name, String login) {
+        return mapper.insertSubscribe(full_name,login);
+    }
+
+    @Override
     public List<String> getAllFullname() {
         return mapper.selectFullName();
     }
