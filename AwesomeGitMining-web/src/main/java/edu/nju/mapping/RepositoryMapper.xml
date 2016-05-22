@@ -601,5 +601,6 @@ select login
     from repository
     force index (primary)
     where language= #{language}
+    order by size DESC
   </select>
 </mapper>

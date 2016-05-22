@@ -2,6 +2,7 @@ package edu.nju.controller;
 
 import edu.nju.service.IMemberStaService;
 import edu.nju.service.IRepoStaService;
+import edu.nju.service.RepoStaServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,10 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by tj on 2016/5/17.
@@ -100,4 +98,24 @@ public class RepoStaController {
         result.put("test",test);
         return result;
     }
+
+    @RequestMapping(value = "/statistics/repository/lan_size", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Map<String, Object> getLanguage_size() {
+        Map<String, Object> result = new HashMap<>();
+        Map<String,Object> data = repoStaService.getLanAndSize_EachRepo();
+
+        List<String> Name = new ArrayList<>();
+        List<Object> Count = new ArrayList<>();
+
+        for (Map.Entry<String, Object> entry : data.entrySet()) {
+            Name.add(entry.getKey());
+            Count.add(entry.getValue());
+        }
+        result.put("Count", Count);
+        result.put("Name", Name);
+        return result;
+    }
+
 }

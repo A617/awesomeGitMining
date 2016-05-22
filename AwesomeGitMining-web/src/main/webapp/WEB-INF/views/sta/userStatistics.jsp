@@ -83,8 +83,8 @@
                 <div id="email" style="width: 100%;height:400px;"></div>
                 <hr size="2">
                 <div id="follow" style="width: 100%;height:400px;"></div>
-                <div id="worldMap" style="width: 100%;height:800px;"></div>
                 <hr size="2">
+                <div id="worldMap" style="width: 100%;height:800px;"></div>
             </div>
         </div>
     </div>

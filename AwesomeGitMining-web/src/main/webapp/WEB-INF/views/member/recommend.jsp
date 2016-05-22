@@ -12,7 +12,6 @@
     <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
     <script src="/js/jquery.min.js"></script>
-    <script src="/js/jquery.pagination.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $(".intro").mouseenter(function () {

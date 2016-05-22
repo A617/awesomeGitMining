@@ -2,55 +2,84 @@ $(function() {
 	var chart;
 
 	$(document).ready(function() {
-		// get company
-		var url = "/json/company2014"
+
+		var myChart1 = echarts.init(document.getElementById('lan_size'),'macarons');
+		var url = "/statistics/repository/lan_size";
+		myChart1 .showLoading({
+			text : 'Loading...',
+			effect : 'spin',
+			textStyle : {
+				fontSize : 25
+			}
+		});
 		$.ajax(url, {
-			type : 'GET',
-			// async : false,
-			// contentType : 'application/json',
-			// dataType : 'json',
-			success : function(data, textStatus) {
-				// Set up the chart
-				var companychart = new Highcharts.Chart({
-					chart : {
-						renderTo : 'language',
-						type : 'column',
-						margin : 100,
-						options3d : {
-							enabled : true,
-							alpha : 5,
-							beta : 15,
-							depth : 50,
-							viewDistance : 25
+			type: 'GET',
+			success: function (data, textStatus) {
+				var d = echarts.dataTool.prepareBoxplotData(
+					data.Count
+				);
+				myChart1.hideLoading();
+				myChart1.setOption({
+					title: [
+						{
+							text: 'Distribution Of Language And Size',
+							left: 'center'
+						}
+					],
+					tooltip: {
+						trigger: 'item',
+						axisPointer: {
+							type: 'shadow'
 						}
 					},
-					title : {
-						text : 'Numbers of Repository in Different Languages'
+					grid: {
+						left: '10%',
+						right: '10%',
+						bottom: '15%'
 					},
-					plotOptions : {
-						column : {
-							depth : 25
-						}
-					},
-					xAxis : {
-						categories : data.language
-					},
-					yAxis : {
-						title : {
-							text : 'Numbers of Repository'
+					xAxis: {
+						type: 'category',
+						data: data.Name,
+						boundaryGap: true,
+						nameGap: 30,
+						splitArea: {
+							show: false
 						},
+						axisLabel: {
+							formatter: '{value}'
+						},
+						splitLine: {
+							show: false
+						}
 					},
-					tooltip : {
-						valueSuffix : ''
+					yAxis: {
+						type: 'value',
+						splitArea: {
+							show: true
+						}
 					},
-					series : [ {
-						name : 'Language',
-						data : data.number
-					} ]
+					series: [
+						{
+							name: 'boxplot',
+							type: 'boxplot',
+							data: d.boxData
+						},
+						{
+							name: 'outlier',
+							type: 'scatter',
+							data: d.outliers
+						}
+					]
 				});
 			}
 		});
 
-    });
-
+	});
 });
+
+var backgroundColor = [
+	"#FFFFCC", "#CCFFFF", "#FFCCCC",
+	"#99CCCC", "#FFCC99", "#FFCCCC",
+	"#FF9999", "#996699", "#FFFF99",
+	"#0099CC", "#FF6666", "#99CC66"
+];
