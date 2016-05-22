@@ -74,7 +74,8 @@
                 <hr>
 
                 <div id="company-pie-bq" style="width: 100%;height:400px;"></div>
-
+                <div id="pushTime" style="width: 100%;height:800px;"></div>
+                <hr size="2">
             </div>
         </div>
     </div>
@@ -91,6 +92,7 @@
 <script src="/js/echarts.min.js"></script>
 <script src="/js/macarons.js"></script>
 <script src="/js/bigQuery.js"></script>
-
+<script src="/js/library/json2.js"></script>
+<script src="/js/pushTime.js"></script>
 </body>
 </html>
