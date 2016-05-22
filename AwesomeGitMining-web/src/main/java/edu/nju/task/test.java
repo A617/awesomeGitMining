@@ -38,62 +38,101 @@ public class test {
 
 
         String path = "src/main/resources/2016-05-16-15.json.gz";
-        String url = "http://data.githubarchive.org/2016-05-16-15.json.gz";
+        String url = "http://data.githubarchive.org/2016-05-20-15.json.gz";
 
 
-        ObjectMapper mapper = new ObjectMapper();
-
-        JsonFactory f = new JsonFactory();
 
 
+        Calendar date = Calendar.getInstance();
+        date.setTime(new Date());
+        date.set(Calendar.DATE, date.get(Calendar.DATE) - 2);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date dt = new Date();
         try {
-    //        HttpRequest.downloadFile(path,url);
-            List<String> list = analyzeTop50Repos(path);
-            for(String repo:list) {
-                String s = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo);
-
-
-                Repository po = mapper.readValue(s,Repository.class);
-                po.setOwner_name(po.getFull_name().split("/")[0]);
-                System.out.println(po);
-
-
-                String contri = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/contributors");
-                JsonParser jp = f.createJsonParser(contri);
-                jp.nextToken();
-                while (jp.nextToken() == JsonToken.START_OBJECT) {
-                    System.out.println(mapper.readValue(jp, Map.class).get("login"));
-                }
-
-//                String colla = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/collaborators");
-//                JsonParser jp2 = f.createJsonParser(contri);
-//                jp2.nextToken();
-//                while (jp2.nextToken() == JsonToken.START_OBJECT) {
-//                    System.out.println(mapper.readValue(jp2, Map.class).get("login"));
-//                }
-
-                String subs = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/subscribers");
-                JsonParser jp3 = f.createJsonParser(subs);
-                jp3.nextToken();
-                while (jp3.nextToken() == JsonToken.START_OBJECT) {
-                    System.out.println(mapper.readValue(jp3, Map.class).get("login"));
-                }
-
-
-            }
-        } catch (IOException e) {
+            dt = sdf.parse(sdf.format(date.getTime()));
+        } catch (java.text.ParseException e) {
             e.printStackTrace();
-
         }
 
+
+        Map<String,Integer> map = new HashMap<>();
+
+        for(int i=0;i<5;i++) {
+            url = "http://data.githubarchive.org/"+sdf.format(dt)+"-"+(12+i)+".json.gz";
+            System.out.println(url);
+            path = "src/main/resources/data.json.gz";
+            try {
+                HttpRequest.downloadFile(path, url);
+
+                System.out.println("download "+sdf.format(dt)+"-"+(12+i)+".json.gz successfully!");
+                getRepoForkMap(path,map);
+
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+
+            }
+        }
+
+        System.out.println(map);
+
+        List<String> list=analyzeTop100Repos(map);
+
+        System.out.println(list);
+        saveRepo(list);
 
 
     }
 
-
-    private static List<String> analyzeTop50Repos(String path) throws IOException{
+    private static void saveRepo(List<String> list){
         ObjectMapper mapper = new ObjectMapper();
-        Map<String,Integer> map = new HashMap<>();
+        JsonFactory f = new JsonFactory();
+
+        for (String repo : list) {
+            String s = null;
+            try {
+                s = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo);
+
+
+                Repository po = mapper.readValue(s, Repository.class);
+                po.setOwner_name(po.getFull_name().split("/")[0]);
+                System.out.println(po);
+
+                try {
+                    String contri = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/contributors");
+                    JsonParser jp = f.createJsonParser(contri);
+                    jp.nextToken();
+                    while (jp.nextToken() == JsonToken.START_OBJECT) {
+                        System.out.println(mapper.readValue(jp, Map.class).get("login"));
+                    }
+                } catch (IOException e) {
+                }
+
+
+                try {
+                    String subs = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/subscribers");
+                    JsonParser jp3 = f.createJsonParser(subs);
+                    jp3.nextToken();
+                    while (jp3.nextToken() == JsonToken.START_OBJECT) {
+                        System.out.println(mapper.readValue(jp3, Map.class).get("login"));
+                    }
+                } catch (IOException e) {
+
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+
+
+        }
+    }
+
+    private static Map<String,Integer> getRepoForkMap(String path,Map<String,Integer> map) throws IOException{
+        ObjectMapper mapper = new ObjectMapper();
         BufferedReader br=new BufferedReader(new InputStreamReader(new GZIPInputStream(new FileInputStream(path))));
         String json;
         while((json=br.readLine())!=null){
@@ -107,7 +146,12 @@ public class test {
             }
 
         }
-        return new ArrayList<String>(sortMapByValue(map).keySet()).subList(0,50);
+        return map;
+    }
+
+
+    private static List<String> analyzeTop100Repos(Map<String,Integer> map){
+        return new ArrayList<String>(sortMapByValue(map).keySet()).subList(0,100);
     }
 
 

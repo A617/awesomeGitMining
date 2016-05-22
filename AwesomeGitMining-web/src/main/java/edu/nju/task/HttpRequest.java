@@ -71,7 +71,6 @@ public class HttpRequest {
                                 e);
                     }
                 }
-                System.out.println("Download successfully");
             }
             // 如果失败
             else {

@@ -13,6 +13,10 @@ public interface RepositoryMapper {
 
     int insert(Repository record);
 
+    int insertContribute(String full_name,String login);
+
+    int insertSubscribe(String full_name,String login);
+
     int insertSelective(Repository record);
 
     Repository selectByPrimaryKey(Integer id);
@@ -48,15 +52,15 @@ public interface RepositoryMapper {
 
     List<Repository> selectReposByLan_Key_Year(String language, String keyword, String year, @Param(value = "sort") String sort, int pageSize, int pageOffset);
 
-//    int countAll();
-//
-//    int countSearch(String fullName);
-//
-//    int countYear(int year);
-//
-//    int countLanguage(String language);
-//
-//    int countKey(String keyword);
+    int countAll();
+
+    int countSearch(String fullName);
+
+    int countYear(int year);
+
+    int countLanguage(String language);
+
+    int countKey(String keyword);
 
     int countLan_Key_Year(String language, String keyword, String year);
 
@@ -88,5 +92,17 @@ public interface RepositoryMapper {
 
     List<LinkedHashMap> countAverageSize_year();
 
+
     List<String> selectLanguages();
+
+    int selectRankOfFork(String full_name);
+
+    int selectRankOfSize(String full_name);
+
+    int selectRankOfScale(String full_name);
+
+    int selectRankOfPromising(String full_name);
+
+    int selectRankOfStar(String full_name);
+
 }

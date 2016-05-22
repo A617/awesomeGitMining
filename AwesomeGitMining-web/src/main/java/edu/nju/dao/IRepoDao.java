@@ -11,6 +11,13 @@ import java.util.Map;
  */
 public interface IRepoDao {
     Repository selectByPrimaryKey(Integer id);
+
+    int insert(Repository record);
+
+    int insertContribute(String full_name,String login);
+
+    int insertSubscribe(String full_name,String login);
+
     List<String> getAllFullname();
     /**
      * 获取所有项目

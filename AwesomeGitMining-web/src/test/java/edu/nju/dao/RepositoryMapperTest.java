@@ -22,6 +22,8 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)        //表示继承了SpringJUnit4ClassRunner类
 @ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class RepositoryMapperTest {
+
+
     @Resource
     private RepositoryMapper dao;
 
@@ -62,7 +64,19 @@ public class RepositoryMapperTest {
 
     }
 
-    //
+
+    @Test
+    public void selectRankOfFork() throws Exception {
+        System.out.println(dao.selectRankOfFork("jquery/jquery"));
+    }
+
+    @Test
+    public void selectRankOfSize() throws Exception {
+        System.out.println(dao.selectRankOfSize("jquery/jquery"));
+    }
+
+//
+
 //    @Test
 //    public void testCount() {
 //        System.out.println(dao.countSearch("tj"));
