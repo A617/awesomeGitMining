@@ -46,12 +46,14 @@ public class RepoStaController {
         result.put("name", languages);
         return result;
     }
+
     @RequestMapping(value = "/statistics/repository/languageTrendDynamic", method = RequestMethod.GET)
     public
     @ResponseBody
     Map<String, Object> getLanguageTrendDynamic() {
         return repoStaService.getLanguageTrendDynamic();
     }
+
     @RequestMapping(value = "/statistics/repository/forkDistribute", method = RequestMethod.GET)
     public
     @ResponseBody
@@ -79,10 +81,23 @@ public class RepoStaController {
     Map<String, Object> starForkRelation() {
         return repoStaService.getForkStarRelation();
     }
+
     @RequestMapping(value = "/statistics/repository/yearSizeRelation", method = RequestMethod.GET)
     public
     @ResponseBody
     Map<String, Object> yearSizeRelation() {
         return repoStaService.getYearSizeRelation();
+    }
+
+    @RequestMapping(value = "/statistics/repository/languageRelation", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Map<String, Object> getLanguageRelation() {
+        Map<String, Object> result = new HashMap<>();
+        List<String> names = repoStaService.getTop10Language();
+        result.put("name", names);
+        int[][] test = repoStaService.getLanguageRelation();
+        result.put("test",test);
+        return result;
     }
 }

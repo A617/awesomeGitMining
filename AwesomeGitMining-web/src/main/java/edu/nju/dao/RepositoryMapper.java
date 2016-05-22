@@ -29,24 +29,24 @@ public interface RepositoryMapper {
 
     Repository selectByFullName(String full_name);
 
-    List<Repository> searchRepository(Map<String,Object> map);
+    List<Repository> searchRepository(Map<String, Object> map);
 
-    List<Repository> selectReposSortedByFork(Map<String,Object> map);
+    List<Repository> selectReposSortedByFork(Map<String, Object> map);
 
-    List<Repository> selectReposSortedByStar(Map<String,Object> map);
+    List<Repository> selectReposSortedByStar(Map<String, Object> map);
 
-    List<Repository> selectReposSortedByContribute(Map<String,Object> map);
+    List<Repository> selectReposSortedByContribute(Map<String, Object> map);
 
-    List<Repository> selectAllPaged(Map<String,Object> map);
+    List<Repository> selectAllPaged(Map<String, Object> map);
 
-    List<Repository> selectReposByYear(Map<String,Object> map);
+    List<Repository> selectReposByYear(Map<String, Object> map);
 
-    List<Repository> selectReposByLanguage(Map<String,Object> map);
+    List<Repository> selectReposByLanguage(Map<String, Object> map);
 
-    List<Repository> selectReposByKey(Map<String,Object> map);
+    List<Repository> selectReposByKey(Map<String, Object> map);
 
 
-    List<Repository> selectReposByLan_Key_Year(String language,String keyword,String year,@Param(value="sort") String sort,int pageSize,int pageOffset);
+    List<Repository> selectReposByLan_Key_Year(String language, String keyword, String year, @Param(value = "sort") String sort, int pageSize, int pageOffset);
 
 //    int countAll();
 //
@@ -58,11 +58,11 @@ public interface RepositoryMapper {
 //
 //    int countKey(String keyword);
 
-    int countLan_Key_Year(String language,String keyword,String year);
+    int countLan_Key_Year(String language, String keyword, String year);
 
     List<LinkedHashMap> countFirst20Languages();
 
-    Integer countLanguagesCreated(String year,String name);
+    Integer countLanguagesCreated(String year, String name);
 
     List<LinkedHashMap> getLanguageAndSize();
 
@@ -74,11 +74,11 @@ public interface RepositoryMapper {
 
     List<String> countFirst10Languages();
 
-    List<Integer>countForks();
+    List<Integer> countForks();
 
-    List<Integer>countSubscribers();
+    List<Integer> countSubscribers();
 
-    List<Integer>countStars();
+    List<Integer> countStars();
 
     List<String> getYear();
 
@@ -88,4 +88,5 @@ public interface RepositoryMapper {
 
     List<LinkedHashMap> countAverageSize_year();
 
+    List<String> selectLanguages();
 }

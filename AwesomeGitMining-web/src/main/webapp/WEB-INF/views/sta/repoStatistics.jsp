@@ -29,6 +29,11 @@
             text-anchor:middle;
             text-align:center;
         }
+        .chord path {
+            fill-opacity: 0.67;
+            stroke: #000;
+            stroke-width: 0.5px;
+        }
     </style>
 </head>
 <body>
@@ -90,7 +95,7 @@
                 <h2>Local</h2><hr>
                 <label for = "lineChart" class="title">
                     Language usage<br />
-                    <canvas id="lineChart" width="1000" height="700"></canvas>
+                    <canvas id="lineChart" width="800" height="700"></canvas>
                 </label>
                 <label for = "barChart" class="title">
                     Year and Size relation<br />
@@ -115,12 +120,10 @@
 <script src="/js/SearchReposBubble.js"></script>
 <script src="/js/library/d3.min.js" charset="utf-8"></script>
 <script src ="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.js"></script>
-<script src="/js/histogram.js"></script>
 <script src="/js/languageTrend.js"></script>
 <script src="/js/echarts.min.js"></script>
 <script src="/js/EchartPoint.js"></script>
 <script src="/js/barChart.js"></script>
-
-
+<script src="/js/chord.js"></script>
 </body>
 </html>

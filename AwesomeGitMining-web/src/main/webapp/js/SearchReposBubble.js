@@ -9,7 +9,7 @@ $(document).ready(function () {
             var data = {"children": obj};
             // snippet.log(data.obj.name);
             var width = 800;	//SVG绘制区域的宽度
-            var height = 800;	//SVG绘制区域的高度
+            var height = 1000;	//SVG绘制区域的高度
             var svg = d3.select("#local")			//选择<body>
                 .append("svg")			//在<body>中添加<svg>
                 .attr("width", width)	//设定<svg>的宽度属性
@@ -20,7 +20,7 @@ $(document).ready(function () {
                 .append("text")
                 .text(title)
                 .attr("class","title")
-                .attr("x",width/2+100)
+                .attr("x",width/2-50)
                 .attr("y",40);
 
             var pack = d3.layout.pack()

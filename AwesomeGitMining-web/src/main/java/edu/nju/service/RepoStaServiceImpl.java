@@ -112,6 +112,11 @@ public class RepoStaServiceImpl implements IRepoStaService {
         return result;
     }
 
+    @Override
+    public int[][] getLanguageRelation() {
+        return repoStaDao.getLanguageRelation();
+    }
+
     private int getMax(List<Integer> dataset) {
         int max = 0;
         for (int i = 0; i < dataset.size(); i++) {

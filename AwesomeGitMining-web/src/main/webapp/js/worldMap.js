@@ -15,7 +15,7 @@ $(document).ready(function () {
         success: function (obj) {
             option = {
                 title: {
-                    text: 'World Population (2010)',
+                    text: 'user location',
                     left: 'center',
                     top: 'top'
                 },

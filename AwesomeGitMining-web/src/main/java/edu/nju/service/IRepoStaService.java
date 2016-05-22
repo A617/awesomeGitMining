@@ -76,4 +76,10 @@ public interface IRepoStaService {
      * @return
      */
     Map<String,Object> getLanguageTrendDynamic();
+
+    /**
+     *
+     * @return 语言两两合作使用情况
+     */
+    int[][] getLanguageRelation();
 }

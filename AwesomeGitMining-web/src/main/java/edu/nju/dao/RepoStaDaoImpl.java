@@ -20,7 +20,6 @@ public class RepoStaDaoImpl implements IRepoStaDao {
     RepositoryMapper mapper;
 
 
-
     @Override
     public List<LinkedHashMap> getLanguageAndSize() {
         List<LinkedHashMap> list = mapper.getLanguageAndSize();
@@ -38,23 +37,45 @@ public class RepoStaDaoImpl implements IRepoStaDao {
     @Override
     public List<String> getStaLanguages() {
         ObjectMapper mapper2 = new ObjectMapper();
-        List<Repository> repo_list=mapper.selectAll();
+        List<Repository> repo_list = mapper.selectAll();
 
-        Map<String,Integer> languages = null;
+        Map<String, Integer> languages = null;
         for (Repository repo : repo_list) {
-             try {
-             languages = mapper2.readValue(repo.getLanguages(), Map.class);
-             System.out.println(languages.keySet().size());
-             } catch (IOException e) {
+            try {
+                languages = mapper2.readValue(repo.getLanguages(), Map.class);
+            } catch (IOException e) {
                 e.printStackTrace();
-             }
+            }
         }
         return null;
     }
 
     @Override
     public int[][] getLanguageRelation() {
-        return new int[0][];
+        List<String> names = mapper.countFirst10Languages();
+        int[][] result = new int[names.size()][names.size()];
+        for (int i = 0; i < result[0].length; i++) {
+            for (int j = 0; j < result[0].length; j++) {
+                result[i][j] = 0;
+            }
+        }
+        List<String> languages = mapper.selectLanguages();
+        for (String str : languages) {
+            for (int i = 0; i < names.size(); i++) {
+                String name1 = names.get(i);
+                for (int j = 0; j < names.size(); j++) {
+                    String name2 = names.get(j);
+                    if (i == j) {
+                        result[i][j] = 0;
+                    } else {
+                        if (str.contains(name1 + "\"") && str.contains(name2 + "\"")) {
+                            result[i][j] += 1;
+                        }
+                    }
+                }
+            }
+        }
+        return result;
     }
 
 
@@ -64,6 +85,7 @@ public class RepoStaDaoImpl implements IRepoStaDao {
 
         return list;
     }
+
     @Override
     public List<String> countFirst10Languages() {
         List<String> list = mapper.countFirst10Languages();
@@ -74,14 +96,14 @@ public class RepoStaDaoImpl implements IRepoStaDao {
     @Override
     public Map<String, Object> getLanByYear() {
         Map<String, Object> map = new HashMap<String, Object>();
-        List<String> lan=mapper.countFirst10Languages();
-        List<String> year=mapper.getYear();
-        for(String language:lan){
+        List<String> lan = mapper.countFirst10Languages();
+        List<String> year = mapper.getYear();
+        for (String language : lan) {
             List<Integer> list = new ArrayList<>();
-            for(String y:year){
-                list.add(mapper.countLanguagesCreated(y,language));
+            for (String y : year) {
+                list.add(mapper.countLanguagesCreated(y, language));
             }
-            map.put(language,list);
+            map.put(language, list);
         }
         return map;
     }
@@ -93,32 +115,32 @@ public class RepoStaDaoImpl implements IRepoStaDao {
 
     @Override
     public List<Integer> countForks() {
-        List<Integer>list=mapper.countForks();
+        List<Integer> list = mapper.countForks();
 
         return list;
     }
 
     @Override
     public List<Integer> countStars() {
-        List<Integer>list=mapper.countStars();
+        List<Integer> list = mapper.countStars();
         return list;
     }
 
     @Override
     public List<Integer> countSubscribers() {
-        List<Integer>list=mapper.countSubscribers();
+        List<Integer> list = mapper.countSubscribers();
         return list;
     }
 
     @Override
     public List<String> eachYear() {
-        List<String>list=mapper.eachYear();
+        List<String> list = mapper.eachYear();
         return list;
     }
 
     @Override
     public List<Integer> eachSize() {
-        List<Integer>list=mapper.eachSize();
+        List<Integer> list = mapper.eachSize();
         return list;
     }
 
@@ -131,12 +153,13 @@ public class RepoStaDaoImpl implements IRepoStaDao {
 
     @Override
     public List<Integer> getLanguageUsageByYear(String year) {
-        List<String> lan=mapper.countFirst10Languages();
+        List<String> lan = mapper.countFirst10Languages();
         List<Integer> list = new ArrayList<>();
-        for(String language:lan){
-            list.add(mapper.countLanguagesCreated(year,language));
+        for (String language : lan) {
+            list.add(mapper.countLanguagesCreated(year, language));
         }
         return list;
     }
+
 
 }

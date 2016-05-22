@@ -112,4 +112,15 @@ public class RepoStaDaoImplTest {
     public void testLanguageTrend() {
         System.out.println(dao.getLanguageUsageByYear("2008"));
     }
+
+    @Test
+    public void testLanguageRelation() {
+        int[][] test = dao.getLanguageRelation();
+        for (int i = 0; i < test[0].length; i++) {
+            System.out.println();
+            for (int j = 0; j < test[0].length; j++) {
+                System.out.print(test[i][j]+" ");
+            }
+        }
+    }
 }

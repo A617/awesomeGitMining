@@ -125,7 +125,7 @@ $(document).ready(function () {
                     tooltip: {},
                     legend: {
                         x: 'right',
-                        data: ['GDP'],
+                        data: ['language']
                     },
                     calculable: true,
                     grid: {
@@ -149,7 +149,7 @@ $(document).ready(function () {
                         }
                     ],
                     series: [
-                        {name: 'GDP', type: 'bar'},
+                        {name: 'language', type: 'bar'},
 
                     ]
                 },

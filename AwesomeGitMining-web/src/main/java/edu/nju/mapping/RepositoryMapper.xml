@@ -557,4 +557,8 @@ select login
   <select id="countAverageSize_year" resultType="java.util.LinkedHashMap">
     SELECT YEAR(created_at) as year,AVG(size) as size FROM `repository` GROUP BY 1;
   </select>
+  <select id="selectLanguages" resultType="java.lang.String">
+    SELECT languages
+    from repository;
+  </select>
 </mapper>
