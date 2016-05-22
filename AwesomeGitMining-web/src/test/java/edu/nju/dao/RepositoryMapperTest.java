@@ -201,5 +201,13 @@ public class RepositoryMapperTest {
             System.out.println(list.get(i));
         }
     }
+    @Test
+    public void getSizeByLanTest() throws Exception {
+        String lan="Ruby";
+        List<Integer> list = dao.getSizeByLan(lan);
+        for (Integer u : list)
+            System.out.println(u);
+
+    }
 
 }

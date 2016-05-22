@@ -123,4 +123,25 @@ public class RepoStaDaoImplTest {
             }
         }
     }
+
+    @Test
+    public void getLanAndSize_EachRepoTest() throws Exception {
+        Map<String, Object> map = dao.getLanAndSize_EachRepo();
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            System.out.println("key-->" + entry.getKey());
+            System.out.println("value-->" + entry.getValue());
+        }
+
+    }
+    @Test
+    public void getLanAndFork_EachRepoTest() throws Exception {
+        Map<String, Object> map = dao.getLanAndFork_EachRepo();
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            System.out.println("key-->" + entry.getKey());
+            System.out.println("value-->" + entry.getValue());
+        }
+
+    }
+
+
 }

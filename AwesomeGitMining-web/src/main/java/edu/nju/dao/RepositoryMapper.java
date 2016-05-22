@@ -92,6 +92,7 @@ public interface RepositoryMapper {
 
     List<LinkedHashMap> countAverageSize_year();
 
+    List<Integer>getSizeByLan(String language);
 
     List<String> selectLanguages();
 
