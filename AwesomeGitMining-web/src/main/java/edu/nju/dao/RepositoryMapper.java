@@ -9,23 +9,11 @@ import java.util.List;
 import java.util.Map;
 
 public interface RepositoryMapper {
-    int deleteByPrimaryKey(Integer id);
-
     int insert(Repository record);
 
     int insertContribute(String full_name,String login);
 
     int insertSubscribe(String full_name,String login);
-
-    int insertSelective(Repository record);
-
-    Repository selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Repository record);
-
-    int updateByPrimaryKeyWithBLOBs(Repository record);
-
-    int updateByPrimaryKey(Repository record);
 
     List<Repository> selectAll();
 

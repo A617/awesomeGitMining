@@ -18,10 +18,6 @@ public class RepoDaoImpl implements IRepoDao {
     @Resource
     private RepositoryMapper mapper;
 
-    @Override
-    public Repository selectByPrimaryKey(Integer id) {
-        return mapper.selectByPrimaryKey(id);
-    }
 
     @Override
     public int insert(Repository record) {

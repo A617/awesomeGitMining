@@ -66,7 +66,7 @@ public class RepoServiceImpl implements IRepoService {
     @Override
     public Pager<Repository> getReposByLan_Key_Year(String language, String keyword, String year, String sort){
         switch (sort){
-            case "General":sort = "id";break;
+            case "General":sort = "pushed_at";break;
             case "Fork":sort="forks_count";break;
             case "Star":sort="stargazers_count";break;
             case "Contributor":sort="subscribers_count";break;

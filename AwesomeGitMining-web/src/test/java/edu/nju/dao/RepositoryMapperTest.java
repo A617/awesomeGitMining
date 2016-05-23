@@ -1,7 +1,12 @@
 package edu.nju.dao;
 
-import edu.nju.model.Pager;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.nju.model.Repository;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -9,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +28,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)        //表示继承了SpringJUnit4ClassRunner类
 @ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class RepositoryMapperTest {
+
 
 
     @Resource
@@ -192,4 +199,28 @@ public class RepositoryMapperTest {
 
     }
 
+    @Test
+    public void insert() throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        String repo = "leachim6/hello-world-leachim6";
+        String s = getGithubContentUsingHttpClient("api.github.com/repos/" + repo);
+
+
+        Repository po = mapper.readValue(s, Repository.class);
+        po.setOwner_name(po.getFull_name().split("/")[0]);
+        String lan = getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/languages");
+        po.setLanguages(lan);
+        dao.insert(po);
+    }
+
+    private static String token = "b6d4d30ba55a5f2166af787f1cacb762c235aaea";
+
+    public static String getGithubContentUsingHttpClient(String url) throws IOException {
+        String newUrl = "https://" + token + ":x-oauth-basic@" + url;
+        HttpClient client = new DefaultHttpClient();
+        HttpGet request = new HttpGet(newUrl);
+        HttpResponse response = client.execute(request);
+        String responseString = new BasicResponseHandler().handleResponse(response);
+        return responseString;
+    }
 }

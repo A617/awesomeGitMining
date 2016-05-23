@@ -10,7 +10,6 @@ import java.util.Map;
  * Created by tj on 2016/5/3.
  */
 public interface IRepoDao {
-    Repository selectByPrimaryKey(Integer id);
 
     int insert(Repository record);
 

@@ -31,7 +31,7 @@ public class UpdateDBTask {
     RepoDaoImpl dao;
 
     //每分钟的10秒执行
-    @Scheduled(cron = "00 00 20 * * ?")
+    @Scheduled(cron = "01 02 00 * * ?")
     public void job(){
 //        LOG.info(dao.getAllFullname().get(1));
        // LOG.info("hello。。。。");
@@ -93,6 +93,8 @@ public class UpdateDBTask {
 
                 Repository po = mapper.readValue(s, Repository.class);
                 po.setOwner_name(po.getFull_name().split("/")[0]);
+                String lan = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/languages");
+                po.setLanguages(lan);
                 dao.insert(po);
 
                 try {
@@ -103,6 +105,7 @@ public class UpdateDBTask {
                         dao.insertContribute(repo,(String)mapper.readValue(jp, Map.class).get("login"));
                     }
                 } catch (IOException e) {
+                    continue;
                 }
 
 
@@ -114,11 +117,12 @@ public class UpdateDBTask {
                         dao.insertSubscribe(repo,(String)mapper.readValue(jp3, Map.class).get("login"));
                     }
                 } catch (IOException e) {
-
+                    continue;
                 }
 
             } catch (IOException e) {
                 e.printStackTrace();
+                continue;
             }
 
 
