@@ -2,6 +2,7 @@ package edu.nju.dao;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.nju.model.Repository;
+import edu.nju.task.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -15,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.annotation.Resource;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -201,16 +203,24 @@ public class RepositoryMapperTest {
 
     @Test
     public void insert() throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
-        String repo = "leachim6/hello-world-leachim6";
-        String s = getGithubContentUsingHttpClient("api.github.com/repos/" + repo);
+//        String s = "{full_name='arthurbailao/gama-demo', name='gama-demo', owner_name='arthurbailao', language='JavaScript', open_issues_count=33, watchers_count=0, clone_url='https://github.com/arthurbailao/gama-demo.git', html_url='https://github.com/arthurbailao/gama-demo', homepage='null', created_at=Fri May 20 12:39:32 CST 2016, pushed_at=Sat May 21 14:50:22 CST 2016, updated_at=Fri May 20 23:52:23 CST 2016, size=889, stargazers_count=0, forks_count=17, subscribers_count=3, languages='{\"JavaScript\":202347,\"CSS\":10224,\"HTML\":4928}', size_score=null, scale_score=null, promising_score=null, participation_score=null, hot_score=null, description=''}";
+        ObjectMapper m = new ObjectMapper();
+//        Repository po = m.readValue(s,Repository.class);
+        String str = "[arthurbailao/gama-demo, DevMountain/JavaScript-Review, jtleek/datasharing, tensorflow/tensorflow, joomla-extensions/weblinks, yourtion/30dayMakeOS, LarryMad/recipes, ericmjl/Network-Analysis-Made-Simple, octocat/Spoon-Knife, rdpeng/ProgrammingAssignment2, twbs/bootstrap, mxstbr/react-boilerplate, fhc02sk/ALD-Uebung, barryclark/jekyll-now, rdpeng/ExData_Plotting1, leachim6/hello-world, joomla-projects/gsoc16_browser-automated-tests, rmotr-group-projects/pyp-w1-gw-tic-tac-toe, jlord/patchwork, googlesamples/android-architecture, angular/angular.js, zhangzibin/char-rnn-chinese, PythonWorkshop/intro-to-tensorflow, github/gitignore, DejanL/eZdravje, udacity/frontend-nanodegree-resume, firebase/quickstart-android, almasaeed2010/AdminLTE, 3lvis/Networking, deeplook/pydata_berlin2016_materials, Selz/plyr, ujjwalkarn/DataSciencePython, udacity/create-your-own-adventure, d3/d3, torvalds/linux, nightscout/cgm-remote-monitor, XX-net/XX-Net, yangyangwithgnu/use_vim_as_ide, HubPress/hubpress.io, inferjay/AndroidDevTools, JacksonTian/fks, Itseez/opencv, diegonogare/DataScience, rmotr-group-projects/pyp-w1-gw-extensible-calculator, NARKOZ/hacker-scripts, BYVoid/Batsh, sindresorhus/awesome, moozer/git-demo, AngularClass/angular2-webpack-starter, cutestrap/cutestrap, jobbole/awesome-python-cn, contiki-os/contiki, dypsilon/frontend-dev-bookmarks, LibreVR/Revive, mrdoob/three.js, google/flexbox-layout, driftyco/ionic, rdpeng/RepData_PeerAssessment1, awesome-br/awesome-br.github.io, django/django, twitter/distributedlog, avelino/awesome-go, sullo/nikto, Hopopgit/HopopApp, karan/Projects, shockone/black-screen, andlabs/libui, angular/quickstart, amix/vimrc, joshnewlan/say_what, vhf/free-programming-books, poole/hyde, geekcomputers/Python, Dogfalo/materialize, zzyyppqq/DrawingBoard, akveo/blur-admin, ujjwalkarn/Machine-Learning-Tutorials, wesm/pydata-book, rails/rails, reddit/reddit, donnemartin/data-science-ipython-notebooks, makersacademy/ruby-refresher, alibaba/dubbo, linnovate/mean, puikinsh/gentelella, ariya/phantomjs, FreeCodeCamp/FreeCodeCamp, syl20bnr/spacemacs, jaeho93/cal_project, kriasoft/react-starter-kit, getlantern/lantern, udacity/fullstack-nanodegree-vm, rhinstaller/anaconda, hyperledger/fabric, montassarelbehi/eGovFx, roots/sage, esthercrawford/EstherBot, jquery/jquery, BillSchofield/RefactoringToPatterns, andkulikov/Transitions-Everywhere]";
+        List<String> list= Arrays.asList(str.substring(1,str.length()-1).split(", "));
 
+        for(String repo:list) {
+            String s = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo);
+            System.out.println(repo);
 
-        Repository po = mapper.readValue(s, Repository.class);
-        po.setOwner_name(po.getFull_name().split("/")[0]);
-        String lan = getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/languages");
-        po.setLanguages(lan);
-        dao.insert(po);
+            Repository po = m.readValue(s, Repository.class);
+            po.setOwner_name(po.getFull_name().split("/")[0]);
+            String lan = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/languages");
+            po.setLanguages(lan);
+
+            if(dao.selectByFullName(repo)==null)
+                 dao.insert(po);
+        }
     }
 
     private static String token = "b6d4d30ba55a5f2166af787f1cacb762c235aaea";

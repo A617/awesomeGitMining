@@ -1,5 +1,6 @@
 package edu.nju.dao;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import edu.nju.model.Pager;
 import edu.nju.model.Repository;
 import edu.nju.model.SystemContext;
@@ -20,7 +21,7 @@ public class RepoDaoImpl implements IRepoDao {
 
 
     @Override
-    public int insert(Repository record) {
+    public int insert(Repository record){
         return mapper.insert(record);
     }
 

@@ -1,5 +1,6 @@
 package edu.nju.dao;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import edu.nju.model.Repository;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -61,6 +62,8 @@ public interface RepositoryMapper {
     List<LinkedHashMap> countCreatedYear();
 
     List<String> getContributors(String full_name);
+
+    List<String> getSubscribers(String full_name);
 
     List<String> getCollaborators(String repo_fullname);
 

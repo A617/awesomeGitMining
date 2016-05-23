@@ -39,6 +39,7 @@
   </sql>
 
   <insert id="insert" parameterType="edu.nju.model.Repository" >
+    set  @@session.foreign_key_checks = 0;
     insert into repository ( full_name, name,
       owner_name, language, open_issues_count, 
       watchers_count, clone_url, html_url, 
@@ -59,10 +60,12 @@
       )
   </insert>
   <insert id="insertContribute" >
+    set  @@session.foreign_key_checks = 0;
     insert into contribute (full_name, login)
     values (#{0},#{1})
   </insert>
   <insert id="insertSubscribe" >
+    set  @@session.foreign_key_checks = 0;
     insert into subscribe (full_name, login)
     values (#{0},#{1})
   </insert>
@@ -259,6 +262,11 @@ select login
   from contribute
   where full_name = #{full_name}
 </select>
+  <select id="getSubscribers" resultType="java.lang.String" parameterType="java.lang.String">
+    select login
+    from subscribe
+    where full_name = #{full_name}
+  </select>
   <select id="getCollaborators" resultType="java.lang.String" parameterType="java.lang.String">
     select login
     from collaborate

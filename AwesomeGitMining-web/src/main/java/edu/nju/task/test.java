@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import edu.nju.dao.RepoDaoImpl;
 import edu.nju.model.Repository;
 import org.apache.http.Header;
@@ -99,13 +100,16 @@ public class test {
             String s = null;
             try {
                 s = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo);
-
+                System.out.println(repo);
 
                 Repository po = mapper.readValue(s, Repository.class);
                 po.setOwner_name(po.getFull_name().split("/")[0]);
                 String lan = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/languages");
                 po.setLanguages(lan);
-                dao.insert(po);
+                System.out.println(po);
+
+                    dao.insert(po);
+
 
                 try {
                     String contri = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/contributors");

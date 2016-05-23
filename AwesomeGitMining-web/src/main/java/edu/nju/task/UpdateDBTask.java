@@ -5,7 +5,9 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import edu.nju.dao.RepoDaoImpl;
+import edu.nju.dao.RepositoryMapper;
 import edu.nju.model.Repository;
 import org.apache.log4j.Logger;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -28,52 +30,56 @@ public class UpdateDBTask {
     private static final Logger LOG = Logger.getLogger(UpdateDBTask.class);
 
     @Resource
-    RepoDaoImpl dao;
+    RepositoryMapper dao;
 
-    //每分钟的10秒执行
-    @Scheduled(cron = "01 02 00 * * ?")
+    @Scheduled(cron = "00 47 10 * * ?")
     public void job(){
 //        LOG.info(dao.getAllFullname().get(1));
        // LOG.info("hello。。。。");
+//
+//
+//
+//
+//        Calendar date = Calendar.getInstance();
+//        date.setTime(new Date());
+//        date.set(Calendar.DATE, date.get(Calendar.DATE) - 2);
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        Date dt = new Date();
+//        try {
+//            dt = sdf.parse(sdf.format(date.getTime()));
+//        } catch (java.text.ParseException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//        Map<String,Integer> map = new HashMap<>();
+//
+//        for(int i=0;i<5;i++) {
+//            String url = "http://data.githubarchive.org/"+sdf.format(dt)+"-"+(12+i)+".json.gz";
+//            System.out.println(url);
+//            String path = "src/main/resources/data.json.gz";
+//            try {
+//                HttpRequest.downloadFile(path, url);
+//
+//                System.out.println("download "+sdf.format(dt)+"-"+(12+i)+" successfully!");
+//                getRepoForkMap(path,map);
+//
+//
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//
+//            }
+//        }
+//
+//        System.out.println(map);
+//
+//        List<String> list=analyzeTop100Repos(map);
 
-
-
-
-        Calendar date = Calendar.getInstance();
-        date.setTime(new Date());
-        date.set(Calendar.DATE, date.get(Calendar.DATE) - 2);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date dt = new Date();
-        try {
-            dt = sdf.parse(sdf.format(date.getTime()));
-        } catch (java.text.ParseException e) {
-            e.printStackTrace();
-        }
-
-
-        Map<String,Integer> map = new HashMap<>();
-
-        for(int i=0;i<5;i++) {
-            String url = "http://data.githubarchive.org/"+sdf.format(dt)+"-"+(12+i)+".json.gz";
-            System.out.println(url);
-            String path = "src/main/resources/data.json.gz";
-            try {
-                HttpRequest.downloadFile(path, url);
-
-                System.out.println("download "+sdf.format(dt)+"-"+(12+i)+" successfully!");
-                getRepoForkMap(path,map);
-
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-
-            }
-        }
-
-        System.out.println(map);
-
-        List<String> list=analyzeTop100Repos(map);
+        ObjectMapper m = new ObjectMapper();
+        String str = "[arthurbailao/gama-demo, DevMountain/JavaScript-Review, jtleek/datasharing, tensorflow/tensorflow, joomla-extensions/weblinks, yourtion/30dayMakeOS, LarryMad/recipes, ericmjl/Network-Analysis-Made-Simple, octocat/Spoon-Knife, rdpeng/ProgrammingAssignment2, twbs/bootstrap, mxstbr/react-boilerplate, fhc02sk/ALD-Uebung, barryclark/jekyll-now, rdpeng/ExData_Plotting1, leachim6/hello-world, joomla-projects/gsoc16_browser-automated-tests, rmotr-group-projects/pyp-w1-gw-tic-tac-toe, jlord/patchwork, googlesamples/android-architecture, angular/angular.js, zhangzibin/char-rnn-chinese, PythonWorkshop/intro-to-tensorflow, github/gitignore, DejanL/eZdravje, udacity/frontend-nanodegree-resume, firebase/quickstart-android, almasaeed2010/AdminLTE, 3lvis/Networking, deeplook/pydata_berlin2016_materials, Selz/plyr, ujjwalkarn/DataSciencePython, udacity/create-your-own-adventure, d3/d3, torvalds/linux, nightscout/cgm-remote-monitor, XX-net/XX-Net, yangyangwithgnu/use_vim_as_ide, HubPress/hubpress.io, inferjay/AndroidDevTools, JacksonTian/fks, Itseez/opencv, diegonogare/DataScience, rmotr-group-projects/pyp-w1-gw-extensible-calculator, NARKOZ/hacker-scripts, BYVoid/Batsh, sindresorhus/awesome, moozer/git-demo, AngularClass/angular2-webpack-starter, cutestrap/cutestrap, jobbole/awesome-python-cn, contiki-os/contiki, dypsilon/frontend-dev-bookmarks, LibreVR/Revive, mrdoob/three.js, google/flexbox-layout, driftyco/ionic, rdpeng/RepData_PeerAssessment1, awesome-br/awesome-br.github.io, django/django, twitter/distributedlog, avelino/awesome-go, sullo/nikto, Hopopgit/HopopApp, karan/Projects, shockone/black-screen, andlabs/libui, angular/quickstart, amix/vimrc, joshnewlan/say_what, vhf/free-programming-books, poole/hyde, geekcomputers/Python, Dogfalo/materialize, zzyyppqq/DrawingBoard, akveo/blur-admin, ujjwalkarn/Machine-Learning-Tutorials, wesm/pydata-book, rails/rails, reddit/reddit, donnemartin/data-science-ipython-notebooks, makersacademy/ruby-refresher, alibaba/dubbo, linnovate/mean, puikinsh/gentelella, ariya/phantomjs, FreeCodeCamp/FreeCodeCamp, syl20bnr/spacemacs, jaeho93/cal_project, kriasoft/react-starter-kit, getlantern/lantern, udacity/fullstack-nanodegree-vm, rhinstaller/anaconda, hyperledger/fabric, montassarelbehi/eGovFx, roots/sage, esthercrawford/EstherBot, jquery/jquery, BillSchofield/RefactoringToPatterns, andkulikov/Transitions-Everywhere]";
+        List<String> list= null;
+        list = Arrays.asList(str.substring(1,str.length()-1).split(", "));
 
         System.out.println(list);
         saveRepo(list);
@@ -88,36 +94,45 @@ public class UpdateDBTask {
         for (String repo : list) {
             String s = null;
             try {
-                s = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo);
+                if(dao.selectByFullName(repo)==null) {
+                    s = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo);
+                    System.out.println(repo);
 
+                    Repository po = mapper.readValue(s, Repository.class);
+                    po.setOwner_name(po.getFull_name().split("/")[0]);
+                    String lan = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/languages");
+                    po.setLanguages(lan);
+                    System.out.println(po);
 
-                Repository po = mapper.readValue(s, Repository.class);
-                po.setOwner_name(po.getFull_name().split("/")[0]);
-                String lan = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/languages");
-                po.setLanguages(lan);
-                dao.insert(po);
-
-                try {
-                    String contri = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/contributors");
-                    JsonParser jp = f.createJsonParser(contri);
-                    jp.nextToken();
-                    while (jp.nextToken() == JsonToken.START_OBJECT) {
-                        dao.insertContribute(repo,(String)mapper.readValue(jp, Map.class).get("login"));
-                    }
-                } catch (IOException e) {
-                    continue;
+                    dao.insert(po);
                 }
 
+                if(dao.getContributors(repo)==null||dao.getContributors(repo).isEmpty()) {
+                    try {
+                        String contri = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/contributors");
+                        JsonParser jp = f.createJsonParser(contri);
+                        jp.nextToken();
+                        while (jp.nextToken() == JsonToken.START_OBJECT) {
 
-                try {
-                    String subs = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/subscribers");
-                    JsonParser jp3 = f.createJsonParser(subs);
-                    jp3.nextToken();
-                    while (jp3.nextToken() == JsonToken.START_OBJECT) {
-                        dao.insertSubscribe(repo,(String)mapper.readValue(jp3, Map.class).get("login"));
+                            dao.insertContribute(repo, (String) mapper.readValue(jp, Map.class).get("login"));
+                        }
+                    } catch (IOException e) {
+                        System.out.println("cant get contri");
                     }
-                } catch (IOException e) {
-                    continue;
+                }
+
+                if(dao.getSubscribers(repo)==null||dao.getSubscribers(repo).isEmpty()) {
+                    try {
+                        String subs = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/subscribers");
+                        JsonParser jp3 = f.createJsonParser(subs);
+                        jp3.nextToken();
+                        while (jp3.nextToken() == JsonToken.START_OBJECT) {
+
+                            dao.insertSubscribe(repo, (String) mapper.readValue(jp3, Map.class).get("login"));
+                        }
+                    } catch (IOException e) {
+                        System.out.println("cant get subscribe");
+                    }
                 }
 
             } catch (IOException e) {

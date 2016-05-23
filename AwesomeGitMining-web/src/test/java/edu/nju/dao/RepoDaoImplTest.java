@@ -24,4 +24,9 @@ public class RepoDaoImplTest {
         System.out.println(dao.getReposByLan_Key_Year("","","","stargazers_count").getDatas());
     }
 
+    @Test
+    public void test(){
+        System.out.println(dao.getContributors("zhangzibin/char-rnn-chinese"));
+    }
+
 }
