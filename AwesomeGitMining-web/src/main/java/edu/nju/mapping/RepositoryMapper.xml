@@ -332,4 +332,18 @@ select login
     where language= #{language}
     order by size DESC
   </select>
+  <select id="countAll" resultType="java.lang.Integer">
+    select count(full_name) as c
+    from repository
+  </select>
+  <select id="getLan_SingleRepo" resultType="java.lang.String" parameterType="java.lang.String">
+    select language
+    from repository
+    where full_name = #{full_name}
+  </select>
+  <select id="countLanguage" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select count(full_name)as c
+    from repository
+    where language = #{language}
+  </select>
 </mapper>

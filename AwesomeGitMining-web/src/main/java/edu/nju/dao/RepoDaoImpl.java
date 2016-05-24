@@ -150,6 +150,35 @@ public class RepoDaoImpl implements IRepoDao {
     }
 
     @Override
+    public double getHotScore(String full_name) {
+        int sum=mapper.countAll();
+        double result=(double)mapper.selectRankOfHot(full_name)/sum;
+        return result;
+    }
+
+    @Override
+    public double getSizeScore(String full_name) {
+        String lan=mapper.getLan_SingleRepo(full_name);
+        int sum=mapper.countLanguage(lan);
+        double result=(double)mapper.selectRankOfSize(full_name)/sum;
+        return result;
+    }
+
+    @Override
+    public double getParticipationScore(String fullname) {
+        int sum=mapper.countAll();
+        double result=(double)mapper.selectRankOfParticipation(fullname)/sum;
+        return result;
+    }
+
+    @Override
+    public double getPromisingScore(String full_name) {
+        int sum=mapper.countAll();
+        double result=(double)mapper.selectRankOfPromising(full_name)/sum;
+        return result;
+    }
+
+    @Override
     public List<String> enlargeViaSubscribers(String full_name, int limit){
         List<String> list = mapper.enlargeViaSubscribers(full_name,limit);
         return list;

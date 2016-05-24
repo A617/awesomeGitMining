@@ -109,4 +109,8 @@ public interface RepositoryMapper {
 
     List<String> enlargeViaSubscribers(String full_name, int limit);
 
+    String getLan_SingleRepo(String full_name);
+
+
+
 }

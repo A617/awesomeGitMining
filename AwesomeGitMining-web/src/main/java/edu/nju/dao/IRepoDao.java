@@ -19,6 +19,7 @@ public interface IRepoDao {
 
     int insertSubscribe(String full_name,String login);
 
+
     List<String> getAllFullname();
     /**
      * 获取所有项目
@@ -127,5 +128,24 @@ public interface IRepoDao {
      * @return
      */
     List<String> getCollaborators(String repo_fullname);
-
+    /**
+     * 获取HOT评分
+     * @return
+     */
+    double getHotScore(String full_name);
+    /**
+     * 获取大小评分
+     * @return
+     */
+    double getSizeScore(String full_name);
+    /**
+     * 获取参与度评分
+     * @return
+     */
+    double getParticipationScore(String fullname);
+    /**
+     * 获取期待度评分
+     * @return
+     */
+    double getPromisingScore(String full_name);
 }

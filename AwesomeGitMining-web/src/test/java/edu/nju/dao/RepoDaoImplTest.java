@@ -29,5 +29,8 @@ public class RepoDaoImplTest {
     public void test(){
         System.out.println(dao.getContributors("zhangzibin/char-rnn-chinese"));
     }
-
+    @Test
+    public void getSizeScore() throws Exception {
+        System.out.println(dao.getSizeScore("jquery/jquery"));
+    }
 }
