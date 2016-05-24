@@ -69,4 +69,6 @@ public interface UserMapper {
 
     List<String> getUserLocation();
 
+    List<String> selectLanguages();
+
 }

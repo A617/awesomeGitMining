@@ -53,4 +53,6 @@ public interface IUserStaDao {
      * @return
      */
     List<LinkedHashMap> getUserLocationDistribute();
+
+    int[][] getLanguageRelation();
 }

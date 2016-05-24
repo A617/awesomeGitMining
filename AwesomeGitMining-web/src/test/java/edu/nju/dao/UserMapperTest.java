@@ -115,4 +115,11 @@ public class UserMapperTest {
             System.out.println(str);
         }
     }
+    @Test
+    public void testSelectLanguages(){
+        List<String> list = dao.selectLanguages();
+        for (String str : list) {
+            System.out.println(str);
+        }
+    }
 }

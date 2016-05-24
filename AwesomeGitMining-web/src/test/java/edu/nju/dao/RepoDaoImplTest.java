@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 public class RepoDaoImplTest {
     @Test
     public void getSubscribionsOfUser() throws Exception {
-        System.out.println(dao.getSubscribionsOfUser("technoweenie"));
+       // System.out.println(dao.getSubscribionsOfUser("technoweenie"));
     }
 
     @Resource

@@ -11,6 +11,19 @@
     <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
+    <style>
+        .title{
+            font-family:Arial,微软雅黑;
+            font-size:18px;
+            text-anchor:middle;
+            text-align:center;
+        }
+        .chord path {
+            fill-opacity: 0.67;
+            stroke: #000;
+            stroke-width: 0.5px;
+        }
+    </style>
 </head>
 <body>
 
@@ -85,6 +98,7 @@
                 <div id="follow" style="width: 100%;height:400px;"></div>
                 <hr size="2">
                 <div id="worldMap" style="width: 100%;height:800px;"></div>
+                <div id="chord" style="width: 100%;height:800px;"></div>
             </div>
         </div>
     </div>
@@ -93,8 +107,8 @@
 <footer class="text-right">
     <p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>
 </footer>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+<script src="/js/library/d3.min.js" charset="utf-8"></script>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/Chart.bundle.js"></script>
@@ -103,5 +117,6 @@
 <script src="/js/userStatistics.js"></script>
 <script src="/js/worldMap.js"></script>
 <script src="/js/world.js"></script>
+<script src="/js/chord.js"></script>
 </body>
 </html>

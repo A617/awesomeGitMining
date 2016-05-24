@@ -230,4 +230,8 @@
     select location
     from user
   </select>
+  <select id="selectLanguages" resultType="java.lang.String">
+    SELECT languages
+    from user
+  </select>
 </mapper>

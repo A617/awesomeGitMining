@@ -28,4 +28,10 @@ public interface IUserStaService {
      * @return 用户位置分布信息
      */
     List<LinkedHashMap> getUserLocationDistribute();
+
+    /**
+     *
+     * @return 语言两两掌握情况
+     */
+    int[][] getLanguageRelation();
 }

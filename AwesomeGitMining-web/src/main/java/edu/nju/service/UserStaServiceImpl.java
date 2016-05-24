@@ -71,4 +71,9 @@ public class UserStaServiceImpl implements IUserStaService{
     public List<LinkedHashMap> getUserLocationDistribute() {
         return dao.getUserLocationDistribute();
     }
+
+    @Override
+    public int[][] getLanguageRelation() {
+        return dao.getLanguageRelation();
+    }
 }
