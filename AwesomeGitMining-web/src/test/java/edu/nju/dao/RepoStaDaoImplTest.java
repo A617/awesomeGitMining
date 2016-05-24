@@ -151,7 +151,15 @@ public class RepoStaDaoImplTest {
         }
 
     }
+    @Test
+    public void getLanByYearTest_forecast_Single() throws Exception {
+        Map<String, Integer> map = dao.getLanByYear_forecast_Single();
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            System.out.println("key-->" + entry.getKey());
+            System.out.println("value-->" + entry.getValue());
+        }
 
+    }
 
 
 }

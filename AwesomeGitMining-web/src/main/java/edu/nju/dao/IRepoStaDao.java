@@ -119,5 +119,11 @@ public interface IRepoStaDao {
      * @return 预测每年的语言使用情况（根据创建项目数目）
      */
     Map<String,Object> getLanByYear_forecast();
+    /**
+     *
+     * @param
+     * @return 预测每年的语言使用情况（根据创建项目数目），仅返回单个预测值
+     */
+    Map<String,Integer> getLanByYear_forecast_Single();
 
 }
