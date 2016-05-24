@@ -72,12 +72,16 @@
             <div class="templatemo-content-widget white-bg col-1 animated fadeInRight">
                 <h2>Big Query Statistics</h2>
                 <hr>
-
                 <div id="company-pie-bq" style="width: 100%;height:400px;"></div>
+                <hr size="2">
                 <div id="pushTime" style="width: 100%;height:800px;"></div>
                 <hr size="2">
+<<<<<<< HEAD
                 <div id="eventShow" style="width: 100%;height:800px;"></div>
                 <hr size="2">
+=======
+                <div id="mood" style="width: 100%;height:800px;"></div>
+>>>>>>> 367caec41103adb2bc9f991bc39d893f53d720ee
             </div>
         </div>
     </div>

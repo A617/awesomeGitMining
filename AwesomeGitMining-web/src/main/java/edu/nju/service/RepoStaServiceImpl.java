@@ -126,4 +126,14 @@ public class RepoStaServiceImpl implements IRepoStaService {
         }
         return max;
     }
+
+    @Override
+    public Map<String,Object> getLanAndSize_EachRepo(){
+        return repoStaDao.getLanAndSize_EachRepo();
+    }
+
+    @Override
+    public Map<String,Object> getLanAndFork_EachRepo() {
+        return repoStaDao.getLanAndFork_EachRepo();
+    }
 }

@@ -105,6 +105,9 @@
                 <hr size="2">
                 <div id="languageTrend" style="width: 100%;height:800px;"></div>
                 <hr size="2">
+                <div id="lan_size"style="width: 100%;height:800px;"></div>
+                <hr size="2">
+                <div id="lan_fork"style="width: 100%;height:800px;"></div>
             </div>
         </div>
     </div>
@@ -126,5 +129,7 @@
 <script src="/js/barChart.js"></script>
 <script src="/js/chord.js"></script>
 <script src="/js/macarons.js"></script>
+<script src="/js/dataTool.js"></script>
+<script src="/js/repostatistics.js"></script>
 </body>
 </html>

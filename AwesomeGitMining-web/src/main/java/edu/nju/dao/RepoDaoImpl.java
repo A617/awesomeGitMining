@@ -1,5 +1,6 @@
 package edu.nju.dao;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import edu.nju.model.Pager;
 import edu.nju.model.Repository;
 import edu.nju.model.SystemContext;
@@ -18,13 +19,9 @@ public class RepoDaoImpl implements IRepoDao {
     @Resource
     private RepositoryMapper mapper;
 
-    @Override
-    public Repository selectByPrimaryKey(Integer id) {
-        return mapper.selectByPrimaryKey(id);
-    }
 
     @Override
-    public int insert(Repository record) {
+    public int insert(Repository record){
         return mapper.insert(record);
     }
 
@@ -146,6 +143,18 @@ public class RepoDaoImpl implements IRepoDao {
     @Override
     public List<String> getCollaborators(String repo_fullname) {
         List<String>list=mapper.getCollaborators(repo_fullname);
+        return list;
+    }
+
+    @Override
+    public List<String> getSubscirbers(String repo_fullname) {
+        List<String>list=mapper.getSubscribers(repo_fullname);
+        return list;
+    }
+
+    @Override
+    public List<String> getSubscribionsOfUser(String login) {
+        List<String> list = mapper.getSubscribionsOfUser(login);
         return list;
     }
 

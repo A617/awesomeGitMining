@@ -184,6 +184,21 @@ public class RepoStaDaoImpl implements IRepoStaDao {
     }
 
     @Override
+    public List<LinkedHashMap> getLanAndFork() {
+        List<LinkedHashMap> result = new ArrayList<>();
+        LinkedHashMap temp = new LinkedHashMap();
+        List<String> lan = mapper.countFirst10Languages();
+        for (String language : lan) {
+            List<Integer> list = mapper.countForks();
+            for(Integer i : list){
+                temp.put(language,i);
+            }
+        }
+        result.add(temp);
+        return result;
+    }
+
+    @Override
     public Map<String, Object> getLanByYear_forecast() {
         Map<String, Object> map = new HashMap<String, Object>();
         List<String> lan = mapper.countFirst10Languages();
@@ -269,12 +284,5 @@ public class RepoStaDaoImpl implements IRepoStaDao {
         for( int i = 0 ; i < x.length ; i++ ) s = s + x[i] * y[i] ;
         return s ;
     }
-
-
-
-
-
-
-
 
 }

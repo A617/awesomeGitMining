@@ -1,5 +1,6 @@
 package edu.nju.dao;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import edu.nju.model.Pager;
 import edu.nju.model.Repository;
 
@@ -10,7 +11,6 @@ import java.util.Map;
  * Created by tj on 2016/5/3.
  */
 public interface IRepoDao {
-    Repository selectByPrimaryKey(Integer id);
 
     int insert(Repository record);
 
@@ -92,6 +92,10 @@ public interface IRepoDao {
      * @return
      */
     Pager<Repository> getReposByLanguage(String language);
+
+    List<String> getSubscirbers(String repo_fullname);
+
+    List<String> getSubscribionsOfUser(String login);
 
     /**
      * 根据关键词获取项目

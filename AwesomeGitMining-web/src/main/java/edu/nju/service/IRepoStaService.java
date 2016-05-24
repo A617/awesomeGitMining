@@ -82,4 +82,8 @@ public interface IRepoStaService {
      * @return 语言两两合作使用情况
      */
     int[][] getLanguageRelation();
+
+    Map<String,Object> getLanAndSize_EachRepo();
+
+    Map<String,Object> getLanAndFork_EachRepo();
 }

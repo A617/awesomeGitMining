@@ -111,7 +111,6 @@ public class UserStaController {
         for (LinkedHashMap l : email) {
             Count.add(l.get("count"));
             Name.add(l.get("domain"));
-
         }
         result.put("Count", Count);
         result.put("Name", Name);

@@ -9,7 +9,6 @@ import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Repository {
-    private Integer id;
 
     private String full_name;
 
@@ -60,14 +59,6 @@ public class Repository {
     private Double hot_score;
 
     private String description;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getFull_name() {
         return full_name;
@@ -256,8 +247,7 @@ public class Repository {
     @Override
     public String toString() {
         return "Repository{" +
-                "id=" + id +
-                ", full_name='" + full_name + '\'' +
+                "full_name='" + full_name + '\'' +
                 ", name='" + name + '\'' +
                 ", owner_name='" + owner_name + '\'' +
                 ", language='" + language + '\'' +
