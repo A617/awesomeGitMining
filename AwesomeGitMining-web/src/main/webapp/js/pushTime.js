@@ -55,8 +55,7 @@ $(document).ready(function () {
                 yAxis: [
                     {
                         name: 'time',
-                        type: 'value',
-                        max: 6000000
+                        type: 'value'
                     }
                 ],
                 series: [

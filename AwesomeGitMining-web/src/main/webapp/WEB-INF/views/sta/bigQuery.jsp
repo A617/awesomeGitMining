@@ -74,14 +74,11 @@
                 <hr>
                 <div id="company-pie-bq" style="width: 100%;height:400px;"></div>
                 <hr size="2">
-                <div id="pushTime" style="width: 100%;height:800px;"></div>
+                <div id="pushTime" style="width: 100%;height:400px;"></div>
                 <hr size="2">
-<<<<<<< HEAD
-                <div id="eventShow" style="width: 100%;height:800px;"></div>
+                <div id="eventShow" style="width: 100%;height:600px;"></div>
                 <hr size="2">
-=======
-                <div id="mood" style="width: 100%;height:800px;"></div>
->>>>>>> 367caec41103adb2bc9f991bc39d893f53d720ee
+                <div id="mood" style="width: 100%;height:400px;"></div>
             </div>
         </div>
     </div>
