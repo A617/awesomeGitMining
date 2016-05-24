@@ -6,7 +6,7 @@ $(document).ready(function () {
         url: "/js/world.json",
         success: function (data) {
             echarts.registerMap('world', data);
-            chart = echarts.init(document.getElementById('worldMap'));
+            chart = echarts.init(document.getElementById('worldMap'),'macarons');
             chart .showLoading({
                 text : 'Loading...',
                 effect : 'spin',
@@ -25,7 +25,7 @@ $(document).ready(function () {
                 title: {
                     text: 'user location',
                     left: 'center',
-                    top: 'top'
+                    top: 'bottom'
                 },
                 tooltip: {
                     trigger: 'item',
@@ -48,7 +48,7 @@ $(document).ready(function () {
                 },
                 visualMap: {
                     min: 0,
-                    max: 2000,
+                    max: 3000,
                     text: ['High', 'Low'],
                     realtime: false,
                     calculable: true,

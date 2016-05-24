@@ -55,7 +55,8 @@ public class RepoServiceImplTest {
 
     @Test
     public void selectByFullName(){
-        Repository repo = repoService.getRepoByFullname("jsbin/jsbin");
+        Repository repo = repoService.getRepoByFullname("awesome-br/awesome-br.github.io");
+        System.out.println(repo);
         //System.out.println(repo.getFullName()+" "+repo.getCloneUrl());
     }
 

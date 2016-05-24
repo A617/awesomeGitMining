@@ -177,25 +177,19 @@
                         </div>
                 </div>
 
-                <div id="codeFrequency" style="width: 50%;height:200px;"></div>
-                <hr size="2">
-
+                <hr size="3">
+                <div class="col-lg-6 col-md-6" id="codeFrequency" style="width: 100%;height:200px;"></div>
+                <br>
                 <div class="col-lg-12 col-md-12" style="width:100%; overflow:auto">
-                    <h4 class="m-top-md m-bottom-sm">Related repositories</h4>
-                    <div style="width:60%; margin:0 auto">
-                         <div id="force-chart" height=400px width=600px />
+                    <h4 class="m-top-md m-bottom-sm center-block">Related repositories</h4>
+                    <div style="width:100%; margin:0 auto">
+                        <div id="force-chart" height=300px width=1000px />
                     </div>
                 </div>
-
-
-
             </div>
         </div>
     </div>
 </div>
-<%--<footer class="text-right">--%>
-    <%--<p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>--%>
-<%--</footer>--%>
 
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script>
@@ -289,8 +283,8 @@
                     var edges = data.lines;
                         <%--alert(data.lines);--%>
 
-                    var width = 600;
-                    var height = 400;
+                    var width = 1000;
+                    var height = 300;
 
 
                     var svg = d3.select("#force-chart")
@@ -365,12 +359,21 @@
                 }
             });
 
+            var myChart1 = echarts.init(document.getElementById('codeFrequency'), 'macarons');
+            myChart1 .showLoading({
+                text : 'Loading...',
+                effect : 'spin',
+                textStyle : {
+                    fontSize : 25
+                }
+            });
             $.ajax({
             //请求方式为get
             type: "GET",
             url: "/repo/"+'${repo.full_name}'+"/code_frequency",
             dataType: "json",
             success: function (obj) {
+                myChart1.hideLoading();
             var data = [];
             var week = [];
             for (var i = 1; i < obj.length + 1; i++) {
@@ -442,7 +445,6 @@
             }
             ]
             };
-            var myChart1 = echarts.init(document.getElementById('codeFrequency'), 'macarons');
             myChart1.setOption(option);
             }
 
@@ -451,11 +453,6 @@
     });
 
 </script>
-
-    <script>
-
-
-    </script>
 
     </body>
 </html>

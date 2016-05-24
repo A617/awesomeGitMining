@@ -163,7 +163,7 @@ $(function() {
         });
         $.ajax(url, {
             type: 'GET',
-            success: function (data, textStatus) {
+            success: function (data) {
                 myChart4.hideLoading();
                 myChart4.setOption({
                     title : {

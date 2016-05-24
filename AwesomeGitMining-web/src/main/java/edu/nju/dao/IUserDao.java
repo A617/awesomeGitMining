@@ -1,7 +1,7 @@
 package edu.nju.dao;
 
+import edu.nju.model.Day;
 import edu.nju.model.Pager;
-import edu.nju.model.Repository;
 import edu.nju.model.User;
 
 import java.util.List;
@@ -57,6 +57,9 @@ public interface IUserDao {
      */
 
     Pager<User> getUserByLan_Com(String language, String company);
+
+    List<Day> getCommitCalendar(String login);
+
     /**
      * 根据用户名筛选贡献过的项目
      * @param login

@@ -85,5 +85,10 @@ public interface IRepoStaService {
 
     Map<String,Object> getLanAndSize_EachRepo();
 
+    /**
+     * 盒状图
+     * @return
+     */
     Map<String,Object> getLanAndFork_EachRepo();
+
 }

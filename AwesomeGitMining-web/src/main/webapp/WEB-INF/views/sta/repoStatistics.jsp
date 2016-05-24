@@ -97,17 +97,15 @@
                     Language usage<br />
                     <canvas id="lineChart" width="800" height="700"></canvas>
                 </label>
-                <label for = "barChart" class="title">
-                    Year and Size relation<br />
-                    <canvas id="barChart" width="800" height="700"></canvas>
-                </label>
-                <div id="forkStarRelation" style="width: 100%;height:800px;"></div>
+                <div id="year_size" style="width: 100%;height:500px;"></div>
                 <hr size="2">
-                <div id="languageTrend" style="width: 100%;height:800px;"></div>
+                <div id="forkStarRelation" style="width: 100%;height:500px;"></div>
                 <hr size="2">
-                <div id="lan_size"style="width: 100%;height:800px;"></div>
+                <div id="languageTrend" style="width: 100%;height:500px;"></div>
                 <hr size="2">
-                <div id="lan_fork"style="width: 100%;height:800px;"></div>
+                <div id="lan_size"style="width: 100%;height:500px;"></div>
+                <hr size="2">
+                <div id="lan_fork"style="width: 100%;height:500px;"></div>
             </div>
         </div>
     </div>
@@ -126,7 +124,6 @@
 <script src="/js/languageTrend.js"></script>
 <script src="/js/echarts.min.js"></script>
 <script src="/js/EchartPoint.js"></script>
-<script src="/js/barChart.js"></script>
 <script src="/js/chord.js"></script>
 <script src="/js/macarons.js"></script>
 <script src="/js/dataTool.js"></script>

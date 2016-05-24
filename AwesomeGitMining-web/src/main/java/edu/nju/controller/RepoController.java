@@ -78,7 +78,9 @@ public class RepoController {
     @RequestMapping(value = "/{ownerName}/{repoName}", method = RequestMethod.GET)
     public ModelAndView showRepo(@PathVariable String ownerName, @PathVariable String repoName) {
         String fullName = ownerName + "/" + repoName;
+        System.out.println(fullName);
         Repository repo = repoService.getRepoByFullname(fullName);
+        System.out.println(repo);
 
         ObjectMapper mapper = new ObjectMapper();
         List<String> contributors = repoService.getContributors(fullName);
@@ -86,7 +88,8 @@ public class RepoController {
 
         Map<String,Integer> languages = null;
         try {
-            languages = mapper.readValue(repo.getLanguages(), Map.class);
+            if(repo.getLanguages()!=null)
+                languages = mapper.readValue(repo.getLanguages(), Map.class);
         } catch (IOException e) {
             e.printStackTrace();
         }

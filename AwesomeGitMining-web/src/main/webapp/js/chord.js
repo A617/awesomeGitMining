@@ -189,7 +189,6 @@ $(document).ready(function () {
                 });
 
 
-//5.绘制内部弦（即所有城市人口的来源，即有5*5=25条弧）
             var inner_chord = d3.svg.chord()
                 .radius(innerRadius);
 

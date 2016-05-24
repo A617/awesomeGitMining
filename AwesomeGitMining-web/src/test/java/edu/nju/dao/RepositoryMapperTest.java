@@ -80,8 +80,8 @@ public class RepositoryMapperTest {
 
 
     @Test
-    public void selectRankOfFork() throws Exception {
-        System.out.println(dao.selectRankOfFork("jquery/jquery"));
+    public void selectRankOfParticipation() throws Exception {
+        System.out.println(dao.selectRankOfParticipation("jquery/jquery"));
     }
 
     @Test

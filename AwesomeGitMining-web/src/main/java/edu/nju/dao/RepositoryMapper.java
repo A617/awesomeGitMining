@@ -88,17 +88,24 @@ public interface RepositoryMapper {
 
     List<Integer>getSizeByLan(String language);
 
-    List<String> selectLanguages();
+    List<Integer>getForksByLan(String language);
 
-    int selectRankOfFork(String full_name);
+    List<String> selectLanguages();
+    //hot: star+fork+watch
+   // participation: issue + fork*3
+    //size:size group by language
+   // fresh:
+   // promising: updated_at
+
+
+    int selectRankOfHot(String full_name);
 
     int selectRankOfSize(String full_name);
 
-    int selectRankOfScale(String full_name);
+    int selectRankOfParticipation(String full_name);
 
     int selectRankOfPromising(String full_name);
 
-    int selectRankOfStar(String full_name);
 
     List<String> enlargeViaSubscribers(String full_name, int limit);
 
