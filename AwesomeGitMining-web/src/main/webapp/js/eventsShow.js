@@ -27,6 +27,11 @@ $(document).ready(function () {
             };
 
             option = {
+                title: {
+                    text: 'various events in 2016',
+                    x: 'center',
+                    y: -10
+                },
                 //  backgroundColor: '#333',
                 legend: {
                     bottom: 30,
