@@ -18,14 +18,14 @@ public class UserStaServiceImpl implements IUserStaService{
     @Override
     public List<LinkedHashMap> getCompanyCounts() {
         List<LinkedHashMap> map = dao.countFirst30Companys();
-        map.remove("");
+//        map.remove("");
         return map;
     }
 
     @Override
     public List<LinkedHashMap> getTypeCounts() {
         List<LinkedHashMap> map = dao.countTypes();
-        map.remove("");
+//        map.remove("");
         return map;
     }
 
@@ -39,7 +39,7 @@ public class UserStaServiceImpl implements IUserStaService{
     @Override
     public List<LinkedHashMap> countEmail() {
         List<LinkedHashMap> map = dao.countEmail();
-        map.remove("");
+//        map.remove("");
         return map;
     }
 

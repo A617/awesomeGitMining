@@ -89,7 +89,7 @@ public class RepoServiceImpl implements IRepoService {
 
 
     private List<Node> recursion(String repo_fullname,int limit){
-        System.out.println("searching "+repo_fullname);
+//        System.out.println("searching "+repo_fullname);
 //        List<String> subscribers=repoDao.getSubscirbers(repo_fullname);
 //        List<String> tmp = new ArrayList<>();
 //        for(String login:subscribers){
@@ -110,7 +110,7 @@ public class RepoServiceImpl implements IRepoService {
         for(String name:repoDao.enlargeViaSubscribers(repo_fullname,limit))
             if(!nodes.contains(new Node(name)))
                 temp.add(new Node(name));
-        System.out.println("select the repos");
+//        System.out.println("select the repos");
         int n = temp.size()>=limit?limit:temp.size();
         temp = temp.subList(0,n);
         return temp;
@@ -130,11 +130,11 @@ public class RepoServiceImpl implements IRepoService {
 
 
 
-            List<Node> list = recursion(repo_fullname,2);
+            List<Node> list = recursion(repo_fullname,3);
             nodes.addAll(list);
             for(int i=1;i<=list.size();i++) {
                 lines.add(new Line(0,i));
-                List<Node> tmp = recursion(nodes.get(i).name,1);
+                List<Node> tmp = recursion(nodes.get(i).name,2);
                 for(int j=1;j<=tmp.size();j++)
                     lines.add(new Line(i,j+nodes.size()-1));
                 nodes.addAll(tmp);
