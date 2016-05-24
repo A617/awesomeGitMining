@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import edu.nju.dao.RepoDaoImpl;
 import edu.nju.dao.RepositoryMapper;
+import edu.nju.dao.UserMapper;
 import edu.nju.model.Repository;
+import edu.nju.model.User;
 import org.apache.log4j.Logger;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -31,6 +33,8 @@ public class UpdateDBTask {
 
     @Resource
     RepositoryMapper dao;
+    @Resource
+    UserMapper userdao;
 
     @Scheduled(cron = "00 47 10 * * ?")
     public void job(){
@@ -114,7 +118,15 @@ public class UpdateDBTask {
                         jp.nextToken();
                         while (jp.nextToken() == JsonToken.START_OBJECT) {
 
-                            dao.insertContribute(repo, (String) mapper.readValue(jp, Map.class).get("login"));
+                            String login = (String) mapper.readValue(jp, Map.class).get("login");
+                            dao.insertContribute(repo, login);
+
+                            if(userdao.selectByLogin(login)==null) {
+                                System.out.println(login);
+                                String user = HttpRequest.getGithubContentUsingHttpClient("api.github.com/users/" + login);
+                                User us = mapper.readValue(user, User.class);
+                                userdao.insert(us);
+                            }
                         }
                     } catch (IOException e) {
                         System.out.println("cant get contri");
@@ -127,8 +139,15 @@ public class UpdateDBTask {
                         JsonParser jp3 = f.createJsonParser(subs);
                         jp3.nextToken();
                         while (jp3.nextToken() == JsonToken.START_OBJECT) {
+                            String login = (String) mapper.readValue(jp3, Map.class).get("login");
+                            dao.insertSubscribe(repo, login);
 
-                            dao.insertSubscribe(repo, (String) mapper.readValue(jp3, Map.class).get("login"));
+                            if(userdao.selectByLogin(login)==null) {
+                                System.out.println(login);
+                                String user = HttpRequest.getGithubContentUsingHttpClient("api.github.com/users/" + login);
+                                User us = mapper.readValue(user, User.class);
+                                userdao.insert(us);
+                            }
                         }
                     } catch (IOException e) {
                         System.out.println("cant get subscribe");
