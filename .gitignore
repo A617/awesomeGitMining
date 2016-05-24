@@ -4,3 +4,5 @@ AwesomeGitMining-web/.idea
 AwesomeGitMining-web/target
 AwesomeGitMining-web/logs
 AwesomeGitMining/.idea
+AwesomeGitMining-web/src/main/resources/jdbc.properties
+AwesomeGitMining-web/src/main/java/edu/nju/task/HttpRequest.java
