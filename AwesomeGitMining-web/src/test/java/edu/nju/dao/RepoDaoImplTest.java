@@ -16,6 +16,11 @@ import static org.junit.Assert.*;
 @ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class RepoDaoImplTest {
 
+    @Test
+    public void getSubscribionsOfUser() throws Exception {
+       // System.out.println(dao.getSubscribionsOfUser("technoweenie"));
+    }
+
 
     @Resource
     RepoDaoImpl dao;

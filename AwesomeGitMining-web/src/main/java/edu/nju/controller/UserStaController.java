@@ -84,4 +84,15 @@ public class UserStaController {
     List<LinkedHashMap> getUserLocation() {
         return service.getUserLocationDistribute();
     }
+    @RequestMapping(value = "/statistics/user/languageRelation", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Map<String, Object> getLanguageRelation() {
+        Map<String, Object> result = new HashMap<>();
+        List<String> names = repo.getTop10Language();
+        result.put("name", names);
+        int[][] test = service.getLanguageRelation();
+        result.put("test",test);
+        return result;
+    }
 }

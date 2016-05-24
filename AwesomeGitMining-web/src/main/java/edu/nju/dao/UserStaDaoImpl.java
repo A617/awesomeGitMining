@@ -14,6 +14,8 @@ public class UserStaDaoImpl implements IUserStaDao {
 
     @Resource
     UserMapper mapper;
+    @Resource
+    IRepoStaDao repoStaDao;
 
     @Override
     public List<LinkedHashMap> countFirst30Companys() {
@@ -82,7 +84,7 @@ public class UserStaDaoImpl implements IUserStaDao {
             for (String str : all) {
                 if (str != null && !str.isEmpty()) {
                     str.toLowerCase();
-                    num+= getBigCountryRealNum(country, str);
+                    num += getBigCountryRealNum(country, str);
                     country.toLowerCase();
                     if (str.contains(country)) {
                         num++;
@@ -94,6 +96,39 @@ public class UserStaDaoImpl implements IUserStaDao {
             result.add(map);
         }
 
+        return result;
+    }
+
+    @Override
+    public int[][] getLanguageRelation() {
+        List<String> names = repoStaDao.countFirst10Languages();
+        int[][] result = new int[names.size()][names.size()];
+        for (int i = 0; i < result[0].length; i++) {
+            for (int j = 0; j < result[0].length; j++) {
+                result[i][j] = 0;
+            }
+        }
+        List<String> languages = mapper.selectLanguages();
+        for (String str : languages) {
+            if (str == null) {
+                continue;
+            }
+            for (int i = 0; i < names.size(); i++) {
+                String name1 = names.get(i);
+                for (int j = 0; j < names.size(); j++) {
+                    String name2 = names.get(j);
+                    if (i == j) {
+                        result[i][j] = 0;
+                    } else {
+                        if ((str.contains(name1+",") || str.contains(name1+"]"))
+                                && (str.contains(name2+",") || str.contains(name2+"]"))) {
+                            result[i][j] += 1;
+                        }
+                    }
+                }
+            }
+
+        }
         return result;
     }
 

@@ -48,7 +48,7 @@ $(document).ready(function () {
                 },
                 visualMap: {
                     min: 0,
-                    max: 2000,
+                    max: 3000,
                     text: ['High', 'Low'],
                     realtime: false,
                     calculable: true,
