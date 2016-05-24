@@ -198,36 +198,6 @@ where full_name = #{full_name};
   </select>
 
 
-  <!-- 分页辅助方法-->
-  <!--<select id="countAll" resultType="java.lang.Integer">-->
-    <!--select-->
-    <!--count(id)-->
-    <!--from repository-->
-  <!--</select>-->
-  <!--<select id="countSearch" resultType="java.lang.Integer" parameterType="java.lang.String">-->
-    <!--select-->
-    <!--count(id)-->
-    <!--from repository-->
-    <!--where full_name LIKE "%"#{fullName}"%"-->
-  <!--</select>-->
-  <!--<select id="countYear" resultType="java.lang.Integer" parameterType="java.lang.Integer">-->
-    <!--select-->
-    <!--count(id)-->
-    <!--from repository-->
-    <!--where YEAR(created_at) = #{year}-->
-  <!--</select>-->
-  <!--<select id="countLanguage" resultType="java.lang.Integer" parameterType="java.lang.String">-->
-    <!--select-->
-    <!--count(id)-->
-    <!--from repository-->
-    <!--where language = #{language}-->
-  <!--</select>-->
-  <!--<select id="countKey" resultType="java.lang.Integer" parameterType="java.lang.String">-->
-    <!--select-->
-    <!--count(id)-->
-    <!--from repository-->
-    <!--where description like "%"#{keyword}"%"-->
-  <!--</select>-->
   <select id="countLan_Key_Year" resultType="java.lang.Integer" parameterType="java.lang.String">
     select  count(*)
     from repository
@@ -334,6 +304,12 @@ select login
     select size
     from repository
     force index (primary)
+    where language= #{language}
+    order by size DESC
+  </select>
+  <select id="getForksByLan" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select forks_count
+    from repository force index (primary)
     where language= #{language}
     order by size DESC
   </select>

@@ -209,7 +209,7 @@ $(document).ready(function () {
                                 normal: {
                                     color: function(params) {
                                         var colorList = [
-                                            '#FF4040','#FF6A6A','#FF7256','#FA8072','#F08080','#FF8C69','#FFA07A','#FF7F24','#FF8247','#FF7F50',
+                                            '#FF4040','#FF6A6A','#FA8072','#F08080','#FF7256','#FF8C69','#FFA07A','#FF7F24','#FF8247','#FF7F50',
                                             '#FF8C00','#FFA500','#FFA54F','#FFB90F','#FFC125','#FFFF00','#FFEC8B','#FFF68F','#FFFACD','#FFFFE0'
                                         ];
                                         return colorList[params.dataIndex]
