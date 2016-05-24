@@ -8,11 +8,11 @@ $(document).ready(function () {
             var title="Search Record";
             var data = {"children": obj};
             // snippet.log(data.obj.name);
-            var width = 800;	//SVG绘制区域的宽度
-            var height = 1000;	//SVG绘制区域的高度
+            var width = 1000;	//SVG绘制区域的宽度
+            var height = 600;	//SVG绘制区域的高度
             var svg = d3.select("#local")			//选择<body>
                 .append("svg")			//在<body>中添加<svg>
-                .attr("width", width)	//设定<svg>的宽度属性
+                .attr("width", 800)	//设定<svg>的宽度属性
                 .attr("height", height)
                 ;
             //添加标题
@@ -80,21 +80,6 @@ $(document).ready(function () {
 
 
             bubbles.append("text")
-                // .on("mouseover", function (d) {
-                //     d3.select(this)
-                //         .text(function () {
-                //             return d.weight;
-                //         });
-                // })
-                // .on("mouseout", function (d) {
-                //     d3.select(this)
-                //         .transition()
-                //         .duration(500)
-                //         .text(function () {
-                //             return d.word;
-                //         });
-                //
-                // })
                 .attr("x", function (d) {
                     return d.x;
                 })

@@ -65,11 +65,20 @@ $(document).ready(function () {
     })
 });
 $(document).ready(function () {
+    var myChart1 = echarts.init(document.getElementById('languageTrend'));
+    myChart1 .showLoading({
+        text : 'Loading...',
+        effect : 'spin',
+        textStyle : {
+            fontSize : 25
+        }
+    });
     $.ajax({
         //请求方式为get
         type: "GET",
         url: "/statistics/repository/languageTrendDynamic",
         success: function (data) {
+            myChart1.hideLoading();
             var dataMap = {};
 
             function dataFormatter(obj) {
@@ -108,16 +117,9 @@ $(document).ready(function () {
             option = {
                 baseOption: {
                     timeline: {
-                        // y: 0,
                         axisType: 'category',
-                        // realtime: false,
-                        // loop: false,
                         autoPlay: true,
-                        // currentIndex: 2,
                         playInterval: 2000,
-                        // controlStyle: {
-                        //     position: 'left'
-                        // },
                         data: [
                             '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016'
                         ],
@@ -161,7 +163,14 @@ $(document).ready(function () {
                 },
                 options: [
                     {
-                        title: {text: '2007 language usage'},
+                        title: {
+                            text: '2007 language usage',
+                            x:'center',
+                            textStyle: {
+                                fontWeight: 'normal',
+                                color: '#008acd'
+                            }
+                        },
                         series: [
                             {
                                 data: dataMap.dataGDP['2007'],
@@ -176,7 +185,12 @@ $(document).ready(function () {
                         ]
                     },
                     {
-                        title: {text: '2008 language usage'},
+                        title: {text: '2008 language usage',
+                            x:'center',
+                            textStyle: {
+                                fontWeight: 'normal',
+                                color: '#008acd'
+                            }},
                         series: [
                             {
                                 data: dataMap.dataGDP['2008'],
@@ -191,7 +205,12 @@ $(document).ready(function () {
                         ]
                     },
                     {
-                        title: {text: '2009 language usage'},
+                        title: {text: '2009 language usage',
+                            x:'center',
+                            textStyle: {
+                                fontWeight: 'normal',
+                                color: '#008acd'
+                            }},
                         series: [
                             {
                                 data: dataMap.dataGDP['2009'],
@@ -206,7 +225,12 @@ $(document).ready(function () {
                         ]
                     },
                     {
-                        title: {text: '2010 language usage'},
+                        title: {text: '2010 language usage',
+                            x:'center',
+                            textStyle: {
+                                fontWeight: 'normal',
+                                color: '#008acd'
+                            }},
                         series: [
                             {
                                 data: dataMap.dataGDP['2010']
@@ -221,7 +245,12 @@ $(document).ready(function () {
                         ]
                     },
                     {
-                        title: {text: '2011 language usage'},
+                        title: {text: '2011 language usage',
+                            x:'center',
+                            textStyle: {
+                                fontWeight: 'normal',
+                                color: '#008acd'
+                            }},
                         series: [
                             {
                                 data: dataMap.dataGDP['2011'],
@@ -236,7 +265,12 @@ $(document).ready(function () {
                         ]
                     },
                     {
-                        title: {text: '2012 language usage'},
+                        title: {text: '2012 language usage',
+                            x:'center',
+                            textStyle: {
+                                fontWeight: 'normal',
+                                color: '#008acd'
+                            }},
                         series: [
                             {
                                 data: dataMap.dataGDP['2012'],
@@ -251,7 +285,12 @@ $(document).ready(function () {
                         ]
                     },
                     {
-                        title: {text: '2013 language usage'},
+                        title: {text: '2013 language usage',
+                            x:'center',
+                            textStyle: {
+                                fontWeight: 'normal',
+                                color: '#008acd'
+                            }},
                         series: [
                             {
                                 data: dataMap.dataGDP['2013'],
@@ -266,7 +305,12 @@ $(document).ready(function () {
                         ]
                     },
                     {
-                        title: {text: '2014 language usage'},
+                        title: {text: '2014 language usage',
+                            x:'center',
+                            textStyle: {
+                                fontWeight: 'normal',
+                                color: '#008acd'
+                            }},
                         series: [
                             {
                                 data: dataMap.dataGDP['2014'],
@@ -281,7 +325,12 @@ $(document).ready(function () {
                         ]
                     },
                     {
-                        title: {text: '2015 language usage'},
+                        title: {text: '2015 language usage',
+                            x:'center',
+                            textStyle: {
+                                fontWeight: 'normal',
+                                color: '#008acd'
+                            }},
                         series: [
                             {
                                 data: dataMap.dataGDP['2015'],
@@ -296,7 +345,12 @@ $(document).ready(function () {
                         ]
                     },
                     {
-                        title: {text: '2016 language usage'},
+                        title: {text: '2016 language usage',
+                            x:'center',
+                            textStyle: {
+                                fontWeight: 'normal',
+                                color: '#008acd'
+                            }},
                         series: [
                             {
                                 data: dataMap.dataGDP['2016'],
@@ -312,7 +366,6 @@ $(document).ready(function () {
                     }
                 ]
             };
-            var myChart1 = echarts.init(document.getElementById('languageTrend'));
             myChart1.setOption(option);
         }
     })
