@@ -93,6 +93,10 @@ public interface IRepoDao {
      */
     Pager<Repository> getReposByLanguage(String language);
 
+    List<String> getSubscirbers(String repo_fullname);
+
+    List<String> getSubscribionsOfUser(String login);
+
     /**
      * 根据关键词获取项目
      * @param key

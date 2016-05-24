@@ -4,6 +4,7 @@ import edu.nju.model.Pager;
 import edu.nju.model.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Dora on 2016/4/30.
@@ -71,4 +72,6 @@ public interface IRepoService {
     List<String> getContributors(String repo_fullname);
 
     List<String> getCollaborators(String repo_fullname);
+
+    Map<String,Object> getRelatedRepoViaSubscribers(String repo_fullname);
 }

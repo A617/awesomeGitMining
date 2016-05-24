@@ -267,6 +267,11 @@ select login
     from subscribe
     where full_name = #{full_name}
   </select>
+  <select id="getSubscribionsOfUser" resultType="java.lang.String" parameterType="java.lang.String">
+    select full_name
+    from subscribe
+    where login = #{login}
+  </select>
   <select id="getCollaborators" resultType="java.lang.String" parameterType="java.lang.String">
     select login
     from collaborate

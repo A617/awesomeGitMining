@@ -65,6 +65,8 @@ public interface RepositoryMapper {
 
     List<String> getSubscribers(String full_name);
 
+    List<String> getSubscribionsOfUser(String login);
+
     List<String> getCollaborators(String repo_fullname);
 
     List<String> countFirst10Languages();

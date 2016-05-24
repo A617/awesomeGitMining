@@ -147,6 +147,18 @@ public class RepoDaoImpl implements IRepoDao {
     }
 
     @Override
+    public List<String> getSubscirbers(String repo_fullname) {
+        List<String>list=mapper.getSubscribers(repo_fullname);
+        return list;
+    }
+
+    @Override
+    public List<String> getSubscribionsOfUser(String login) {
+        List<String> list = mapper.getSubscribionsOfUser(login);
+        return list;
+    }
+
+    @Override
     public Pager<Repository> getReposByKey(String key) {
         Map<String, Object> map = createMap();
         map.put("keyword",key);
