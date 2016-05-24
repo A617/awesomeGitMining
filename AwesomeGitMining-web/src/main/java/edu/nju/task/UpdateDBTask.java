@@ -36,7 +36,7 @@ public class UpdateDBTask {
     @Resource
     UserMapper userdao;
 
-    @Scheduled(cron = "00 06 17 * * ?")
+    @Scheduled(cron = "00 48 18 * * ?")
     public void job(){
 //        LOG.info(dao.getAllFullname().get(1));
        // LOG.info("hello。。。。");
@@ -111,7 +111,7 @@ public class UpdateDBTask {
                     dao.insert(po);
                 }
 
-                if(dao.getContributors(repo)==null||dao.getContributors(repo).isEmpty()) {
+
                     try {
                         String contri = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/contributors");
                         JsonParser jp = f.createJsonParser(contri);
@@ -119,8 +119,9 @@ public class UpdateDBTask {
                         while (jp.nextToken() == JsonToken.START_OBJECT) {
 
                             String login = (String) mapper.readValue(jp, Map.class).get("login");
-                            dao.insertContribute(repo, login);
-
+                            if(dao.getContributors(repo)==null||dao.getContributors(repo).isEmpty()) {
+                                dao.insertContribute(repo, login);
+                            }
                             if(userdao.selectByLogin(login)==null) {
                                 System.out.println(login);
                                 String user = HttpRequest.getGithubContentUsingHttpClient("api.github.com/users/" + login);
@@ -131,16 +132,17 @@ public class UpdateDBTask {
                     } catch (IOException e) {
                         System.out.println("cant get contri");
                     }
-                }
 
-                if(dao.getSubscribers(repo)==null||dao.getSubscribers(repo).isEmpty()) {
+
+
                     try {
                         String subs = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/subscribers");
                         JsonParser jp3 = f.createJsonParser(subs);
                         jp3.nextToken();
                         while (jp3.nextToken() == JsonToken.START_OBJECT) {
                             String login = (String) mapper.readValue(jp3, Map.class).get("login");
-                            dao.insertSubscribe(repo, login);
+                            if(dao.getSubscribers(repo)==null||dao.getSubscribers(repo).isEmpty())
+                             dao.insertSubscribe(repo, login);
 
                             if(userdao.selectByLogin(login)==null) {
                                 System.out.println(login);
@@ -152,7 +154,7 @@ public class UpdateDBTask {
                     } catch (IOException e) {
                         System.out.println("cant get subscribe");
                     }
-                }
+
 
             } catch (IOException e) {
                 e.printStackTrace();

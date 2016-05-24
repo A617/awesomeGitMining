@@ -109,6 +109,15 @@ public class RepoController {
 
     }
 
+    @RequestMapping(value="/{ownerName}/{repoName}/code_frequency",method = RequestMethod.GET)
+    public @ResponseBody
+    String  getCodeFrequency(@PathVariable String ownerName, @PathVariable String repoName) {
+        String fullName = ownerName + "/" + repoName;
+        String result=repoService.getCodeFrequency(fullName);
+        return result;
+
+    }
+
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ModelAndView searchRepos(HttpServletRequest request, Model model) {
