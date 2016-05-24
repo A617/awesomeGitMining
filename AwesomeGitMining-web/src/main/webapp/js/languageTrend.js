@@ -75,7 +75,7 @@ $(document).ready(function () {
             function dataFormatter(obj) {
                 var pList = data.name;
                 var temp;
-                for (var year = 2007; year <= 2010; year++) {
+                for (var year = 2007; year <= 2016; year++) {
 
                     temp = obj[year];
                     for (var i = 0, l = temp.length; i < l; i++) {
@@ -95,7 +95,13 @@ $(document).ready(function () {
                 2007: data.year1,
                 2008: data.year2,
                 2009: data.year3,
-                2010: data.year4
+                2010: data.year4,
+                2011: data.year5,
+                2012: data.year6,
+                2013: data.year7,
+                2014: data.year8,
+                2015: data.year9,
+                2016: data.year10
             });
 
 
@@ -108,12 +114,12 @@ $(document).ready(function () {
                         // loop: false,
                         autoPlay: true,
                         // currentIndex: 2,
-                        playInterval: 1000,
+                        playInterval: 2000,
                         // controlStyle: {
                         //     position: 'left'
                         // },
                         data: [
-                            '2007', '2008', '2009', '2010'
+                            '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016'
                         ],
                         label: {
                             formatter: function (s) {
@@ -162,7 +168,7 @@ $(document).ready(function () {
                                 itemStyle: {
                                     normal: {
                                         color: '#7EC0EE',
-                                        opacity:0.5
+                                        opacity: 0.5
                                     }
                                 }
                             }
@@ -177,7 +183,7 @@ $(document).ready(function () {
                                 itemStyle: {
                                     normal: {
                                         color: '#7EC0EE',
-                                        opacity:0.5
+                                        opacity: 0.5
                                     }
                                 }
                             }
@@ -192,7 +198,7 @@ $(document).ready(function () {
                                 itemStyle: {
                                     normal: {
                                         color: '#7EC0EE',
-                                        opacity:0.5
+                                        opacity: 0.5
                                     }
                                 }
                             }
@@ -207,9 +213,99 @@ $(document).ready(function () {
                                 , itemStyle: {
                                 normal: {
                                     color: '#7EC0EE',
-                                    opacity:0.5
+                                    opacity: 0.5
                                 }
                             }
+                            }
+
+                        ]
+                    },
+                    {
+                        title: {text: '2011 language usage'},
+                        series: [
+                            {
+                                data: dataMap.dataGDP['2011'],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#7EC0EE',
+                                        opacity: 0.5
+                                    }
+                                }
+                            }
+
+                        ]
+                    },
+                    {
+                        title: {text: '2012 language usage'},
+                        series: [
+                            {
+                                data: dataMap.dataGDP['2012'],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#7EC0EE',
+                                        opacity: 0.5
+                                    }
+                                }
+                            }
+
+                        ]
+                    },
+                    {
+                        title: {text: '2013 language usage'},
+                        series: [
+                            {
+                                data: dataMap.dataGDP['2013'],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#7EC0EE',
+                                        opacity: 0.5
+                                    }
+                                }
+                            }
+
+                        ]
+                    },
+                    {
+                        title: {text: '2014 language usage'},
+                        series: [
+                            {
+                                data: dataMap.dataGDP['2014'],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#7EC0EE',
+                                        opacity: 0.5
+                                    }
+                                }
+                            }
+
+                        ]
+                    },
+                    {
+                        title: {text: '2015 language usage'},
+                        series: [
+                            {
+                                data: dataMap.dataGDP['2015'],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#7EC0EE',
+                                        opacity: 0.5
+                                    }
+                                }
+                            }
+
+                        ]
+                    },
+                    {
+                        title: {text: '2016 language usage'},
+                        series: [
+                            {
+                                data: dataMap.dataGDP['2016'],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#7EC0EE',
+                                        opacity: 0.5
+                                    }
+                                }
                             }
 
                         ]

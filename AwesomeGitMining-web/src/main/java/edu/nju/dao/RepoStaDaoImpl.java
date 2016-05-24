@@ -177,7 +177,7 @@ public class RepoStaDaoImpl implements IRepoStaDao {
         Map<String, Object> map = new HashMap<String, Object>();
         List<String> lan = mapper.countFirst10Languages();
         for (String language : lan) {
-            List<Integer> list = mapper.countForks();
+            List<Integer> list = mapper.getForksByLan(language);
             map.put(language, list);
         }
         return map;
@@ -297,12 +297,5 @@ public class RepoStaDaoImpl implements IRepoStaDao {
         for( int i = 0 ; i < x.length ; i++ ) s = s + x[i] * y[i] ;
         return s ;
     }
-
-
-
-
-
-
-
 
 }

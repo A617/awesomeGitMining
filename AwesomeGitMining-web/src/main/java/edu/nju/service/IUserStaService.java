@@ -9,19 +9,17 @@ import java.util.Map;
  */
 public interface IUserStaService {
 
-    List<LinkedHashMap> getCompanyCounts();
+    Map<String, Object> getCompanyCounts();
 
-    List<LinkedHashMap> getTypeCounts();
+    Map<String, Object> getTypeCounts();
 
-    List<LinkedHashMap> getCreateYear();
+    Map<String, Object> getCreateYear();
 
-    List<LinkedHashMap> countEmail();
+    Map<String, Object> countEmail();
 
-    List<Integer> countBlog();
+    Map<String, Object> countBlog();
 
-    List<Integer> countFollowers();
-
-    List<Integer> countFollowings();
+    Map<String, Object> countFollows();
 
     /**
      *

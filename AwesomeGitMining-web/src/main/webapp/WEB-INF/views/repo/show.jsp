@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+    <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -9,6 +9,10 @@
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/Chart.bundle.js"></script>
+    <%--<script src="/js/codeFrequency.js"></script>--%>
+    <script src="/js/echarts.min.js"></script>
+    <script src="/js/macarons.js"></script>
+    <script src="/js/library/json2.js"></script>
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
@@ -173,15 +177,27 @@
                         </div>
                 </div>
 
+                <div id="codeFrequency" style="width: 50%;height:200px;"></div>
+                <hr size="2">
+
+                <div class="col-lg-12 col-md-12" style="width:100%; overflow:auto">
+                    <h4 class="m-top-md m-bottom-sm">Related repositories</h4>
+                    <div style="width:60%; margin:0 auto">
+                         <div id="force-chart" height=400px width=600px />
+                    </div>
+                </div>
+
+
 
             </div>
         </div>
     </div>
 </div>
-<footer class="text-right">
-    <p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>
-</footer>
+<%--<footer class="text-right">--%>
+    <%--<p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>--%>
+<%--</footer>--%>
 
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script>
     var sc = function(factor) {
         return Math.round(factor * 10);
@@ -253,8 +269,193 @@
             var ctx = document.getElementById("pie-chart").getContext("2d");
                     window.myPie = new Chart(ctx, config2);
         };
+
+
+    $(function() {
+    var chart;
+
+        $(document).ready(function() {
+
+            var url = "/repo/"+'${repo.full_name}'+"/json";
+
+            <%--alert('<%${repo.full_name}%>');--%>
+            $.ajax(url, {
+                type: 'GET',
+                success: function (data, textStatus) {
+
+                    var nodes = data.nodes;
+                    <%--alert(data.nodes);--%>
+
+                    var edges = data.lines;
+                        <%--alert(data.lines);--%>
+
+                    var width = 600;
+                    var height = 400;
+
+
+                    var svg = d3.select("#force-chart")
+                    .append("svg")
+                    .attr("width",width)
+                    .attr("height",height);
+
+                    var force = d3.layout.force()
+                    .nodes(nodes)		//指定节点数组
+                    .links(edges)		//指定连线数组
+                    .size([width,height])	//指定范围
+                    .linkDistance(150)	//指定连线长度
+                    .charge(-400);	//相互之间的作用力
+
+                    force.start();	//开始作用
+
+                    console.log(nodes);
+                    console.log(edges);
+
+                    //添加连线
+                    var svg_edges = svg.selectAll("line")
+                    .data(edges)
+                    .enter()
+                    .append("line")
+                    .style("stroke","#ccc")
+                    .style("stroke-width",1);
+
+                    var color = d3.scale.category20();
+
+                    //添加节点
+                    var svg_nodes = svg.selectAll("circle")
+                    .data(nodes)
+                    .enter()
+                    .append("circle")
+                    .attr("r",20)
+                    .style("fill",function(d,i){
+                    return color(i);
+                    })
+                    .call(force.drag);	//使得节点能够拖动
+
+                    //添加描述节点的文字
+                    var svg_texts = svg.selectAll("text")
+                    .data(nodes)
+                    .enter()
+                    .append("text")
+                    .style("fill", "black")
+                    .attr("dx", 20)
+                    .attr("dy", 8)
+                    .text(function(d){
+                    return d.name;
+                    });
+
+
+                    force.on("tick", function(){	//对于每一个时间间隔
+
+                    //更新连线坐标
+                    svg_edges.attr("x1",function(d){ return d.source.x; })
+                    .attr("y1",function(d){ return d.source.y; })
+                    .attr("x2",function(d){ return d.target.x; })
+                    .attr("y2",function(d){ return d.target.y; });
+
+                    //更新节点坐标
+                    svg_nodes.attr("cx",function(d){ return d.x; })
+                    .attr("cy",function(d){ return d.y; });
+
+                    //更新文字坐标
+                    svg_texts.attr("x", function(d){ return d.x; })
+                    .attr("y", function(d){ return d.y; });
+                    });
+
+
+                }
+            });
+
+            $.ajax({
+            //请求方式为get
+            type: "GET",
+            url: "/repo/"+'${repo.full_name}'+"/code_frequency",
+            dataType: "json",
+            success: function (obj) {
+            var data = [];
+            var week = [];
+            for (var i = 1; i < obj.length + 1; i++) {
+
+            week.push(i+" week");
+            data.push(obj[i-1][1]-obj[i-1][2]);
+            }
+
+            option = {
+            tooltip: {
+            trigger: 'axis',
+            position: function (pt) {
+            return [pt[0], '10%'];
+            }
+            },
+            title: {
+            left: 'center',
+            text: 'code frequency',
+            },
+            legend: {
+            top: 'bottom',
+            data: ['意向']
+            },
+            toolbox: {
+            show: true,
+            feature: {
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+            }
+            },
+            xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: week
+            },
+            yAxis: {
+            type: 'value',
+            boundaryGap: [0, '100%']
+            },
+            dataZoom: [{
+            type: 'inside',
+            start: 0,
+            end: 10
+            }, {
+            start: 0,
+            end: 10
+            }],
+            series: [
+            {
+            name: 'additions',
+            type: 'line',
+            smooth: true,
+            symbol: 'none',
+            sampling: 'average',
+            areaStyle: {
+            normal: {
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+            offset: 0,
+            color: 'rgb(255, 158, 68)'
+            }, {
+            offset: 1,
+            color: 'rgb(255, 70, 131)'
+            }])
+            }
+            },
+            data: data
+            }
+            ]
+            };
+            var myChart1 = echarts.init(document.getElementById('codeFrequency'), 'macarons');
+            myChart1.setOption(option);
+            }
+
+            })
+            });
+    });
+
 </script>
 
+    <script>
 
-</body>
+
+    </script>
+
+    </body>
 </html>

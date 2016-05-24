@@ -8,11 +8,8 @@ import edu.nju.service.IMemberService;
 import edu.nju.service.IRepoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -81,7 +78,9 @@ public class RepoController {
     @RequestMapping(value = "/{ownerName}/{repoName}", method = RequestMethod.GET)
     public ModelAndView showRepo(@PathVariable String ownerName, @PathVariable String repoName) {
         String fullName = ownerName + "/" + repoName;
+        System.out.println(fullName);
         Repository repo = repoService.getRepoByFullname(fullName);
+        System.out.println(repo);
 
         ObjectMapper mapper = new ObjectMapper();
         List<String> contributors = repoService.getContributors(fullName);
@@ -89,7 +88,8 @@ public class RepoController {
 
         Map<String,Integer> languages = null;
         try {
-            languages = mapper.readValue(repo.getLanguages(), Map.class);
+            if(repo.getLanguages()!=null)
+                languages = mapper.readValue(repo.getLanguages(), Map.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -103,6 +103,23 @@ public class RepoController {
         return new ModelAndView("/repo/show", result);
     }
 
+    @RequestMapping(value="/{ownerName}/{repoName}/json",method = RequestMethod.GET)
+    public @ResponseBody
+    Map<String,Object>  getSubscribe(@PathVariable String ownerName, @PathVariable String repoName) {
+        String fullName = ownerName + "/" + repoName;
+        Map<String,Object> result=repoService.getRelatedRepoViaSubscribers(fullName);
+        return result;
+
+    }
+
+    @RequestMapping(value="/{ownerName}/{repoName}/code_frequency",method = RequestMethod.GET)
+    public @ResponseBody
+    String  getCodeFrequency(@PathVariable String ownerName, @PathVariable String repoName) {
+        String fullName = ownerName + "/" + repoName;
+        String result=repoService.getCodeFrequency(fullName);
+        return result;
+
+    }
 
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)

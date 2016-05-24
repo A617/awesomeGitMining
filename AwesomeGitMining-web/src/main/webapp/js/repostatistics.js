@@ -2,55 +2,197 @@ $(function() {
 	var chart;
 
 	$(document).ready(function() {
-		// get company
-		var url = "/json/company2014"
+
+		var myChart = echarts.init(document.getElementById('year_size'),'macarons');
+		var url = "/statistics/repository/yearSizeRelation";
+		myChart .showLoading({
+			text : 'Loading...',
+			effect : 'spin',
+			textStyle : {
+				fontSize : 25
+			}
+		});
 		$.ajax(url, {
-			type : 'GET',
-			// async : false,
-			// contentType : 'application/json',
-			// dataType : 'json',
-			success : function(data, textStatus) {
-				// Set up the chart
-				var companychart = new Highcharts.Chart({
-					chart : {
-						renderTo : 'language',
-						type : 'column',
-						margin : 100,
-						options3d : {
-							enabled : true,
-							alpha : 5,
-							beta : 15,
-							depth : 50,
-							viewDistance : 25
-						}
-					},
+			type: 'GET',
+			success: function (data, textStatus) {
+				myChart.hideLoading();
+				myChart.setOption({
 					title : {
-						text : 'Numbers of Repository in Different Languages'
+						text: 'Year And Average Size',
+						x:'center',
+						y:'top'
 					},
-					plotOptions : {
-						column : {
-							depth : 25
+					tooltip : {},
+					legend: {
+						data:['repository']
+					},
+					xAxis: {
+						data: data.year
+					},
+					yAxis: {},
+					series: [{
+						name: 'reository',
+						type: 'bar',
+						data: data.size,
+						itemStyle:{
+							normal: {
+								color:'#FFB5C5'
+							}
 						}
-					},
-					xAxis : {
-						categories : data.language
-					},
-					yAxis : {
-						title : {
-							text : 'Numbers of Repository'
-						},
-					},
-					tooltip : {
-						valueSuffix : ''
-					},
-					series : [ {
-						name : 'Language',
-						data : data.number
-					} ]
+					}]
 				});
 			}
 		});
 
-    });
+		var myChart1 = echarts.init(document.getElementById('lan_size'),'macarons');
+		var url = "/statistics/repository/lan_size";
+		myChart1 .showLoading({
+			text : 'Loading...',
+			effect : 'spin',
+			textStyle : {
+				fontSize : 25
+			}
+		});
+		$.ajax(url, {
+			type: 'GET',
+			success: function (data, textStatus) {
+				var d = echarts.dataTool.prepareBoxplotData(
+					data.Count
+				);
+				myChart1.hideLoading();
+				myChart1.setOption({
+					title: [
+						{
+							text: 'Distribution Of Language And Size',
+							left: 'center'
+						}
+					],
+					tooltip: {
+						trigger: 'item',
+						axisPointer: {
+							type: 'shadow'
+						}
+					},
+					grid: {
+						left: '10%',
+						right: '10%',
+						bottom: '15%'
+					},
+					xAxis: {
+						type: 'category',
+						data: data.Name,
+						boundaryGap: true,
+						nameGap: 30,
+						splitArea: {
+							show: false
+						},
+						axisLabel: {
+							formatter: '{value}'
+						},
+						splitLine: {
+							show: false
+						}
+					},
+					yAxis: {
+						type: 'value',
+						splitArea: {
+							show: true
+						}
+					},
+					series: [
+						{
+							name: 'boxplot',
+							type: 'boxplot',
+							data: d.boxData
+						},
+						{
+							name: 'outlier',
+							type: 'scatter',
+							data: d.outliers
+						}
+					]
+				});
+			}
+		});
 
+		var myChart2 = echarts.init(document.getElementById('lan_fork'),'macarons');
+		var url = "/statistics/repository/lan_fork";
+		myChart2 .showLoading({
+			text : 'Loading...',
+			effect : 'spin',
+			textStyle : {
+				fontSize : 25
+			}
+		});
+		$.ajax(url, {
+			type: 'GET',
+			success: function (data) {
+				var d = echarts.dataTool.prepareBoxplotData(
+					data.Count
+				);
+				myChart2.hideLoading();
+				myChart2.setOption({
+					title: [
+						{
+							text: 'Distribution Of Language And Fork Number',
+							left: 'center'
+						}
+					],
+					tooltip: {
+						trigger: 'item',
+						axisPointer: {
+							type: 'shadow'
+						}
+					},
+					grid: {
+						left: '10%',
+						right: '10%',
+						bottom: '15%'
+					},
+					xAxis: {
+						type: 'category',
+						data: data.Name,
+						boundaryGap: true,
+						nameGap: 30,
+						splitArea: {
+							show: false
+						},
+						axisLabel: {
+							formatter: '{value}'
+						},
+						splitLine: {
+							show: false
+						}
+					},
+					yAxis: {
+						type: 'value',
+						splitArea: {
+							show: true
+						}
+					},
+					series: [
+						{
+							name: 'boxplot',
+							type: 'boxplot',
+							data: d.boxData
+						},
+						{
+							name: 'outlier',
+							type: 'scatter',
+							data: d.outliers
+						}
+					]
+				});
+			}
+		});
+
+
+	});
 });
+
+var backgroundColor = [
+	"#FFFFCC", "#CCFFFF", "#FFCCCC",
+	"#99CCCC", "#FFCC99", "#FFCCCC",
+	"#FF9999", "#996699", "#FFFF99",
+	"#0099CC", "#FF6666", "#99CC66"
+];

@@ -7,8 +7,16 @@ $(document).ready(function () {
         success: function (data) {
             echarts.registerMap('world', data);
             chart = echarts.init(document.getElementById('worldMap'));
+            chart .showLoading({
+                text : 'Loading...',
+                effect : 'spin',
+                textStyle : {
+                    fontSize : 25
+                }
+            });
         }
     });
+    
     $.ajax({
         type: "GET",
         url: "/statistics/user/location",
@@ -48,7 +56,7 @@ $(document).ready(function () {
                 },
                 series: [
                     {
-                        name: 'World Population (2010)',
+                        name: 'user number',
                         type: 'map',
                         mapType: 'world',
                         roam: true,
@@ -59,6 +67,7 @@ $(document).ready(function () {
                     }
                 ]
             };
+            chart.hideLoading();
             chart.setOption(option);
         }
     })

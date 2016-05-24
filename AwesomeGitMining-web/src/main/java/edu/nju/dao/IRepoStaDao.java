@@ -104,13 +104,13 @@ public interface IRepoStaDao {
     /**
      *
      * @param
-     * @return 返回每个项目的语言与大小，用于散点图
+     * @return 返回每个项目的语言与大小，用于盒状图
      */
     Map<String,Object> getLanAndSize_EachRepo();
     /**
      *
      * @param
-     * @return 返回每个项目的语言与fork，用于散点图
+     * @return 返回每个项目的语言与fork，用于盒状图
      */
     Map<String,Object> getLanAndFork_EachRepo();
     /**

@@ -10,6 +10,8 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import edu.nju.dao.RepoDaoImpl;
 import edu.nju.model.Repository;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
@@ -20,6 +22,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.*;
 import java.text.DateFormat;
@@ -32,9 +36,12 @@ import java.util.zip.GZIPInputStream;
  */
 public class test {
 
+    static RepoDaoImpl dao;
 
     public static void main(String[] args) {
 
+//        ApplicationContext context = new ClassPathXmlApplicationContext("spring-mybatis.xml");
+//        dao =(RepoDaoImpl) context.getBean("repoDao");
 
 
         String path = "src/main/resources/2016-05-16-15.json.gz";
@@ -93,20 +100,26 @@ public class test {
             String s = null;
             try {
                 s = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo);
-
+                System.out.println(repo);
 
                 Repository po = mapper.readValue(s, Repository.class);
                 po.setOwner_name(po.getFull_name().split("/")[0]);
+                String lan = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/languages");
+                po.setLanguages(lan);
                 System.out.println(po);
+
+                    dao.insert(po);
+
 
                 try {
                     String contri = HttpRequest.getGithubContentUsingHttpClient("api.github.com/repos/" + repo + "/contributors");
                     JsonParser jp = f.createJsonParser(contri);
                     jp.nextToken();
                     while (jp.nextToken() == JsonToken.START_OBJECT) {
-                        System.out.println(mapper.readValue(jp, Map.class).get("login"));
+                        dao.insertContribute(repo,(String)mapper.readValue(jp, Map.class).get("login"));
                     }
                 } catch (IOException e) {
+                    continue;
                 }
 
 
@@ -115,14 +128,15 @@ public class test {
                     JsonParser jp3 = f.createJsonParser(subs);
                     jp3.nextToken();
                     while (jp3.nextToken() == JsonToken.START_OBJECT) {
-                        System.out.println(mapper.readValue(jp3, Map.class).get("login"));
+                        dao.insertSubscribe(repo,(String)mapper.readValue(jp3, Map.class).get("login"));
                     }
                 } catch (IOException e) {
-
+                    continue;
                 }
 
             } catch (IOException e) {
                 e.printStackTrace();
+                continue;
             }
 
 

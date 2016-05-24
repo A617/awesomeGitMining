@@ -55,8 +55,7 @@ $(document).ready(function () {
                 yAxis: [
                     {
                         name: 'time',
-                        type: 'value',
-                        max: 6000000
+                        type: 'value'
                     }
                 ],
                 series: [
@@ -66,21 +65,22 @@ $(document).ready(function () {
                         hoverAnimation: false,
                         areaStyle: {
                             normal: {
-                                color:'#D1BBFF'
+                               
                             }
                         },
                         lineStyle: {
                             normal: {
-                                width: 1,
-                                color:'#D1BBFF'
+                                width: 1
                             }
                         },
                         data: count
                     }
                 ]
             };
-            var myChart1 = echarts.init(document.getElementById('pushTime'));
+
+            var myChart1 = echarts.init(document.getElementById('pushTime'),'macarons');
             myChart1.setOption(option);
+            
         }
 
     })

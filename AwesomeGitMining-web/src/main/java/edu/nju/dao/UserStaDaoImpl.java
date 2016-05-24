@@ -78,9 +78,12 @@ public class UserStaDaoImpl implements IUserStaDao {
         List<LinkedHashMap> result = new ArrayList<>();
         for (String country : Statistics.country) {
             int num = 0;
-            LinkedHashMap<String,Object> map = new LinkedHashMap<>();
+            LinkedHashMap<String, Object> map = new LinkedHashMap<>();
             for (String str : all) {
                 if (str != null && !str.isEmpty()) {
+                    str.toLowerCase();
+                    num+= getBigCountryRealNum(country, str);
+                    country.toLowerCase();
                     if (str.contains(country)) {
                         num++;
                     }
@@ -90,6 +93,23 @@ public class UserStaDaoImpl implements IUserStaDao {
             map.put("value", num);
             result.add(map);
         }
+
         return result;
     }
+
+    private int getBigCountryRealNum(String country, String str) {
+        int num = 0;
+        int index = Statistics.bigCountries.indexOf(country);
+        if (index < 0) {
+            return num;
+        }
+        String[] cities = Statistics.bigCountryCity[index];
+        for (int i = 0; i < cities.length; i++) {
+            if (str.contains(cities[i])) {
+                num++;
+            }
+        }
+        return num;
+    }
+
 }

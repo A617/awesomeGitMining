@@ -25,7 +25,7 @@ $(document).ready(function () {
                     coord: [0, 0],
                     symbol: 'none'
                 }, {
-                    coord: [9609, 36996],
+                    coord: [6000, 30000],
                     symbol: 'none'
                 }]]
             };
@@ -41,10 +41,10 @@ $(document).ready(function () {
                     formatter: '({c})'
                 },
                 xAxis: [
-                    {gridIndex: 0, min: 0, max: data.Xmax, name: "fork"}
+                    {gridIndex: 0, min: 0, max: 6000, name: "fork"}
                 ],
                 yAxis: [
-                    {gridIndex: 0, min: 0, max: data.Ymax, name: "star"}
+                    {gridIndex: 0, min: 0, max: 30000, name: "star"}
                 ],
 
                 series: [
@@ -58,7 +58,7 @@ $(document).ready(function () {
                     }
                 ]
             };
-            var myChart1 = echarts.init(document.getElementById('forkStarRelation'));
+            var myChart1 = echarts.init(document.getElementById('forkStarRelation'),'macarons');
             myChart1.setOption(option);
         }
     })

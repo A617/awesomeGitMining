@@ -16,12 +16,18 @@ import static org.junit.Assert.*;
 @ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class RepoDaoImplTest {
 
+
     @Resource
     RepoDaoImpl dao;
 
     @Test
     public void getReposByLan_Key_Year() throws Exception {
         System.out.println(dao.getReposByLan_Key_Year("","","","stargazers_count").getDatas());
+    }
+
+    @Test
+    public void test(){
+        System.out.println(dao.getContributors("zhangzibin/char-rnn-chinese"));
     }
 
 }

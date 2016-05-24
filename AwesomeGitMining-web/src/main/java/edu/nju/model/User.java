@@ -1,7 +1,11 @@
 package edu.nju.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.Date;
 
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class User {
     private Integer id;
 
@@ -31,8 +35,10 @@ public class User {
 
     private Integer following;
 
+    @JsonDeserialize(using = MyDateDeserializer.class)
     private Date created_at;
 
+    @JsonDeserialize(using = MyDateDeserializer.class)
     private Date updated_at;
 
     private Double popular_score;
