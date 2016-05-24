@@ -9,6 +9,10 @@
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/Chart.bundle.js"></script>
+    <script src="/js/codeFrequency.js"></script>
+    <script src="/js/echarts.min.js"></script>
+    <script src="/js/macarons.js"></script>
+    <script src="/js/library/json2.js"></script>
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
@@ -172,7 +176,8 @@
                             <canvas id="pie-chart" height=200px />
                         </div>
                 </div>
-
+                <div id="codeFrequency" style="width: 50%;height:200px;"></div>
+                <hr size="2">
 
             </div>
         </div>

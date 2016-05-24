@@ -1,0 +1,38 @@
+[
+  {
+    "type": "CommitCommentEvent",
+    "cnt": "54705"
+  },
+  {
+    "type": "CreateEvent",
+    "cnt": "2631572"
+  },
+  {
+    "type": "PublicEvent",
+    "cnt": "15744"
+  },
+  {
+    "type": "IssuesEvent",
+    "cnt": "1028762"
+  },
+  {
+    "type": "ReleaseEvent",
+    "cnt": "62291"
+  },
+  {
+    "type": "PushEvent",
+    "cnt": "9932092"
+  },
+  {
+    "type": "WatchEvent",
+    "cnt": "1574888"
+  },
+  {
+    "type": "ForkEvent",
+    "cnt": "555280"
+  },
+  {
+    "type": "PullRequestEvent",
+    "cnt": "1045193"
+  }
+]

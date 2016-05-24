@@ -58,7 +58,7 @@ $(document).ready(function () {
                     }
                 ]
             };
-            var myChart1 = echarts.init(document.getElementById('forkStarRelation'));
+            var myChart1 = echarts.init(document.getElementById('forkStarRelation'),'macarons');
             myChart1.setOption(option);
         }
     })

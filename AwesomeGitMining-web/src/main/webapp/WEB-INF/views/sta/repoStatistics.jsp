@@ -125,5 +125,6 @@
 <script src="/js/EchartPoint.js"></script>
 <script src="/js/barChart.js"></script>
 <script src="/js/chord.js"></script>
+<script src="/js/macarons.js"></script>
 </body>
 </html>

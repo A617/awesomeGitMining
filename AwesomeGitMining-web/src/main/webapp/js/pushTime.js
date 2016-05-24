@@ -66,21 +66,22 @@ $(document).ready(function () {
                         hoverAnimation: false,
                         areaStyle: {
                             normal: {
-                                color:'#D1BBFF'
+                               
                             }
                         },
                         lineStyle: {
                             normal: {
-                                width: 1,
-                                color:'#D1BBFF'
+                                width: 1
                             }
                         },
                         data: count
                     }
                 ]
             };
-            var myChart1 = echarts.init(document.getElementById('pushTime'));
+
+            var myChart1 = echarts.init(document.getElementById('pushTime'),'macarons');
             myChart1.setOption(option);
+            
         }
 
     })
