@@ -72,10 +72,11 @@
             <div class="templatemo-content-widget white-bg col-1 animated fadeInRight">
                 <h2>Big Query Statistics</h2>
                 <hr>
-
                 <div id="company-pie-bq" style="width: 100%;height:400px;"></div>
+                <hr size="2">
                 <div id="pushTime" style="width: 100%;height:800px;"></div>
                 <hr size="2">
+                <div id="mood" style="width: 100%;height:800px;"></div>
             </div>
         </div>
     </div>
@@ -93,6 +94,5 @@
 <script src="/js/macarons.js"></script>
 <script src="/js/bigQuery.js"></script>
 <script src="/js/library/json2.js"></script>
-<script src="/js/pushTime.js"></script>
 </body>
 </html>

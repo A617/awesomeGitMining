@@ -118,4 +118,41 @@ public class RepoStaController {
         return result;
     }
 
+    @RequestMapping(value = "/statistics/repository/lan_fork", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Map<String, Object> getLanguage_fork() {
+        Map<String, Object> result = new HashMap<>();
+//        List<LinkedHashMap>;
+//        List<Object> Count = new ArrayList<>();
+//        List<Object> Name = new ArrayList<>();
+//
+//        for (LinkedHashMap l : email) {
+//            Count.add(l.get("count"));
+//            Name.add(l.get("domain"));
+//        }
+//        result.put("Count", Count);
+//        result.put("Name", Name);
+        return result;
+    }
+
+    @RequestMapping(value = "/statistics/repository/lan_fork_each", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Map<String, Object> getLanguage_fork_each() {
+        Map<String, Object> result = new HashMap<>();
+        Map<String,Object> data = repoStaService.getLanAndFork_EachRepo();
+
+        List<String> Name = new ArrayList<>();
+        List<Object> Count = new ArrayList<>();
+
+        for (Map.Entry<String, Object> entry : data.entrySet()) {
+            Name.add(entry.getKey());
+            Count.add(entry.getValue());
+        }
+        result.put("Count", Count);
+        result.put("Name", Name);
+        return result;
+    }
+
 }

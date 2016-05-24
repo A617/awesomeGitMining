@@ -106,6 +106,8 @@
                 <div id="languageTrend" style="width: 100%;height:800px;"></div>
                 <hr size="2">
                 <div id="lan_size"style="width: 100%;height:800px;"></div>
+                <hr size="2">
+                <div id="lan_fork"style="width: 100%;height:800px;"></div>
             </div>
         </div>
     </div>

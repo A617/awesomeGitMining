@@ -120,4 +120,6 @@ public interface IRepoStaDao {
      */
     Map<String,Object> getLanByYear_forecast();
 
+    List<LinkedHashMap> getLanAndFork();
+
 }
