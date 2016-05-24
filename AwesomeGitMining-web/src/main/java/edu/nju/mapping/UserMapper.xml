@@ -108,20 +108,20 @@
     limit #{pageOffset},#{pageSize}
   </select>
   <select id="countFirst30Companys" resultType="java.util.LinkedHashMap">
-    select company,count(id) as c
+    select company,count(*) as c
     from user
     group by company
     order by c desc
     limit 30;
   </select>
   <select id="countTypes" resultType="java.util.LinkedHashMap">
-    select type,count(id) as c
+    select type,count(*) as c
     from user
     group by type
     order by c desc
   </select>
   <select id="countCreate_Year" resultType="java.util.LinkedHashMap">
-    select YEAR(created_at),count(id) as c
+    select YEAR(created_at),count(*) as c
     from user
     group by YEAR(created_at)
     order by YEAR(created_at) asc

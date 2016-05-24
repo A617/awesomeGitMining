@@ -36,7 +36,7 @@ public class UpdateDBTask {
     @Resource
     UserMapper userdao;
 
-    @Scheduled(cron = "00 47 10 * * ?")
+    @Scheduled(cron = "00 06 17 * * ?")
     public void job(){
 //        LOG.info(dao.getAllFullname().get(1));
        // LOG.info("hello。。。。");
