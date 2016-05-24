@@ -89,28 +89,10 @@ public class RepoServiceImpl implements IRepoService {
 
 
     private List<Node> recursion(String repo_fullname,int limit){
-//        System.out.println("searching "+repo_fullname);
-//        List<String> subscribers=repoDao.getSubscirbers(repo_fullname);
-//        List<String> tmp = new ArrayList<>();
-//        for(String login:subscribers){
-//            tmp.addAll(repoDao.getSubscribionsOfUser(login));
-//        }
-//        System.out.println("add all subscriptions");
-//
-//        List<Node> temp = new ArrayList<>();
-//        Map<String,Integer> map = new HashMap<>();
-//        Set<String> repoSet = new HashSet<>(tmp);
-//        for(String repo:repoSet){
-//            if(!nodes.contains(new Node(repo))&&tmp.lastIndexOf(repo)!=tmp.indexOf(repo)) {
-////                System.out.println(repo);
-//                temp.add(new Node(repo));
-//            }
-//        }
         List<Node> temp = new ArrayList<>();
         for(String name:repoDao.enlargeViaSubscribers(repo_fullname,limit))
             if(!nodes.contains(new Node(name)))
                 temp.add(new Node(name));
-//        System.out.println("select the repos");
         int n = temp.size()>=limit?limit:temp.size();
         temp = temp.subList(0,n);
         return temp;
