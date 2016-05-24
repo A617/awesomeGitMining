@@ -1,9 +1,6 @@
 package edu.nju.dao;
 
-import edu.nju.model.Pager;
-import edu.nju.model.Repository;
-import edu.nju.model.SystemContext;
-import edu.nju.model.User;
+import edu.nju.model.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,6 +18,14 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)		//表示继承了SpringJUnit4ClassRunner类
 @ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class UserDaoImplTest {
+    @Test
+    public void getCommitCalendar() throws Exception {
+
+       List<Day> list = dao.getCommitCalendar("oraisdy");
+
+        for(Day d:list)
+            System.out.println(d.getCount()+" "+d.getDate());
+    }
 
     @Resource
     UserDaoImpl dao;

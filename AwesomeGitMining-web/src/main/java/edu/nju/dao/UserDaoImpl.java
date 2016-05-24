@@ -1,12 +1,15 @@
 package edu.nju.dao;
 
-import edu.nju.model.Pager;
-import edu.nju.model.Repository;
-import edu.nju.model.SystemContext;
-import edu.nju.model.User;
+import edu.nju.model.*;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -81,6 +84,32 @@ public class UserDaoImpl implements IUserDao{
 
         return page;
     }
+
+    @Override
+    public List<Day> getCommitCalendar(String login){
+
+        Document doc;
+        List<Day> result = new ArrayList<>();
+        try {
+            doc = Jsoup.connect("https://github.com/"+login).get();
+
+            Element calendar = doc.getElementById("contributions-calendar");
+            Elements g = calendar.select("g");
+
+            for (Element e :g) {
+                for(Element d: e.select("rect"))
+                    result.add(new Day(Integer.parseInt(d.attr("data-count")),d.attr("data-date")));
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return result;
+
+    }
+
+
 
     @Override
     public List<String> getContriRepo(String login) {

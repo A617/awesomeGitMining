@@ -1,5 +1,6 @@
 package edu.nju.service;
 
+import edu.nju.model.Day;
 import edu.nju.model.Pager;
 import edu.nju.model.User;
 
@@ -56,4 +57,6 @@ public interface IUserService {
     List<String> getCollaRepo(String login);
 
     List<String> getOwn(String login);
+
+    List<Day> getCommitCalendar(String login);
 }

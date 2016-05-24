@@ -3,6 +3,7 @@ package edu.nju.service;
 import edu.nju.dao.IUserDao;
 import edu.nju.dao.UserDaoImpl;
 import edu.nju.dao.UserMapper;
+import edu.nju.model.Day;
 import edu.nju.model.Pager;
 import edu.nju.model.User;
 import org.springframework.stereotype.Service;
@@ -70,4 +71,8 @@ public class UserServiceImpl implements IUserService {
         return userDao.getOwn(login);
     }
 
+    @Override
+    public List<Day> getCommitCalendar(String login){
+        return userDao.getCommitCalendar(login);
+    }
 }
