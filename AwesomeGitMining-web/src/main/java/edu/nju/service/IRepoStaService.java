@@ -91,9 +91,4 @@ public interface IRepoStaService {
      */
     Map<String,Object> getLanAndFork_EachRepo();
 
-    /**
-     * 散点图
-     * @return
-     */
-    List<LinkedHashMap> getLanAndFork();
 }

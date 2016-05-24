@@ -3,6 +3,47 @@ $(function() {
 
 	$(document).ready(function() {
 
+		var myChart = echarts.init(document.getElementById('year_size'),'macarons');
+		var url = "/statistics/repository/yearSizeRelation";
+		myChart .showLoading({
+			text : 'Loading...',
+			effect : 'spin',
+			textStyle : {
+				fontSize : 25
+			}
+		});
+		$.ajax(url, {
+			type: 'GET',
+			success: function (data, textStatus) {
+				myChart.hideLoading();
+				myChart.setOption({
+					title : {
+						text: 'Year And Average Size',
+						x:'center',
+						y:'top'
+					},
+					tooltip : {},
+					legend: {
+						data:['repository']
+					},
+					xAxis: {
+						data: data.year
+					},
+					yAxis: {},
+					series: [{
+						name: 'reository',
+						type: 'bar',
+						data: data.size,
+						itemStyle:{
+							normal: {
+								color:'#FFB5C5'
+							}
+						}
+					}]
+				});
+			}
+		});
+
 		var myChart1 = echarts.init(document.getElementById('lan_size'),'macarons');
 		var url = "/statistics/repository/lan_size";
 		myChart1 .showLoading({

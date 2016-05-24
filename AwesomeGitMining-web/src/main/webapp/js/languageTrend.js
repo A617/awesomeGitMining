@@ -114,7 +114,7 @@ $(document).ready(function () {
                         // loop: false,
                         autoPlay: true,
                         // currentIndex: 2,
-                        playInterval: 1000,
+                        playInterval: 2000,
                         // controlStyle: {
                         //     position: 'left'
                         // },

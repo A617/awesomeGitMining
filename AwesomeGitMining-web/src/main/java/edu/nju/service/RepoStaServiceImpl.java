@@ -137,8 +137,4 @@ public class RepoStaServiceImpl implements IRepoStaService {
         return repoStaDao.getLanAndFork_EachRepo();
     }
 
-    @Override
-    public List<LinkedHashMap> getLanAndFork() {
-        return repoStaDao.getLanAndFork();
-    }
 }

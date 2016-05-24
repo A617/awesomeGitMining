@@ -45,7 +45,7 @@ public class UserStaController {
         List<Object> companyName = new ArrayList<>();
 
         for (LinkedHashMap line : companys) {
-            if (!line.get("company").equals("")) {
+            if (!line.get("company").equals("") && line.get("company") != null) {
                 companyCount.add(line.get("c"));
                 companyName.add(line.get("company"));
             }
@@ -114,7 +114,9 @@ public class UserStaController {
         }
         result.put("Count", Count);
         result.put("Name", Name);
+
         return result;
+
     }
 
     @RequestMapping(value = "/statistics/user/blog", method = RequestMethod.GET)

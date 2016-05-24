@@ -163,6 +163,7 @@ $(function() {
         });
         $.ajax(url, {
             type: 'GET',
+            dataType:"json",
             success: function (data, textStatus) {
                 myChart4.hideLoading();
                 myChart4.setOption({
@@ -176,13 +177,13 @@ $(function() {
                         data:['user']
                     },
                     xAxis: {
-                        data: data.Name
+                        data: data.domain
                     },
                     yAxis: {},
                     series: [{
                         name: 'user',
                         type: 'bar',
-                        data: data.Count,
+                        data: data.count,
                         itemStyle:{
                             normal: {
                                 color:'#ffb980'
