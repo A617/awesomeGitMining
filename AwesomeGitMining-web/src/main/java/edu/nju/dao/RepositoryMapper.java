@@ -87,6 +87,8 @@ public interface RepositoryMapper {
 
     List<Integer>getSizeByLan(String language);
 
+    List<Integer>getForksByLan(String language);
+
     List<String> selectLanguages();
 
     int selectRankOfFork(String full_name);

@@ -85,7 +85,7 @@ $(function() {
 		});
 		$.ajax(url, {
 			type: 'GET',
-			success: function (data, textStatus) {
+			success: function (data) {
 				var d = echarts.dataTool.prepareBoxplotData(
 					data.Count
 				);
@@ -144,6 +144,7 @@ $(function() {
 				});
 			}
 		});
+
 
 	});
 });
