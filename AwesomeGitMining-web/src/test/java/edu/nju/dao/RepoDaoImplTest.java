@@ -15,6 +15,10 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)        //表示继承了SpringJUnit4ClassRunner类
 @ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class RepoDaoImplTest {
+    @Test
+    public void getSubscribionsOfUser() throws Exception {
+        System.out.println(dao.getSubscribionsOfUser("technoweenie"));
+    }
 
     @Resource
     RepoDaoImpl dao;
@@ -22,6 +26,11 @@ public class RepoDaoImplTest {
     @Test
     public void getReposByLan_Key_Year() throws Exception {
         System.out.println(dao.getReposByLan_Key_Year("","","","stargazers_count").getDatas());
+    }
+
+    @Test
+    public void test(){
+        System.out.println(dao.getContributors("zhangzibin/char-rnn-chinese"));
     }
 
 }

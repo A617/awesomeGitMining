@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+    <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -172,16 +172,23 @@
                             <canvas id="pie-chart" height=200px />
                         </div>
                 </div>
+                <div class="col-lg-12 col-md-12" style="width:100%; overflow:auto">
+                    <h4 class="m-top-md m-bottom-sm">Related repositories</h4>
+                    <div style="width:60%; margin:0 auto">
+                         <div id="force-chart" height=400px width=600px />
+                    </div>
+                </div>
 
 
             </div>
         </div>
     </div>
 </div>
-<footer class="text-right">
-    <p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>
-</footer>
+<%--<footer class="text-right">--%>
+    <%--<p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>--%>
+<%--</footer>--%>
 
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script>
     var sc = function(factor) {
         return Math.round(factor * 10);
@@ -253,8 +260,110 @@
             var ctx = document.getElementById("pie-chart").getContext("2d");
                     window.myPie = new Chart(ctx, config2);
         };
+
+
+    $(function() {
+    var chart;
+
+        $(document).ready(function() {
+
+            var url = "/repo/"+'${repo.full_name}'+"/json";
+
+            <%--alert('<%${repo.full_name}%>');--%>
+            $.ajax(url, {
+                type: 'GET',
+                success: function (data, textStatus) {
+
+                    var nodes = data.nodes;
+                    <%--alert(data.nodes);--%>
+
+                    var edges = data.lines;
+                        <%--alert(data.lines);--%>
+
+                    var width = 600;
+                    var height = 400;
+
+
+                    var svg = d3.select("#force-chart")
+                    .append("svg")
+                    .attr("width",width)
+                    .attr("height",height);
+
+                    var force = d3.layout.force()
+                    .nodes(nodes)		//指定节点数组
+                    .links(edges)		//指定连线数组
+                    .size([width,height])	//指定范围
+                    .linkDistance(150)	//指定连线长度
+                    .charge(-400);	//相互之间的作用力
+
+                    force.start();	//开始作用
+
+                    console.log(nodes);
+                    console.log(edges);
+
+                    //添加连线
+                    var svg_edges = svg.selectAll("line")
+                    .data(edges)
+                    .enter()
+                    .append("line")
+                    .style("stroke","#ccc")
+                    .style("stroke-width",1);
+
+                    var color = d3.scale.category20();
+
+                    //添加节点
+                    var svg_nodes = svg.selectAll("circle")
+                    .data(nodes)
+                    .enter()
+                    .append("circle")
+                    .attr("r",20)
+                    .style("fill",function(d,i){
+                    return color(i);
+                    })
+                    .call(force.drag);	//使得节点能够拖动
+
+                    //添加描述节点的文字
+                    var svg_texts = svg.selectAll("text")
+                    .data(nodes)
+                    .enter()
+                    .append("text")
+                    .style("fill", "black")
+                    .attr("dx", 20)
+                    .attr("dy", 8)
+                    .text(function(d){
+                    return d.name;
+                    });
+
+
+                    force.on("tick", function(){	//对于每一个时间间隔
+
+                    //更新连线坐标
+                    svg_edges.attr("x1",function(d){ return d.source.x; })
+                    .attr("y1",function(d){ return d.source.y; })
+                    .attr("x2",function(d){ return d.target.x; })
+                    .attr("y2",function(d){ return d.target.y; });
+
+                    //更新节点坐标
+                    svg_nodes.attr("cx",function(d){ return d.x; })
+                    .attr("cy",function(d){ return d.y; });
+
+                    //更新文字坐标
+                    svg_texts.attr("x", function(d){ return d.x; })
+                    .attr("y", function(d){ return d.y; });
+                    });
+
+
+                }
+            });
+        });
+    });
+
 </script>
 
+    <script>
 
-</body>
+
+    </script>
+
+    </body>
 </html>

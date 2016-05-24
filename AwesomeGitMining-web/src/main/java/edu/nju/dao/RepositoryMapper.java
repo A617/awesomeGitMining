@@ -1,5 +1,6 @@
 package edu.nju.dao;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import edu.nju.model.Repository;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -9,23 +10,11 @@ import java.util.List;
 import java.util.Map;
 
 public interface RepositoryMapper {
-    int deleteByPrimaryKey(Integer id);
-
     int insert(Repository record);
 
     int insertContribute(String full_name,String login);
 
     int insertSubscribe(String full_name,String login);
-
-    int insertSelective(Repository record);
-
-    Repository selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Repository record);
-
-    int updateByPrimaryKeyWithBLOBs(Repository record);
-
-    int updateByPrimaryKey(Repository record);
 
     List<Repository> selectAll();
 
@@ -73,6 +62,10 @@ public interface RepositoryMapper {
     List<LinkedHashMap> countCreatedYear();
 
     List<String> getContributors(String full_name);
+
+    List<String> getSubscribers(String full_name);
+
+    List<String> getSubscribionsOfUser(String login);
 
     List<String> getCollaborators(String repo_fullname);
 
