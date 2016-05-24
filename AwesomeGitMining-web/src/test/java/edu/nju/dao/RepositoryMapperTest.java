@@ -31,6 +31,11 @@ import static org.junit.Assert.*;
 @ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class RepositoryMapperTest {
 
+    @Test
+    public void enlargeViaSubscribers() throws Exception {
+
+        System.out.println(dao.enlargeViaSubscribers("andlabs/libui",10));
+    }
 
 
     @Resource

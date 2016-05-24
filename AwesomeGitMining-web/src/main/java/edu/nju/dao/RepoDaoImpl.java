@@ -4,9 +4,11 @@ import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExceptio
 import edu.nju.model.Pager;
 import edu.nju.model.Repository;
 import edu.nju.model.SystemContext;
+import edu.nju.task.HttpRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -100,8 +102,9 @@ public class RepoDaoImpl implements IRepoDao {
     }
 
     @Override
-    public Map<String, Integer> getCodeFrequency(String name) {
-        return null;
+    public String getCodeFrequency(String name) throws IOException{
+        String url = "api.github.com/repos/"+name+"/stats/code_frequency";
+        return HttpRequest.getGithubContentUsingHttpClient(url);
     }
 
     @Override
@@ -147,14 +150,8 @@ public class RepoDaoImpl implements IRepoDao {
     }
 
     @Override
-    public List<String> getSubscirbers(String repo_fullname) {
-        List<String>list=mapper.getSubscribers(repo_fullname);
-        return list;
-    }
-
-    @Override
-    public List<String> getSubscribionsOfUser(String login) {
-        List<String> list = mapper.getSubscribionsOfUser(login);
+    public List<String> enlargeViaSubscribers(String full_name, int limit){
+        List<String> list = mapper.enlargeViaSubscribers(full_name,limit);
         return list;
     }
 

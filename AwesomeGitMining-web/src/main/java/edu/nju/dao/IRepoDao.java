@@ -4,6 +4,7 @@ import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExceptio
 import edu.nju.model.Pager;
 import edu.nju.model.Repository;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -77,7 +78,7 @@ public interface IRepoDao {
      * @param name
      * @return 从项目创建时间到即时的 week,number
      */
-    public Map<String,Integer> getCodeFrequency(String name);
+    public String getCodeFrequency(String name) throws IOException;
 
     /**
      *根据创建年份获取项目
@@ -93,9 +94,8 @@ public interface IRepoDao {
      */
     Pager<Repository> getReposByLanguage(String language);
 
-    List<String> getSubscirbers(String repo_fullname);
 
-    List<String> getSubscribionsOfUser(String login);
+    List<String> enlargeViaSubscribers(String full_name, int limit);
 
     /**
      * 根据关键词获取项目
@@ -127,6 +127,5 @@ public interface IRepoDao {
      * @return
      */
     List<String> getCollaborators(String repo_fullname);
-
 
 }

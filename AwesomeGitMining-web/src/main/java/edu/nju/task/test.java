@@ -69,7 +69,7 @@ public class test {
             System.out.println(url);
             path = "src/main/resources/data.json.gz";
             try {
-  //              HttpRequest.downloadFile(path, url);
+                HttpRequest.downloadFile(path, url);
 
                 System.out.println("download "+sdf.format(dt)+"-"+(12+i)+".json.gz successfully!");
                 getRepoForkMap(path,map);

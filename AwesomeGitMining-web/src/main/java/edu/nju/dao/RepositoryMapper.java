@@ -5,6 +5,7 @@ import edu.nju.model.Repository;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -100,5 +101,7 @@ public interface RepositoryMapper {
     int selectRankOfPromising(String full_name);
 
     int selectRankOfStar(String full_name);
+
+    List<String> enlargeViaSubscribers(String full_name, int limit);
 
 }

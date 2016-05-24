@@ -74,4 +74,7 @@ public interface IRepoService {
     List<String> getCollaborators(String repo_fullname);
 
     Map<String,Object> getRelatedRepoViaSubscribers(String repo_fullname);
+
+    String getCodeFrequency(String full_name);
+
 }

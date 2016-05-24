@@ -237,6 +237,18 @@ select login
     from subscribe
     where full_name = #{full_name}
   </select>
+  <select id="enlargeViaSubscribers" resultType="java.lang.String">
+  SELECT full_name FROM subscribe
+  WHERE login IN (
+    SELECT login
+    FROM subscribe
+    WHERE full_name = #{0}
+  )
+  GROUP BY full_name
+  ORDER BY count(full_name) DESC
+  LIMIT #{1};
+  </select>
+
   <select id="getSubscribionsOfUser" resultType="java.lang.String" parameterType="java.lang.String">
     select full_name
     from subscribe
