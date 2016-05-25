@@ -73,8 +73,10 @@ public class UserController {
         owners = userService.getOwn(login);
 
         String s3=user.getLanguages();
-        String[] arr3 = s3.substring(1,s3.length()-1).split(",");
-        languages = Arrays.asList(arr3);
+        if(s3!=null) {
+            String[] arr3 = s3.substring(1, s3.length() - 1).split(",");
+            languages = Arrays.asList(arr3);
+        }
 
         Map<String,Object> result = new HashMap<>();
         result.put("user",user);

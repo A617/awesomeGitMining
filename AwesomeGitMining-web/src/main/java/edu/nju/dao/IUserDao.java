@@ -78,4 +78,6 @@ public interface IUserDao {
      * @return
      */
     List<String> getOwn(String login);
+
+    List<String> getLanguageSkills(String login);
 }

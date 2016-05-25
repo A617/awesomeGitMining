@@ -55,6 +55,10 @@
       #{teamwork_score,jdbcType=DOUBLE}, #{liveness_score,jdbcType=DOUBLE}, #{experience_score,jdbcType=DOUBLE}, 
       #{quantity_score,jdbcType=DOUBLE}, #{languages,jdbcType=VARCHAR})
   </insert>
+  <insert id="insertOwn">
+    insert into own(login,full_name)
+    values (#{0},#{1})
+  </insert>
 
   <!--<update id="updateByPrimaryKey" parameterType="edu.nju.model.User" >-->
     <!--update user-->
@@ -233,5 +237,12 @@
   <select id="selectLanguages" resultType="java.lang.String">
     SELECT languages
     from user
+  </select>
+  <select id="selectLanguageByUser" resultType="java.lang.String">
+    SELECT DISTINCT language from repository
+    WHERE full_name in (
+      SELECT full_name FROM contribute
+      WHERE login = #{login}
+    )
   </select>
 </mapper>
