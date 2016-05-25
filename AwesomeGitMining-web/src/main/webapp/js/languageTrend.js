@@ -84,7 +84,7 @@ $(document).ready(function () {
             function dataFormatter(obj) {
                 var pList = data.name;
                 var temp;
-                for (var year = 2007; year <= 2016; year++) {
+                for (var year = 2007; year <= 2017; year++) {
 
                     temp = obj[year];
                     for (var i = 0, l = temp.length; i < l; i++) {
@@ -110,7 +110,8 @@ $(document).ready(function () {
                 2013: data.year7,
                 2014: data.year8,
                 2015: data.year9,
-                2016: data.year10
+                2016: data.year10,
+                2017: data.forecast
             });
 
 
@@ -121,7 +122,7 @@ $(document).ready(function () {
                         autoPlay: true,
                         playInterval: 2000,
                         data: [
-                            '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016'
+                            '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016','2017'
                         ],
                         label: {
                             formatter: function (s) {
@@ -354,6 +355,26 @@ $(document).ready(function () {
                         series: [
                             {
                                 data: dataMap.dataGDP['2016'],
+                                itemStyle: {
+                                    normal: {
+                                        color: '#7EC0EE',
+                                        opacity: 0.5
+                                    }
+                                }
+                            }
+
+                        ]
+                    },
+                    {
+                        title: {text: '2017 language usage(forecast)',
+                            x:'center',
+                            textStyle: {
+                                fontWeight: 'normal',
+                                color: '#008acd'
+                            }},
+                        series: [
+                            {
+                                data: dataMap.dataGDP['2017'],
                                 itemStyle: {
                                     normal: {
                                         color: '#7EC0EE',

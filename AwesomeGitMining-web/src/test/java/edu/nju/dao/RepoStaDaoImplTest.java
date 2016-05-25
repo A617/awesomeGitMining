@@ -119,7 +119,7 @@ public class RepoStaDaoImplTest {
         for (int i = 0; i < test[0].length; i++) {
             System.out.println();
             for (int j = 0; j < test[0].length; j++) {
-                System.out.print(test[i][j]+" ");
+                System.out.print(test[i][j] + " ");
             }
         }
     }
@@ -133,6 +133,7 @@ public class RepoStaDaoImplTest {
         }
 
     }
+
     @Test
     public void getLanAndFork_EachRepoTest() throws Exception {
         Map<String, Object> map = dao.getLanAndFork_EachRepo();
@@ -142,6 +143,7 @@ public class RepoStaDaoImplTest {
         }
 
     }
+
     @Test
     public void getLanByYearTest_forecast() throws Exception {
         Map<String, Object> map = dao.getLanByYear_forecast();
@@ -150,12 +152,12 @@ public class RepoStaDaoImplTest {
             System.out.println("value-->" + entry.getValue());
         }
     }
+
     @Test
     public void getLanByYearTest_forecast_Single() throws Exception {
-        Map<String, Integer> map = dao.getLanByYear_forecast_Single();
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            System.out.println("key-->" + entry.getKey());
-            System.out.println("value-->" + entry.getValue());
+        List<Integer> map = dao.getLanByYear_forecast_Single();
+        for (Integer re : map) {
+            System.out.println(re);
         }
 
     }

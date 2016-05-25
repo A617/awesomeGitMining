@@ -211,8 +211,8 @@ public class RepoStaDaoImpl implements IRepoStaDao {
     }
 
     @Override
-    public Map<String, Integer> getLanByYear_forecast_Single() {
-        Map<String, Integer> map = new HashMap<String, Integer>();
+    public List<Integer> getLanByYear_forecast_Single() {
+        List<Integer> result = new ArrayList<>();
         List<String> lan = mapper.countFirst10Languages();
         List<String> year = mapper.getYear();
         int size=year.size();
@@ -233,9 +233,9 @@ public class RepoStaDaoImpl implements IRepoStaDao {
             re=(int)estimate(x, y, x.length );
 
 
-            map.put(language, re);
+            result.add(re);
         }
-        return map;
+        return result;
     }
 
     public static double estimate( double[] x , double[] y , int i ) {

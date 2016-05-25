@@ -102,12 +102,14 @@ public class RepoStaServiceImpl implements IRepoStaService {
     @Override
     public Map<String, Object> getLanguageTrendDynamic() {
         Map<String, Object> result = new HashMap<>();
+        List<Integer> forecast = repoStaDao.getLanByYear_forecast_Single();
         List<String> year = repoStaDao.getYearRange();
         String[] names = {"year1","year2","year3","year4","year5","year6","year7","year8","year9","year10"};
         for (int i = 0; i < year.size(); i++) {
             List<Integer> list = repoStaDao.getLanguageUsageByYear(year.get(i));
             result.put(names[i],list);
         }
+        result.put("forecast",forecast);
         result.put("name", repoStaDao.countFirst10Languages());
         return result;
     }
