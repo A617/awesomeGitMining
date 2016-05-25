@@ -1,5 +1,4 @@
-    <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +12,9 @@
     <script src="/js/echarts.min.js"></script>
     <script src="/js/macarons.js"></script>
     <script src="/js/library/json2.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="/css/dark-glass/sidebar.css" />
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/indexpage.css"/>" rel="stylesheet" type="text/css" media="all">
@@ -21,16 +23,8 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
-            $("button").click(function(){
-                var fullName = $("#fullName").text();
-                $("#p1").html("stared!").hide(3000);
-                $.ajax({
-                    type: "POST",
-                    url: "/starRepos",
-                    data:{"repoName":fullName}
-                });
+
             });
-        });
     </script>
 </head>
 <body class="light-gray-bg">
@@ -93,15 +87,18 @@
                     <p><strong>${repo.description}</strong></p><br>
                     <p><strong class="text-purple">Project URL:</strong>&nbsp;<a href=${repo.clone_url}>${repo.clone_url}</a></p>
                     <div class="m-top-sm text-centers">
+
+                        <button id="btnCompare" class="btn btn-success" method="post">Compare</button>
                         <%session.setAttribute("backuri","/");%>
                         <%
                             if(session.getAttribute("loginMember")!=null){
                         %>
-                        <button class="btn btn-success" method="post">Star</button>
+                        <button id="btnStar" class="btn btn-success" method="post">Star</button>
                         <p id="p1"></p>
                         <%
                             }
                         %>
+
                     </div>
 
                     <h4 class="m-top-md m-bottom-sm">Repository Statistics</h4>
@@ -191,7 +188,25 @@
     </div>
 </div>
 
-    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <div id="demo_menu2" >
+    <h4>Compare between:</h4>
+    <div class="compare-bar">
+
+    </div>
+
+    </div>
+    <%--<li><a href="/" >home</a></li>--%>
+    <%--<li><a href="/plugins/" >plugins</a></li>--%>
+    <%--<li><a href="/works/" >works</a></li>--%>
+    <%--<li><a href="http://d.hatena.ne.jp/sideroad/" >diary</a></li>--%>
+    <%--<li><a href="/about/" >about</a></li>--%>
+    <%--<li><a href="/contact/" >contact</a></li>--%>
+    </div>
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.8.13/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/js/library/jquery.sidebar.js"></script>
+    <script type="text/javascript" src="/js/sidebar.js"></script>
 <script>
     var sc = function(factor) {
         return Math.round(factor * 10);
@@ -361,11 +376,11 @@
 
             var myChart1 = echarts.init(document.getElementById('codeFrequency'), 'macarons');
             myChart1 .showLoading({
-                text : 'Loading...',
-                effect : 'spin',
-                textStyle : {
-                    fontSize : 25
-                }
+            text : 'Loading...',
+            effect : 'spin',
+            textStyle : {
+            fontSize : 25
+            }
             });
             $.ajax({
             //请求方式为get
@@ -373,7 +388,7 @@
             url: "/repo/"+'${repo.full_name}'+"/code_frequency",
             dataType: "json",
             success: function (obj) {
-                myChart1.hideLoading();
+            myChart1.hideLoading();
             var data = [];
             var week = [];
             for (var i = 1; i < obj.length + 1; i++) {
@@ -447,12 +462,32 @@
             };
             myChart1.setOption(option);
             }
-
-            })
             });
+
+        });
     });
 
+    $('#btnstar').click(function(){
+        var fullName = $("#fullName").text();
+        $("#p1").html("stared!").hide(3000);
+        $.ajax({
+            type: "POST",
+            url: "/starRepos",
+            data:{"repoName":fullName}
+        });
+    });
+
+    $('#btnCompare').click(function(){
+        var fullName = $("#fullName").text();
+        $.ajax({
+            type: "POST",
+            url: "/repo/contrast",
+            data:{"full_name":fullName}
+        });
+        <%--$("#demo_menu2").sidebar().open();--%>
+    });
 </script>
+
 
     </body>
 </html>

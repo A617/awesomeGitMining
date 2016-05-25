@@ -154,8 +154,24 @@ public class RepoController {
     }
 
     @RequestMapping(value = "/contrast",method = RequestMethod.POST)
-    public String addContrast(HttpSession session){
+    public void addContrast(HttpSession session,String full_name){
+        List<String> list;
+        if(session.getAttribute("contrast")==null){
+             list = new ArrayList<>();
 
+        }else{
+            list = (List)session.getAttribute("contrast");
+            if(list.contains(full_name))
+                return;
+        }
+        list.add(full_name);
+        session.setAttribute("contrast",list);
+    }
+
+    @RequestMapping(value = "/contrast",method = RequestMethod.GET)
+    public @ResponseBody List<String> showContrast(HttpSession session){
+        Object obj = session.getAttribute("contrast");
+        return obj==null?null:(List)obj;
     }
 
 }
