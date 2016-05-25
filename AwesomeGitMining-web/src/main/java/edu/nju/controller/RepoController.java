@@ -153,9 +153,9 @@ public class RepoController {
         return new ModelAndView("/repo/search", map);
     }
 
-    @RequestMapping(value = "/contrast",method = RequestMethod.POST)
-    public String addContrast(HttpSession session){
-
-    }
+//    @RequestMapping(value = "/contrast",method = RequestMethod.POST)
+//    public String addContrast(HttpSession session){
+//
+//    }
 
 }
