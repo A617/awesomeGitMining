@@ -132,7 +132,7 @@
                             <c:forEach items="${contributions}" var="u">
                                <tr>
                                    <td>
-                                       <a href="/repo/${u}/">${u}</a>
+                                       <a href="/repo/${u}">${u}</a>
                                    </td>
                                </tr>
                             </c:forEach>
@@ -151,7 +151,7 @@
                             <c:forEach items="${collaborations }" var="u">
                                 <tr>
                                     <td>
-                                        <a href="/repo/${u}/">${u}</a>
+                                        <a href="/repo/${u}">${u}</a>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -170,7 +170,7 @@
                             <c:forEach items="${owners }" var="u">
                                 <tr>
                                     <td>
-                                        <a href="/repo/${u}/">${u}</a>
+                                        <a href="/repo/${u}">${u}</a>
                                     </td>
                                 </tr>
                             </c:forEach>

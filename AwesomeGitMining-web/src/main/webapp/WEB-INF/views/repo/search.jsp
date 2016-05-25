@@ -82,7 +82,7 @@
                         <ul class="dashboard-list">
                             <c:forEach items="${repos }" var="repo">
                                 <li>
-                                    <h3><strong><a href="${repo.full_name }/">${repo.full_name }</a></strong></h3>
+                                    <h3><strong><a href="${repo.full_name }">${repo.full_name }</a></strong></h3>
                                     <p style="text-align: right"><strong>${repo.language}</strong></p>
                                     <p><span><strong>Subscribers:</strong>&nbsp;${repo.subscribers_count}</span>
                                         <span><strong>Forks:</strong>&nbsp;${repo.forks_count}</span>
