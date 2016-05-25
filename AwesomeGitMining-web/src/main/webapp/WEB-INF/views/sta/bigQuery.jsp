@@ -11,6 +11,27 @@
     <link href="<c:url value="/css/style.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
+    <style>
+        body {
+            font-family:"Lucida Grande","Droid Sans",Arial,Helvetica,sans-serif;
+        }
+        .legend {
+            border: 1px solid #555555;
+            border-radius: 5px 5px 5px 5px;
+            font-size: 0.8em;
+            margin: 10px;
+            padding: 8px;
+        }
+        .bld {
+            font-weight: bold;
+        }
+        .title{
+            font-family:Arial,微软雅黑;
+            font-size:18px;
+            text-anchor:middle;
+            text-align:center;
+        }
+    </style>
 </head>
 <body>
 
@@ -79,6 +100,9 @@
                 <div id="eventShow" style="width: 100%;height:600px;"></div>
                 <hr size="2">
                 <div id="mood" style="width: 100%;height:400px;"></div>
+                <div style="width: 100%;height:60px;"></div>
+                <div class="title">Most active repository in May </div>
+                <div id="cloud" style="width: 100%;height:1500px;"></div>
             </div>
         </div>
     </div>
@@ -88,7 +112,8 @@
     <p><strong>Copyright &copy; 2A617.</strong> All Rights Reserved</p>
 </footer>
 
-
+<script src="/js/library/d3.min.js"></script>
+<script src="/js/library/d3.layout.cloud.js"></script>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/Chart.bundle.js"></script>
@@ -98,5 +123,7 @@
 <script src="/js/library/json2.js"></script>
 <script src="/js/pushTime.js"></script>
 <script src="/js/eventsShow.js"></script>
+<script src="/js/wordcloud.js"></script>
+
 </body>
 </html>
