@@ -1,5 +1,4 @@
 // $("ul#demo_menu1").sidebar();
-
 $("div#demo_menu2").sidebar({
     position:"right",
     callback:{
@@ -11,7 +10,7 @@ $("div#demo_menu2").sidebar({
                         $(".compare-bar").empty();
                         $.each(data,function (i,value) {
                             var url = "/repo/" + value + "/";
-                            var e = $("<a href=" + url + "></a>").text(value);
+                            var e = $("<a href=" + url + "></a>").text(value+"\n");
                             $(".compare-bar").append(e);
                         });
                     }
@@ -31,6 +30,8 @@ $("div#demo_menu2").sidebar({
         }
     }
 });
+
+
 // $("ul#demo_menu3").sidebar({
 //     position:"top",
 //     open:"click"

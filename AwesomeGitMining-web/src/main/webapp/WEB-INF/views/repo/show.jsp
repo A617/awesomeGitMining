@@ -1,4 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -12,7 +11,9 @@
     <script src="/js/echarts.min.js"></script>
     <script src="/js/macarons.js"></script>
     <script src="/js/library/json2.js"></script>
-
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.8.13/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/js/library/jquery.sidebar.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
     <link rel="stylesheet" type="text/css" href="/css/dark-glass/sidebar.css" />
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" media="all">
@@ -21,11 +22,7 @@
     <link href="<c:url value="/css/animate.css"/>" rel="stylesheet" type="text/css" media="all">
     <link href="<c:url value="/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" media="all">
 
-    <script type="text/javascript">
-        $(document).ready(function(){
 
-            });
-    </script>
 </head>
 <body class="light-gray-bg">
 <div class="templatemo-top-nav-container">
@@ -89,6 +86,7 @@
                     <div class="m-top-sm text-centers">
 
                         <button id="btnCompare" class="btn btn-success" method="post">Compare</button>
+                        <p id="p2"></p>
                         <%session.setAttribute("backuri","/");%>
                         <%
                             if(session.getAttribute("loginMember")!=null){
@@ -183,31 +181,18 @@
                         <div id="force-chart" height=300px width=1000px />
                     </div>
                 </div>
+
+                <div id="demo_menu2" >
+                    <h4>Compare between:</h4>
+                    <div class="compare-bar"></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-    <div id="demo_menu2" >
-    <h4>Compare between:</h4>
-    <div class="compare-bar">
 
-    </div>
-
-    </div>
-    <%--<li><a href="/" >home</a></li>--%>
-    <%--<li><a href="/plugins/" >plugins</a></li>--%>
-    <%--<li><a href="/works/" >works</a></li>--%>
-    <%--<li><a href="http://d.hatena.ne.jp/sideroad/" >diary</a></li>--%>
-    <%--<li><a href="/about/" >about</a></li>--%>
-    <%--<li><a href="/contact/" >contact</a></li>--%>
-    </div>
-
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.8.13/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="/js/library/jquery.sidebar.js"></script>
-    <script type="text/javascript" src="/js/sidebar.js"></script>
-<script>
+    <script>
     var sc = function(factor) {
         return Math.round(factor * 10);
     };
@@ -280,7 +265,7 @@
         };
 
 
-    $(function() {
+
     var chart;
 
         $(document).ready(function() {
@@ -465,11 +450,11 @@
             });
 
         });
-    });
+
 
     $('#btnstar').click(function(){
         var fullName = $("#fullName").text();
-        $("#p1").html("stared!").hide(3000);
+        $("#p1").html("Stared!").hide(3000);
         $.ajax({
             type: "POST",
             url: "/starRepos",
@@ -479,15 +464,16 @@
 
     $('#btnCompare').click(function(){
         var fullName = $("#fullName").text();
+        $("#p2").html("Added!").hide(3000);
         $.ajax({
             type: "POST",
             url: "/repo/contrast",
             data:{"full_name":fullName}
         });
-        <%--$("#demo_menu2").sidebar().open();--%>
+
     });
-</script>
+    </script>
 
-
+    <script type="text/javascript" src="/js/sidebar.js"></script>
     </body>
 </html>
