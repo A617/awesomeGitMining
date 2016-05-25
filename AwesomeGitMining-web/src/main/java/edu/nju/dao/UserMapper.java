@@ -12,6 +12,8 @@ public interface UserMapper {
 
     int insert(User record);
 
+    int insertOwn(String login,String full_name);
+
 //    User selectByPrimaryKey(Integer id);
 //
 //    int updateByPrimaryKey(User record);
@@ -70,5 +72,7 @@ public interface UserMapper {
     List<String> getUserLocation();
 
     List<String> selectLanguages();
+
+    List<String> selectLanguageByUser(String login);
 
 }

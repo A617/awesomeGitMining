@@ -129,6 +129,12 @@ public class UserDaoImpl implements IUserDao{
         return list;
     }
 
+    @Override
+    public List<String> getLanguageSkills(String login){
+        List<String> list = mapper.selectLanguageByUser(login);
+        return list;
+    }
+
     private Map<String, Object> createMap() {
         Map<String, Object> map = new HashMap<String, Object>();
         int pageSize = SystemContext.getSize();

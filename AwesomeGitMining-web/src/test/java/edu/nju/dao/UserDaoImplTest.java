@@ -19,6 +19,11 @@ import static org.junit.Assert.*;
 @ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class UserDaoImplTest {
     @Test
+    public void getLanguageSkills() throws Exception {
+        System.out.println(dao.getLanguageSkills("aaronlehmann"));
+    }
+
+    @Test
     public void getCommitCalendar() throws Exception {
 
        List<Day> list = dao.getCommitCalendar("oraisdy");

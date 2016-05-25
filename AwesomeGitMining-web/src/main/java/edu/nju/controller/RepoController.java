@@ -75,7 +75,7 @@ public class RepoController {
         return new ModelAndView("/repo/cons",map);
     }
 
-    @RequestMapping(value = "/{ownerName}/{repoName}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{ownerName}/{repoName}/", method = RequestMethod.GET)
     public ModelAndView showRepo(@PathVariable String ownerName, @PathVariable String repoName) {
         String fullName = ownerName + "/" + repoName;
         System.out.println(fullName);
@@ -151,6 +151,11 @@ public class RepoController {
             memberService.addSearchRecord(condition,userName);
         }
         return new ModelAndView("/repo/search", map);
+    }
+
+    @RequestMapping(value = "/contrast",method = RequestMethod.POST)
+    public String addContrast(HttpSession session){
+
     }
 
 }
