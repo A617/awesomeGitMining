@@ -1,3 +1,6 @@
-助教你好！
+挖掘与推荐Github上优秀的仓库和用户。 
 
-迭代二需要运行服务器与客户端，jar包分别在Server目录下的Server-1.0-SNAPSHOT-jar-with-dependencies.jar和Client目录下的Client-1.0-SNAPSHOT-jar-with-dependencies.jar,谢谢:)
+### 特性
+1. 用户可以使用自己的Github账号登录并给予我们的网站授权，网站会自动分析用户在Github上的收藏夹，提取主题进行相似项目推荐。 
+2. 网站会每天自动更新前一天在Github上当天star数量最大的十个最热门项目，并且给这些项目一些评分，并推荐类似项目。 
+3. 利用Google大数据API和Github官方API，我们收集了一些关于Github仓库和用户的数据进行统计并制作成图表，帮助大家发现例如Github上受欢迎的编程语言之类的统计结果。
